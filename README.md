@@ -25,24 +25,24 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## 学習コンテンツ
-(1) **[Qiskit テキストブック 日本語版](https://qiskit.org/textbook/ja/preface.html)**：量子情報の基礎から量子アプリケーションまで、理論からQiskitでのコード実装・実機での計算まで含めて解説。オープンソース運営のため皆様も執筆・翻訳できます！([Quantum Tokyoによる解説録画](https://www.youtube.com/watch?v=01JZfji-Mbw&list=PLA-UlvpIBvpvrxo_39QEiElWuvyw-MEjZ))
+(1) **[Qiskit テキストブック 日本語版](https://qiskit.org/textbook/ja/preface.html)**：量子情報の基礎から量子アプリケーションまで、理論からQiskitでのコード実装・実機での計算まで含めて解説。オープンソース運営のため皆様も執筆・翻訳できます！(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=01JZfji-Mbw&list=PLA-UlvpIBvpvrxo_39QEiElWuvyw-MEjZ))
 
 (2) **[Qiskit テキストブック 新版](https://qiskit.org/textbook-beta)**(英)：以下の章が新版追加のものです。翻訳活動は2022年春に開始予定です。
 - [Introduction course](https://qiskit.org/textbook-beta/course/introduction-course)(英)
 - [Quantum machine learning](https://qiskit.org/textbook-beta/course/machine-learning-course)(英)
 - [Quantum Computing & Quantum Machine Learning (2021)](https://qiskit.org/textbook-beta/summer-school/quantum-computing-and-quantum-learning-2021)：各Labの中に日本語版notebookのリンクがありダウンロードしてみることができます。
 
-(3) **[Qiskit ドキュメント チュートリアル](https://qiskit.org/documentation/locale/ja_JP/index.html)**：Qiskitの使い方を紹介するものです。([Quantum Tokyoによる解説録画](https://www.youtube.com/watch?v=DZHdoqjb35s&list=PLA-UlvpIBvpuvOm5qRb2yN_ndWywsAEQq))
+(3) **[Qiskit ドキュメント チュートリアル](https://qiskit.org/documentation/locale/ja_JP/index.html)**：Qiskitの使い方を紹介するものです。(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=DZHdoqjb35s&list=PLA-UlvpIBvpuvOm5qRb2yN_ndWywsAEQq)、[資料](./qiskit_tutorials/))
 
 (4) **Qiskit ドキュメント チュートリアル アプリケーション編**：主要アプリケーションモジュールのチュートリアルです。
-- [機械学習](https://qiskit.org/documentation/machine-learning/locale/ja_JP/tutorials/index.html)・[自然科学](https://qiskit.org/documentation/nature/tutorials/index.html)・[ファイナンス](https://qiskit.org/documentation/finance/tutorials/index.html)・[最適化](https://qiskit.org/documentation/optimization/tutorials/index.html)
+- [機械学習](https://qiskit-community.github.io/qiskit-translations-staging/apps/machine-learning/ja_JP/)・[自然科学](https://qiskit-community.github.io/qiskit-translations-staging/apps/nature/ja_JP/)・[ファイナンス](https://qiskit-community.github.io/qiskit-translations-staging/apps/finance/ja_JP/)・[最適化](https://qiskit-community.github.io/qiskit-translations-staging/apps/optimization/ja_JP/)
 
 (5) **IBM Quantum Challenge(量子プログラミングコンテスト)**：初心者から学習できるような教材となっています。
 - [2019年](https://github.com/quantum-challenge/2019#ibm-quantum-challenge%E3%81%B8%E3%82%88%E3%81%86%E3%81%93%E3%81%9D)(全notebook和訳あり)
 - [2020年春](https://github.com/qiskit-community/may4_challenge_exercises)
 - [2020年秋](https://github.com/qiskit-community/IBMQuantumChallenge2020#ibm-quantum-challenge%E3%81%B8%E3%82%88%E3%81%86%E3%81%93%E3%81%9D)(全notebook和訳あり)
 - [2021年春](https://github.com/qiskit-community/ibm-quantum-challenge-2021)(全notebook和訳あり)
-- [2021年アフリカ](https://github.com/qiskit-community/ibm-quantum-challenge-africa-2021) ([Lab1](), [Lab3]()のみ和訳あり)
+- [2021年アフリカ](https://github.com/qiskit-community/ibm-quantum-challenge-africa-2021) ([Lab1：リョウコと量子コンピューターで農地収穫量の最適化](https://github.com/purepureclub/IFCO2021DEC/blob/main/IFCO2021Dec_qiskit_handson.ipynb), [Lab3]()のみ和訳あり)
 - [2021年秋](https://github.com/qiskit-community/ibm-quantum-challenge-fall-2021)(全notebook和訳あり)
 
 (6) **Quantum Tokyo**：日本国内のQiskit勉強会です。
@@ -52,9 +52,9 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## 資格・コミュニティー活動など
-(1) **[Qiskit Advocate](https://github.com/qiskit-advocate/application-guide)**
+(1) **[Qiskit Advocate](https://github.com/qiskit-advocate/application-guide)** : 毎年夏ごろに１回だけ応募期間があります
 
-(2) **[Qiskit デベロッパー認定制度](https://www.ibm.com/training/certification/C0010300)**
+(2) **[Qiskit デベロッパー認定制度](https://www.ibm.com/training/certification/C0010300)** 
 
 (3) **[Qiskit翻訳活動](https://github.com/qiskit-community/qiskit-translations)**
 
