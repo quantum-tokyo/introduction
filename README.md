@@ -42,7 +42,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 - [2020年春](https://github.com/qiskit-community/may4_challenge_exercises)
 - [2020年秋](https://github.com/qiskit-community/IBMQuantumChallenge2020#ibm-quantum-challenge%E3%81%B8%E3%82%88%E3%81%86%E3%81%93%E3%81%9D)(全notebook和訳あり)
 - [2021年春](https://github.com/qiskit-community/ibm-quantum-challenge-2021)(全notebook和訳あり)
-- [2021年アフリカ](https://github.com/qiskit-community/ibm-quantum-challenge-africa-2021) ([Lab1：リョウコと量子コンピューターで農地収穫量の最適化](https://github.com/purepureclub/IFCO2021DEC/blob/main/IFCO2021Dec_qiskit_handson.ipynb), [Lab3]()のみ和訳あり)
+- [2021年アフリカ](https://github.com/qiskit-community/ibm-quantum-challenge-africa-2021) ([Lab1：リョウコと量子コンピューターで農地収穫量の最適化](https://github.com/purepureclub/IFCO2021DEC/blob/main/IFCO2021Dec_qiskit_handson.ipynb), [Lab3](./materials/QuantumChallengeAfrica2021/lab3/lab3_ja.ipynb)のみ和訳あり)
 - [2021年秋](https://github.com/qiskit-community/ibm-quantum-challenge-fall-2021)(全notebook和訳あり)
 
 (6) **Quantum Tokyo**：日本国内のQiskit勉強会です。
