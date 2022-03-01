@@ -25,7 +25,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## 学習コンテンツ
-(1) **[Qiskit テキストブック 日本語版](https://qiskit.org/textbook/ja/preface.html)**：量子情報の基礎から量子アプリケーションまで、理論からQiskitでのコード実装・実機での計算まで含めて解説。オープンソース運営のため皆様も執筆・翻訳できます！(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=01JZfji-Mbw&list=PLA-UlvpIBvpvrxo_39QEiElWuvyw-MEjZ))
+(1) **[Qiskit テキストブック 日本語版](https://qiskit.org/textbook/ja/preface.html)**：量子情報の基礎から量子アプリケーションまで、理論からQiskitでのコード実装・実機での計算まで含めて解説。オープンソース運営のため皆様も執筆・翻訳できます！(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=01JZfji-Mbw&list=PLA-UlvpIBvpvrxo_39QEiElWuvyw-MEjZ)、[資料](./qiskit_textbook/))
 
 (2) **[Qiskit テキストブック 新版](https://qiskit.org/textbook-beta)**(英)：以下の章が新版追加のものです。翻訳活動は2022年春に開始予定です。
 - [Introduction course](https://qiskit.org/textbook-beta/course/introduction-course)(英)
