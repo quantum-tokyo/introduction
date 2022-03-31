@@ -46,6 +46,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 - [2021年秋](https://github.com/qiskit-community/ibm-quantum-challenge-fall-2021)(全notebook和訳あり)
 
 (6) **Quantum Tokyo**：日本国内のQiskit勉強会です。
+- [Qiskitハンズオンコンテンツ](https://github.com/quantum-tokyo/qiskit-handson)
 - [イベント告知](https://quantum-tokyo.connpass.com/)・[録画公開](https://www.youtube.com/channel/UCT_lkXOYYBIbfk8CnvQ6Heg)
 
 
