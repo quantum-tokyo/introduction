@@ -20,7 +20,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 ## イベント
 (1) **募集中！2022年7月5日〜7月30日  [量子誤り訂正夏の学校 2022](https://wwwpoc.ibm.com/quantum-computing/summer-school/)**：限定70人、アメリカNY開催です。募集開始しています。3/3から審査が始まるので、その前までに応募が望ましいです。
 
-(2) **募集中！2021年11月29日〜2022年4月16日  [IBM Quantumアワード：オープン・サイエンス賞](https://ibmquantumawards.bemyapp.com/#/event)**：合計賞金10万ドル（約1100万円）。1位は、賞金6万ドルです。3粒子系のハミルトニアンをシミュレーションする量子プログラムを作る問題です。
+(2) **Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
 <br>
 
@@ -29,7 +29,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 
 (2) **[Qiskit テキストブック 新版](https://qiskit.org/textbook-beta)**(英)：以下の章が新版追加のものです。翻訳活動は2022年春に開始予定です。
 - [Introduction course](https://qiskit.org/textbook-beta/course/introduction-course)(英)
-- [Quantum machine learning](https://qiskit.org/textbook-beta/course/machine-learning-course)(英)
+- [Quantum machine learning](https://qiskit.org/textbook-beta/course/machine-learning-course)(英)([一時的な和訳リンク](./qiskit_textbook/New_textbook/quantum-machine-learning/)：翻訳中です)
 - [Quantum Computing & Quantum Machine Learning (2021)](https://qiskit.org/textbook-beta/summer-school/quantum-computing-and-quantum-learning-2021)：Qiskit Global Summer School 2021の資料です。各Labの中に日本語版notebookのリンクがありますが、[こちら](./materials/QiskitGlobalSummerSchool2021/)にもダウンロードして置きました。
 
 (3) **[Qiskit ドキュメント チュートリアル](https://qiskit.org/documentation/locale/ja_JP/index.html)**：Qiskitの使い方を紹介するものです。(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=DZHdoqjb35s&list=PLA-UlvpIBvpuvOm5qRb2yN_ndWywsAEQq)、[資料](./qiskit_tutorials/))
