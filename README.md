@@ -17,10 +17,14 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 
 <br>
 
-## イベント
-(1) **募集中！2022年7月5日〜7月30日  [量子誤り訂正夏の学校 2022](https://wwwpoc.ibm.com/quantum-computing/summer-school/)**：限定70人、アメリカNY開催です。募集開始しています。3/3から審査が始まるので、その前までに応募が望ましいです。
+## イベントなど
+(1) **登録開始！[IBM Quantum Spring Challenge 2022](https://challenges.quantum-computing.ibm.com/spring-2022)**：2022年5月23日〜5月28日開催の量子プログラミングコンテストです。紹介ブログは[こちら(英)](https://research.ibm.com/blog/quantum-spring-challenge-2022)。問題文の和訳も同時公開予定です。
 
-(2) **Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
+(2) **[Qiskit Advocateの申請募集](https://github.com/qiskit-advocate/application-guide)**：今年の応募申請期間は2022年6月1日～7月1日です。
+
+(3) **募集中！2022年7月5日〜7月30日  [量子誤り訂正夏の学校 2022](https://wwwpoc.ibm.com/quantum-computing/summer-school/)**：限定70人、アメリカNY開催です。募集開始しています。3/3から審査が始まるので、その前までに応募が望ましいです。
+
+(4) **Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
 <br>
 
