@@ -18,9 +18,9 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## イベントなど
-(1) **登録開始！[IBM Quantum Spring Challenge 2022](https://challenges.quantum-computing.ibm.com/spring-2022)**：2022年5月23日〜5月28日開催の量子プログラミングコンテストです。紹介ブログは[こちら(英)](https://research.ibm.com/blog/quantum-spring-challenge-2022)。問題文の和訳も同時公開予定です。
+(1) **募集開始！[Qiskit Global Summer School 2022](https://qiskit.org/events/summer-school/)**：今年もオンラインで7/18~29の2週間の開催です。
 
-(2) **[Qiskit Advocateの申請募集](https://github.com/qiskit-advocate/application-guide)**：今年の応募申請期間は2022年6月1日～7月1日です。
+(2) **申請開始！[Qiskit Advocateの申請募集](https://github.com/qiskit-advocate/application-guide)**：今年の応募申請期間は2022年6月1日～7月1日です。
 
 (3) **募集中！2022年7月5日〜7月30日  [量子誤り訂正夏の学校 2022](https://wwwpoc.ibm.com/quantum-computing/summer-school/)**：限定70人、アメリカNY開催です。募集開始しています。3/3から審査が始まるので、その前までに応募が望ましいです。
 
@@ -48,6 +48,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 - [2021年春](https://github.com/qiskit-community/ibm-quantum-challenge-2021)(全notebook和訳あり)
 - [2021年アフリカ](https://github.com/qiskit-community/ibm-quantum-challenge-africa-2021) ([Lab1：リョウコと量子コンピューターで農地収穫量の最適化](https://github.com/purepureclub/IFCO2021DEC/blob/main/IFCO2021Dec_qiskit_handson.ipynb), [Lab3](./materials/QuantumChallengeAfrica2021/lab3/lab3_ja.ipynb)のみ和訳あり)
 - [2021年秋](https://github.com/qiskit-community/ibm-quantum-challenge-fall-2021)(全notebook和訳あり)
+- [2022年春](https://github.com/qiskit-community/ibm-quantum-spring-challenge-2022)(全notebook和訳あり)
 
 (6) **Quantum Tokyo**：日本国内のQiskit勉強会です。
 - [Qiskitハンズオンコンテンツ](https://github.com/quantum-tokyo/qiskit-handson)
