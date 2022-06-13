@@ -1,0 +1,869 @@
+Term [en]	Term [ja]
+__	__
+*	*
+**	**
+``	``
+accept	受理
+access	アクセス
+accredit	認定
+action	アクション
+Activate	アクティベート
+ad hoc	アドホック
+adaptive	適応的
+additional	追加の
+Additional features	追加機能
+ADMM Optimizer	ADMM オプティマイザー
+Advanced	高度な
+Aer	Aer
+agnostic	不可知論
+AI	AI
+algorithm	アルゴリズム
+Algorithm	アルゴリズム
+Algorithms	アルゴリズム
+Alternating Direction Method of Multipliers	交互方向乗数法
+aminoacids	アミノ酸
+amplitude	振幅
+Anaconda	Anaconda
+Anaconda Prompt	Anaconda Prompt
+analogs	アナログ
+analysis	分析
+Analytics	アナリティクス
+ancilla bit	補助量子ビット
+ancilla qubit	補助量子ビット
+and	および
+angle	角度
+ansatz	ansatz
+API	API
+API documentation	APIドキュメント
+API token	API トークン
+application	アプリケーション
+approach	アプローチ
+approximate	近似
+approximation	近似
+approximation function	近似関数
+Aqua	Aqua
+architecture	アーキテクチャー
+argument	引数
+array	配列
+Artificial intelligence	人工知能
+asset	資産
+assignment	アサイン
+Associative	結合律
+attest	証明する
+attribute	属性
+Automake	自動化
+auxiliary qubit	補助量子ビット
+Azure	Azure
+backend	バックエンド
+backport	バックポート
+backporting	バックポート
+backpropagation	誤差逆伝播法
+backward pass	バックワード・パス
+Barriers	バリアー
+bars	棒
+Basis	基底
+batches	バッチ
+Bell state	ベル状態
+benchmarking	ベンチマーキング
+binaries	バイナリー
+binary	バイナリー
+binary classification	二値分類
+binary variables	バイナリ変数
+bind	結合
+binding	結合
+bit	ビット
+bit string	ビット列
+bit-flip	ビットフリップ
+bitstring	ビット列
+Bloch	ブロッホ
+Bloch sphere	ブロッホ球
+bloch sphere	ブロッホ球
+Bloch vector	ブロッホ・ベクトル
+block diagonal matrix	ブロック対角行列
+blocks	ブロック
+Bluemix	Bluemix
+body	体
+Boolean satisfiability problem	ブール充足可能性問題
+bot	ボット
+bot	ボット
+bound circuit	バインドされた回路
+boundary condition	境界条件
+bounds	有界の
+branch	ブランチ
+Bravyi-Kitaev	Bravyi-Kitaev
+breast cancer	乳がん
+brute-force method	ブルートフォース法
+Brute-force search	ブルート・フォース探索
+bug	バグ
+Bugs	バグ
+build	ビルド
+By default	デフォルトで
+C-Phase gates	制御位相ゲート
+Calculation	計算
+calibration	較正
+call	呼び出し
+callback	コールバック
+Canonical	カノニカル
+CDF	CDF
+changelog	変更ログ
+channel	チャンネル
+characterization	特性付け
+check	チェック
+chemistry	化学
+cherry-pick	cherry-pick
+chirality	キラリティー
+circuit	回路
+Circular basis	円基底
+CLA	CLA
+class	クラス
+classical	古典的
+classical control logic	古典的制御論理
+classically	古典的に
+classification	分類
+Classifier	分類器
+classifier	分類器
+Clifford	クリフォード
+Clique problem	クリーク問題
+clone	クローン
+cloud	クラウド
+Clustering	クラスタリング
+Clustering	クラスタリング
+CMake	CMake
+code	コー​​ド
+code base	コードベース
+code contributions	コードの貢献
+Code Review	コードレビュー
+code style	コードスタイル
+Coherence	コヒーレンス
+coherent	コヒーレント
+collapse	折りたたむ
+combinatorial optimization	組合せ最適化
+combinatorial optimization problems	組合せ最適化問題
+combinatorial problems	組合せ問題
+command	コマンド
+comment	コメント
+Commit messages	コミットメッセージ
+community	コミュニティ
+Commutative	可換
+compatibility	互換性
+Compile	コンパイル
+compiler	C++ コンパイラー
+Compiler	コンパイラー
+complex conjugate	複素共役
+Complex conjugation	複素共役
+complex number	複素数
+complex vector	複素ベクトル
+components	コンポーネント
+compose	構成する
+composite operator	複合演算子
+composition	合成
+Computational basis	計算基底
+computational basis	計算基底
+Compute	計算
+concurrent	並列
+conditional	条件
+conditional operations	条件付き操作
+configurable	構成可能
+configuration	構成
+configuration file	構成ファイル
+configure	構成
+congruent modulo	n を法として合同
+conjugate	共役
+CONJUGATE COMPLEX NUMBER	共役複素数
+conjunctive normal form	連言標準形
+constant	定数
+constraint	制約条件
+constraints	制約
+constructor	コンストラクター
+Continued fraction expansion	連分数展開
+continuous variables	連続変数
+Continuum	連続体
+contribution	貢献
+contributor	貢献者
+contributor license agreeement	貢献者のライセンス同意書
+Contributor License Agreement	Contributor License Agreement (CLA、貢献者ライセンス同意書)
+control	制御
+control hardware	制御ハードウェア
+control qubit	制御量子ビット
+controlled-Not	制御NOT
+Controlled-X	制御X
+convergence	収束
+Converters	コンバーター
+Convex	上に凸
+convexity assumption	凸性の仮定
+coordinate	座標
+correct	正解
+correction	訂正
+coupler	カプラー
+coupling	カップリング
+covariance	共変性
+CPTP	CPTP
+CPU	CPU
+credential	資格情報
+creg	creg
+critical	クリティカル
+cross-platform	クロスプラットフォーム
+cumulative	累積的な
+cumulative distribution function	累積分布関数
+cursor	カーソル
+custom	カスタム
+Custom options	カスタム オプション
+customizable	カスタマイズ可能
+dagcircuit	有向非巡回グラフ回路
+Dagger	ダガー
+damping	減衰
+dashboard	ダッシュボード
+data	データ
+database	データベース
+dataset	データセット
+debugging	デバッグ
+decision diagram	決定図
+decision variable	決定変数
+Decoherence	デコヒーレンス
+decoupling	デカップリング
+default	デフォルト
+default probability	デフォルトの確率
+density matrix	密度行列
+density operator	密度演算子
+dependencies	依存関係
+Dephase	脱位相
+dephase	脱位相
+dephasing time	ディフェーズ時間
+depolarization	脱分極
+depolarizing	デポラライズ
+depot	デポ
+deprecated	非推奨
+deprecation	非推奨
+Deprecation	非推奨
+Deprecation Warnings	非推奨の警告
+derivative	デリバティブ
+design	デザイン
+destructively interfere	破壊的干渉
+developer	開発者
+development headers	開発ヘッダー
+device	デバイス
+diagonal	対角線
+Diagonal basis	対角基底
+Diagram	ダイアグラム
+dictionary	辞書
+diffusion	拡散
+dimension	次元
+dimensional	次元
+Directed acyclic graph	有向非巡回グラフ
+directive	ディレクティブ
+directory	ディレクトリー
+disentangle	エンタングルメントを解く
+disentangled qubits	エンタングルをしていない量子ビット
+distribution	ディストリビューション
+Distributions	分布
+docstring	docstring
+documentation	ドキュメンテーション
+domain	ドメイン
+downstream	ダウンストリーム
+downstream consumers	下流のコンシューマ
+drop-in replacement	完全互換性部品
+dropdown	ドロップダウン
+Duffing	ダフィング
+dynamic time warping	動的時間伸縮法
+efficient	効率的
+eigen	固有
+eigen decomposition	固有分解
+eigensolver	固有ソルバー
+Eigensolvers	固有ソルバー
+eigenstate	固有状態
+eigenvalue	固有値
+eigenvector	固有ベクトル
+electronic problem	電子問題
+element	要素
+email alerts	メールアラート
+encoding	エンコーディング
+endpoint	エンドポイント
+Energy relaxation	エネルギー緩和
+entangled qubits	エンタングルした量子ビット
+Entanglement	もつれ
+entropy	エントロピー
+envelope	エンベロープ
+environment	環境
+equation	方程式
+error	エラー
+Error Codes	エラーコード
+error mitigation	誤り軽減
+Error rates	エラー率
+Estimator	推定量
+Estimators	推定量
+Evaluate	評価する
+Exact cover problem	厳密被覆問題
+excited state	励起状態
+Excited State	励起状態
+Excited States	励起状態
+Expand product	製造拡大
+expectation	期待
+expectation values	期待値
+expected	期待
+expected payoff	期待ペイオフ
+experiments	実験
+exponentially	べき乗
+exponentiation	べき乗
+extension	拡張
+extrapolate	外挿
+extrapolation	外挿
+Extrapolator	外挿
+factory	ファクトリー
+feature	特徴
+feature map	フィーチャーマップ
+feature map	フィーチャーマップ
+fermion	フェルミオン
+fermionic	フェルミオン的
+fermionic operator	フェルミオン演算子
+fidelity	忠実度
+Filter	フィルター
+finance	金融
+finance	金融
+finite difference method	有限差分法
+first order	１次のオーダー
+fit	フィットする
+fitter	フィッター
+Fitter	フィッター
+fix	フィックス
+fixed	固定
+flag	フラグ
+flexibility	柔軟性
+Fock space	フォック空間
+For example	例えば
+form	フォーム
+format	フォーマット
+formatted	フォーマットされた
+forward pass	フォワード・パス
+forward pass	フォワード・パス
+foundry	ファウンドリー
+fourier	フーリエ
+Fraction	分数
+framework	フレームワーク
+function	機能
+functionality	機能
+GAS	GAS
+Gate	ゲート
+gate	ゲート
+gate set tomography	ゲートセット・トモグラフィー
+gates	ゲート
+gateset	ゲートセット
+Gaussian	ガウシアン
+generate	生成する
+Generative Adversarial Network	敵対的生成ネットワーク
+generic	汎用
+Getting Started	はじめに
+git annotate messages	git アノテーションメッセージ
+git branch	git ブランチ
+Git commits	Git コミット
+git log	git ログ
+Github	Github
+gitk viewer annotations	gitk ビューアー・アノテーション
+global	グローバル
+Gradient	勾配
+graph partition	グラフ・パーティション
+Graph partition problem	グラフ分割問題
+ground	基底
+ground state	基底状態
+ground state	基底状態
+Ground State	基底状態
+ground state energy	基底状態エネルギー
+Grover Adaptive Search	グローバー適応探索
+Grover Optimizer	グローバーオプティマイザー
+Grover Search	グローバー探索
+GroverOptimizer	GroverOptimizer
+Hadamard	アダマール
+Hadamard gate	アダマールゲート
+hamiltonian	ハミルトニアン
+hamming distance	ハミング距離
+Hermitian matrix	エルミート行列
+Hessian	ヘッセ行列
+Hessians	ヘッセ行列
+HF solutions	HF ソリューション
+high performance	ハイパフォーマンス
+histograms	ヒストグラム
+history	履歴
+horizontal line	水平線
+host	ホスト
+hub	ハブ
+hyperplane	超平面
+IBM	IBM
+IBM Quantum	IBM Quantum
+IBM Quantum devices	IBM 量子デバイス
+IBM Quantum Provider	IBM 量子プロバイダー
+IBM Quantum Systems	IBM 量子システム
+IBMQ	IBMQ
+idea	アイデア
+Identical Preparation	同じ準備
+Identity	アイデンティティー
+identity	識別子
+identity channel	恒等チャンネル
+Identity gate	恒等ゲート
+Ignis	Ignis
+impact	影響
+implement	実装
+implementation	実装
+import	インポート
+index	インデックス
+index fund portfolio	インデックスファンドのポートフォリオ
+induced subgraph	誘導されたサブグラフ
+initializer	初期化子
+inner product	内積
+input	入力
+insert	挿入
+Installation	インストール
+Installing	インストール
+instance	インスタンス
+instruction	手順
+integer	整数
+integer variable	整数変数
+Integration	統合
+interact	相互作用
+Interactive	インタラクティブ
+interactive	インタラクティブ
+interactively	インタラクティブ
+interface	インターフェース
+interface	インターフェース
+Interference	干渉
+intersection	共通集合
+introduction	はじめに
+Inverse Fourier Transform	逆フーリエ変換
+IPE	IPE
+Ising	イジング
+Ising Hamiltonian	イジング・ハミルトニアン
+Ising problem	イジング問題
+Issue	Issue
+issue	Issue
+issue tracker	イシュートラッカー
+iteration	反復
+Iterative	反復的
+iterative algorithm	反復アルゴリズム
+ith	i番目
+job	ジョブ
+joint state	結合状態
+Jordan-Wigner	Jordan-Wigner
+JS	JS
+Jupyter	Jupyter
+jupyter notebook	jupyter notebook
+kernel	カーネル
+Knapsack problem	ナップサック問題
+Knapsack problem	ナップサック問題
+kwarg	kwarg
+kwarg	kwarg
+label	ラベル
+lattice	格子
+License	ライセンス
+linear	線形
+linear combinations	線形結合
+linear system	線形システム
+linear term	線形項
+link	リンク
+link qubits	リンク量子ビット
+linting	リンティング
+linting check	リントチェック
+Linux	Linux
+list	リスト
+local clone	ローカルクローン
+localization	ローカライゼーション
+logical	論理的な
+logical expressions	論理式
+Loss Function	損失関数
+loss given default	デフォルト時損失率
+LSB	LSB
+machine learning	機械学習
+maintainer	メンテナー
+maintainers	メンテナー
+major version	メジャーバージョン
+Manager	マネージャー
+map	写像
+mapped	マップされた
+mapping	マッピング
+mathematical formula	数式
+Mathematical operation	数値演算
+matrix	行列
+Matrix conjugate transpose	行列共役転置
+Matrix product state	行列積状態
+Max-Cut	最大カット
+Max-cut problem	マックスカット問題
+maximized	最大化
+measure	測定
+measurement	測定
+measurement error	測定誤差
+measurement error mitigation	測定エラーの軽減
+measurement noise mitigation	測定エラー軽減
+mechanism	メカニズム
+merge	マージ
+merge commits	マージコミット
+meta	メタ
+meta-package	メタ・パッケージ
+method	メソッド
+metric	メトリック
+microservice	マイクロサービス
+mimic	模倣
+minimized	最小化
+Minimum Eigen Optimizer	最小固有オプティマイザー
+minor version	マイナーバージョン
+mitigation	軽減
+mixed state	混合状態
+mode	モード
+model	モデル
+model	モデル
+Model	モデル
+modular multiplication map	モジュラー乗算マップ
+module	モジュール
+Molecular Orbital	分子軌道
+molecule	分子
+MSB	MSB
+multi-qubit	複数量子ビット
+multiclass	マルチクラス
+multiple	複数
+Multiple Quantum Coherence	マルチ量子コヒーレンス
+multiplexor	マルチプレクサー
+namespace	名前空間
+near-time computation	近い時間の計算
+Neural Network	ニューラルネットワーク
+noise	ノイズ
+noise	ノイズ
+noise cancellation	ノイズキャンセル
+noisy	ノイズのある
+non-linear	非線形
+non-noisy	ノイズなし
+non-Python	非 Python
+non-unitary	非ユニタリー
+non-universal	非ユニバーサル
+norm	ノルム
+notation	表記法
+Note	注記
+notebook	ノートブック
+object	オブジェクト
+objective	目的
+objective function	目的関数
+objects	オブジェクト
+observable	観測量
+Observables	観測量
+obsolescence	廃止
+occurrence	オカレンス
+odd	奇数
+open-source project	オープンソースプロジェクト
+OpenMP	OpenMP
+OpenPulse	OpenPulse
+operating system	オペレーティングシステム
+Operations	演算子
+operations	演算
+operator	演算子
+optimization	最適化
+optimization problems	最適化問題
+optimizer	オプティマイザー
+optional	任意の
+oracle	オラクル
+orbitals	軌道
+orthonormal eigenstates	正規直交固有状態
+oscillation	振動
+OSX	OSX
+output	出力
+overfitting	オーバーフィット
+overloads	オーバーロード
+overview	概要
+package	パッケージ
+packages	パッケージ
+packaging specification	パッケージ仕様
+paper	論文
+parameter	パラメーター
+Parameter circuits	パラメーター回路
+parameterized circuit	パラメータ化された回路
+parameters	パラメーター
+Parameters	パラメーター
+parametric	パラメトリック
+parity	パリティ
+Parity Oscillations	パリティ振動
+parsing	構文解析
+Particle-Hole	粒子-空孔
+partition function	分配関数
+pass	渡す
+patch	パッチ
+Pauli	パウリ
+Pauli operators	パウリ演算子
+Pauli Z matrices	パウリ Z 行列
+payload	ペイロード
+payoff	ペイオフ
+Percentage	割合
+phase	位相
+Phase difference	位相差
+phase flip	フェーズフリップ
+phase-flip	フェーズフリップ
+physical	物理的
+pip	pip
+pipeline	パイプライン
+placeholder	プレースホルダー
+plot	プロット
+Portfolio Optimization	ポートフォリオの最適化
+Potential	ポテンシャル
+PR	PR
+preset	プリセット
+prime factorization	素因数分解
+private	プライベート
+probability vector	確率ベクトル
+problem	問題
+process	プロセス
+processing	プロセス
+programs	プログラム
+project	プロジェクト
+properties	プロパティ
+Property	プロパティ
+Protein Folding	タンパク質折り畳み
+protocol	プロトコル
+provider	プロバイダー
+Pseudocode	擬似コード
+public	パブリック
+publishing	公開
+Pull request	プルリクエスト
+pull request	プルリクエスト
+pulse	パルス
+Pulse Builder	パルス・ビルダー
+pulse schedule	パルススケジュール
+Python	Python
+Python standard library	Python 標準ライブラリー
+Python wheel	Python ホイール
+QAOA	QAOA
+Qiskit	Qiskit
+Qiskit	Qiskit
+Qiskit Chemistry	Qiskit Chemistry
+Qiskit Nature	Qiskit Nature
+Qiskit Visualizations	Qiskit 可視化ツール
+qiskit-aer	qiskit-aer
+Qobj	Qobj
+QPE	QPE
+qreg	qreg
+quadratic	二次的
+Quadratic Unconstrained Binary Optimization	制約なし二次形式二値変数最適化
+quantum	量子
+Quantum annealing computers	量子アニーリングコンピュータ
+Quantum Approximate Optimization Algorithm	量子近似最適化アルゴリズム
+Quantum Circuit	量子回路
+quantum circuit	量子回路
+quantum computation	量子計算
+quantum computer	量子コンピューター
+quantum computers	量子コンピューター
+Quantum Computing	量子コンピューティング
+quantum computing	量子コンピューティング
+Quantum error correction	量子誤り訂正
+Quantum error propagation	量子エラー伝播
+Quantum Experience	Quantum Experience
+quantum gates	量子ゲート
+quantum hardware	量子ハードウェア
+quantum information	量子情報
+quantum mechanical observable	量子力学的観測可能量
+quantum mechanics	量子力学
+quantum multiplexor	量子マルチプレクサー
+quantum operations	量子操作
+Quantum parallelism	量子並列性
+quantum physics	量子物理学
+quantum register	量子レジスター
+quantum score	量子スコア
+quantum simulation	量子シミュレーション
+Quantum supremacy	量子超越性
+quantum system	量子系
+quantum trap	量子トラップ
+Quantum Volume	量子ボリューム
+qubit	量子ビット
+qubit	量子ビット
+qubits	量子ビット
+QUBO	QUBO
+random variable	ランダム
+rate	評価
+raw	生の
+readout	読み出し
+real number	実数
+reconstruct	再構築
+recycle	リサイクル
+reference value	参照値
+references	参考文献
+register	レジスター
+registers	レジスター
+regression	回帰
+Regression analysis	回帰分析
+regressor	独立変数
+reinstall	再インストール
+reinstall	再インストール
+relaxation	リラクゼーション|緩和する
+release	リリース
+release notes	リリースノート
+repo	リポジトリ
+repository	リポジトリー
+represent	表す|代表する
+representative asset	代表的な資産
+requirements	要件
+reset	リセット
+Reset	リセット
+Restructuring	再構築
+retrieve	復元
+returns of stocks	株式の収益
+Reverse	反転
+review	レビュー
+reviewer	レビュア
+rotation gates	回転ゲート
+round	ラウンド
+run	実行する
+runtime components	ランタイムコンポーネント
+samples	サンプル
+Sampling interval	サンプリング間隔
+Sampling rate	サンプリングレート
+scalar	スカラー
+schema	スキーマ
+scope	スコープ
+script	スクリプト
+Search	検索
+second	秒
+second order	2次
+second-degree	第二
+Section	セクション
+seed	シード
+select qubits	量子ビットの選択
+self-contained	自己完結型
+Semiprime	半素数
+set	セット
+Set packing problem	集合パッキング問題
+setuptools	セットアップツール
+shorthand	速記
+shot	ショット
+shots	ショット
+signal of interest	関心のある信号
+simulation	シミュレーション
+simulator	シミュレーター
+single qubit space	単一量子ビット・スペース
+single shot	シングルショット
+single shot circuit	シングルショット回路
+single-qubit	単一量子ビット
+singlet state	シングレット状態
+slack variables	スラック変数
+software stack	ソフトウェアスタック
+solution	解決策
+solver	ソルバー
+Solver	ソルバー
+source	ソース
+space	スペース
+sparse	スパース
+specific	特定の
+specify	詳細に述べる
+sphere	球
+spin down	スピンダウン
+spin up	スピンアップ
+spot price	スポット価格
+stabilizer	スタビライザ
+stable	安定した
+stable branch policy	安定したブランチポリシー
+Standard	標準
+Standard basis	標準基底
+standard gates	ゲート
+state	状態
+state simulator	状態シミュレーター
+state vector	状態ベクトル
+statevector	状態ベクトル
+static linking	静的リンク
+stimulus	刺激
+stock	株式
+Stock-Market	株式市場
+storage	ストレージ
+strike price	行使価格
+string	文字列
+style guide	スタイルガイド
+subject line	件名
+Summary	概要
+superoperator	スーパー演算子
+Superposition	重ね合わせ
+superposition	重ね合わせ
+supervised learning	教師あり学習
+support	サポート
+support vector machine	サポートベクターマシン
+swap	交換
+syntactic sugar	糖衣構文
+syntax	構文
+system	システム
+tag	タグ
+target	ターゲット
+target qubit	ターゲット量子ビット
+template	テンプレート
+tensor	テンソル
+tensor expansion	テンソル展開
+tensor product	テンソル積
+tensored	テンソル
+term	項
+terminal	ターミナル
+terminal window	ターミナルウィンドウ
+Terra	Terra
+text editor	テキストエディタ
+textbooks	教科書
+the ‘earth’ element	「地」要素
+thermal	熱力学的
+thermal population	熱因子
+Thermodynamics	熱力学
+three-qubit	3量子ビット
+ticket	チケット
+Time-Series	時系列
+toffoli	トフォリ
+token	トークン
+tomography	トモグラフィー
+tool	ツール
+toolbox	ツールボックス
+topology	トポロジー
+tracking	トラッキング
+tradeoff	トレードオフ
+traditional	伝統的
+traditionally	伝統的
+trainable weights	訓練可能ウェイト
+Training	学習
+transformation	変換
+transition	遷移
+transpiled	トランスパイルされた
+transpiler	トランスパイラー
+transpiling	トランスパイル
+Trapdoor one-way function	トラップドア・一方向性関数
+traps	トラップ
+traveling salesman problem	巡回セールスマン問題
+trial wavefunction	トライアル波動関数
+trigger	トリガー
+trotterization	trotterization
+truth table	真理値表
+tuple	タプル
+tutorial	チュートリアル
+Tutorials	チュートリアル
+Tutorials	チュートリアル
+undirected graph	無向グラフ
+unevaluated	未評価
+unitaries	ユニタリー
+Unitary	ユニタリー
+unitary	ユニタリー
+unitary matrix	ユニタリー行列
+unitary operator	ユニタリ演算子
+unitary operator	ユニタリ演算子
+universal gate quantum computing	ユニバーサルゲート量子コンピューティング
+unstructured search problems	非構造化検索の問題
+unsupervised machine learning	教師なし機械学習
+update	アップデート
+Upload	アップロード
+Use Case	ユースケース
+use case	ユースケース
+user config file	ユーザー構成ファイル
+utility function	ユーティリティ関数
+vacuum state	真空状態
+Values	値
+variables	変数
+variational	変分
+variational algorithm	変分アルゴリズム
+variational form	変分形式
+Variational Quantum Eigensolver	変分量子固有ソルバー
+vectors	ベクトル
+Vehicle routing problem	車両ルーティング問題
+version	バージョン
+vertex cover	頂点被覆
+Vertex cover problem	頂点被覆問題
+virtual environments	仮想環境
+visualization	可視化
+visualization	可視化
+visualize	可視化
+VQE	VQE
+w.r.t.	w.r.t.
+waveform	波形
+weight	重み
+weights	重み
+with respect to	に関して
+Workflow	ワークフロー
