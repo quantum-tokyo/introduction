@@ -20,11 +20,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 ## イベントなど
 (1) **募集開始！[Qiskit Global Summer School 2022](https://qiskit.org/events/summer-school/)**：今年もオンラインで7/18~29の2週間の開催です。
 
-(2) **申請開始！[Qiskit Advocateの申請募集](https://github.com/qiskit-advocate/application-guide)**：今年の応募申請期間は2022年6月1日～7月1日です。
-
-(3) **募集中！2022年7月5日〜7月30日  [量子誤り訂正夏の学校 2022](https://wwwpoc.ibm.com/quantum-computing/summer-school/)**：限定70人、アメリカNY開催です。募集開始しています。3/3から審査が始まるので、その前までに応募が望ましいです。
-
-(4) **Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
+(2) **Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
 <br>
 
