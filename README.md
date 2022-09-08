@@ -18,19 +18,18 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## イベントなど
-(1) **募集開始！[Qiskit Global Summer School 2022](https://qiskit.org/events/summer-school/)**：今年もオンラインで7/18~29の2週間の開催です。
-
-(2) **Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
+**Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
 <br>
 
 ## 学習コンテンツ
 (1) **[Qiskit テキストブック 日本語版](https://qiskit.org/textbook/ja/preface.html)**：量子情報の基礎から量子アプリケーションまで、理論からQiskitでのコード実装・実機での計算まで含めて解説。オープンソース運営のため皆様も執筆・翻訳できます！(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=01JZfji-Mbw&list=PLA-UlvpIBvpvrxo_39QEiElWuvyw-MEjZ)、[資料](./qiskit_textbook/))
 
-(2) **[Qiskit テキストブック 新版](https://qiskit.org/textbook-beta)**(英)：以下の章が新版追加のものです。翻訳活動は2022年春に開始予定です。
-- [Introduction course](https://qiskit.org/textbook-beta/course/introduction-course)(英)
-- [Quantum machine learning](https://qiskit.org/textbook-beta/course/machine-learning-course)(英)([一時的な和訳リンク](./qiskit_textbook/New_textbook/quantum-machine-learning/)：翻訳中です)
-- [Quantum Computing & Quantum Machine Learning (2021)](https://qiskit.org/textbook-beta/summer-school/quantum-computing-and-quantum-learning-2021)：Qiskit Global Summer School 2021の資料です。各Labの中に日本語版notebookのリンクがありますが、[こちら](./materials/QiskitGlobalSummerSchool2021/)にもダウンロードして置きました。
+(2) **[Qiskit テキストブック 新版](https://qiskit.org/learn)**(英)：以下の章が新版追加のものです。翻訳活動は[こちら](https://github.com/Qiskit/platypus/blob/main/translations/HowtoTranslate_QiskitTextbook_ja.pdf)から。
+- [量子コンピューター入門(和)](https://ja.learn.qiskit.org/course/introduction/why-quantum-computing)/[Introduction course(英)](https://qiskit.org/learn/course/introduction-course/)
+- [量子機械学習(和)](https://ja.learn.qiskit.org/course/machine-learning/introduction)/[Quantum machine learning(英)](https://qiskit.org/learn/course/machine-learning-course)(Quantum Tokyoによる解説 [録画](https://www.youtube.com/playlist?list=PLA-UlvpIBvpvgtSXXxVXjJafGLwEpBESL)、[資料](./qiskit_textbook/New_textbook/quantum-machine-learning/))
+- [Qiskit夏の学校2020(和)](https://ja.learn.qiskit.org/summer-school/2020/qubits-states-circuits-measurements)/[2020 Qiskit Global Summer School on Quantum Computing and Quantum Hardware (英)](https://qiskit.org/learn/summer-school/introduction-to-quantum-computing-and-quantum-hardware-2020)
+- Qiskit夏の学校2021(和・翻訳中)/[2021 Qiskit Global Summer School on Quantum Machine Learning(英)](https://qiskit.org/learn/summer-school/quantum-computing-and-quantum-learning-2021):各Labの中に日本語版notebookのリンクがありますが、[こちら](./materials/QiskitGlobalSummerSchool2021/)にもダウンロードして置きました。
 
 (3) **[Qiskit ドキュメント チュートリアル](https://qiskit.org/documentation/locale/ja_JP/index.html)**：Qiskitの使い方を紹介するものです。(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=DZHdoqjb35s&list=PLA-UlvpIBvpuvOm5qRb2yN_ndWywsAEQq)、[資料](./qiskit_tutorials/))
 
@@ -58,5 +57,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 
 (2) **[Qiskit デベロッパー認定制度](https://www.ibm.com/training/certification/C0010300)** 
 
-(3) **[Qiskit翻訳活動](https://github.com/qiskit-community/qiskit-translations)**
+(3) **[Qiskit Documents翻訳活動](https://github.com/qiskit-community/qiskit-translations)**
+
+(4) **[Qiskit Textbook beta翻訳活動](https://github.com/Qiskit/platypus/blob/main/translations/HowtoTranslate_QiskitTextbook_ja.pdf)**
 
