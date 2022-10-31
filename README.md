@@ -18,7 +18,9 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## イベントなど
-**Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
+(1) 11月11日〜11月18日開催：**量子プログラミングコンテスト[「IBM Quantum Challenge Fall 2022」](https://www.ibm.com/blogs/think/jp-ja/quantum-challenge-fall-2022/)**
+
+(2)**Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
 <br>
 
@@ -61,3 +63,5 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 
 (4) **[Qiskit Textbook beta翻訳活動](https://github.com/Qiskit/platypus/blob/main/translations/HowtoTranslate_QiskitTextbook_ja.pdf)**
 
+## Slack ##
+[QiskitコミュニティーのSlack](https://ibm.co/joinqiskitslack)の中の #japan では日本語で会話しています！
