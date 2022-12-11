@@ -18,7 +18,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## イベントなど
-(1) 11月11日〜11月18日開催：**量子プログラミングコンテスト[「IBM Quantum Challenge Fall 2022」](https://www.ibm.com/blogs/think/jp-ja/quantum-challenge-fall-2022/)**
+(1) 〜2023年4月15日まで開催中：**[賞金付き量子コンテスト「Open Science Prize 2022」](https://www.ibm.com/blogs/think/jp-ja/ibm-quantum-open-science-prize-2022/)**
 
 (2)**Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
