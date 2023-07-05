@@ -18,7 +18,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## イベントなど
-(1) 〜2023年4月15日まで開催中：**[賞金付き量子コンテスト「Open Science Prize 2022」](https://www.ibm.com/blogs/think/jp-ja/ibm-quantum-open-science-prize-2022/)**
+(1) **[Quantum Exploeres 2023](https://challenges.quantum-computing.ibm.com/quantum-explorers-23 )**: 〜2024年1月1日まで開催。独自ペースで学習できる、初心者から参加可能な学習イベントです。和訳も準備しています。
 
 (2)**Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
@@ -28,7 +28,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 (1) **[Qiskit テキストブック 日本語版](https://qiskit.org/textbook/ja/preface.html)**：量子情報の基礎から量子アプリケーションまで、理論からQiskitでのコード実装・実機での計算まで含めて解説。オープンソース運営のため皆様も執筆・翻訳できます！(Quantum Tokyoによる解説 [録画](https://www.youtube.com/watch?v=01JZfji-Mbw&list=PLA-UlvpIBvpvrxo_39QEiElWuvyw-MEjZ)、[資料](./qiskit_textbook/))
 
 (2) **[Qiskit テキストブック 新版](https://qiskit.org/learn)**(英)：以下の章が新版追加のものです。翻訳活動は[こちら](https://github.com/Qiskit/platypus/blob/main/translations/HowtoTranslate_QiskitTextbook_ja.pdf)から。
-- 量子情報の基礎(和・翻訳中)/[(英)](https://learn.qiskit.org/course/basics/single-systems)
+- [量子情報の基礎(和)](https://ja.learn.qiskit.org/course/basics/single-systems)/[(英)](https://learn.qiskit.org/course/basics/single-systems)
 - [量子コンピューター入門(和)](https://ja.learn.qiskit.org/course/introduction/why-quantum-computing)/[(英)](https://qiskit.org/learn/course/introduction-course/)
 - [量子機械学習(和)](https://ja.learn.qiskit.org/course/machine-learning/introduction)/[(英)](https://qiskit.org/learn/course/machine-learning-course)(Quantum Tokyoによる解説 [録画](https://www.youtube.com/playlist?list=PLA-UlvpIBvpvgtSXXxVXjJafGLwEpBESL)、[資料](./qiskit_textbook/New_textbook/quantum-machine-learning/))
 - [Qiskit夏の学校2020(和)](https://ja.learn.qiskit.org/summer-school/2020/qubits-states-circuits-measurements)/[(英)](https://qiskit.org/learn/summer-school/introduction-to-quantum-computing-and-quantum-hardware-2020)
