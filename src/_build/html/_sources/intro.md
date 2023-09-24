@@ -1,6 +1,6 @@
-# Welcome 
+# Quantum Tokyo へようこそ
 
-Welcome to book.
+Welcome to Quantum Tokyo.
 
 ```{tableofcontents}
 
