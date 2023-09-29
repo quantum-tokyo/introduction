@@ -1,3 +1,6 @@
+# Quantum Tokyo へようこそ
+https://quantum-tokyo.github.io/introduction/intro.html
+
 # IBM Quantum / Qiskit 関連リンク集
 IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳されているものは日本語版にリンクしています。
 
@@ -10,15 +13,15 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 
 <br>
 
-## 研究・教育用の特別デバイス申請
-(1) **[IBM Quantum 研究者プログラム(無料)](https://quantum-computing.ibm.com/programs/researchers)**：実行までの待ち時間が少なくなり、オープンデバイス以外のデバイス(7量子ビットシステム)へのアクセス権、またシステムの専用リザーブ権などがもらえます。研究内容の申請が必要です。審査に約１ヶ月程度かかります。
-
-(2) **[IBM Quantum 教育用プログラム(無料)](https://quantum-computing.ibm.com/programs/educators)**：授業やワークショップの際に優先的に量子デバイスを使えるようになります。またオープンデバイス以外のデバイス、パルス操作が可能なデバイスへのアクセス権ももらうことができます。代表として先生が申請し、審査ののち、先生ご自身が受講生のIDを登録する必要があります。審査に約半月程度かかります。
+## 研究の特別デバイス申請
+**IBM Quantum Credits 研究者プログラム(無料)**<br>
+プログラムの説明ブログ：https://research.ibm.com/blog/utility-scale-quantum-credits<br>
+お申し込みサイト：https://quantum-computing.ibm.com/credits-program<br>
 
 <br>
 
 ## イベントなど
-(1) **[Quantum Exploeres 2023](https://challenges.quantum-computing.ibm.com/quantum-explorers-23 )**: 〜2024年1月1日まで開催。独自ペースで学習できる、初心者から参加可能な学習イベントです。和訳も準備しています。
+(1) **[Quantum Exploeres 2023](https://challenges.quantum-computing.ibm.com/quantum-explorers-23 )**: 〜2024年12月1日まで開催。独自ペースで学習できる、初心者から参加可能な学習イベントです。和訳も準備しています。
 
 (2)**Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
