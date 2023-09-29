@@ -3,8 +3,11 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: qiskit_textbook_ja
-- file: qiskit_documents_ja
-- file: quantum_challenge_ja
-- file: events
+parts:
+  - caption: 日本語で学べる学習コンテンツ
+    chapters:
+    - file: qiskit_textbook_ja
+    - file: qiskit_textbook_new_ja
+    - file: qiskit_documents_ja
+    - file: quantum_challenge_ja
+    - file: events
