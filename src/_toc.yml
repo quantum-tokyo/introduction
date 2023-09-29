@@ -11,3 +11,4 @@ parts:
     - file: qiskit_documents_ja
     - file: quantum_challenge_ja
     - file: events
+    - file: tools
