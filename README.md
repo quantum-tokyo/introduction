@@ -21,7 +21,7 @@ IBM Quantum / Qiskit 関連の主要リンクを集めました。和訳され�
 <br>
 
 ## イベントなど
-(1) **[Quantum Exploeres 2023](https://challenges.quantum-computing.ibm.com/quantum-explorers-23 )**: 〜2024年12月1日まで開催。独自ペースで学習できる、初心者から参加可能な学習イベントです。和訳も準備しています。
+(1) **[Quantum Exploeres 2023](https://challenges.quantum-computing.ibm.com/quantum-explorers-23 )**: 〜2024年2月1日まで開催。独自ペースで学習できる、初心者から参加可能な学習イベントです。和訳も準備しています。
 
 (2)**Quantum Tokyo (日本国内のQiskit勉強会)** の[イベント告知サイト](https://quantum-tokyo.connpass.com/)：月に１、2回程度、オンラインで開催しています。
 
