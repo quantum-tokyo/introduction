@@ -388,62 +388,80 @@ document.write(`
 <h2>Qiskit を使った量子計算の学習<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple" start="0">
 <li><p>前提条件</br>
-0.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-prerequisites/environment-setup-guide-to-work-with-qiskit-textbook">Qiskitテキストブックで作業するための環境設定ガイド</a></br>
-0.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-prerequisites/introduction-to-python-and-jupyter-notebooks">Python 及び Jupyter notebook 入門</a></p></li>
+0.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-prerequisites/setting-the-environment.ipynb">Qiskitテキストブックで作業するための環境設定ガイド</a></br>
+0.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-prerequisites/python-and-jupyter-notebooks.ipynb">Python 及び Jupyter notebook 入門</a></p></li>
 <li><p>量子状態と量子ビット</br>
-1.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-states/introduction">はじめに</a> </br>
-1.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-states/the-atoms-of-computation">計算の原子</a></br>
-1.3 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-states/representing-qubit-states">量子ビット状態を表現する</a></br>
-1.4 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-states/single-qubit-gates">単一量子ビットゲート</a></br>
-1.5 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-states/the-case-for-quantum-computers">量子コンピューターの場合</a></br></p></li>
+1.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-states/introduction.ipynb">はじめに</a> </br>
+1.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-states/atoms-computation.ipynb">計算の原子</a></br>
+1.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-states/representing-qubit-states.ipynb">量子ビット状態を表現する</a></br>
+1.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-states/single-qubit-gates.ipynb">単一量子ビットゲート</a></br>
+1.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-states/case-for-quantum.ipynb">量子コンピューターの場合</a></br></p></li>
 <li><p>複数量子ビットともつれ状態<br>
-2.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-gates/introduction">はじめに</a><br>
-2.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-gates/multiple-qubits-and-entangled-states">複数量子ビットともつれ状態</a><br>
-2.3 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-gates/phase-kickback">位相キックバック</a><br>
-2.4 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-gates/basic-circuit-identities">基本的な回路の等価性</a><br>
-2.5 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-gates/proving-universality">普遍性の証明</a><br>
-2.6 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-gates/classical-computation-on-a-quantum-computer">量子コンピューター上の古典計算</a><br></p></li>
+2.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-gates/introduction.ipynb">はじめに</a><br>
+2.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-gates/multiple-qubits-entangled-states.ipynb">複数量子ビットともつれ状態</a><br>
+2.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/algorithms/phase-kickback.ipynb">位相キックバック</a><br>
+2.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-gates/more-circuit-identities.ipynb">基本的な回路の等価性</a><br>
+2.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-gates/proving-universality.ipynb">普遍性の証明</a><br>
+2.6 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-gates/oracles.ipynb">量子コンピューター上の古典計算</a><br></p></li>
 <li><p>量子プロトコルと量子アルゴリズム<br>
-3.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/quantum-circuits">量子回路</a><br>
-3.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/deutsch-jozsa-algorithm">ドイチ-ジョサのアルゴリズム</a><br>
-3.3 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/bernstein-vazirani-algorithm">ベルンシュタイン・ヴァジラニ アルゴリズム</a><br>
-3.4 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/simons-algorithm">サイモンのアルゴリズム</a><br>
-3.5 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/quantum-fourier-transform">量子フーリエ変換</a><br>
-3.6 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/quantum-phase-estimation">量子位相推定</a><br>
-3.7 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/shors-algorithm">ショアのアルゴリズム</a><br>
-3.8 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/grovers-algorithm">グローバーのアルゴリズム</a><br>
-3.9 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/quantum-counting">量子数え上げ</a><br>
-3.10 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/quantum-walk-search-algorithm">量子ウォークによる探索アルゴリズム</a><br>
-3.11 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/quantum-key-distribution">量子鍵配送</a><br>
-3.12 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/superdense-coding">超密度符号化</a><br>
-3.13 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-algorithms/quantum-teleportation">量子テレポーテーション</a><br></p></li>
+3.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/defining-quantum-circuits.ipynb">量子回路</a><br>
+3.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/deutsch-jozsa.ipynb">ドイチ-ジョサのアルゴリズム</a><br>
+3.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/bernstein-vazirani.ipynb">ベルンシュタイン・ヴァジラニ アルゴリズム</a><br>
+3.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/simon.ipynb">サイモンのアルゴリズム</a><br>
+3.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/quantum-fourier-transform.ipynb">量子フーリエ変換</a><br>
+3.6 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/quantum-phase-estimation.ipynb">量子位相推定</a><br>
+3.7 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/shor.ipynb">ショアのアルゴリズム</a><br>
+3.8 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/grover.ipynb">グローバーのアルゴリズム</a><br>
+3.9 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/quantum-counting.ipynb">量子数え上げ</a><br>
+3.10 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/quantum-walk-search-algorithm.ipynb">量子ウォークによる探索アルゴリズム</a><br>
+3.11 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/quantum-key-distribution.ipynb">量子鍵配送</a><br>
+3.12 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/superdense-coding.ipynb">超密度符号化</a><br>
+3.13 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-algorithms/teleportation.ipynb">量子テレポーテーション</a><br></p></li>
 <li><p>量子アプリケーションのアルゴリズム<br>
-4.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/solving-linear-systems-of-equations-using-hhl-and-its-qiskit-implementation">HHL を利用して線形方程式系を解きQiskit で実装する</a><br>
-4.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/simulating-molecules-using-vqe">VQEを利用した分子シミュレーション</a><br>
-4.3 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/solving-combinatorial-optimization-problems-using-qaoa">QAOA を利用して、組合せ最適化問題を解く</a><br>
-4.4 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/solving-satisfiability-problems-using-grovers-algorithm">Groverのアルゴリズムを用いた充足可能性問題の解法</a><br>
-4.5 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/hybrid-quantum-classical-neural-networks-with-pytorch-and-qiskit">PyTorchとQiskitを用いた量子古典ハイブリッド・ニューラル・ネットワーク</a><br>
-4.6 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/the-variational-quantum-linear-solver">量子変分線型ソルバー（Valiational Quantum Linear Solver</a><br>
-4.7 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/flexible-representation-of-quantum-images-frqi">量子画像の柔軟な表現（FRQI）</a><br>
-4.8 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-applications/facial-expression-recognition">量子顔表情認識</a><br></p></li>
+4.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-applications/hhl_tutorial.ipynb">HHL を利用して線形方程式系を解きQiskit で実装する</a><br>
+4.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-applications/vqe-molecules.ipynb">VQEを利用した分子シミュレーション</a><br>
+4.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-applications/qaoa.ipynb">QAOA を利用して、組合せ最適化問題を解く</a><br>
+4.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-applications/satisfiability-grover.ipynb">Groverのアルゴリズムを用いた充足可能性問題の解法</a><br>
+4.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-machine-learning/machine-learning-qiskit-pytorch.ipynb">PyTorchとQiskitを用いた量子古典ハイブリッド・ニューラル・ネットワーク</a><br>
+4.6 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-applications/image-processing-frqi-neqr.ipynb">量子画像の柔軟な表現（FRQI）</a><br>
+4.7 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-applications/facial-expression-recognition.ipynb">量子顔表情認識</a><br>
+4.8 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/quantum-edge-detection.ipynb">Quantum edge detection (未翻訳)</a><br>
+4.9 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-paper-implementations/tsp.ipynb">Travelling Salesman Problem using Quantum Phase Estimation (未翻訳)</a><br>
+4.10 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-paper-implementations/vqls.ipynb">量子変分線型ソルバー（Valiational Quantum Linear Solver)</a><br></p></li>
 <li><p>量子回路による量子ハードウェアの探求<br>
-5.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware/introduction-to-quantum-error-correction-via-the-repetition-code">反復符号による量子エラー訂正の導入</a><br>
-5.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware/measurement-error-mitigation">測定エラーの軽減</a><br>
-5.3 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware/randomized-benchmarking">ランダマイズド・ベンチマーキング</a><br>
-5.4 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware/measuring-quantum-volume">量子ボリュームの測定</a><br>
-5.5 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware/density-matrix">密度行列と混合状態</a><br></p></li>
+5.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/quantum-hardware/error-correction-repetition-code.ipynb">反復符号による量子エラー訂正の導入</a><br>
+5.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/quantum-hardware/measurement-error-mitigation.ipynb">測定エラーの軽減</a><br>
+5.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/quantum-hardware/randomized-benchmarking.ipynb">ランダマイズド・ベンチマーキング</a><br>
+5.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/quantum-hardware/measuring-quantum-volume.ipynb">量子ボリュームの測定</a><br>
+5.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/quantum-hardware/density-matrix.ipynb">密度行列と混合状態</a><br></p></li>
 <li><p>マイクロ波パルスによる量子ハードウェアの探求<br>
-6.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware-pulses/calibrating-qubits-using-qiskit-pulse">Qiskit Pulseで量子ビットを較正する</a><br>
-6.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware-pulses/accessing-higher-energy-states-with-qiskit-pulse">Qiskit Pulseで高エネルギー状態へアクセスする</a><br>
-6.3 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware-pulses/introduction-to-transmon-physics">トランズモン物理入門</a><br>
-6.4 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware-pulses/circuit-quantum-electrodynamics">回路量子電磁力学</a><br>
-6.5 <a class="reference external" href="https://ja.learn.qiskit.org/course/quantum-hardware-pulses/exploring-the-jaynes-cummings-hamiltonian-with-qiskit-pulse">Qiskit Pulseを用いたJaynes-Cummingsハミルトニアンの探究</a><br></p></li>
+6.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-quantum-hardware/calibrating-qubits-pulse.ipynb">Qiskit Pulseで量子ビットを較正する</a><br>
+6.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-quantum-hardware/accessing_higher_energy_states.ipynb">Qiskit Pulseで高エネルギー状態へアクセスする</a><br>
+6.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-quantum-hardware/transmon-physics.ipynb">トランズモン物理入門</a><br>
+6.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-quantum-hardware/cQED-JC-SW.ipynb">回路量子電磁力学</a><br>
+6.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-quantum-hardware/Jaynes-Cummings-model.ipynb">Qiskit Pulseを用いたJaynes-Cummingsハミルトニアンの探究</a><br>
+6.6 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/quantum-hardware-pulses/ac-Stark-shift.ipynb">Measuring the Qubit ac-Stark Shift (未翻訳)</a><br>
+6.7 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/quantum-hardware-pulses/hamiltonian-tomography.ipynb">Hamiltonian Tomography (未翻訳)</a></p></li>
 <li><p>練習問題<br>
-7.1 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-labs/lab-1-quantum-circuits">ラボ1 量子回路</a><br>
-7.2 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-labs/lab-2-single-qubit-gates">ラボ2 単一量子ビットゲート</a><br>
-7.3 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-labs/lab-3-quantum-measurements">ラボ3 量子測定</a><br>
-7.4 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-labs/lab-4-bell-ghz-circuit">ラボ4 ベル回路とGHZ回路</a><br>
-7.5 <a class="reference external" href="https://ja.learn.qiskit.org/course/ch-labs/lab-9-quantum-simulation-as-a-search-algorithm">ラボ9 検索アルゴリズムとしての量子シミュレーション</a><br></p></li>
+7.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-labs/Lab01_QuantumCircuits.ipynb">ラボ1 量子回路</a><br>
+7.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-labs/Lab02_Single_Qubit_Gates.ipynb">ラボ2 単一量子ビットゲート</a><br>
+7.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-labs/Lab03_QuantumMeasurement.ipynb">ラボ3 量子測定</a><br>
+7.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-labs/Lab04_Bell_GHZ_Circuit.ipynb">ラボ4 ベル回路とGHZ回路</a><br>
+7.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-labs/Lab05_AccuracyQPE.ipynb">Lab 5 Accuracy of Quantum Phase Estimation (未翻訳)</a><br>
+7.6 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-labs/Lab05_AccuracyQPE.ipynb">Lab 6 Iterative Phase Estimation Algorithm (未翻訳)</a><br>
+7.7 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-labs/Lab07_Scalable_Shor_Algorithm.ipynb">Lab 7 Scalable Shor’s Algorithm (未翻訳)</a><br>
+7.8 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-labs/Lab08_Grover_search_with_an_unknown_number_of_solutions.ipynb">Lab 8 Grover’s search with an unknown number of solutions (未翻訳)</a><br>
+7.9 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-labs/Lab09_QuantumSimulationSearchAlgorithm.ipynb">ラボ9 検索アルゴリズムとしての量子シミュレーション</a><br>
+7.10 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-labs/Lab10_QEC.ipynb">Lab 10 Quantum Error Correction (未翻訳)</a></p></li>
+<li><p>付録<br>
+8.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-appendix/linear_algebra.ipynb">量子コンピューティング向け線形代数入門</a><br>
+8.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-appendix/qiskit.ipynb">Qiskitの文法の基礎</a><br></p></li>
+<li><p>ゲームとデモ<br>
+9.1 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-ex/hello-qiskit.ipynb">こんにちはQiskitゲーム</a><br>
+9.2 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-demos/piday-code.ipynb">量子位相推定を使った円周率の推定</a><br>
+9.3 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/translations/ja/ch-demos/chsh.ipynb">局所実在論とCHSH不等式</a><br>
+9.4 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-demos/coin-game.ipynb">Quantum Coin Game (未翻訳)</a><br>
+9.5 <a class="reference external" href="https://github.com/Qiskit/textbook/blob/main/notebooks/ch-demos/variational-quantum-regression.ipynb">Variational Quantum Regression (未翻訳)</a></p></li>
 </ol>
 </section>
 </section>
