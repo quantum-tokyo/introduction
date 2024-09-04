@@ -1,5 +1,4 @@
-# Quantum Tokyo へようこそ
-https://quantum-tokyo.github.io/introduction/intro.html
+# [Quantum Tokyo へようこそ](https://quantum-tokyo.github.io/introduction/intro.html)
 
 # IBM Quantum / Qiskit 関連リンク集
 IBM Quantum / Qiskit 関連の主要リンクを集めました。
