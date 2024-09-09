@@ -1,13 +1,7 @@
----
-title: qBraid LabでQiskitを使う手順
-tags: 量子コンピュータ 量子コンピューター QISKIT
-author: kifumi
-slide: false
----
 # qBraid Lab で Qiskit を使う手順
-[qBraid Lab](https://www.qbraid.com/)でQiskitを使う場合の手順です。旧IBM Quantum LabのようにWebブラウザー上からインストールなしでQiskitを使うことができます。（IBM Quantumの実デバイスでの実行時にjobエラーが出ていましたが、現在は解消されました！）
+[qBraid Lab](https://www.qbraid.com/)でQiskitを使う場合の手順です。旧IBM Quantum LabのようにWebブラウザー上からインストールなしでQiskitを使うことができます。
 
-**ご注意**：公式には、ご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（[macOS版](install_mac.md)、[Windows版](install_win.md)）をご覧ください。
+**ご注意**：[公式には、ご自身のパソコンにQiskitをインストール](https://docs.quantum.ibm.com/guides/install-qiskit)して使うことをおすすめしています。インストールの手順はこちら（[macOS版](install_mac.md)、[Windows版](install_win.md)）をご覧ください。
 
 ## 1. qBraid環境へのログイン
 ブラウザーを開き、 https://www.qbraid.com/ のサイトに入り、右上の「START NOW」をクリックします。

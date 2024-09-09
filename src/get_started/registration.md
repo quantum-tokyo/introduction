@@ -1,9 +1,3 @@
----
-title: IBM Quantum Platform へのログイン手順
-tags: 量子コンピュータ IBMQ QISKIT
-author: kifumi
-slide: false
----
 # IBM Quantum Platform へのログイン手順
 
 [IBM Quantum Platform](https://quantum.ibm.com) への登録方法の詳しいバージョンです。

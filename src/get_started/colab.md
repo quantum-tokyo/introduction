@@ -1,9 +1,3 @@
----
-title: クラウド環境でQiskitを使う手順 (Google Colabの場合)
-tags: QISKIT 量子コンピューター 量子コンピュータ
-author: kifumi
-slide: false
----
 # Google Colab で Qiskit を使う手順
 
 Google Colaboratory でQiskitを使いたい場合の手順です。

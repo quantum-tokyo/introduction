@@ -1,9 +1,3 @@
----
-title: Qiskit 1.0のインストール手順 (macOS版)
-tags: QISKIT 量子コンピューター 量子コンピュータ
-author: kifumi
-slide: false
----
 # Qiskit 1.x のインストール手順 (macOS版)
 [Qiskit 1.x](https://www.ibm.com/quantum/qiskit) をmacOSにインストールします。（Windows版は[こちら](install_win.md)です。）
 [公式インストール手順](https://docs.quantum.ibm.com/start/install)をもとに行います。
@@ -37,9 +31,13 @@ source qiskit_env/bin/activate
 pip --version
 ```
 インストールされている場合は、以下のようなメッセージが出ます。
+
 ```pip 24.0 from /Users/../../qiskit_env/lib/python3.12/site-packages/pip (python 3.12)```
+
 インストールされていない場合は、以下のようなメッセージが出ます。
+
 ```zsh: command not found: pip```
+
 インストールされていなかった場合は、以下のコマンドでpipをインストールします。
 ```
 python3 -m ensurepip --upgrade

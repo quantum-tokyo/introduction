@@ -1,9 +1,3 @@
----
-title: Qiskit 1.0のインストール手順 (Windows版)
-tags: QISKIT 量子コンピューター 量子コンピュータ
-author: kifumi
-slide: false
----
 # Qiskit 1.x のインストール手順 (Windows版)
 [Qiskit 1.x](https://www.ibm.com/quantum/qiskit) をWindowsにインストールします。（macOS版は[こちら](install_mac.md)です。）
 [公式インストール手順](https://docs.quantum.ibm.com/start/install)をもとに行います。
@@ -41,9 +35,13 @@ qiskit_env\Scripts\Activate.ps1
 pip --version
 ```
 インストールされている場合は、以下のようなメッセージが出ます。
+
 ```pip 24.0 from C:\Users\...\qiskit_env\Lib\site-packages\pip (python 3.12)```
+
 インストールされていない場合は、以下のようなメッセージが出ます。
+
 ```'pip' is not recognized as an internal or external command, operable program or batch file.```
+
 インストールされていなかった場合は、以下のコマンドでpipをインストールします。
 ```
 py -m ensurepip --upgrade
