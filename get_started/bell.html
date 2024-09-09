@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Qiskit 入門とエンタングルメント状態の実行 &#8212; Quantum Tokyo</title>
+    <title>実機での実行 &#8212; Quantum Tokyo</title>
   
   
   
@@ -57,8 +57,6 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'get_started/bell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -378,7 +376,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Qiskit 入門とエンタングルメント状態の実行</h1>
+    <h1>実機での実行</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,23 +386,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Qiskit 入門とエンタングルメント状態の実行</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">１量子ビット回路</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">空の回路</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x">Xゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#h">Hゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xh">XゲートとHゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">演習1-1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">実機で実行する</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2量子ビット回路</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">量子もつれと実デバイスでの測定</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">演習1-2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">実機で実行する</a></li>
-</ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -415,26 +398,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qiskit">
-<h1>Qiskit 入門とエンタングルメント状態の実行<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h1>
-<p>Kifumi Numata, IBM Quantum</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>１量子ビット回路<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>まず1量子ビット回路から始めます。セルを選択して「Shift」＋「Enter」で実行できます。</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>実機での実行<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>ベル状態を作成し、IBMの量子コンピューターで実行します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Qiskitライブラリーを導入</span>
 <span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
-<span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">StatevectorSimulator</span><span class="p">,</span> <span class="n">AerSimulator</span>
-<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
-<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">SamplerV2</span>
+<span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">AerSimulator</span>
 <span class="kn">from</span> <span class="nn">qiskit.transpiler.preset_passmanagers</span> <span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
 <span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
 <span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
-
-<span class="c1"># 描画のためのライブラリーを導入</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -444,495 +419,36 @@ document.write(`
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Qiskitライブラリーを導入</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">StatevectorSimulator</span><span class="p">,</span> <span class="n">AerSimulator</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">qiskit.transpiler.preset_passmanagers</span> <span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<section id="id2">
-<h2>空の回路<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># １量子ビット回路を用意</span>
-<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/f6aceb8b6f18015446af5c6b3e06b9c360205846efd6c92f876cf9245b582010.png" src="../_images/f6aceb8b6f18015446af5c6b3e06b9c360205846efd6c92f876cf9245b582010.png" />
-</div>
-</div>
-</section>
-<section id="x">
-<h2>Xゲート<a class="headerlink" href="#x" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># １量子ビット回路を用意</span>
-
-<span class="c1"># Xゲートを0番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/32dfdd1ba5612cd5b8ff614a25f64d893f2c9f378e3975a5b82c3dce4edda923.png" src="../_images/32dfdd1ba5612cd5b8ff614a25f64d893f2c9f378e3975a5b82c3dce4edda923.png" />
-</div>
-</div>
-<p>IBM Quantumでは、初期状態は<span class="math notranslate nohighlight">\(|0\rangle\)</span>にセットされていますので、上記の量子回路は、行列ベクトル表示では</p>
-<p><span class="math notranslate nohighlight">\(X|0\rangle=  \begin{pmatrix}
-0 &amp; 1 \\\
-1 &amp; 0
-\end{pmatrix} 
-\begin{pmatrix}
-1 \\\
-0
-\end{pmatrix} 
- =\begin{pmatrix}
-0 \\\
-1
-\end{pmatrix} = |1\rangle\)</span></p>
-<p>となります。次にこの回路の出力ベクトルを状態ベクトルシミュレーターを使って実行してみます。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">StatevectorSimulator</span><span class="p">()</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="c1"># ブロッホ球の表示</span>
-<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
-<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.+0.j, 1.+0.j],
-            dims=(2,))
-</pre></div>
-</div>
-<img alt="../_images/c2e3c3a1703d65b9b49c508ab224ea6f0b84f6b155a97beb5e0c1e513d11f152.png" src="../_images/c2e3c3a1703d65b9b49c508ab224ea6f0b84f6b155a97beb5e0c1e513d11f152.png" />
-</div>
-</div>
-<p>縦ベクトルが横ベクトル表示で、複素数(虚部の添字は j )で表示されています。</p>
-</section>
-<section id="h">
-<h2>Hゲート<a class="headerlink" href="#h" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># １量子ビット回路を用意 </span>
-
-<span class="c1"># Hゲートを0番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/73c1df937c5a1ea13dedeb73f4faa3dc8aa190207bd0b8e646d6fefc41fd4f32.png" src="../_images/73c1df937c5a1ea13dedeb73f4faa3dc8aa190207bd0b8e646d6fefc41fd4f32.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">StatevectorSimulator</span><span class="p">()</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="c1"># ブロッホ球の表示</span>
-<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.707+0.j, 0.707+0.j],
-            dims=(2,))
-</pre></div>
-</div>
-<img alt="../_images/07788e090def6fdfc170279f8bab5f4de76da376a0ea184eb83f49899246d302.png" src="../_images/07788e090def6fdfc170279f8bab5f4de76da376a0ea184eb83f49899246d302.png" />
-</div>
-</div>
-<p>これは、<span class="math notranslate nohighlight">\(H|0\rangle= \frac{1}{\sqrt{2}} \begin{pmatrix}
-1 &amp; 1 \\\
-1 &amp; -1
-\end{pmatrix} 
-\begin{pmatrix}
-1 \\\
-0
-\end{pmatrix} 
- =\frac{1}{\sqrt{2}}\begin{pmatrix}
-1 \\\
-1
-\end{pmatrix} 
-=\begin{pmatrix}
-0.707 \\\
-0.707
-\end{pmatrix} 
-=\frac{1}{\sqrt{2}}（|0\rangle+|1\rangle)\)</span> です。</p>
-<p>つまり、<span class="math notranslate nohighlight">\(H\)</span>ゲートを<span class="math notranslate nohighlight">\(|0\rangle\)</span>に実行すると、<span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span>の均等な重ね合わせ状態が作れることが分かります。</p>
-</section>
-<section id="xh">
-<h2>XゲートとHゲート<a class="headerlink" href="#xh" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># １量子ビット回路を用意 </span>
-
-<span class="c1"># Xゲートを0番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 次にHゲートを0番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/19f4770295fe889448ada312ad4b7c715884318ba17b6657494cd1209f43cf14.png" src="../_images/19f4770295fe889448ada312ad4b7c715884318ba17b6657494cd1209f43cf14.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">StatevectorSimulator</span><span class="p">()</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="c1"># ブロッホ球の表示</span>
-<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([ 0.707-0.j, -0.707+0.j],
-            dims=(2,))
-</pre></div>
-</div>
-<img alt="../_images/4760df26f2d9d5c21aaf2fc86280a4abbed6f36626778bf40d01802edca91fab.png" src="../_images/4760df26f2d9d5c21aaf2fc86280a4abbed6f36626778bf40d01802edca91fab.png" />
-</div>
-</div>
-<p><span class="math notranslate nohighlight">\(H|1\rangle= \frac{1}{\sqrt{2}} \begin{pmatrix}
-1 &amp; 1 \\\
-1 &amp; -1
-\end{pmatrix} 
-\begin{pmatrix}
-0 \\\
-1
-\end{pmatrix} 
- =\frac{1}{\sqrt{2}}\begin{pmatrix}
-1 \\\
--1
-\end{pmatrix} 
-=\begin{pmatrix}
-0.707 \\\
--0.707
-\end{pmatrix} 
-=\frac{1}{\sqrt{2}}（|0\rangle-|1\rangle)\)</span></p>
-<p><span class="math notranslate nohighlight">\(|1\rangle\)</span>に<span class="math notranslate nohighlight">\(H\)</span>ゲートを実行した結果、<span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span>の均等な重ね合わせ状態になりますが、<span class="math notranslate nohighlight">\(|1\rangle\)</span>の符号がマイナスになります。</p>
-</section>
-<section id="id3">
-<h2>演習1-1<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>次の量子回路をプログラミングし、状態ベクトルシミュレーターで実行して、ブロッホ球を表示してみましょう。</p>
-<p>(1) <span class="math notranslate nohighlight">\(XX|0\rangle\)</span></p>
-<p>(2) <span class="math notranslate nohighlight">\(HH|0\rangle\)</span></p>
-<p>(3) <span class="math notranslate nohighlight">\(ZH|1\rangle\)</span></p>
-<p>ヒント：Zゲートは、</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>qc.z(0)
-</pre></div>
-</div>
-<p>とかきます。新しいセルを追加したい場合は、上側の「+」を選択するか、キーボードの「B」を押します。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### (1) XX|0&gt; ###</span>
-
-<span class="c1"># １量子ビット回路を用意 </span>
-<span class="n">qc</span> <span class="o">=</span> <span class="c1">##コードを記入します##</span>
-
-<span class="c1"># Xゲートを0番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="c1">##コードを記入します##</span>
-
-<span class="c1"># もう一度、Xゲートを0番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="c1">##コードを記入します##</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="c1"># ブロッホ球の表示</span>
-<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### (2) HH|0&gt; ###</span>
-<span class="c1">##コードを記入します##</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="c1"># ブロッホ球の表示</span>
-<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### (3) ZH|1&gt; ###</span>
-<span class="c1">##コードを記入します##</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="c1"># ブロッホ球の表示</span>
-<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id4">
-<h1>2量子ビット回路<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ２量子ビット回路を作成します。</span>
-<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># Hゲートを0番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># Hゲートを1番目の量子ビットに操作します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/50ef6568d40d2f2da5373a249cebe537376d0e6b1b999cc910df5e666f2e2a50.png" src="../_images/50ef6568d40d2f2da5373a249cebe537376d0e6b1b999cc910df5e666f2e2a50.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">StatevectorSimulator</span><span class="p">()</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.5+0.j, 0.5+0.j, 0.5+0.j, 0.5+0.j],
-            dims=(2, 2))
-</pre></div>
-</div>
-</div>
-</div>
-<p>２量子ビットの状態は、１量子ビットの積（テンソル積）で表せます。</p>
-<p><span class="math notranslate nohighlight">\(|q0\rangle \otimes|q1\rangle = (a|0\rangle+b|1\rangle) \otimes (c|0\rangle+d|1\rangle) \)</span></p>
-<p><span class="math notranslate nohighlight">\(= ac|0\rangle|0\rangle+ad|0\rangle|1\rangle+bc|1\rangle|0\rangle+bd|1\rangle|1\rangle\)</span></p>
-<p><span class="math notranslate nohighlight">\(= ac|00\rangle+ad|01\rangle+bc|10\rangle+bd|11\rangle\)</span></p>
-<p>(ただし、<span class="math notranslate nohighlight">\(|ac|^2+ |ad|^2+ |bc|^2+ |bd|^2=1\)</span> )</p>
-<p>Qiskitの初期値は、<span class="math notranslate nohighlight">\(|0\rangle|0\rangle=|00\rangle\)</span>なので、<span class="math notranslate nohighlight">\(H\)</span>をそれぞれの量子ビットに操作させることで均等な重ね合わせの状態になります。</p>
-<p><span class="math notranslate nohighlight">\(H|0\rangle \otimes H|0\rangle=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) = \frac{1}{2}(|00\rangle+|01\rangle+|10\rangle+|11\rangle)\)</span></p>
-<div class="math notranslate nohighlight">
-\[\begin{split} 
-=\frac{1}{2}\left( \begin{bmatrix} 1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix} 1 \\ 1 \end{bmatrix}\right) = \frac{1}{2}\begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}=\frac{1}{2}\left(\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}+\begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}+\begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}+\begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}\right)
-\end{split}\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ブロッホ球の表示</span>
-<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/9961ab86b168603236839fc176e18e0d52c781d69edb5a531f7db5d6b27ac232.png" src="../_images/9961ab86b168603236839fc176e18e0d52c781d69edb5a531f7db5d6b27ac232.png" />
-</div>
-</div>
-<p>次に、この状態を測定してみましょう。</p>
-<p>まず、測定回路を追加します。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ２量子ビットと2古典ビットの回路を作成します。</span>
-<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># ゲートを適用します。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># 測定ゲートを追加</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># 量子ビットq0を測定して、古典レジスターc0に入れます</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># 量子ビットq1を測定して、古典レジスターc1に入れます</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/a8519732d4c494bf08284c1448583a9578b93b2758571758d25b8229d135c214.png" src="../_images/a8519732d4c494bf08284c1448583a9578b93b2758571758d25b8229d135c214.png" />
-</div>
-</div>
-<p>次にシミュレーターで計算させ、測定します。1024回実行した結果、それぞれの状態が測定された回数を表示し、その測定確率をヒストグラムで表示します。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># シミュレーターで実験</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
-<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc</span><span class="p">])</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-
-<span class="c1">#  測定された回数を表示</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
-
-<span class="c1"># ヒストグラムで測定された確率をプロット</span>
-<span class="n">plot_histogram</span><span class="p">(</span> <span class="n">counts</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;00&#39;: 257, &#39;10&#39;: 255, &#39;11&#39;: 256, &#39;01&#39;: 256}
-</pre></div>
-</div>
-<img alt="../_images/6b096e80346a9adf6da161fd77810f516c83256858e4af0f03e7dedb09ea0ca6.png" src="../_images/6b096e80346a9adf6da161fd77810f516c83256858e4af0f03e7dedb09ea0ca6.png" />
-</div>
-</div>
-<p><span class="math notranslate nohighlight">\(|00\rangle\)</span>、<span class="math notranslate nohighlight">\(|01\rangle\)</span>、<span class="math notranslate nohighlight">\(|10\rangle\)</span>、<span class="math notranslate nohighlight">\(|11\rangle\)</span>の状態がほぼ25%ずつ均等に測定されました。</p>
-<p>次は、<span class="math notranslate nohighlight">\(CNOT\)</span>ゲート（<span class="math notranslate nohighlight">\(CX\)</span>ゲート）の実験を行います。</p>
-<p><span class="math notranslate nohighlight">\(CNOT\)</span>ゲートは、２量子ビットにかかる量子ゲートで、制御ビットが1のときのみ、目標ビットの値を反転します。
-<img alt="image.png" src="get_started/attachment:image.png" /></p>
-<p>まず、q0とq1が両方とも0の場合を計算してみましょう。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ２量子ビット回路を作成します。 </span>
-<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># q0, q1が0の場合</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># CNOTゲートの制御ビットをq0、目標ビットをq1にセットします。</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/d71c620fc14d4febd339678847fed4d08f15ff1997161122eef4451ea7bb26ad.png" src="../_images/d71c620fc14d4febd339678847fed4d08f15ff1997161122eef4451ea7bb26ad.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">StatevectorSimulator</span><span class="p">()</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],
-            dims=(2, 2))
-</pre></div>
-</div>
-</div>
-</div>
-<p><span class="math notranslate nohighlight">\(|00\rangle\)</span> に<span class="math notranslate nohighlight">\(CX\)</span>ゲートを操作しても<span class="math notranslate nohighlight">\(|00\rangle\)</span> のままです。</p>
-<p>次に、<span class="math notranslate nohighlight">\(|01\rangle\)</span> に<span class="math notranslate nohighlight">\(CX\)</span>ゲートを操作します。</p>
-<p>ここで、Qiskitでは、最下位ビット(LSB)が右端で、多くの量子情報の教科書とは逆であることに注意してください。つまり、1量子ビット目が一番右のビットで、2量子ビット目が右から２番目のビットです。<span class="math notranslate nohighlight">\(|01\rangle\)</span> とは、q0が1で、q1が0を表しています。</p>
+<p>ベル状態を作成します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># q0=1, q1=0の場合</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># q0を1にします。</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># CNOTゲートの制御ゲートをq0、目標ゲートをq1にセットします。</span>
-
-<span class="c1"># 回路を描画</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8698127eef4e3e50f68e66163d7eff5b18792d3fc0471cc721c253624d46c0fc.png" src="../_images/8698127eef4e3e50f68e66163d7eff5b18792d3fc0471cc721c253624d46c0fc.png" />
+<img alt="../_images/77fcbf3a26a855d56bfc659aa4d239df2d9480b1e82c058b86abd71348c004a1.png" src="../_images/77fcbf3a26a855d56bfc659aa4d239df2d9480b1e82c058b86abd71348c004a1.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 状態ベクトルシミュレーターの実行</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">StatevectorSimulator</span><span class="p">()</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.+0.j, 0.+0.j, 0.+0.j, 1.+0.j],
-            dims=(2, 2))
-</pre></div>
-</div>
-</div>
-</div>
-<p><span class="math notranslate nohighlight">\(|01\rangle\)</span> に<span class="math notranslate nohighlight">\(CX\)</span>ゲートを操作すると<span class="math notranslate nohighlight">\(|11\rangle\)</span> になりました。</p>
-<p>シミュレーターで計算してみましょう。</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 回路を測定</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/199e95d62b67e1359d97e505cedf2dbc31cb2f51c29b50afe9cc369ab135eb9d.png" src="../_images/199e95d62b67e1359d97e505cedf2dbc31cb2f51c29b50afe9cc369ab135eb9d.png" />
-</div>
-</div>
+<p>まずはシミュレーターで実験してみます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># シミュレーターで実験</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc</span><span class="p">])</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 
@@ -946,82 +462,32 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 1024}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 496, &#39;00&#39;: 528}
 </pre></div>
 </div>
-<img alt="../_images/d750e31465e73f7abc5d3dabb2b26c6a0a9a991bbb6659d42ba53dc936feab8e.png" src="../_images/d750e31465e73f7abc5d3dabb2b26c6a0a9a991bbb6659d42ba53dc936feab8e.png" />
+<img alt="../_images/70e8652f5b5ca787b58f65bf4f8eeb520b106d96eb7293ee017eaf6c7c00734e.png" src="../_images/70e8652f5b5ca787b58f65bf4f8eeb520b106d96eb7293ee017eaf6c7c00734e.png" />
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(|11\rangle\)</span>の状態が100%測定されます。</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="id5">
-<h1>量子もつれと実デバイスでの測定<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
-<p>エンタングルメント状態を作り実デバイスで測定してみます。</p>
-<p>量子計算上でも重要な状態となる、量子もつれ状態（エンタングルメント状態）を生成してみましょう。
-量子もつれ状態とは2つの量子ビットが、強い関連性で結ばれた状態を指します。
-量子テレポーテーションなどで利用されます。</p>
-<p>2量子ビットの量子もつれ状態の1つの例が次のような形になります。
-$<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle\)</span>$</p>
-<p>これは、「片方の量子ビットが<span class="math notranslate nohighlight">\(|0\rangle\)</span>の場合に、もう片方の量子ビットも<span class="math notranslate nohighlight">\(|0\rangle\)</span>になっている」状態と、「片方の量子ビットが<span class="math notranslate nohighlight">\(|1\rangle\)</span>の場合に、もう片方の量子ビットも<span class="math notranslate nohighlight">\(|1\rangle\)</span>になっている」状態の重ね合わせ状態になっています。つまり、片方の量子ビットの状態が決まると、残りの量子ビットが確定するような状態となっています。別の言い方をすると、<span class="math notranslate nohighlight">\(|00\rangle\)</span>と<span class="math notranslate nohighlight">\(|11\rangle\)</span>という2つのデータが半々の確率で観測されることを示しています。<br></p>
-<p>上記の状態をつくるには、まず片方の量子ビットを重ね合わせの状態にします。つまり、
-$<span class="math notranslate nohighlight">\( |00\rangle \rightarrow  \frac{1}{\sqrt{2}}|00\rangle  + \frac{1}{\sqrt{2}}|01\rangle  \)</span>$</p>
-<p>その後、CXゲートを作用させます。量子ビット0をコントロールビット、量子ビット1をターゲットビットとします。すると、右側が1の量子ビットに対して、残った方の量子ビットを反転させます。
-$<span class="math notranslate nohighlight">\( CX(\frac{1}{\sqrt{2}}|00\rangle  + \frac{1}{\sqrt{2}}|01\rangle) \rightarrow \frac{1}{\sqrt{2}}|00\rangle  + \frac{1}{\sqrt{2}}|11\rangle \)</span>$</p>
-<p>では、演習1-2で実際にこの量子状態を作ってみましょう。<br></p>
-<section id="id6">
-<h2>演習1-2<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>(1) 次の回路をプログラミングし、シミュレーターを実行して、結果をヒストグラムで表示してください。<span class="math notranslate nohighlight">\(|00\rangle\)</span>と<span class="math notranslate nohighlight">\(|11\rangle\)</span>がほぼ半分ずつになることを確認します。
-<img alt="image-4.png" src="get_started/attachment:image-4.png" /></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2量子ビット回路の用意</span>
-<span class="n">qc</span> <span class="o">=</span> <span class="c1">##コードを記入します##</span>
-
-<span class="c1"># 2量子ビットのエンタングルメント回路の作成</span>
-<span class="n">qc</span><span class="o">.</span><span class="c1">##コードを記入します##</span>
-<span class="n">qc</span><span class="o">.</span><span class="c1">##コードを記入します##</span>
-
-<span class="c1"># 回路を測定</span>
-<span class="n">qc</span><span class="o">.</span><span class="c1">##コードを記入します##</span>
-<span class="n">qc</span><span class="o">.</span><span class="c1">##コードを記入します##</span>
-
-<span class="c1"># 回路を描画</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># シミュレーターで実験</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
-<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc</span><span class="p">])</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-
-<span class="c1">#  測定された回数を表示</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
-
-<span class="c1"># ヒストグラムで測定された確率をプロット</span>
-<span class="n">plot_histogram</span><span class="p">(</span> <span class="n">counts</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>(2) 次に、以下のコードを実行して実デバイスで計算してみましょう。</p>
-</section>
-<section id="id7">
-<h2>実機で実行する<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<p>初めて実機で実行するためには、<a class="reference external" href="https://quantum.ibm.com/">IBM Quantum</a>のAPIトークンを読み込む必要があります。Openアカウント(無償)の場合のコードを以下に記載します。<IBM Quantum API key>の部分に、<a class="reference external" href="https://quantum.ibm.com/">IBM Quantumプラットフォーム</a>からコピーしてきたAPI Tokenを貼り付けてください。</p>
+<section id="id2">
+<h2>実機で実行する<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>初めて実機で実行するためには、<a class="reference external" href="https://quantum.ibm.com/">IBM Quantum</a>のAPIトークンを読み込む必要があります。Openアカウント(無償)の場合のコードを以下に記載します。<code class="docutils literal notranslate"><span class="pre">&lt;IBM</span> <span class="pre">Quantum</span> <span class="pre">API</span> <span class="pre">key&gt;</span></code>の部分に、<a class="reference external" href="https://quantum.ibm.com/">IBM Quantumプラットフォーム</a>からコピーしてきたAPI Tokenを貼り付けてください。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初めて実行する場合は、認証情報を保存します：</span>
-<span class="c1"># https://quantum.ibm.com/ のAPI Tokenをコピペします</span>
-<span class="c1"># QiskitRuntimeService.save_account(channel=&#39;ibm_quantum&#39;, instance=&#39;ibm-q/open/main&#39;, token=&#39;&lt;IBM Quantum API key&gt;&#39;)</span>
+<span class="c1"># https://quantum.ibm.com/ のAPI Tokenをコピーし貼り付けます</span>
+<span class="n">QiskitRuntimeService</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;ibm_quantum&#39;</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="s1">&#39;ibm-q/open/main&#39;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s1">&#39;&lt;IBM Quantum API key&gt;&#39;</span><span class="p">)</span>
 
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
 <span class="n">service</span><span class="o">.</span><span class="n">backends</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend(&#39;ibm_kyoto&#39;)&gt;,
+ &lt;IBMBackend(&#39;ibm_nazca&#39;)&gt;,
+ &lt;IBMBackend(&#39;ibm_sherbrooke&#39;)&gt;,
+ &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;,
+ &lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;]
 </pre></div>
 </div>
 </div>
@@ -1031,7 +497,7 @@ $<span class="math notranslate nohighlight">\( CX(\frac{1}{\sqrt{2}}|00\rangle  
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 以下でデバイスを指定できます。</span>
-<span class="n">real_backend</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;ibm_kyoto&#39;</span><span class="p">)</span> <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s1">&#39;ibm_kyoto&#39;</span><span class="p">)</span>  <span class="c1"># 例）ibm_kyotoを使う場合</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s1">&#39;ibm_kyoto&#39;</span><span class="p">)</span>  <span class="c1"># 例）ibm_kyotoを使う場合</span>
 </pre></div>
 </div>
 </div>
@@ -1044,33 +510,42 @@ $<span class="math notranslate nohighlight">\( CX(\frac{1}{\sqrt{2}}|00\rangle  
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最も空いているバックエンドは:  &lt;IBMBackend(&#39;ibm_kyoto&#39;)&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 実機のバックエンドでの実行に最適な回路に変換します</span>
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
-<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Samplerで実行します</span>
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
-<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_circuit</span><span class="p">])</span>
 
+<span class="c1"># Samplerで実行します</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_circuit</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> <span class="c1"># 実行に時間がかかるのでjob_idを表示します</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: cvfaxqe8w2g0008eg2q0
+</pre></div>
 </div>
+</div>
+</div>
+<p>以下のコマンドでjobのstatus(実行状況)を確認します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> 
 
 <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span> <span class="c1"># ジョブの実行状態を確認します</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
 </pre></div>
 </div>
 </div>
@@ -1080,8 +555,13 @@ $<span class="math notranslate nohighlight">\( CX(\frac{1}{\sqrt{2}}|00\rangle  
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 待ち時間が長い時に後から結果を確認する場合</span>
 <span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>  
-<span class="n">job_real</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">retrieve_job</span><span class="p">(</span><span class="s1">&#39;cphxywvbtqp0008348fg&#39;</span><span class="p">)</span> <span class="c1"># 例です。上に出力された自分のjob_idを入れて実行してください。</span>
+<span class="n">job</span><span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;cvfaxqe8w2g0008eg2q0&#39;</span><span class="p">)</span> <span class="c1"># 例です。上に出力された自分のjob_idを入れて実行してください。</span>
 <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span> <span class="c1"># ジョブの実行状態を確認します</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
 </pre></div>
 </div>
 </div>
@@ -1095,6 +575,11 @@ $<span class="math notranslate nohighlight">\( CX(\frac{1}{\sqrt{2}}|00\rangle  
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;01&#39;: 172, &#39;00&#39;: 1833, &#39;11&#39;: 1797, &#39;10&#39;: 294}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1102,12 +587,20 @@ $<span class="math notranslate nohighlight">\( CX(\frac{1}{\sqrt{2}}|00\rangle  
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/e6810fa2bb63e935312d7ddfcd7bcd0befe71b228ad1344dd373add4a60e29e9.png" src="../_images/e6810fa2bb63e935312d7ddfcd7bcd0befe71b228ad1344dd373add4a60e29e9.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Qiskitバージョンの確認</span>
 <span class="kn">import</span> <span class="nn">qiskit</span>
 <span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.1.1&#39;
 </pre></div>
 </div>
 </div>
@@ -1161,23 +654,8 @@ $<span class="math notranslate nohighlight">\( CX(\frac{1}{\sqrt{2}}|00\rangle  
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Qiskit 入門とエンタングルメント状態の実行</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">１量子ビット回路</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">空の回路</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#x">Xゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#h">Hゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xh">XゲートとHゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">演習1-1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">実機で実行する</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2量子ビット回路</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">量子もつれと実デバイスでの測定</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">演習1-2</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">実機で実行する</a></li>
-</ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
