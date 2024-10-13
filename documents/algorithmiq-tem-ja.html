@@ -438,7 +438,7 @@ document.write(`
 <section id="id3">
 <h2>機能説明<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>TEM関数は、ノイズ層が特定されたノイズ回路を取り込みます。回路は情報的に完全な正の演算子値測定(informationally complete positive operator-valued measure, IC-POVM)で測定され、収集された測定結果は古典計算機上で処理されます。この測定結果を用いてテンソルネットワーク法を実行し、ノイズ反転マップ <span class="math notranslate nohighlight">\(\mathcal{N}^{-1}\)</span> を構築します。このfunctionは、ノイズ層を表現する行列積演算子を用いて、ノイズ回路全体を完全に反転するマップ <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> を適用します。</p>
-<p><img alt="image.png" src="documents/attachment:b530a99a-662c-43b1-a437-32a469de20d0.png" /></p>
+<p><img alt="TEM schematics" src="../_images/tem_scheme.svg" /></p>
 <p>ノイズを軽減するために、アルゴリズムは、中央（反転したノイズ回路が終了し、理想回路が開始するところ）から開始し、各反復で左側の2層と右側の1層を巻き込んで外側に伝播する収縮を行う。従って、したがって、ノイズのある回路の出力状態<span class="math notranslate nohighlight">\(\rho\)</span>は<span class="math notranslate nohighlight">\((\vert 0 \rangle\langle0\vert)^{\otimes N}\)</span>に戻され、これが理想的なノイズのない状態演算子<span class="math notranslate nohighlight">\(\vert\psi\rangle\langle \psi\vert\)</span>にマッピングされます。</p>
 <p>したがって、オブザーバブル <span class="math notranslate nohighlight">\({O}\)</span> のノイズの緩和された推定は次のように読めます。
 $<span class="math notranslate nohighlight">\(
@@ -578,18 +578,6 @@ $<span class="math notranslate nohighlight">\(
 
 <span class="c1"># Load your function</span>
 <span class="n">tem</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">tem_function_name</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tem_function_name</span> <span class="o">=</span> <span class="s2">&quot;algorithmiq/tem&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
 </pre></div>
 </div>
 </div>

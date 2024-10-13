@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Qiskit Functions 入門 &#8212; Quantum Tokyo</title>
+    <title>Introduction to Qiskit Functions &#8212; Quantum Tokyo</title>
   
   
   
@@ -377,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Qiskit Functions 入門</h1>
+    <h1>Introduction to Qiskit Functions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,11 +392,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">有効な機能を実行する</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ジョブステータスを確認する</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">結果を取得</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Qiskit Functionsで以前に実行されたジョブを一覧表示する</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">エラーメッセージを取得する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-functions">Qiskit Functionsで以前に実行されたジョブを一覧表示する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">エラーメッセージを取得する</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">次のステップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">次のステップ</a></li>
 </ul>
             </nav>
         </div>
@@ -408,13 +408,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qiskit-functions">
-<h1>Qiskit Functions 入門<a class="headerlink" href="#qiskit-functions" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-qiskit-functions">
+<h1>Introduction to Qiskit Functions<a class="headerlink" href="#introduction-to-qiskit-functions" title="Link to this heading">#</a></h1>
 <Admonition type="note">
   Qiskit Functionsは、IBM Quantum™ Premium Plan ユーザーのみが利用できる実験的な機能です。プレビュー リリースの状態であり、変更される可能性があります。
 </Admonition>
 <p>Qiskit Functions は、量子ソフトウェア開発ワークフローの一部を抽象化することで、ユーティリティ規模のアルゴリズムの発見とアプリケーション開発を簡素化および加速します。このようにして、Qiskit Functions は、通常は手動でのコード作成や実験の微調整に費やされる時間を解放します。</p>
-<p><img alt="image.png" src="documents/attachment:d25118a8-93fc-4ce1-a35f-737f45ba4deb.png" /></p>
+<p><img alt="Overview of Qiskit Functions" src="../_images/functions-overview.svg" /></p>
 <p>関数には 2 つのタイプがあります。:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -458,17 +458,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;2e3c9b01ed7d8788964de9238b932e9f7828418afa373dd180fcbad2da42ece4513aa23ac879c28ea24a3092cb15f476d24b8920b3d0239fd521f645a72c8f8e&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;2e3c9b01ed7d8788964de9238b932e9f7828418afa373dd180fcbad2da42ece4513aa23ac879c28ea24a3092cb15f476d24b8920b3d0239fd521f645a72c8f8e&#39;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
 </pre></div>
 </div>
 </div>
@@ -613,8 +602,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id4">
-<h3>Qiskit Functionsで以前に実行されたジョブを一覧表示する<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="qiskit-functions">
+<h3>Qiskit Functionsで以前に実行されたジョブを一覧表示する<a class="headerlink" href="#qiskit-functions" title="Link to this heading">#</a></h3>
 <p>Qiskit Functions に送信されたすべてのジョブを一覧表示するには、<code class="docutils literal notranslate"><span class="pre">jobs()</span></code> のコマンドを使用できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -633,8 +622,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id5">
-<h3>エラーメッセージを取得する<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>エラーメッセージを取得する<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>プログラム ステータスが  <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>の場合、<code class="docutils literal notranslate"><span class="pre">job.result()</span></code>　でデバッグに役立つエラー メッセージを取得します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -645,8 +634,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="id6">
-<h2>次のステップ<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h2>次のステップ<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <Admonition type="info" title="Recommendations">
 <ul class="simple">
 <li><p><a class="reference internal" href="#./ibm-circuit-function"><span class="xref myst">circuit functionsの探索</span></a>を使って、新しいアルゴリズムやアプリケーションを構築することができます。</p></li>
@@ -707,11 +696,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">有効な機能を実行する</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ジョブステータスを確認する</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">結果を取得</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Qiskit Functionsで以前に実行されたジョブを一覧表示する</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">エラーメッセージを取得する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-functions">Qiskit Functionsで以前に実行されたジョブを一覧表示する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">エラーメッセージを取得する</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">次のステップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">次のステップ</a></li>
 </ul>
   </nav></div>
 

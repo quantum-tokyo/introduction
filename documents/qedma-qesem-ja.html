@@ -424,7 +424,7 @@ document.write(`
 <h2>説明<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>Qedma の QESEM 機能を使用すると、エラーを抑制および軽減しながら回路を簡単に推定および実行し、より大きな回路ボリュームとより高い精度を実現できます。QESEM を使用するには、量子回路、測定するオブバーバブルのセット、各オブザーバブルの目標とする統計的な精度、および選択した QPU を指定します。回路を目標精度まで実行する前に、回路の実行を必要としない分析計算に基づいて必要な QPU 時間を推定できます。QPU 時間の推定に満足したら、QESEM で回路を実行できます。</p>
 <p>回路を実行すると、QESEM は回路に合わせて調整されたデバイス特性評価プロトコルを実行し、回路で発生するエラーに対する信頼性の高いノイズ モデルを生成します。特性評価に基づいて、QESEM は最初にノイズを考慮したトランスパイルを実装し、入力回路を一連の物理量子ビットとゲートにマッピングします。これにより、目標であるオブバーバブルに影響を与えるノイズが最小限に抑えられます。これらには、ネイティブで使用可能なゲート (IBM® デバイスの CX/CZ) と、QESEM によって最適化された追加のゲートが含まれ、QESEM の拡張ゲート セットを形成します。次に、QESEM は QPU で特性評価ベースの ES および EM 回路のセットを実行し、その測定結果を収集します。次に、これらは従来の方法で後処理され、要求された精度に対応する各オブザーバブルの偏りのない期待値とエラー バーが出力されます。</p>
-<p><img alt="image.png" src="documents/attachment:aa6c072e-222a-4ebf-9fc5-bb3b386abdae.png" /></p>
+<p><img alt="Qedma QESEM overview" src="../_images/overview.svg" /></p>
 </section>
 <section id="id3">
 <h2>独自のエラー緩和機能<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
@@ -506,18 +506,6 @@ document.write(`
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
 <span class="n">qesem</span>  <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;qedma/qesem&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">qesem</span>  <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;qedma/qesem&#39;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
 </pre></div>
 </div>
 </div>
@@ -646,7 +634,7 @@ document.write(`
 <h2>ベンチマーク<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>QESEM は、さまざまなユースケースとアプリケーションでテストされています。次の例は、QESEM で実行できるワークロードの種類を評価するのに役立ちます。</p>
 <p>特定の回路とオブザーバブルに対するエラー緩和と古典的シミュレーションの両方の困難さを定量化するための重要な指標は、<strong>アクティブボリューム</strong> です。アクティブボリュームとは、回路内のオブザーバブルに影響を与える CNOT ゲートの数です。アクティブボリュームは、回路の深さと幅、オブザーバブルの重み、およびオブザーバブルのライトコーンを決定する回路構造に依存します。詳細については、<a class="reference external" href="https://www.youtube.com/watch?v=Hd-IGvuARfE&amp;amp;t=1730s">2024 IBM Quantum Summit</a> の講演を参照してください。QESEM は、高ボリューム領域で特に大きな価値を提供し、一般的な回路とオブザーバブルに対して信頼性の高い結果をもたらします。</p>
-<p><img alt="image.png" src="documents/attachment:97687f27-352d-4a53-b9a9-308d6ff2f666.png" /></p>
+<p><img alt="Active volume" src="../_images/active_volume.svg" /></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>応用例</p></th>
@@ -732,9 +720,9 @@ document.write(`
 </section>
 <section id="id9">
 <h2>次のステップ<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
-<Admonition type="tip" title="Recommendations">
-  *   [Qedma QESEM へのアクセスをリクエストする](https://quantum.ibm.com/functions?id=7636f111-b7b8-4a00-b22d-5fcc5c5cb3d0)
-</Admonition>
+<ul class="simple">
+<li><p><a class="reference external" href="https://quantum.ibm.com/functions?id=7636f111-b7b8-4a00-b22d-5fcc5c5cb3d0">Qedma QESEM へのアクセスをリクエストする</a></p></li>
+</ul>
 </section>
 </section>
 

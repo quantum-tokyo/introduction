@@ -441,7 +441,7 @@ document.write(`
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Fire Opal Performance Management を使用すると、量子ハードウェアの専門家でなくても、誰でも大規模な量子コンピューターから意味のある結果を簡単に得ることができます。Fire Opal Performance Management を使用して回路を実行すると、このfunction が AI 駆動のエラー抑制技術を自動的に適用し、デバイス上のゲートと量子ビットをさらに使用して、より大きな問題に正常にスケーリングします。同時に、正しい答えに到達するのに必要な試行回数が少なくなり、オーバーヘッドが不要になるため、計算時間とコストを節約できます。</p>
 <p>Performance Management はエラーを抑制し、ノイズの多いハードウェアで正しい答えを得る可能性を高めます。つまり、信号対雑音比を高めます。次の図は、パフォーマンス管理によって精度が向上し、10 量子ビットの量子フーリエ変換アルゴリズムの場合に追加ショットの必要性が減る様子を示しています。Q-CTRL はわずか 30 ショットで 99% の信頼しきい値に達しますが、デフォルト (<code class="docutils literal notranslate"><span class="pre">QiskitRuntime</span></code> Sampler、<code class="docutils literal notranslate"><span class="pre">optimization_level</span></code>=3  および<code class="docutils literal notranslate"><span class="pre">resilience_level</span></code>=1, <code class="docutils literal notranslate"><span class="pre">ibm_sherbrooke</span></code>) では 170,000 ショットが必要です。正しい答えをより早く得ることで、コンピューティング実行時間を大幅に節約できます。</p>
-<p><img alt="image.png" src="documents/attachment:943899e0-46e9-4a1e-a73c-f37d8dac256b.png" /></p>
+<p><img alt="Visualization of the improved runtime" src="../_images/achieve_more.svg" /></p>
 <p>Performance Management function は、標準の<a class="reference internal" href="#./primitives"><span class="xref myst">Qiskit Runtime primitives</span></a>の代わりに使用できます。バックグラウンドでは、複数のエラー抑制技術が連携して動作し、実行時にエラーが発生するのを防ぎます。Fire Opal パイプライン メソッドはすべて事前に構成されており、アルゴリズムに依存しないため、すぐに最高のパフォーマンスを常に得ることができます。</p>
 <p>Performance Managementにアクセスするには、<a class="reference external" href="https://form.typeform.com/to/JKHcaxlv?typeform-source=q-ctrl.com#product=Fire%20Opal">contact Q-CTRL</a> にお問い合わせください。</p>
 </section>
@@ -456,7 +456,7 @@ document.write(`
 </ol>
 <p>ハードウェア ノイズを低減するために、Fire Opal では、次の図に示すような AI 駆動型のさまざまなエラー抑制技術を採用しています。エラー抑制はゲート レベルとパルス レベルの両方で機能し、さまざまなノイズ源に対処して、エラーが発生する可能性を防ぎます。Fire Opal を使用すると、パイプライン全体が完全に自動化され、構成は一切必要ありません。エラーを防止することで、コストのかかる後処理が不要になります。</p>
 <p>次の図は、Fire Opal Performance Management によって自動化されたエラー抑制方法を示しています。</p>
-<p><img alt="image.png" src="documents/attachment:6f0b58e9-a8db-4f97-a39d-cc53d84bc1e0.png" /></p>
+<p><img alt="Visualization of the error suppression pipeline" src="../_images/error_suppression.svg" /></p>
 <section id="id2">
 <h2>入力と出力<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>Sampler および Estimator の入力は、<a class="reference internal" href="#../migration-guides/v2-primitives"><span class="xref myst">Qiskit Runtime V2 primitives</span></a> の実装仕様に厳密に従っています。Q-CTRL primitives は、回路とそれに関連する実行データを含むタプルである Primitive Unified Blocs (PUB) の形式で入力を受け入れます。PUB データ構造の詳細については、<a class="reference internal" href="#./primitive-input-output"><span class="xref myst">IBM Quantum Documentation</span></a>を参照してください。主な違いは、Q-CTRL primitivesが、QASM 文字列、辞書などの基本型を含む PUB を受け入れるという点です。</p>
@@ -707,18 +707,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Credentials</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="id7">
@@ -927,9 +915,9 @@ document.write(`
 </section>
 <section id="id13">
 <h2>次のステップ<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
-<Admonition type="tip" title="Recommendations">
-  *   [Q-CTRL Performance Management](https://quantum.ibm.com/functions?id=c750648c-ba44-4137-8c34-4140a3aaa7a9) へのアクセスをリクエストする
-</Admonition>
+<ul class="simple">
+<li><p><a class="reference external" href="https://quantum.ibm.com/functions?id=c750648c-ba44-4137-8c34-4140a3aaa7a9">Q-CTRL Performance Management</a> へのアクセスをリクエストする</p></li>
+</ul>
 </section>
 </section>
 
