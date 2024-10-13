@@ -6,7 +6,7 @@ Google Colaboratory でQiskitを使いたい場合の手順です。
 また、qBraidの場合は、はじめに1回インストールするのみで毎回のインストールは必要ありません。[「qBraid LabでQiskitを使う手順」](qbraid.md)をご参照ください。
 
 ## 1. クラウド環境へのログイン
-Google Colabratory を例に紹介します。ブラウザーを開き、 https://colab.research.google.com/ のサイトに入り、右上の「ログイン」からログインします。
+ブラウザーを開き、 https://colab.research.google.com/ のサイトに入り、右上の「ログイン」からログインします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b25ea38f-e18d-8c5b-0220-0af4ed1cf4e8.png)
 
 ## 2. ノートブックを開く
@@ -33,7 +33,7 @@ Google Colabratory を例に紹介します。ブラウザーを開き、 https:
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/49937210-b757-9638-e800-89f4a042fb3e.png)
 
 ## 5. 次にQiskitを使う場合
-次にQiskitを使う場合や、新しいノートブックを立ち上げた場合、上記の1〜3の手順を毎回行います。
+次にQiskitを使う場合や、新しいノートブックを立ち上げた場合、上記の3の手順を毎回行います。
 
 以上です！
 
