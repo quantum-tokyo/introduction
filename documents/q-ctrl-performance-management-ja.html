@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Performance Management(パフォーマンス管理): Q-CTRL Fire Opal による Qiskit Function &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documents/q-ctrl-performance-management-ja';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">新版 Qiskitテキストブック 日本語版 (Qiskitコース)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fdocuments/q-ctrl-performance-management-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/documents/q-ctrl-performance-management-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Performance Management(パフォーマンス管理): Q-CTRL Fire Opal による Qiskit Function</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Performance Management(パフォーマンス管理): Q-CTRL Fire Opal による Qiskit Function</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">機能説明</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">入力と出力</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampler">Samplerの入力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Samplerの出力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimator">Estimatorの入力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Estimatorの出力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter">Parameter 形式</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ベンチマーク</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">例: Sampler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1. 回路を作成する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-circuit">2. Run the circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-the-result">3. Retrieve the result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">例: Estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-circuit">1. Create the circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2. Run the circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3. Retrieve the result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">サポートを得る</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">次のステップ</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="performance-management-q-ctrl-fire-opal-qiskit-function">
+<h1>Performance Management(パフォーマンス管理): Q-CTRL Fire Opal による Qiskit Function<a class="headerlink" href="#performance-management-q-ctrl-fire-opal-qiskit-function" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Qiskit Functionsは、IBM Quantum™ Premium Plan ユーザーのみが利用できる実験的な機能です。プレビュー リリースの状態であり、変更される可能性があります。 
+</Admonition>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>Fire Opal Performance Management を使用すると、量子ハードウェアの専門家でなくても、誰でも大規模な量子コンピューターから意味のある結果を簡単に得ることができます。Fire Opal Performance Management を使用して回路を実行すると、このfunction が AI 駆動のエラー抑制技術を自動的に適用し、デバイス上のゲートと量子ビットをさらに使用して、より大きな問題に正常にスケーリングします。同時に、正しい答えに到達するのに必要な試行回数が少なくなり、オーバーヘッドが不要になるため、計算時間とコストを節約できます。</p>
+<p>Performance Management はエラーを抑制し、ノイズの多いハードウェアで正しい答えを得る可能性を高めます。つまり、信号対雑音比を高めます。次の図は、パフォーマンス管理によって精度が向上し、10 量子ビットの量子フーリエ変換アルゴリズムの場合に追加ショットの必要性が減る様子を示しています。Q-CTRL はわずか 30 ショットで 99% の信頼しきい値に達しますが、デフォルト (<code class="docutils literal notranslate"><span class="pre">QiskitRuntime</span></code> Sampler、<code class="docutils literal notranslate"><span class="pre">optimization_level</span></code>=3  および<code class="docutils literal notranslate"><span class="pre">resilience_level</span></code>=1, <code class="docutils literal notranslate"><span class="pre">ibm_sherbrooke</span></code>) では 170,000 ショットが必要です。正しい答えをより早く得ることで、コンピューティング実行時間を大幅に節約できます。</p>
+<p><img alt="image.png" src="documents/attachment:943899e0-46e9-4a1e-a73c-f37d8dac256b.png" /></p>
+<p>Performance Management function は、標準の<a class="reference internal" href="#./primitives"><span class="xref myst">Qiskit Runtime primitives</span></a>の代わりに使用できます。バックグラウンドでは、複数のエラー抑制技術が連携して動作し、実行時にエラーが発生するのを防ぎます。Fire Opal パイプライン メソッドはすべて事前に構成されており、アルゴリズムに依存しないため、すぐに最高のパフォーマンスを常に得ることができます。</p>
+<p>Performance Managementにアクセスするには、<a class="reference external" href="https://form.typeform.com/to/JKHcaxlv?typeform-source=q-ctrl.com#product=Fire%20Opal">contact Q-CTRL</a> にお問い合わせください。</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>機能説明<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Fire Opal Performance Managemenには、Qiskit Runtime primitivesに似た実行オプションが 2 つあるため、Q-CTRL SamplerとEstimatorを簡単に入れ替えることができます。Performance Managemen Functionを使用するための一般的なワークフローは次のとおりです。</p>
+<ol class="arabic simple">
+<li><p>回路 (および Estimator の場合は演算子) を定義します。</p></li>
+<li><p>回路を走らせます。</p></li>
+<li><p>結果を取得します。</p></li>
+</ol>
+<p>ハードウェア ノイズを低減するために、Fire Opal では、次の図に示すような AI 駆動型のさまざまなエラー抑制技術を採用しています。エラー抑制はゲート レベルとパルス レベルの両方で機能し、さまざまなノイズ源に対処して、エラーが発生する可能性を防ぎます。Fire Opal を使用すると、パイプライン全体が完全に自動化され、構成は一切必要ありません。エラーを防止することで、コストのかかる後処理が不要になります。</p>
+<p>次の図は、Fire Opal Performance Management によって自動化されたエラー抑制方法を示しています。</p>
+<p><img alt="image.png" src="documents/attachment:6f0b58e9-a8db-4f97-a39d-cc53d84bc1e0.png" /></p>
+<section id="id2">
+<h2>入力と出力<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Sampler および Estimator の入力は、<a class="reference internal" href="#../migration-guides/v2-primitives"><span class="xref myst">Qiskit Runtime V2 primitives</span></a> の実装仕様に厳密に従っています。Q-CTRL primitives は、回路とそれに関連する実行データを含むタプルである Primitive Unified Blocs (PUB) の形式で入力を受け入れます。PUB データ構造の詳細については、<a class="reference internal" href="#./primitive-input-output"><span class="xref myst">IBM Quantum Documentation</span></a>を参照してください。主な違いは、Q-CTRL primitivesが、QASM 文字列、辞書などの基本型を含む PUB を受け入れるという点です。</p>
+<p><Admonition type="caution">Fire Opal Performance Management は、ターゲット バックエンドの命令セット アーキテクチャ (ISA) で記述された回路のみを受け入れる元々の Qiskit Runtime primitivesとは対照的に、抽象回路を受け入れます。最良の結果を得るには、Performance Management function を使用して送信する前に回路をトランスパイルしないでください。</Admonition></p>
+<section id="sampler">
+<h3>Samplerの入力<a class="headerlink" href="#sampler" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pubs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SamplerPubLike</span></code> or <code class="docutils literal notranslate"><span class="pre">list[SamplerPubLike]</span></code></p></td>
+<td><p>One or more tuples containing the inputs listed under <code class="docutils literal notranslate"><span class="pre">SamplerPubLike</span></code> components.</p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(circuit,</span> <span class="pre">parameter_values)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>instance</p></td>
+<td><p>str</p></td>
+<td><p>The hub/group/project to use in that format.</p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;hub1/group1/project1&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>run_options</p></td>
+<td><p>dict</p></td>
+<td><p>Input options which includes the following: (Optional) <code class="docutils literal notranslate"><span class="pre">backend_name</span></code>: str, <code class="docutils literal notranslate"><span class="pre">shots</span></code>: int. Defaults to least busy backend and 4000 shots.</p></td>
+<td><p>No</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;backend_name&quot;:</span> <span class="pre">backend_name,</span> <span class="pre">&quot;shots&quot;:</span> <span class="pre">2048}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">SamplerPubLike</span></code> components:</strong></p>
+<ul class="simple">
+<li><p>OpenQASM 2.0 または 3.0 文字列形式の単一回路。</p></li>
+<li><p>(オプション) 回路をバインドするパラメータ値のコレクション。</p></li>
+<li><p>(オプション) ショット数などの実行オプションの辞書。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Samplerの出力<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>result</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list[ArrayLike[dict[str,</span> <span class="pre">int]]]</span></code></p></td>
+<td><p>入力PUBのリストに対応するカウントの辞書の結果リスト。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[{'000001':</span> <span class="pre">100,</span> <span class="pre">'000011':</span> <span class="pre">2}]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="estimator">
+<h3>Estimatorの入力<a class="headerlink" href="#estimator" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pubs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EstimatorPubLike</span></code> or <code class="docutils literal notranslate"><span class="pre">list[EstimatorPubLike]</span></code></p></td>
+<td><p>One or more tuples containing the inputs listed under <code class="docutils literal notranslate"><span class="pre">EstimatorPubLike</span></code> components.</p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(circuit,</span> <span class="pre">observables,</span> <span class="pre">parameter_values)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>instance</p></td>
+<td><p>str</p></td>
+<td><p>The hub/group/project to use in that format.</p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;hub1/group1/project1&quot;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>run_options</p></td>
+<td><p>dict</p></td>
+<td><p>Input options which includes the following: (Optional) <code class="docutils literal notranslate"><span class="pre">backend_name</span></code>: str, <code class="docutils literal notranslate"><span class="pre">shots</span></code>: int. Defaults to least busy backend and 4000 shots.</p></td>
+<td><p>No</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;backend_name&quot;:</span> <span class="pre">backend_name,</span> <span class="pre">&quot;shots&quot;:</span> <span class="pre">2048}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">EstimatorPubLike</span></code> components:</strong></p>
+<ul class="simple">
+<li><p>OpenQASM 2.0 または 3.0 文字列形式の単一回路。</p></li>
+<li><p>「受け入れられるオブザーバブルの形式」リストに示されているいずれかの形式で、推定する期待値を指定する 1 つ以上のオブバーバブル。</p></li>
+<li><p>(オプション) 回路をバインドするパラメータ値のコレクション。</p></li>
+<li><p>(オプション) ショット数などの実行オプションの辞書。</p></li>
+</ul>
+<p><strong>受け入れられるオブザーバブルの形式:</strong></p>
+<ul class="simple">
+<li><p>A Pauli string: <code class="docutils literal notranslate"><span class="pre">&quot;XY&quot;</span></code></p></li>
+<li><p>辞書 ー 係数付きのPauli strings: <code class="docutils literal notranslate"><span class="pre">{&quot;XY&quot;:</span> <span class="pre">0.5,</span> <span class="pre">&quot;YZ&quot;:</span> <span class="pre">0.3}</span></code></p></li>
+<li><p>Pauli stringsのリスト: <code class="docutils literal notranslate"><span class="pre">[&quot;XY&quot;,</span> <span class="pre">&quot;YZ&quot;,</span> <span class="pre">&quot;ZX&quot;]</span></code></p></li>
+<li><p>係数付きのPauli stringsのリスト: <code class="docutils literal notranslate"><span class="pre">[(&quot;XY&quot;,</span> <span class="pre">0.5),</span> <span class="pre">(&quot;YZ&quot;,</span> <span class="pre">0.3)]</span></code></p></li>
+<li><p>Pauli stringsのネストされたリスト: <code class="docutils literal notranslate"><span class="pre">[[&quot;XY&quot;,</span> <span class="pre">&quot;YZ&quot;],</span> <span class="pre">[&quot;ZX&quot;,</span> <span class="pre">&quot;XX&quot;]]</span></code></p></li>
+<li><p>係数を持つパウリ文字列のネストされたリスト: <code class="docutils literal notranslate"><span class="pre">[[(&quot;XY&quot;,</span> <span class="pre">0.1),</span> <span class="pre">(&quot;YZ&quot;,</span> <span class="pre">0.2)],</span> <span class="pre">[(&quot;ZX&quot;,</span> <span class="pre">0.3),</span> <span class="pre">(&quot;XX&quot;,</span> <span class="pre">0.4)]]</span></code></p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Estimatorの出力<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>values</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">valueslist[ArrayLike[float]]</span></code></p></td>
+<td><p>入力 PUB のリストに対応する期待値の結果リスト.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[0.43046065915270004]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="parameter">
+<h3>Parameter 形式<a class="headerlink" href="#parameter" title="Link to this heading">#</a></h3>
+<p>Sampler and Estimator は両方とも、<code class="docutils literal notranslate"><span class="pre">QiskitRuntime</span></code> primitivesと同じ<a class="reference internal" href="#./primitive-input-output#broadcasting-rules"><span class="xref myst">配列ブロードキャスト ルール</span></a>に従うパラメーターを受け入れます。次のパラメーター形式が受け入れられます:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0-d array (single binding)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;a&quot;:</span> <span class="pre">4,</span> <span class="pre">(&quot;b&quot;,</span> <span class="pre">&quot;c&quot;):</span> <span class="pre">[5,</span> <span class="pre">6]}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Single array (last index for parameters)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;a[0]&quot;,</span> <span class="pre">&quot;a[1]&quot;,</span> <span class="pre">&quot;a[2]&quot;:</span> <span class="pre">[0.1,</span> <span class="pre">0.2,</span> <span class="pre">0.3]}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Multiple arrays (last index for parameters, flexible dimensions)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;c&quot;:</span> <span class="pre">np.ones((10,</span> <span class="pre">10,</span> <span class="pre">2)).tolist(),</span> <span class="pre">&quot;b&quot;:</span> <span class="pre">np.zeros((10,</span> <span class="pre">10)).tolist()}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>ベンチマーク<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.024034">公開されたアルゴリズムのベンチマーク</a>結果では、Bernstein-Vazirani、量子フーリエ変換、Grover 探索、QAOA(量子近似最適化アルゴリズム)、VQE(変分量子固有値ソルバー)など、さまざまなアルゴリズムで大幅なパフォーマンスの向上が実証されています。このセクションの残りの部分では、実行できるアルゴリズムの種類、および予想されるパフォーマンスと実行時間について詳しく説明します。</p>
+<p>以下の独立した研究は、Q-CTRL のPerformance Managementが記録的な規模でアルゴリズム研究を可能にする方法を実証しています。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/2405.09724v1">ネットワークサービス障害診断のためのパラメータ化されたエネルギー効率の高い量子カーネル</a>- 最大 50 量子ビットの量子カーネル学習</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2405.09724v1">大規模デモンストレーションのためのテンソルベースの量子位相差推定</a>- 最大 33 量子ビットの量子位相推定</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2311.12929">量子機械学習のための階層的学習: 大規模変分量子回路の新しいトレーニング手法</a> - 最大 21 量子ビットの量子データ読み込み</p></li>
+</ul>
+<p>次の表は、 <code class="docutils literal notranslate"><span class="pre">ibm_fez</span></code> での以前のベンチマーク実行からの精度と実行時間に関する大まかなガイドを示しています。他のデバイスではパフォーマンスが異なる場合があります。使用時間は、回路あたり 10,000 ショットの想定に基づいています。示されている「量子ビットの数」は厳密な制限ではありませんが、非常に一貫したソリューション精度を期待できる大まかなしきい値を表しています。より大きなサイズの問題が正常に解決されており、これらの制限を超えてテストすることをお勧めします。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Example</p></th>
+<th class="head"><p>Number of qubits</p></th>
+<th class="head"><p>Accuracy</p></th>
+<th class="head"><p>Measure of accuracy</p></th>
+<th class="head"><p>Total time (s)</p></th>
+<th class="head"><p>Runtime usage (s)</p></th>
+<th class="head"><p>Primitive (Mode)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bernstein–Vazirani</p></td>
+<td><p>50Q</p></td>
+<td><p>100%</p></td>
+<td><p>Success Rate (Percentage of runs where the correct answer is the highest count bitstring)</p></td>
+<td><p>10</p></td>
+<td><p>8</p></td>
+<td><p>Sampler</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum Fourier Transform</p></td>
+<td><p>30Q</p></td>
+<td><p>100%</p></td>
+<td><p>Success Rate (Percentage of runs where the correct answer is the highest count bitstring)</p></td>
+<td><p>10</p></td>
+<td><p>8</p></td>
+<td><p>Sampler</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum Phase Estimation</p></td>
+<td><p>30Q</p></td>
+<td><p>99.9998%</p></td>
+<td><p>Accuracy of the angle found: <code class="docutils literal notranslate"><span class="pre">1-</span> <span class="pre">abs(real_angle</span> <span class="pre">-</span> <span class="pre">angle_found)/pi</span></code></p></td>
+<td><p>10</p></td>
+<td><p>8</p></td>
+<td><p>Sampler</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantum simulation: Ising model (15 steps)</p></td>
+<td><p>20Q</p></td>
+<td><p>99.775%</p></td>
+<td><p><span class="math notranslate nohighlight">\(A\)</span> (defined below)</p></td>
+<td><p>60 (per step)</p></td>
+<td><p>15 (per step)</p></td>
+<td><p>Estimator</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantum simulation 2: molecular dynamics (20 time points)</p></td>
+<td><p>34Q</p></td>
+<td><p>96.78%</p></td>
+<td><p><span class="math notranslate nohighlight">\(A_{mean}\)</span> (defined below)</p></td>
+<td><p>10 (per time point)</p></td>
+<td><p>6 (per time point)</p></td>
+<td><p>Estimator</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>期待値の測定の精度を定義する - メトリック <span class="math notranslate nohighlight">\(A\)</span> は次のように定義されます</p>
+<div class="math notranslate nohighlight">
+\[A = 1 - \frac{|\epsilon^{ideal} - \epsilon^{meas}|}{\epsilon^{ideal}_{max} - \epsilon^{ideal}_{min}},\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(\epsilon^{ideal}\)</span> = 理想的な期待値、<span class="math notranslate nohighlight">\(\epsilon^{meas}\)</span> = 測定された期待値、<span class="math notranslate nohighlight">\(\epsilon^{ideal}_{max} \)</span> = 理想的な最大値、<span class="math notranslate nohighlight">\(\epsilon^{ideal}_{min}\)</span> = 理想的な最小値です。<span class="math notranslate nohighlight">\(A_{mean}\)</span> は、複数の測定にわたる <span class="math notranslate nohighlight">\(A\)</span> の値の平均です。</p>
+<p>このメトリックが使用されるのは、達成可能な値の範囲におけるグローバル シフトとスケーリングに対して不変であるためです。言い換えると、期待値のとりうる範囲を高くしたり低くしたり、スプレッドを大きくしたりしても、<span class="math notranslate nohighlight">\(A\)</span> の値は一定のままであるはずです。</p>
+</section>
+<section id="id6">
+<h2>始めてみましょう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://quantum.ibm.com/">IBM Quantum Platform API token</a>を使用して認証し、次のように Qiskit 関数を選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+
+<span class="c1"># Credentials</span>
+<span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_HUB&gt;&quot;</span>
+<span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_GROUP&gt;&quot;</span>
+<span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_PROJECT&gt;&quot;</span>
+
+<span class="c1"># Authentication</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+
+<span class="c1"># Access Function</span>
+<span class="n">perf_mgmt</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;q-ctrl/performance-management&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Credentials</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h2>例: Sampler<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>Fire Opal Performance Management のSamplerモードを使用して、Bernstein–Vazirani 回路を実行します。このアルゴリズムは、ブラック ボックス関数の出力から隠された文字列を見つけるために使用され、正解が 1 つしかないため、一般的なベンチマーク アルゴリズムです。</p>
+<section id="id8">
+<h3>1. 回路を作成する<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>アルゴリズムの正しい答え、隠しビット文字列、および Bernstein-Vazirani 回路を定義します。 <code class="docutils literal notranslate"><span class="pre">circuit_width</span></code> を変更するだけで回路の幅を調整できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit</span>
+
+<span class="n">circuit_width</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">hidden_bitstring</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="n">circuit_width</span>
+
+<span class="c1"># Create circuit, reserving one qubit for BV oracle</span>
+<span class="n">bv_circuit</span> <span class="o">=</span> <span class="n">qiskit</span><span class="o">.</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">circuit_width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">circuit_width</span><span class="p">)</span>
+<span class="n">bv_circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">circuit_width</span><span class="p">)</span>
+<span class="n">bv_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">circuit_width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">input_qubit</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">hidden_bitstring</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+        <span class="n">bv_circuit</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">input_qubit</span><span class="p">,</span> <span class="n">circuit_width</span><span class="p">)</span>
+<span class="n">bv_circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">bv_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">circuit_width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">bv_circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">input_qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">circuit_width</span><span class="p">):</span>
+    <span class="n">bv_circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">input_qubit</span><span class="p">,</span> <span class="n">input_qubit</span><span class="p">)</span>
+
+<span class="c1"># Create PUB tuple</span>
+<span class="n">pubs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">bv_circuit</span><span class="p">,)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bv_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14a00667582cdaa490629caed01fda60b62f523350f3ba69ce05180ce0335fe0.png" src="../_images/14a00667582cdaa490629caed01fda60b62f523350f3ba69ce05180ce0335fe0.png" />
+</div>
+</div>
+</section>
+<section id="run-the-circuit">
+<h3>2. Run the circuit<a class="headerlink" href="#run-the-circuit" title="Link to this heading">#</a></h3>
+<p>回路を実行し、必要に応じてバックエンドとショット数を定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Choose a backend or remove this option to default to the least busy device</span>
+<span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;CHOOSE_A_BACKEND&gt;&quot;</span>
+
+<span class="c1"># Run the circuit using the sampler</span>
+<span class="n">qctrl_sampler_job</span> <span class="o">=</span> <span class="n">perf_mgmt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">runner_function</span> <span class="o">=</span><span class="s2">&quot;sampler&quot;</span><span class="p">,</span>
+    <span class="n">pubs</span> <span class="o">=</span> <span class="n">pubs</span><span class="p">,</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span><span class="p">,</span>
+    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>使い慣れた<a class="reference internal" href="#./serverless"><span class="xref myst">Qiskit Serverless APIs</span></a> を使用して、Qiskit Function ワークロードのステータスを確認できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">qctrl_sampler_job</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="retrieve-the-result">
+<h3>3. Retrieve the result<a class="headerlink" href="#retrieve-the-result" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the counts from the result list</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">qctrl_sampler_job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>後で結果を取得する必要がある場合は、次のセルを実行してジョブ ID を保存できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qctrl_sampler_job_id</span> <span class="o">=</span> <span class="n">qctrl_sampler_job</span><span class="o">.</span><span class="n">job_id</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qctrl_sampler_job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ジョブ ID を使用してジョブ オブジェクトを取得し、ステータスや結果を取得できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qctrl_sampler_job</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_job_by_id</span><span class="p">(</span><span class="n">qctrl_sampler_job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>例: Estimator<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>Fire Opal Performance Managementのサンプラー モードを使用して、Bernstein–Vazirani 回路を実行します。このアルゴリズムは、ブラック ボックス関数の出力から隠された文字列を見つけるために使用され、正解が 1 つしかないため、一般的なベンチマーク アルゴリズムです。</p>
+<p><code class="docutils literal notranslate"><span class="pre">qiskit-ibm-catalog</span></code> と <code class="docutils literal notranslate"><span class="pre">qiskit</span></code> パッケージに加えて、このサンプルを実行するには <code class="docutils literal notranslate"><span class="pre">NumPy</span></code> パッケージも使用します。IPythonカーネルを使用してこのサンプルをノートブックで実行する場合、以下のセルをアンコメントすることでこのパッケージをインストールすることができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="create-the-circuit">
+<h3>1. Create the circuit<a class="headerlink" href="#create-the-circuit" title="Link to this heading">#</a></h3>
+<p>例として、ランダムなエルミート演算子とオブザーバブルを生成し、Performance Management functionに入力します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">IQP</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">random_hermitian</span>
+
+<span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># Generate a random circuit</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">random_hermitian</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1234</span><span class="p">))</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">IQP</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+
+<span class="c1"># Define observables as a string</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="s2">&quot;Z&quot;</span> <span class="o">*</span> <span class="n">n_qubits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create PUB tuple</span>
+<span class="n">pubs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">observable</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>2. Run the circuit<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>回路を実行し、必要に応じてバックエンドとショット数を定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Choose a backend or remove this option to default to the least busy device</span>
+<span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;CHOOSE_A_BACKEND&gt;&quot;</span>
+
+<span class="n">qctrl_estimator_job</span> <span class="o">=</span> <span class="n">perf_mgmt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">runner_function</span> <span class="o">=</span> <span class="s2">&quot;estimator&quot;</span><span class="p">,</span>
+    <span class="n">pubs</span> <span class="o">=</span> <span class="n">pubs</span><span class="p">,</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span><span class="p">,</span>
+    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>使い慣れた<a class="reference internal" href="#./serverless"><span class="xref myst">Qiskit Serverless APIs</span></a> を使用して、Qiskit Function ワークロードのステータスを確認できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">qctrl_estimator_job</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>3. Retrieve the result<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the counts from the result list</span>
+<span class="n">expectation_value</span> <span class="o">=</span> <span class="n">qctrl_estimator_job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expectation value: </span><span class="si">{</span><span class="n">expectation_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>後で結果を取得する必要がある場合は、次のセルを実行してジョブ ID を保存できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qctrl_estimator_job_id</span> <span class="o">=</span> <span class="n">qctrl_estimator_job</span><span class="o">.</span><span class="n">job_id</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qctrl_estimator_job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ジョブ ID を使用してジョブ オブジェクトを取得し、ステータスや結果を取得できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qctrl_estimator_job</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get_job_by_id</span><span class="p">(</span><span class="n">qctrl_estimator_job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2>サポートを得る<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>ご質問や問題については、<a class="reference external" href="https://form.typeform.com/to/iuujEAEI">Q-CTRLにコンタクトしてください。</a></p>
+</section>
+<section id="id13">
+<h2>次のステップ<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<Admonition type="tip" title="Recommendations">
+  *   [Q-CTRL Performance Management](https://quantum.ibm.com/functions?id=c750648c-ba44-4137-8c34-4140a3aaa7a9) へのアクセスをリクエストする
+</Admonition>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./documents"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Performance Management(パフォーマンス管理): Q-CTRL Fire Opal による Qiskit Function</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">機能説明</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">入力と出力</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sampler">Samplerの入力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Samplerの出力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimator">Estimatorの入力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Estimatorの出力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter">Parameter 形式</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ベンチマーク</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">例: Sampler</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">1. 回路を作成する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-circuit">2. Run the circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-the-result">3. Retrieve the result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">例: Estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-circuit">1. Create the circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2. Run the circuit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3. Retrieve the result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">サポートを得る</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">次のステップ</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

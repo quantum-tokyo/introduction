@@ -1,0 +1,806 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>テンソルネットワークエラー緩和 (Tensor-network error mitigation, TEM): Algorithmiq による Qiskit Function &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documents/algorithmiq-tem-ja';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">新版 Qiskitテキストブック 日本語版 (Qiskitコース)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fdocuments/algorithmiq-tem-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/documents/algorithmiq-tem-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>テンソルネットワークエラー緩和 (Tensor-network error mitigation, TEM): Algorithmiq による Qiskit Function</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">概要</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考文献</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">機能説明</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run">run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-options">Advanced options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">サポートを受ける</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">次のステップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>{/* cspell:ignore POVM, mathbf, Filippov, Lindblad, Leahy, Rossi, García, Pérez  */}</p>
+<section class="tex2jax_ignore mathjax_ignore" id="tensor-network-error-mitigation-tem-algorithmiq-qiskit-function">
+<h1>テンソルネットワークエラー緩和 (Tensor-network error mitigation, TEM): Algorithmiq による Qiskit Function<a class="headerlink" href="#tensor-network-error-mitigation-tem-algorithmiq-qiskit-function" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Qiskit Functionsは、IBM Quantum™ Premium Plan ユーザーのみが利用できる実験的な機能です。プレビュー リリースの状態であり、変更される可能性があります。 
+</Admonition>
+<section id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>テンソルネットワーク エラー軽減 (TEM) 関数は、物理オザーバブルの推定においてノイズによるエラーを後処理することで、量子回路とオブザーバブルの期待値を計算します。</p>
+<p>この方法は、量子プロセッサーの状態に影響を与えるグローバル ノイズ チャネルの逆を表すテンソル ネットワークを構築し、そのマップをノイズ状態から取得した情報的に完全な測定結果に適用することから構成されます。</p>
+<p>TEMの利点としては、情報的に完全な測定を活用して、オブザーバブルの緩和された期待値の膨大なセットにアクセスでき、量子ハードウェア上で最適なサンプリングオーバーヘッドを持つことです[1]。TEMは純粋に古典的なテンソルネットワーク法に関しても有利であり、古典的なテンソルネットワークアプローチよりも少ない計算コストで正確な結果を提供します。</p>
+<p>詳細については参考文献[1]を参照してください。</p>
+<section id="id2">
+<h3>参考文献<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>S. Filippov, M. Leahy, M. A. C. Rossi, G. García-Pérez, Scalable tensor-network error mitigation for near-term quantum computing, <a class="reference external" href="https://arxiv.org/abs/2307.11740">arXiv:1111.6950</a> [quant-ph]</p></li>
+</ol>
+</section>
+</section>
+<section id="id3">
+<h2>機能説明<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>TEM関数は、ノイズ層が特定されたノイズ回路を取り込みます。回路は情報的に完全な正の演算子値測定(informationally complete positive operator-valued measure, IC-POVM)で測定され、収集された測定結果は古典計算機上で処理されます。この測定結果を用いてテンソルネットワーク法を実行し、ノイズ反転マップ <span class="math notranslate nohighlight">\(\mathcal{N}^{-1}\)</span> を構築します。このfunctionは、ノイズ層を表現する行列積演算子を用いて、ノイズ回路全体を完全に反転するマップ <span class="math notranslate nohighlight">\(\mathcal{M}\)</span> を適用します。</p>
+<p><img alt="image.png" src="documents/attachment:b530a99a-662c-43b1-a437-32a469de20d0.png" /></p>
+<p>ノイズを軽減するために、アルゴリズムは、中央（反転したノイズ回路が終了し、理想回路が開始するところ）から開始し、各反復で左側の2層と右側の1層を巻き込んで外側に伝播する収縮を行う。従って、したがって、ノイズのある回路の出力状態<span class="math notranslate nohighlight">\(\rho\)</span>は<span class="math notranslate nohighlight">\((\vert 0 \rangle\langle0\vert)^{\otimes N}\)</span>に戻され、これが理想的なノイズのない状態演算子<span class="math notranslate nohighlight">\(\vert\psi\rangle\langle \psi\vert\)</span>にマッピングされます。</p>
+<p>したがって、オブザーバブル <span class="math notranslate nohighlight">\({O}\)</span> のノイズの緩和された推定は次のように読めます。
+$<span class="math notranslate nohighlight">\(
+\bar{O}_{\text{n}.\text{m}} = \frac{1}{S} \sum_{\mathbf{k}} \text{tr} [\mathcal{M}(D_{\mathbf{k}})O] = \frac{1}{S} \sum_{\mathbf{k}} \text{tr} [D_{\mathbf{k}}\mathcal{M}^{\dagger}(O)],\)</span>$</p>
+<p>ここで <span class="math notranslate nohighlight">\(D\mathbf{k}\)</span> は、<span class="math notranslate nohighlight">\(S\)</span> ショットのセット内の測定ショット <span class="math notranslate nohighlight">\(\mathbf{k}\)</span> に関連付けられた対応するPOVMのdual演算子です。</p>
+<p>このアルゴリズムについては<a class="reference external" href="https://arxiv.org/abs/2307.11740">Filippov et al. (2023)</a> でさらに詳しく説明されています。</p>
+<section id="id4">
+<h3>方法<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="run">
+<h4>run<a class="headerlink" href="#run" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">run(pubs,options)</span></code></p>
+<p>run() メソッドを使用すると、回路とオブザーバブルのリストを含むprimitive unified bloc (PUB) の期待値を計算できます。</p>
+<p><strong>Parameters</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pubs</p></td>
+<td><p>Iterable[EstimatorPubLike]</p></td>
+<td><p>An iterable of PUB-like (primitive unified bloc) objects, such as tuples <code class="docutils literal notranslate"><span class="pre">(circuit,</span> <span class="pre">observables)</span></code> or <code class="docutils literal notranslate"><span class="pre">(circuit,</span> <span class="pre">observables,</span> <span class="pre">parameter_values)</span></code>. See <a class="reference internal" href="#/guides/primitive-input-output#overview-of-pubs"><span class="xref myst">Overview of PUBs</span></a> for more information. The circuits don’t need to be ISA circuits.</p></td>
+<td><p>Yes</p></td>
+<td><p>(circuit, observables, parameter_values)</p></td>
+</tr>
+<tr class="row-odd"><td><p>instance</p></td>
+<td><p>str</p></td>
+<td><p>The hub/group/project to use in that format.</p></td>
+<td><p>No</p></td>
+<td><p>“hub1/group1/project1”</p></td>
+</tr>
+<tr class="row-even"><td><p>options</p></td>
+<td><p>dict</p></td>
+<td><p>Input options. See <code class="docutils literal notranslate"><span class="pre">Options</span></code> section for more details.</p></td>
+<td><p>No</p></td>
+<td><p>{“optimization_level”: 3}</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Options</strong></p>
+<p>TEM のオプションを含む辞書。辞書には次のキーが含まれている必要があります:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>backend_name</p></td>
+<td><p>str</p></td>
+<td><p>Name of the backend to make the query.</p></td>
+<td><p>“ibm_fez”</p></td>
+</tr>
+<tr class="row-odd"><td><p>simulate_with_noise_model</p></td>
+<td><p>bool</p></td>
+<td><p>A Boolean flag indicating whether to simulate the noisy circuit or not.</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-even"><td><p>max_bond_dimension</p></td>
+<td><p>int</p></td>
+<td><p>The maximum bond dimension to be used for MPOs.</p></td>
+<td><p>True</p></td>
+</tr>
+<tr class="row-odd"><td><p>tem_compression_cutoff</p></td>
+<td><p>float</p></td>
+<td><p>The cutoff value to be used for MPOs.</p></td>
+<td><p>1e-16</p></td>
+</tr>
+<tr class="row-even"><td><p>num_max_shots</p></td>
+<td><p>int</p></td>
+<td><p>The maximum number of shots.</p></td>
+<td><p>10_000</p></td>
+</tr>
+<tr class="row-odd"><td><p>num_randomizations</p></td>
+<td><p>int</p></td>
+<td><p>The number of randomizations to be used for gate twirling.</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>mitigate_readout_error</p></td>
+<td><p>bool</p></td>
+<td><p>A Boolean flag indicating whether to perform QDT readout error mitigation or not.</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>num_readout_calibration_shots</p></td>
+<td><p>int</p></td>
+<td><p>The number of shots to be used for QDT readout error mitigation.</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-even"><td><p>logging_level</p></td>
+<td><p>str</p></td>
+<td><p>The logging level to be used for the TEM runner.</p></td>
+<td><p>“INFO”</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Returns</strong></p>
+<p>TEM 緩和結果を含む PubResult:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>DataBin</p></td>
+<td><p>A DataBin containing the TEM mitigated observable and its standard error. The DataBin has the following fields: <ul><li><code class="docutils literal notranslate"><span class="pre">observable</span></code>: The TEM mitigated observable value.</li><li><code class="docutils literal notranslate"><span class="pre">observable_stderr</span></code>: The standard error of the TEM mitigated observable.</li></ul></p></td>
+</tr>
+<tr class="row-odd"><td><p>metadadata</p></td>
+<td><p>dict</p></td>
+<td><p>A dictionary containing additional results. The dictionary contains the following keys: <ul><li><code class="docutils literal notranslate"><span class="pre">&quot;observable_non_mitigated&quot;</span></code>: The observable value without error mitigation.</li><li><code class="docutils literal notranslate"><span class="pre">&quot;observable_non_mitigated_stderr&quot;</span></code>: The standard error of the result without error mitigation.</li><li><code class="docutils literal notranslate"><span class="pre">&quot;observable_simulated&quot;</span></code>: If its computation is enabled in the TEM options, contains the result obtained by simulating the circuit with the learned noise.</li></ul></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="id5">
+<h2>始めてみましょう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://quantum.ibm.com/">IBM Quantum Platform API token</a>を使用して認証し、次のように TEM を選択します：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+
+<span class="n">tem_function_name</span> <span class="o">=</span> <span class="s2">&quot;algorithmiq/tem&quot;</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load your function</span>
+<span class="n">tem</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">tem_function_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tem_function_name</span> <span class="o">=</span> <span class="s2">&quot;algorithmiq/tem&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>次のコードは、シンプルな量子回路を与えられオブザーバブルの期待値を計算するのに TEM が使用される例を示しています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="c1"># Create a quantum circuit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Define the observables</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;YXZ&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Define the execution options</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend_name</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="s2">&quot;&lt;IQP_HUB/IQP_GROUP/IQP_PROJECT&gt;&quot;</span>
+
+<span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">,</span>
+    <span class="s2">&quot;num_max_shots&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">tem</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">instance</span><span class="p">,</span> <span class="n">pub</span><span class="o">=</span><span class="n">pub</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次のコードは、単純な量子回路を与えられオブザーバブルの期待値を計算するのに TEM が使用される例を示しています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-options">
+<h2>Advanced options<a class="headerlink" href="#advanced-options" title="Link to this heading">#</a></h2>
+<p>TEM に追加のオプションを渡すことで、計算を微調整し、より詳細な情報を取得できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">,</span>
+        <span class="s2">&quot;num_max_shots&quot;</span><span class="p">:</span> <span class="mi">1_000</span><span class="p">,</span>
+        <span class="s2">&quot;simulate_with_noise_model&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;mitigate_readout_error&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;num_readout_calibration_shots&quot;</span><span class="p">:</span> <span class="mi">10_000</span><span class="p">,</span>
+        <span class="s2">&quot;logging_level&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span>
+    <span class="p">}</span>
+
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">tem</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">instance</span> <span class="o">=</span> <span class="n">instance</span><span class="p">,</span> <span class="n">pub</span> <span class="o">=</span> <span class="n">pub</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="n">options</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>サポートを受ける<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="mailto:qiskit_ibm&#37;&#52;&#48;algorithmiq&#46;fi">qiskit_ibm<span>&#64;</span>algorithmiq<span>&#46;</span>fi</a> に連絡し、次の情報を伝えてください。</p>
+<ul class="simple">
+<li><p>Qiskit Function Job ID (<code class="docutils literal notranslate"><span class="pre">qiskit-ibm-catalog</span></code>), <code class="docutils literal notranslate"><span class="pre">job.job_id</span></code></p></li>
+<li><p>問題の詳細な説明</p></li>
+<li><p>関連するエラーメッセージまたはコード</p></li>
+<li><p>問題を再現する手順</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>次のステップ<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<Admonition type="tip" title="Recommendations">
+  *   [Algorithmiq Tensor-network error mitigation へのアクセスをリクエストする](https://quantum.ibm.com/functions?id=4b1b9d76-c18b-4788-b70b-15125111fbe6)
+</Admonition>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./documents"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">概要</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考文献</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">機能説明</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">方法</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run">run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-options">Advanced options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">サポートを受ける</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">次のステップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

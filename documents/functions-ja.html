@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Qiskit Functions 入門 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documents/functions-ja';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">新版 Qiskitテキストブック 日本語版 (Qiskitコース)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fdocuments/functions-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/documents/functions-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Qiskit Functions 入門</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started-with-qiskit-functions">Get started with Qiskit Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-functions-catalog">Qiskit Functions Catalogクライアントをインストールする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">有効な機能を実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ジョブステータスを確認する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">結果を取得</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Qiskit Functionsで以前に実行されたジョブを一覧表示する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">エラーメッセージを取得する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">次のステップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="qiskit-functions">
+<h1>Qiskit Functions 入門<a class="headerlink" href="#qiskit-functions" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Qiskit Functionsは、IBM Quantum™ Premium Plan ユーザーのみが利用できる実験的な機能です。プレビュー リリースの状態であり、変更される可能性があります。
+</Admonition>
+<p>Qiskit Functions は、量子ソフトウェア開発ワークフローの一部を抽象化することで、ユーティリティ規模のアルゴリズムの発見とアプリケーション開発を簡素化および加速します。このようにして、Qiskit Functions は、通常は手動でのコード作成や実験の微調整に費やされる時間を解放します。</p>
+<p><img alt="image.png" src="documents/attachment:d25118a8-93fc-4ce1-a35f-737f45ba4deb.png" /></p>
+<p>関数には 2 つのタイプがあります。:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>タイプ</p></th>
+<th class="head"><p>何をするのか?</p></th>
+<th class="head"><p>入力と出力の例</p></th>
+<th class="head"><p>誰のためのものか?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Circuit function</p></td>
+<td><p>回路を実行するための簡素化されたインターフェース。トランスパイル、エラー抑制、エラー軽減を抽象化します。</p></td>
+<td><p><strong>Input</strong>: 抽象化された <code class="docutils literal notranslate"><span class="pre">PUB</span></code>s <br /> <strong>Output</strong>: 緩和された期待値</p></td>
+<td><p>研究者は、ハードウェアの最適化やエラー処理に重点を置くことなく、Qiskit を使用して新しいアルゴリズムやアプリケーションを発見できます。回路関数を使用して、カスタム アプリケーション関数を構築できます。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Application function</p></td>
+<td><p>アルゴリズムやドメイン固有のユースケースの探索など、より高レベルのタスクをカバーします。古典的な入力と出力を使用して、タスクを解決するための量子ワークフローを抽象化します。</p></td>
+<td><p><strong>Input</strong>: 分子、グラフ <br /> <strong>Output</strong>: エネルギー、コスト</p></td>
+<td><p>非量子領域の研究者は、古典データを量子回路にマッピングする必要なく、既存の大規模な古典ワークフローに量子を統合します。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Functionsは IBM® およびサード パーティー パートナーによって提供されます。各Functionsは特定のワークロード特性に合わせてパフォーマンスが調整され、独自のパフォーマンス チューニング オプションがあります。プレミアム プランのユーザーは、IBM Qiskit Functions を無料で使い始めることも、カタログに関数を提供しているパートナーからライセンスを取得することもできます。</p>
+<section id="get-started-with-qiskit-functions">
+<h2>Get started with Qiskit Functions<a class="headerlink" href="#get-started-with-qiskit-functions" title="Link to this heading">#</a></h2>
+<section id="qiskit-functions-catalog">
+<h3>Qiskit Functions Catalogクライアントをインストールする<a class="headerlink" href="#qiskit-functions-catalog" title="Link to this heading">#</a></h3>
+<p>Qiskit Functions の使用を開始するには、IBM Qiskit Functions Catalog クライアントをインストールします。</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-catalog</span></code></p>
+<p>インストールが完了したら、次のように<a class="reference external" href="http://quantum.ibm.com/">IBM Quantum Platform API token</a> を使用して認証します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install qiskit-ibm-catalog</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;2e3c9b01ed7d8788964de9238b932e9f7828418afa373dd180fcbad2da42ece4513aa23ac879c28ea24a3092cb15f476d24b8920b3d0239fd521f645a72c8f8e&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;2e3c9b01ed7d8788964de9238b932e9f7828418afa373dd180fcbad2da42ece4513aa23ac879c28ea24a3092cb15f476d24b8920b3d0239fd521f645a72c8f8e&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;&lt;YOUR_IQP_API_TOKEN&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>オプションとして、 サービスを初期化する前に、 <code class="docutils literal notranslate"><span class="pre">save_account()</span></code> メソッドを使用して資格情報を保存し、後で簡単にアクセスできるようにすることができます。これは <code class="docutils literal notranslate"><span class="pre">QiskitRuntimeService.save_account()</span></code> と同じ場所に認証情報を保存するので、 <code class="docutils literal notranslate"><span class="pre">QiskitRuntimeService</span></code> を使ってアカウントを保存していた場合はこの手順を省略することができる。<em>アカウントの認証情報はプレーンテキストで保存されるので、信頼できるデバイスを使用している場合のみ、この手順を実行してください。</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+
+<span class="c1"># This can be skipped if you previously did QiskitRuntimeService.save_account()</span>
+<span class="n">QiskitFunctionsCatalog</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>認証が完了すると、アクセスできる Qiskit Functionsカタログの関数を一覧表示できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catalog</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[QiskitFunction(qedma/qesem-dev),
+ QiskitFunction(qunasys/quri-chemistry),
+ QiskitFunction(qunasys/qce),
+ QiskitFunction(algorithmiq/tem),
+ QiskitFunction(qunasys/qsci-vqe),
+ QiskitFunction(qedma/qesem),
+ QiskitFunction(multiverse/singularity),
+ QiskitFunction(q-ctrl/performance-management-dev),
+ QiskitFunction(qunasys/quri-chemistry-dev),
+ QiskitFunction(ibm/circuit-function),
+ QiskitFunction(q-ctrl/optimization-solver),
+ QiskitFunction(q-ctrl/performance-management),
+ QiskitFunction(algorithmiq/tem-dev),
+ QiskitFunction(q-ctrl/optimization-solver-dev)]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3>有効な機能を実行する<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>カタログ オブジェクトがインスタンス化されたら、<code class="docutils literal notranslate"><span class="pre">catalog.load(provider/function-name)</span></code> でfunctionを選択できます</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ibm_cf</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;ibm/circuit-function&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>各 Qiskit Function には、カスタム入力、オプション、および出力があります。詳細については、実行するfunctionの特定のドキュメント ページを確認してください。デフォルトでは、すべてのユーザーが一度に実行できるfunctionジョブは 1 つだけです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">ibm_cf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">instance</span><span class="o">=...</span><span class="p">,</span>
+    <span class="n">pubs</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;backend_name&quot;</span>
+<span class="p">)</span>
+
+<span class="n">job</span><span class="o">.</span><span class="n">job_id</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0ede4d0f-06d6-4360-86a1-5028ca511b3f
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>ジョブステータスを確認する<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<Admonition type="tip">
+  現在、IBM Quantum ワークロード テーブルには、Qiskit Runtime  ワークロードのみが反映されています。Qiskit Functionワークロードの現在のステータスを確認するには、`job.status()` を使用します。
+</Admonition>
+<p>Qiskit Function <code class="docutils literal notranslate"><span class="pre">job_id</span></code> を使用すると、実行中のジョブのステータスを確認できます。これには次のステータスが含まれます:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">QUEUED</span></code></strong>: リモート プログラムは Qiskit  Function キューにあります。キューの優先順位は、Qiskit  Functionの使用頻度に基づいて決まります。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">INITIALIZING</span></code></strong>: リモート プログラムが起動しています。これには、リモート環境のセットアップと依存関係のインストールが含まれます。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">RUNNING</span></code></strong>: プログラムが実行中です。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">DONE</span></code></strong>:プログラムが完了し、 <code class="docutils literal notranslate"><span class="pre">job.results()</span></code> を使用して結果データを取得できます。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ERROR</span></code></strong>: 問題のためプログラムの実行が停止しました。  <code class="docutils literal notranslate"><span class="pre">job.result()</span></code> を使用してエラー メッセージを取得します。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">CANCELED</span></code></strong>: プログラムは、ユーザー、サービス、またはサーバーによってキャンセルされました。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>結果を取得<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>プログラムが  <code class="docutils literal notranslate"><span class="pre">DONE</span></code>になったら、 <code class="docutils literal notranslate"><span class="pre">job.results()</span></code>  を使用して結果を取得できます。この出力形式は関数ごとに異なるため、特定のドキュメントに従ってください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(20,), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(20,), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(20, 2, 4), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(20, 2, 4), dtype=float64&gt;), shape=(20,)), metadata={&#39;shots&#39;: 4096, &#39;target_precision&#39;: 0.015625, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {&#39;zne&#39;: {&#39;extrapolator&#39;: array([&#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
+       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
+       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
+       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
+       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;],
+      dtype=&#39;&lt;U11&#39;)}, &#39;layer_noise&#39;: {&#39;noise_overhead&#39;: 1, &#39;total_mitigated_layers&#39;: 0, &#39;unique_mitigated_layers&#39;: 0, &#39;unique_mitigated_layers_noise_overhead&#39;: []}}, &#39;num_randomizations&#39;: 32})
+      
+</pre></div>
+</div>
+</div>
+</div>
+<p>いつでもジョブをキャンセルすることもできます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Job has been stopped.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>Qiskit Functionsで以前に実行されたジョブを一覧表示する<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Qiskit Functions に送信されたすべてのジョブを一覧表示するには、<code class="docutils literal notranslate"><span class="pre">jobs()</span></code> のコマンドを使用できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">old_jobs</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">jobs</span><span class="p">()</span>
+<span class="n">old_jobs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Job | 0ede4d0f-06d6-4360-86a1-5028ca511b3f&gt;,
+ &lt;Job | abf78e9a-b554-4e38-966a-f99cff877b8c&gt;,
+ &lt;Job | 90e1109e-809f-4768-a2dc-f45bf71a97b4&gt;,
+ &lt;Job | 313050f2-aa78-4d7d-99f4-44bdfe98e4d7&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>エラーメッセージを取得する<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>プログラム ステータスが  <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>の場合、<code class="docutils literal notranslate"><span class="pre">job.result()</span></code>　でデバッグに役立つエラー メッセージを取得します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>次のステップ<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<Admonition type="info" title="Recommendations">
+<ul class="simple">
+<li><p><a class="reference internal" href="#./ibm-circuit-function"><span class="xref myst">circuit functionsの探索</span></a>を使って、新しいアルゴリズムやアプリケーションを構築することができます。</p></li>
+<li><p><a class="reference internal" href="#./q-ctrl-optimization-solver"><span class="xref myst">application functionsの探索</span></a> で古典的な入力と出力で、ドメイン固有のタスクを解決します。
+</Admonition></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./documents"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-started-with-qiskit-functions">Get started with Qiskit Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-functions-catalog">Qiskit Functions Catalogクライアントをインストールする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">有効な機能を実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ジョブステータスを確認する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">結果を取得</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Qiskit Functionsで以前に実行されたジョブを一覧表示する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">エラーメッセージを取得する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">次のステップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

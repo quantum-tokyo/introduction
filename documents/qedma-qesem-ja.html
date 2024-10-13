@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>QESEM: Qedma による Qiskit Function &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documents/qedma-qesem-ja';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">新版 Qiskitテキストブック 日本語版 (Qiskitコース)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fdocuments/qedma-qesem-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/documents/qedma-qesem-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>QESEM: Qedma による Qiskit Function</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">説明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">独自のエラー緩和機能</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">Function パラメーター</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">カスタムオプション</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ベンチマーク</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">サポートを受ける</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">次のステップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="qesem-qedma-qiskit-function">
+<h1>QESEM: Qedma による Qiskit Function<a class="headerlink" href="#qesem-qedma-qiskit-function" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Qiskit Functionsは、IBM Quantum™ Premium Plan ユーザーのみが利用できる実験的な機能です。プレビュー リリースの状態であり、変更される可能性があります。 
+</Admonition>
+<section id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>量子処理装置は近年大幅に改善されましたが、既存のハードウェアのノイズや欠陥によるエラーは、量子アルゴリズム開発者にとって依然として大きな課題です。この分野が従来の方法では検証できない実用規模の量子計算に近づくにつれて、精度を保証しながらノイズをキャンセルするソリューションがますます重要になっています。この課題を克服するために、Qedma は、IBM Quantum Platform に<a class="reference internal" href="#/guides/functions"><span class="xref myst">Qiskit Function</span></a>としてシームレスに統合された Quantum Error Suppression and Error Mitigation (QESEM) を開発しました。</p>
+<p>QESEM を使用すると、ユーザーは量子回路をノイズの多い QPU で実行して、基本境界に近い、非常に効率的な QPU 時間オーバーヘッドで、非常に正確でエラーのない結果を得ることができます。これを実現するために、QESEM は Qedma が開発した独自の方法スイートを活用して、エラーの特性評価と削減を行います。エラー削減手法には、ゲート最適化、ノイズを考慮したトランスパイル、エラー抑制 (ES)、およびバイアスのないエラー緩和 (EM) が含まれます。これらの特性評価ベースの方法を組み合わせることで、ユーザーは一般的な大容量の量子回路で信頼性の高いエラーのない結果を実現し、他の方法では実現できないアプリケーションを実現できます。</p>
+</section>
+<section id="id2">
+<h2>説明<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Qedma の QESEM 機能を使用すると、エラーを抑制および軽減しながら回路を簡単に推定および実行し、より大きな回路ボリュームとより高い精度を実現できます。QESEM を使用するには、量子回路、測定するオブバーバブルのセット、各オブザーバブルの目標とする統計的な精度、および選択した QPU を指定します。回路を目標精度まで実行する前に、回路の実行を必要としない分析計算に基づいて必要な QPU 時間を推定できます。QPU 時間の推定に満足したら、QESEM で回路を実行できます。</p>
+<p>回路を実行すると、QESEM は回路に合わせて調整されたデバイス特性評価プロトコルを実行し、回路で発生するエラーに対する信頼性の高いノイズ モデルを生成します。特性評価に基づいて、QESEM は最初にノイズを考慮したトランスパイルを実装し、入力回路を一連の物理量子ビットとゲートにマッピングします。これにより、目標であるオブバーバブルに影響を与えるノイズが最小限に抑えられます。これらには、ネイティブで使用可能なゲート (IBM® デバイスの CX/CZ) と、QESEM によって最適化された追加のゲートが含まれ、QESEM の拡張ゲート セットを形成します。次に、QESEM は QPU で特性評価ベースの ES および EM 回路のセットを実行し、その測定結果を収集します。次に、これらは従来の方法で後処理され、要求された精度に対応する各オブザーバブルの偏りのない期待値とエラー バーが出力されます。</p>
+<p><img alt="image.png" src="documents/attachment:aa6c072e-222a-4ebf-9fc5-bb3b386abdae.png" /></p>
+</section>
+<section id="id3">
+<h2>独自のエラー緩和機能<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>QESEM は、さまざまな量子アプリケーションと、現在実現可能な最大の回路ボリュームに対して、高精度の結果を提供することが実証されています。QESEM は、以下のベンチマーク セクションで実証されているように、次のユーザー向け機能を提供します。</p>
+<ol class="arabic simple">
+<li><p><strong>保証された精度:</strong> QESEM は、オブザーバブルの期待値に対して偏りのない推定値を出力します。その EM 法には理論的な保証が備わっており、Qedma の最先端の特性評価と相まって、緩和策がユーザー指定の精度までノイズのない回路出力に収束することを保証します。体系的なエラーやバイアスが発生しやすい多くのヒューリスティックな EM 法とは対照的に、QESEM の保証された精度は、一般的な量子回路とオブザーバブルに信頼性の高い結果を保証するために不可欠です。</p></li>
+<li><p><strong>大規模 QPU へのスケーラビリティ:</strong> QESEM の QPU 時間は回路ボリュームに依存しますが、それ以外は量子ビットの数とは無関係です。Qedma は、IBM Quantum 127 量子ビット Eagle や 133 量子ビット Heron デバイスなど、現在入手可能な最大の量子デバイスで QESEM を実証しました。</p></li>
+<li><p><strong>アプリケーションに依存しない:</strong> QESEM は、ハミルトン シミュレーション、VQE、QAOA、振幅推定など、さまざまなアプリケーションで実証されています。ユーザーは、測定する任意の量子回路とオブザーバブルを入力し、正確でエラーのない結果を得ることができます。唯一の制限は、アクセス可能な回路ボリュームと出力精度を決定するハードウェア仕様と割り当てられた QPU 時間によって決まります。対照的に、多くのエラー削減ソリューションはアプリケーション固有であるか、制御されていないヒューリスティックを伴うため、一般的な量子回路やアプリケーションには適用できません。</p></li>
+<li><p><strong>拡張ゲートセット：</strong> QESEM は分数の角度ゲートをサポートし、IBM Quantum Eagle デバイス上で Qedma に最適化された分数の角度 <span class="math notranslate nohighlight">\(Rzz(\theta)\)</span> ゲートを提供します。この拡張ゲートセットにより、より効率的なコンパイルが可能になり、デフォルトのCX/CZコンパイルに比べて最大2倍の回路ボリュームが実現できます。</p></li>
+<li><p><strong>複数基底オブザーバブル:</strong> QESEM は、汎用ハミルトニアンなどの多くの非可換パウリ文字列で構成されるオブザーバブルの入力をサポートします。測定基底の選択と QPU リソース割り当て (ショットと回路) の最適化は、要求された精度に必要な QPU 時間を最小限に抑えるために QESEM によって自動的に実行されます。ハードウェアの忠実度と実行速度を考慮したこの最適化により、より深い回路を実行し、より高い精度を得ることができます。</p></li>
+</ol>
+</section>
+<section id="function">
+<h2>Function パラメーター<a class="headerlink" href="#function" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">instance</span></code></p></td>
+<td><p>str</p></td>
+<td><p>The hub/group/project to use in that format</p></td>
+<td><p>No</p></td>
+<td><p>N/A</p></td>
+<td><p>“hub1/group1/project1”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">action</span></code></p></td>
+<td><p>str</p></td>
+<td><p>The required action: “estimate_qpu_time” or “execute”</p></td>
+<td><p>Yes</p></td>
+<td><p>N/A</p></td>
+<td><p>“execute”</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pubs</span></code></p></td>
+<td><p>Iterable[EstimatorPubLike]</p></td>
+<td><p>A pub-like object in the form of (circuit, observables)</p></td>
+<td><p>Yes</p></td>
+<td><p>N/A</p></td>
+<td><p>(circ1, [obs1,obs2,obs3])</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">precision</span></code></p></td>
+<td><p>float</p></td>
+<td><p>The target precision for expectation value estimates of each observable</p></td>
+<td><p>Yes</p></td>
+<td><p>N/A</p></td>
+<td><p>0.03</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">run_options</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>Includes the name of the backend to run on</p></td>
+<td><p>Yes</p></td>
+<td><p>N/A</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">backend_name</span> <span class="pre">=</span> <span class="pre">&quot;ibm_fez&quot;</span> <span class="pre">}</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">custom_options</span></code></p></td>
+<td><p>dict</p></td>
+<td><p>Advanced features: <code class="docutils literal notranslate"><span class="pre">transpilation_level</span></code> and <code class="docutils literal notranslate"><span class="pre">max_qpu_time</span></code> (in seconds)</p></td>
+<td><p>No</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max_qpu_time</span></code> = 14400 , <code class="docutils literal notranslate"><span class="pre">transpilation_level</span></code>= 1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">max_qpu_time</span> <span class="pre">=</span> <span class="pre">14400,</span> <span class="pre">transpilation_level</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id4">
+<h2>始めてみましょう<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://quantum.ibm.com/">IBM Quantum Platform API token</a> を使用して認証し、次のように Qiskit Function を選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">qesem</span>  <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;qedma/qesem&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">qesem</span>  <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;qedma/qesem&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;qiskit_ibm_catalog&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>例<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>QESEM function を実行するには、次のパラメーターを取得する必要があります。</p>
+<ul class="simple">
+<li><p>action</p></li>
+<li><p>pubs (circuit, observables)</p></li>
+<li><p>precision</p></li>
+<li><p>run_options</p></li>
+</ul>
+<p>まず、QPU 時間を見積もる基本的な例を試してください：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">qesem_function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;estimate_qpu_time&quot;</span><span class="p">,</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="s2">&quot;hub/group/project&quot;</span><span class="p">,</span>
+    <span class="n">pubs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="n">bell</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">obs1</span><span class="p">,</span><span class="n">obs2</span><span class="p">,</span><span class="n">obs3</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次の例では、QESEM job を実行します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example execute QESEM job</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">qesem_function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;execute&quot;</span><span class="p">,</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="s2">&quot;hub/group/project&quot;</span><span class="p">,</span>
+    <span class="n">pubs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="n">bell</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">obs1</span><span class="p">,</span><span class="n">obs2</span><span class="p">,</span><span class="n">obs3</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<Admonition type="note">
+<ul class="simple">
+<li><p>この <code class="docutils literal notranslate"><span class="pre">precision</span></code> パラメーターは、オブザーバブルの期待値に対する許容誤差を絶対値で表します。つまり、緩和のための QPU 実行時間は、対象となるすべてのオブザーバブルについて、目標精度の信頼区間 <code class="docutils literal notranslate"><span class="pre">1σ</span></code> に収まる出力値を提供するように決定されます。複数のオブザーバブルが提供される場合、各入力オブザーバブルの目標精度に達するまで緩和が実行されます。</p></li>
+<li><p>現在、QESEM は単一の <code class="docutils literal notranslate"><span class="pre">PUB</span></code> をサポートしています。
+</Admonition></p></li>
+</ul>
+<p>使い慣れた Qiskit Serverless API を使用して、Qiskit Function ワークロードのステータスを確認したり、結果を返したりできます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>カスタムオプション<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">custom_options</span></code> パラメーターを用意して、QESEM function に追加の高度な機能を設定します：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># example execute QESEM job</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">qesem_function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;execute&quot;</span><span class="p">,</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="s2">&quot;hub/group/project&quot;</span><span class="p">,</span>
+    <span class="n">pubs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="n">bell</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">obs1</span><span class="p">,</span><span class="n">obs2</span><span class="p">,</span><span class="n">obs3</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="mf">0.03</span><span class="p">,</span>
+    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">custom_options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">max_qpu_time</span> <span class="o">=</span> <span class="mi">14400</span><span class="p">,</span>
+        <span class="n">transpilation_level</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">max_qpu_time</span></code>: QESEM プロセス全体で使用される QPU 時間を秒単位で制限できます。目標精度に到達するために必要な最終的な QPU 時間は QESEM ジョブ中に動的に決定されるため、このパラメーターを使用すると実験のコストを制限できます。動的に決定された QPU 時間がユーザーが割り当てた時間よりも短い場合、このパラメーターは実験に影響しません。この <code class="docutils literal notranslate"><span class="pre">max_qpu_time</span></code> パラメーターは、ジョブ開始前に QESEM によって提供される分析時間の見積もりがあまりにも悲観的で、ユーザーがとにかく緩和ジョブを開始したい場合に特に有用です。時間制限に達すると、QESEM は新しい回路の送信を停止します。すでに送信された回路は実行を継続し (合計時間は最大 30 分制限を超える場合があります)、ユーザーはその時点までに実行された回路から処理された結果を受け取ります。分析時間の見積もりよりも短い QPU 時間制限を適用する場合は、Qedma に問い合わせて、時間制限内で達成可能な精度の見積もりを取得してください。</p>
+<p><code class="docutils literal notranslate"><span class="pre">transpilation_level</span></code>: 回路が QESEM に送信されると、QESEM は自動的にいくつかの代替回路トランスパイルを準備し、QPU 時間を最小化するトランスパイルを選択します。たとえば、代替トランスパイルでは、Qedma に最適化された分数 RZZ ゲートを使用して回路の深さを減らすことができます。もちろん、すべてのトランスパイルは、理想的な出力という点で入力回路と等価です。</p>
+<p>回路のトランスピレーションをよりコントロールするには、<code class="docutils literal notranslate"><span class="pre">QesemOptions</span></code> でトランスピレーション・レベルを設定します。‘level 1’ は上述のデフォルトの動作に対応しますが、‘level 0’ は高精度出力に必要な最小限の修正のみを含みます。例えば、‘レイヤー化’ -回路操作を同時2量子ビットゲートの ‘レイヤー’ に編成することです。どのような場合でも、高忠実度量子ビットへの自動ハードウェアマッピングが適用されることに注意してください。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><code class="docutils literal notranslate"><span class="pre">transpilation_level</span></code></p></th>
+<th class="head text-left"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td class="text-left"><p>デフォルトの QESEM トランスパイル。複数の代替トランスパイルを準備し、QPU 時間を最小化するトランスパイルを選択します。レイヤー化ステップでバリアを変更できます。</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p>最小限のトランスパイル: 緩和された回路は、構造的に入力回路と非常に類似します。レベル 0 で提供される回路は、デバイスの接続と一致し、次のゲートで指定する必要があります: CX、Rzz(α)、および標準のシングル キュービット ゲート (U、x、sx、rz など)。レイヤー化のステップでは、バリアが尊重されます。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<Admonition type="note">
+<p>Qiskit barriersは通常、量子回路の 2 量子ビット ゲートのレイヤーを指定するために使用されます。レベル 0 では、QESEM はバリアによって指定されたレイヤーを保持します。レベル 1 では、バリアによって指定されたレイヤーは、QPU 時間を最小限に抑える際の 1 つのトランスパイルの選択肢として考慮されます。
+</Admonition></p>
+</section>
+<section id="id7">
+<h2>ベンチマーク<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>QESEM は、さまざまなユースケースとアプリケーションでテストされています。次の例は、QESEM で実行できるワークロードの種類を評価するのに役立ちます。</p>
+<p>特定の回路とオブザーバブルに対するエラー緩和と古典的シミュレーションの両方の困難さを定量化するための重要な指標は、<strong>アクティブボリューム</strong> です。アクティブボリュームとは、回路内のオブザーバブルに影響を与える CNOT ゲートの数です。アクティブボリュームは、回路の深さと幅、オブザーバブルの重み、およびオブザーバブルのライトコーンを決定する回路構造に依存します。詳細については、<a class="reference external" href="https://www.youtube.com/watch?v=Hd-IGvuARfE&amp;amp;t=1730s">2024 IBM Quantum Summit</a> の講演を参照してください。QESEM は、高ボリューム領域で特に大きな価値を提供し、一般的な回路とオブザーバブルに対して信頼性の高い結果をもたらします。</p>
+<p><img alt="image.png" src="documents/attachment:97687f27-352d-4a53-b9a9-308d6ff2f666.png" /></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>応用例</p></th>
+<th class="head"><p>量子ビット数</p></th>
+<th class="head"><p>デバイス</p></th>
+<th class="head"><p>回路の説明</p></th>
+<th class="head"><p>精度</p></th>
+<th class="head"><p>合計時間</p></th>
+<th class="head"><p>Runtime usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>VQE circuit</p></td>
+<td><p>8</p></td>
+<td><p>Eagle (r3)</p></td>
+<td><p>21 total layers, 9 measurement bases, 1D chain</p></td>
+<td><p>98%</p></td>
+<td><p>35 min</p></td>
+<td><p>14 min</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kicked Ising</p></td>
+<td><p>28</p></td>
+<td><p>Eagle (r3)</p></td>
+<td><p>3 unique layers x 3 steps, 2D heavy-hex topology</p></td>
+<td><p>97%</p></td>
+<td><p>22 min</p></td>
+<td><p>4 min</p></td>
+</tr>
+<tr class="row-even"><td><p>Kicked Ising</p></td>
+<td><p>28</p></td>
+<td><p>Eagle (r3)</p></td>
+<td><p>3 unique layers x 8 steps, 2D heavy-hex topology</p></td>
+<td><p>97%</p></td>
+<td><p>116 min</p></td>
+<td><p>23 min</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trotterized Hamiltonian simulation</p></td>
+<td><p>40</p></td>
+<td><p>Eagle (r3)</p></td>
+<td><p>2 unique layers x 10 Trotter steps, 1D chain</p></td>
+<td><p>97%</p></td>
+<td><p>3 hours</p></td>
+<td><p>25 min</p></td>
+</tr>
+<tr class="row-even"><td><p>Trotterized Hamiltonian simulation</p></td>
+<td><p>119</p></td>
+<td><p>Eagle (r3)</p></td>
+<td><p>3 unique layers x 9 Trotter steps, 2D heavy-hex topology</p></td>
+<td><p>95%</p></td>
+<td><p>6.5 hours</p></td>
+<td><p>45 min</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kicked Ising</p></td>
+<td><p>136</p></td>
+<td><p>Heron (r2)</p></td>
+<td><p>3 unique layers x 15 steps, 2D heavy-hex topology</p></td>
+<td><p>99%</p></td>
+<td><p>52 min</p></td>
+<td><p>9 min</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>ここで、精度は理想的なオブザーバブルの値に対して相対的に測定されます: <span class="math notranslate nohighlight">\(\frac{\langle O \rangle_{ideal} - \epsilon}{\langle O \rangle_{ideal}}\)</span>、ここで ‘<span class="math notranslate nohighlight">\(\epsilon\)</span>’ は緩和策の絶対精度 (ユーザー入力によって設定)、<span class="math notranslate nohighlight">\(\langle O \rangle_{ideal}\)</span> はノイズのない回路でのオブザーバブルです。</p>
+<p>‘Runtime usage’ は、バッチ モードでのベンチマークの使用量 (個々のジョブの使用量の合計) が測定されていますが、’合計時間’ は、追加の古典的時間と通信時間を含む session mode の使用量 (実験 wall time) が測定されています。QESEM は両方のモードで実行できるため、ユーザーは利用可能なリソースを最大限に活用できます。</p>
+<p>28 量子ビットの Kicked Ising 回路は、Shinjo らが研究した離散時間準結晶 (<a class="reference external" href="https://arxiv.org/abs/2403.16718">arXiv 2403.16718</a> および <a class="reference external" href="https://www.youtube.com/watch?v=tQW6FdLc6zo">Q2B24 Tokyo</a> を参照) を ibm_kawasaki の 3 つの接続されたループでシミュレートします。ここでの回路パラメーターは <span class="math notranslate nohighlight">\((\theta_x, \theta_z) = (0.9 \pi, 0)\)</span> で、強磁性初期状態は <span class="math notranslate nohighlight">\(| \psi_0 \rangle = | 0 \rangle ^{\otimes n}\)</span> です。測定されたオブザーバブルは磁化の絶対値 <span class="math notranslate nohighlight">\(M = |\frac{1}{28} \sum_{i=0}^{27} \langle Z_i \rangle|\)</span> です。ユーティリティースケールの Kicked Ising 実験は、ibm_fez の 136 個の最良の量子ビットで実行されました。この特定のベンチマークは、クリフォード角 <span class="math notranslate nohighlight">\((\theta_x, \theta_z) = (\pi, 0)\)</span> で実行されました。この角度では、アクティブ ボリュームが回路の深さとともにゆっくりと増加し、高いデバイス忠実度と相まって、短い実行時間で高い精度を実現します。</p>
+<p>Trotterized Hamiltonian simulation 回路は、分数角での横磁場イジングモデル用です: <span class="math notranslate nohighlight">\((\theta_{zz}, \theta_x) = (\pi / 4, \pi /8)\)</span> および <span class="math notranslate nohighlight">\((\theta_{zz}, \theta_x) = (\pi / 6, \pi / 8)\)</span> です (<a class="reference external" href="https://www.youtube.com/watch?v=tQW6FdLc6zo">Q2B24 Tokyo</a> を参照)。ユーティリティースケール回路は ibm_brisbane の最高の 119 量子ビットで実行され、40 量子ビット実験は利用可能な最高のチェーンで実行されました。精度は磁化について報告されています。より重みの大きいオブザーバブルについても高精度の結果が得られました。</p>
+<p>VQE 回路は、ドイツ電子シンクロトロン (DESY) の量子技術および応用センターの研究者と共同で開発されました。ここでのターゲットのオブザーバブルは、多数の非可換Pauli strings で構成されるハミルトニアンであり、QESEM が複数基底オブザーバブルに対して最適化されていることを強調しています。緩和は、古典的に最適化された ansatz に適用されました。これらの結果はまだ発表されていませんが、同様の構造特性を持つ異なる回路で同じ品質の結果が得られるでしょう。</p>
+</section>
+<section id="id8">
+<h2>サポートを受ける<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>Qedma サポート チームがお手伝いします。QESEM Qiskit Function の使用に関して問題が発生した場合やご質問がある場合は、お気軽にお問い合わせください。私たちの知識豊富でフレンドリーなサポート スタッフが、技術的な懸念やご質問にいつでもお答えします。</p>
+<p>サポートが必要な場合は、 <a class="reference external" href="mailto:support&#37;&#52;&#48;qedma&#46;com">support<span>&#64;</span>qedma<span>&#46;</span>com</a> までメールでお問い合わせください。迅速かつ正確な対応ができるよう、発生している問題についてできるだけ詳しくお知らせください。また、メールまたは電話で専任の Qedma POC 担当者にお問い合わせいただくこともできます。</p>
+<p>より効率的にサポートさせていただくために、お問い合わせの際には、以下の情報をお知らせください。</p>
+<ul class="simple">
+<li><p>問題の詳細な説明</p></li>
+<li><p>関連するエラーメッセージまたはコード</p></li>
+<li><p>問題を再現する手順</p></li>
+<li><p>連絡先情報</p></li>
+</ul>
+<p>私たちは、お客様が当社の API を可能な限り最高の状態でご利用いただけるよう、迅速かつ効果的なサポートを提供することに尽力しています。</p>
+<p>私たちは常に製品の改善に努めており、皆様からのご提案をお待ちしています。当社のサービスや機能をどのように強化できるかについてご意見がありましたら、 <a class="reference external" href="mailto:support&#37;&#52;&#48;qedma&#46;com">support<span>&#64;</span>qedma<span>&#46;</span>com</a> までご意見をお送りください。</p>
+</section>
+<section id="id9">
+<h2>次のステップ<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<Admonition type="tip" title="Recommendations">
+  *   [Qedma QESEM へのアクセスをリクエストする](https://quantum.ibm.com/functions?id=7636f111-b7b8-4a00-b22d-5fcc5c5cb3d0)
+</Admonition>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./documents"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">説明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">独自のエラー緩和機能</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">Function パラメーター</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">カスタムオプション</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ベンチマーク</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">サポートを受ける</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">次のステップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
