@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>最適化ソルバー: Q-CTRL Fire Opal による Qiskit Function &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documents/q-ctrl-optimization-solver-ja';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">新版 Qiskitテキストブック 日本語版 (Qiskitコース)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fdocuments/q-ctrl-optimization-solver-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/documents/q-ctrl-optimization-solver-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>最適化ソルバー: Q-CTRL Fire Opal による Qiskit Function</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">機能説明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">入力と出力</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">入力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">出力</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ベンチマーク</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">例: 制約のない最適化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">1. 問題を定義する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2. 問題を実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3. 結果を取得する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例: 制約付き最適化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">1. 問題を定義する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2. 問題を実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">3. 結果を取得する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">サポートを受ける</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps次のステップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="q-ctrl-fire-opal-qiskit-function">
+<h1>最適化ソルバー: Q-CTRL Fire Opal による Qiskit Function<a class="headerlink" href="#q-ctrl-fire-opal-qiskit-function" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Qiskit Functions は、IBM Quantum™ Premium Plan ユーザーのみが利用できる実験的な機能です。プレビュー リリースの状態であり、変更される可能性があります。
+</Admonition>
+<section id="id1">
+<h2>概要<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Fire Opal 最適化ソルバーを使用すると、量子の専門知識を必要とせずに、量子ハードウェア上でユーティリティー規模の最適化問題を解くことができます。ハイレベルの問題定義を入力するだけで、あとはソルバーが処理します。ワークフロー全体はノイズを考慮しており、<a class="reference internal" href="#/guides/q-ctrl-performance-management"><span class="xref myst">Fire Opal の Performance Management</span></a> を裏で活用しています。ソルバーは、IBM® の最も大きな QPU上でフルデバイススケールであっても、古典的には難問に対して一貫して正確な解を提供します。</p>
+<p>ソルバーは柔軟性があり、目的関数または任意のグラフとして定義された組み合わせ最適化問題を解くことができます。問題をデバイス トポロジーにマッピングする必要はありません。制約をペナルティー項として定式化できる場合、制約なしの問題と制約付きの両方の問題を解くことができます。このガイドに含まれる例では、さまざまなソルバー入力タイプを使用して、制約なしおよび制約付きのユーティリティースケールの最適化問題を解く方法を示します。最初の例では、156 ノードの 3 正則グラフで定義された最大カット問題を、2 番目の例では、コスト関数で定義された 50 ノードの最小頂点カバー問題に取り組んでいます。</p>
+<p>最適化ソルバーにアクセスするには、<a class="reference external" href="https://quantum.ibm.com/functions?id=a8a2b0b6-486a-41b5-8ea4-ada3b108d6b6">このフォームに記入してください。</a></p>
+</section>
+<section id="id2">
+<h2>機能説明<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>ソルバーは、ハードウェアレベルでのエラー抑制から効率的な問題マッピング、閉ループの古典的最適化まで、アルゴリズム全体を完全に最適化し、自動化します。舞台裏では、ソルバーのパイプラインがあらゆる段階でエラーを削減し、有意義なスケーリングに必要な性能向上を可能にします。基礎となるワークフローは、ハイブリッド量子古典アルゴリズムである量子近似最適化アルゴリズム（QAOA）にインスパイアされています。最適化ソルバーのワークフローの詳細な概要については、<a class="reference external" href="https://arxiv.org/abs/2406.01743">公開された原稿</a>を参照してください。</p>
+<p><img alt="Visualization of the Optimization Solver workflow" src="../_images/solver_workflow.svg" /></p>
+<p>最適化ソルバーで一般的な問題を解くには</p>
+<ol class="arabic simple">
+<li><p>問題を目的関数またはグラフとして定義します。</p></li>
+<li><p>Qiskit Functions Catalog を通して関数に接続します。</p></li>
+<li><p>ソルバーで問題を実行し、結果を取得します。</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>入力と出力<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>入力<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>名前</p></th>
+<th class="head"><p>タイプ</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>必須</p></th>
+<th class="head"><p>例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>problem</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>下の「受け入れられる問題形式」にリストされている表現の 1 つ。</p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Poly(2.0*n[0]*n[1]</span> <span class="pre">+</span> <span class="pre">2.0*n[0]*n[2]</span> <span class="pre">-</span> <span class="pre">3.13520241298341*n[0]</span> <span class="pre">+</span> <span class="pre">2.0*n[1]*n[2]</span> <span class="pre">-</span> <span class="pre">3.14469748506794*n[1]</span> <span class="pre">-</span> <span class="pre">3.18897660121566*n[2]</span> <span class="pre">+</span> <span class="pre">6.0,</span> <span class="pre">n[0],</span> <span class="pre">n[1],</span> <span class="pre">n[2],</span> <span class="pre">domain='RR')</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>problem_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>問題クラスの名前。これは、目的を決定するためのグラフ問題定義にのみ使用されます。現在は「maxcut」に制限されています。</p></td>
+<td><p>No</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">“maxcut”</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>instance</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>その形式で使用する hub/group/project</p></td>
+<td><p>Yes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">“hub1/group1/project1”</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>run_options</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
+<td><p>入力オプションには、次のものが含まれます: (Optional) <code class="docutils literal notranslate"><span class="pre">backend_name</span></code>: 文字列。 デフォルトは、最も使用頻度の低いバックエンドです。</p></td>
+<td><p>No</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{“backend_name”:</span> <span class="pre">“ibm_fez&quot;}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>受け入れられる問題形式::</strong></p>
+<ul class="simple">
+<li><p>目的関数の多項式表現。理想的には、既存の SymPy Poly オブジェクトを使用して Python で作成し、<a class="reference external" href="https://docs.sympy.org/latest/tutorials/intro-tutorial/printing.html#srepr">sympy.srepr</a> を使用した文字列がフォーマットです。</p></li>
+<li><p>特定の問題タイプのグラフ表現。グラフは、Python の networkx ライブラリーを使用して作成する必要があります。次に、networkx 関数 <code class="docutils literal notranslate"><span class="pre">[nx.readwrite.json_graph.adjacency_data](http://nx.readwrite.json_graph.adjacency_data.)</span></code> を使用して文字列に変換する必要があります。</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>出力<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>名前</p></th>
+<th class="head"><p>タイプ</p></th>
+<th class="head"><p>説明</p></th>
+<th class="head"><p>例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>result</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">Any]</span></code></p></td>
+<td><p>「Result の辞書の内容」 の下にリストされているSolution と metadata</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{‘solution_bitstring_cost’:</span> <span class="pre">3.0,</span> <span class="pre">‘final_bitstring_distribution’:</span> <span class="pre">{‘000001’:</span> <span class="pre">100,</span> <span class="pre">‘000011’:</span> <span class="pre">2},</span> <span class="pre">‘iteration_count’:</span> <span class="pre">3,</span> <span class="pre">‘solution_bitstring’:</span> <span class="pre">‘000001’,</span>&#160; <span class="pre">'variables_to_bitstring_index_map':</span> <span class="pre">{n[1]':</span> <span class="pre">5,</span> <span class="pre">'n[2]':</span> <span class="pre">4,</span> <span class="pre">'n[3]':</span> <span class="pre">3,</span> <span class="pre">'n[4]':</span> <span class="pre">2,</span> <span class="pre">'n[5]':</span> <span class="pre">1},</span> <span class="pre">'best_parameters':</span> <span class="pre">[0.19628831763697097,</span> <span class="pre">-1.047052334523102],</span> <span class="pre">'warnings':</span> <span class="pre">[]}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Result の辞書の内容:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>名前</p></th>
+<th class="head"><p>タイプ</p></th>
+<th class="head"><p>説明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>solution_bitstring_cost</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>すべての反復にわたる最良の最小コスト</p></td>
+</tr>
+<tr class="row-odd"><td><p>final_bitstring_distribution</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CountsDict</span></code></p></td>
+<td><p>最小コストに関連付けられたbitstringのカウント辞書</p></td>
+</tr>
+<tr class="row-even"><td><p>solution_bitstring</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>最終分布においてコストが最も良いbitstring</p></td>
+</tr>
+<tr class="row-odd"><td><p>iteration_count</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>ソルバーによって実行されたQAOA反復の合計数</p></td>
+</tr>
+<tr class="row-even"><td><p>variables_to_bitstring_index_map</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>変数からbitstring内の同等のビットへのマッピング</p></td>
+</tr>
+<tr class="row-odd"><td><p>best_parameters</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list[float]</span></code></p></td>
+<td><p>すべての反復にわたって最適化されたbetaとgammaパラメーター</p></td>
+</tr>
+<tr class="row-even"><td><p>warnings</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list[str]</span></code></p></td>
+<td><p>QAOA のコンパイルまたは実行中に生成された警告 (デフォルトはなし)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>ベンチマーク<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://arxiv.org/abs/2406.01743">公開されたベンチマーク結果</a>では、ソルバーが120量子ビットを超える問題を解くことに成功しており、量子アニーリングやトラップドイオンデバイスに関する既発表の結果をも上回っています。以下のベンチマーク指標は、いくつかの例に基づいて、問題タイプの精度とスケーリングを大まかに示すものです。実際の評価指標は、目的関数の項数（密度）やその局所性、変数の数、多項式の次数など、さまざまな問題の特徴によって異なる可能性があります。</p>
+<p>表示されている「」は厳密な制限ではありませんが、極めて一貫した解の精度が期待できる大まかな閾値を表しています。これより大きな問題サイズでも解決に成功しており、これらの限界を超えてテストすることが推奨されます。
+すべての問題タイプにおいて、任意の量子ビットの接続性がサポートされています。
+量子ビットの数	例	正確さ	合計時間（秒）	ランタイム使用量	反復回数</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>問題の種類</p></th>
+<th class="head"><p>量子ビット数</p></th>
+<th class="head"><p>例</p></th>
+<th class="head"><p>精度</p></th>
+<th class="head"><p>合計時間（秒）</p></th>
+<th class="head"><p>Runtime usage (s)</p></th>
+<th class="head"><p>反復回数</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>疎結合2次問題</p></td>
+<td><p>156</p></td>
+<td><p>3-regular Max-Cut</p></td>
+<td><p>100%</p></td>
+<td><p>1764</p></td>
+<td><p>293</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>高次二元最適化</p></td>
+<td><p>156</p></td>
+<td><p>Ising spin-glass model</p></td>
+<td><p>100%</p></td>
+<td><p>1461</p></td>
+<td><p>272</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p>密結合2次問題</p></td>
+<td><p>50</p></td>
+<td><p>Fully-connected Max-Cut</p></td>
+<td><p>100%</p></td>
+<td><p>1758</p></td>
+<td><p>268</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>ペナルティ項を持つ制約問題</p></td>
+<td><p>50</p></td>
+<td><p>Weighted Minimum Vertex Cover with 8% edge density</p></td>
+<td><p>100%</p></td>
+<td><p>1074</p></td>
+<td><p>215</p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id7">
+<h2>始めてみましょう<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="http://quantum.ibm.com/">IBM Quantum API token</a>を使用して認証し、次のように Qiskit Functionを選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+
+<span class="c1"># Credentials</span>
+<span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_HUB&gt;&quot;</span>
+<span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_GROUP&gt;&quot;</span>
+<span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_PROJECT&gt;&quot;</span>
+
+<span class="c1"># Authentication</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+
+<span class="c1"># Access Function</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;q-ctrl/optimization-solver&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h2>例: 制約のない最適化<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_cut">最大カット(Max-Cut)</a> 問題を実行します。次の例は、120 ノード、3正則の非重みつきグラフの最大カット問題に対するソルバーの機能を示していますが、重み付けされたグラフの問題も解くことができます。</p>
+<p><code class="docutils literal notranslate"><span class="pre">qiskit-serverless</span></code> パッケージに加えて、この例を実行するために以下のパッケージも使用します： <code class="docutils literal notranslate"><span class="pre">NetworkX</span></code>、<code class="docutils literal notranslate"><span class="pre">PuLP</span></code>、<code class="docutils literal notranslate"><span class="pre">NumPy</span></code>です。IPythonカーネルを使用してノートブックでこの例を実行している場合、以下のセルのコメントを外すことでこれらのパッケージをインストールできます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install networkx numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id9">
+<h3>1. 問題を定義する<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>グラフ問題を定義し、<code class="docutils literal notranslate"><span class="pre">problem_type='maxcut'</span></code>と指定することで、最大カット問題を実行することができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">pulp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Generate a random graph with 120 nodes</span>
+<span class="n">maxcut_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">random_regular_graph</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">156</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optionally, visualize the graph</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">maxcut_graph</span><span class="p">,</span> <span class="n">nx</span><span class="o">.</span><span class="n">kamada_kawai_layout</span><span class="p">(</span><span class="n">maxcut_graph</span><span class="p">),</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ecc10397168ad96c88b5f9e1e16352e81d4fdef4be4323916fce605de5323e55.png" src="../_images/ecc10397168ad96c88b5f9e1e16352e81d4fdef4be4323916fce605de5323e55.png" />
+</div>
+</div>
+<p>ソルバーは、問題定義の入力として文字列を受け入れます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert graph to string</span>
+<span class="n">problem_as_str</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">readwrite</span><span class="o">.</span><span class="n">json_graph</span><span class="o">.</span><span class="n">adjacency_data</span><span class="p">(</span><span class="n">maxcut_graph</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>2. 問題を実行する<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>グラフベースの入力方法を使用する場合は、問題の種類を指定します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the problem</span>
+<span class="n">maxcut_job</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">problem</span> <span class="o">=</span> <span class="n">problem_as_str</span><span class="p">,</span>
+    <span class="n">problem_type</span> <span class="o">=</span> <span class="s2">&quot;maxcut&quot;</span><span class="p">,</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>使い慣れた <a class="reference external" href="https://docs.quantum.ibm.com/guides/qiskit-serverless">Qiskit Serverless APIs</a> を使用して、Qiskit Function ワークロードのステータスを確認できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get job status</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">maxcut_job</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>3. 結果を取得する<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>結果の辞書から最適なカット値を取得します。</p>
+<Admonition type="note">
+変数のビット文字列へのマッピングが変更されている可能性があります。出力辞書には `variables_to_bitstring_index_map` サブ辞書が含まれており、順序を確認するのに役立ちます。
+</Admonition>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Poll for results</span>
+<span class="n">maxcut_result</span> <span class="o">=</span> <span class="n">maxcut_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Take the absolute value of the solution since the cost function is minimized</span>
+<span class="n">qctrl_maxcut</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">maxcut_result</span><span class="p">[</span><span class="s2">&quot;solution_bitstring_cost&quot;</span><span class="p">])</span>
+
+<span class="c1"># Print the optimal cut value found by the Optimization Solver</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal cut value: </span><span class="si">{</span><span class="n">qctrl_maxcut</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal cut value: 210.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>グラフが密に接続されていない場合は、 <a class="reference external" href="https://coin-or.github.io/pulp/">PuLP</a> などのオープンソース ソルバーを使用して問題を古典的に解くことで、結果の精度を検証できます。高密度の問題では、ソリューションを検証するために高度な古典的ソルバーが必要になる場合があります。</p>
+</section>
+</section>
+<section id="id12">
+<h2>例: 制約付き最適化<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>前述の最大カットの例は、一般的な 2 次制約なしバイナリ最適化問題です。Q-CTRL の最適化ソルバーは、制約付き最適化を含むさまざまな問題タイプに使用できます。制約がペナルティー項としてモデル化されている多項式として表される問題定義を入力することで、任意の問題タイプを解決できます。</p>
+<p>次の例は、制約付き最適化問題である<a class="reference external" href="https://en.wikipedia.org/wiki/Vertex_cover">最小頂点被覆問題(minimum vertex cover, MVC)</a>のコスト関数を構築する方法を示しています。</p>
+<p><code class="docutils literal notranslate"><span class="pre">qiskit-ibm-catalog</span></code> と <code class="docutils literal notranslate"><span class="pre">qiskit</span></code> パッケージに加えて、このサンプルを実行するために以下のパッケージも使用します: <code class="docutils literal notranslate"><span class="pre">NumPy</span></code>、<code class="docutils literal notranslate"><span class="pre">NetworkX</span></code>、<code class="docutils literal notranslate"><span class="pre">SymPy</span></code> および <code class="docutils literal notranslate"><span class="pre">PuLP</span></code>です。IPythonカーネルを使用しているノートブックでこのサンプルを実行する場合は、以下のセルをアンコメントすることでこれらのパッケージをインストールすることができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %pip install numpy networkx sympy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id13">
+<h3>1. 問題を定義する<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>ランダムに重み付けされたノードを持つグラフを生成することで、ランダム MVC 問題を定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Poly</span>
+<span class="kn">import</span> <span class="nn">pulp</span>
+
+<span class="c1"># To change the weights, change the seed to any integer.</span>
+<span class="n">rng_seed</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">_rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">rng_seed</span><span class="p">)</span>
+<span class="n">node_count</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">edge_probability</span> <span class="o">=</span> <span class="mf">0.08</span>
+<span class="n">mvc_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span>
+    <span class="n">node_count</span><span class="p">,</span> <span class="n">edge_probability</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">rng_seed</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># add node weights</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mvc_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+    <span class="n">mvc_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">_rng</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+
+<span class="c1"># Optionally, visualize the graph</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">mvc_graph</span><span class="p">,</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">kamada_kawai_layout</span><span class="p">(</span><span class="n">mvc_graph</span><span class="p">),</span>
+    <span class="n">node_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2f8db021a928e7416b11c61a65aafdeebcc556e47cff41ec925e56165b3e422a.png" src="../_images/2f8db021a928e7416b11c61a65aafdeebcc556e47cff41ec925e56165b3e422a.png" />
+</div>
+</div>
+<p>重み付き MVC の標準的な最適化モデルは、次のように定式化できます。まず、エッジがサブセット内の頂点に接続されていない場合は、ペナルティーを追加する必要があります。したがって、頂点 <span class="math notranslate nohighlight">\(i\)</span> がカバー内 (つまり、サブセット内) にある場合は <span class="math notranslate nohighlight">\(n_i = 1\)</span>、それ以外の場合は <span class="math notranslate nohighlight">\(n_i = 0\)</span> とします。次に、サブセット内の頂点の総数を最小化することが目標であり、これは次の関数で表すことができます：</p>
+<p><span class="math notranslate nohighlight">\(\textbf{Minimize}\qquad y = \sum_{i\in V} \omega_i n_i\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct the cost function.</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;n[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">node_count</span><span class="p">)])</span>
+<span class="n">cost_function</span> <span class="o">=</span> <span class="n">Poly</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">variables</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mvc_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">mvc_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">cost_function</span> <span class="o">+=</span> <span class="n">variables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">weight</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>これで、グラフ内のすべてのエッジにカバーからの少なくとも 1 つのエンドポイントが含まれるようになり、これは以下の不等式として表現できます：</p>
+<p><span class="math notranslate nohighlight">\(n_i + n_j \ge 1 \texttt{ for all } (i,j)\in E\)</span></p>
+<p>エッジがカバーの頂点に接続されていない場合は、ペナルティを課す必要があります。これは、コスト関数で <span class="math notranslate nohighlight">\(P(1-n_i-n_j+n_i n_j)\)</span> の形式のペナルティを追加することで表すことができます。ここで、<span class="math notranslate nohighlight">\(P\)</span> は正のペナルティー定数です。したがって、重み付き MVC の制約付き不等式の制約なしの代替は次のようになります：</p>
+<p><span class="math notranslate nohighlight">\(\textbf{Minimize}\qquad y = \sum_{i\in V}\omega_i n_i + P(\sum_{(i,j)\in E}(1 - n_i - n_j + n_i n_j))\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add penalty term.</span>
+<span class="n">penalty_constant</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">mvc_graph</span><span class="o">.</span><span class="n">edges</span><span class="p">():</span>
+    <span class="n">cost_function</span> <span class="o">+=</span> <span class="n">penalty_constant</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="mi">1</span> <span class="o">-</span> <span class="n">variables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">variables</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">variables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">variables</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id14">
+<h3>2. 問題を実行する<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the problem</span>
+<span class="n">mvc_job</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="n">problem</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">srepr</span><span class="p">(</span><span class="n">cost_function</span><span class="p">),</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Qiskit Function ワークロードのステータスは次のように確認できます：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mvc_job</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id15">
+<h3>3. 結果を取得する<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>解を取得し、結果を分析します。この問題には重み付けされたノードがあるため、解は単にカバーされるノードの最小数ではありません。代わりに、解のコストは、頂点カバーに含まれる頂点の重みの合計を表します。これは、選択された頂点を使用してグラフ内のすべてのエッジをカバーする合計の「コスト」または「重み」を表します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mvc_result</span> <span class="o">=</span> <span class="n">mvc_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">qctrl_cost</span> <span class="o">=</span> <span class="n">mvc_result</span><span class="p">[</span><span class="s2">&quot;solution_bitstring_cost&quot;</span><span class="p">]</span>
+
+<span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solution cost: </span><span class="si">{</span><span class="n">qctrl_cost</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solution cost: 10.248198273708624
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h2>サポートを受ける<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<p>ご質問や問題がある場合は、<a class="reference external" href="https://form.typeform.com/to/iuujEAEI?typeform-source=q-ctrl.com">Q-CTRL までお問い合わせください。</a>.</p>
+</section>
+<section id="next-steps">
+<h2>Next steps次のステップ<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://quantum.ibm.com/functions?id=a8a2b0b6-486a-41b5-8ea4-ada3b108d6b6">Q-CTRL最適化ソルバー</a>へのアクセスをリクエスト</p></li>
+<li><p><a class="reference external" href="https://learning.quantum.ibm.com/tutorial/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver">Q-CTRL の最適化ソルバーを使用して高次バイナリ最適化問題を解決する</a> チュートリアルをお試しください。</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./documents"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">機能説明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">入力と出力</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">入力</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">出力</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ベンチマーク</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">始めてみましょう</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">例: 制約のない最適化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">1. 問題を定義する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2. 問題を実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3. 結果を取得する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">例: 制約付き最適化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">1. 問題を定義する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2. 問題を実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">3. 結果を取得する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">サポートを受ける</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next steps次のステップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
