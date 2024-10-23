@@ -4,11 +4,11 @@ IBMidを作って、[IBM Quantum Platform](https://quantum.ibm.com) にログイ
 
 1) IBM Quantum Platform (https://quantum.ibm.com/) のサイトへ行きます。
 IBMidを持っている方は、「Continue with IBMid」をクリックしてログインできることを確認します。（ログインできたら、終了です。）</br>
-Google ID、Github ID、LinkedIn ID のいずれかのIDをお持ちの方は、そのIDを使ってログイン可能ですので、それぞれのIDのアイコンをクリックしてください。（ただし、ご所属の証明のためにご所属先が発行したメールアドレスを使ったIBMidを作成することをお勧めしています。）
+Google ID、Github ID、LinkedIn ID のいずれかのIDをお持ちの方は、そのIDを使ってログイン可能です。ご所属の証明のためにご所属先が発行したメールアドレスを使ったIBMidを作成することをお勧めしていますが、ソーシャルIDを使ってログインする場合は、それぞれのIDのアイコンをクリックしてください。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/bf4eb377-cdc9-f3de-eb34-b0df1251d1f4.png)
 
 
-2) 新しくIBMidを作りたい方は、以降の手順を進めます。メールアドレスが必要ですので、ご用意ください。「Create an IBMid account」をクリックします。
+2) 新しくIBMidを作る方は、以降の手順を進めます。メールアドレスが必要ですので、ご用意ください。「Create an IBMid account」をクリックします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/61c2c446-8510-a2e2-e01f-511b061d815f.png)
 
 
