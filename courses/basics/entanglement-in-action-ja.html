@@ -1,0 +1,1965 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>エンタングルメントの動作 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"00810399747246e3bc90126ac8120a4b": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"grid_area": "right", "padding": "0px 0px 0px 0px", "width": "70px"}}, "0fb563474431477891022d5f13b01062": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"margin": "0px 0px 0px 37px", "width": "600px"}}, "28b6d31a95784b79b04321cfc801e253": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "3315bb9b686b425f94db42d903969029": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "3d5b20281a6a4d1da2baefccbb77bcde": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "46e93e338a76435cbb600277fbddaa47": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_9f4fa22eca2845e2a440864d5e20ad83", "style": "IPY_MODEL_3315bb9b686b425f94db42d903969029", "value": "<h5>Queue</h5>"}}, "571355c46da04b0f89c353ecb126760f": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"width": "190px"}}, "5a03383b01884f09ac74589560b33092": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_be1de3b2f05e4ef499b16a0d55b0854c", "style": "IPY_MODEL_c5e7e882d8ff4ee889afa14e5b4bc5f4", "value": "<h5>Backend</h5>"}}, "67e2a5fdb46f4f7c96bc5082b99549b6": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ButtonModel", "state": {"button_style": "primary", "description": "Clear", "layout": "IPY_MODEL_00810399747246e3bc90126ac8120a4b", "style": "IPY_MODEL_72b86285bcb644de8b0f5312c4dd4b2a", "tooltip": null}}, "6d30eeb4cb2c45599b15fc03a94f4629": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"margin": "0px 0px 10px 0px"}}, "6d8ba4b20d5e45c58d8d285917634740": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_75b75b35871547f18e23a1569681a41d", "style": "IPY_MODEL_cf5cc6973cb547eca4d07c6d8445f105", "value": "<h5>Status</h5>"}}, "705d6ac309e745d58a26ff66b820e87d": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "72b86285bcb644de8b0f5312c4dd4b2a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ButtonStyleModel", "state": {"font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "75b75b35871547f18e23a1569681a41d": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"width": "95px"}}, "762896d956e0473d8f0831a231265b4d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_6d30eeb4cb2c45599b15fc03a94f4629", "style": "IPY_MODEL_3d5b20281a6a4d1da2baefccbb77bcde", "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}, "78700bd6905d4aafb998b5c32d920eb1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "GridBoxModel", "state": {"children": ["IPY_MODEL_67e2a5fdb46f4f7c96bc5082b99549b6"], "layout": "IPY_MODEL_aae6a15ab0dd494ba575bf49871e0e37"}}, "8458c0a97a8d417ca7ba5fb11660f9d5": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_a43b6766ad544a85a7dd6f9060115868", "IPY_MODEL_5a03383b01884f09ac74589560b33092", "IPY_MODEL_6d8ba4b20d5e45c58d8d285917634740", "IPY_MODEL_46e93e338a76435cbb600277fbddaa47", "IPY_MODEL_8c222cca341a487b9ee41ffad56fa13b"], "layout": "IPY_MODEL_0fb563474431477891022d5f13b01062"}}, "8c222cca341a487b9ee41ffad56fa13b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_705d6ac309e745d58a26ff66b820e87d", "style": "IPY_MODEL_bfeb6914d11c4e95a97e800eb04e6b36", "value": "<h5>Message</h5>"}}, "9f4fa22eca2845e2a440864d5e20ad83": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"width": "70px"}}, "a43b6766ad544a85a7dd6f9060115868": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_571355c46da04b0f89c353ecb126760f", "style": "IPY_MODEL_28b6d31a95784b79b04321cfc801e253", "value": "<h5>Job ID</h5>"}}, "aae6a15ab0dd494ba575bf49871e0e37": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"grid_template_areas": "\n                                       \". . . . right \"\n                                        ", "grid_template_columns": "20% 20% 20% 20% 20%", "width": "100%"}}, "be1de3b2f05e4ef499b16a0d55b0854c": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"width": "145px"}}, "bfeb6914d11c4e95a97e800eb04e6b36": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "c5e7e882d8ff4ee889afa14e5b4bc5f4": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "cf5cc6973cb547eca4d07c6d8445f105": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/basics/entanglement-in-action-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">新版 Qiskitテキストブック 日本語版 (Qiskitコース)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/basics/entanglement-in-action-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/basics/entanglement-in-action-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>エンタングルメントの動作</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">はじめに</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">アリスとボブ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">リソースとしてのエンタングルメント</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. テレポーテーション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.1 プロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.2 分析</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">考えられる結果</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">00</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">01</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">10</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">11</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">1.3 さらなる議論</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">1.4 Qiskit での実装</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2. 超密度符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">2.1 プロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">2.2 分析</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">2.3 Qiskit での実装</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chsh">3. CHSHゲーム</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.1 非局所ゲーム</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">3.2 CHSH ゲームの説明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3.3 古典的戦略の限界</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">決定論的戦略</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">確率的戦略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">3.4 CHSH ゲームの戦略</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">必要なベクトルと行列</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">戦略の説明</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">ケースバイケース分析</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">(0,0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">(0, 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">(1, 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">(1, 1)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">幾何学的描像</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">戦略を探る</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">(0, 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">(0, 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">(1, 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">(1, 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">3.5 備考</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">3.6 Qiskit での実装</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>エンタングルメントの動作<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>はじめに<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>この授業では、基本的に重要な3つの例を見ていきます。最初の2つの例は、 <em>テレポーテーション</em>プロトコルと <em>超高密度符号</em> プロトコルで、主に送信者から受信者への情報の伝送に関係しています。3つ目の例は、 <em>CHSHゲーム</em> と呼ばれる抽象的なゲームで、量子情報における <em>非局所性</em> と呼ばれる現象を説明するものです。(CHSHゲームは必ずしもゲームとして説明されるわけではなく、実験として説明されることが多く、具体的には <em>ベル テスト</em> の一例であり、  <em>CHSH 不等式</em> と呼ばれます。)</p>
+<p>テレポーテーション、超高密度符号、CHSHゲームは、量子情報がどのように機能するかを説明するための単なる例ではありません（この点でも十分に役立っていますが）。むしろ、量子情報の基盤となる石のようなものです。3 つの例すべてでエンタングルメントが 重要な役割を果たしているため、この授業では、エンタングルメントの動作を確認し、エンタングルメントが非常に興味深く重要な概念である理由を探ります。これは、このシリーズでエンタングルメントについて探る最初の機会となります。</p>
+<p>例自体に進む前に、3 つの例すべてに関連するいくつかの予備的なコメントを述べておきます。</p>
+<section id="id3">
+<h3>アリスとボブ<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p><em>アリス</em> と <em>ボブ</em> は、伝統的に、システム、プロトコル、ゲーム、および情報の交換を伴うその他の相互作用における仮想的な存在やエージェントに付けられた名前です。一般的に人間に付けられる名前ですが、抽象化されたものであり、必ずしも実際の人間ではないことを理解する必要があります。アリスとボブは複雑な計算を実行することが期待される場合もあります。</p>
+<p>これらの名前は、1970年代に暗号技術の文脈で初めて使われましたが、それ以来、この慣習はより広く一般的になっています。アイデアは単純に、 (少なくとも世界の一部の地域では) 文字 A と B で始まる一般的な名前であるということです。また、簡潔にするために、アリスを「her」、ボブを「him」という代名詞で呼ぶのも非常に便利です。</p>
+<p>デフォルトでは、アリスとボブは異なる場所にいると想像されます。彼らは、登場する文脈によって、異なる目標や行動をとることがあります。例えば、情報の伝達を意味する <em>コミュニケーション</em> では、送信者をアリス、受信者をボブと呼びます。一般的に、アリスとボブは典型的には協力し合っていることが多いですが、他の場面では競争していたり、異なる目標を持っていて一貫性があったり調和していなかったりするかもしれません。こうしたことは、その場の状況に応じて明確にしなければなりません。</p>
+<p>必要に応じて、 <em>チャーリー</em> や <em>ダイアン</em> などの追加キャラクターを登場させることもできます。その他、盗聴者の <em>イブ</em> や悪意を持った人物の <em>マロリー</em> など、さまざまなペルソナを表す他の名前も使用されることがあります。</p>
+<p>アリスとボブは、この授業で説明する 3 つの例すべてに登場し、以降の授業でも時折登場します。</p>
+</section>
+<section id="id4">
+<h3>リソースとしてのエンタングルメント<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>エンタングルメントについて、いくつかの予備的なコメントをしておきます。</p>
+<p>レッスン2の2量子ビットのエンタングルした量子状態の例を思い出してください：</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \phi^+ \rangle =
+\frac{1}{\sqrt{2}} \vert 00\rangle + \frac{1}{\sqrt{2}} \vert 11\rangle.
+\tag{1}
+\]</div>
+<p>これは 4 つのベル状態の 1 つであり、エンタングルした量子状態の典型的な例として見なされることがよくあります。</p>
+<p>また、2ビットの確率的な状態のこの例もありました：</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2} \vert 00 \rangle + \frac{1}{2} \vert 11 \rangle.
+\tag{2}
+\]</div>
+<p>それは、ある意味で、エンタングルした量子状態 <span class="math notranslate nohighlight">\((1)\)</span> に似ています。これは、2 つのビットが相関している確率的な状態を表しますが、エンタングルしてはいません。エンタングルメントは、本質的に定義上、独自の量子現象です。簡単に言えば、エンタングルメントは <em>非古典的な</em> 量子相関を指します。</p>
+<p>残念ながら、エンタングルメントを非古典的な量子相関として定義することは、直感的なレベルではやや満足のいくものではありません。エンタングルメントとは何か、何が特別なのかを直感的な言葉で正確に説明するのが実際にはかなり難しいのは、このためかもしれません。</p>
+<p>エンタングルメントの典型的な説明では、2つの状態 <span class="math notranslate nohighlight">\((1)\)</span> と <span class="math notranslate nohighlight">\((2)\)</span> を意味のある方法で区別することができないことがよくあります。例えば、2つのもつれた量子ビットの一方を測定すると、もう一方の量子ビットの状態も瞬時に影響を受けるとか、2つの量子ビットの状態を別々に記述できないとか、2つの量子ビットが互いの記憶を保持しているなどと言われることもあります。しかし、なぜエンタングルしていない状態 <span class="math notranslate nohighlight">\((2)\)</span> ではそうではないのでしょうか？この状態によって表される2つのビットは密接に繋がっており、それぞれが文字通りの意味でもう一方のビットを完全に記憶しています。しかし、それにもかかわらず、エンタングルされていないのです。</p>
+<p>エンタングルメントを特別なものにし、状態 <span class="math notranslate nohighlight">\((1)\)</span> と状態 <span class="math notranslate nohighlight">\((2)\)</span> を非常に異なるものとして説明する一つの方法は、エンタングルメントを使って何ができるか、あるいはエンタングルメントのために何が起こるか説明することです。この説明は、ベクトルを使って状態に関する知識をどう表現するかの判断を超えています。この授業で取り上げる3つの例はすべて状態 <span class="math notranslate nohighlight">\((1)\)</span> でできることで、状態 <span class="math notranslate nohighlight">\((2)\)</span> を含む <em>全ての</em> 古典的な相関のある状態ではできないことを説明しているという点で、この性質を備えています。</p>
+<p>実際、量子情報と計算の研究では、エンタングルメントをさまざまなタスクを達成するためのリソースと見なすのが一般的です。このような場合、状態 <span class="math notranslate nohighlight">\((1)\)</span> はエンタングルメントの 1 つの <em>単位</em> を表していると見なされ、これを <em>eビット</em> と呼びます。 (「e」は「エンタングルメント」または「もつれ」を表します。状態 <span class="math notranslate nohighlight">\((1)\)</span> が 2 つの量子ビットの状態であることは事実ですが、それが表すエンタングルメントの量は 1 つの eビットです。)</p>
+<p>ちなみに、確率的状態 <span class="math notranslate nohighlight">\((2)\)</span> をリソース、つまり、 <em>共有されたランダム性</em> の 1 ビットとみなすこともできます。例えば、暗号化において、ランダムなビットを誰かと共有し（そのビットが何であるかは誰も知らないという前提で）、暗号化のための秘密鍵（または秘密鍵の一部）として使用することは、非常に有用です。しかし、この授業では、エンタングルメントに焦点を当て、エンタングルメントを使ってできることを紹介します。</p>
+<p>用語の説明として、アリスとボブが <em>eビットを共有する</em> と言うとき、アリスは <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> という名前の量子ビットを持ち、ボブは <span class="math notranslate nohighlight">\(\mathsf{B}\)</span>  という名前の量子ビットを持っていて、このペア <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> は量子状態 <span class="math notranslate nohighlight">\((1)\)</span> であるという意味です。 もちろん、量子ビットに別の名前をつけることもできますが、この授業では、わかりやすくするために、これらの名前を使うことにします。</p>
+</section>
+</section>
+<section id="id5">
+<h2>1. テレポーテーション<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>量子テレポーテーションとは、送信者（アリス）が受信者（ボブ）に量子ビットを送信する際に、2ビットの古典通信と1つの量子状態（eビット）を共有するプロトコルです。<em>テレポーテーション</em>という名称は、未来的なプロセスで物質をある場所から別の場所に運ぶというSFの概念を連想させるものですが、量子テレポーテーションでは物質はテレポートされず、実際にテレポートされるのは量子情報であることを理解する必要があります。</p>
+<p>テレポーテーションの設定は次のとおりです。</p>
+<p>アリスとボブはeビットを共有していると仮定します：アリスが量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を持ち、ボブが量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を持ち、ペア <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> は <span class="math notranslate nohighlight">\(\vert\phi^+\rangle\)</span> の状態にあります。例えば、アリスとボブは過去に同じ場所にいて、状態 <span class="math notranslate nohighlight">\(\vert \phi^+ \rangle\)</span> の量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span>　 と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を用意し、それぞれが量子ビットを持って、それぞれの道を進んだという状況かもしれません。あるいは、この共有されたeビットを確立するために、第三者が関与するプロセスや複雑な分散プロセスなど、別のプロセスが用いられた可能性もあります。ただし、これらの詳細の環境は、テレポーテーション・プロトコルそのものには含まれていません。</p>
+<p>アリスは、ボブに送信したい第3の量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> を持っています。量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の状態は、アリスとボブにとって <em>未知</em> であると考えられ、それについての仮定はされません。つまり、例えば、量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> は、アリスもボブもアクセスできない1つ以上の他の系とエンタングルしているかもしれません。アリスが量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> をボブに送信したいということは、他の系と <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の相関がどうであれ、アリスがボブに、プロトコルの開始時にアリスが持っていたのと同じ状態 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の量子ビットを持たせたいということです。つまり、まるでアリスからボブに <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> を物理的に渡したかのようにしたいということです。</p>
+<p>もちろん、アリスが量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> をボブに物理的に送り、 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> が転送中に変化したり妨害されたりせずにボブに届くと仮定すれば、アリスとボブのタスクは達成されるものと考えることができます。しかし、テレポーテーションの設定では、前提として、アリスはボブに <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> を物理的に送ることはできません。ただし、古典的な情報をボブに送ることはできます。</p>
+<p>これらは、様々な場面で合理的な仮定です。例えば、アリスがボブの正確な位置を知らなかったり、二人の間の距離が大きく離れていたりする場合、現在のまたは予測可能な未来の技術を使っても物理的に量子ビットを送ることは、控えめに言っても困難です。しかし、私たちが日常的に経験しているように、このような状況で古典的な情報伝達は非常に簡単です。</p>
+<p>ここで、アリスとボブは、共有のeビットを使わずに、タスクを達成できるだろうか、と考える人がいるかもしれません。つまり、古典的な通信だけで量子ビットを伝送する方法はあるでしょうか？答えは「ノー」です。古典的な通信だけでは量子情報を伝送することはできません。このことは、本シリーズの第3回で取り上げた基本的な量子情報理論を使って証明することはそれほど難しくありませんが、とりあえず、古典通信だけで量子ビットを伝送する可能性を排除する直感的な方法として、複製不可能定理を考えてみましょう。</p>
+<p>古典的な通信だけで量子情報を送信する方法があったとします。古典的な情報はコピーやブロードキャストが容易であるため、アリスからボブへの古典的な通信は、第二の受信者（仮にチャーリー）が受信する可能性があります。もしチャーリーがボブと同じ古典通信を受信したら、彼は量子ビットのコピー <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> を得ることができるのではないでしょうか？これは <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> が複製されることを意味しますが、複製不可能定理によるとこれは、不可能であることが既に分かっています。よって、古典的な通信だけでは量子情報を送ることはできない、という結論になります。</p>
+<p>しかし、アリスとボブがeビットを共有するという前提があると、アリスとボブはタスクを遂行することが可能になります。これこそが、量子テレポーテーション・プロトコルです。</p>
+<section id="id6">
+<h3>1.1 プロトコル<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>下の図は、テレポーテーション プロトコルを説明する量子回路図です：</p>
+<p><img alt="Teleportation circuit" src="../../_images/teleportation.png" /></p>
+<p>この図は、アリスとボブの分離が描かれていて、斜めの2本の線がアリスからボブに送られる古典ビットを表している点で若干様式化されていますが、それ以外は普通の量子回路図です。</p>
+<p>つまり、テレポーテーションのプロトコルは次のようなものです：</p>
+<ol class="arabic">
+<li><p>アリスは、 <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を制御、<span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> をターゲットとしてペア <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{Q})\)</span> に対して制御NOT演算を行い、 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> に対してアダマール演算を実行します。</p></li>
+<li><p>その後、アリスは <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の両方を、標準基底で測定し、古典的な結果をボブに送信します。ここで、 <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の測定結果を <span class="math notranslate nohighlight">\(a\)</span> 、<span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の測定の結果を <span class="math notranslate nohighlight">\(b\)</span> と呼ぶことにします。</p></li>
+<li><p>ボブはアリスから <span class="math notranslate nohighlight">\(a\)</span> と<span class="math notranslate nohighlight">\(b\)</span> を受け取り、このビットの値によって、以下の演算を行います。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(a = 1\)</span> の場合、ボブは量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> にビットフリップ (または <span class="math notranslate nohighlight">\(X\)</span> ゲート) を実行します。</p></li>
+<li><p><span class="math notranslate nohighlight">\(b = 1\)</span> の場合、ボブは量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に位相反転 (または <span class="math notranslate nohighlight">\(Z\)</span> ゲート) を実行します。</p></li>
+</ul>
+<p>つまり、 <span class="math notranslate nohighlight">\(ab\)</span> が <span class="math notranslate nohighlight">\(00\)</span> 、<span class="math notranslate nohighlight">\(01\)</span> 、<span class="math notranslate nohighlight">\(10\)</span> 、<span class="math notranslate nohighlight">\(11\)</span> のうちのどれかであることを条件として、ボブは量子ビット  <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に演算 <span class="math notranslate nohighlight">\(\mathbb{1}\)</span> 、 <span class="math notranslate nohighlight">\(Z\)</span> 、 <span class="math notranslate nohighlight">\(X\)</span> 、<span class="math notranslate nohighlight">\(ZX\)</span> のいずれかを実行します。</p>
+</li>
+</ol>
+<p>これが、テレポーテーションプロトコルの完全な説明です。以下に示す分析は、これが実行されると、量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> が、プロトコルが実行される前の状態 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> になることを示しています。これには、他のシステムとの相関関係も含まれます。つまり、このプロトコルは完全な量子ビット通信チャネルを効果的に実装しており、 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の状態が <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に「テレポート」されると言えます。</p>
+<p>分析に進む前に、このプロトコルは <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の状態の複製に成功していないことに注意してください。これは、複製不可能定理によって不可能であることが既にわかっています。 むしろ、プロトコルが終了すると、量子ビットの状態  <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> は、実行された測定の結果として、元の値から <span class="math notranslate nohighlight">\(\vert b\rangle\)</span> に変化します。 また、その過程でeビットが事実上「焼き尽くされた」ことにも注意してください: <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の状態は  <span class="math notranslate nohighlight">\(\vert a\rangle\)</span> に変化し、もはや <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> (または他のシステム) とエンタングルしていません。 これはテレポーテーションにかかるコストです。</p>
+</section>
+<section id="id7">
+<h3>1.2 分析<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>テレポーテーションプロトコルを分析するために、量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> が最初に状態 <span class="math notranslate nohighlight">\(\alpha\vert 0\rangle + \beta\vert 1\rangle\)</span> にある状況から始めて、上記の回路の動作を一度に 1 ステップずつ調べていきます。これは、 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> が他のシステムとエンタングルしている可能性を考えていないため、最も一般的な状況ではありませんが、この単純なケースから始めると、分析が明確になります。以下では、単純なケースの分析に続いて、より一般的なケースについて説明します。</p>
+<p>具体的には、次の図で示される時点での量子ビット <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> の状態を考えます：</p>
+<p><img alt="Teleportation circuit time-steps" src="../../_images/teleportation-time-steps.png" /></p>
+<p>量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> が状態 <span class="math notranslate nohighlight">\(\alpha\vert 0\rangle + \beta\vert 1\rangle\)</span> でプロトコルを開始すると仮定すると、プロトコルの開始時の 3 つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span>の状態は、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \pi_0 \rangle
+= \vert \phi^+\rangle \otimes
+\bigl(\alpha\vert 0\rangle + \beta\vert 1\rangle \bigr)
+= \frac{\alpha \vert 000 \rangle + \alpha \vert 110\rangle + \beta \vert 001\rangle + \beta \vert 111\rangle}{\sqrt{2}}.
+\]</div>
+<p>実行される最初のゲートは制御NOT ゲートで、状態 <span class="math notranslate nohighlight">\(\vert\pi_0\rangle\)</span> を次のように変換します。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \pi_1 \rangle  = \frac{\alpha \vert 000 \rangle + \alpha \vert 110\rangle + \beta \vert 011\rangle + \beta \vert 101\rangle}{\sqrt{2}}.
+\]</div>
+<p>次に、アダマールゲートが適用され、状態 <span class="math notranslate nohighlight">\(\vert\pi_1\rangle\)</span> を次のように変換します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\pi_2\rangle
+&amp; =
+\frac{\alpha \vert 00\rangle \vert + \rangle + \alpha \vert 11\rangle\vert +\rangle + \beta \vert 01\rangle\vert -\rangle + \beta \vert 10\rangle\vert -\rangle}{\sqrt{2}}\\
+&amp; = \frac{\alpha \vert 000 \rangle
++ \alpha \vert 001 \rangle
++ \alpha \vert 110 \rangle
++ \alpha \vert 111 \rangle
++ \beta \vert 010 \rangle
+- \beta \vert 011 \rangle
++ \beta \vert 100 \rangle
+- \beta \vert 101 \rangle}{2}.
+\end{aligned}
+\end{split}\]</div>
+<p>テンソル積の多重線形性を利用して、この状態を代わりに次のように書くことができます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\pi_2\rangle = \quad
+&amp; \frac{1}{2} \bigl(\alpha\vert 0 \rangle + \beta \vert 1\rangle \bigr)\vert 00\rangle \\[1mm]
++ &amp; \frac{1}{2} \bigl(\alpha\vert 0 \rangle - \beta \vert 1\rangle \bigr)\vert 01\rangle \\[1mm]
++ &amp; \frac{1}{2} \bigl(\alpha\vert 1 \rangle + \beta \vert 0\rangle \bigr)\vert 10\rangle \\[1mm]
++ &amp; \frac{1}{2} \bigl(\alpha\vert 1 \rangle - \beta \vert 0\rangle \bigr)\vert 11\rangle.
+\end{aligned}
+\end{split}\]</div>
+<p>アリスからボブへの通信がまだ行われていないにもかかわらず、左端の量子ビット (つまり、下の量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> ) が数字 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> に依存しているように見えるため、一見すると、何か魔法のようなことが起こったように見えるかもしれません。実際、それは錯覚です。スカラーはテンソル積を介して自由に動くため、 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> は他の量子ビットよりも左端の量子ビットに多かれ少なかれ関連しています。代数を使用して、測定の分析を容易にするために状態を表現しただけです。</p>
+<p>ここで、アリスの標準基底測定の結果の4つの考えられる場合について、その結果ボブが行う行動も合わせて考えてみましょう。</p>
+<!-- ::: q-block.tabs -->
+</section>
+<section id="id8">
+<h3>考えられる結果<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<!-- ::: tab -->
+</section>
+<section id="id9">
+<h3>00<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>アリスの測定結果は、以下の確率で <span class="math notranslate nohighlight">\(ab = 00\)</span> です。</p>
+<div class="math notranslate nohighlight">
+\[
+\Biggl\| \frac{1}{2}\bigl(\alpha \vert 0\rangle + \beta\vert 1\rangle\bigr) \Biggr\|^2
+= \frac{\vert\alpha\vert^2 + \vert\beta\vert^2}{4} = \frac{1}{4},
+\]</div>
+<p>この場合、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> の状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl( \alpha \vert 0 \rangle + \beta \vert 1 \rangle \bigr) \vert 00 \rangle.
+\]</div>
+<p>この場合、ボブは何もしないので、これがこの 3 つの量子ビットの最終状態です。</p>
+<!-- ::: tab -->
+</section>
+<section id="id10">
+<h3>01<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>アリスの測定結果は以下の確率で <span class="math notranslate nohighlight">\(ab = 01\)</span> です。</p>
+<div class="math notranslate nohighlight">
+\[
+\Biggl\| \frac{1}{2}\bigl(\alpha \vert 0\rangle - \beta\vert 1\rangle\bigr) \Biggr\|^2
+= \frac{\vert\alpha\vert^2 + \vert{-\beta}\vert^2}{4} = \frac{1}{4},
+\]</div>
+<p>この場合、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> の状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl( \alpha \vert 0 \rangle - \beta \vert 1 \rangle \bigr) \vert 01 \rangle.
+\]</div>
+<p>この場合、ボブは <span class="math notranslate nohighlight">\(Z\)</span> ゲートを <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用することで、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> を以下の状態にします。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl( \alpha \vert 0 \rangle + \beta \vert 1 \rangle \bigr) \vert 01 \rangle.
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id11">
+<h3>10<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>アリスの測定結果は、以下の確率で <span class="math notranslate nohighlight">\(ab = 10\)</span> です。</p>
+<div class="math notranslate nohighlight">
+\[
+\Biggl\| \frac{1}{2}\bigl(\alpha \vert 1\rangle + \beta\vert 0\rangle\bigr) \Biggr\|^2
+= \frac{\vert\alpha\vert^2 + \vert\beta\vert^2}{4} = \frac{1}{4},
+\]</div>
+<p>この場合、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> の状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl( \alpha \vert 1 \rangle + \beta \vert 0 \rangle \bigr) \vert 10 \rangle.
+\]</div>
+<p>この場合、ボブは <span class="math notranslate nohighlight">\(X\)</span> ゲートを量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用することで、<span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> を以下の状態にします。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl( \alpha \vert 0 \rangle + \beta \vert 1 \rangle \bigr) \vert 10 \rangle.
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id12">
+<h3>11<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>アリスの測定結果は、以下の確率で <span class="math notranslate nohighlight">\(ab = 11\)</span> です。</p>
+<div class="math notranslate nohighlight">
+\[
+\Biggl\| \frac{1}{2}\bigl(\alpha \vert 1\rangle - \beta\vert 0\rangle\bigr) \Biggr\|^2
+= \frac{\vert\alpha\vert^2 + \vert{-\beta}\vert^2}{4} = \frac{1}{4},
+\]</div>
+<p>この場合、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> の状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl( \alpha \vert 1 \rangle - \beta \vert 0 \rangle \bigr) \vert 11 \rangle.
+\]</div>
+<p>この場合、ボブは量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に対して操作 <span class="math notranslate nohighlight">\(ZX\)</span> を実行しすることで、<span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q})\)</span> を以下の状態にします。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl( \alpha \vert 0 \rangle + \beta \vert 1 \rangle \bigr) \vert 11 \rangle.
+\]</div>
+<!-- ::: -->
+<!-- ::: -->
+<p>4つの場合のすべてで、ボブの量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> は、プロトコルの最後で状態 <span class="math notranslate nohighlight">\(\alpha\vert 0\rangle + \beta\vert 1\rangle\)</span> であることがわかります。これは、量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の最初の状態と同じです。これが私たちが示したかったことです: つまり、テレポーテーションプロトコルは全ての場合に正しく機能しました。</p>
+<p>また、量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> は、アリスが取得した測定結果に応じて、それぞれ確率 <span class="math notranslate nohighlight">\(1/4\)</span> で4 つの状態 <span class="math notranslate nohighlight">\(\vert 00\rangle\)</span> 、 <span class="math notranslate nohighlight">\(\vert 01\rangle\)</span> 、 <span class="math notranslate nohighlight">\(\vert 10\rangle\)</span> 、 <span class="math notranslate nohighlight">\(\vert 11\rangle\)</span> のいずれかになることもわかります。つまり、すでに上で示唆されているように、プロトコルの最後で、アリスが持っている状態は、 <span class="math notranslate nohighlight">\(\alpha \vert 0\rangle + \beta \vert 1\rangle\)</span> ではなくなります。これは、複製不可能定理によって期待されていることです。</p>
+<p>また、アリスの測定では、状態 <span class="math notranslate nohighlight">\(\alpha \vert 0\rangle + \beta \vert 1\rangle\)</span> に関する情報がまったく得られないことにも注意してください。つまり、 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> に関係なく、4つの可能な測定結果の確率はそれぞれ <span class="math notranslate nohighlight">\(1/4\)</span> です。これは、テレポーテーションが正しく機能するためにも不可欠です。未知の量子状態から情報を抽出すると、通常は必然的に量子状態が乱されますが、ここでは、ボブは乱されることなく状態を取得します。</p>
+<p>ここで、量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> が最初に別のシステム ( <span class="math notranslate nohighlight">\(\mathsf{R}\)</span> と名付けます) とエンタングルしている、より一般的な状況を考えてみましょう。上記と同様の分析により、テレポーテーションプロトコルがこのより一般的なケースで正しく機能することが明らかになります。プロトコルの最後に、ボブが保持する量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> は、 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> がプロトコルの開始時にあったのと同じように <span class="math notranslate nohighlight">\(\mathsf{R}\)</span> とエンタングルします。まるでアリスがボブに <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> を渡したかのように。</p>
+<p>これを証明するために、ペア <span class="math notranslate nohighlight">\((\mathsf{Q},\mathsf{R})\)</span> の状態が最初に次の形の量子状態ベクトルによって与えられると仮定します。</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha \vert 0 \rangle_{\mathsf{Q}} \vert \gamma_0\rangle_{\mathsf{R}}
++ \beta \vert 1 \rangle_{\mathsf{Q}} \vert \gamma_1\rangle_{\mathsf{R}},
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(\vert\gamma_0\rangle\)</span> と <span class="math notranslate nohighlight">\(\vert\gamma_1\rangle\)</span> は単位ベクトル、 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> は  <span class="math notranslate nohighlight">\(\vert \alpha \vert^2 + \vert\beta\vert^2 = 1\)</span> を満たす複素数です。ペア <span class="math notranslate nohighlight">\((\mathsf{Q},\mathsf{R})\)</span> の任意の量子状態ベクトルは、上記のように表現できます。</p>
+<p>次の図は、前と同じ回路に、システム <span class="math notranslate nohighlight">\(\mathsf{R}\)</span> (図の上部にある量子ビットの集合で表され、何も起こらない系)を追加したものです。</p>
+<p><img alt="Teleportation with an entangled input" src="../../_images/teleportation-with-entanglement.png" /></p>
+<p>テレポーテーションプロトコルを実行したときに何が起こるかを分析するためには、レッスン2で説明したのと同じように、システムを順列化することが有効です。具体的には、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A},\mathsf{Q},\mathsf{R})\)</span> ではなく、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{R},\mathsf{A},\mathsf{Q})\)</span> という順序でシステムの状態を考えます。この後の式では、わかりやすくするために、システムの名前を添え字として記載します。</p>
+<p>プロトコルの開始時、これらのシステムの状態は次のとおりです：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert \pi_0\rangle
+&amp; = \vert \phi^+\rangle_{\mathsf{BA}} \otimes \bigl(
+  \alpha \vert 0\rangle_{\mathsf{Q}} \vert\gamma_0\rangle_{\mathsf{R}}
++ \beta \vert 1\rangle_{\mathsf{Q}}\vert\gamma_1\rangle_{\mathsf{R}}\bigr)\\[1mm]
+&amp; = \frac{
+  \alpha \vert 0\rangle_{\mathsf{B}} \vert \gamma_0 \rangle_{\mathsf{R}} \vert 00 \rangle_{\mathsf{AQ}}
++ \alpha \vert 1\rangle_{\mathsf{B}} \vert \gamma_0 \rangle_{\mathsf{R}} \vert 10 \rangle_{\mathsf{AQ}}
++ \beta \vert 0\rangle_{\mathsf{B}} \vert \gamma_1 \rangle_{\mathsf{R}} \vert 01 \rangle_{\mathsf{AQ}}
++ \beta \vert 1\rangle_{\mathsf{B}} \vert \gamma_1 \rangle_{\mathsf{R}} \vert 11 \rangle_{\mathsf{AQ}}}{\sqrt{2}}.
+\end{aligned}
+\end{split}\]</div>
+<p>最初に制御NOT ゲートが適用され、この状態が次のように変換されます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\pi_1\rangle =
+\frac{
+  \alpha \vert 0\rangle_{\mathsf{B}} \vert\gamma_0 \rangle_{\mathsf{R}} \vert 00\rangle_{\mathsf{AQ}}
++ \alpha \vert 1\rangle_{\mathsf{B}} \vert\gamma_0 \rangle_{\mathsf{R}} \vert 10\rangle_{\mathsf{AQ}}
++ \beta \vert 0\rangle_{\mathsf{B}} \vert\gamma_1 \rangle_{\mathsf{R}} \vert 11\rangle_{\mathsf{AQ}}
++ \beta \vert 1\rangle_{\mathsf{B}} \vert\gamma_1 \rangle_{\mathsf{R}} \vert 01\rangle_{\mathsf{AQ}}}{\sqrt{2}}.
+\]</div>
+<p>次に、アダマール ゲートが適用されます。上のより簡単な場合の分析と同様に、結果の状態を拡張および単純化すると、結果の状態は次の式になります：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert \pi_2 \rangle = \quad
+  &amp; \frac{1}{2} \bigl(
+   \alpha \vert 0\rangle_{\mathsf{B}} \vert\gamma_0\rangle_{\mathsf{R}}
+  + \beta \vert 1\rangle_{\mathsf{B}} \vert\gamma_1\rangle_{\mathsf{R}}
+  \bigr) \vert 00\rangle_{\mathsf{AQ}}\\[1mm]
+  + &amp; \frac{1}{2} \bigl(
+   \alpha \vert 0\rangle_{\mathsf{B}} \vert\gamma_0\rangle_{\mathsf{R}}
+  - \beta \vert 1\rangle_{\mathsf{B}} \vert\gamma_1\rangle_{\mathsf{R}}
+  \bigr) \vert 01\rangle_{\mathsf{AQ}}\\[1mm]
+  + &amp; \frac{1}{2} \bigl(
+   \alpha \vert 1\rangle_{\mathsf{B}} \vert\gamma_0\rangle_{\mathsf{R}}
+  + \beta \vert 0\rangle_{\mathsf{B}} \vert\gamma_1\rangle_{\mathsf{R}}
+  \bigr) \vert 10\rangle_{\mathsf{AQ}}\\[1mm]
+  + &amp; \frac{1}{2} \bigl(
+   \alpha \vert 1\rangle_{\mathsf{B}} \vert\gamma_0\rangle_{\mathsf{R}}
+  - \beta \vert 0\rangle_{\mathsf{B}} \vert\gamma_1\rangle_{\mathsf{R}}
+  \bigr) \vert 11\rangle_{\mathsf{AQ}}.
+\end{aligned}
+\end{split}\]</div>
+<p>先ほどと同じように、アリスのありうる4つの測定結果と、それに対応するボブの実行を考えると、プロトコルの終了時に、 <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{R})\)</span> の状態は常に次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha \vert 0 \rangle \vert \gamma_0\rangle + \beta \vert 1 \rangle \vert \gamma_1\rangle.
+\]</div>
+<p>非公式に言えば、上の単純なケースと比較して、分析結果は大きく変わりません； <span class="math notranslate nohighlight">\(\vert\gamma_0\rangle\)</span> と <span class="math notranslate nohighlight">\(\vert\gamma_1\rangle\)</span> は、本質的に「一緒に来る」だけです。つまり、テレポーテーションは、量子ビット<span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の内容を <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に効果的に伝達し、他のシステムとの相関をすべて保持する、完璧な量子通信路を作ることに成功しました。</p>
+<p>結局のところ、上の簡単なケースの解析を考えると、これは実は驚くべきことではないのです。その分析が明らかにしたように、私たちは任意の量子状態の量子ビットに対して恒等演算の<em>ように</em>振る舞う物理的なプロセスを有しており、それが起こり得る方法はただ一つです。つまり、テレポーテーションが1つの量子ビットに対して正しく機能することが分かれば、プロトコルは完全でノイズのない量子チャネルを効果的に実装していると結論づけることができます。したがって、入力量子ビットが他のシステムとエンタングルしていても正しく機能するはずです。<br>この結論を正しく説明するには、量子情報の一般的な定式化が必要で、本シリーズのユニット3で取り上げますが、ポイントは、線形性によって、より一般的な分析をする必要がなかったということです。</p>
+</section>
+<section id="id13">
+<h3>1.3 さらなる議論<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>ここで、テレポーテーションについて、簡単に結論を述べます。</p>
+<p>まず、テレポーテーションは量子情報の <em>応用</em> ではなく、<em>量子通信</em>を行うためのプロトコルであることを理解する必要があります。量子通信が有用である限り有用です。</p>
+<p>第二に、テレポーテーションが量子情報を伝達する標準的な方法になる日が来るかもしれないと推測することは合理的です。これは、おそらく <em>エンタングルメント蒸留</em> と呼ばれるプロセスによるものになるでしょう。これは、ノイズの多い（あるいは不完全な）eビットを、より少ない高品質のeビットに変換するプロセスであり、ノイズのない、またはほぼノイズのないテレポーテーションに使用することができます。エンタングルメント蒸留のプロセスは、直接の量子通信ほどデリケートではないという考え方です。例えば、損失を受け入れることもできるし、プロセスがうまくいかなければ、またやり直せばいいのです。それに対して、実際に通信しようとする量子ビットは、もっと貴重なものなのかもしれません。</p>
+<p>最後に、テレポーテーションの背後にあるアイデアとその仕組みは、量子情報と量子計算において非常に基本的なものです。量子情報理論の根幹をなすものであり、このアイデアのバリエーションもしばしば登場します。一例として、量子ゲートはテレポーテーションを利用して実装することができますが、初期状態や測定値が異なるため、通信するのではなく、選択した<em>演算</em>を適用することになるのです。</p>
+</section>
+<section id="qiskit">
+<h3>1.4 Qiskit での実装<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Required imports</span>
+
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+<span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+<span class="kn">from</span> <span class="nn">qiskit.result</span> <span class="kn">import</span> <span class="n">marginal_distribution</span>
+<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">UGate</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ここでは、テレポーテーションプロトコルの量子回路実装を紹介します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">)</span>
+<span class="n">ebit0</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">ebit1</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+
+<span class="n">protocol</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Prepare ebit used for teleportation</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Alice&#39;s operations</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">ebit0</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Alice measures and sends classical bits to Bob</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Bob uses the classical bits to conditionally apply gates</span>
+<span class="k">with</span> <span class="n">protocol</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="n">protocol</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">ebit1</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">protocol</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="n">protocol</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="n">ebit1</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b24c9f29e47ef9a0add7805958eac256f99ac9f155d4a0c944f380544b2a4a80.png" src="../../_images/b24c9f29e47ef9a0add7805958eac256f99ac9f155d4a0c944f380544b2a4a80.png" />
+</div>
+</div>
+<p>この回路では、Qiskitの機能のうち、<code class="docutils literal notranslate"><span class="pre">barrier</span></code> 関数と <code class="docutils literal notranslate"><span class="pre">if_test</span></code> 関数という、これまでの授業でまだ見ていない機能をいくつか使っていいます。  <code class="docutils literal notranslate"><span class="pre">barrier</span></code> 関数は、回路図を読みやすくするために視覚的に分離を行うもので、実際のハードウェア上で回路を実行する際には、コンパイルの際にQiskitがバリアを越えて簡略化や最適化を行わないという役割もあります。 <code class="docutils literal notranslate"><span class="pre">if_test</span></code> 関数は、古典ビットやレジスターに依存して条件付きで演算を適用するものです。</p>
+<p>回路はまず <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> を <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> 状態に初期化し（プロトコル自体にはないですが）、続いてアリスの演算、アリスの測定、ボブの演算の順で行います。</p>
+<p>プロトコルが正しく動作することを確認するために、初期化された <span class="math notranslate nohighlight">\(|0\rangle\)</span> 状態の <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> に対してランダムに生成された単一量子ビットゲートを適用し、テレポートするためのランダムな量子状態ベクトルを得ます。プロトコルを実行した後に、そのゲートの逆（すなわち随伴転置）を <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用することで、状態がテレポートされたことを確認できます。具体的には、状態が <span class="math notranslate nohighlight">\(|0\rangle\)</span> に戻ったかを測定します。</p>
+<p>まず、ランダムにユニタリな単一量子ビットゲートを選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_gate</span> <span class="o">=</span> <span class="n">UGate</span><span class="p">(</span>
+    <span class="n">theta</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span>
+    <span class="n">phi</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span>
+    <span class="n">lam</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">random_gate</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.93413463+0.j        ,  0.22680354+0.27559506j],
+       [-0.04033827+0.35463405j,  0.78375333-0.50826984j]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、テスト用の新しい回路を作成します。この回路は、まずランダムゲートを <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> に適用し、その後テレポーテーション回路を実行し、最後にランダムゲートの逆を量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用して測定します。測定結果は確実に <span class="math notranslate nohighlight">\(|0\rangle\)</span> となるはずです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new circuit including the same bits and qubits used in the</span>
+<span class="c1"># teleportation protocol.</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="c1"># Start with the randomly selected gate on Q</span>
+
+<span class="n">test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_gate</span><span class="p">,</span> <span class="n">qubit</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Append the entire teleportation protocol from above.</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">protocol</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Finally, apply the inverse of the random unitary to B and measure.</span>
+
+<span class="n">test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_gate</span><span class="o">.</span><span class="n">inverse</span><span class="p">(),</span> <span class="n">ebit1</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Result&quot;</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">ebit1</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/25110da986f45e1765b6c8cca4ed0125ea34fcd46bf90071de94d0b944b627d9.png" src="../../_images/25110da986f45e1765b6c8cca4ed0125ea34fcd46bf90071de94d0b944b627d9.png" />
+</div>
+</div>
+<p>最後に、この回路でAerシミュレーターを実行し、出力のヒストグラムをプロットしてみましょう。3つの古典ビットの統計データを見ることができます：一番下/左のビットは常に <span class="math notranslate nohighlight">\(0\)</span> であるべきで、これは量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> が <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> へのテレポートに成功したことを示し、一方他の2つのビットはほぼ均一です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">statistics</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">statistics</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/086caf25f6e89c77d39cfbdf71d4b5ff2f935aeecedf1dd26ff4d6a6b1915556.png" src="../../_images/086caf25f6e89c77d39cfbdf71d4b5ff2f935aeecedf1dd26ff4d6a6b1915556.png" />
+</div>
+</div>
+<p>また、必要であれば、このようにテスト結果の量子ビットにのみフォーカスしてカウントをフィルタリングすることもできます：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_statistics</span> <span class="o">=</span> <span class="n">marginal_distribution</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">filtered_statistics</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f31bdc5df75957bab956ed089ca9ecf7c70607102bcadd246b5b47ac791fecac.png" src="../../_images/f31bdc5df75957bab956ed089ca9ecf7c70607102bcadd246b5b47ac791fecac.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h2>2. 超密度符号<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p>超高密度符号は、ある意味でテレポーテーションを補完するプロトコルです。1つの量子ビットを2つの古典ビットで伝送するのではなく（1eビットのエンタングルメントの犠牲を伴って）、1つの量子ビットで2つの古典ビットを伝送します（繰り返しますが、1eビットのエンタングルメントの犠牲を伴って）。</p>
+<p>具体的には、送信者（アリス）と受信者（ボブ）が1eビットのエンタングルメントを共有するとします。この授業の慣習によれば、これは、アリスが量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を、ボブが量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を持ち、ペア <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> は <span class="math notranslate nohighlight">\(\vert\phi^+\rangle\)</span> の状態にあります。アリスはボブに2つの古典ビット（ <span class="math notranslate nohighlight">\(a\)</span>  と <span class="math notranslate nohighlight">\(b\)</span> とする）を送信したいと思っていて、1量子ビットを送信することでこれを達成しようとします。</p>
+<p>テレポーテーションが達成する偉業よりも、こちらは面白くないと思うのが普通でしょう。量子ビットを送ることは、古典ビットを送ることよりもはるかに困難であり、1量子ビットの量子通信を2ビットの古典通信と交換し、さらに1eビットを犠牲にする超密度符号は、ほとんど価値がないように思われます。しかし、これは超密度符号が面白くないということを意味するものではなく、間違いなく面白いものです。</p>
+<p>超密度符号が面白い理由の一つは、この授業のテーマにふさわしく、エンタングルメントを具体的に、（情報理論の文脈では）かなり印象的に使っているからです。量子情報理論において有名な<em>ホレボの定理</em>は、共有されたエンタングル状態を用いなければ、1量子ビットを送信して1ビット以上の古典情報を伝達することは不可能であると言っています。(ホレボの定理自体は、これよりもさらに一般化されたものです。正確な記述は専門的で説明が必要ですが、これはその結果の一つです。)つまり、超高密度符号では、量子ビットを送ることで古典的な情報伝達能力を<em>倍増</em>させることができるのです。</p>
+<p>超高密度符号が興味深いもう一つの理由は、テレポーテーションとの密接で補完的な関係であることです。これについては、このセクションの最後で詳しく説明します。</p>
+<section id="id15">
+<h3>2.1 プロトコル<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>次の量子回路図は、超高密度符号のプロトコルを示しています：</p>
+<p><img alt="Superdense coding circuit" src="../../_images/superdense-coding.png" /></p>
+<p>つまり、アリスが行うことは次のとおりです。</p>
+<ol class="arabic simple">
+<li><p>アリスは最初に <span class="math notranslate nohighlight">\(b=1\)</span> かどうかを確認します。 <span class="math notranslate nohighlight">\(b=1\)</span> の場合、彼女は量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に <span class="math notranslate nohighlight">\(Z\)</span> ゲートを実行します ( <span class="math notranslate nohighlight">\(b=0\)</span> の場合は実行しません)。</p></li>
+<li><p>アリスは <span class="math notranslate nohighlight">\(a=1\)</span> かどうかを確認します。 <span class="math notranslate nohighlight">\(a=1\)</span> の場合、彼女は量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に <span class="math notranslate nohighlight">\(X\)</span> ゲートを実行します ( <span class="math notranslate nohighlight">\(a=0\)</span> の場合は実行しません)。</p></li>
+</ol>
+<p>次に、アリスは自分の量子ビット <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> をボブに送信します。</p>
+<p>量子ビット <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> を受け取ったときにボブは、まず、 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> を制御、 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> をターゲットとして、制御NOT ゲートを実行します。そして、 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> にアダマールゲートを適用します。次に、 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を測定して <span class="math notranslate nohighlight">\(a\)</span> を取得し、 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> を測定して <span class="math notranslate nohighlight">\(b\)</span> を取得します。どちらの場合も、標準基底で測定します。</p>
+</section>
+<section id="id16">
+<h3>2.2 分析<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>このプロトコルの背後にある考え方は非常に単純です：アリスはどのベル状態をボブと共有したいかを選択し、ボブに自分の量子ビットを送り、ボブはアリスがどのベル状態を選択したかを測定します。</p>
+<p>つまり、それらは最初に <span class="math notranslate nohighlight">\(\vert\phi^+\rangle\)</span> を共有し、ビット <span class="math notranslate nohighlight">\(a\)</span> および <span class="math notranslate nohighlight">\(b\)</span> に応じて、アリスはこの状態をそのままにしておくか、 <span class="math notranslate nohighlight">\(\mathbb{1}\)</span> 、 <span class="math notranslate nohighlight">\(X\)</span> 、 <span class="math notranslate nohighlight">\(Z\)</span> 、 <span class="math notranslate nohighlight">\(XZ\)</span> のいずれかを量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に適用することによって、この状態を他のベル状態のいずれかにシフトさせます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+(\mathbb{1} \otimes \mathbb{1}) \vert \phi^+ \rangle  = \vert \phi^+\rangle \\
+(\mathbb{1} \otimes Z) \vert \phi^+ \rangle  = \vert \phi^-\rangle \\
+(\mathbb{1} \otimes X) \vert \phi^+ \rangle  = \vert \psi^+\rangle \\
+(\mathbb{1} \otimes XZ) \vert \phi^+ \rangle  = \vert \psi^-\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>ボブの動作は、4つのベル状態に次のような影響を与えます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert \phi^+\rangle  \mapsto \vert 00\rangle\\
+\vert \phi^-\rangle  \mapsto \vert 01\rangle\\
+\vert \psi^+\rangle  \mapsto \vert 10\rangle\\
+\vert \psi^-\rangle  \mapsto -\vert 11\rangle\\
+\end{aligned}
+\end{split}\]</div>
+<p>上記は、それぞれの状態へのボブの演算を1つずつ計算することで、直接確認することができます。</p>
+<p>よって、彼が測定を行うと、アリスがどのベル状態を選択したかを判断することができるのです。プロトコルが正しく動作することを確認するには、それぞれの場合をチェックする必要があります：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(ab = 00\)</span> の場合、ボブが <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を受け取ったときの <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A})\)</span> の状態は <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> です。ボブはこの状態を <span class="math notranslate nohighlight">\(\vert 00\rangle\)</span> に変換し、 <span class="math notranslate nohighlight">\(ab = 00\)</span> を取得します。</p></li>
+<li><p><span class="math notranslate nohighlight">\(ab = 01\)</span> の場合、ボブが <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を受け取ったときの <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A})\)</span> の状態は <span class="math notranslate nohighlight">\(\vert \phi^-\rangle\)</span> です。ボブはこの状態を <span class="math notranslate nohighlight">\(\vert 01\rangle\)</span> に変換し、 <span class="math notranslate nohighlight">\(ab = 01\)</span> を取得します。</p></li>
+<li><p><span class="math notranslate nohighlight">\(ab = 10\)</span> の場合、ボブが <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を受け取ったときの <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A})\)</span> の状態は <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> です。ボブはこの状態を <span class="math notranslate nohighlight">\(\vert 10\rangle\)</span> に変換し、 <span class="math notranslate nohighlight">\(ab = 10\)</span> を取得します。</p></li>
+<li><p><span class="math notranslate nohighlight">\(ab = 11\)</span> の場合、ボブが <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を受け取ったときの <span class="math notranslate nohighlight">\((\mathsf{B},\mathsf{A})\)</span> の状態は <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> です。ボブはこの状態を <span class="math notranslate nohighlight">\(-\vert 11\rangle\)</span> に変換し、 <span class="math notranslate nohighlight">\(ab = 11\)</span> を取得します (マイナス 1 の位相係数はここでは影響しません)。</p></li>
+</ul>
+</section>
+<section id="id17">
+<h3>2.3 Qiskit での実装<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Required imports</span>
+
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+<span class="kn">from</span> <span class="nn">qiskit_aer.primitives</span> <span class="kn">import</span> <span class="n">Sampler</span>
+<span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>これは、送信するビットに応じて回路自体を指定する、超高密度符号の簡単な実装です。まず、送信するビットを指定しましょう。 (ビットを変えて、正しく動作することを確認してください。)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
+<span class="n">d</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、それに応じて回路を作成します。ここでは、Qiskit が量子ビットにデフォルト名を使用できるようにします: 上の量子ビットは <span class="math notranslate nohighlight">\(\mathsf{q}_0\)</span> 、下の量子ビットは <span class="math notranslate nohighlight">\(\mathsf{q}_1\)</span> です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">protocol</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Prepare ebit used for superdense coding</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Alice&#39;s operations</span>
+<span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+    <span class="n">protocol</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+    <span class="n">protocol</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Bob&#39;s actions</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">protocol</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a9f08f6efa405d8b50246db2b5be0d0fb2d71c04a8b2f8c8fedbf82245f7d955.png" src="../../_images/a9f08f6efa405d8b50246db2b5be0d0fb2d71c04a8b2f8c8fedbf82245f7d955.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">measure_all</span></code> 関数は、すべての量子ビットを測定し、その結果をそれぞれ1つの古典レジスターに格納します（したがって、この場合は2ビットを持つことになります）。</p>
+<p>Aerシミュレーターを実行すると、期待通りの出力が得られます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">protocol</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">statistics</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">quasi_dists</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">binary_probabilities</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">outcome</span><span class="p">,</span> <span class="n">frequency</span> <span class="ow">in</span> <span class="n">statistics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Measured </span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2"> with frequency </span><span class="si">{</span><span class="n">frequency</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">statistics</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Measured 10 with frequency 1.0
+</pre></div>
+</div>
+<img alt="../../_images/f7cae45f92081d5f6f5c863f6d82945ebd35959615cb942b4f5564e9b9ac1c52.png" src="../../_images/f7cae45f92081d5f6f5c863f6d82945ebd35959615cb942b4f5564e9b9ac1c52.png" />
+</div>
+</div>
+<p>これを楽しむために、ランダムなビット発生器を新たな量子ビットとして追加し、 <span class="math notranslate nohighlight">\(c\)</span> と <span class="math notranslate nohighlight">\(d\)</span> をランダムに選び、超密度符号プロトコルを実行して、ビットが正しく送信されることを確認してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rbg</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;randomizer&quot;</span><span class="p">)</span>
+<span class="n">ebit0</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">ebit1</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+
+<span class="n">Alice_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Alice c&quot;</span><span class="p">)</span>
+<span class="n">Alice_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Alice d&quot;</span><span class="p">)</span>
+
+<span class="n">test</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">rbg</span><span class="p">,</span> <span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">,</span> <span class="n">Alice_d</span><span class="p">,</span> <span class="n">Alice_c</span><span class="p">)</span>
+
+<span class="c1"># Initialize the ebit</span>
+<span class="n">test</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Use the &#39;randomizer&#39; qubit twice to generate Alice&#39;s bits c and d.</span>
+<span class="n">test</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">rbg</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">rbg</span><span class="p">,</span> <span class="n">Alice_c</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">rbg</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">rbg</span><span class="p">,</span> <span class="n">Alice_d</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Now the protocol runs, starting with Alice&#39;s actions, which depend</span>
+<span class="c1"># on her bits.</span>
+<span class="k">with</span> <span class="n">test</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">Alice_d</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Z&quot;</span><span class="p">):</span>
+    <span class="n">test</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">test</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">Alice_c</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">):</span>
+    <span class="n">test</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Bob&#39;s actions</span>
+<span class="n">test</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="n">Bob_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Bob c&quot;</span><span class="p">)</span>
+<span class="n">Bob_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Bob d&quot;</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">Bob_d</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">Bob_c</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">Bob_d</span><span class="p">)</span>
+<span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">ebit1</span><span class="p">,</span> <span class="n">Bob_c</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b2b15094ea6f420aa676f4062407bb9a1df9d764d4fed77c4da099ffaa3f8df0.png" src="../../_images/b2b15094ea6f420aa676f4062407bb9a1df9d764d4fed77c4da099ffaa3f8df0.png" />
+</div>
+</div>
+<p>Aerシミュレーターを実行すると、結果が表示されます：アリスとボブの古典ビットは常に一致します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">statistics</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">statistics</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/72dd5c5e2ad8299a84cd5322149314f166fdbe1c8e69954357e80fb7dd335c51.png" src="../../_images/72dd5c5e2ad8299a84cd5322149314f166fdbe1c8e69954357e80fb7dd335c51.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="chsh">
+<h2>3. CHSHゲーム<a class="headerlink" href="#chsh" title="Link to this heading">#</a></h2>
+<p>この授業で最後に取り上げる例は、プロトコルではなく、 <em>CHSHゲーム</em>と呼ばれる <em>ゲーム</em>です。</p>
+<p>この文脈でゲームというと、遊びやスポーツを目的としたものではなく、<em>ゲーム理論</em>的な意味での数学的に抽象化されたものを指します。ゲームの数学的な抽象化は、例えば経済学やコンピュータサイエンスで研究され、大きな実用性を持っています。</p>
+<p>CHSHの文字は、この例が最初に記述された1969年の論文の著者、ジョン・クラウザー、マイケル・ホーン、アブナー・シモニー、リチャード・ホルトを指しています。彼らはこの例をゲームとしてではなく、実験として記述しています。しかし、ゲームとして説明することは、自然で直感的なことです。</p>
+<p>CHSHゲームは、<em>非局所ゲーム</em>と呼ばれるゲームのクラスに属するものです。非局所ゲームは、物理学、コンピュータサイエンス、数学と深い関わりを持ち、いまだ未解決の謎を抱えた魅力的なゲームです。ここでは、まず非局所ゲームとは何かを説明し、次にCHSHゲームに焦点を当て、その面白さを紹介します。</p>
+<section id="id18">
+<h3>3.1 非局所ゲーム<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>非局所ゲームとは、アリスとボブの2人のプレイヤーが特定の結果を得るために<em>協力し合うゲーム</em>です。ゲームは<em>審判</em>によって運営され、審判はアリスとボブに知られた厳格なガイドラインに従って行動します。</p>
+<p>アリスとボブはゲームの準備をすることはできますが、ゲームが始まるとコミュニケーションをとることは禁じられます。審判が刑事役で、アリスとボブが別室で尋問を受ける容疑者というように、ある種の安全な施設でゲームを行う設定が考えられます。別の想像で、アリスとボブは広大な距離を隔てており、ゲームの実行時間内では光の速度が許さないため通信が禁止されている、という設定もあります。つまり、アリスがボブにメッセージを送ろうとしても、ボブがそれを受け取るまでにゲームは終わってしまうし、その逆もまた然りです。</p>
+<p>非局所ゲームの仕組みとして、まず審判がアリスとボブのそれぞれに質問をします。アリスの質問を <span class="math notranslate nohighlight">\(x\)</span> 、ボブの質問を  <span class="math notranslate nohighlight">\(y\)</span> という文字で表すことにします。ここで、 <span class="math notranslate nohighlight">\(x\)</span> と <span class="math notranslate nohighlight">\(y\)</span> は古典的な状態であり、CHSHゲームでは <span class="math notranslate nohighlight">\(x\)</span> と <span class="math notranslate nohighlight">\(y\)</span> はビットであると考えます。</p>
+<p>審判は<em>ランダム性</em>を利用してこれらの問題を選択します。正確には、質問となるペア <span class="math notranslate nohighlight">\((x,y)\)</span> ごとに確率 <span class="math notranslate nohighlight">\(p(x,y)\)</span> が関連付けられており、審判はゲーム開始時に、この方法で問題を選択することを誓っています。アリスとボブを含む全員がこの確率を知っています。しかし、ゲームが始まるまで、どの組 <span class="math notranslate nohighlight">\((x,y)\)</span> が選ばれるかは誰も具体的に知りません。</p>
+<p>アリスとボブは質問を受けたら、次に答えを出さなければなりません。アリスの答えは <span class="math notranslate nohighlight">\(a\)</span> 、ボブの答えは <span class="math notranslate nohighlight">\(b\)</span> です。繰り返しますが、これらは一般に古典状態であり、CHSH ゲームではビットです。</p>
+<p>この時点で審判が判定を下します：アリスとボブは、ある固定されたルールに従って、一組の質問 <span class="math notranslate nohighlight">\((x,y)\)</span> に対して一組の答え <span class="math notranslate nohighlight">\((a,b)\)</span> が正しいとみなされるかどうかで、<em>勝つ</em>か<em>負ける</em>かを決めます。ルールが異なればゲームも異なり、特にCHSHゲームのルールはこの後のセクションで具体的に説明されます。すでに述べられたように、ルールは誰にでも知られています。</p>
+<p>次の図は、相互作用を図式化したものです。</p>
+<p><img alt="Nonlocal game" src="../../_images/nonlocal-game2.png" /></p>
+<p>どの質問が聞かれるかわからないこと、特に各プレイヤーが他のプレイヤーの質問を知らないことが、アリスとボブにとって非局所ゲームを難しいものにしています。</p>
+<p>審判の正確な説明は、非局所ゲームのインスタンスを定義します。これには、質問ペアの確率 <span class="math notranslate nohighlight">\(p(x,y)\)</span> の指定と、質問ペア <span class="math notranslate nohighlight">\((x,y)\)</span> に対して、答えのペア <span class="math notranslate nohighlight">\((a,b)\)</span> が勝つか負けるかを決定するルールが含まれます。</p>
+<p>すぐにCHSHのゲームを見てみますが、他の非局所ゲームを考えてみるのも面白いです。非局所ゲームの中には、今日まで魅力的で謎に包まれているものもあれば、あまり面白くないものもあります。セットアップは単純ですが、複雑な作業が行われています。一部の非局所ゲームでは、アリスとボブの最適またはほぼ最適な戦略を計算することが非常に困難な場合があります。これは、非局所ゲームモデルの魅力的な性質の一部です。</p>
+</section>
+<section id="id19">
+<h3>3.2 CHSH ゲームの説明<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>以下は CHSH ゲームの正確な説明です。ここで (上記のように) <span class="math notranslate nohighlight">\(x\)</span> はアリスの質問、 <span class="math notranslate nohighlight">\(y\)</span> はボブの質問、 <span class="math notranslate nohighlight">\(a\)</span> はアリスの返答、 <span class="math notranslate nohighlight">\(b\)</span> はボブの返答です。</p>
+<ol class="arabic simple">
+<li><p>質問と返答はすべてビットです: <span class="math notranslate nohighlight">\(x,y,a,b\in\{0,1\}\)</span></p></li>
+<li><p>審判は質問 <span class="math notranslate nohighlight">\((x,y)\)</span> を<em>一様に無作為に</em>選びます。つまり、 <span class="math notranslate nohighlight">\((0,0)\)</span> 、 <span class="math notranslate nohighlight">\((0,1)\)</span> 、 <span class="math notranslate nohighlight">\((1,0)\)</span> 、 <span class="math notranslate nohighlight">\((1,1)\)</span> の 4 つの可能性のそれぞれが、確率 <span class="math notranslate nohighlight">\(1/4\)</span> で選択されます。</p></li>
+<li><p>返答 <span class="math notranslate nohighlight">\((a,b)\)</span> は、<span class="math notranslate nohighlight">\(a\oplus b = x\wedge y\)</span> の場合、質問 <span class="math notranslate nohighlight">\((x,y)\)</span> に対して<em>勝ち</em>、それ以外の場合は<em>負けます</em>。次の表は、 <span class="math notranslate nohighlight">\((x,y)\)</span> の質問のペアごとに、 <span class="math notranslate nohighlight">\((a,b)\)</span> の返答の勝敗条件をリスト化し、このルールを表しています。</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p><span class="math notranslate nohighlight">\((x,y)\)</span></p></th>
+<th class="head text-center"><p>勝ち</p></th>
+<th class="head text-center"><p>負け</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\((0,0)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a = b\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a \not= b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\((0,1)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a = b\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a \not= b\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\((1,0)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a = b\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a \not= b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\((1,1)\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a \not= b\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(a = b\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id20">
+<h3>3.3 古典的戦略の限界<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<p>では、CHSHゲームにおけるアリスとボブの戦略を、<em>古典的</em>戦略から考えてみましょう。</p>
+<section id="id21">
+<h4>決定論的戦略<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<p>ここではまず<em>決定論的な</em>戦略から始めます。アリスの返答 <span class="math notranslate nohighlight">\(a\)</span> は彼女が受ける質問 <span class="math notranslate nohighlight">\(x\)</span> の関数であり、同様にボブの返答 <span class="math notranslate nohighlight">\(b\)</span> は彼が受ける質問 <span class="math notranslate nohighlight">\(y\)</span> の関数です。したがって、例えば、質問が <span class="math notranslate nohighlight">\(0\)</span> のときのアリスの返答を <span class="math notranslate nohighlight">\(a(0)\)</span> 、質問が <span class="math notranslate nohighlight">\(1\)</span> のときのアリスの返答を <span class="math notranslate nohighlight">\(a(1)\)</span> と書くことができます。</p>
+<p>どの決定論的戦略も、CHSHゲームに毎回勝つことはできません。このことを説明する1つの方法は、可能な決定論的戦略を1つ1つ調べ、そのどれもが4つの質問ペアのうち少なくとも1つに対して負けることをチェックすることです。アリスとボブはそれぞれ1ビットから1ビットまでの4つの関数 (レッスン 1 で遭遇した) から選ぶことができるので、チェックすべき決定論的戦略は全部で <span class="math notranslate nohighlight">\(16\)</span> 種類になります。</p>
+<p>この事実を分析的に推論することもできます。アリスとボブの戦略が <span class="math notranslate nohighlight">\((x,y) = (0,0)\)</span> のときに勝った場合、それは <span class="math notranslate nohighlight">\(a(0) = b(0)\)</span> でなければなりません。彼らの戦略が  <span class="math notranslate nohighlight">\((x,y) = (0,1)\)</span> で勝った場合、 <span class="math notranslate nohighlight">\(a(0) = b(1)\)</span> と結論付けられます。同様に、戦略が  <span class="math notranslate nohighlight">\((x,y)=(1,0)\)</span> で勝った場合、 <span class="math notranslate nohighlight">\(a(1) = b(0)\)</span> になります。 したがって、彼らの戦略が 3 つの可能性すべてで勝った場合、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+b(1) = a(0) = b(0) = a(1).
+\]</div>
+<p>これは、最後のケース <span class="math notranslate nohighlight">\((x,y) = (1,1)\)</span> でこの戦略が負けることを意味します。勝つには、 <span class="math notranslate nohighlight">\(a(1) \not= b(1)\)</span> が必要だからです。</p>
+<p>したがって、毎回勝つ決定論的な戦略はあり得ません。4つのケースのうち3つのケース ( <span class="math notranslate nohighlight">\(a(0)=a(1)=b(0)=b(1)=0\)</span> など) で勝つ戦略とするのが非常に素直であり、アリスとボブが決定論的戦略を使用して勝つのは最大の確率は <span class="math notranslate nohighlight">\(3/4\)</span> です。</p>
+</section>
+<section id="id22">
+<h4>確率的戦略<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
+<p>今、結論を出したように、アリスとボブは決定論的戦略を用いてCHSHゲームに75％の確率で勝利する以上のことはできないのです。しかし、確率的な戦略ではどうでしょうか。ランダム性を利用することは、アリスとボブのランダムな選択に相関があるような<em>共有ランダム性</em>の可能性も含めて、アリスとボブを助けることができるでしょうか？</p>
+<p>確率論的戦略は、アリスとボブが勝つ確率を高めるのに全く役立たないことが分かります。これは、すべての確率的戦略が、決定論的戦略のランダムな選択と見なすことができるからです。（最初の授業で述べたように）確率的演算が決定論的演算のランダムな選択と見なすことができるのと同じです。平均値が最大値より大きくなることはないので、確率的戦略は全体的な勝率の点では何の利点もないことになります。</p>
+<p>したがって、確率 <span class="math notranslate nohighlight">\(3/4\)</span> で勝つことは、決定論的であれ確率論的であれ、あらゆる古典的戦略を用いてアリスとボブができるベストな確率です。</p>
+</section>
+</section>
+<section id="id23">
+<h3>3.4 CHSH ゲームの戦略<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>ここで、アリスとボブが、<em>量子的な</em>戦略を用いることで、より良い結果を得ることができるのだろうか、という自然な疑問が生じます。特に、次の図のように、エンタングルした量子状態をゲームをする前に共有した場合、勝率を上げることができるでしょうか？</p>
+<p><img alt="Nonlocal game with entanglement" src="../../_images/nonlocal-game-entanglement2.png" /></p>
+<p>答えは「イエス」であり、これがこの例の最大のポイントであり、なぜこれが面白いのか、という点です。では、エンタングルメントを使って、アリスとボブがこのゲームでどのようにうまくやれるか、具体的に見ていきましょう。</p>
+<section id="id24">
+<h4>必要なベクトルと行列<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<p>まず、各実数 <span class="math notranslate nohighlight">\(\theta\)</span> （ラジアン単位で測った角度）に対して、量子ビットの状態ベクトル <span class="math notranslate nohighlight">\(\vert \psi_{\theta}\rangle\)</span> を以下のように定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi_{\theta}\rangle = \cos(\theta)\vert 0\rangle + \sin(\theta) \vert 1\rangle
+\]</div>
+<p>簡単な例を紹介します：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+  \vert\psi_{0}\rangle &amp; = \vert 0\rangle \\
+  \vert\psi_{\pi/2}\rangle &amp; = \vert 1\rangle \\
+  \vert\psi_{\pi/4}\rangle &amp; = \vert + \rangle \\
+  \vert\psi_{-\pi/4}\rangle &amp; = \vert - \rangle
+\end{aligned}
+\end{split}\]</div>
+<p>また、以下のような例もあり、解析すると以下のようになります：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+  \vert\psi_{-\pi/8}\rangle &amp; = \frac{\sqrt{2 + \sqrt{2}}}{2}\vert 0\rangle -\frac{\sqrt{2 - \sqrt{2}}}{2}\vert 1\rangle \\
+  \vert\psi_{\pi/8}\rangle &amp; = \frac{\sqrt{2 + \sqrt{2}}}{2}\vert 0\rangle + \frac{\sqrt{2 - \sqrt{2}}}{2}\vert 1\rangle \\
+  \vert\psi_{3\pi/8}\rangle &amp; = \frac{\sqrt{2 - \sqrt{2}}}{2}\vert 0\rangle -\frac{\sqrt{2 + \sqrt{2}}}{2}\vert 1\rangle \\
+  \vert\psi_{5\pi/8}\rangle &amp; = -\frac{\sqrt{2 - \sqrt{2}}}{2}\vert 0\rangle + \frac{\sqrt{2 + \sqrt{2}}}{2}\vert 1\rangle \\
+\end{aligned}
+\end{split}\]</div>
+<p>一般的な形を見ると、これらのベクトルのうち任意の2つのベクトル間の内積は次のような式になることがわかります：</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \psi_{\alpha} \vert \psi_{\beta} \rangle
+= \cos(\alpha)\cos(\beta) + \sin(\alpha)\sin(\beta)
+= \cos(\alpha-\beta).
+\tag{3}
+\]</div>
+<p>具体的に見ると、これらのベクトルには実数の項目しかないので、複素共役の心配はありません。内積は、余弦の積に正弦の積を加えたものです。そこで、いわゆる<em>加法定理</em>を使って簡略化することができます。この式は、実数の単位ベクトル間の内積を、それらの間の角度の余弦として幾何学的に解釈することを明らかにしています。</p>
+<p>さて、これらのベクトルのうち任意の2つのテンソル積と <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> 状態との内積を計算すると、分母に <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> が入ることを除いて、同様の式が得られます：</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \psi_{\alpha} \otimes \psi_{\beta} \vert \phi^+ \rangle
+= \frac{\cos(\alpha)\cos(\beta) + \sin(\alpha)\sin(\beta)}{\sqrt{2}}
+= \frac{\cos(\alpha-\beta)}{\sqrt{2}}.
+\tag{4}
+\]</div>
+<p>この特定の内積に興味がある理由は、まもなく明らかになりますが、今は単に数式として見ているだけです。</p>
+<p>次に、角度 <span class="math notranslate nohighlight">\(\theta\)</span> ごとにユニタリー行列 <span class="math notranslate nohighlight">\(U_{\theta}\)</span> を次のように定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+U_{\theta} = \vert 0 \rangle \langle \psi_{\theta} \vert + \vert 1\rangle\langle \psi_{\theta+\pi/2} \vert
+\]</div>
+<p>直観的に言えば、演算として、この行列は <span class="math notranslate nohighlight">\(\vert\psi_{\theta}\rangle\)</span> を <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> に、 <span class="math notranslate nohighlight">\(\vert \psi_{\theta + \pi/2}\rangle\)</span> を <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> にマッピングします。これがユニタリー行列であることを確認するために重要なことは、ベクトル <span class="math notranslate nohighlight">\(\vert\psi_{\theta}\rangle\)</span> と <span class="math notranslate nohighlight">\(\vert\psi_{\theta + \pi/2}\rangle\)</span> がすべての角度 <span class="math notranslate nohighlight">\(\theta\)</span> に対して直交することです：</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \psi_{\theta} \vert \psi_{\theta + \pi/2} \rangle = \cos(\pi/2) = 0.
+\]</div>
+<p>したがって、以下のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+U_{\theta} U_{\theta}^{\dagger}
+&amp; = \bigl(\vert 0 \rangle \langle \psi_{\theta} \vert + \vert 1\rangle\langle \psi_{\theta+\pi/2} \vert\bigr)
+\bigl(\vert \psi_{\theta} \rangle \langle 0 \vert + \vert \psi_{\theta+\pi/2}\rangle\langle 1 \vert\bigr) \\
+&amp; =
+\vert 0 \rangle \langle \psi_{\theta} \vert \psi_{\theta} \rangle \langle 0 \vert
++ \vert 0 \rangle \langle \psi_{\theta} \vert \psi_{\theta+\pi/2} \rangle \langle 1 \vert
++ \vert 1 \rangle \langle \psi_{\theta+\pi/2} \vert \psi_{\theta} \rangle \langle 0 \vert
++ \vert 1 \rangle \langle \psi_{\theta+\pi/2} \vert \psi_{\theta+\pi/2} \rangle \langle 1 \vert \\
+&amp; =
+\vert 0 \rangle \langle 0 \vert + \vert 1 \rangle \langle 1 \vert\\
+&amp; = \mathbb{1}.
+\end{aligned}
+\end{split}\]</div>
+<p>別の方法として、この行列を次のように明示的に書くこともできます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U_{\theta}
+= \begin{pmatrix}
+\cos(\theta) &amp; \sin(\theta)\\
+\cos(\theta+ \pi/2) &amp; \sin(\theta + \pi/2)
+\end{pmatrix}
+= \begin{pmatrix}
+\cos(\theta) &amp; \sin(\theta)\\
+-\sin(\theta) &amp; \cos(\theta)
+\end{pmatrix}.
+\end{split}\]</div>
+<p>これは回転行列の例で、具体的には実数の要素を持つ2次元ベクトルを原点を中心に <span class="math notranslate nohighlight">\(-\theta\)</span> の角度で回転させます。さまざまな式の回転の名前付けとパラメーター化の標準的な規則に従うと、以下のような <span class="math notranslate nohighlight">\(U_{\theta} = R_y(-2\theta)\)</span> が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+R_y(\theta) = \begin{pmatrix}
+\cos(\theta/2) &amp; -\sin(\theta/2)\\
+\sin(\theta/2) &amp; \cos(\theta/2)
+\end{pmatrix}.
+\end{split}\]</div>
+</section>
+<section id="id25">
+<h4>戦略の説明<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<p>これで、量子的な戦略について説明できます。</p>
+<ul>
+<li><p>アリスとボブは、eビットを共有してゲームを開始します: アリスは量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を保持し、ボブは量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を保持し、 <span class="math notranslate nohighlight">\(\vert\psi^+\rangle\)</span> 状態にある2つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span> を共に持ちます。</p></li>
+<li><p>アリスの動作は次のとおりです：</p>
+<ul class="simple">
+<li><p>彼女の質問が <span class="math notranslate nohighlight">\(x=0\)</span> の場合、彼女は <span class="math notranslate nohighlight">\(U_{0}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に適用します。</p></li>
+<li><p>彼女の質問が <span class="math notranslate nohighlight">\(x=1\)</span> の場合、彼女は <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に適用します。</p></li>
+</ul>
+<p>アリスが <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に対して実行する演算は、代わりに次のように記述できます：<br />
+$<span class="math notranslate nohighlight">\(
+\begin{cases}
+U_0 &amp; \text{if \)</span>x = 0<span class="math notranslate nohighlight">\(}\\
+U_{\pi/4} &amp; \text{if \)</span>x = 1<span class="math notranslate nohighlight">\(}
+\end{cases}
+\)</span><span class="math notranslate nohighlight">\(
+  この演算を適用した後、彼女は \)</span>\mathsf{A}<span class="math notranslate nohighlight">\( を標準基底で測定し、測定結果を返答 \)</span>a$ に設定します。</p>
+</li>
+<li><p>ボブの動作は次のとおりです：</p>
+<ul class="simple">
+<li><p>彼の質問が <span class="math notranslate nohighlight">\(y=0\)</span> の場合、彼は <span class="math notranslate nohighlight">\(U_{\pi/8}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用します。</p></li>
+<li><p>彼の質問が <span class="math notranslate nohighlight">\(y=1\)</span> の場合、彼は <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用します。</p></li>
+</ul>
+<p>アリスの場合と同様に、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に対するボブの演算を次のように記述できます：
+$<span class="math notranslate nohighlight">\(
+\begin{cases}
+U_{\pi/8} &amp; \text{if \)</span>y = 0<span class="math notranslate nohighlight">\(}\\
+U_{-\pi/8} &amp; \text{if \)</span>y = 1<span class="math notranslate nohighlight">\(}
+\end{cases}
+\)</span>$</p>
+<p>この演算を適用した後、標準基底で <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を測定し、測定結果を返答 <span class="math notranslate nohighlight">\(b\)</span> に設定します。</p>
+</li>
+</ul>
+<p>この戦略の量子回路図を次に示します：</p>
+<p><img alt="CHSH game circuit" src="../../_images/CHSH.png" /></p>
+<p>この図には、2つの一般の制御ゲートがあります。1つは上にある <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> のもので、もう1つは下にある <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> のものです。 また、制御ゲートのような別のゲートも2つあります。上側の <span class="math notranslate nohighlight">\(U_{\pi/8}\)</span> のものと、下側の <span class="math notranslate nohighlight">\(U_{0}\)</span> のものですが、制御を表す丸が塗りつぶされていません。このゲートは、制御ビットが <span class="math notranslate nohighlight">\(0\)</span> の場合に実行されます (通常の制御ゲートのように <span class="math notranslate nohighlight">\(1\)</span> の場合に実行されるのではなく)。したがって、ボブは、 <span class="math notranslate nohighlight">\(y=0\)</span> の場合は自分の量子ビットに <span class="math notranslate nohighlight">\(U_{\pi/8}\)</span> を実行し、 <span class="math notranslate nohighlight">\(y=1\)</span> の場合は <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> を実行します。アリスは、 <span class="math notranslate nohighlight">\(x=0\)</span> の場合に自分の量子ビットに <span class="math notranslate nohighlight">\(U_0\)</span> を実行し、 <span class="math notranslate nohighlight">\(x=1\)</span> の場合は <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> を実行します。以上の動きは、上記のプロトコルの説明と一致しています。</p>
+<p>アリスとボブに対するこの戦略がどの程度うまく機能するかは、まだ解明されていません。これを行うために、4種類の質問のペアを個別に調べてみることにします。</p>
+<!-- ::: q-block.tabs -->
+</section>
+</section>
+<section id="id26">
+<h3>ケースバイケース分析<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
+<!-- ::: tab -->
+</section>
+<section id="id27">
+<h3>(0,0)<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<p>ケース 1:  <span class="math notranslate nohighlight">\((x,y) = (0,0)\)</span> の場合</p>
+<p>この場合、アリスは自分の量子ビットで <span class="math notranslate nohighlight">\(U_{0}\)</span> を実行し、ボブは自分の量子ビットで <span class="math notranslate nohighlight">\(U_{\pi/8}\)</span> を実行するため、彼らが演算を実行した後は、2つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の状態は、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\bigl(U_0 \otimes U_{\pi/8}\bigr) \vert \phi^+\rangle
+&amp; =
+\vert 00 \rangle \langle \psi_0 \otimes \psi_{\pi/8}\vert \phi^+\rangle
++ \vert 01 \rangle \langle \psi_0 \otimes\psi_{5\pi/8}\vert \phi^+\rangle \\
+&amp; \qquad + \vert 10 \rangle \langle \psi_{\pi/2} \otimes \psi_{\pi/8}\vert \phi^+\rangle
++ \vert 11 \rangle \langle \psi_{\pi/2} \otimes \psi_{5\pi/8}\vert \phi^+\rangle\\[1mm]
+&amp; = \frac{
+    \cos\bigl(-\frac{\pi}{8}\bigr) \vert 00\rangle
+  + \cos\bigl(-\frac{5\pi}{8}\bigr) \vert 01\rangle
+  + \cos\bigl(\frac{3\pi}{8}\bigr) \vert 10\rangle
+  + \cos\bigl(-\frac{\pi}{8}\bigr) \vert 11\rangle}{\sqrt{2}}.
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、4つの返答のペア <span class="math notranslate nohighlight">\((a,b)\)</span> の確率は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}\bigl((a,b)=(0,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(-\frac{\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8} \\
+\operatorname{Pr}\bigl((a,b)=(0,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(-\frac{5\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{3\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(-\frac{\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8}
+\end{aligned}
+\end{split}\]</div>
+<p>このとき、 <span class="math notranslate nohighlight">\(a=b\)</span> と <span class="math notranslate nohighlight">\(a\not=b\)</span> の確率は、適当な和をとることで得られます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}(a = b) &amp; = \frac{2 + \sqrt{2}}{4}\\
+\operatorname{Pr}(a \not= b) &amp; = \frac{2 - \sqrt{2}}{4}
+\end{aligned}
+\end{split}\]</div>
+<p>質問のペア <span class="math notranslate nohighlight">\((0,0)\)</span> に対して、アリスとボブは <span class="math notranslate nohighlight">\(a=b\)</span> のときに勝つので、この場合、勝つ確率は、以下です。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{2 + \sqrt{2}}{4}.
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id28">
+<h3>(0, 1)<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<p>ケース 2:  <span class="math notranslate nohighlight">\((x,y) = (0,1)\)</span> の場合</p>
+<p>この場合、アリスは自分の量子ビットで <span class="math notranslate nohighlight">\(U_{0}\)</span> を実行し、ボブは自分の量子ビットで <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> を実行するため、彼らが演算を実行した後は、2つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の状態は、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\bigl(U_0 \otimes U_{-\pi/8}\bigr) \vert \phi^+\rangle
+&amp; =
+\vert 00 \rangle \langle \psi_0 \otimes \psi_{-\pi/8}\vert \phi^+\rangle
++ \vert 01 \rangle \langle \psi_0 \otimes\psi_{3\pi/8}\vert \phi^+\rangle \\
+&amp; \qquad + \vert 10 \rangle \langle \psi_{\pi/2} \otimes \psi_{-\pi/8}\vert \phi^+\rangle
++ \vert 11 \rangle \langle \psi_{\pi/2} \otimes \psi_{3\pi/8}\vert \phi^+\rangle\\[1mm]
+&amp; = \frac{
+    \cos\bigl(\frac{\pi}{8}\bigr) \vert 00\rangle
+  + \cos\bigl(-\frac{3\pi}{8}\bigr) \vert 01\rangle
+  + \cos\bigl(\frac{5\pi}{8}\bigr) \vert 10\rangle
+  + \cos\bigl(\frac{\pi}{8}\bigr) \vert 11\rangle}{\sqrt{2}}.
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、4つの返答のペア <span class="math notranslate nohighlight">\((a,b)\)</span> の確率は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}\bigl((a,b)=(0,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8} \\
+\operatorname{Pr}\bigl((a,b)=(0,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(-\frac{3\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{5\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8}
+\end{aligned}
+\end{split}\]</div>
+<p>前回と同じように、 <span class="math notranslate nohighlight">\(a=b\)</span> と <span class="math notranslate nohighlight">\(a\not=b\)</span> の確率は、適当な和をとることで得られます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}(a = b) &amp; = \frac{2 + \sqrt{2}}{4}\\
+\operatorname{Pr}(a \not= b) &amp; = \frac{2 - \sqrt{2}}{4}
+\end{aligned}
+\end{split}\]</div>
+<p>質問のペア <span class="math notranslate nohighlight">\((0,1)\)</span> に対して、アリスとボブは <span class="math notranslate nohighlight">\(a=b\)</span> のときに勝つので、この場合、勝つ確率は、以下です。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{2 + \sqrt{2}}{4}.
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id29">
+<h3>(1, 0)<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<p>ケース 3:  <span class="math notranslate nohighlight">\((x,y) = (1,0)\)</span> の場合</p>
+<p>この場合、アリスは自分の量子ビットで <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> を実行し、ボブは自分の量子ビットで <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> を実行するため、彼らが演算を実行した後は、2つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の状態は、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\bigl(U_{\pi/4} \otimes U_{\pi/8}\bigr) \vert \phi^+\rangle
+&amp; =
+\vert 00 \rangle \langle \psi_{\pi/4} \otimes \psi_{\pi/8}\vert \phi^+\rangle
++ \vert 01 \rangle \langle \psi_{\pi/4} \otimes\psi_{5\pi/8}\vert \phi^+\rangle \\
+&amp; \qquad + \vert 10 \rangle \langle \psi_{3\pi/4} \otimes \psi_{\pi/8}\vert \phi^+\rangle
++ \vert 11 \rangle \langle \psi_{3\pi/4} \otimes \psi_{5\pi/8}\vert \phi^+\rangle\\[1mm]
+&amp; = \frac{
+    \cos\bigl(\frac{\pi}{8}\bigr) \vert 00\rangle
+  + \cos\bigl(-\frac{3\pi}{8}\bigr) \vert 01\rangle
+  + \cos\bigl(\frac{5\pi}{8}\bigr) \vert 10\rangle
+  + \cos\bigl(\frac{\pi}{8}\bigr) \vert 11\rangle}{\sqrt{2}}.
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、4つの返答のペア <span class="math notranslate nohighlight">\((a,b)\)</span> の確率は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}\bigl((a,b)=(0,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8} \\
+\operatorname{Pr}\bigl((a,b)=(0,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(-\frac{3\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{5\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8}
+\end{aligned}
+\end{split}\]</div>
+<p>前回と同じように、 <span class="math notranslate nohighlight">\(a=b\)</span> と <span class="math notranslate nohighlight">\(a\not=b\)</span> の確率は、適当な和をとることで得られます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}(a = b) &amp; = \frac{2 + \sqrt{2}}{4}\\
+\operatorname{Pr}(a \not= b) &amp; = \frac{2 - \sqrt{2}}{4}
+\end{aligned}
+\end{split}\]</div>
+<p>質問のペア <span class="math notranslate nohighlight">\((1,0)\)</span> に対して、アリスとボブは <span class="math notranslate nohighlight">\(a=b\)</span> のときに勝つので、この場合、勝つ確率は、以下です。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{2 + \sqrt{2}}{4}.
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id30">
+<h3>(1, 1)<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<p>ケース 4:  <span class="math notranslate nohighlight">\((x,y) = (1,1)\)</span> の場合</p>
+<p>最後のケースは、この場合、勝利条件が異なるので、予想通り、ちょっと違います。 <span class="math notranslate nohighlight">\(x\)</span> と <span class="math notranslate nohighlight">\(y\)</span> がともに <span class="math notranslate nohighlight">\(1\)</span> のとき、 <span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> が<em>異なる</em>とき、アリスとボブは勝利します。この場合、アリスは自分の量子ビットに <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> を、ボブは自分の量子ビットに <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> の演算を行うので、彼らが演算を実行した後は、2つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の状態は、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\bigl(U_{\pi/4} \otimes U_{-\pi/8}\bigr) \vert \phi^+\rangle
+&amp;amp; =
+\vert 00 \rangle \langle \psi_{\pi/4} \otimes \psi_{-\pi/8}\vert \phi^+\rangle
++ \vert 01 \rangle \langle \psi_{\pi/4} \otimes\psi_{3\pi/8}\vert \phi^+\rangle \\
+&amp;amp; \qquad + \vert 10 \rangle \langle \psi_{3\pi/4} \otimes \psi_{-\pi/8}\vert \phi^+\rangle
++ \vert 11 \rangle \langle \psi_{3\pi/4} \otimes \psi_{3\pi/8}\vert \phi^+\rangle\\[1mm]
+&amp;amp; = \frac{
+    \cos\bigl(\frac{3\pi}{8}\bigr) \vert 00\rangle
+  + \cos\bigl(-\frac{\pi}{8}\bigr) \vert 01\rangle
+  + \cos\bigl(\frac{7\pi}{8}\bigr) \vert 10\rangle
+  + \cos\bigl(\frac{3\pi}{8}\bigr) \vert 11\rangle}{\sqrt{2}}.
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、4つの返答のペア <span class="math notranslate nohighlight">\((a,b)\)</span> の確率は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}\bigl((a,b)=(0,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{3\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8} \\
+\operatorname{Pr}\bigl((a,b)=(0,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(-\frac{\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,0)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{7\pi}{8}\Bigr) = \frac{2+\sqrt{2}}{8}\\
+\operatorname{Pr}\bigl((a,b)=(1,1)\bigr) &amp; = \frac{1}{2}\cos^2\Bigl(\frac{3\pi}{8}\Bigr) = \frac{2-\sqrt{2}}{8}
+\end{aligned}
+\end{split}\]</div>
+<p>この他の3つのケースと確率が事実上入れ替わっています。 <span class="math notranslate nohighlight">\(a=b\)</span> と <span class="math notranslate nohighlight">\(a\not=b\)</span> の確率は、合計することで得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}(a = b) &amp; = \frac{2 - \sqrt{2}}{4}\\
+\operatorname{Pr}(a \not= b) &amp; = \frac{2 + \sqrt{2}}{4}
+\end{aligned}
+\end{split}\]</div>
+<p>質問のペア <span class="math notranslate nohighlight">\((1,1)\)</span> に対して、アリスとボブは <span class="math notranslate nohighlight">\(a\not=b\)</span> のときに勝つので、この場合、勝つ確率は、以下です。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{2 + \sqrt{2}}{4}.
+\]</div>
+<!-- ::: -->
+<!-- ::: -->
+<p>どのケースでも同じ確率で勝ちます。</p>
+<div class="math notranslate nohighlight">
+\[
+  \frac{2 + \sqrt{2}}{4} \approx 0.85.
+\]</div>
+<p>したがって、これが全体として勝利する確率となります。これは、古典的な戦略よりもはるかに優れています；古典的な戦略の勝利確率の上限は <span class="math notranslate nohighlight">\(3/4\)</span> でした。これは非常に興味深い例です。</p>
+<p>この確率は、量子的な戦略にとって最適な勝率であり、どんなエンタングル状態や測定法を選んでも、これ以上の勝率は得られないのです。この事実は<em>ツィレルソンの不等式</em>と呼ばれ、最初にこれを証明したボリス・ツィレルソンにちなんで名づけられたものです。ツィレルソンは、CHSH実験をゲームとして最初に説明した人物でもあります。</p>
+<section id="id31">
+<h4>幾何学的描像<a class="headerlink" href="#id31" title="Link to this heading">#</a></h4>
+<p>上記の戦略を幾何学的に考えることが可能であり、アリスとボブの演算に選ばれた様々な角度の関係を理解するのに役立つかもしれません。</p>
+<p>アリスが実際に行うことは、質問 <span class="math notranslate nohighlight">\(x\)</span> によって角度 <span class="math notranslate nohighlight">\(\alpha\)</span> を選び、 <span class="math notranslate nohighlight">\(U_{\alpha}\)</span> を自分の量子ビットに適用して測定することです。同様に、ボブは <span class="math notranslate nohighlight">\(y\)</span> によって角度 <span class="math notranslate nohighlight">\(\beta\)</span> を選び、 <span class="math notranslate nohighlight">\(U_{\beta}\)</span> を自分の量子ビットに適用して測定します。 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> は以下のように選びました。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\alpha &amp; = \begin{cases}
+0 &amp; x=0\\
+\pi/4 &amp; x=1
+\end{cases}\\[2mm]
+\beta &amp; = \begin{cases}
+\pi/8 &amp; y = 0\\
+-\pi/8 &amp; y = 1.
+\end{cases}
+\end{aligned}
+\end{split}\]</div>
+<p>しかし、とりあえず、 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> は任意とします。アリスは <span class="math notranslate nohighlight">\(\alpha\)</span> を選ぶことで、事実上次のようなベクトルの正規直交基底を定義しています：</p>
+<p><img alt="Basis for Alice" src="../../_images/alpha-basis.png" /></p>
+<p>ボブも同様ですが、彼の角度は <span class="math notranslate nohighlight">\(\beta\)</span> です:</p>
+<p><img alt="Basis for Bob" src="../../_images/beta-basis.png" /></p>
+<p>ベクトルの色はアリスとボブの答えに対応しており、青が <span class="math notranslate nohighlight">\(0\)</span> 、赤が <span class="math notranslate nohighlight">\(1\)</span> です。</p>
+<p>さて、( <span class="math notranslate nohighlight">\(3\)</span> )と( <span class="math notranslate nohighlight">\(4\)</span> )を組み合わせると、次のような式になります。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \psi_{\alpha} \otimes\psi_{\beta} \vert \phi^+ \rangle
+= \frac{1}{\sqrt{2}} \langle \psi_{\alpha} \vert \psi_{\beta} \rangle;
+\]</div>
+<p>これは、すべての実数 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> に当てはまります。</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> を変数として、上記と同じ類の分析に従うと、次のことがわかります：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{aligned}
+  &amp; \bigl(U_{\alpha} \otimes U_{\beta}\bigr) \vert \phi^+\rangle\\
+  &amp; \qquad =
+    \vert 00 \rangle \langle \psi_{\alpha} \otimes \psi_{\beta}\vert \phi^+\rangle
+    + \vert 01 \rangle \langle \psi_{\alpha} \otimes\psi_{\beta + \pi/2}\vert \phi^+\rangle \\
+  &amp; \qquad \qquad + \vert 10 \rangle \langle \psi_{\alpha+\pi/2} \otimes \psi_{\beta}\vert \phi^+\rangle
+    + \vert 11 \rangle \langle \psi_{\alpha+\pi/2} \otimes \psi_{\beta+\pi/2}\vert \phi^+\rangle\\[1mm]
+  &amp; \qquad = \frac{
+        \langle \psi_\alpha \vert \psi_\beta \rangle \vert 00\rangle
+      + \langle \psi_\alpha \vert \psi_{\beta+\pi/2} \rangle \vert 01\rangle
+      + \langle \psi_{\alpha+\pi/2} \vert \psi_\beta \rangle \vert 10\rangle
+      + \langle \psi_{\alpha+\pi/2} \vert \psi_{\beta+\pi/2} \rangle \vert 11\rangle
+      }{\sqrt{2}}.
+  \end{aligned}
+\end{split}\]</div>
+<p>そして、次の2つの公式が結論づけられます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Pr}(a = b)  &amp; = \frac{1}{2} \vert \langle \psi_\alpha \vert \psi_\beta \rangle \vert^2
++ \frac{1}{2} \vert \langle \psi_{\alpha+\pi/2} \vert \psi_{\beta+\pi/2} \rangle \vert^2
+= \cos^2(\alpha - \beta)\\[2mm]
+\operatorname{Pr}(a \not= b) &amp; = \frac{1}{2} \vert \langle \psi_\alpha \vert \psi_{\beta+\pi/2} \rangle \vert^2
++ \frac{1}{2} \vert \langle \psi_{\alpha+\pi/2} \vert \psi_\beta \rangle \vert^2
+= \sin^2(\alpha - \beta).
+\end{aligned}
+\end{split}\]</div>
+<p>アリスとボブが選んだ基底を重ね合わせることをイメージすれば、この式と上の図を結びつけることができます。</p>
+<!-- ::: q-block.tabs -->
+</section>
+</section>
+<section id="id32">
+<h3>戦略を探る<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<!-- ::: tab -->
+</section>
+<section id="id33">
+<h3>(0, 0)<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\((x,y) = (0,0)\)</span> のとき、アリスとボブは <span class="math notranslate nohighlight">\(\alpha = 0\)</span> と <span class="math notranslate nohighlight">\(\beta = \pi/8\)</span> を選び、それらの基底を重ね合わせることで、次の図が得られます：</p>
+<p><img alt="Alice and Bob bases case 1" src="../../_images/strategy-00.png" /></p>
+<p>赤いベクトルの間の角度は <span class="math notranslate nohighlight">\(\pi/8\)</span> であり、これは2つの青いベクトルの間の角度と同じです。アリスとボブの結果が一致する確率は、この角度の余弦二乗です。</p>
+<div class="math notranslate nohighlight">
+\[
+\cos^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2 + \sqrt{2}}{4},
+\]</div>
+<p>一方、返答が一致しない確率はこの角度の正弦二乗です。</p>
+<div class="math notranslate nohighlight">
+\[
+\sin^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2 - \sqrt{2}}{4}
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id34">
+<h3>(0, 1)<a class="headerlink" href="#id34" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\((x,y) = (0,1)\)</span> のとき、アリスとボブは <span class="math notranslate nohighlight">\(\alpha = 0\)</span> と <span class="math notranslate nohighlight">\(\beta = -\pi/8\)</span> を選び、それらの基底を重ね合わせることで、次の図が得られます：</p>
+<p><img alt="Alice and Bob bases case 1" src="../../_images/strategy-01.png" /></p>
+<p>赤いベクトルの間の角度は同じく <span class="math notranslate nohighlight">\(\pi/8\)</span> であり、これは2つの青いベクトルの間の角度と同じです。アリスとボブの結果が一致する確率は、やはりこの角度の余弦二乗です。</p>
+<div class="math notranslate nohighlight">
+\[
+\cos^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2 + \sqrt{2}}{4},
+\]</div>
+<p>一方、返答が一致しない確率はこの角度の正弦二乗です。</p>
+<div class="math notranslate nohighlight">
+\[
+\sin^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2 - \sqrt{2}}{4}.
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id35">
+<h3>(1, 0)<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\((x,y) = (1,0)\)</span> のとき、アリスとボブは <span class="math notranslate nohighlight">\(\alpha = \pi/4\)</span> と <span class="math notranslate nohighlight">\(\beta = \pi/8\)</span> を選び、それらの基底を重ね合わせることで、次の図が得られます：</p>
+<p><img alt="Alice and Bob bases case 1" src="../../_images/strategy-10.png" /></p>
+<p>基底は変わりましたが、角度は変わっていません。先程と同じように、同じ色のベクトル間の角度は <span class="math notranslate nohighlight">\(\pi/8\)</span> です。アリスとボブの結果が一致する確率は</p>
+<div class="math notranslate nohighlight">
+\[
+\cos^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2 + \sqrt{2}}{4}
+\]</div>
+<p>一方、返答が一致しない確率は、</p>
+<div class="math notranslate nohighlight">
+\[
+\sin^2\Bigl(\frac{\pi}{8}\Bigr) = \frac{2 - \sqrt{2}}{4}
+\]</div>
+<!-- ::: tab -->
+</section>
+<section id="id36">
+<h3>(1, 1)<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\((x,y) = (1,1)\)</span> のとき、アリスとボブは <span class="math notranslate nohighlight">\(\alpha = \pi/4\)</span> と <span class="math notranslate nohighlight">\(\beta = -\pi/8\)</span> を選び、それらの基底を重ね合わせることで、何か違うことが起きているのがわかります：</p>
+<p><img alt="Alice and Bob bases case 1" src="../../_images/strategy-11.png" /></p>
+<p>角度を選んだのですが、今回は同じ色のベクトル同士の角度は <span class="math notranslate nohighlight">\(\pi/8\)</span> ではなく <span class="math notranslate nohighlight">\(3\pi/8\)</span> です。アリスとボブの結果が一致する確率は、この角度の余弦二乗ですが、今回の値は</p>
+<div class="math notranslate nohighlight">
+\[
+\cos^2\Bigl(\frac{3\pi}{8}\Bigr) = \frac{2 - \sqrt{2}}{4}.
+\]</div>
+<p>返答が一致しない確率は、この角度の正弦二乗であり、この場合：</p>
+<div class="math notranslate nohighlight">
+\[
+\sin^2\Bigl(\frac{3\pi}{8}\Bigr) = \frac{2 + \sqrt{2}}{4}.
+\]</div>
+<!-- ::: -->
+<!-- ::: --></section>
+<section id="id37">
+<h3>3.5 備考<a class="headerlink" href="#id37" title="Link to this heading">#</a></h3>
+<p>CHSHゲームのように、エンタングルメントによって古典的な記述とは矛盾する統計的な結果が得られるという実験の基本的な考え方は、ベル状態の名付け親であるジョン・ベルによるものです。このため、この種の実験はよく<em>ベルテスト</em>と呼ばれます。また、<em>ベルの定理</em>と呼ばれることもありますが、これは様々な形で定式化されており、その本質は、量子力学はいわゆる<em>局所隠れ変数理論</em>とは相容れないというものです。CHSHゲームは、ベルテストの非常に優れたきれいな例であり、ベルの定理の証明、あるいは実証と見なすことができます。</p>
+<p>CHSHゲームは、量子情報理論が正確な理論であることを実験的に検証するための一つの方法です。CHSHゲームを実装し、上述のエンタングルメントに基づく戦略を検証する実験が可能です。エンタングルメントを説明するために私たちが思いつく、時に曖昧で詩的な方法とは異なり、CHSHゲームはエンタングルメントを<em>観察</em>するための具体的でテストすることの可能な方法を私たちに与えてくれるのです。2022年のノーベル物理学賞は、この分野の重要性が認められました：アラン・アスペクト、ジョン・クラウザー（CHSHのC）、アントン・ザイリンガーが、エンタングルした光子のベルテストによって、エンタングルメントを観測したことについて受賞しました。</p>
+</section>
+<section id="id38">
+<h3>3.6 Qiskit での実装<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Required imports</span>
+
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit_aer.primitives</span> <span class="kn">import</span> <span class="n">Sampler</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">randint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記で定義した量子的な戦略でCHSHゲームをQiskitで実装すると、以下のようになります。</p>
+<p>まず、これはゲーム自体の定義です。引数として任意の戦略を入れることができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">chsh_game</span><span class="p">(</span><span class="n">strategy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plays the CHSH game</span>
+<span class="sd">    Args:</span>
+<span class="sd">        strategy (callable): A function that takes two bits (as `int`s) and</span>
+<span class="sd">            returns two bits (also as `int`s). The strategy must follow the</span>
+<span class="sd">            rules of the CHSH game.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        int: 1 for a win, 0 for a loss.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Referee chooses x and y randomly</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Use strategy to choose a and b</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">strategy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Referee decides if Alice and Bob win or lose</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>  <span class="c1"># Win</span>
+    <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># Lose</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>では、アリスとボブの質問に応じた回路を出力する関数を作成します。簡単のために量子ビットの名前はデフォルトのままとし、アリスとボブの行動には組み込みの <span class="math notranslate nohighlight">\(R_y(\theta)\)</span> ゲートを使うことにします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">chsh_circuit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a `QuantumCircuit` that implements the best CHSH strategy.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Alice&#39;s bit (must be 0 or 1)</span>
+<span class="sd">        y (int): Bob&#39;s bit (must be 0 or 1)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        QuantumCircuit: Circuit that, when run, returns Alice and Bob&#39;s</span>
+<span class="sd">            answer bits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+    <span class="c1"># Alice</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="o">-</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Bob</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="o">-</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">qc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>どの質問が尋ねられるかに応じて、次の 4 つの回路が考えられます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw the four possible circuits</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (0,0)&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (0,1)&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (1,0)&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (1,1)&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(x,y) = (0,0)
+</pre></div>
+</div>
+<img alt="../../_images/7b9806311e071b9a8390b766f8d0638a017d5230dae99fbad2e6db3961f8707b.png" src="../../_images/7b9806311e071b9a8390b766f8d0638a017d5230dae99fbad2e6db3961f8707b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(x,y) = (0,1)
+</pre></div>
+</div>
+<img alt="../../_images/33dfc7b4d1b583c09070f2f91772fb0253c9127a943e4c2ed1669005bce665a7.png" src="../../_images/33dfc7b4d1b583c09070f2f91772fb0253c9127a943e4c2ed1669005bce665a7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(x,y) = (1,0)
+</pre></div>
+</div>
+<img alt="../../_images/ced3372e7c61a220fe655dd9941d9000b46373862f6b5d687f2413348d227b7d.png" src="../../_images/ced3372e7c61a220fe655dd9941d9000b46373862f6b5d687f2413348d227b7d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(x,y) = (1,1)
+</pre></div>
+</div>
+<img alt="../../_images/fb8539b662ec384edb6f17d8555cfef80c34b0f22e2295a7a8eb5ffdcf8932e6.png" src="../../_images/fb8539b662ec384edb6f17d8555cfef80c34b0f22e2295a7a8eb5ffdcf8932e6.png" />
+</div>
+</div>
+<p>ここで、Aer シミュレーターを使用して特定の入力ペア <span class="math notranslate nohighlight">\((x,y)\)</span> に対して回路を 1 回実行する ジョブを作成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">quantum_strategy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carry out the best strategy for the CHSH game.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Alice&#39;s bit (must be 0 or 1)</span>
+<span class="sd">        y (int): Bob&#39;s bit (must be 0 or 1)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (int, int): Alice and Bob&#39;s answer bits (respectively)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># `shots=1` runs the circuit once</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="n">statistics</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">quasi_dists</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">binary_probabilities</span><span class="p">()</span>
+    <span class="n">bits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">bits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>最後に、ゲームを 1,000 回プレイし、この戦略が勝つ割合を計算します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_GAMES</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">TOTAL_SCORE</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_GAMES</span><span class="p">):</span>
+    <span class="n">TOTAL_SCORE</span> <span class="o">+=</span> <span class="n">chsh_game</span><span class="p">(</span><span class="n">quantum_strategy</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fraction of games won:&quot;</span><span class="p">,</span> <span class="n">TOTAL_SCORE</span> <span class="o">/</span> <span class="n">NUM_GAMES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fraction of games won: 0.847
+</pre></div>
+</div>
+</div>
+</div>
+<p>また、古典的な戦略を定義し、それがどれほどうまく機能するかを確認することもできます。コードを自由に変更して、さまざまな戦略を試してみてください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">classical_strategy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An optimal classical strategy for the CHSH game</span>
+<span class="sd">    Args:</span>
+<span class="sd">        x (int): Alice&#39;s bit (must be 0 or 1)</span>
+<span class="sd">        y (int): Bob&#39;s bit (must be 0 or 1)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (int, int): Alice and Bob&#39;s answer bits (respectively)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Alice&#39;s answer</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># Bob&#39;s answer</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>もう一度、ゲームを 1,000 回プレイして、どれだけうまく機能するか見てみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NUM_GAMES</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">TOTAL_SCORE</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_GAMES</span><span class="p">):</span>
+    <span class="n">TOTAL_SCORE</span> <span class="o">+=</span> <span class="n">chsh_game</span><span class="p">(</span><span class="n">classical_strategy</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fraction of games won:&quot;</span><span class="p">,</span> <span class="n">TOTAL_SCORE</span> <span class="o">/</span> <span class="n">NUM_GAMES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fraction of games won: 0.729
+</pre></div>
+</div>
+</div>
+</div>
+<p>ランダム性はありますが、1,000回実行しても統計が大きくずれることはほとんどありません。量子的な戦略では約85％の確率で勝利し、古典戦略では約75％以上の確率で勝利することはできません。</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/basics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">はじめに</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">アリスとボブ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">リソースとしてのエンタングルメント</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. テレポーテーション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">1.1 プロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">1.2 分析</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">考えられる結果</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">00</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">01</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">10</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">11</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">1.3 さらなる議論</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">1.4 Qiskit での実装</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2. 超密度符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">2.1 プロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">2.2 分析</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">2.3 Qiskit での実装</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chsh">3. CHSHゲーム</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.1 非局所ゲーム</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">3.2 CHSH ゲームの説明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3.3 古典的戦略の限界</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">決定論的戦略</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">確率的戦略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">3.4 CHSH ゲームの戦略</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">必要なベクトルと行列</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">戦略の説明</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">ケースバイケース分析</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">(0,0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">(0, 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">(1, 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">(1, 1)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">幾何学的描像</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">戦略を探る</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">(0, 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">(0, 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">(1, 0)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">(1, 1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">3.5 備考</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">3.6 Qiskit での実装</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
