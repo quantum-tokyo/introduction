@@ -178,9 +178,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">Qiskitテキストブック 日本語版</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">新版 Qiskitテキストブック 日本語版 (Qiskitコース)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
@@ -1233,22 +1233,23 @@ R_y(\theta) = \begin{pmatrix}
 <section id="id25">
 <h4>戦略の説明<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
 <p>これで、量子的な戦略について説明できます。</p>
-<ul>
+<ul class="simple">
 <li><p>アリスとボブは、eビットを共有してゲームを開始します: アリスは量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を保持し、ボブは量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を保持し、 <span class="math notranslate nohighlight">\(\vert\psi^+\rangle\)</span> 状態にある2つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span> を共に持ちます。</p></li>
 <li><p>アリスの動作は次のとおりです：</p>
-<ul class="simple">
+<ul>
 <li><p>彼女の質問が <span class="math notranslate nohighlight">\(x=0\)</span> の場合、彼女は <span class="math notranslate nohighlight">\(U_{0}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に適用します。</p></li>
 <li><p>彼女の質問が <span class="math notranslate nohighlight">\(x=1\)</span> の場合、彼女は <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に適用します。</p></li>
 </ul>
-<p>アリスが <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に対して実行する演算は、代わりに次のように記述できます：<br />
-$<span class="math notranslate nohighlight">\(
-\begin{cases}
-U_0 &amp; \text{if x = 0}\\
-U_{\pi/4} &amp; \text{if x = 1}
-\end{cases}
-\)</span>$</p>
 </li>
 </ul>
+<p>アリスが <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に対して実行する演算は、代わりに次のように記述できます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+  U_0 &amp; \text{if x = 0}\\
+  U_{\pi/4} &amp; \text{if x = 1}
+\end{cases}
+\end{split}\]</div>
 <p>この演算を適用した後、彼女は <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を標準基底で測定し、測定結果を返答 <span class="math notranslate nohighlight">\(a\)</span> に設定します。</p>
 <ul class="simple">
 <li><p>ボブの動作は次のとおりです：</p>
