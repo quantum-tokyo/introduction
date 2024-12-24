@@ -1246,24 +1246,27 @@ $<span class="math notranslate nohighlight">\(
 U_0 &amp; \text{if x = 0}\\
 U_{\pi/4} &amp; \text{if x = 1}
 \end{cases}
-\)</span><span class="math notranslate nohighlight">\(
-  この演算を適用した後、彼女は \)</span>\mathsf{A}<span class="math notranslate nohighlight">\( を標準基底で測定し、測定結果を返答 \)</span>a$ に設定します。</p>
+\)</span>$</p>
 </li>
-<li><p>ボブの動作は次のとおりです：</p>
+</ul>
+<p>この演算を適用した後、彼女は <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を標準基底で測定し、測定結果を返答 <span class="math notranslate nohighlight">\(a\)</span> に設定します。</p>
 <ul class="simple">
+<li><p>ボブの動作は次のとおりです：</p>
+<ul>
 <li><p>彼の質問が <span class="math notranslate nohighlight">\(y=0\)</span> の場合、彼は <span class="math notranslate nohighlight">\(U_{\pi/8}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用します。</p></li>
 <li><p>彼の質問が <span class="math notranslate nohighlight">\(y=1\)</span> の場合、彼は <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> を量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に適用します。</p></li>
 </ul>
-<p>アリスの場合と同様に、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に対するボブの演算を次のように記述できます：
-$<span class="math notranslate nohighlight">\(
-\begin{cases}
-U_{\pi/8} &amp; \text{if y = 0}\\
-U_{-\pi/8} &amp; \text{if y = 1}
-\end{cases}
-\)</span>$</p>
-<p>この演算を適用した後、標準基底で <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を測定し、測定結果を返答 <span class="math notranslate nohighlight">\(b\)</span> に設定します。</p>
 </li>
 </ul>
+<p>アリスの場合と同様に、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に対するボブの演算を次のように記述できます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+  U_{\pi/8} &amp; \text{if y = 0}\\
+  U_{-\pi/8} &amp; \text{if y = 1}
+\end{cases}
+\end{split}\]</div>
+<p>この演算を適用した後、標準基底で <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を測定し、測定結果を返答 <span class="math notranslate nohighlight">\(b\)</span> に設定します。</p>
 <p>この戦略の量子回路図を次に示します：</p>
 <p><img alt="CHSH game circuit" src="../../_images/CHSH.png" /></p>
 <p>この図には、2つの一般の制御ゲートがあります。1つは上にある <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> のもので、もう1つは下にある <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> のものです。 また、制御ゲートのような別のゲートも2つあります。上側の <span class="math notranslate nohighlight">\(U_{\pi/8}\)</span> のものと、下側の <span class="math notranslate nohighlight">\(U_{0}\)</span> のものですが、制御を表す丸が塗りつぶされていません。このゲートは、制御ビットが <span class="math notranslate nohighlight">\(0\)</span> の場合に実行されます (通常の制御ゲートのように <span class="math notranslate nohighlight">\(1\)</span> の場合に実行されるのではなく)。したがって、ボブは、 <span class="math notranslate nohighlight">\(y=0\)</span> の場合は自分の量子ビットに <span class="math notranslate nohighlight">\(U_{\pi/8}\)</span> を実行し、 <span class="math notranslate nohighlight">\(y=1\)</span> の場合は <span class="math notranslate nohighlight">\(U_{-\pi/8}\)</span> を実行します。アリスは、 <span class="math notranslate nohighlight">\(x=0\)</span> の場合に自分の量子ビットに <span class="math notranslate nohighlight">\(U_0\)</span> を実行し、 <span class="math notranslate nohighlight">\(x=1\)</span> の場合は <span class="math notranslate nohighlight">\(U_{\pi/4}\)</span> を実行します。以上の動きは、上記のプロトコルの説明と一致しています。</p>
