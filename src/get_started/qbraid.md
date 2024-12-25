@@ -29,7 +29,7 @@ Googleでログインする場合を紹介します。アカウントを選択�
 右側一番上のFreeのタブの「Start」をクリックします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/739bda57-6df6-747c-22ae-6ebdda223adf.png)
 
-以下のようにLab環境に入れます。Qiskitはすでにインストールされています。真ん中の紫の「Start Tour」をクリックします。
+以下のようにLab環境に入れます。真ん中の紫の「Start Tour」をクリックします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b67cbb25-473d-3b5f-3ebd-0d2ddae89b16.png)
 
 
@@ -54,6 +54,9 @@ Qiskitを使って、IBM Quantumの実機の量子コンピューターを使う
 
 新しいjupyter ノートブックが開きます。この環境には、Qiskitがインストールされているため、そのままコーディングをすることができます。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b6e31ea8-7a3f-f77e-0ccd-814d6631e994.png)
+
+ファイルをアップロードして開いたノートブックは、デフォルトのPython 3 のカーネルが使われ、そのままではQiskitが使えないので、右上の「Python 3 [Default]」をクリックして、インストールしたQiskitの入っているカーネルを選んで実行してください。
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/87369347-4987-6259-9b3d-2563a8f03138.png)
 
 ## 3. Qiskit で Hello world
 続けて、QiskitのHello worldを実行して、Qiskitが正しく動くか確認してみましょう。
