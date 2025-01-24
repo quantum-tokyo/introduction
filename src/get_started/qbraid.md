@@ -49,7 +49,7 @@ Qiskitを使って、IBM Quantumの実機の量子コンピューターを使う
 「Install」をクリックするとインストールが始まり、インストール終了までしばらく時間がかかります。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9db02c64-2342-9fdf-17cb-2b00a8955d1b.png)
 
-インストールが終了すると真ん中の「Launcher」タブに、Qiskit印の「Python 3[QGSS-24]」のアイコンが増えているので、こちらをクリックすると、
+インストールが終了すると真ん中の「Launcher」タブに、Qiskit印の「Python 3[QDC 24]」のアイコンが増えているので、こちらをクリックすると、
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/7245d828-3b80-4ec1-4515-81e01dcea8f2.png)
 
 新しいjupyter ノートブックが開きます。この環境には、Qiskitがインストールされているため、そのままコーディングをすることができます。
