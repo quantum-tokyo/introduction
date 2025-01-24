@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -462,9 +462,9 @@
 <p><span class="math notranslate nohighlight">\(n=5\)</span> 個のノードを持つグラフを作成して問題を初期化します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rustworkx</span> <span class="k">as</span> <span class="nn">rx</span>
-<span class="kn">from</span> <span class="nn">rustworkx.visualization</span> <span class="kn">import</span> <span class="n">mpl_draw</span> <span class="k">as</span> <span class="n">draw_graph</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rustworkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rustworkx.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">mpl_draw</span> <span class="k">as</span> <span class="n">draw_graph</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
 
@@ -552,8 +552,8 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 したがって、最適化問題を解くためには、量子コンピューター上で <span class="math notranslate nohighlight">\(H_C\)</span> の基底状態 (またはそれと重なり合う状態) を準備する必要があります。次に、この状態からサンプリングすると、高い確率で <span class="math notranslate nohighlight">\(min~f(x)\)</span> の解が得られます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">SparsePauliOp</span>
-<span class="k">def</span> <span class="nf">build_max_cut_paulis</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_max_cut_paulis</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the graph to Pauli list.</span>
 
 <span class="sd">    This function does the inverse of `build_max_cut_graph`</span>
@@ -593,7 +593,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>この場合、2 つのパラメーター <span class="math notranslate nohighlight">\(\gamma_1\)</span> と <span class="math notranslate nohighlight">\(\beta_1\)</span> を含む 1 つの QAOA レイヤーの例を試します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">QAOAAnsatz</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QAOAAnsatz</span>
 
 <span class="n">circuit</span> <span class="o">=</span> <span class="n">QAOAAnsatz</span><span class="p">(</span><span class="n">cost_operator</span><span class="o">=</span><span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">circuit</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
@@ -635,8 +635,8 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>次のコードは、抽象回路を、<strong>Qiskit IBM Runtime service</strong> を使用してクラウド経由でアクセス可能なデバイスの 1 つで実行できる形式に変換および最適化します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
-<span class="kn">from</span> <span class="nn">qiskit.transpiler.preset_passmanagers</span> <span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
 
 
 <span class="c1"># QiskitRuntimeService.save_account(channel=&quot;ibm_quantum&quot;, token=&quot;&lt;MY_IBM_QUANTUM_TOKEN&gt;&quot;, overwrite=True, set_as_default=True)</span>
@@ -693,7 +693,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>Samplerベースのコスト関数を SciPy 最小化ルーチンにプラグインして、最適なパラメーターを見つけることができます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_func_estimator</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">estimator</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cost_func_estimator</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">estimator</span><span class="p">):</span>
 
     <span class="c1"># transform the observable defined on virtual qubits to</span>
     <span class="c1"># an observable defined on all physical qubits</span>
@@ -715,8 +715,8 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">Session</span><span class="p">,</span> <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span><span class="p">,</span> <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="n">objective_func_vals</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Global variable</span>
 <span class="k">with</span> <span class="n">Session</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
@@ -756,7 +756,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>オプティマイザーは、コストを削減し、回路のより良いパラメータを見つけることができました。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">objective_func_vals</span><span class="p">)</span>
@@ -785,7 +785,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
 
 <span class="c1"># If using qiskit-ibm-runtime&lt;0.24.0, change `mode=` to `backend=`</span>
 <span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
@@ -822,7 +822,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># auxiliary functions to sample most likely bitstring</span>
-<span class="k">def</span> <span class="nf">to_bitstring</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_bitstring</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">num_bits</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">digit</span><span class="p">)</span> <span class="k">for</span> <span class="n">digit</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
 
@@ -844,8 +844,8 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
 
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
 <span class="n">final_bits</span> <span class="o">=</span> <span class="n">final_distribution_bin</span>
@@ -881,7 +881,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># auxiliary function to plot graphs</span>
-<span class="k">def</span> <span class="nf">plot_result</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_result</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tab:grey&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;tab:purple&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
     <span class="n">pos</span><span class="p">,</span> <span class="n">default_axes</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">rx</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">mpl_draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">)</span>
@@ -898,8 +898,8 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>そして、カットの値を計算します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
-<span class="k">def</span> <span class="nf">evaluate_sample</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_sample</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())),</span> <span class="s2">&quot;The length of x must coincide with the number of nodes in the graph.&quot;</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_list</span><span class="p">()))</span>
 
@@ -977,7 +977,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <h4>ハミルトニアン → 量子回路<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">QAOAAnsatz</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QAOAAnsatz</span>
 
 <span class="n">circuit_100</span> <span class="o">=</span> <span class="n">QAOAAnsatz</span><span class="p">(</span><span class="n">cost_operator</span><span class="o">=</span><span class="n">cost_hamiltonian_100</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">circuit_100</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
@@ -997,7 +997,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>回路最適化ステップをユーティリティースケールの問題に拡張するには、Qiskit SDK v1.0で導入された高性能トランスパイルストラテジーを活用できます。その他のツールには、 <a class="reference external" href="https://docs.quantum.ibm.com/transpile/ai-transpiler-passes">AI enhanced transpiler passes</a>による新しいトランスパイラサービスが含まれます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.transpiler.preset_passmanagers</span> <span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
 
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
                                     <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
@@ -1103,7 +1103,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>最適化ループで最小化されたコストが特定の値に収束したことを確認します。以下のコードでは、コストの最小値に対応するパラメーターを使用しています。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">objective_func_vals</span><span class="p">)</span>
@@ -1123,14 +1123,14 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_PARITY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="nb">bin</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">evaluate_sparse_pauli</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">observable</span><span class="p">:</span> <span class="n">SparsePauliOp</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_sparse_pauli</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">observable</span><span class="p">:</span> <span class="n">SparsePauliOp</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">complex</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Utility for the evaluation of the expectation value of a measured state.&quot;&quot;&quot;</span>
     <span class="n">packed_uint8</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">packbits</span><span class="p">(</span><span class="n">observable</span><span class="o">.</span><span class="n">paulis</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bitorder</span><span class="o">=</span><span class="s2">&quot;little&quot;</span><span class="p">)</span>
     <span class="n">state_bytes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="n">packed_uint8</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;little&quot;</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
     <span class="n">reduced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_xor</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">packed_uint8</span> <span class="o">&amp;</span> <span class="n">state_bytes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">observable</span><span class="o">.</span><span class="n">coeffs</span> <span class="o">*</span> <span class="n">_PARITY</span><span class="p">[</span><span class="n">reduced</span><span class="p">])</span>
 
-<span class="k">def</span> <span class="nf">best_solution</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">best_solution</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find solution with lowest cost&quot;&quot;&quot;</span>
     <span class="n">min_cost</span> <span class="o">=</span> <span class="mi">1000</span>
     <span class="n">min_sol</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1186,17 +1186,17 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <p>次に、量子コンピューターで測定した各サンプルの目的値を計算する必要があります。目的値が最も低いサンプルが、量子コンピューターによって返される解です。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># auxiliary function to help plot cumulative distribution functions</span>
-<span class="k">def</span> <span class="nf">_plot_cdf</span><span class="p">(</span><span class="n">objective_values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_plot_cdf</span><span class="p">(</span><span class="n">objective_values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
     <span class="n">x_vals</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">objective_values</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="n">objective_values</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_vals</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">plot_cdf</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_cdf</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
     <span class="n">_plot_cdf</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dist</span><span class="o">.</span><span class="n">keys</span><span class="p">())),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 
@@ -1206,7 +1206,7 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
     <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="c1"># auxiliary function to convert bit-strings to objective values</span>
-<span class="k">def</span> <span class="nf">samples_to_objective_values</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">samples_to_objective_values</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the samples to values of the objective function.&quot;&quot;&quot;</span>
 
     <span class="n">objective_values</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>

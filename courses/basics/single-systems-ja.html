@@ -30,7 +30,7 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -1357,7 +1357,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <p>以下は、量子ビット状態ベクトル <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> と <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> に対応する 2 つのベクトル <code class="docutils literal notranslate"><span class="pre">ket0</span></code> と <code class="docutils literal notranslate"><span class="pre">ket1</span></code> を定義し、それらの平均を表示するコード セルの例です。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span>
 
 <span class="n">ket0</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">ket1</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -1407,7 +1407,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <p>行列の乗算 (特殊なケースとして行列とベクトルの乗算を含む) は、  <code class="docutils literal notranslate"><span class="pre">NumPy</span></code> の <code class="docutils literal notranslate"><span class="pre">matmul</span></code> 関数を使用して実行できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">matmul</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">matmul</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">matmul</span><span class="p">(</span><span class="n">M1</span><span class="p">,</span><span class="n">ket1</span><span class="p">))</span>
 <span class="n">display</span><span class="p">(</span><span class="n">matmul</span><span class="p">(</span><span class="n">M1</span><span class="p">,</span><span class="n">M2</span><span class="p">))</span>
@@ -1438,8 +1438,8 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <p>Qiskit の <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> クラスは、量子状態ベクトルを定義および操作するための機能を提供します。次のコード セルは <code class="docutils literal notranslate"><span class="pre">Statevector</span></code> クラスをインポートし、それを使用していくつかのベクトルを定義します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 
 <span class="n">u</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([(</span><span class="mi">1</span><span class="o">+</span><span class="mf">2.</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
@@ -1538,7 +1538,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <p><code class="docutils literal notranslate"><span class="pre">Statevector</span></code> には、システム上の任意の数の測定のシミュレーションを可能にする <code class="docutils literal notranslate"><span class="pre">sample_counts</span></code> メソッドも付属しています。たとえば、次のセルはベクトル <code class="docutils literal notranslate"><span class="pre">v</span></code> を <span class="math notranslate nohighlight">\(1000\)</span> 回測定した結果を示しており、(高い確率で)  <span class="math notranslate nohighlight">\(9\)</span> 回ごとに約 <span class="math notranslate nohighlight">\(5\)</span>回 <span class="math notranslate nohighlight">\(0\)</span> の結果となり (または <span class="math notranslate nohighlight">\(1000\)</span> の試行の約 <span class="math notranslate nohighlight">\(556\)</span>)、 <span class="math notranslate nohighlight">\(9\)</span> 回ごとに約 <span class="math notranslate nohighlight">\(4\)</span> 回の <span class="math notranslate nohighlight">\(1\)</span> の結果となります(または <span class="math notranslate nohighlight">\(1000\)</span> の試行で約 <span class="math notranslate nohighlight">\(444\)</span> 回) 。このセルは、結果を視覚化するための <code class="docutils literal notranslate"><span class="pre">plot_histogram</span></code> 関数も示しています。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
 
 <span class="n">statistics</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">sample_counts</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">statistics</span><span class="p">)</span>
@@ -1560,7 +1560,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <p>次の例のように、 <code class="docutils literal notranslate"><span class="pre">Operator</span></code> クラスを使用して Qiskit の状態ベクトルに対してユニタリー演算を定義して実行できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Operator</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.</span><span class="n">j</span><span class="p">],[</span><span class="mf">1.</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
@@ -1593,7 +1593,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <p>量子回路は授業 3 まで正式に導入されませんが、それでも、Qiskit の <code class="docutils literal notranslate"><span class="pre">QuantumCircuit</span></code> クラスを使用して量子ビットのユニタリー演算を構成する実験を行うことができます。特に、量子回路 (この場合、単一量子ビットに対して実行されるユニタリー演算のシーケンス) を次のように定義できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
 
 <span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 

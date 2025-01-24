@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -441,7 +441,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;2e3c9b01ed7d8788964de9238b932e9f7828418afa373dd180fcbad2da42ece4513aa23ac879c28ea24a3092cb15f476d24b8920b3d0239fd521f645a72c8f8e&#39;</span><span class="p">)</span>
 </pre></div>
@@ -450,7 +450,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;&lt;YOUR_IQP_API_TOKEN&gt;&#39;</span><span class="p">)</span>
 </pre></div>
@@ -460,7 +460,7 @@
 <p>オプションとして、 サービスを初期化する前に、 <code class="docutils literal notranslate"><span class="pre">save_account()</span></code> メソッドを使用して資格情報を保存し、後で簡単にアクセスできるようにすることができます。これは <code class="docutils literal notranslate"><span class="pre">QiskitRuntimeService.save_account()</span></code> と同じ場所に認証情報を保存するので、 <code class="docutils literal notranslate"><span class="pre">QiskitRuntimeService</span></code> を使ってアカウントを保存していた場合はこの手順を省略することができる。<em>アカウントの認証情報はプレーンテキストで保存されるので、信頼できるデバイスを使用している場合のみ、この手順を実行してください。</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="c1"># This can be skipped if you previously did QiskitRuntimeService.save_account()</span>
 <span class="n">QiskitFunctionsCatalog</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>

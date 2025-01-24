@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -677,7 +677,7 @@
 <p><a class="reference external" href="http://quantum.ibm.com/">IBM Quantum Platform API token</a>を使用して認証し、次のように Qiskit 関数を選択します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="c1"># Credentials</span>
 <span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span>
@@ -703,7 +703,7 @@
 <p>アルゴリズムの正しい答え、隠しビット文字列、および Bernstein-Vazirani 回路を定義します。 <code class="docutils literal notranslate"><span class="pre">circuit_width</span></code> を変更するだけで回路の幅を調整できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
 
 <span class="n">circuit_width</span> <span class="o">=</span> <span class="mi">35</span>
 <span class="n">hidden_bitstring</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="n">circuit_width</span>
@@ -811,9 +811,9 @@
 <p>例として、ランダムなエルミート演算子とオブザーバブルを生成し、Performance Management functionに入力します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">IQP</span>
-<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">random_hermitian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">IQP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">random_hermitian</span>
 
 <span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">50</span>
 

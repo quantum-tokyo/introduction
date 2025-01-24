@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -440,8 +440,8 @@
 <p>まず、 <a class="reference external" href="http://quantum.ibm.com/">IBM Quantum API token</a> を使用して認証し、次のように Qiskit Function を選択します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
-<span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="n">token</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="o">.</span><span class="n">saved_accounts</span><span class="p">()[</span><span class="s2">&quot;default-ibm-quantum&quot;</span><span class="p">][</span><span class="s2">&quot;token&quot;</span><span class="p">]</span>
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
@@ -801,8 +801,8 @@
 <p><code class="docutils literal notranslate"><span class="pre">QSCI</span></code> アルゴリズムの実行例:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;QSCI&quot;</span><span class="p">,</span>
     <span class="n">parameters</span><span class="o">=</span><span class="n">qsci_double_exc_json</span><span class="p">,</span>
@@ -908,7 +908,7 @@ Energy error:  2.71e-02 mHa
 <p><code class="docutils literal notranslate"><span class="pre">state_vector</span></code> フィールドには、<code class="docutils literal notranslate"><span class="pre">bits</span></code>、<code class="docutils literal notranslate"><span class="pre">reals</span></code>、および <code class="docutils literal notranslate"><span class="pre">imags</span></code> の 3 つの値が含まれます。<code class="docutils literal notranslate"><span class="pre">bits</span></code> 値は、電子配置を表す整数のリストです。<code class="docutils literal notranslate"><span class="pre">reals</span></code> (<code class="docutils literal notranslate"><span class="pre">imags</span></code>) フィールドの <span class="math notranslate nohighlight">\(i\)</span> 番目の位置は、位置 <span class="math notranslate nohighlight">\(i\)</span> の電子配置の振幅の実数 (虚数) 部分を表します。これを大きさでソートし、最も重要な上位 10 個の電子配置をプリントできます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">amps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;state_vector&quot;</span><span class="p">][</span><span class="s2">&quot;reals&quot;</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;state_vector&quot;</span><span class="p">][</span><span class="s2">&quot;imags&quot;</span><span class="p">])</span>
 <span class="n">sort_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">amps</span><span class="p">))</span>
@@ -1022,7 +1022,7 @@ Electron configuration: 00001001001111001111, amplitude: -1.439e-02+1.160e-02j, 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="n">opt_job</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;OPT_QSCI&quot;</span><span class="p">,</span>
     <span class="n">parameters</span><span class="o">=</span><span class="s2">&quot;opt_qsci_1ucj_json&quot;</span><span class="p">,</span>

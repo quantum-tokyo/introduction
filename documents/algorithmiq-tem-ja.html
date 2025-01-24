@@ -30,7 +30,7 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -557,7 +557,7 @@ $<span class="math notranslate nohighlight">\(
 <p><a class="reference external" href="http://quantum.ibm.com/">IBM Quantum Platform API token</a>を使用して認証し、次のように TEM を選択します：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_catalog</span> <span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="n">tem_function_name</span> <span class="o">=</span> <span class="s2">&quot;algorithmiq/tem&quot;</span>
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>
@@ -574,9 +574,9 @@ $<span class="math notranslate nohighlight">\(
 <p>次のコードは、シンプルな量子回路を与えられオブザーバブルの期待値を計算するのに TEM が使用される例を示しています。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
-<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">SparsePauliOp</span>
-<span class="kn">from</span> <span class="nn">qiskit_ibm_runtime</span> <span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 
 <span class="c1"># Create a quantum circuit</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -625,7 +625,7 @@ $<span class="math notranslate nohighlight">\(
 <p>TEM に追加のオプションを渡すことで、計算を微調整し、より詳細な情報を取得できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
 <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">,</span>

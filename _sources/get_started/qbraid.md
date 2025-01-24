@@ -43,19 +43,19 @@ Qiskitを使って、IBM Quantumの実機の量子コンピューターを使う
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/931af54c-092c-678f-4d7d-29f70fb19de6.png)
 
 たくさんの環境が出てきますので、「Qiskit」と名前のつく環境を探します。
-検索バーで「qiskit」を検索した結果、以下のように様々なバージョンのQiskitカーネル環境が出てきますので、この中から最新のものを選びましょう。2024年8月現在、最新は「IBM Quantum Global Summer School 2024」なので、今回はこちらを選びます。
+検索バーで「qiskit」を検索した結果、以下のように様々なバージョンのQiskitカーネル環境が出てきますので、この中から最新のものを選びましょう。2025年1月現在、最新は「QDC 2024」なので、今回はこちらを選びます。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/3bc6063c-495f-d3e7-7b9a-9287a22ab1e7.png)
 
 「Install」をクリックするとインストールが始まり、インストール終了までしばらく時間がかかります。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9db02c64-2342-9fdf-17cb-2b00a8955d1b.png)
 
-インストールが終了すると真ん中の「Launcher」タブに、Qiskit印の「Python 3[QGSS-24]」のアイコンが増えているので、こちらをクリックすると、
+インストールが終了すると真ん中の「Launcher」タブに、Qiskit印の「Python 3[QDC 24]」のアイコンが増えているので、こちらをクリックすると、
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/7245d828-3b80-4ec1-4515-81e01dcea8f2.png)
 
 新しいjupyter ノートブックが開きます。この環境には、Qiskitがインストールされているため、そのままコーディングをすることができます。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b6e31ea8-7a3f-f77e-0ccd-814d6631e994.png)
 
-ファイルをアップロードして開いたノートブックは、デフォルトのPython 3 のカーネルが使われ、そのままではQiskitが使えないので、右上の「Python 3 [Default]」をクリックして、インストールしたQiskitの入っているカーネルを選んで実行してください。
+**ファイルをアップロードして開いたノートブックは、デフォルトのPython 3 のカーネルが使われ、そのままではQiskitが使えないので、右上の「Python 3 [Default]」をクリックして、インストールしたQiskitの入っているカーネルを選んで実行してください。**
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/87369347-4987-6259-9b3d-2563a8f03138.png)
 
 ## 3. Qiskit で Hello world
