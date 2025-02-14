@@ -1,0 +1,73 @@
+---
+title: Sample-based quantum diagonalization
+description: Overview of the Sample-based quantum diagonalization (SQD) workflow
+---
+
+# サンプルベースの量子対角化（SQD）の概要
+
+サンプルベースの量子対角化（SQD）は、量子プロセッサユニット（QPU）上で量子回路を実行した後に得られるサンプルに作用する古典的な**後処理手法**です。これは、量子系のハミルトニアンのような量子演算子の固有値や固有ベクトルを求めるのに有用であり、量子計算と分散型の古典計算を組み合わせて使用します。この後処理手法は、特に化学やその他の量子系をシミュレートするユーザーにとって有用です。
+
+古典計算は、量子プロセッサーから得られたサンプルを処理し、それらによって張られる部分空間にターゲットハミルトニアンを射影・対角化するために使用されます。これにより、SQDは量子ノイズによって劣化したサンプルに対しても堅牢性を持ち、正確な対角化法では対処できない化学系のような数百万の相互作用項を持つ大規模ハミルトニアンを扱うことが可能になります。
+
+SQDツールは、パウリ演算子や第二量子化されたフェルミオン演算子の線形結合として表現されるハミルトニアンをターゲットにすることができます。入力サンプルは、ユーザーが定義した量子回路によって得られ、それらの回路はターゲット演算子の固有状態（例えば基底状態）を良く表現すると考えられるものです。SQDの収束速度（サンプル数の関数として）は、ターゲット固有状態が疎であるほど向上します。
+
+## SQD パッケージのインストール
+
+SQDパッケージをインストールする方法は、PyPIを使用する方法とソースからビルドする方法の2つがあります。これらのパッケージをインストールする際には、パッケージの依存関係を分離するために、[仮想環境](https://docs.python.org/3.10/tutorial/venv.html)を使用することを推奨します。
+
+### PyPIからインストールする
+
+`qiskit-addon-sqd`パッケージをインストールする最も簡単な方法は、PyPI経由です。
+
+```bash
+pip install qiskit-addon-sqd
+```
+
+### ソースからビルドする
+
+<details>
+<summary>
+このパッケージを手動でインストールする方法はこちらをご覧ください。
+
+</summary>
+このパッケージに貢献したい場合や手動でインストールしたい場合は、まずリポジトリをクローンしてください：
+
+```bash
+git clone git@github.com:Qiskit/qiskit-addon-sqd.git
+```
+
+`pip`を使ってパッケージをインストールしてください。リポジトリーにはサンプルノートブックもあるので、それを実行することもできます。リポジトリーで開発するつもりなら、 `dev` 依存パッケージをインストールしてください。
+
+必要に応じてオプションを調整してください。
+
+```bash
+pip install tox notebook -e '.[notebook-dependencies, dev]'
+```
+</details>
+
+
+## 理論的背景
+
+セルフコンシステントな配置復元を用いたSQD（Sample-based Quantum Diagonalization）のワークフローについては、詳細が[[1]](#references)に記載されています。このセクションでは、以下の図に示された技法の概要を説明します。
+
+![SQD diagram depicting configuration recovery, collecting subsamples, and obtaining eigenstates from those subsamples](https://docs.quantum.ibm.com/_next/image?url=%2Fimages%2Fguides%2Fqiskit-addons%2Fsqd_diagram.avif&w=1920&q=75)
+
+ここで、$\bar{\mathcal{X}}$ は、QPU（量子プロセッサー）上での実行によって得られた物理的および非物理的な構成（ビット列で表現される）を含むノイズの多いサンプルの集合です。非物理的な構成はノイズによるものであり、`sqd.configuration_recovery.recover_configurations()`メソッドを使用して処理することで、新しいサンプル集合 $\mathcal{X}_R$ に精緻化されます。
+
+この新しい集合から、各ビット列 $\mathbf{x}$ in $\mathcal{X}_R$ の経験的頻度に比例した分布に基づいて、配置のバッチ $\mathcal{S}^{(1)}...\ \mathcal{S}^{(K)}$ が収集されます。それぞれのサンプル配置のバッチは部分空間 $\mathcal{S}^{(k)}: k = 1, ..., K$ を形成し、その部分空間内でハミルトニアンが射影され対角化されます：
+
+$$ \hat{H}_{S^{(k)}} = \hat{P}_{\mathcal{S}^{(k)}}\hat{H}\hat{P}_{\mathcal{S}^{(k)}}\text{, with } \hat{P}_{\mathcal{S}^{(k)}} = \sum_{\mathbf{x} \in \mathcal{S}^{(k)}} |\mathbf{x}\rangle\langle\mathbf{x}|,$$
+
+ここで、$\hat{H}_{\mathcal{S}^{(k)}}$ は指定された部分空間のハミルトニアンを表します。
+
+SQDワークフローの中心はこの部分にあり、各部分空間ハミルトニアンが対角化されます。これらの部分空間から得られた基底状態 $|\psi^{(k)}\rangle$ は、各 $K$ 部分空間にわたって平均占有数の参照ベクトル $\mathbf{n}^{(K)}$ の推定値を得るために使用され、配置復元ステップに戻されます。その後、新しい部分空間が取得され対角化されます。この手順は、ユーザーが指定した基準が満たされるまでループ内で繰り返されます。
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - [SQD 入門](/guides/qiskit-addons-sqd-get-started) ページを読んでください。
+</Admonition>
+
+## References
+
+[1] Robledo-Moreno, Javier, et al. ["Chemistry beyond exact solutions on a quantum-centric supercomputer"](https://arxiv.org/abs/2405.05068) arXiv preprint arXiv:2405.05068 (2024).
