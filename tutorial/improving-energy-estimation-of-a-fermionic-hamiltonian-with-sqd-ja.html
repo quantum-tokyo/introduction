@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SQD （サンプルベースの量子対角化）によるフェルミオン ハミルトニアンのエネルギー推定の改善 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/improving-energy-estimation-of-a-fermionic-hamiltonian-with-sqd-ja';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Ftutorial/improving-energy-estimation-of-a-fermionic-hamiltonian-with-sqd-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/improving-energy-estimation-of-a-fermionic-hamiltonian-with-sqd-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SQD （サンプルベースの量子対角化）によるフェルミオン ハミルトニアンのエネルギー推定の改善</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">量子化学</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lucj">ローカル・ユニタリー・クラスター・ジャストロウ（LUCJ）アンザッツ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">サンプルベースの量子対角化（SQD）</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">必要条件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1: 古典的入力を量子問題にマップする</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2: 量子実行のために問題を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-qiskit-primitives">Step 3: Qiskit Primitivesを使って実行する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 後処理を行い、結果を希望する古典形式に戻す</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">結果の視覚化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-survey">Tutorial Survey</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sqd">
+<h1>SQD （サンプルベースの量子対角化）によるフェルミオン ハミルトニアンのエネルギー推定の改善<a class="headerlink" href="#sqd" title="Link to this heading">#</a></h1>
+<p><em>Estimated QPU usage: 36 seconds (tested on IBM Sherbrooke)</em></p>
+<p>Based on <a class="reference external" href="https://learning.quantum.ibm.com/tutorial/improving-energy-estimation-of-a-fermionic-hamiltonian-with-sqd">the tutorial at IBM Quantum Learning</a>.</p>
+<section id="id1">
+<h2>背景<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>このチュートリアルでは、ノイズを含む量子サンプルを後処理して、平衡結合長における窒素分子 <span class="math notranslate nohighlight">\(\text{N}_2\)</span> の基底状態を近似的に求める方法を説明します。これには、36量子ビット（32システム量子ビット + 4補助量子ビット）を使用した量子回路から得られたサンプルを基に、サンプルベースの量子対角化（SQD）アルゴリズム(<a class="reference external" href="https://arxiv.org/abs/2405.05068">sample-based quantum diagonalization (SQD) algorithm</a>)を使用します。Qiskitをベースとした実装が<a class="reference external" href="https://github.com/Qiskit/qiskit-addon-sqd">Qiskit Addons</a>として提供されており、<a class="reference external" href="https://docs.quantum.ibm.com/guides/qiskit-addons-sqd-get-started">簡単な例</a> を含む詳細は<a class="reference external" href="https://docs.quantum.ibm.com/guides/qiskit-addons-sqd">docs</a>で確認できます。SQDは、量子系のハミルトニアンのような量子演算子の固有値と固有ベクトルを、量子計算と分散型古典計算を組み合わせて求める手法です。分散型古典計算は、量子プロセッサーから得られたサンプルを処理し、それらが張る部分空間でターゲットのハミルトニアンを射影および対角化するために使用されます。この手法により、SQDは量子ノイズで破損したサンプルに対する堅牢性を確保するとともに、数百万の相互作用項を持つ化学ハミルトニアンのような大規模なハミルトニアンを、正確な対角化方法の範囲を超えて処理することが可能になります。SQDを用いたワークフローは、以下の手順で構成されます：</p>
+<ol class="arabic simple">
+<li><p>回路のアンザッツ（仮定形）を選び、それを量子コンピューター上で基準状態（この場合、<a class="reference external" href="https://en.wikipedia.org/wiki/Hartree%E2%80%93Fock_method">Hartree-Fock</a>状態）に適用する。</p></li>
+<li><p>得られた量子状態からビット列をサンプリングする。</p></li>
+<li><p>ビット列に対して<em>セルフコンシステントな配置復元</em>手順を実行し、基底状態の近似を得る。</p></li>
+</ol>
+<section id="id2">
+<h3>量子化学<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>分子の性質は主に、その中の電子構造によって決まります。フェルミ粒子である電子は、第二量子化と呼ばれる数学的形式を用いて記述できます。この概念では、いくつかの<em>軌道</em>が存在し、それぞれが空（未占有）またはフェルミオンによって占有されている状態のいずれかとなります。 <span class="math notranslate nohighlight">\(N\)</span> 個の軌道からなる系は、フェルミオン消滅演算子 <span class="math notranslate nohighlight">\(\{\hat{a}_p\}_{p=1}^N\)</span> の集合によって記述され、これらは次のようなフェルミオンの反交換関係を満たします。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\hat{a}_p \hat{a}_q + \hat{a}_q \hat{a}_p &amp;= 0, \\
+\hat{a}_p \hat{a}_q^\dagger + \hat{a}_q^\dagger \hat{a}_p &amp;= \delta_{pq}.
+\end{align*}
+\end{split}\]</div>
+<p>随伴演算子 <span class="math notranslate nohighlight">\(\hat{a}_p^\dagger\)</span> は生成演算子と呼ばれます。</p>
+<p>これまでの説明では、フェルミオンの基本的な性質であるスピンを考慮していませんでした。スピンを考慮すると、軌道は<em>空間軌道</em>と呼ばれるペアで現れます。各空間軌道は2つの<em>スピン軌道</em>から構成され、1つは “spin-<span class="math notranslate nohighlight">\(\alpha\)</span>” 、もう1つは “spin-<span class="math notranslate nohighlight">\(\beta\)</span>” とラベル付けされます。この場合、空間軌道 <span class="math notranslate nohighlight">\(p\)</span> のスピン軌道でスピン <span class="math notranslate nohighlight">\(\sigma\)</span> (<span class="math notranslate nohighlight">\(\sigma \in \{\alpha, \beta\}\)</span>) に対応する消滅演算子を <span class="math notranslate nohighlight">\(\hat{a}_{p\sigma}\)</span> と表記します。空間軌道の数を <span class="math notranslate nohighlight">\(N\)</span> とすると、スピン軌道は合計で <span class="math notranslate nohighlight">\(2N\)</span> 存在します。この系のヒルベルト空間は、次のような2部ビット列でラベル付けされた <span class="math notranslate nohighlight">\(2^{2N}\)</span> 個の正規直交基底ベクトルによって張られます：<span class="math notranslate nohighlight">\(\lvert z \rangle = \lvert z_\beta z_\alpha \rangle = \lvert z_{\beta, N} \cdots z_{\beta, 1} z_{\alpha, N} \cdots z_{\alpha, 1} \rangle\)</span></p>
+<p>分子の系のハミルトニアンは次のように書かれます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\hat{H} = \sum_{ \substack{pr\\\sigma} } h_{pr} \, \hat{a}^\dagger_{p\sigma} \hat{a}_{r\sigma}
++ \frac12
+\sum_{ \substack{prqs\\\sigma\tau} }
+h_{prqs} \, 
+\hat{a}^\dagger_{p\sigma}
+\hat{a}^\dagger_{q\tau}
+\hat{a}_{s\tau}
+\hat{a}_{r\sigma},
+\end{split}\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(h_{pr}\)</span> および <span class="math notranslate nohighlight">\(h_{prqs}\)</span> は分子積分と呼ばれる複素数で、分子の仕様に基づいてコンピュータープログラムを使用して計算することができます。このチュートリアルでは、<a class="reference external" href="https://pyscf.org/">PySCF</a> ソフトウェアパッケージを使用して積分を計算します。</p>
+<p>分子ハミルトニアンの導出方法に関する詳細は、量子化学の教科書（例：SzaboとOstlundによる <em>Modern Quantum Chemistry</em>）を参照してください。量子化学の問題を量子コンピューターにマッピングする方法についてのハイレベルな説明は、Qiskit Global Summer School 2024 の講義 <a class="reference external" href="https://youtu.be/TyFU6r8uEsE?t=900"><em>Mapping Problems to Qubits</em></a> をご覧ください。</p>
+</section>
+<section id="lucj">
+<h3>ローカル・ユニタリー・クラスター・ジャストロウ（LUCJ）アンザッツ<a class="headerlink" href="#lucj" title="Link to this heading">#</a></h3>
+<p>SQDでは、サンプルを取得するための量子回路アンザッツが必要です。このチュートリアルでは、物理的動機付けとハードウェアへの適合性を兼ね備えた<a class="reference external" href="https://pubs.rsc.org/en/content/articlelanding/2023/sc/d3sc02516k">ローカル・ユニタリー・クラスター・ジャストロウ（LUCJ）</a>アンザッツを使用します。</p>
+<p>LUCJアンザッツは、一般的なユニタリー・クラスター・ジャストロウ（UCJ）アンザッツの特殊な形式であり、その一般的な形は次のようになります。
+$<span class="math notranslate nohighlight">\(
+  \lvert \Psi \rangle = \prod_{\mu=1}^L e^{\hat{K}_\mu} e^{i \hat{J}_\mu} e^{-\hat{K}_\mu} | \Phi_0 \rangle
+\)</span>$</p>
+<p>ここで、<span class="math notranslate nohighlight">\(\lvert \Phi_0 \rangle\)</span> は基準状態を表し、通常はHartree-Fock状態が選ばれます。 <span class="math notranslate nohighlight">\(\hat{K}_\mu\)</span> と <span class="math notranslate nohighlight">\(\hat{J}_\mu\)</span> は次の形式を持ちます。</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{K}_\mu = \sum_{pq, \sigma} K_{pq}^\mu \, \hat{a}^\dagger_{p \sigma} \hat{a}^{\phantom{\dagger}}_{q \sigma}
+\;,\;
+\hat{J}_\mu = \sum_{pq, \sigma\tau} J_{pq,\sigma\tau}^\mu \, \hat{n}_{p \sigma} \hat{n}_{q \tau}
+\;,
+\]</div>
+<p>ここで、数演算子を次のように定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{n}_{p \sigma} = \hat{a}^\dagger_{p \sigma} \hat{a}^{\phantom{\dagger}}_{p \sigma}.
+\]</div>
+<p>演算子 <span class="math notranslate nohighlight">\(e^{\hat{K}_\mu}\)</span> は軌道回転を表し、既知のアルゴリズムを使用して線形の深さで線形の接続で実装することができます。<br />
+一方、UCJアンザッツの <span class="math notranslate nohighlight">\(e^{i \mathcal{J}_k}\)</span> 項を実装するには、全対全（all-to-all）の接続性が必要になるか、フェルミオンスワップネットワークを使用する必要があります。そのため、接続性が制限されたノイズありで誤り耐性実現前の量子プロセッサーにとっては実装困難となります。 <em>ローカル</em> UCJアンザッツのアイデアは、<span class="math notranslate nohighlight">\(\mathbf{J}^{\alpha\alpha}\)</span> 行列と <span class="math notranslate nohighlight">\(\mathbf{J}^{\alpha\beta}\)</span> 行列にスパース性の制約を課すことで、接続性が制限された量子ビットトポロジー上でこれらを一定の深さで実装できるようにすることです。この制約は、上三角行列で非ゼロを許可する要素を指定するインデックスのリストによって定義されます（行列が対称であるため、上三角部分のみを指定すれば十分です）。これらのインデックスは、相互作用が許可される軌道のペアとして解釈できます。</p>
+<p>例として、正方格子の量子ビットトポロジーを考えます。この場合、<span class="math notranslate nohighlight">\(\alpha\)</span> および <span class="math notranslate nohighlight">\(\beta\)</span> 軌道を格子上の平行な線上に配置し、これらの線の間を接続して「梯子」の形を形成する「横木（rungs）」を作ることができます。以下のようなイメージです：</p>
+<p><img alt="squarelatticegray150dpi.png" src="https://learning-api.quantum.ibm.com/assets/8d33f54f-51c4-42c0-8cb6-c9449d53ca2b" /></p>
+<p>この構成では、同じスピンを持つ軌道は線形トポロジーで接続され、異なるスピンを持つ軌道は同じ空間軌道を共有している場合に接続されます。この結果、<span class="math notranslate nohighlight">\(\mathbf{J}\)</span>  行列に対して次のインデックス制約が得られます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathbf{J}^{\alpha\alpha} &amp;: \set{(p, p+1) \; , \; p = 0, \ldots, N-2} \\
+\mathbf{J}^{\alpha\beta} &amp;: \set{(p, p) \;, \; p = 0, \ldots, N-1}
+\end{align*}
+\end{split}\]</div>
+<p>言い換えれば、 <span class="math notranslate nohighlight">\(\mathbf{J}\)</span> 行列が上三角部分で指定されたインデックスのみで非ゼロであれば、 <span class="math notranslate nohighlight">\(e^{i \mathcal{J}_k}\)</span> 項はスワップゲートを使用せず、一定の深さで正方形トポロジー上に実装できます。もちろん、アンザッツにこのような制約を課すと表現力が低下するため、より多くのアンザッツの繰り返しが必要になる場合があります。</p>
+<p>IBMのハードウェアはヘビーヘクス格子の量子ビットトポロジーを持っており、この場合「ジグザグ」パターンを採用できます。下に示すように、このパターンでは、同じスピンを持つ軌道が量子ビットにマッピングされ、線形トポロジー（赤と青の円）となります。また、異なるスピンを持つ軌道の接続は、4番目の空間軌道ごとに存在し、その接続は補助量子ビット（紫の円）を介して行われます。この場合、インデックス制約は次のようになります：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathbf{J}^{\alpha\alpha} &amp;: \set{(p, p+1) \; , \; p = 0, \ldots, N-2} \\
+\mathbf{J}^{\alpha\beta} &amp;: \set{(p, p) \;, \; p = 0, 4, 8, \ldots (p \leq N-1)}
+\end{align*}
+\end{split}\]</div>
+<p><img alt="lucjansatzzigzagpattern.jpg" src="https://learning-api.quantum.ibm.com/assets/bbe59805-f2aa-4d34-97ca-aa7200442802" /></p>
+</section>
+<section id="id3">
+<h3>サンプルベースの量子対角化（SQD）<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>セルフコンシステントな配置復元手続きは、ノイズの多い量子サンプルからできるだけ多くの信号を抽出することを目的としています。分子ハミルトニアンは粒子数とスピンZを保存するため、これらの対称性も保存する回路アンザッツを選ぶことが理にかなっています。Hartree-Fock状態にこのアンザッツを適用すると、結果として得られる状態はノイズのない設定では、常に一定の粒子数とスピンZを持ちます。したがって、この状態からサンプリングされた任意のビット列のスピン-<span class="math notranslate nohighlight">\(\alpha\)</span>とスピン-<span class="math notranslate nohighlight">\(\beta\)</span>の部分は、Hartree-Fock状態と同じ<a class="reference external" href="https://en.wikipedia.org/wiki/Hamming_weight">ハミング重み</a>を持つべきです。現在の量子プロセッサーにはノイズが存在するため、測定されたビット列のうち一部は、この性質を満たさないことがあります。単純な事後選択手法では、これらのビット列を廃棄することになりますが、これは無駄です。なぜなら、それらのビット列にはまだ信号が含まれている可能性があるからです。セルフコンシステントな置復元手続きは、後処理でその信号の一部を回復しようとします。この手続きは反復的で、入力として基底状態における各軌道の平均占有数の推定値が必要であり、これは最初に生のサンプルから計算されます。手続きはループで実行され、各反復には以下のステップがあります：</p>
+<ol class="arabic simple">
+<li><p>指定された対称性を満たさない各ビット列について、そのビットを確率的な手続きで反転させ、ビット列を現在の平均軌道占有数の推定値に近づけて、新しいビット列を得る。</p></li>
+<li><p>対称性を満たす古いビット列と新しいビット列をすべて集め、事前に選ばれた固定サイズのサブセットをサンプリングする。</p></li>
+<li><p>各ビット列サブセットに対して、ハミルトニアンを対応する基底ベクトルによって張られる部分空間に射影し（これらの基底ベクトルの説明については<a class="reference internal" href="#quantum-chemistry"><span class="xref myst">前のセクション</span></a>を参照）、古典コンピューターで射影されたハミルトニアンの基底状態推定を計算する。</p></li>
+<li><p>最も低いエネルギーを持つ基底状態推定を使用して、平均軌道占有数の推定値を更新する。</p></li>
+</ol>
+<p>SQDのワークフローは、以下の図に示されています：</p>
+<p><img alt="sqddiagram.png" src="https://learning-api.quantum.ibm.com/assets/66d73999-337f-442d-956d-7bf0913d53f6" /></p>
+<p>SQDは、ターゲットの固有状態がスパース（疎）である場合にうまく機能することが知られています。すなわち、波動関数は基底状態の集合 <span class="math notranslate nohighlight">\(\mathcal{S} = \{|x\rangle \}\)</span> にサポートされ、そのサイズは問題のサイズに対して指数関数的に増加しません。</p>
+</section>
+</section>
+<section id="id4">
+<h2>必要条件<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを始める前に、以下のものがインストールされていることを確認してください：</p>
+<ul class="simple">
+<li><p>Qiskit SDK 1.0 or later with visualization support (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">'qiskit[visualization]'</span></code>)</p></li>
+<li><p>Qiskit Runtime 0.22 or later (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code>)</p></li>
+<li><p>Qiskit Addons SQD (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-addon-sqd</span></code>)</p></li>
+<li><p>ffsim (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ffsim</span></code>)</p></li>
+</ul>
+</section>
+<section id="step-1">
+<h2>Step 1: 古典的入力を量子問題にマップする<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h2>
+<p>このチュートリアルでは、6-31G基底セットで平衡状態の分子の基底状態の近似を求めます。最初に、分子とその性質を指定します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyscf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyscf.cc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyscf.mcscf</span>
+
+<span class="c1"># 分子特性の指定</span>
+<span class="n">open_shell</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">spin_sq</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># N2分子を作る</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">gto</span><span class="o">.</span><span class="n">Mole</span><span class="p">()</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">build</span><span class="p">(</span>
+    <span class="n">atom</span><span class="o">=</span><span class="p">[[</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]],</span>
+    <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;6-31g&quot;</span><span class="p">,</span>
+    <span class="n">symmetry</span><span class="o">=</span><span class="s2">&quot;Dooh&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># アクティブスペースの定義</span>
+<span class="n">n_frozen</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">active_space</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_frozen</span><span class="p">,</span> <span class="n">mol</span><span class="o">.</span><span class="n">nao_nr</span><span class="p">())</span>
+
+<span class="c1"># 分子積分の取得</span>
+<span class="n">scf</span> <span class="o">=</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">num_orbitals</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">active_space</span><span class="p">)</span>
+<span class="n">n_electrons</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">scf</span><span class="o">.</span><span class="n">mo_occ</span><span class="p">[</span><span class="n">active_space</span><span class="p">]))</span>
+<span class="n">num_elec_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_electrons</span> <span class="o">+</span> <span class="n">mol</span><span class="o">.</span><span class="n">spin</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="n">num_elec_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_electrons</span> <span class="o">-</span> <span class="n">mol</span><span class="o">.</span><span class="n">spin</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="c1"># Multi-configuration self-consistent field の Complete Active Space CI</span>
+<span class="n">cas</span> <span class="o">=</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">mcscf</span><span class="o">.</span><span class="n">CASCI</span><span class="p">(</span><span class="n">scf</span><span class="p">,</span> <span class="n">num_orbitals</span><span class="p">,</span> <span class="p">(</span><span class="n">num_elec_a</span><span class="p">,</span> <span class="n">num_elec_b</span><span class="p">))</span>
+<span class="n">mo</span> <span class="o">=</span> <span class="n">cas</span><span class="o">.</span><span class="n">sort_mo</span><span class="p">(</span><span class="n">active_space</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">hcore</span><span class="p">,</span> <span class="n">nuclear_repulsion_energy</span> <span class="o">=</span> <span class="n">cas</span><span class="o">.</span><span class="n">get_h1cas</span><span class="p">(</span><span class="n">mo</span><span class="p">)</span> <span class="c1"># アクティブスペースの1電子ハミルトニアン, 原子核エネルギー</span>
+<span class="n">eri</span> <span class="o">=</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">ao2mo</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cas</span><span class="o">.</span><span class="n">get_h2cas</span><span class="p">(</span><span class="n">mo</span><span class="p">),</span> <span class="n">num_orbitals</span><span class="p">)</span> <span class="c1"># アクティブスペースの2電子ハミルトニアン</span>
+
+<span class="c1"># 正確なエネルギーを計算する</span>
+<span class="n">exact_energy</span> <span class="o">=</span> <span class="n">cas</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">e_tot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>converged SCF energy = -108.835236570774
+CASCI E = -109.046671778080  E(CI) = -32.8155692383188  S^2 = 0.0000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>注：E(CI)は活性空間内の電子相関エネルギー、S^2はスピン多重度　です。</p>
+<p>LUCJ アンザッツ回路を構築する前に、まず次のコード セルで CCSD 計算を実行します。この計算からの <a class="reference external" href="https://en.wikipedia.org/wiki/Coupled_cluster#Cluster_operator"><span class="math notranslate nohighlight">\(t_1\)</span> および <span class="math notranslate nohighlight">\(t_2\)</span> 振幅</a> は、アンザッツのパラメーターを初期化するために使用されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># アンザッツ初期化するためにCCSDのt1, t2振幅を取得</span>
+<span class="n">ccsd</span> <span class="o">=</span> <span class="n">pyscf</span><span class="o">.</span><span class="n">cc</span><span class="o">.</span><span class="n">CCSD</span><span class="p">(</span>
+    <span class="n">scf</span><span class="p">,</span> <span class="n">frozen</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">nao_nr</span><span class="p">())</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">active_space</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">ccsd</span><span class="o">.</span><span class="n">t1</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">ccsd</span><span class="o">.</span><span class="n">t2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E(CCSD) = -109.0398256929733  E_corr = -0.204589122198831
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pyscf.cc.ccsd.CCSD&#39;&gt; does not have attributes  converged
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、<a class="reference external" href="https://github.com/qiskit-community/ffsim">ffsim</a>に基づいてアンザッツ回路を作成します。私たちの分子は閉殻のHartree-Fock状態を持つため、UCJアンザッツのスピンバランス型変形版である<a class="reference external" href="https://qiskit-community.github.io/ffsim/api/ffsim.html#ffsim.UCJOpSpinBalanced">UCJOpSpinBalanced</a>を使用します。私たちは、ヘビーヘクス格子の量子ビットトポロジーに適した相互作用ペアを渡します（<a class="reference internal" href="#The-local-UCJ-(LUCJ)-ansatz"><span class="xref myst">LUCJアンザッツに関する背景セクション</span></a>を参照）。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ffsim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span>
+
+<span class="n">n_reps</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">alpha_alpha_indices</span> <span class="o">=</span> <span class="p">[(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_orbitals</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">alpha_beta_indices</span> <span class="o">=</span> <span class="p">[(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_orbitals</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+
+<span class="n">ucj_op</span> <span class="o">=</span> <span class="n">ffsim</span><span class="o">.</span><span class="n">UCJOpSpinBalanced</span><span class="o">.</span><span class="n">from_t_amplitudes</span><span class="p">(</span>
+    <span class="n">t2</span><span class="o">=</span><span class="n">t2</span><span class="p">,</span>
+    <span class="n">t1</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span>
+    <span class="n">n_reps</span><span class="o">=</span><span class="n">n_reps</span><span class="p">,</span>
+    <span class="n">interaction_pairs</span><span class="o">=</span><span class="p">(</span><span class="n">alpha_alpha_indices</span><span class="p">,</span> <span class="n">alpha_beta_indices</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">nelec</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_elec_a</span><span class="p">,</span> <span class="n">num_elec_b</span><span class="p">)</span>
+
+<span class="c1"># 空の量子回路を作る</span>
+<span class="n">qubits</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">num_orbitals</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;q&quot;</span><span class="p">)</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+<span class="c1"># ハートリーフォック状態を参照状態として準備し、量子回路に追加する</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ffsim</span><span class="o">.</span><span class="n">qiskit</span><span class="o">.</span><span class="n">PrepareHartreeFockJW</span><span class="p">(</span><span class="n">num_orbitals</span><span class="p">,</span> <span class="n">nelec</span><span class="p">),</span> <span class="n">qubits</span><span class="p">)</span>
+
+<span class="c1"># 参照状態にUCJ演算子を適用する。</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ffsim</span><span class="o">.</span><span class="n">qiskit</span><span class="o">.</span><span class="n">UCJOpSpinBalancedJW</span><span class="p">(</span><span class="n">ucj_op</span><span class="p">),</span> <span class="n">qubits</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2">
+<h2>Step 2: 量子実行のために問題を最適化する<a class="headerlink" href="#step-2" title="Link to this heading">#</a></h2>
+<p>次に、ターゲット・ハードウェア用に回路を最適化します。ここでは、127量子ビットのIBM Sherbrooke QPUを使用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_sherbrooke&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>アンザッツを最適化し、ハードウェアと互換性を持たせるために、以下の手順を推奨します。</p>
+<ul class="simple">
+<li><p>上記で説明したジグザグパターンに従ったターゲットハードウェアから物理量子ビット（<code class="docutils literal notranslate"><span class="pre">initial_layout</span></code>）を選択します。このパターンで量子ビットを配置すると、ゲート数が少なく、効率的なハードウェア互換回路が得られます。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qiskit</span></code>の<a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/transpiler_preset#generate_preset_pass_manager">generate_preset_pass_manager</a> 関数を使用して、選択した<code class="docutils literal notranslate"><span class="pre">backend</span></code> と<code class="docutils literal notranslate"><span class="pre">initial_layout</span></code>を基にstaged pass managerを生成します。</p></li>
+<li><p>staged pass managerの<code class="docutils literal notranslate"><span class="pre">pre_init</span></code>ステージを<code class="docutils literal notranslate"><span class="pre">ffsim.qiskit.PRE_INIT</span></code>に設定します。<code class="docutils literal notranslate"><span class="pre">ffsim.qiskit.PRE_INIT</span></code>には、ゲートを軌道回転に分解し、その後軌道回転を統合する<code class="docutils literal notranslate"><span class="pre">qiskit</span></code>のトランスパイラーパスが含まれており、最終的な回路でのゲート数を減らします。</p></li>
+<li><p>pass managerを回路に対して実行します。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+
+<span class="n">spin_a_layout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">82</span><span class="p">]</span>
+<span class="n">spin_b_layout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">73</span><span class="p">]</span>
+<span class="n">initial_layout</span> <span class="o">=</span> <span class="n">spin_a_layout</span> <span class="o">+</span> <span class="n">spin_b_layout</span>
+
+<span class="n">pass_manager</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span>
+    <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">initial_layout</span><span class="o">=</span><span class="n">initial_layout</span>
+<span class="p">)</span>
+
+<span class="c1"># PRE_INITパスなし</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gate counts (w/o pre-init passes): </span><span class="si">{</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># PRE_INITパス付き</span>
+<span class="c1"># このパス・マネージャーによって生成された回路をハードウェアの実行に使用する</span>
+<span class="n">pass_manager</span><span class="o">.</span><span class="n">pre_init</span> <span class="o">=</span> <span class="n">ffsim</span><span class="o">.</span><span class="n">qiskit</span><span class="o">.</span><span class="n">PRE_INIT</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gate counts (w/ pre-init passes): </span><span class="si">{</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gate counts (w/o pre-init passes): OrderedDict([(&#39;rz&#39;, 4505), (&#39;sx&#39;, 3427), (&#39;ecr&#39;, 1366), (&#39;x&#39;, 207), (&#39;measure&#39;, 32), (&#39;barrier&#39;, 1)])
+Gate counts (w/ pre-init passes): OrderedDict([(&#39;rz&#39;, 2475), (&#39;sx&#39;, 2146), (&#39;ecr&#39;, 730), (&#39;x&#39;, 77), (&#39;measure&#39;, 32), (&#39;barrier&#39;, 1)])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-qiskit-primitives">
+<h2>Step 3: Qiskit Primitivesを使って実行する<a class="headerlink" href="#step-3-qiskit-primitives" title="Link to this heading">#</a></h2>
+<p>回路をハードウェア実行用に最適化した後、ターゲットハードウェアで実行し、基底状態エネルギーの推定のためにサンプルを収集する準備が整いました。回路は1つだけなので、Qiskit Runtimeの<a class="reference external" href="https://docs.quantum.ibm.com/guides/execution-modes">Job execution mode</a>を使用して回路を実行します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_circuit</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">100_000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ジョブの実行状態を確認します</span>
+<span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 待ち時間が長い時に後から結果を確認する場合</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;cphxywvbtqp0008348fg&#39;</span><span class="p">)</span> <span class="c1"># 例です。上に出力された自分のjob_idを入れて実行してください。</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ジョブの実行状態を確認します</span>
+<span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### &#39;DONE&#39;になってから実行します ###</span>
+<span class="n">primitive_result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">pub_result</span> <span class="o">=</span> <span class="n">primitive_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4">
+<h2>Step 4: 後処理を行い、結果を希望する古典形式に戻す<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h2>
+<p>SQDは、量子コンピューターから収集したビット列の後処理に大きく依存しています。後処理の準備として、カウント辞書をビット配列に変換します。このビット配列は、0と1の<span class="math notranslate nohighlight">\(M \times N\)</span>行列で、<span class="math notranslate nohighlight">\(M\)</span>はショット数、<span class="math notranslate nohighlight">\(N\)</span>は量子ビットの数です。</p>
+<p>Qiskitのビット順序規約では、ビット列は右側からインデックスが付けられます。したがって、ビット配列は最も右の列（インデックス<span class="math notranslate nohighlight">\(N - 1\)</span>）に最初の量子ビットの測定結果を格納します。さらに、スピン-<span class="math notranslate nohighlight">\(\alpha\)</span>軌道はスピン-<span class="math notranslate nohighlight">\(\beta\)</span> 軌道の前にインデックスが付けられており、つまりスピン-<span class="math notranslate nohighlight">\(\alpha\)</span>軌道はスピン-<span class="math notranslate nohighlight">\(\beta\)</span> 軌道の右側に位置します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_sqd.counts</span><span class="w"> </span><span class="kn">import</span> <span class="n">counts_to_arrays</span>
+
+<span class="c1"># カウントをビット列と確率配列に変換する</span>
+<span class="n">bitstring_matrix_full</span><span class="p">,</span> <span class="n">probs_arr_full</span> <span class="o">=</span> <span class="n">counts_to_arrays</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>セルフコンシステントな配置復元は反復的な手続きであり、ループ内で実行されることを思い出してください。以下のコードセルでは、ループの最初の反復は、生のサンプル（対称性に基づくポストセレクション後）を入力として使用し、対角化手続きにより平均軌道占有数の推定値を得ます。２回目以降のループの反復では、この占有数を使用して、対称性を満たさない生のサンプルから新しい配置を生成します。これらの配置は収集され、その後サブサンプリングされて配置のバッチが作成され、次にハミルトニアンを射影して固有状態ソルバーで基底状態推定を計算するために使用されます。</p>
+<p>この手法にはいくつかのユーザーが制御するオプションがあります：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iterations</span></code>: セルフコンシステントな復元ループの反復回数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_batches</span></code>: サブサンプリングする配置のバッチ数（これが固有状態ソルバーへの呼び出し回数となります）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">samples_per_batch</span></code>: 各バッチに含める固有の配置の数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_davidson_cycles</span></code>: 固有状態ソルバーによって実行されるDavidsonサイクルの最大数</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_sqd.configuration_recovery</span><span class="w"> </span><span class="kn">import</span> <span class="n">recover_configurations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_sqd.fermion</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">flip_orbital_occupancies</span><span class="p">,</span>
+    <span class="n">solve_fermion</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_sqd.subsampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">postselect_and_subsample</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="c1"># SQDオプション</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># 固有状態ソルバーのオプション</span>
+<span class="n">n_batches</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">samples_per_batch</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">max_davidson_cycles</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="c1"># セルフコンシステントな配置復元ループ</span>
+<span class="n">e_hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">iterations</span><span class="p">,</span> <span class="n">n_batches</span><span class="p">))</span>  <span class="c1"># エネルギー履歴</span>
+<span class="n">s_hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">iterations</span><span class="p">,</span> <span class="n">n_batches</span><span class="p">))</span>  <span class="c1"># スピン履歴</span>
+<span class="n">occupancy_hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">iterations</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">num_orbitals</span><span class="p">))</span>
+<span class="n">occupancies_bitwise</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 軌道iはビット列行列の列iに対応</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting configuration recovery iteration </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># 最初の反復では、ソルバーからの軌道占有情報がないので、ハミングウェイトに基づいてビット列の全集合から後選択するだけ</span>
+    <span class="k">if</span> <span class="n">occupancies_bitwise</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bs_mat_tmp</span> <span class="o">=</span> <span class="n">bitstring_matrix_full</span>
+        <span class="n">probs_arr_tmp</span> <span class="o">=</span> <span class="n">probs_arr_full</span>
+
+    <span class="c1"># もし平均軌道占有率の情報があれば、それを使ってノイズあり配置の全集合を修正</span>
+        <span class="n">bs_mat_tmp</span><span class="p">,</span> <span class="n">probs_arr_tmp</span> <span class="o">=</span> <span class="n">recover_configurations</span><span class="p">(</span>
+            <span class="n">bitstring_matrix_full</span><span class="p">,</span>
+            <span class="n">probs_arr_full</span><span class="p">,</span>
+            <span class="n">occupancies_bitwise</span><span class="p">,</span>
+            <span class="n">num_elec_a</span><span class="p">,</span>
+            <span class="n">num_elec_b</span><span class="p">,</span>
+            <span class="n">rand_seed</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># スピンアップ系またはスピンダウン系で、粒子数が正しくない配置を捨てる</span>
+    <span class="n">batches</span> <span class="o">=</span> <span class="n">postselect_and_subsample</span><span class="p">(</span>
+        <span class="n">bs_mat_tmp</span><span class="p">,</span>
+        <span class="n">probs_arr_tmp</span><span class="p">,</span>
+        <span class="n">hamming_right</span><span class="o">=</span><span class="n">num_elec_a</span><span class="p">,</span>
+        <span class="n">hamming_left</span><span class="o">=</span><span class="n">num_elec_b</span><span class="p">,</span>
+        <span class="n">samples_per_batch</span><span class="o">=</span><span class="n">samples_per_batch</span><span class="p">,</span>
+        <span class="n">num_batches</span><span class="o">=</span><span class="n">n_batches</span><span class="p">,</span>
+        <span class="n">rand_seed</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 固有状態ソルバーをループで実行。このループは大きな問題では並列化したほうがよい。</span>
+    <span class="n">e_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_batches</span><span class="p">)</span>
+    <span class="n">s_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_batches</span><span class="p">)</span>
+    <span class="n">occs_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_batches</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">num_orbitals</span><span class="p">))</span>
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_batches</span><span class="p">):</span>
+        <span class="n">energy_sci</span><span class="p">,</span> <span class="n">coeffs_sci</span><span class="p">,</span> <span class="n">avg_occs</span><span class="p">,</span> <span class="n">spin</span> <span class="o">=</span> <span class="n">solve_fermion</span><span class="p">(</span>
+            <span class="n">batches</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+            <span class="n">hcore</span><span class="p">,</span> <span class="c1"># アクティブスペースの1電子ハミルトニアン</span>
+            <span class="n">eri</span><span class="p">,</span> <span class="c1"># アクティブスペースの2電子ハミルトニアン</span>
+            <span class="n">open_shell</span><span class="o">=</span><span class="n">open_shell</span><span class="p">,</span> <span class="c1"># 閉殻</span>
+            <span class="n">spin_sq</span><span class="o">=</span><span class="n">spin_sq</span><span class="p">,</span> <span class="c1"># スピンの大きさは0</span>
+            <span class="n">max_davidson</span><span class="o">=</span><span class="n">max_davidson_cycles</span><span class="p">,</span> <span class="c1"># 200</span>
+        <span class="p">)</span>
+        <span class="n">energy_sci</span> <span class="o">+=</span> <span class="n">nuclear_repulsion_energy</span> <span class="c1"># 原子核エネルギー</span>
+        <span class="n">e_tmp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">energy_sci</span>
+        <span class="n">s_tmp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">spin</span>
+        <span class="n">occs_tmp</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:</span><span class="n">num_orbitals</span><span class="p">]</span> <span class="o">=</span> <span class="n">avg_occs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">occs_tmp</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">num_orbitals</span><span class="p">:]</span> <span class="o">=</span> <span class="n">avg_occs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">coeffs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coeffs_sci</span><span class="p">)</span>
+
+    <span class="c1"># バッチ結果を組み合わせる</span>
+    <span class="n">avg_occupancy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">occs_tmp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># ソルバーからの占有率をビット列マトリックスのビットと一致するように並びを反転する</span>
+    <span class="n">occupancies_bitwise</span> <span class="o">=</span> <span class="n">flip_orbital_occupancies</span><span class="p">(</span><span class="n">avg_occupancy</span><span class="p">)</span>
+
+    <span class="c1"># 最適化履歴の追跡</span>
+    <span class="n">e_hist</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">e_tmp</span>
+    <span class="n">s_hist</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">s_tmp</span>
+    <span class="n">occupancy_hist</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">avg_occupancy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting configuration recovery iteration 0
+Starting configuration recovery iteration 1
+Starting configuration recovery iteration 2
+Starting configuration recovery iteration 3
+Starting configuration recovery iteration 4
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h3>結果の視覚化<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>最初のプロットは、数回の反復後に基底状態エネルギーを<code class="docutils literal notranslate"><span class="pre">~10</span> <span class="pre">mH</span></code>以内で推定できることを示しています（化学的精度は通常<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">kcal/mol</span></code> <span class="math notranslate nohighlight">\(\approx\)</span> <code class="docutils literal notranslate"><span class="pre">1.6</span> <span class="pre">mH</span></code>とされています）。エネルギーは回路からさらに多くのサンプルを引いたり、バッチごとのサンプル数を増やすことで改善できます。</p>
+<p>2番目のプロットは、最終反復後の各空間軌道の平均占有数を示しています。私たちの解では、スピンアップおよびスピンダウンの電子が高い確率で最初の5つの軌道を占有していることがわかります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># エネルギープロットのデータ</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">)</span>
+<span class="n">e_diff</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">energies</span><span class="p">)</span> <span class="o">-</span> <span class="n">exact_energy</span><span class="p">)</span> <span class="k">for</span> <span class="n">energies</span> <span class="ow">in</span> <span class="n">e_hist</span><span class="p">]</span>
+<span class="n">yt1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">]</span>
+
+<span class="c1"># 化学的精度 (+/- 1 milli-Hartree)</span>
+<span class="n">chem_accuracy</span> <span class="o">=</span> <span class="mf">0.001</span>
+
+<span class="c1"># 平均空間軌道占有率のデータ</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">avg_occupancy</span><span class="p">[:</span><span class="n">num_orbitals</span><span class="p">]</span> <span class="o">+</span> <span class="n">avg_occupancy</span><span class="p">[</span><span class="n">num_orbitals</span><span class="p">:]</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y2</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># エネルギーのプロット</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">e_diff</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;energy error&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yt1</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">yt1</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">chem_accuracy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#BF5700&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;chemical accuracy&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Approximated Ground State Energy Error vs SQD Iterations&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration Index&quot;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fontsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy Error (Ha)&quot;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fontsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># 軌道占有率のプロット</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Avg Occupancy per Spatial Orbital&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Orbital Index&quot;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fontsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Avg Occupancy&quot;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fontsize&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/db38ae9c21e2f3909b5184fa9d9f00c2314deb576f1c14006225a02a77683bf3.png" src="../_images/db38ae9c21e2f3909b5184fa9d9f00c2314deb576f1c14006225a02a77683bf3.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="tutorial-survey">
+<h2>Tutorial Survey<a class="headerlink" href="#tutorial-survey" title="Link to this heading">#</a></h2>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<td valign="top" style="width: 10%;"><img src="https://learning-api.quantum.ibm.com/assets/53171443-b07b-4ae6-a4be-9aec32a854f5" alt="Survey" width="100%" height="100%"></td>
+<td valign="top"  style="width: 80%;"><strong><a title="Tutorial Survey" href="https://your.feedback.ibm.com/jfe/form/SV_8cECHVBBWBjt72S" target="_blank">Tutorial Survey</a></strong><p><p>Please take one minute to provide feedback on this tutorial. Your insights will help us improve our content offerings and user experience.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">量子化学</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lucj">ローカル・ユニタリー・クラスター・ジャストロウ（LUCJ）アンザッツ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">サンプルベースの量子対角化（SQD）</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">必要条件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1: 古典的入力を量子問題にマップする</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2: 量子実行のために問題を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-qiskit-primitives">Step 3: Qiskit Primitivesを使って実行する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 後処理を行い、結果を希望する古典形式に戻す</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">結果の視覚化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-survey">Tutorial Survey</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
