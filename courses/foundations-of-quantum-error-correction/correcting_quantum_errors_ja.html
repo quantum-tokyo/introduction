@@ -1,0 +1,1101 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子エラーの訂正 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/foundations-of-quantum-error-correction/correcting_quantum_errors_ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/foundations-of-quantum-error-correction/correcting_quantum_errors_ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/foundations-of-quantum-error-correction/correcting_quantum_errors_ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子エラーの訂正</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">はじめに</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">古典的な繰り返し符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">符号化と復号化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">二元対称チャネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子ビットに対する繰り返し符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">符号化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ビット反転エラーの検出</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">位相反転エラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">位相反転エラーに対応する修正済み反復符号</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">9量子ビットのショアの符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">符号の説明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cnot">エラーとCNOTゲート</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">ビット反転エラーの訂正</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">位相反転エラーの訂正</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">同時に発生するビット反転エラーと位相反転エラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">ランダムなエラー</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">エラーの離散化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">ユニタリー量子ビットエラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">任意の量子ビットエラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">一般化</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子エラーの訂正<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<!--
+Unit 4: Foundations of Quantum Error Correction
+Lesson 13: Correcting Quantum Errors
+-->
+<iframe src="https://video.ibm.com/embed/recorded/134082557?showtitle=false" loading="lazy" width="100%" height="450" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+<p>このレッスンの <a class="reference external" href="https://youtu.be/OoQSdcKAIZc">YouTube ビデオ</a>を別のウィンドウで開きます。</p>
+<section id="id2">
+<h2>はじめに<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>量子コンピューティングは、効率的な古典アルゴリズムが知られていないか存在しない可能性のある計算課題に対して、効率的な解法を提供する可能性を秘めています。
+しかし、私たちが将来的に期待するような大規模な量子計算を確実に実現するためには、非常に大きな課題を克服する必要があります。</p>
+<p>問題の核心は、量子情報が極めて壊れやすいことです――文字通り、それを「見る」だけで情報を破壊してしまう可能性があります。
+このため、量子コンピュータが正しく動作するには、記憶している量子情報を周囲の環境から極限まで隔離しなければなりません。
+しかし同時に、量子コンピューターは、適切な初期化、正確で信頼性のあるユニタリー操作、そして計算結果を得るための測定を含め、量子情報に対して非常に精密な制御を提供する必要があります。</p>
+<p>これらの要件の間には明らかに緊張関係があり、量子コンピューティングの黎明期には、量子情報の脆弱性や、誤りや環境ノイズへの影響を受けやすい性質が、最終的に量子コンピューティングを不可能にするのではないかと考える人もいました。
+今日では、大規模な量子コンピューターを正確かつ信頼性のあるものとして構築することが非常に困難な課題であることは疑いようがありません。
+しかし、この挑戦において私たちを支えてくれる重要なツールがあり、それこそが、大規模な量子コンピューティングが将来的に実現可能であると、多くの専門家が楽観視する理由となっています。そのツールとは、量子誤り訂正です。</p>
+<p>今後4回のレッスンでは、量子誤り訂正について、基礎に焦点を当てながら学んでいきます。本レッスンでは、量子誤り訂正の最初の概観を示し、最初に発見された量子誤り訂正符号である <em>9量子ビットのショアの符号（9-qubit Shor code）</em> を紹介するとともに、量子誤り訂正の基礎概念の一つである <em>誤りの離散化（discretization of errors）</em> についても議論します。</p>
+</section>
+<section id="id3">
+<h2>古典的な繰り返し符号<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>このレッスンでは、 <em>古典的な繰り返し符号</em> から始めます。これは、9量子ビットのショアの符号の基礎となるものです。</p>
+<section id="id4">
+<h3>符号化と復号化<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>繰り返し符号は、誤り訂正符号の中でも非常に基本的な例です。
+この考え方は、各ビットを一定回数繰り返して符号化することで、誤りからビットを保護できるというものです。
+特に、まずは 3ビットの繰り返し符号 を考えてみましょう。
+ここでは、1つのビットを3回繰り返すことで符号化します。つまり、<span class="math notranslate nohighlight">\(0\)</span> は <span class="math notranslate nohighlight">\(000\)</span> に、<span class="math notranslate nohighlight">\(1\)</span> は <span class="math notranslate nohighlight">\(111\)</span> に符号化されます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+0 &amp; \mapsto 000\\
+1 &amp; \mapsto 111
+\end{aligned}
+\end{split}\]</div>
+<p>何も問題が起こらなければ、符号化されたデータから元のビットを明確に区別できます。
+しかし、1つのビットが誤って反転してしまい、<span class="math notranslate nohighlight">\(0\)</span> が <span class="math notranslate nohighlight">\(1\)</span> に変わったり、<span class="math notranslate nohighlight">\(1\)</span> が <span class="math notranslate nohighlight">\(0\)</span> に変わったりした場合でも、3ビットのうち どちらの値が2回現れるか を確認することで、元のビットを推測できます。
+これはつまり、多数決を取る(つまり最も頻繁に現れるバイナリー値を取る)ことで <em>復号（デコード）</em> できるということです。</p>
+<div class="math notranslate nohighlight">
+\[
+a b c \mapsto \operatorname{majority}(a,b,c)
+\]</div>
+<p>もちろん、2つまたは3つのビットが誤って反転してしまうと、復号がうまくいかず、誤ったビットが得られてしまいます。しかし、1つまでの誤りであれば正しく復号できることがわかります。
+これは誤り訂正符号の典型的な特性であり、ある程度の誤りを訂正できるものの、誤りが多すぎると訂正が難しくなるという特徴を持っています。</p>
+</section>
+<section id="id5">
+<h3>二元対称チャネル<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>繰り返し符号を用いることで誤りの発生確率を減らせる具体例として、単一のビットを仮想的な受信者に伝達したい状況を考えてみましょう。
+私たちは、 <em>二元対称チャネル（binary symmetric channel）</em> と呼ばれる通信経路を通じてビットを送信できるとします。
+このチャネルでは、送信されたビットが <em>独立して</em> 確率 <span class="math notranslate nohighlight">\(p\)</span> で反転する可能性があります。
+つまり、確率 <span class="math notranslate nohighlight">\(1-p\)</span> で受信者は送信されたビットをそのまま受け取りますが、確率 <span class="math notranslate nohighlight">\(p\)</span> で誤りが発生し、反対の値が届いてしまいます。</p>
+<p>もし3ビットの繰り返し符号を使用せず、そのままビットを送信する場合、受信者が誤ったビットを受け取る確率は <span class="math notranslate nohighlight">\(p\)</span> です。
+一方で、送信したいビットをまず3ビットの繰り返し符号で符号化し、それぞれのビットをチャネルを通じて送る場合、3つのビットのそれぞれが独立して確率 <span class="math notranslate nohighlight">\(p\)</span> で反転することになります。
+ビットが反転する可能性は、1ビット送る場合よりも高まります（なぜなら、3つのビットのどれもが反転する可能性があるため）が、最大1つのビットが反転するだけであれば、受信者は正しく復号できます。
+したがって、誤りが残るのは、2つ以上のビットが反転してしまった場合のみです。</p>
+<p>2つのビットが誤って反転する確率は <span class="math notranslate nohighlight">\(3p^2(1-p)\)</span> です。これは、反転しないビットを3通りのうち1つ選ぶ確率 <span class="math notranslate nohighlight">\(p^2(1-p)\)</span> を考えた結果です。
+また、3つすべてのビットが反転する確率は <span class="math notranslate nohighlight">\(p^3\)</span>となります。よって、2ビットまたは3ビットが反転する合計確率は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+3 p^2 (1 - p) + p^3 = 3 p^2 - 2 p^3.
+\]</div>
+<p>もし <span class="math notranslate nohighlight">\(p\)</span> が 1/2 より小さい 場合、この式の値は <span class="math notranslate nohighlight">\(p\)</span> よりも小さくなるため、受信者が誤ったビットを受け取る確率は減少します。
+つまり、この符号には完全ではないものの、誤りの発生確率を <em>低減する</em> 効果があるのです。
+(一方で、<span class="math notranslate nohighlight">\(p\)</span> が 1/2 より大きい 場合には、この符号を使うことで誤りの発生確率が逆に <em>増加</em> してしまいます。)</p>
+<p><img alt="Error probability graph for the 3 bit repetition code for a binary symmetric channel" src="https://learning-api.quantum.ibm.com/assets/5eefd3f1-a9e9-45e9-a622-dc85e84d9dce?format=auto&amp;quality=80" /></p>
+</section>
+</section>
+<section id="id6">
+<h2>量子ビットに対する繰り返し符号<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>3ビットの繰り返し符号は古典的な誤り訂正符号ですが、これを <em>量子ビット</em> の誤りを防ぐために使用しようとするとどうなるかを考えてみましょう。
+これから見るように、この方法は量子誤り訂正符号としてはあまり優れていません。むしろ、特定の種類の誤りを発生しやすくしてしまう場合があります。
+しかし、この符号はショアの符号への第一歩となるものであり、教育的な観点からも役立ちます。</p>
+<section id="id7">
+<h3>符号化<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>ここで、量子ビットに対して3ビットの繰り返し符号を使用するとは、 <em>標準基底状態</em> を3回繰り返して符号化することを意味します。
+つまり、1量子ビットの状態ベクトルは、次のように符号化されます。</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha \vert 0\rangle + \beta \vert 1\rangle \mapsto \alpha \vert 000\rangle + \beta \vert 111\rangle
+\]</div>
+<p>この符号化は、2つの補助的な量子ビットを初期化し、2つの制御NOT（CNOT）ゲートを適用することで容易に実装 できます。</p>
+<p><img alt="Encoding circuit for the 3-bit repetition code" src="https://learning-api.quantum.ibm.com/assets/6638f32f-7202-4628-a35f-5cd217a00026?format=auto&amp;quality=80" /></p>
+<p>特に重要なのは、この符号化は単に量子状態を3回繰り返しているわけではない という点です。
+つまり、量子ビットの状態ベクトルを<span class="math notranslate nohighlight">\(\vert\psi\rangle \mapsto \vert\psi\rangle\vert\psi\rangle\vert\psi\rangle\)</span>のように符号化しているわけではありません。
+このような符号化は、クローン不可能定理（no-cloning theorem）により、未知の量子状態 <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> に対して実装することができません。</p>
+</section>
+<section id="id8">
+<h3>ビット反転エラーの検出<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>ここで、符号化を行った後にエラーが発生する場合を考えてみましょう。
+具体的には、<span class="math notranslate nohighlight">\(X\)</span> ゲート、つまりビット反転が量子ビットの1つに作用するとします。
+例えば、中央の量子ビットがビット反転を受けた場合、3量子ビットの状態は次のように変化します。</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha \vert 010\rangle + \beta \vert 101\rangle.
+\]</div>
+<p>もちろん、発生しうるエラーはこの種類だけではありません。また、エラーが完全なユニタリー演算の形を取る と仮定するのが妥当なのかも疑問に思うかもしれません。
+これらの問題については、レッスンの最後のセクションで詳しく扱いますが、今のところ、この形式のエラーが考えうる1つのケース（しかも非常に重要なケース）であると捉えておきましょう。</p>
+<p>上の数式を見ると、各ケットの中で中央のビットだけが異なっている ことが明らかです。しかし、もし私たちがこの3量子ビットを持っているものの、その状態を知らない場合はどうなるでしょうか？
+ビット反転が発生した可能性があると考えたとき、それを確認する1つの方法は標準基底で測定することです。この場合、測定の結果は <span class="math notranslate nohighlight">\(010\)</span> または <span class="math notranslate nohighlight">\(101\)</span> となり、それぞれの確率は <span class="math notranslate nohighlight">\(\vert\alpha\vert^2\)</span> および <span class="math notranslate nohighlight">\(\vert\beta\vert^2\)</span> となります。
+この結果から、中央のビットが反転した ことは分かりますが、残念ながら元の量子状態 <span class="math notranslate nohighlight">\(\alpha\vert 0\rangle + \beta \vert 1\rangle\)</span> は失われてしまいます。私たちが保護しようとしているのはこの状態であるため、標準基底での測定は望ましい選択肢とは言えません。</p>
+<p>代わりに、以下の量子回路 を使用することで、この問題を回避できます。この回路では、符号化された状態を上側の3つの量子ビットに入力します。
+そして、この回路は上側の2つの量子ビット、および下側の2つの量子ビットの標準基底状態の <em>パリティ（偶奇）</em> を非破壊的に測定します。</p>
+<p><img alt="Error detection circuit for the 3-bit repetition code (no errors)" src="https://learning-api.quantum.ibm.com/assets/52c395f5-9289-4895-88c4-5586de98700c?format=auto&amp;quality=80" /></p>
+<p>最大で1つのビットが反転するという仮定のもとでは、測定結果からビット反転が発生した場所（または発生していないこと）を容易に特定できます。
+特に、以下の4つの回路図が示すように、測定結果が <span class="math notranslate nohighlight">\(00\)</span> であればビット反転は発生していないことを意味し、その他の3つの測定結果は、それぞれどの量子ビットがビット反転を受けたかを示します。</p>
+<p><img alt="Error detection circuit for the 3-bit repetition code (no errors)" src="https://learning-api.quantum.ibm.com/assets/443a6c65-9f03-4878-a96e-2762b9a4d35a?format=auto&amp;quality=80" />
+<img alt="Error detection circuit for the 3-bit repetition code (error on 2)" src="https://learning-api.quantum.ibm.com/assets/364dfb67-29d7-45b2-8348-64ca97fc21fe?format=auto&amp;quality=80" />
+<img alt="Error detection circuit for the 3-bit repetition code (error on 1)" src="https://learning-api.quantum.ibm.com/assets/0b8e5bb9-8e7b-4815-9a36-f50ef2f39de0?format=auto&amp;quality=80" />
+<img alt="Error detection circuit for the 3-bit repetition code (error on 0)" src="https://learning-api.quantum.ibm.com/assets/a12594c9-2537-4024-9384-921c9d0cf22c?format=auto&amp;quality=80" /></p>
+<p>重要な点として、上側の3つの量子ビットの状態は、どの場合でも崩壊しません。これにより、ビット反転の誤りが発生していた場合でも、単にもう一度同じビット反転を適用することで修正することができます。<br />
+以下の表に、最大で1つのビット反転が発生した場合の状態の変化、測定結果（誤り訂正の文脈では <em>シンドローム</em> と呼ばれる）、および元の符号化状態に戻すために必要な修正をまとめます。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>状態</p></th>
+<th class="head text-center"><p>シンドローム</p></th>
+<th class="head text-center"><p>修正</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert 000\rangle + \beta \vert 111\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(00\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{I}\otimes\mathbb{I}\otimes\mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert 100\rangle + \beta \vert 011\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(10\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(X\otimes\mathbb{I}\otimes\mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert 010\rangle + \beta \vert 101\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(11\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{I}\otimes X\otimes\mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert 001\rangle + \beta \vert 110\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(01\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{I}\otimes\mathbb{I}\otimes X\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>繰り返しになりますが、最大で1つのビット反転が発生する場合のみを考えています。
+もし2つまたは3つのビット反転が発生した場合、この方法は正しく機能しません。また、ビット反転以外の誤りの可能性についても、ここではまだ考慮していません。</p>
+</section>
+<section id="id9">
+<h3>位相反転エラー<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>量子の場合、ビット反転エラーだけではなく、他の種類のエラーについても考える必要があります。
+例えば、 <em>位相反転エラー（phase-flip error）</em> もその1つであり、これは <span class="math notranslate nohighlight">\(Z\)</span> ゲートによって表されます。
+ビット反転エラーと同様に、位相反転エラーも量子ビットに影響を与えるエラーの1つの可能性として考えることができます。
+しかし、レッスンの最後のセクションで学ぶ量子誤り訂正符号における <em>誤りの離散化（discretization of errors）</em> に関する議論のとおり、ビット反転エラーと位相反転エラーに焦点を当てることは理にかなっています。
+特に、ビット反転エラー、位相反転エラー、またはその両方を修正する能力があれば、単一の量子ビットに対する任意の量子エラーを修正できることが保証されます。</p>
+<p>しかし、3ビット反復符号は位相反転エラーに対してまったく効果がありません。
+例えば、量子ビット状態 <span class="math notranslate nohighlight">\(\alpha\vert 0\rangle + \beta\vert 1\rangle\)</span> を3ビット反復符号で符号化した後に、中央の量子ビットに位相反転誤りが発生 したとします。
+このとき、状態は次のように変化します。</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathbb{I} \otimes Z \otimes \mathbb{I}) ( \alpha \vert 000\rangle + \beta \vert 111\rangle)
+= \alpha \vert 000\rangle - \beta \vert 111\rangle,
+\]</div>
+<p>これは、もともとの量子ビット状態が <span class="math notranslate nohighlight">\(\alpha\vert 0\rangle - \beta\vert 1\rangle\)</span> であった場合の符号化結果と全く同じ状態 になります。
+実際、符号化された3つの量子ビットのうち、どれか1つに位相反転エラーが発生すると、この同じ影響を受けます。
+これは、符号化前の単一量子ビットに位相反転エラーが発生した場合と等価であることを意味します。
+したがって、元の量子状態が未知であると仮定すると、エラーが発生したことを検出する手段はありません。
+なぜなら、それは単に異なる量子ビット状態の正しい符号化結果だからです。
+特に、先ほどの誤り検出回路を状態 <span class="math notranslate nohighlight">\(\alpha \vert 000\rangle - \beta \vert 111\rangle\)</span> に適用した場合、測定結果（シンドローム）は必ず <span class="math notranslate nohighlight">\(00\)</span> になり、エラーが発生していないと誤って判断されてしまいます。</p>
+<p>さらに問題なのは、符号化後の3つの量子ビットはもともと1つだった量子ビットよりも位相反転エラーを受けやすくなっていることです。
+例えば、位相反転エラーが各量子ビットに対して独立に確率 <span class="math notranslate nohighlight">\(p\)</span> で発生する状況（ビット反転の場合の二元対称チャネルに類似）を考えると、この符号化は小さな<span class="math notranslate nohighlight">\(p\)</span> の場合に、デコード後の位相反転エラーの確率をむしろ増加させてしまいます。
+具体的には、3つの符号化量子ビットのうち奇数個に位相反転エラーが発生すると、デコード後の元の量子ビットに位相反転エラーが生じることになります。
+その確率は <span class="math notranslate nohighlight">\(3 p (1 - p)^2 + p^3\)</span> です。
+この値は <span class="math notranslate nohighlight">\(0&lt;p&lt;1/2\)</span>の範囲では <span class="math notranslate nohighlight">\(p\)</span> より大きくなるため、この符号化を行うと、位相反転エラーの確率がむしろ増加してしまうことになります。</p>
+</section>
+<section id="id10">
+<h3>位相反転エラーに対応する修正済み反復符号<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>これまでに、3ビット反復符号は位相反転エラーを全く検出できないことを確認しました。そのため、この種のエラーに対してはあまり役に立たないように思えます。
+しかし、3ビット反復符号を少し修正することで、位相反転エラーを検出できるようになります。
+この修正を行うと、今度はビット反転エラーに対して無力になってしまいます。ですが、次のセクションで学ぶように、この修正済み符号と3ビット反復符号を組み合わせることで、ビット反転エラーと位相反転エラーの両方を修正できる「ショアの符号（Shor code）」を構築することができます。</p>
+<p>以下に、これまで学んだ符号化回路を修正したバージョン を示します。この修正によって、位相反転誤りを検出できるようになります。
+修正は非常に単純で、2つの制御NOT（CNOT）ゲートを適用した後、各量子ビットにアダマール（Hadamard）ゲートを適用するだけ です。</p>
+<p><img alt="Modified encoding circuit for the 3-bit repetition code" src="https://learning-api.quantum.ibm.com/assets/4129daaa-593c-4854-b96e-451c655ab30e?format=auto&amp;quality=80" /></p>
+<p>アダマールゲートは、<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> の状態を <span class="math notranslate nohighlight">\(\vert + \rangle\)</span> の状態に変換し、<span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> の状態を <span class="math notranslate nohighlight">\(\vert - \rangle\)</span> の状態に変換 します。したがって、その結果として、単一量子ビットの状態 <span class="math notranslate nohighlight">\(\alpha\vert 0\rangle + \beta \vert 1\rangle\)</span> は、次のように符号化されます。</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha \vert {+}\,{+}\,{+} \rangle + \beta \vert {-}\,{-}\,{-} \rangle
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(\vert {+}\,{+}\,{+} \rangle = \vert + \rangle \otimes \vert + \rangle \otimes\vert + \rangle\)</span> 、
+<span class="math notranslate nohighlight">\(\vert {-}\,{-}\,{-} \rangle = \vert - \rangle \otimes \vert - \rangle \otimes\vert - \rangle\)</span> を表ます。</p>
+<p>位相反転エラー（または <span class="math notranslate nohighlight">\(Z\)</span> ゲート） は、<span class="math notranslate nohighlight">\(\vert + \rangle\)</span> と <span class="math notranslate nohighlight">\(\vert - \rangle\)</span> の状態を入れ替える作用を持ちます。したがって、この符号化は位相反転エラーの検出（および修正）に有効 となります。
+特に、これまでに学んだ誤り検出回路を以下のように修正することで、位相反転エラーを検出できるようになります。</p>
+<p><img alt="Phase error detection circuit for the 3-bit repetition code" src="https://learning-api.quantum.ibm.com/assets/69675bf2-0c26-4bd3-be6a-434fa26c8b4c?format=auto&amp;quality=80" /></p>
+<p>言葉で説明すると、これまでの回路を使用し、単に最初と最後にアダマールゲートを上部の3つの量子ビットに適用するだけです。
+このアイデアは、最初の3つのアダマールゲートが、<span class="math notranslate nohighlight">\(\vert + \rangle\)</span> と <span class="math notranslate nohighlight">\(\vert - \rangle\)</span> の状態を <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> と <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> の状態に戻す役割を果たし、その後、これまでと同じパリティチェックを実行し、最後のアダマールゲートの層によって、再び <span class="math notranslate nohighlight">\(\vert + \rangle\)</span> と <span class="math notranslate nohighlight">\(\vert - \rangle\)</span> の状態に戻すことで、元の符号化を復元するというものです。
+今後の参考のために、この位相反転エラーの検出回路を以下のように簡略化できることを確認しておきます。</p>
+<p><img alt="Simplified phase error detection circuit" src="https://learning-api.quantum.ibm.com/assets/480ca2ea-ca94-4b9c-bc3c-e247f91e69d5?format=auto&amp;quality=80" /></p>
+<p>以下の4つの回路図は、修正された3ビット反復符号（符号化ステップと誤り検出ステップを含む）が、最大1つの位相反転エラーが発生した場合にどのように機能するかを示しています。
+その動作は、ビット反転に対する通常の3ビット反復符号と類似しています。</p>
+<p><img alt="Phase-flip error detection for modified 3-bit repetition code (no errors)" src="https://learning-api.quantum.ibm.com/assets/e10d2bbe-0e9d-4422-8565-2ba015de0114?format=auto&amp;quality=80" /></p>
+<p><img alt="Phase-flip error detection for modified 3-bit repetition code (no errors)" src="https://learning-api.quantum.ibm.com/assets/1a7744d4-fde3-49ff-8c53-8fd80fcbb24a?format=auto&amp;quality=80" /></p>
+<p><img alt="Phase-flip error detection for modified 3-bit repetition code (no errors)" src="https://learning-api.quantum.ibm.com/assets/b94d9da2-afee-4fe5-beb9-a8956dbfaa70?format=auto&amp;quality=80" /></p>
+<p><img alt="Phase-flip error detection for modified 3-bit repetition code (no errors)" src="https://learning-api.quantum.ibm.com/assets/f42d42e7-f8dc-455b-b376-b4e8b5880622?format=auto&amp;quality=80" /></p>
+<p>上記の表と同様の表を、今回は最大1つの位相反転エラーが発生する可能性を考慮した場合について示します。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>状態</p></th>
+<th class="head text-center"><p>シンドローム</p></th>
+<th class="head text-center"><p>修正</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert {+}\,{+}\,{+} \rangle + \beta \vert {-}\,{-}\,{-}\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(00\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{I}\otimes\mathbb{I}\otimes\mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert {-}\,{+}\,{+} \rangle + \beta \vert {+}\,{-}\,{-}\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(10\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(Z\otimes\mathbb{I}\otimes\mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert {+}\,{-}\,{+}\rangle + \beta \vert {-}\,{+}\,{-}\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(11\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{I}\otimes Z\otimes\mathbb{I}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\alpha\vert {+}\,{+}\,{-}\rangle + \beta \vert {-}\,{-}\,{+}\rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(01\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\mathbb{I}\otimes\mathbb{I}\otimes Z\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>残念ながら、この修正された3ビット反復符号では、もはやビット反転エラーを訂正することはできません。
+しかし、すべてが無駄になったわけではありません。
+先に述べたように、これら2つの符号を組み合わせることで、9量子ビットのショアの符号を構成でき、それによってビット反転エラーと位相反転エラーの両方を訂正できるようになります（したがって、単一量子ビットに対するあらゆるエラーを訂正可能となります）。</p>
+</section>
+</section>
+<section id="id11">
+<h2>9量子ビットのショアの符号<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>ここからは、9量子ビットのショアの符号 について説明します。この符号は、前のセクションで扱った2つの符号を組み合わせることで得られる量子誤り訂正符号です。つまり、単一のビット反転エラーを訂正できる3ビット反復符号と、単一の位相反転エラーを訂正できる修正版の3ビット反復符号を組み合わせることで構成されます。</p>
+<section id="id12">
+<h3>符号の説明<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>正確には、9量子ビットのショアの符号は、前のセクションの2つの符号を <em>連結（concatenation）</em> することで得られる符号です。
+これは、まず 1つの符号化を適用して1量子ビットを3量子ビットに符号化し、その後、最初の符号化で使用した3量子ビットの <em>それぞれ</em> に対して、もう一方の符号化を適用することで、最終的に9量子ビットとなる、という構造になっています。
+今回のケースでは、2つの符号をどちらの順番で適用しても問題ありませんが、ここではまず位相反転エラーを検出できる修正版の3ビット反復符号を適用し、その後、得られた3つの量子ビットの <em>それぞれ</em> に対して、ビット反転エラーを検出できる元の3ビット反復符号を適用することにします。</p>
+<p>以下に、この符号化を回路図で表したものを示します。</p>
+<p><img alt="Encoding circuit for the 9-qubit Shor code showing 3 blocks" src="https://learning-api.quantum.ibm.com/assets/1ba8abfe-352a-45d1-b6e2-8e2694868b6f?format=auto&amp;quality=80" /></p>
+<p>この図が示すように、ショアの符号の9量子ビットは、3つのブロックに分けて考えることができます。各ブロックは、 <em>第2の</em> 符号化ステップ（通常の3ビット反復符号）によって得られます。<br />
+ここで適用される通常の3ビット反復符号は、3回独立に適用されるため、 <em>内符号（inner code）</em> と呼ばれます。一方、第1の符号化ステップ（位相反転エラーを検出できる修正版の3ビット反復符号）は、 <em>外符号（outer code）</em> と呼ばれます。</p>
+<p>また、この符号を別の方法で表すこともできます。つまり、元の1量子ビットの2つの標準基底状態がどのように符号化されるかを記述する方法です。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert 0\rangle &amp;
+\:\mapsto\:
+\frac{1}{2\sqrt{2}}
+(\vert 000\rangle + \vert 111\rangle) \otimes
+(\vert 000\rangle + \vert 111\rangle) \otimes
+(\vert 000\rangle + \vert 111\rangle) \\[2.25mm]
+\vert 1\rangle &amp;
+\:\mapsto\:
+\frac{1}{2\sqrt{2}}
+(\vert 000\rangle - \vert 111\rangle) \otimes
+(\vert 000\rangle - \vert 111\rangle) \otimes
+(\vert 000\rangle - \vert 111\rangle)
+\end{aligned}
+\end{split}\]</div>
+<p>これが分かれば、線形性を利用して任意の量子ビットの状態ベクトルがどのように符号化されるかを決定できます。</p>
+</section>
+<section id="cnot">
+<h3>エラーとCNOTゲート<a class="headerlink" href="#cnot" title="Link to this heading">#</a></h3>
+<p>エラーとCNOTゲートを分析するために、9量子ビットのショアの符号やその他の符号において、<span class="math notranslate nohighlight">\(X\)</span> および <span class="math notranslate nohighlight">\(Z\)</span> エラーが量子ビットの符号化にどのような影響を与えるかを理解するのに役立つ、いくつかの基本的な関係を確認しておくとよいでしょう。
+9量子ビットのショアの符号の解析を始めるこのタイミングで、一旦立ち止まってこの点を整理するのは理にかなっています。</p>
+<p>以下の回路図は、<span class="math notranslate nohighlight">\(X\)</span> ゲートとCNOTゲートの間に成り立つ3つの基本的な関係を示しています。
+特に、 <em>ターゲット</em> 量子ビットに <span class="math notranslate nohighlight">\(X\)</span> ゲートを適用してからCNOTを適用することは、順序を入れ替えて先にCNOTを適用することと等価です。
+一方、 <em>コントロール</em> 量子ビットに <span class="math notranslate nohighlight">\(X\)</span> ゲートを適用してからCNOTを適用することは、CNOTを適用した後に両方の量子ビットに <span class="math notranslate nohighlight">\(X\)</span> ゲートを適用することと等価になります。
+最後に、両方の量子ビットに <span class="math notranslate nohighlight">\(X\)</span> ゲートを適用してからCNOTを適用することは、先にCNOTを適用し、その後コントロール量子ビットに <span class="math notranslate nohighlight">\(X\)</span> ゲートを適用することと等価です。
+これらの関係は、必要な行列の積を計算するか、回路が標準基底状態に与える影響を計算することで容易に確認できます。</p>
+<p><img alt="X errors before and after CNOT gates" src="https://learning-api.quantum.ibm.com/assets/7a9093d5-3a22-4442-9603-059f24af908b?format=auto&amp;quality=80" /></p>
+<p><span class="math notranslate nohighlight">\(Z\)</span> ゲートの場合も同様の関係が成り立ちますが、コントロール量子ビットとターゲット量子ビットの役割が入れ替わります。
+特に、次の量子回路で示される3つの関係が成り立ちます。</p>
+<p><img alt="Z errors before and after CNOT gates" src="https://learning-api.quantum.ibm.com/assets/f469c4e9-50b2-4a02-a345-29595ec61173?format=auto&amp;quality=80" /></p>
+</section>
+<section id="id13">
+<h3>ビット反転エラーの訂正<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>次に、9量子ビットのショアの符号を使用してビット反転エラー（以後、便宜上 <span class="math notranslate nohighlight">\(X\)</span>エラーと呼びます）を検出および修正する方法を考えます。</p>
+<p><span class="math notranslate nohighlight">\(X\)</span>エラーを検出および修正するためには、符号化の3つのブロックをそれぞれ個別に扱うことができます。
+各ブロックは3ビット反復コードを使用して量子ビットをエンコードしており、これにより<span class="math notranslate nohighlight">\(X\)</span>エラーから保護されています。
+したがって、前のセクションで説明したシンドローム測定と<span class="math notranslate nohighlight">\(X\)</span>エラー修正を各ブロックに独立して行うことで、各ブロックごとに最大1つの<span class="math notranslate nohighlight">\(X\)</span>エラーを検出および修正できます。
+特に、符号化の9量子ビットのうち最大1つの<span class="math notranslate nohighlight">\(X\)</span>エラーが発生した場合、この手順によって誤りは検出され、修正されます。</p>
+<p>要するに、このコードでビット反転エラーを修正するのは簡単なことです。なぜなら、内符号がビット反転エラーを修正するからです。</p>
+</section>
+<section id="id14">
+<h3>位相反転エラーの訂正<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>次に、位相反転エラー、または便宜上 <span class="math notranslate nohighlight">\(Z\)</span>エラーを修正する方法を考えます。
+今回は、少し異なり、どうすべきかが明確ではありません。というのも、外符号が<span class="math notranslate nohighlight">\(Z\)</span>誤りを検出する役割を果たす一方で、内符号が何らかの形で「邪魔」になっており、このエラーを検出して修正するのが少し難しくなっているからです。</p>
+<p>ショアの符号の9量子ビットのうち1つに<span class="math notranslate nohighlight">\(Z\)</span>エラーが発生したと仮定しましょう。以下の図のように、例えばその1つの量子ビットで<span class="math notranslate nohighlight">\(Z\)</span>エラーが発生した場合です。</p>
+<p><img alt="Z error on a qubit for the 9-qubit Shor code" src="https://learning-api.quantum.ibm.com/assets/938e22ee-c84d-4995-886a-5a3935e58163?format=auto&amp;quality=80" /></p>
+<p>既に、3ビット反復符号を使用しているときに<span class="math notranslate nohighlight">\(Z\)</span>エラーが発生した場合の影響を観察しています — これは、符号化前に<span class="math notranslate nohighlight">\(Z\)</span>エラーが発生したのと同じ効果を持ちます。
+9量子ビットのショアの符号の文脈では、これは、3つのブロック内のいずれか1つの量子ビットで<span class="math notranslate nohighlight">\(Z\)</span>エラーが発生すると、その効果は常に同じであり、内符号が適用される前に対応する量子ビットで<span class="math notranslate nohighlight">\(Z\)</span>エラーが発生した場合と同じ効果になることを意味します。</p>
+<p>例えば、上の回路図は以下の回路図と同じ効果を持ちます。
+これは、上で説明した<span class="math notranslate nohighlight">\(Z\)</span>ゲートとCNOTゲートの関係を使用するか、単に任意の量子状態<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>に対して回路を評価することで理由づけできます。</p>
+<p><img alt="Z error prior to the inner code for the 9-qubit Shor code" src="https://learning-api.quantum.ibm.com/assets/26fff6df-c61a-4946-a57a-c0bd09974add?format=auto&amp;quality=80" /></p>
+<p>これにより、<span class="math notranslate nohighlight">\(Z\)</span>エラーを検出して訂正するための一つの方法が示唆されます。それは、内符号を <em>復号化</em> し、外側の符号化に使用される3つの量子ビットと6つの初期化されたワークスペース量子ビットを残す方法です。その後、外側の符号のこれらの3つの量子ビットを<span class="math notranslate nohighlight">\(Z\)</span>エラーについてチェックし、最終的に内符号を再符号化して、ショアの符号から得られる9量子ビットの符号化に戻します。もし<span class="math notranslate nohighlight">\(Z\)</span>エラーを検出した場合、内符号で再符号化する前に訂正するか、再符号化後にそのブロックの任意の量子ビットに<span class="math notranslate nohighlight">\(Z\)</span>ゲートを適用して訂正することができます。</p>
+<p>こちらは、符号化回路と、上記で示したエラー、さらに先ほど説明した手順を含む回路図です（ただし、実際の訂正ステップは含まれていません）。</p>
+<p><img alt="Z error detection for the 9-qubit Shor code" src="https://learning-api.quantum.ibm.com/assets/beead3cf-92d0-441b-8fd0-81567fe01c8a?format=auto&amp;quality=80" /></p>
+<p>この特定の例では、シンドローム測定の結果は <span class="math notranslate nohighlight">\(11\)</span> となり、<span class="math notranslate nohighlight">\(Z\)</span> エラーが中央のブロックのいずれかの量子ビットで発生したことが特定されます。</p>
+<p><span class="math notranslate nohighlight">\(Z\)</span> エラーの訂正を再符号化の前ではなく後に行うことの利点の一つは、上記の回路を簡略化できることです。以下の回路は等価ですが、CNOTゲートを4つ少なくできます。</p>
+<p><img alt="Simplified Z error detection for the 9-qubit Shor code" src="https://learning-api.quantum.ibm.com/assets/90849807-c5a9-4859-be0c-abe17277f813?format=auto&amp;quality=80" /></p>
+<p>再び、シンドロームはどの量子ビットが <span class="math notranslate nohighlight">\(Z\)</span> エラーの影響を受けたかを示すのではなく、どのブロックで <span class="math notranslate nohighlight">\(Z\)</span> エラーが発生したかを示しており、ブロック内のどの量子ビットが影響を受けたとしても結果は同じです。
+したがって、影響を受けたブロック内の3つの量子ビットのいずれか（具体的には、そのブロックの最上位の量子ビットとしましょう）に <span class="math notranslate nohighlight">\(Z\)</span> ゲートを適用することでエラーを訂正できます。</p>
+<p>ちなみに、ここでは量子誤り訂正符号における <em>縮退性</em>（degeneracy）の例を見ることができます。つまり、特定のエラー（この場合は <span class="math notranslate nohighlight">\(Z\)</span> エラー）を一意に特定できなくても訂正が可能であるという性質を示しています。</p>
+</section>
+<section id="id15">
+<h3>同時に発生するビット反転エラーと位相反転エラー<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>これまでに、9量子ビットのショアの符号を用いて <span class="math notranslate nohighlight">\(X\)</span> エラーと <span class="math notranslate nohighlight">\(Z\)</span> エラーをそれぞれ検出・訂正する方法を見てきました。特に、最大1つの <span class="math notranslate nohighlight">\(X\)</span> エラーまたは最大1つの <span class="math notranslate nohighlight">\(Z\)</span> エラーを検出・訂正できることを確認しました。
+では、ビット反転エラーと位相反転エラーが同時に、しかも同じ量子ビットに発生した場合はどうなるでしょうか？
+実は、この場合でも特別な対策を取る必要はありません。これまでに説明した方法のままで、最大1つの <span class="math notranslate nohighlight">\(X\)</span> エラーと最大1つの <span class="math notranslate nohighlight">\(Z\)</span> エラーを同時に検出・訂正することが可能です。</p>
+<p>具体的には、<span class="math notranslate nohighlight">\(X\)</span> エラーは通常の3ビット反復符号によるシンドローム測定によって検出され、これは各3量子ビットのブロックごとに個別に行われます。
+一方、<span class="math notranslate nohighlight">\(Z\)</span> エラーは先ほど説明した方法で検出されます。これは、内符号をデコードし、位相反転エラーを検出するための修正3ビット反復符号のシンドローム測定を行い、その後再び内符号を符号化する処理と等価です。
+これら2つの誤り検出手順（およびそれに対応する訂正手順）は完全に独立して実行することができ、実際のところ、どちらを先に実行しても問題はありません。</p>
+<p>この仕組みを理解するために、次の回路図に示される例を考えます。この例では、中央のブロックの最下位の量子ビットに <span class="math notranslate nohighlight">\(X\)</span> エラーと <span class="math notranslate nohighlight">\(Z\)</span> エラーの両方が発生しています。</p>
+<p><img alt="An XZ error for the 9-qubit Shor code" src="https://learning-api.quantum.ibm.com/assets/a6944302-fc87-474e-ad3c-d8768694c70e?format=auto&amp;quality=80" /></p>
+<p>まず、誤りの順序が問題にならないことを確認しましょう。つまり、<span class="math notranslate nohighlight">\(X\)</span> エラーと <span class="math notranslate nohighlight">\(Z\)</span> エラーの位置を入れ替えたとしても、同等な回路が得られるということです。
+ただし、誤解のないように言うと、<span class="math notranslate nohighlight">\(X\)</span> と <span class="math notranslate nohighlight">\(Z\)</span> は可換ではなく、<em>反交換</em> であることに注意してください。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+XZ =
+\begin{pmatrix}
+0 &amp; 1\\[1mm]
+1 &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0\\[1mm]
+0 &amp; -1
+\end{pmatrix}
+= \begin{pmatrix}
+0 &amp; -1\\[1mm]
+1 &amp; 0
+\end{pmatrix}
+= - \begin{pmatrix}
+1 &amp; 0\\[1mm]
+0 &amp; -1
+\end{pmatrix}
+\begin{pmatrix}
+0 &amp; 1\\[1mm]
+1 &amp; 0
+\end{pmatrix}
+= -ZX.
+\end{split}\]</div>
+<p>これは、以下の回路が上の回路とグローバル位相因子 <span class="math notranslate nohighlight">\(-1\)</span> を除いて等価であることを意味します。</p>
+<p><img alt="A ZX error for the 9-qubit Shor code" src="https://learning-api.quantum.ibm.com/assets/f40338ac-9c4c-4eeb-84a0-7ed85e47c679?format=auto&amp;quality=80" /></p>
+<p>これまでと同様に、<span class="math notranslate nohighlight">\(Z\)</span> エラーを移動させることで、別の等価な回路を得ることができます。</p>
+<p><img alt="A ZX error for the 9-qubit Shor code" src="https://learning-api.quantum.ibm.com/assets/d26eebb6-94e9-467e-a5e8-4d71685c528f?format=auto&amp;quality=80" /></p>
+<p>この時点で明らかなのは、まず <span class="math notranslate nohighlight">\(X\)</span> エラーを検出・修正する手順を実行すれば、<span class="math notranslate nohighlight">\(X\)</span> エラーが修正され、その後に <span class="math notranslate nohighlight">\(Z\)</span> エラーを検出・修正する手順を実行すれば、これまでと同様に <span class="math notranslate nohighlight">\(Z\)</span> エラーも取り除くことができるということです。</p>
+<p>また、<span class="math notranslate nohighlight">\(Z\)</span> エラーを検出・修正する手順を先に実行することも可能です。
+この手順が、1つ以上の <span class="math notranslate nohighlight">\(X\)</span> エラーが存在する場合でも正しく機能することは、符号化に使用される9つの量子ビットの任意の <span class="math notranslate nohighlight">\(X\)</span> ゲートが、<span class="math notranslate nohighlight">\(Z\)</span> エラーのシンドロームを測定するための簡略化された回路のすべてのゲートと可換であるという事実から導かれます。
+したがって、このシンドローム測定は、どのブロックに <span class="math notranslate nohighlight">\(Z\)</span> エラーが発生したかを正しく特定できます。
+また、あるブロックに <span class="math notranslate nohighlight">\(Z\)</span> エラーが発生した場合に、そのブロック内の任意の量子ビットに <span class="math notranslate nohighlight">\(Z\)</span> ゲートを適用することでエラーが修正されることは、<span class="math notranslate nohighlight">\(X\)</span>エラーが起こったとしても、<span class="math notranslate nohighlight">\(X\)</span> と <span class="math notranslate nohighlight">\(Z\)</span> ゲートの順序を変更した場合にグローバルな位相因子を除けば等価な回路になるという先ほどの議論と同じ理由から成り立ちます。</p>
+<p>したがって、9量子ビットのショアの符号は、符号化に使用される9つの量子ビットのいずれかに生じた <span class="math notranslate nohighlight">\(X\)</span> エラー、<span class="math notranslate nohighlight">\(Z\)</span> エラー、またはその両方を修正することができます。さらに、この符号はより多くのエラーも修正可能です。
+例えば、異なるブロックに分かれた複数の <span class="math notranslate nohighlight">\(X\)</span> エラーや、最大でも1つのブロックに奇数個発生した <span class="math notranslate nohighlight">\(Z\)</span> エラーであれば修正できます。
+しかし、今後の議論において重要なのは、任意の1つの量子ビットに対する <span class="math notranslate nohighlight">\(X\)</span> エラー、<span class="math notranslate nohighlight">\(Z\)</span> エラー、またはその両方を修正できるという点です。</p>
+</section>
+<section id="id16">
+<h3>ランダムなエラー<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>本講義の最後のセクションでは任意の量子エラーについて考察しますが、その前に、パウリ行列で表されるエラーが <em>ランダムに</em> 量子ビットに発生する場合の9量子ビットのショアの符号の性能について簡単に考えてみましょう。</p>
+<p>具体的には、エラーが各量子ビットに対して <em>独立に</em> 発生し、それぞれの量子ビットが確率 <span class="math notranslate nohighlight">\(p\)</span> でエラーを経験すると仮定します。また、異なる量子ビット間のエラーには相関がないとします。これは、古典ビットに対する二元対称通信路（binary symmetric channel）と類似したノイズモデルです。
+<span class="math notranslate nohighlight">\(X, Y, Z\)</span> のエラーが発生する確率をそれぞれ異なる値にすることもできますが、できるだけ簡単にするために、ここでは9量子ビットのショアの符号にとって最悪のケースを考えます。つまり、エラーが発生した各量子ビットに <span class="math notranslate nohighlight">\(Y\)</span> エラーが生じる場合を想定します。
+ここで、<span class="math notranslate nohighlight">\(Y\)</span> エラーとは（無視できるグローバル位相を除けば）同じ量子ビットに <span class="math notranslate nohighlight">\(X\)</span> エラーと <span class="math notranslate nohighlight">\(Z\)</span> エラーが同時に発生することと等価です。これは、<span class="math notranslate nohighlight">\(Y = iXZ\)</span> という関係式からもわかります。このため、これまで <span class="math notranslate nohighlight">\(Y\)</span> エラーについて特に考慮してこなかったように見えますが、実際には <span class="math notranslate nohighlight">\(X\)</span> および <span class="math notranslate nohighlight">\(Z\)</span> エラーの組み合わせとして含まれていたのです。</p>
+<p>さて、<span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> をエラーから保護したいある特定の状態にある量子ビットとします。ここで、9量子ビットのショアの符号を使用するという選択肢を考えたとき、「この符号を使うべきか？」という自然な疑問が生じます。</p>
+<p>この答えは、必ずしも「はい」ではありません。
+ノイズが多すぎる、つまりこの場合 <span class="math notranslate nohighlight">\(p\)</span> が大きすぎると、ショアの符号を使用することが逆に悪影響を及ぼす可能性があります。これは、<span class="math notranslate nohighlight">\(p\)</span> が 1/2 を超えると3ビット反復符号（3-bit repetition code）が使わない場合よりも性能が悪くなるのと同様です。
+しかし、<span class="math notranslate nohighlight">\(p\)</span> が十分に小さい場合は「はい」、この符号を使うべきです。なぜなら、この符号を使うことで符号化された状態が破損する確率を減らすことができるからです。
+では、これがなぜ成り立つのか、またこの符号にとって <span class="math notranslate nohighlight">\(p\)</span> が大きすぎる場合や十分に小さい場合とはどのような条件なのかを考えてみましょう。</p>
+<p>ショアの符号は、単一の量子ビットに発生した任意のパウリエラーを修正できます。もちろん <span class="math notranslate nohighlight">\(Y\)</span> エラーも含まれます。しかし、2つ以上の量子ビットに <span class="math notranslate nohighlight">\(Y\)</span> エラーが発生した場合には、適切に修正することができません。
+ここで重要なのは、我々が先ほど説明した <span class="math notranslate nohighlight">\(X\)</span> および <span class="math notranslate nohighlight">\(Z\)</span> エラー修正の手順を用いることを前提としている点です。
+もし、事前に <span class="math notranslate nohighlight">\(Y\)</span> エラーのみを考慮すればよいとわかっていれば、当然ながら異なる修正手順を選択するでしょう。
+しかし、それはノイズモデルを不正に操作することになり、異なるパウリエラーを選択すれば、どのような修正手順も2つ以上の量子ビットにエラーが発生した場合には失敗するように常にモデルを設定できてしまいます。</p>
+<p>したがって、この符号が <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> を保護できるのは、符号化された9つの量子ビットのうち高々1つにしかエラーが発生しない場合です。
+その確率は以下の通りです。</p>
+<div class="math notranslate nohighlight">
+\[
+(1-p)^9 + 9 p (1-p)^8.
+\]</div>
+<p>そうでない場合、すなわち確率</p>
+<div class="math notranslate nohighlight">
+\[
+1 - (1-p)^9 - 9 p (1-p)^8,
+\]</div>
+<p>で、この符号は <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> を保護できません。</p>
+<p>ここで、「保護できない」とは具体的にどういうことかというと、グローバル位相を除けば、符号化された論理量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> に単位行列でないパウリ演算が適用されるということです。
+つまり、これまで説明してきたショアの符号の <span class="math notranslate nohighlight">\(X\)</span> および <span class="math notranslate nohighlight">\(Z\)</span> エラー検出・修正を実行した結果、最終的に得られる状態は、元の状態 <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> に単位行列でないパウリ演算を適用したものと等価（グローバル位相を除く）な符号化状態になります。
+これを簡単に言い換えると、 <em>論理</em> エラーが発生した、ということになります。
+この論理エラーが、もともとの量子ビット <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> の状態（すなわち、9個の <em>物理量子ビット</em> を使って符号化した <em>論理量子ビット</em>）に影響を及ぼすかどうかは場合によりますが、本解析ではこの事象が発生した時点で「符号の失敗」と見なします。</p>
+<p>一方、符号を使わなかった場合、唯一の量子ビットは確率 <span class="math notranslate nohighlight">\(p\)</span> で同様に単位行列でないパウリ演算を受けることになります。
+したがって、このコードは、第一の確率が第二の確率より小さい場合に有効です：</p>
+<div class="math notranslate nohighlight">
+\[
+1 - (1-p)^9 - 9 p (1-p)^8 &lt; p.
+\]</div>
+<p>以下のプロットは、非常に小さい <span class="math notranslate nohighlight">\(p\)</span> の値に対して符号が有利に働くことを示しており、損益分岐点はおよそ <span class="math notranslate nohighlight">\(0.0323\)</span> の地点で発生することを示しています。</p>
+<p><img alt="Error probability graph for independent Y errors using the Shor code" src="https://learning-api.quantum.ibm.com/assets/6ca725ac-d090-449d-b6db-2bf586139ac6?format=auto&amp;quality=80" /></p>
+<p>もし <span class="math notranslate nohighlight">\(p\)</span> がこの損益分岐点より小さい場合、コードは有利に働きます；
+損益分岐点では確率が等しくなり、コードを使用すると8つの量子ビットと共に時間を無駄にしていることになります；
+そして損益分岐点を越えると、このコードは <span class="math notranslate nohighlight">\(\mathsf{Q}\)</span> における論理的エラーの確率を <em>増加</em> させるため、絶対に使用すべきではありません。</p>
+<p>約3.25%というのは、あまり良い損益分岐点には思えないかもしれません。特に、これは古典情報のための3ビット繰り返しコードの損益分岐点である <span class="math notranslate nohighlight">\(50\%\)</span> と比較すると明らかです。
+この違いは、大きな理由は、量子情報が古典情報よりもデリケートで保護するのが難しいためです。
+また、9量子ビットのショアの符号が世界初の量子誤り訂正コードとして素晴らしい発見であることを認めつつも、実際的な観点ではあまり良い符号ではないことも認識するべきです。</p>
+</section>
+</section>
+<section id="id17">
+<h2>エラーの離散化<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<p>これまで、9量子ビットのショアの符号の文脈で <span class="math notranslate nohighlight">\(X\)</span> エラーと <span class="math notranslate nohighlight">\(Z\)</span> エラーについて考えてきました。
+このセクションでは、任意のエラーについて考察します。そして、わかることは、そのようなエラーを処理するために、実際にはこれまでに議論したこととは何も異なることをする必要はないということです；
+<span class="math notranslate nohighlight">\(X\)</span> エラー、<span class="math notranslate nohighlight">\(Z\)</span> エラー、またはその両方を訂正する能力は、任意のエラーを訂正する能力を意味します。
+この現象は、時に <em>エラーの離散化</em> と呼ばれます。</p>
+<section id="id18">
+<h3>ユニタリー量子ビットエラー<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>単一量子ビットの <em>ユニタリー</em> エラーについて考えることから始めましょう。
+例えば、このようなエラーは、ブロッホ球面の非常に小さな回転に対応するかもしれません。これは、ゲートが完璧でないことによるエラーを表すことがあります。
+または、それは単一量子ビットに対する他のユニタリー操作であり、必ずしも単位行列に近いものではありません。
+このようなエラーを訂正するのは難しいように思えるかもしれません。
+結局のところ、このようなエラーは無限に多く存在し、エラーが何であるかを正確に特定して、それを元に戻すことができるとは考えにくいからです。</p>
+<p>しかし、ビット反転、位相反転、またはその両方を訂正できるならば、実際にはこのレッスンで説明した手順を使用することで、任意の単一量子ビットのユニタリーエラーを訂正することに成功することがわかります。
+その理由は、任意の <span class="math notranslate nohighlight">\(2 \times 2\)</span> ユニタリー行列 <span class="math notranslate nohighlight">\(U\)</span>（単一量子ビットのエラーを表す）を、4つのパウリ行列（単位行列を含む）の線形結合として表現できるという認識から始まります。</p>
+<div class="math notranslate nohighlight">
+\[
+U = \alpha \mathbb{I} + \beta X + \gamma Y + \delta Z
+\]</div>
+<p>これから分かるように、エラー検出回路を実行すると、私たちにシンドロームビットを与える測定が、確率的に符号化された状態を、4つのパウリ行列のいずれかによって表されるエラー（またはエラーがない状態）に収縮させることになります。
+（上記の線形結合がユニタリであるための必要条件ではありますが十分ではない条件として、<span class="math notranslate nohighlight">\(\alpha\)</span>、<span class="math notranslate nohighlight">\(\beta\)</span>、<span class="math notranslate nohighlight">\(\gamma\)</span>、<span class="math notranslate nohighlight">\(\delta\)</span> に対して、<span class="math notranslate nohighlight">\(\vert\alpha\vert^2 + \vert\beta\vert^2 + \vert\gamma\vert^2 + \vert\delta\vert^2 = 1\)</span> であることが挙げられます。実際、<span class="math notranslate nohighlight">\(\vert\alpha\vert^2\)</span>、<span class="math notranslate nohighlight">\(\vert\beta\vert^2\)</span>、<span class="math notranslate nohighlight">\(\vert\gamma\vert^2\)</span>、<span class="math notranslate nohighlight">\(\vert\delta\vert^2\)</span> は、符号化された状態が対応するパウリエラーが発生した状態に収縮する確率です。）</p>
+<p>この仕組みがどのように機能するかを詳しく説明するために、サブインデックスを使用して、特定の単一量子ビットのユニタリー操作がどの量子ビットに作用するかを示すのが便利です。
+例えば、Qiskitの量子ビット番号付け規約 <span class="math notranslate nohighlight">\((\mathsf{Q}_8, \mathsf{Q}_7, \ldots, \mathsf{Q}_0)\)</span> を使用して、ショアの符号に使用される9つの量子ビットに番号を付けると、次のように各単一量子ビットに対するユニタリー操作の式を表すことができます。この場合、各ユニタリー行列は他の量子ビット上で単位行列とテンソル積を取ります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+X_0 &amp; = \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes X \\[1.5mm]
+Z_4 &amp; = \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes Z \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \\[1.5mm]
+U_7 &amp; = \mathbb{I} \otimes U \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I} \otimes \mathbb{I}
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、特に、与えられた量子ビットユニタリー演算子 <span class="math notranslate nohighlight">\(U\)</span> に対して、<span class="math notranslate nohighlight">\(U\)</span> が量子ビット <span class="math notranslate nohighlight">\(k\)</span> に適用される作用を、次の式で指定できます。これは、前述の式と似ていますが、各行列が量子ビット <span class="math notranslate nohighlight">\(k\)</span> に適用される操作を表す点が異なります。</p>
+<div class="math notranslate nohighlight">
+\[
+U_k = \alpha \mathbb{I}_k + \beta X_k + \gamma Y_k + \delta Z_k
+\]</div>
+<p>今、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> が量子ビットの状態の9量子ビットの符号化であると仮定します。
+もしエラー <span class="math notranslate nohighlight">\(U\)</span> が量子ビット <span class="math notranslate nohighlight">\(k\)</span> に発生した場合、状態 <span class="math notranslate nohighlight">\(U_k \vert\psi\rangle\)</span> が得られ、この状態は次のようにして、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> に作用するパウリ演算の線形結合として表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+U_k \vert\psi\rangle = \alpha \vert\psi\rangle + \beta X_k\vert\psi\rangle + \gamma Y_k\vert\psi\rangle + \delta Z_k\vert\psi\rangle
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(Y = iXZ\)</span> の置換を行いましょう。</p>
+<div class="math notranslate nohighlight">
+\[
+U_k \vert\psi\rangle = \alpha \vert\psi\rangle + \beta X_k\vert\psi\rangle + i \gamma X_kZ_k\vert\psi\rangle + \delta Z_k\vert\psi\rangle
+\]</div>
+<p>ここで、前に説明した誤り検出と修正の手順を考えましょう。
+3つの内符号のパリティーチェックと外符号のパリティーチェックに対する測定結果を合わせて、8ビットからなる1つのシンドロームとして考えることができます。
+これらのシンドロームビットを生成する標準基底測定の直前で、状態は次のような形になります。</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha\,\vert\text{$\mathbb{I}$ syndrome}\rangle \otimes \vert\psi\rangle
++ \beta\,\vert\text{$X_k$ syndrome}\rangle \otimes X_k\vert\psi\rangle
++ i \gamma\,\vert\text{$X_k Z_k$ syndrome}\rangle \otimes X_k Z_k\vert\psi\rangle
++ \delta\,\vert\text{$Z_k$ syndrome}\rangle \otimes Z_k\vert\psi\rangle
+\]</div>
+<p>ここで明確にするために、現時点で2つのシステムがあります。
+左側のシステムはシンドロームを取得するために測定する8つの量子ビットで、<span class="math notranslate nohighlight">\(\vert \mathbb{I} \text{ syndrome}\rangle,\)</span>
+<span class="math notranslate nohighlight">\(\vert X_k \text{ syndrome}\rangle,\)</span> などは対応するエラー（または、<span class="math notranslate nohighlight">\(\mathbb{I}\)</span> の場合はエラーではない）と一致する8ビットの標準基底状態を指します。
+右側のシステムは符号化に使用する9つの量子ビットです。</p>
+<p>これらの2つのシステムは現在（一般的に）相関していることに注意してください。これがこの方法がうまく機能する鍵です。<br />
+シンドロームを測定することによって、右側の9つの量子ビットの状態は、測定されたシンドロームと一致するパウリエラーが1つの量子ビットに適用された状態に実質的に収縮します。<br />
+さらに、シンドローム自体は、エラーを元に戻して元の符号化された<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>を回復できるだけの十分な情報を提供します。<br />
+具体的には、シンドローム量子ビットが測定され、適切な修正が行われると、次のような形の状態が得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+\xi \otimes \vert\psi\rangle\langle\psi\vert
+\]</div>
+<p>ここで</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\xi = &amp; \vert\alpha\vert^2 \vert\text{$\mathbb{I}$ syndrome}\rangle\langle\text{$\mathbb{I}$ syndrome}\vert \\[1mm]
+&amp; + \vert\beta\vert^2 \vert\text{$X_k$ syndrome}\rangle\langle\text{$X_k$ syndrome}\vert\\[1mm]
+&amp; + \vert\gamma\vert^2 \vert\text{$X_k Z_k$ syndrome}\rangle\langle\text{$X_k Z_k$ syndrome}\vert\\[1mm]
+&amp; + \vert\delta\vert^2 \vert\text{$Z_k$ syndrome}\rangle\langle\text{$Z_k$ syndrome}\vert.
+\end{aligned}
+\end{split}\]</div>
+<p>重要なのは、これは積状態であるということです：
+右側のテンソル因子には元の、非収縮の符号化の状態があり、左側にはランダムな誤りシンドロームを記述する密度行列<span class="math notranslate nohighlight">\(\xi\)</span>があります。<br />
+右側のシステムとはもはや相関がなく、私たちが関心を持っているのは右側のシステムだからです。誤りは修正されたため、シンドローム量子ビットは捨てるか、再利用できるようにリセットすることができます。
+これが、誤りによって生成されたランダム性、または <em>エントロピー</em> がシステムから除去される方法です。</p>
+<p>これは、ユニタリーエラーの特別な場合におけるエラーの離散化です。<br />
+本質的に、シンドロームを測定することによって、エラーをパウリ行列で記述されたエラーに効果的に <em>射影</em> しています。</p>
+<p>一見すると、このように任意のユニタリーエラー、たとえ非常に小さくてほとんど気づかれないエラーであっても修正できるというのは、あまりにも良すぎるように思えるかもしれません。
+しかし、ここで重要なのは、これは <em>単一</em> の量子ビットに対するユニタリーエラーであり、コードの設計によって、単一の量子ビット操作が符号化された論理量子ビットの状態を変更できないということです。<br />
+それができることは、有効な符号化のサブスペースから状態を移動させることだけですが、その場合、誤り検出によって状態が収縮し、修正でそれを元の位置に戻します。</p>
+</section>
+<section id="id19">
+<h3>任意の量子ビットエラー<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>最後に、任意のユニタリーエラーでない誤りを考えましょう。
+正確には、任意の量子ビットチャネル<span class="math notranslate nohighlight">\(\Phi\)</span>によって記述される誤りを考えます。
+例えば、これは位相減衰チャネルや脱分極チャネル、リセットチャネル、またはこれまで考えたことのないような奇妙なチャネルである可能性があります。</p>
+<p>最初のステップは、<span class="math notranslate nohighlight">\(\Phi\)</span>の任意のクラウス表現を考えることです。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\sigma) = \sum_j A_j \sigma A_j^{\dagger}
+\]</div>
+<p>これは量子ビットのチャネルなので、各<span class="math notranslate nohighlight">\(A_j\)</span>は<span class="math notranslate nohighlight">\(2 \times 2\)</span>行列であり、これをパウリ行列の線形結合として表現できます。</p>
+<div class="math notranslate nohighlight">
+\[
+A_j = \alpha_j \mathbb{I} + \beta_j X + \gamma_j Y + \delta_j Z
+\]</div>
+<p>これにより、エラー<span class="math notranslate nohighlight">\(\Phi\)</span>が選ばれた量子ビット<span class="math notranslate nohighlight">\(k\)</span>に対して与える作用を、パウリ行列を用いて次のように表現できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi_k \bigl( \vert\psi\rangle\langle\psi\vert\bigr) =
+\sum_j (\alpha_j \mathbb{I}_k + \beta_j X_k + \gamma_j Y_k + \delta_j Z_k) \vert\psi\rangle\langle\psi\vert
+(\alpha_j \mathbb{I}_k + \beta_j X_k + \gamma_j Y_k + \delta_j Z_k)^{\dagger}
+\]</div>
+<p>要するに、私たちはすべてのクラウス行列をパウリ行列の線形結合として展開しただけです。</p>
+<p>もし今、エラーのシンドロームを計算して測定し、明らかになったエラーを修正すれば、ユニタリーエラーの場合と同様の状態が得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+\xi \otimes \vert\psi\rangle\langle\psi\vert
+\]</div>
+<p>今回は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\xi = &amp; \sum_j \Bigl(\vert\alpha_j\vert^2 \vert\text{$\mathbb{I}$ syndrome}\rangle\langle\text{$\mathbb{I}$ syndrome}\vert \\[-3mm]
+&amp; \qquad + \vert\beta_j\vert^2 \vert\text{$X_k$ syndrome}\rangle\langle\text{$X_k$ syndrome}\vert\\[2mm]
+&amp; \qquad + \vert\gamma_j\vert^2 \vert\text{$X_k Z_k$ syndrome}\rangle\langle\text{$X_k Z_k$ syndrome}\vert\\[2mm]
+&amp; \qquad + \vert\delta_j\vert^2 \vert\text{$Z_k$ syndrome}\rangle\langle\text{$Z_k$ syndrome}\vert \Bigr).
+\end{aligned}
+\end{split}\]</div>
+<p>詳細は少し複雑で、ここでは示されていませんが、概念的にはユニタリーの場合と同じです。</p>
+</section>
+<section id="id20">
+<h3>一般化<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<p>エラーの離散化は、複数の量子ビットに対するエラーを検出・修正できる他の量子誤り訂正符号にも一般化できます。この場合、複数の量子ビットに対するエラーは、パウリ行列の <em>テンソル積</em> として表現でき、対応する異なるシンドロームは、複数の量子ビットに対して行われる可能性のあるパウリ操作の修正を指定します。</p>
+<p>再度言うと、シンドロームを測定することによって、エラーは効果的にパウリ行列のテンソル積によって表される離散的な可能性のセットに射影または収束し、それらのパウリエラーを修正することによって、元の符号化された状態を回復できます。
+一方、この過程で生成されたランダムネスはシンドローム量子ビットに移され、これらは破棄またはリセットされるため、符号化を保持しているシステムからこの過程で生成されたランダムネスが除去されます。</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/foundations-of-quantum-error-correction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">はじめに</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">古典的な繰り返し符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">符号化と復号化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">二元対称チャネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子ビットに対する繰り返し符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">符号化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ビット反転エラーの検出</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">位相反転エラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">位相反転エラーに対応する修正済み反復符号</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">9量子ビットのショアの符号</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">符号の説明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cnot">エラーとCNOTゲート</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">ビット反転エラーの訂正</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">位相反転エラーの訂正</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">同時に発生するビット反転エラーと位相反転エラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">ランダムなエラー</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">エラーの離散化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">ユニタリー量子ビットエラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">任意の量子ビットエラー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">一般化</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
