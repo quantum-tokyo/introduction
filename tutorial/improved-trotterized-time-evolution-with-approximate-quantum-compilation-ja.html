@@ -1,0 +1,1705 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>改良されたトロッター化時間発展と近似量子コンパイル（Approximate Quantum Compilation, AQC-Tensor） &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/improved-trotterized-time-evolution-with-approximate-quantum-compilation-ja';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_challenge_ja.html">IBM Quantum Challenge 一覧</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Ftutorial/improved-trotterized-time-evolution-with-approximate-quantum-compilation-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/improved-trotterized-time-evolution-with-approximate-quantum-compilation-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>改良されたトロッター化時間発展と近似量子コンパイル（Approximate Quantum Compilation, AQC-Tensor）</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">背景</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i">Part I. 小規模な例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">モデルハミルトニアンと観測量</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ハミルトニアンとオブザーバブルの設定</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1. 古典的な入力を量子問題にマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">古典的にシミュレーションする時間発展の部分を決定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-time">分割時間（split time）の選択</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">トロッター回路のステップ数を減らしたアンサッツと初期パラメータの生成</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">テンソルネットワークシミュレーションの設定を選択</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mps">MPS計算を用いてアンサッツのパラメータを最適化する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ2. 量子実行のために問題を最適化する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-qiskit-primitives">Step 3. Qiskit Primitives を使用して実行する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4. 後処理、結果を古典的な形式で返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii">Part II: スケールアップ！</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Step 1. 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2. 量子実行のために問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Step 3. Qiskit Primitives を使用して実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Step 4: 後処理を行い、結果を希望する古典形式で返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">結論</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-survey">Tutorial Survey</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="approximate-quantum-compilation-aqc-tensor">
+<h1>改良されたトロッター化時間発展と近似量子コンパイル（Approximate Quantum Compilation, AQC-Tensor）<a class="headerlink" href="#approximate-quantum-compilation-aqc-tensor" title="Link to this heading">#</a></h1>
+<p><strong>推定QPU使用時間：5分（IBM Brisbaneでテスト済み）</strong></p>
+<section id="id1">
+<h2>背景<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>このチュートリアルでは、量子回路の性能向上を目的として、テンソルネットワークを用いた <strong>近似量子コンパイル（Approximate Quantum CompilationAQC-Tensor）</strong> をQiskitで実装する方法を紹介します。AQC-Tensorは、トロッター化時間発展の文脈で適用され、回路の深さを削減しつつ、シミュレーションの精度を維持します。本ノートブックでは、Qiskitの状態準備と最適化のフレームワークに従い、初期のトロッター回路から低深度のアンサッツ回路を作成し、それをテンソルネットワークで最適化し、量子ハードウェアでの実行に向けて準備する方法を学びます。</p>
+<p>本チュートリアルの主な目的は、回路の深さを削減しながらモデルハミルトニアンの時間発展をシミュレートすることです。これは、*<a class="reference external" href="https://github.com/Qiskit/qiskit-addon-aqc-tensor">qiskit-addon-aqc-tensor</a> という <strong>AQC-Tensor</strong> アドオンを用いることで達成されます。このアドオンは、特に行列積状態（MPS）を活用して初期回路を圧縮・最適化します。反復的な調整を行うことで、圧縮されたアンサッツ回路は元の回路の忠実度を維持しつつ、近い将来の量子ハードウェアでも実行可能な形になります。<a class="reference external" href="https://docs.quantum.ibm.com/guides/qiskit-addons-aqc-get-started">シンプルな例</a>と共に、詳細な<a class="reference external" href="https://docs.quantum.ibm.com/guides/qiskit-addons-aqc">ドキュメント</a>も提供されています。</p>
+<p>近似量子コンパイルは、ハードウェアのコヒーレンス時間を超えるような量子シミュレーションにおいて特に有利です。これにより、複雑なシミュレーションをより効率的に実行することが可能になります。本チュートリアルでは、Qiskitを用いたAQC-Tensorワークフローのセットアップを案内し、ハミルトニアンの初期化、トロッター回路の生成、最適化された最終回路のターゲットデバイス向けトランスパイルまでをカバーします。</p>
+</section>
+<section id="id2">
+<h2>要件<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを開始する前に、以下がインストールされていることを確認してください：</p>
+<ul class="simple">
+<li><p>Qiskit SDK 1.0 or later, with visualization support (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">'qiskit[visualization]'</span></code>)</p></li>
+<li><p>Qiskit Runtime (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code>) 0.22 or later</p></li>
+<li><p>AQC-Tensor Qiskit addon (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">'qiskit-addon-aqc-tensor[aer,quimb-jax]'</span></code>)</p></li>
+<li><p>rustworkx 0.15 or later (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">rustworkx</span></code>)</p></li>
+<li><p>Qiskit addon utilities (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-addon-utils</span></code>) (訳者追記)</p></li>
+</ul>
+</section>
+<section id="part-i">
+<h2>Part I. 小規模な例<a class="headerlink" href="#part-i" title="Link to this heading">#</a></h2>
+<p>このチュートリアルの最初の部分では、10サイトの小規模な例を用いて、量子シミュレーションの問題を実行可能な量子回路にマッピングするプロセスを説明します。ここでは、10サイトのXXZモデルの動力学を調べ、スケールを拡張する前に、管理しやすい量子回路を構築し最適化する方法を学びます。</p>
+<p>XXZモデルは、スピン相互作用や磁気特性を調べるために物理学で広く研究されています。本チュートリアルでは、このモデルの開放境界条件を設定し、チェイン状の隣接サイト間にサイト依存の相互作用を持たせたハミルトニアンを構築します。</p>
+<section id="id3">
+<h3>モデルハミルトニアンと観測量<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>10サイトのXXZモデルに対するハミルトニアンは、以下のように定義されます：</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\mathcal{H}}_{XXZ} = \sum_{i=1}^{L-1} J_{i,(i+1)}\left(X_i X_{(i+1)}+Y_i Y_{(i+1)}+ 2\cdot Z_i Z_{(i+1)} \right) \, ,
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(J_{i,(i+1)}\)</span>はエッジ <span class="math notranslate nohighlight">\((i, i+1)\)</span> に対応するランダムな係数であり、サイト数は <span class="math notranslate nohighlight">\(L=10\)</span>です。</p>
+<p>この系の時間発展を回路の深さを削減してシミュレーションすることで、AQC-Tensorを用いた回路の圧縮と最適化の有効性についての知見を得ることができます。</p>
+<section id="id4">
+<h4>ハミルトニアンとオブザーバブルの設定<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>問題をマッピングする前に、10サイトのXXZモデルに対して、カップリングマップ、ハミルトニアン、オブザーバブルを設定する必要があります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span><span class="p">,</span> <span class="n">Pauli</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">CouplingMap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rustworkx.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">graphviz_draw</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Lはサイトの数であり、1次元スピン鎖の長さでもある。</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">10</span>  
+
+<span class="c1"># カップリング・マップの作成</span>
+<span class="n">elist</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">)]</span>
+
+<span class="c1"># HW効率の良い回路を作るために、エッジ・カラーリングを生成する。</span>
+<span class="n">even_edges</span> <span class="o">=</span> <span class="n">elist</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">odd_edges</span> <span class="o">=</span> <span class="n">elist</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">coupling_map</span> <span class="o">=</span> <span class="n">CouplingMap</span><span class="p">(</span><span class="n">elist</span><span class="p">)</span>
+
+<span class="c1"># XXZハミルトニアンのランダム係数を生成する。</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">&quot;I&quot;</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">even_edges</span> <span class="o">+</span> <span class="n">odd_edges</span><span class="p">):</span>
+    <span class="n">hamiltonian</span> <span class="o">+=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;XX&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;YY&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+        <span class="p">],</span>
+        <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="c1">#  2つの中間量子ビット間でZZオブザーバブルを生成する。</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hamiltonian:&quot;</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable:&quot;</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;circo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hamiltonian: SparsePauliOp([&#39;IIIIIIIIII&#39;, &#39;IIIIIIIIXX&#39;, &#39;IIIIIIIIYY&#39;, &#39;IIIIIIIIZZ&#39;, &#39;IIIIIIXXII&#39;, &#39;IIIIIIYYII&#39;, &#39;IIIIIIZZII&#39;, &#39;IIIIXXIIII&#39;, &#39;IIIIYYIIII&#39;, &#39;IIIIZZIIII&#39;, &#39;IIXXIIIIII&#39;, &#39;IIYYIIIIII&#39;, &#39;IIZZIIIIII&#39;, &#39;XXIIIIIIII&#39;, &#39;YYIIIIIIII&#39;, &#39;ZZIIIIIIII&#39;, &#39;IIIIIIIXXI&#39;, &#39;IIIIIIIYYI&#39;, &#39;IIIIIIIZZI&#39;, &#39;IIIIIXXIII&#39;, &#39;IIIIIYYIII&#39;, &#39;IIIIIZZIII&#39;, &#39;IIIXXIIIII&#39;, &#39;IIIYYIIIII&#39;, &#39;IIIZZIIIII&#39;, &#39;IXXIIIIIII&#39;, &#39;IYYIIIIIII&#39;, &#39;IZZIIIIIII&#39;],
+              coeffs=[1.        +0.j, 0.52440675+0.j, 0.52440675+0.j, 1.0488135 +0.j,
+ 0.60759468+0.j, 0.60759468+0.j, 1.21518937+0.j, 0.55138169+0.j,
+ 0.55138169+0.j, 1.10276338+0.j, 0.52244159+0.j, 0.52244159+0.j,
+ 1.04488318+0.j, 0.4618274 +0.j, 0.4618274 +0.j, 0.9236548 +0.j,
+ 0.57294706+0.j, 0.57294706+0.j, 1.14589411+0.j, 0.46879361+0.j,
+ 0.46879361+0.j, 0.93758721+0.j, 0.6958865 +0.j, 0.6958865 +0.j,
+ 1.391773  +0.j, 0.73183138+0.j, 0.73183138+0.j, 1.46366276+0.j])
+Observable: SparsePauliOp([&#39;IIIIZZIIII&#39;],
+              coeffs=[1.+0.j])
+</pre></div>
+</div>
+<img alt="../_images/d16a9b568726d4e5e5de9bf5059abc80b68cff069eb0ba8b946c33d466018173.png" src="../_images/d16a9b568726d4e5e5de9bf5059abc80b68cff069eb0ba8b946c33d466018173.png" />
+</div>
+</div>
+<p>ハミルトニアンが定義されたので、初期状態の構築に進むことができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+
+<span class="c1"># 初期状態を生成する</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">initial_state</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-1">
+<h3>Step 1. 古典的な入力を量子問題にマッピングする<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h3>
+<p>ハミルトニアンを構築し、スピン間相互作用や外部磁場を定義したので、AQC-Tensorのワークフローに従い、以下の3つの主要なステップを実行します：</p>
+<ol class="arabic simple">
+<li><p><strong>最適化されたAQC回路の生成：</strong>：トロッター展開を用いて初期の時間発展を近似し、その後、回路の深さを削減するために圧縮します。</p></li>
+<li><p><strong>残りの時間発展回路の作成</strong>：初期セグメントを超えた時間領域の発展を捉える回路を構築します。</p></li>
+<li><p><strong>回路の統合</strong>：最適化されたAQC回路と、残りの時間発展回路を統合し、実行可能な完全な時間発展回路を作成します。</p></li>
+</ol>
+<p>この手法により、ターゲットとする時間発展の低深度アンサッツが得られ、近い将来の量子ハードウェアの制約内で効率的なシミュレーションが可能になります。</p>
+<section id="id5">
+<h4>古典的にシミュレーションする時間発展の部分を決定する<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>本チュートリアルの目的は、先に定義したモデルハミルトニアンの時間発展をトロッター展開でシミュレーションすることです。
+これを量子ハードウェア上で効率的に実行するために、時間発展を2つのセグメントに分割します：</p>
+<ul class="simple">
+<li><p><strong>初期セグメント</strong>：このセグメントは、<span class="math notranslate nohighlight">\(t_i = 0.0\)</span> から <span class="math notranslate nohighlight">\(t_f = 0.2\)</span> までの初期の部分の時間発展を扱います。行列積状態（MPS）でのシミュレーションが可能であり、AQC-Tensorを使用して効率的に「コンパイル」できます。<a class="reference external" href="https://github.com/Qiskit/qiskit-addon-aqc-tensor">AQC-Tensorアドオン</a> を利用し、このセグメントの圧縮回路を生成します（<code class="docutils literal notranslate"><span class="pre">aqc_target_circuit</span></code> と呼ぶ）。テンソルネットワークシミュレーターを用いるため、ハードウェアリソースを消費せずに多くのトロッター層を適用可能です。本チュートリアルでは、このセグメントに対し、32ステップのトロッター展開(<code class="docutils literal notranslate"><span class="pre">aqc_target_num_trotter_steps</span> <span class="pre">=</span> <span class="pre">32</span></code>) を設定します。</p></li>
+<li><p><strong>続くセグメント</strong>：このセグメントは、<span class="math notranslate nohighlight">\(t = 0.2\)</span> から <span class="math notranslate nohighlight">\(t = 0.4\)</span>までの時間発展を扱います。量子ハードウェア上で実行するための回路（<code class="docutils literal notranslate"><span class="pre">subsequent_circuit</span></code>）として構築されます。ハードウェアの制約を考慮し、トロッター層の数を最小限に抑え、回路の深さを管理可能な範囲に収めます。本チュートリアルでは、このセグメントに対し、3ステップのトロッター展開(<code class="docutils literal notranslate"><span class="pre">subsequent_num_trotter_steps</span> <span class="pre">=</span> <span class="pre">3</span></code>) を設定します。</p></li>
+</ul>
+</section>
+<section id="split-time">
+<h4>分割時間（split time）の選択<a class="headerlink" href="#split-time" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(t = 0.2\)</span> を分割時間として選択する理由は、古典シミュレーションの適用可能性と量子ハードウェアでの実行可能性のバランスを取るためです。時間発展の初期段階では、XXZモデルのもつれ（エンタングルメント）がまだ小さいため、MPSのような古典的手法で正確に近似できます。</p>
+<p>分割時間の選択では、もつれを古典的に扱えるが、量子回路の簡略化に十分な時間発展を含むポイントを選ぶのが良い指針となります。異なるハミルトニアンごとに最適な分割時間は異なるため、試行錯誤が必要になる場合があります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.synthesis</span><span class="w"> </span><span class="kn">import</span> <span class="n">SuzukiTrotter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.problem_generators</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_time_evolution_circuit</span>
+
+<span class="c1"># AQC target circui（初期セグメント）の生成</span>
+<span class="n">aqc_evolution_time</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">aqc_target_num_trotter_steps</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="n">aqc_target_circuit</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">aqc_target_num_trotter_steps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">aqc_evolution_time</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># subsequent circuitを生成する</span>
+<span class="n">subsequent_num_trotter_steps</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">subsequent_evolution_time</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="n">subsequent_circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">subsequent_num_trotter_steps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">subsequent_evolution_time</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">subsequent_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/29875db9a33de7b6843358ca22953cc96ed3b6f4876c325c18d75095a2d050f7.png" src="../_images/29875db9a33de7b6843358ca22953cc96ed3b6f4876c325c18d75095a2d050f7.png" />
+</div>
+</div>
+<p>比較を意味のあるものにするために、以下の2つの追加回路を生成します。</p>
+<ul class="simple">
+<li><p><strong>AQC比較回路（AQC Comparison Circuit）</strong>：<code class="docutils literal notranslate"><span class="pre">aqc_evolution_time</span></code> までの時間発展を行いますが、<code class="docutils literal notranslate"><span class="pre">subsequent_circuit</span></code> と同じトロッター時間ステップを使用します。AQC-Tensorを使用せずに時間発展を行った場合に観測される結果を示し、<code class="docutils literal notranslate"><span class="pre">aqc_target_circuit</span></code> との比較に用います。この回路を <code class="docutils literal notranslate"><span class="pre">aqc_comparison_circuit</span></code> と呼びます。</p></li>
+<li><p><strong>参照回路（Reference Circuit）</strong>：厳密な結果を得るための基準回路として機能します。テンソルネットワークを用いて完全な時間発展をシミュレーションし、AQC-Tensorの有効性を評価するための参照データを提供します。この回路を <code class="docutils literal notranslate"><span class="pre">reference_circuit</span></code> と呼びます。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AQC comparison circuitの作成</span>
+<span class="n">aqc_comparison_num_trotter_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+    <span class="n">subsequent_num_trotter_steps</span> <span class="o">/</span> <span class="n">subsequent_evolution_time</span> <span class="o">*</span> <span class="n">aqc_evolution_time</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of Trotter steps for comparison:&quot;</span><span class="p">,</span> <span class="n">aqc_comparison_num_trotter_steps</span><span class="p">)</span>
+
+<span class="n">aqc_comparison_circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">aqc_comparison_num_trotter_steps</span><span class="p">),</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">aqc_evolution_time</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of Trotter steps for comparison: 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reference circuitの作成</span>
+<span class="n">evolution_time</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">reps</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">reference_circuit</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">reference_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">reps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">evolution_time</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h4>トロッター回路のステップ数を減らしたアンサッツと初期パラメータの生成<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>これまでに4つの回路を構築したので、AQC-Tensorのワークフローを進めていきます。まず、ターゲット回路（<code class="docutils literal notranslate"><span class="pre">aqc_target_circuit</span></code>）と同じ時間発展を持つが、トロッターのステップ数を減らした「良い」回路を構築します（これにより、回路の層数が少なくなる）。</p>
+<p>次に、この「良い」回路を AQC-Tensor の <code class="docutils literal notranslate"><span class="pre">generate_ansatz_from_circuit</span></code> 関数に渡します。この関数は、入力回路の2量子ビットの接続関係（connectivity）を解析し、以下の2つを返します。</p>
+<ol class="arabic simple">
+<li><p>一般的なパラメータ化されたアンサッツ回路（入力回路と同じ2量子ビット接続を持つ）。</p></li>
+<li><p>このアンサッツにパラメータを適用すると、入力の「良い」回路を再現できるような初期パラメータ。</p></li>
+</ol>
+<p>この後、これらのパラメータを調整しながら、アンサッツ回路がターゲットとなるMPS（行列積状態）にできるだけ近づくように最適化していきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_aqc_tensor.ansatz_generation</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_ansatz_from_circuit</span>
+
+<span class="n">aqc_ansatz_num_trotter_steps</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">aqc_good_circuit</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">aqc_good_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">aqc_ansatz_num_trotter_steps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">aqc_evolution_time</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">aqc_ansatz</span><span class="p">,</span> <span class="n">aqc_initial_parameters</span> <span class="o">=</span> <span class="n">generate_ansatz_from_circuit</span><span class="p">(</span><span class="n">aqc_good_circuit</span><span class="p">)</span>
+<span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/75cd16ac30623345b74d105ccc5ecb457c8b8c1a8c1bca401729e8d1e5dd45c5.png" src="../_images/75cd16ac30623345b74d105ccc5ecb457c8b8c1a8c1bca401729e8d1e5dd45c5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison circuit: depth </span><span class="si">{</span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target circuit:         depth </span><span class="si">{</span><span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ansatz circuit:         depth </span><span class="si">{</span><span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">, with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aqc_initial_parameters</span><span class="p">)</span><span class="si">}</span><span class="s2"> parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AQC Comparison circuit: depth 36
+Target circuit:         depth 385
+Ansatz circuit:         depth 7, with 156 parameters
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h4>テンソルネットワークシミュレーションの設定を選択<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>ここでは、Quimb の行列積状態（MPS）回路シミュレータを使用し、勾配計算には jax を利用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">quimb.tensor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_aqc_tensor.simulation.quimb</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuimbSimulator</span>
+
+<span class="n">simulator_settings</span> <span class="o">=</span> <span class="n">QuimbSimulator</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">CircuitMPS</span><span class="p">,</span> <span class="n">autodiff_backend</span><span class="o">=</span><span class="s2">&quot;jax&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/henryzou/.venvs/learning-aqc-1/lib/python3.11/site-packages/cotengra/hyperoptimizers/hyper.py:33: UserWarning: Couldn&#39;t import `kahypar` - skipping from default hyper optimizer and using basic `labels` method instead.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、AQC-Tensor を用いて近似するターゲット状態の MPS（行列積状態）表現を構築します。この表現により、もつれを効率的に処理でき、量子状態をコンパクトに記述して最適化を進めることが可能になります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_aqc_tensor.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">tensornetwork_from_circuit</span>
+
+<span class="n">aqc_target_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_target_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target MPS maximum bond dimension:&quot;</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
+
+<span class="c1"># 参照MPS（行列積状態）を取得し、`local_expectation` を調べることで正確な期待値を得ることができます。</span>
+<span class="n">reference_mps</span>  <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">reference_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+<span class="n">reference_expval</span> <span class="o">=</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">local_expectation</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reference MPS maximum bond dimension:&quot;</span><span class="p">,</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Target MPS maximum bond dimension: 5
+Reference MPS maximum bond dimension: 7
+</pre></div>
+</div>
+</div>
+</div>
+<p>ターゲット状態に対してより多くのトロッターステップを選択することにより、初期回路と比較してトロッター誤差を効果的に減少させたことに注意してください。この違いを定量化するために、初期回路で準備された状態とターゲット状態の間の忠実度(<span class="math notranslate nohighlight">\(|\langle \psi_1 | \psi_2 \rangle|^2\)</span>)を評価することができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_aqc_tensor.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_overlap</span>
+
+<span class="n">good_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_good_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+<span class="n">starting_fidelity</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">compute_overlap</span><span class="p">(</span><span class="n">good_mps</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting fidelity:&quot;</span><span class="p">,</span> <span class="n">starting_fidelity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Starting fidelity: 0.9982464959067983
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mps">
+<h4>MPS計算を用いてアンサッツのパラメータを最適化する<a class="headerlink" href="#mps" title="Link to this heading">#</a></h4>
+<p>このステップでは、L-BFGS最適化アルゴリズム（SciPyのもの）を使用して、簡単なコスト関数<code class="docutils literal notranslate"><span class="pre">OneMinusFidelity</span></code>を最小化することにより、アンサッツのパラメータを最適化します。忠実度の停止基準を選択し、AQC-Tensorを使用しない初期回路の忠実度を超えることを確実にします。この閾値に達した時点で、圧縮された回路は、元の回路と比較してトロッター誤差が小さく、回路深度が低くなることが期待されます。追加のCPU時間を使用することで、さらなる最適化が行われ、忠実度をさらに向上させることができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizeResult</span><span class="p">,</span> <span class="n">minimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_aqc_tensor.objective</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneMinusFidelity</span>
+
+<span class="c1"># 最適化のための値の設定</span>
+<span class="n">aqc_stopping_fidelity</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">aqc_max_iterations</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">stopping_point</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">aqc_stopping_fidelity</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">OneMinusFidelity</span><span class="p">(</span><span class="n">aqc_target_mps</span><span class="p">,</span> <span class="n">aqc_ansatz</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span><span class="n">intermediate_result</span><span class="p">:</span> <span class="n">OptimizeResult</span><span class="p">):</span>
+    <span class="n">fidelity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> Intermediate result: Fidelity </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">stopping_point</span><span class="p">:</span>
+        <span class="c1"># Good enough for now</span>
+        <span class="k">raise</span> <span class="ne">StopIteration</span>
+    
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">objective</span><span class="p">,</span>
+    <span class="n">aqc_initial_parameters</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span>
+    <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="n">aqc_max_iterations</span><span class="p">},</span>
+    <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">99</span><span class="p">,</span>
+<span class="p">):</span>  <span class="c1"># 0 =&gt; success; 1 =&gt; max iterations reached; 99 =&gt; early termination via StopIteration</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Optimization failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> (status=</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Done after </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="si">}</span><span class="s2"> iterations.&quot;</span><span class="p">)</span>
+<span class="n">aqc_final_parameters</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-11-12 12:25:24.948924 Intermediate result: Fidelity 0.99952846
+2024-11-12 12:25:24.950982 Intermediate result: Fidelity 0.99958508
+2024-11-12 12:25:24.952984 Intermediate result: Fidelity 0.99959974
+2024-11-12 12:25:24.954757 Intermediate result: Fidelity 0.99960963
+2024-11-12 12:25:24.956520 Intermediate result: Fidelity 0.99962441
+2024-11-12 12:25:24.958425 Intermediate result: Fidelity 0.99964395
+2024-11-12 12:25:24.960344 Intermediate result: Fidelity 0.99968078
+2024-11-12 12:25:24.964133 Intermediate result: Fidelity 0.99970510
+2024-11-12 12:25:24.966034 Intermediate result: Fidelity 0.99973847
+2024-11-12 12:25:24.967835 Intermediate result: Fidelity 0.99975444
+2024-11-12 12:25:24.970126 Intermediate result: Fidelity 0.99976553
+2024-11-12 12:25:24.972458 Intermediate result: Fidelity 0.99977638
+2024-11-12 12:25:24.974268 Intermediate result: Fidelity 0.99978698
+2024-11-12 12:25:24.976094 Intermediate result: Fidelity 0.99980260
+2024-11-12 12:25:24.978092 Intermediate result: Fidelity 0.99981571
+2024-11-12 12:25:24.979911 Intermediate result: Fidelity 0.99982835
+2024-11-12 12:25:24.981648 Intermediate result: Fidelity 0.99985815
+2024-11-12 12:25:24.983526 Intermediate result: Fidelity 0.99988461
+2024-11-12 12:25:24.985374 Intermediate result: Fidelity 0.99991644
+2024-11-12 12:25:24.987610 Intermediate result: Fidelity 0.99993205
+2024-11-12 12:25:24.989500 Intermediate result: Fidelity 0.99993885
+2024-11-12 12:25:24.991338 Intermediate result: Fidelity 0.99994314
+2024-11-12 12:25:24.993187 Intermediate result: Fidelity 0.99994719
+2024-11-12 12:25:24.995118 Intermediate result: Fidelity 0.99994767
+2024-11-12 12:25:24.996856 Intermediate result: Fidelity 0.99994946
+2024-11-12 12:25:24.998605 Intermediate result: Fidelity 0.99994969
+2024-11-12 12:25:25.018112 Intermediate result: Fidelity 0.99995077
+2024-11-12 12:25:25.054920 Intermediate result: Fidelity 0.99995077
+Done after 28 iterations.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">aqc_final_parameters</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final parameters:&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final parameters: [-7.853981112055085, 1.570797507204238, 1.5707979087614174, -1.5707952787358048, 1.5707970310387784, 1.57079522775084, -1.5707961623743325, 1.5707967336614768, -1.570796611087232, -1.5707962145893895, 1.570796271703914, 4.712387929822417, -7.853982402563732, 1.5707989095671329, 1.5707977385737681, -1.5707940741962412, 1.570797314941096, 1.5707976541580273, -1.5707933229425972, 1.5707961058359217, -1.5707958413362826, -1.570795089655074, 1.5707976787480016, 4.712387191305782, -1.5707946890053843, 1.5707953450204197, -1.5707992793567143, -1.570796265954742, 1.5707947949425147, 4.712390321753913, 0.10487779951457206, 0.0669304855960779, -0.06692189478829999, -3.1415924255843914, 2.609868292582522, -1.1234832406759191e-07, -3.141591645153891, 0.9422894740075248, -2.1314672866019113e-07, 0.12151543373326927, 0.07942604019639618, -0.07943027847071561, -3.1415916298284436, 0.9741837915058525, 3.141591718418538, -1.1550376470679338e-06, 1.7897358800047758, 2.1195414839490685e-07, 0.19827255014703224, 0.11111512228210345, -0.11111514517077194, -2.2302169473256597e-07, 2.7173788427136363, 9.561920752269582e-07, -6.283185129165788, 0.40877973580905574, 3.1415917546673535, 0.13629495288004723, 0.038867089321180257, -0.03886603318167364, -1.5707942733242137, 1.5707946638701127, 1.0630998538585854, 1.5707947146148329, 1.5707954588319601, 1.0520260677238398, 0.11027729934543476, 0.07268290174271413, -0.07268639372562713, -9.664819288558604e-07, 1.841292046519761, 3.1415919636313694, 4.2430441661855765e-07, 1.9345295648598817, 3.1415928191472395, 0.11557365468488236, 0.09096496524200588, -0.09096419366930858, -3.141592980011209, 1.2363050992375593, 3.1804242299148496e-06, -9.095246762983908e-07, 3.166671973546177, -3.141591750951704, 0.09954182546440704, 0.04367412734331154, -0.043673428501682245, -4.712388740372665, 1.570795748520369, 4.184733645513607, -1.5707981574509364, 1.5707979112780923, -2.078714830215991, 0.1044938990848301, 0.07318796479117047, -0.07319479949587492, 2.7415965255446625e-07, 1.8712578780657543, 1.2891480920146033e-06, -3.141593686429897, 0.9452718216181584, -3.1415925948983734, 0.18919849026531882, 0.13574198824511408, -0.13574272697294087, -5.265035390574029e-07, 0.6191958289065201, 3.1415920974753946, -3.141591514332686, 0.6767539511486921, -3.536324242889494e-08, 0.08067562127055841, 0.038033682484482356, -0.038033494483792896, 1.570797747804326, 1.5707963109987413, -0.26947560538814497, -1.570797362098685, 1.5707973946644989, 6.076755706319791, 0.09236809147314735, 0.06037868942412851, -0.06037906723998776, -1.8445071708025625e-06, 0.9015846574042147, -8.578882863484991e-08, -2.313335233538696e-06, 2.1762585921566036, 3.141592702395848, 0.2332832689190369, 0.1432842460545737, -0.1432825969738356, -3.1415926982857867, 0.28940741311327817, 6.88725251354497e-07, -3.1415928946540994, 3.0855410552918903, 6.283185618988811, 0.0712161092952286, 0.031960083799565005, -0.03196042051056538, -4.712390577979708, 1.5707957554800462, -0.4100513572034228, -1.5707961302317412, 1.5707937528370368, -0.3982258985444103, 0.13634584836392488, 0.03291045667886095, -0.03291130310925488, 1.5707971288952578, 1.5708007360135277, 2.5149302025734674, -1.5707968374863968, 1.5707953797097216, 2.514010630246316]
+</pre></div>
+</div>
+</div>
+</div>
+<p>この時点では、アンサッツ回路の最終的なパラメーターを求めるだけです。その後、最適化されたAQC回路と残りの時間発展回路を統合して、量子ハードウェアで実行するための完全な時間発展回路を作成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_final_circuit</span> <span class="o">=</span> <span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">aqc_final_parameters</span><span class="p">)</span>
+<span class="n">aqc_final_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">subsequent_circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">aqc_final_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b7ea5d6366d4ac8cdf219aa0fa1405898ec1e2b2d6de587f5eb4f57351d149a6.png" src="../_images/b7ea5d6366d4ac8cdf219aa0fa1405898ec1e2b2d6de587f5eb4f57351d149a6.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">aqc_comparison_circuit</span></code> についても、残りの時間発展回路と統合する必要があります。この回路は、AQC-Tensorで最適化された回路と元の回路の性能を比較するために使用されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">subsequent_circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/345113c3926fb501a3ffc1aee84b4f8687f300ede282ecf5a143d1defbb0ea23.png" src="../_images/345113c3926fb501a3ffc1aee84b4f8687f300ede282ecf5a143d1defbb0ea23.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h3>ステップ2. 量子実行のために問題を最適化する<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>ここでは、少なくとも127量子ビットを持つIBM Quantumデバイスのいずれかを使用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="c1"># QiskitRuntimeService.save_account(channel=&quot;ibm_quantum&quot;, token=&quot;&lt;MY_IBM_QUANTUM_TOKEN&gt;&quot;, overwrite=True, set_as_default=True)</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;ibm_quantum&#39;</span><span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>PUBs(回路とオブザーバブル)をバックエンドのISA（Instruction Set Architecture, 命令セットアーキテクチャ）に一致させるためにトランスパイルします。<code class="docutils literal notranslate"><span class="pre">optimization_level=3</span></code> を設定することで、トランスパイラーは回路を1次元の量子ビットチェーンに適合させ、回路の忠実度に影響を与えるノイズを削減します。回路がバックエンドと互換性のある形式に変換された後、変更された量子ビットのレイアウトに一致するようにオブザーバブルにも対応する変換を適用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">transpile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+
+<span class="n">pass_manager</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_final_circuit</span><span class="p">)</span>
+<span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZ&#39;],
+              coeffs=[1.+0.j])
+Circuit depth: 121
+</pre></div>
+</div>
+<img alt="../_images/b20abe206f790192100ea504075c0b4cd62ddc4be0c777690c330b7b16b8df44.png" src="../_images/b20abe206f790192100ea504075c0b4cd62ddc4be0c777690c330b7b16b8df44.png" />
+</div>
+</div>
+<p>比較回路(aqc_comparison_circuit)のトランスパイルを実行します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isa_comparison_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_comparison_circuit</span><span class="p">)</span>
+<span class="n">isa_comparison_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZ&#39;],
+              coeffs=[1.+0.j])
+Circuit depth: 157
+</pre></div>
+</div>
+<img alt="../_images/9825a07ae9b37706fdabbcfe27353d66243be89fb6315b939d9a50a4e0c9a486.png" src="../_images/9825a07ae9b37706fdabbcfe27353d66243be89fb6315b939d9a50a4e0c9a486.png" />
+</div>
+</div>
+<section id="step-3-qiskit-primitives">
+<h4>Step 3. Qiskit Primitives を使用して実行する<a class="headerlink" href="#step-3-qiskit-primitives" title="Link to this heading">#</a></h4>
+<p>このステップでは、トランスパイルされた回路を量子ハードウェア（またはシミュレートされたバックエンド）で実行します。<br />
+<code class="docutils literal notranslate"><span class="pre">qiskit_ibm_runtime</span></code> の <code class="docutils literal notranslate"><span class="pre">EstimatorV2</span></code> クラスを使用して、回路を実行し、指定されたオブザーバブルを測定するためのestimatorを設定します。ジョブの結果として、オブザーバブルの期待される結果が得られ、ターゲットハードウェア上での回路の性能についての洞察を得ることができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job ID: cwsrz54ehebg008j5jz0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), ensemble_standard_error=np.ndarray(&lt;shape=(), dtype=float64&gt;)), metadata={&#39;shots&#39;: 4096, &#39;target_precision&#39;: 0.015625, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {}, &#39;num_randomizations&#39;: 32})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: False, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: &#39;auto&#39;, &#39;shots_per_randomization&#39;: &#39;auto&#39;, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active-accum&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: False, &#39;pec_mitigation&#39;: False}, &#39;version&#39;: 2})
+</pre></div>
+</div>
+</div>
+</div>
+<p>比較回路の実行を行います。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_comparison</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_comparison_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job Comparison ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job Comparison ID: cwsrz54ehebg008j5jz0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), ensemble_standard_error=np.ndarray(&lt;shape=(), dtype=float64&gt;)), metadata={&#39;shots&#39;: 4096, &#39;target_precision&#39;: 0.015625, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {}, &#39;num_randomizations&#39;: 32})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: False, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: &#39;auto&#39;, &#39;shots_per_randomization&#39;: &#39;auto&#39;, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active-accum&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: False, &#39;pec_mitigation&#39;: False}, &#39;version&#39;: 2})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-4">
+<h3>Step 4. 後処理、結果を古典的な形式で返す<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h3>
+<p>この場合、再構築は不要です。実行結果から期待値にアクセスすることで、直接結果を確認できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AQC results</span>
+<span class="n">hw_results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">hw_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_results</span><span class="p">]</span>
+<span class="n">hw_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_results_dicts</span><span class="p">]</span>
+<span class="n">aqc_expval</span> <span class="o">=</span> <span class="n">hw_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># AQC comparison results</span>
+<span class="n">hw_comparison_results</span> <span class="o">=</span> <span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">hw_comparison_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_comparison_results</span><span class="p">]</span>
+<span class="n">hw_comparison_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_comparison_results_dicts</span><span class="p">]</span>
+<span class="n">aqc_compare_expval</span> <span class="o">=</span> <span class="n">hw_comparison_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exact:         </span><span class="se">\t</span><span class="si">{</span><span class="n">reference_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC:           </span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison:</span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_compare_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_compare_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exact:         	-0.5252
+AQC:           	-0.5033, |∆| = 0.0220
+AQC Comparison:	0.4317, |∆| = 0.9569
+</pre></div>
+</div>
+</div>
+</div>
+<p>AQC回路、比較回路、厳密回路の結果を比較するための棒グラフ。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AQC Result&#39;</span><span class="p">,</span> <span class="s1">&#39;AQC Comparison Result&#39;</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">aqc_expval</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">aqc_compare_expval</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="s1">&#39;tab:purple&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact Result&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Results&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Absolute Expected Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;AQC Result vs AQC Comparison Result (Absolute Values)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars</span><span class="p">:</span>
+    <span class="n">yval</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e0067b99a4c8e0064c458a7c941bb5c5b81fa5df4caeb6becdb3aa3b2e285d30.png" src="../_images/e0067b99a4c8e0064c458a7c941bb5c5b81fa5df4caeb6becdb3aa3b2e285d30.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="part-ii">
+<h2>Part II: スケールアップ！<a class="headerlink" href="#part-ii" title="Link to this heading">#</a></h2>
+<p>このチュートリアルの第二部では、前の例を基に、50サイトのより大きなシステムにスケールアップし、より複雑な量子シミュレーション問題を実行可能な量子回路にマッピングする方法を示します。ここでは、50サイトのXXZモデルの動力学を探り、より現実的なシステムサイズを反映した大規模な量子回路を構築・最適化します。</p>
+<p>50サイトXXZモデルのハミルトニアンは次のように定義されます：</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\mathcal{H}}_{XXZ} = \sum_{i=1}^{L-1} J_{i,(i+1)}\left(X_i X_{(i+1)}+Y_i Y_{(i+1)}+ 2\cdot Z_i Z_{(i+1)} \right) \, ,
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(J_{i,(i+1)}\)</span> はエッジ<span class="math notranslate nohighlight">\((i, i+1)\)</span>に対応するランダムな係数で、<span class="math notranslate nohighlight">\(L=50\)</span> はサイトの数です。</p>
+<p>ハミルトニアンの結合マップとエッジを定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># L = length of our 1D spin chain</span>
+
+<span class="c1"># Generate the edge-list for this spin-chain</span>
+<span class="n">elist</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">)]</span>
+<span class="c1"># Generate an edge-coloring so we can make hw-efficient circuits</span>
+<span class="n">even_edges</span> <span class="o">=</span> <span class="n">elist</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">odd_edges</span> <span class="o">=</span> <span class="n">elist</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Instantiate a CouplingMap object</span>
+<span class="n">coupling_map</span> <span class="o">=</span> <span class="n">CouplingMap</span><span class="p">(</span><span class="n">elist</span><span class="p">)</span>
+
+<span class="c1"># Generate random coefficients for our XXZ Hamiltonian</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">&quot;I&quot;</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">even_edges</span> <span class="o">+</span> <span class="n">odd_edges</span><span class="p">):</span>
+    <span class="n">hamiltonian</span> <span class="o">+=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;XX&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;YY&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+        <span class="p">],</span>
+        <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate an initial state</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">num_qubits</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">initial_state</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id9">
+<h3>Step 1. 古典的な入力を量子問題にマッピングする<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>この大規模な問題では、まず50サイトのXXZモデルのハミルトニアンを構築し、全てのサイトにわたるスピン-スピン相互作用と外部磁場を定義します。その後、以下の3つの主要なステップに従います：</p>
+<ol class="arabic simple">
+<li><p><strong>最適化されたAQC回路の生成</strong>：トロッター展開を使用して初期の時間発展を近似し、このセグメントを圧縮して回路深度を削減します。</p></li>
+<li><p><strong>残りの時間発展回路の作成</strong>：初期セグメントを超える残りの時間発展をキャプチャします。</p></li>
+<li><p><strong>回路の統合</strong>：最適化されたAQC回路と残りの時間発展回路を統合して、実行準備が整った完全な時間発展回路を作成します。</p></li>
+</ol>
+<p>AQC target circuit (初期セグメント)を生成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_evolution_time</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">aqc_target_num_trotter_steps</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="n">aqc_target_circuit</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">aqc_target_num_trotter_steps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">aqc_evolution_time</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>残りのセグメント（次の回路）を生成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subsequent_num_trotter_steps</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">subsequent_evolution_time</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="n">subsequent_circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">subsequent_num_trotter_steps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">subsequent_evolution_time</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>AQC比較回路の生成（初期セグメント、ただし次の回路と同じ数のトロッターステップを使用）。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the AQC comparison circuit</span>
+<span class="n">aqc_comparison_num_trotter_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+    <span class="n">subsequent_num_trotter_steps</span> <span class="o">/</span> <span class="n">subsequent_evolution_time</span> <span class="o">*</span> <span class="n">aqc_evolution_time</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of Trotter steps for comparison:&quot;</span><span class="p">,</span> <span class="n">aqc_comparison_num_trotter_steps</span><span class="p">)</span>
+
+<span class="n">aqc_comparison_circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">aqc_comparison_num_trotter_steps</span><span class="p">),</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">aqc_evolution_time</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of Trotter steps for comparison: 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>参照回路を生成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evolution_time</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">reps</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">reference_circuit</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">reference_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">reps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">evolution_time</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>少ないステップのトロッタ回路からアンサッツと初期パラメータを生成する。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_ansatz_num_trotter_steps</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">aqc_good_circuit</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">aqc_good_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">aqc_ansatz_num_trotter_steps</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">aqc_evolution_time</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">aqc_ansatz</span><span class="p">,</span> <span class="n">aqc_initial_parameters</span> <span class="o">=</span> <span class="n">generate_ansatz_from_circuit</span><span class="p">(</span><span class="n">aqc_good_circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison circuit: depth </span><span class="si">{</span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target circuit:         depth </span><span class="si">{</span><span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ansatz circuit:         depth </span><span class="si">{</span><span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">, with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aqc_initial_parameters</span><span class="p">)</span><span class="si">}</span><span class="s2"> parameters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AQC Comparison circuit: depth 36
+Target circuit:         depth 385
+Ansatz circuit:         depth 7, with 816 parameters
+</pre></div>
+</div>
+</div>
+</div>
+<p>テンソルネットワークシミュレーションの設定を行い、その後、最適化のためにターゲット状態の行列積状態（MPS）表現を構築します。次に、初期回路とターゲット状態の間の忠実度を評価し、トロッター誤差の違いを定量化します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulator_settings</span> <span class="o">=</span> <span class="n">QuimbSimulator</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">CircuitMPS</span><span class="p">,</span> <span class="n">autodiff_backend</span><span class="o">=</span><span class="s2">&quot;jax&quot;</span><span class="p">)</span>
+
+<span class="c1"># Build the matrix-product representation of the state to be approximated by AQC</span>
+<span class="n">aqc_target_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_target_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target MPS maximum bond dimension:&quot;</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
+
+<span class="c1"># Obtains the reference MPS, where we can obtain the exact expectation value by examing the `local_expectation``</span>
+<span class="n">reference_mps</span>  <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">reference_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+<span class="n">reference_expval</span> <span class="o">=</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">local_expectation</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="c1"># Compute the starting fidelity</span>
+<span class="n">good_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_good_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+<span class="n">starting_fidelity</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">compute_overlap</span><span class="p">(</span><span class="n">good_mps</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting fidelity:&quot;</span><span class="p">,</span> <span class="n">starting_fidelity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Target MPS maximum bond dimension: 5<br />
+Starting fidelity: 0.9926466919924661</p>
+<p>アンサッツのパラメータを最適化するために、SciPyのL-BFGS最適化アルゴリズムを使用して<code class="docutils literal notranslate"><span class="pre">OneMinusFidelity</span></code>コスト関数を最小化し、停止基準をAQC-Tensorなしで初期回路の忠実度を超えるように設定します。これにより、圧縮された回路はトロッタ誤差が小さく、回路深度が減少することが保証されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting values for the optimization</span>
+<span class="n">aqc_stopping_fidelity</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">aqc_max_iterations</span> <span class="o">=</span> <span class="mi">500</span>
+
+<span class="n">stopping_point</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">aqc_stopping_fidelity</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">OneMinusFidelity</span><span class="p">(</span><span class="n">aqc_target_mps</span><span class="p">,</span> <span class="n">aqc_ansatz</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span><span class="n">intermediate_result</span><span class="p">:</span> <span class="n">OptimizeResult</span><span class="p">):</span>
+    <span class="n">fidelity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> Intermediate result: Fidelity </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">stopping_point</span><span class="p">:</span>
+        <span class="c1"># Good enough for now</span>
+        <span class="k">raise</span> <span class="ne">StopIteration</span>
+    
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">objective</span><span class="p">,</span>
+    <span class="n">aqc_initial_parameters</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span>
+    <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="n">aqc_max_iterations</span><span class="p">},</span>
+    <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">99</span><span class="p">,</span>
+<span class="p">):</span>  <span class="c1"># 0 =&gt; success; 1 =&gt; max iterations reached; 99 =&gt; early termination via StopIteration</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Optimization failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> (status=</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Done after </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="si">}</span><span class="s2"> iterations.&quot;</span><span class="p">)</span>
+<span class="n">aqc_final_parameters</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-11-12 12:28:22.873939 Intermediate result: Fidelity 0.99795506
+2024-11-12 12:28:22.887593 Intermediate result: Fidelity 0.99822850
+2024-11-12 12:28:22.899789 Intermediate result: Fidelity 0.99829627
+2024-11-12 12:28:22.911861 Intermediate result: Fidelity 0.99832307
+2024-11-12 12:28:22.924786 Intermediate result: Fidelity 0.99835857
+2024-11-12 12:28:22.936849 Intermediate result: Fidelity 0.99840204
+2024-11-12 12:28:22.949555 Intermediate result: Fidelity 0.99846922
+2024-11-12 12:28:22.961815 Intermediate result: Fidelity 0.99865291
+2024-11-12 12:28:22.974129 Intermediate result: Fidelity 0.99872522
+2024-11-12 12:28:22.986358 Intermediate result: Fidelity 0.99892264
+2024-11-12 12:28:22.998510 Intermediate result: Fidelity 0.99900616
+2024-11-12 12:28:23.010171 Intermediate result: Fidelity 0.99906991
+2024-11-12 12:28:23.022538 Intermediate result: Fidelity 0.99911245
+2024-11-12 12:28:23.034478 Intermediate result: Fidelity 0.99918525
+2024-11-12 12:28:23.046888 Intermediate result: Fidelity 0.99921468
+2024-11-12 12:28:23.059256 Intermediate result: Fidelity 0.99925043
+2024-11-12 12:28:23.071856 Intermediate result: Fidelity 0.99929190
+2024-11-12 12:28:23.084338 Intermediate result: Fidelity 0.99933171
+2024-11-12 12:28:23.098111 Intermediate result: Fidelity 0.99935828
+2024-11-12 12:28:23.110662 Intermediate result: Fidelity 0.99937735
+2024-11-12 12:28:23.123702 Intermediate result: Fidelity 0.99940833
+2024-11-12 12:28:23.136272 Intermediate result: Fidelity 0.99943968
+2024-11-12 12:28:23.149289 Intermediate result: Fidelity 0.99946935
+2024-11-12 12:28:23.161679 Intermediate result: Fidelity 0.99949211
+2024-11-12 12:28:23.173849 Intermediate result: Fidelity 0.99951452
+2024-11-12 12:28:23.186332 Intermediate result: Fidelity 0.99954896
+2024-11-12 12:28:23.199393 Intermediate result: Fidelity 0.99955897
+2024-11-12 12:28:23.212086 Intermediate result: Fidelity 0.99959580
+2024-11-12 12:28:23.225189 Intermediate result: Fidelity 0.99960271
+2024-11-12 12:28:23.239318 Intermediate result: Fidelity 0.99961702
+2024-11-12 12:28:23.252330 Intermediate result: Fidelity 0.99963180
+2024-11-12 12:28:23.266306 Intermediate result: Fidelity 0.99963311
+2024-11-12 12:28:23.280276 Intermediate result: Fidelity 0.99964562
+2024-11-12 12:28:23.294829 Intermediate result: Fidelity 0.99964896
+2024-11-12 12:28:23.309374 Intermediate result: Fidelity 0.99965575
+2024-11-12 12:28:23.322928 Intermediate result: Fidelity 0.99966469
+2024-11-12 12:28:23.337254 Intermediate result: Fidelity 0.99967613
+2024-11-12 12:28:23.350684 Intermediate result: Fidelity 0.99968269
+2024-11-12 12:28:23.364617 Intermediate result: Fidelity 0.99969163
+2024-11-12 12:28:23.379174 Intermediate result: Fidelity 0.99969735
+2024-11-12 12:28:24.388503 Intermediate result: Fidelity 0.99969735
+Done after 41 iterations.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">aqc_final_parameters</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>最適化されたアンサッツと残りの時間発展回路を組み合わせて、トランスパイル用の最終回路を構築します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_final_circuit</span> <span class="o">=</span> <span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">aqc_final_parameters</span><span class="p">)</span>
+<span class="n">aqc_final_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">subsequent_circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">subsequent_circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2">
+<h3>Step 2. 量子実行のために問題を最適化する<a class="headerlink" href="#step-2" title="Link to this heading">#</a></h3>
+<p>バックエンドを選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QiskitRuntimeService.save_account(channel=&quot;ibm_quantum&quot;, token=&quot;&lt;MY_IBM_QUANTUM_TOKEN&gt;&quot;, overwrite=True, set_as_default=True)</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;ibm_quantum&#39;</span><span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>完成した回路をターゲットハードウェアでトランスパイルし、実行の準備を整えます。その後、生成されたISA回路をバックエンドで実行するために送信できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pass_manager</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_final_circuit</span><span class="p">)</span>
+<span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;],
+              coeffs=[1.+0.j])
+Circuit depth: 122
+</pre></div>
+</div>
+<img alt="../_images/e0a983dac234870ebe057085b0cad3c68f5d04d30396bdac5930308ded221ba4.png" src="../_images/e0a983dac234870ebe057085b0cad3c68f5d04d30396bdac5930308ded221ba4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isa_comparison_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_comparison_circuit</span><span class="p">)</span>
+<span class="n">isa_comparison_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIII&#39;],
+              coeffs=[1.+0.j])
+Circuit depth: 158
+</pre></div>
+</div>
+<img alt="../_images/473a8d4d52e717188eb80e7b7ff029a74e265a1473c3bed6803479dec5a3b525.png" src="../_images/473a8d4d52e717188eb80e7b7ff029a74e265a1473c3bed6803479dec5a3b525.png" />
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>Step 3. Qiskit Primitives を使用して実行<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>このステップでは、トランスパイルされた回路を量子ハードウェア（またはシミュレートされたバックエンド）で実行し、<code class="docutils literal notranslate"><span class="pre">qiskit_ibm_runtime</span></code> の <code class="docutils literal notranslate"><span class="pre">EstimatorV2</span></code> を使用して指定されたオブザーバブルを測定します。ジョブの結果は、ターゲットハードウェア上での回路の性能に関する貴重な洞察を提供します。</p>
+<p>この大規模な例では、 <code class="docutils literal notranslate"><span class="pre">EstimatorOptions</span></code> を利用してハードウェア実験のパラメータをより適切に管理・制御する方法を探ります。これらの設定はオプションですが、実験パラメータの追跡や、最適な結果を得るための実行オプションを洗練させるのに役立ちます。</p>
+<p>利用可能な実行オプションの完全なリストについては、<a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions">qiskit-ibm-runtime のドキュメント</a> を参照してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">twirling_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;enable_gates&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;enable_measure&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;num_randomizations&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">&quot;shots_per_randomization&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;strategy&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">zne_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;amplifier&quot;</span><span class="p">:</span> <span class="s2">&quot;gate_folding&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;noise_factors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">&quot;extrapolated_noise_factors&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">)),</span>
+    <span class="s2">&quot;extrapolator&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;exponential&quot;</span><span class="p">,</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;fallback&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">meas_learning_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;num_randomizations&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;shots_per_randomization&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">}</span>
+
+<span class="n">resilience_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;measure_mitigation&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;zne_mitigation&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;zne&quot;</span><span class="p">:</span> <span class="n">zne_options</span><span class="p">,</span>
+    <span class="s2">&quot;measure_noise_learning&quot;</span><span class="p">:</span> <span class="n">meas_learning_options</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">estimator_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;resilience&quot;</span><span class="p">:</span> <span class="n">resilience_options</span><span class="p">,</span>
+    <span class="s2">&quot;twirling&quot;</span><span class="p">:</span> <span class="n">twirling_options</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">estimator_options</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job ID: cwss0vv5v39g008hd7m0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;)), metadata={&#39;shots&#39;: 30000, &#39;target_precision&#39;: 0.005773502691896258, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {&#39;zne&#39;: {&#39;extrapolator&#39;: &#39;exponential&#39;}}, &#39;num_randomizations&#39;: 300})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: True, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: 300, &#39;shots_per_randomization&#39;: 100, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: True, &#39;pec_mitigation&#39;: False, &#39;zne&#39;: {&#39;noise_factors&#39;: [1, 2, 3], &#39;extrapolator&#39;: [&#39;exponential&#39;, &#39;linear&#39;, &#39;fallback&#39;], &#39;extrapolated_noise_factors&#39;: [0, 0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6000000000000001, 0.7000000000000001, 0.8, 0.9, 1, 1.1, 1.2000000000000002, 1.3, 1.4000000000000001, 1.5, 1.6, 1.7000000000000002, 1.8, 1.9000000000000001, 2, 2.1, 2.2, 2.3000000000000003, 2.4000000000000004, 2.5, 2.6, 2.7, 2.8000000000000003, 2.9000000000000004, 3]}}, &#39;version&#39;: 2})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_comparison</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_comparison_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job Comparison ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job Comparison ID: cwss0vv5v39g008hd7m0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;)), metadata={&#39;shots&#39;: 30000, &#39;target_precision&#39;: 0.005773502691896258, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {&#39;zne&#39;: {&#39;extrapolator&#39;: &#39;exponential&#39;}}, &#39;num_randomizations&#39;: 300})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: True, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: 300, &#39;shots_per_randomization&#39;: 100, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: True, &#39;pec_mitigation&#39;: False, &#39;zne&#39;: {&#39;noise_factors&#39;: [1, 2, 3], &#39;extrapolator&#39;: [&#39;exponential&#39;, &#39;linear&#39;, &#39;fallback&#39;], &#39;extrapolated_noise_factors&#39;: [0, 0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6000000000000001, 0.7000000000000001, 0.8, 0.9, 1, 1.1, 1.2000000000000002, 1.3, 1.4000000000000001, 1.5, 1.6, 1.7000000000000002, 1.8, 1.9000000000000001, 2, 2.1, 2.2, 2.3000000000000003, 2.4000000000000004, 2.5, 2.6, 2.7, 2.8000000000000003, 2.9000000000000004, 3]}}, &#39;version&#39;: 2})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>Step 4: 後処理を行い、結果を希望する古典形式で返す<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>ここでは、以前と同様に再構築は必要なく、実行結果から直接期待値にアクセスして結果を確認することができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AQC results</span>
+<span class="n">hw_results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">hw_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_results</span><span class="p">]</span>
+<span class="n">hw_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_results_dicts</span><span class="p">]</span>
+<span class="n">aqc_expval</span> <span class="o">=</span> <span class="n">hw_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># AQC comparison results</span>
+<span class="n">hw_comparison_results</span> <span class="o">=</span> <span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">hw_comparison_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_comparison_results</span><span class="p">]</span>
+<span class="n">hw_comparison_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_comparison_results_dicts</span><span class="p">]</span>
+<span class="n">aqc_compare_expval</span> <span class="o">=</span> <span class="n">hw_comparison_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exact:         </span><span class="se">\t</span><span class="si">{</span><span class="n">reference_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC:           </span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison:</span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_compare_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_compare_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exact:         	-0.5888
+AQC:           	-0.5817, |∆| = 0.0071
+AQC Comparison:	0.9790, |∆| = 1.5678
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting the results of the AQC, comparison, and exact circuits for the 50-site XXZ model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AQC Result&#39;</span><span class="p">,</span> <span class="s1">&#39;AQC Comparison Result&#39;</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">aqc_expval</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">aqc_compare_expval</span><span class="p">)]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="s1">&#39;tab:purple&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact Result&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Results&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Absolute Expected Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;AQC Result vs AQC Comparison Result (Absolute Values)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars</span><span class="p">:</span>
+    <span class="n">yval</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>  
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/de364d8ee9f0736761a17f34d12b1cf3ec3694b0c54671ad0f774ad8bbde1682.png" src="../_images/de364d8ee9f0736761a17f34d12b1cf3ec3694b0c54671ad0f774ad8bbde1682.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2>結論<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>このチュートリアルでは、テンソルネットワークを用いた近似量子コンパイル（Approximate Quantum Compilation, AQC-Tensor）を使用して、量子力学のシミュレーションのために回路を圧縮および最適化する方法を示しました。小規模および大規模なハイゼンベルグモデルを利用し、AQC-Tensorを適用してトロッター展開による時間発展に必要な回路の深さを削減しました。簡略化されたトロッター回路からパラメトリックアンサッツを生成し、行列積状態（MPS）技術で最適化することによって、ターゲットの時間発展を低深度で正確かつ効率的に近似しました。</p>
+<p>ここでのワークフローは、量子シミュレーションをスケーリングするためのAQC-Tensorの主な利点を強調しています：</p>
+<ul class="simple">
+<li><p><strong>大幅な回路圧縮</strong>：AQC-Tensorは、複雑な時間発展に必要な回路の深度を削減し、現在のデバイスでの実行可能性を向上させました。</p></li>
+<li><p><strong>効率的な最適化</strong>：MPSアプローチは、忠実度と計算効率のバランスを取るパラメータ最適化のための堅牢なフレームワークを提供しました。</p></li>
+<li><p><strong>ハードウェア対応の実行</strong>：最終的に最適化された回路をトランスパイルすることで、ターゲット量子ハードウェアの制約に適合させました。</p></li>
+</ul>
+<p>今後、より大規模な量子デバイスや高度なアルゴリズムが登場する中で、AQC-Tensorのような技術は、近未来の量子ハードウェアで複雑な量子シミュレーションを実行するために不可欠なものとなり、スケーラブルな量子アプリケーションにおける深さと忠実度の管理において有望な進展を示すことになるでしょう。</p>
+</section>
+<section id="tutorial-survey">
+<h2>Tutorial Survey<a class="headerlink" href="#tutorial-survey" title="Link to this heading">#</a></h2>
+<table style="width: 100%;">
+<tbody>
+<tr>
+<td valign="top" style="width: 10%;"><img src="https://learning-api.quantum.ibm.com/assets/53171443-b07b-4ae6-a4be-9aec32a854f5" alt="Survey" width="100%" height="100%"></td>
+<td valign="top"  style="width: 80%;"><strong><a title="Tutorial Survey" href="https://your.feedback.ibm.com/jfe/form/SV_eF01c2sfeSt6cqq" target="_blank">Tutorial Survey</a></strong><p><p>Please take one minute to provide feedback on this tutorial. Your insights will help us improve our content offerings and user experience.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">背景</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i">Part I. 小規模な例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">モデルハミルトニアンと観測量</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ハミルトニアンとオブザーバブルの設定</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1. 古典的な入力を量子問題にマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">古典的にシミュレーションする時間発展の部分を決定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-time">分割時間（split time）の選択</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">トロッター回路のステップ数を減らしたアンサッツと初期パラメータの生成</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">テンソルネットワークシミュレーションの設定を選択</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mps">MPS計算を用いてアンサッツのパラメータを最適化する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ2. 量子実行のために問題を最適化する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-qiskit-primitives">Step 3. Qiskit Primitives を使用して実行する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4. 後処理、結果を古典的な形式で返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii">Part II: スケールアップ！</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Step 1. 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2. 量子実行のために問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Step 3. Qiskit Primitives を使用して実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Step 4: 後処理を行い、結果を希望する古典形式で返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">結論</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-survey">Tutorial Survey</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
