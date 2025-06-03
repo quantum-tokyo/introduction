@@ -12,7 +12,8 @@ parts:
     - file: qiskit_textbook_ja
     - file: qiskit_textbook_new_ja
     - file: qiskit_documents_ja
-    - file: quantum_challenge_ja
+    - url: https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html
+      title: IBM Quantum Challenge
     - file: qgss_ja
     - file: quantum_tokyo_materials
     - file: events
