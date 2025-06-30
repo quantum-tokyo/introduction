@@ -1,0 +1,2200 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子ビット、量子ゲート、量子回路 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/bits-gates-and-circuits-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/bits-gates-and-circuits-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/bits-gates-and-circuits-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子ビット、量子ゲート、量子回路</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.紹介</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-as-a-diagram">2. Computation as a diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.  単一量子ビットゲート</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1 量子状態とブロッホ球</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">空の回路</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#x">Xゲート</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h">Hゲート</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rangle"><span class="math notranslate nohighlight">\(|-\rangle\)</span> 状態</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2 量子状態とユニタリー行列</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">演習1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.3 測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-aer-simulator">Qiskit Aer Simulator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4. 複数量子ビット回路ともつれ状態</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.1 複数量子ビット回路</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.2 複数量子ゲート</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cnot">CNOT ゲート</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">注: Qiskit のビット順について</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-entanglement-and-execution-on-a-real-quantum-device">4.3 Quantum entanglement and execution on a real quantum device</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-map-problem-to-quantum-circuits-and-operators">Step 1. Map problem to quantum circuits and operators</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-optimize-for-target-hardware">Step 2. Optimize for target hardware</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-execute-the-target-circuit">Step 3. Execute the target circuit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-post-process-the-results">Step 4. Post-process the results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz">4.4 GHZ 状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. まとめ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子ビット、量子ゲート、量子回路<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  沼田 祈史(19 Apr 2024)
+<p>講義ノートのPDFは近日公開予定です。一部のコード スニペットは静的イメージであるため、非推奨になる可能性があることに注意してください。</p>
+<p><em>Approximate QPU time to run this experiment is 5 seconds.</em>
+</Admonition></p>
+<section id="id2">
+<h2>1.紹介<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>ビット、ゲート、および回路は、量子コンピューティングの基本的な構成要素です。量子ビットと量子ゲートを用いた回路モデルによる量子計算を学び、重ね合わせ、測定、エンタングルメントの復習も行います。</p>
+<p>このレッスンでは、次のことを学びます。</p>
+<ul class="simple">
+<li><p>単一量子ビットゲート</p></li>
+<li><p>ブロッホ球</p></li>
+<li><p>重ね合わせ</p></li>
+<li><p>測定</p></li>
+<li><p>2量子ビットゲートとエンタングルメント状態</p></li>
+</ul>
+<p>この講義の最後には、ユーティリティスケールの量子コンピューティングに不可欠な回路の深さについて学びます。</p>
+</section>
+<section id="computation-as-a-diagram">
+<h2>2. Computation as a diagram<a class="headerlink" href="#computation-as-a-diagram" title="Link to this heading">#</a></h2>
+<p>量子ビットを使用する場合もビットを使用する場合も、入力を必要な出力に変換するためにそれらを操作する必要があります。少数のビット用の非常に単純なプログラムでは、このプロセスを <strong>回路図</strong> と呼ばれる図で表すと便利です。<br />
+左下の図が古典回路の例、右下の図が量子回路の例です。
+どちらの場合も、左側に入力があり、出力が右側で、その間に演算が記号によって表されます。演算に用いられる記号は、主に歴史的な背景から「ゲート」と呼ばれます。</p>
+<p><img alt="&quot;classical logic and quantum circuit&quot;" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Futility-scale-quantum-computing%2Fbits-gates-and-circuits%2Fclassical-vs-quantum.avif&amp;w=3840&amp;q=75" /></p>
+</section>
+<section id="id3">
+<h2>3.  単一量子ビットゲート<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h3>3.1 量子状態とブロッホ球<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>量子ビットの状態は、<span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span> の重ね合わせの状態で表します。任意の量子ビットは以下のように表します。</p>
+<div class="math notranslate nohighlight">
+\[\psi =\alpha|0\rangle+ \beta|1\rangle\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> は、 <span class="math notranslate nohighlight">\(|\alpha|^2+|\beta|^2=1\)</span> を満たす複素数で、確率振幅と呼ばれます。</p>
+<p><span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span>は、
+<span class="math notranslate nohighlight">\(|0\rangle = \begin{bmatrix}
+1 \\
+0
+\end{bmatrix}\)</span>、
+<span class="math notranslate nohighlight">\(|1\rangle = \begin{bmatrix}
+0\\
+1
+\end{bmatrix}\)</span>
+とかけるので、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|\psi\rangle = \alpha\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}+ \beta\begin{bmatrix}0\\
+1
+\end{bmatrix} = \begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix}\end{split}\]</div>
+<p>とも表すことができ、これから量子ビットの状態は、<span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span>を正規直交基底とする2次元の複素内積空間の単位ベクトルであることがわかります。その大きさは1に規格化されています。
+$<span class="math notranslate nohighlight">\(\langle\psi|\psi\rangle = \begin{bmatrix}
+\alpha^* &amp; \beta^*
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix} = 1\)</span>$</p>
+<p><span class="math notranslate nohighlight">\(|\psi\rangle =\begin{bmatrix}
+\alpha \\
+\beta
+\end{bmatrix}\)</span> は状態ベクトルとも呼びます。</p>
+<p>1量子ビットの状態は <strong>ブロッホ球</strong> を使うと理解しやすいです。このとき、<span class="math notranslate nohighlight">\(|\psi\rangle =\cos\frac{\theta}{2}|0\rangle+e^{i\varphi}\sin\frac{\theta}{2}|1\rangle= 
+\left(
+\begin{matrix}
+\cos\frac{\theta}{2}\\
+e^{i\varphi}\sin\frac{\theta}{2}
+\end{matrix}
+\right)
+\)</span> です。</p>
+<p>ここで、<span class="math notranslate nohighlight">\(\theta\)</span>と<span class="math notranslate nohighlight">\(\varphi\)</span>は、次の図のブロッホ球の角度です。</p>
+<p><img alt="Bloch sphere" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Futility-scale-quantum-computing%2Fbits-gates-and-circuits%2Fbloch.avif&amp;w=3840&amp;q=75" /></p>
+<p>量子演算について、Qiskitで基本的な計算方法を学びます。<br />
+コードセルは、セルを選択して「Shift」＋「Enter」で実行できます。まずライブラリーをインポートします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the qiskit library</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h4>空の回路<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>1量子ビットの回路を作成し、描画します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the single-qubit quantum circuit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/fdef9137-9e39-4b05-afa9-9091766053f6-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="x">
+<h4>Xゲート<a class="headerlink" href="#x" title="Link to this heading">#</a></h4>
+<p>Xゲートはブロッホ球の<span class="math notranslate nohighlight">\(x\)</span>軸周りの<span class="math notranslate nohighlight">\(\pi\)</span>回転です。
+<span class="math notranslate nohighlight">\(|0\rangle\)</span>にXゲートを適用すると<span class="math notranslate nohighlight">\(|1\rangle\)</span>、<span class="math notranslate nohighlight">\(|1\rangle\)</span>にXゲートを適用すると<span class="math notranslate nohighlight">\(|0\rangle\)</span>になるので、古典のNOTゲートのような操作が実現でき、ビット反転とも呼ばれます。</p>
+<p><span class="math notranslate nohighlight">\(X = \begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{pmatrix}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Prepare the single-qubit quantum circuit</span>
+
+<span class="c1"># Apply a X gate to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/b3468430-0cbc-44ab-bd21-901436662a4b-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>IBM Quantum®では、初期状態は<span class="math notranslate nohighlight">\(|0\rangle\)</span>にセットされていますので、上記の量子回路は、行列ベクトル表示では</p>
+<p><span class="math notranslate nohighlight">\(X|0\rangle=  \begin{pmatrix}
+0 &amp; 1 \\\
+1 &amp; 0
+\end{pmatrix} 
+\begin{pmatrix}
+1 \\\
+0
+\end{pmatrix} 
+ =\begin{pmatrix}
+0 \\\
+1
+\end{pmatrix} = |1\rangle\)</span></p>
+<p>となります。次にこの回路の出力ベクトルを状態ベクトルシミュレーターを使って実行してみます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+
+<span class="c1"># Draw a Bloch sphere</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.+0.j, 1.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/efb727e8-f51e-4903-aa0f-e4c099316815-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>縦ベクトルが横ベクトル表示で、複素数(虚部の添字は <span class="math notranslate nohighlight">\(j\)</span>)で表示されています。</p>
+</section>
+<section id="h">
+<h4>Hゲート<a class="headerlink" href="#h" title="Link to this heading">#</a></h4>
+<p>Hadamardゲート(アダマールゲート)はブロッホ球の<span class="math notranslate nohighlight">\(x\)</span>軸と<span class="math notranslate nohighlight">\(z\)</span>軸の中間の軸周りの<span class="math notranslate nohighlight">\(\pi\)</span>回転です。
+例えば<span class="math notranslate nohighlight">\(|0\rangle\)</span>にHゲートを適用すると、<span class="math notranslate nohighlight">\(\frac{|0\rangle + |1\rangle}{\sqrt{2}}\)</span>のような重ね合わせ状態を作ることができます。</p>
+<p><span class="math notranslate nohighlight">\(H = \frac{1}{\sqrt{2}}\begin{pmatrix}
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{pmatrix}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create the single-qubit quantum circuit</span>
+
+<span class="c1"># Apply an Hadamard gate to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/574c35f0-26a9-423a-8d65-7140ba7398e3-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+
+<span class="c1"># Draw a Bloch sphere</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.70710678+0.j, 0.70710678+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/7adf0e93-6db3-4aa8-800f-c91c8cc46001-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>これは、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H|0\rangle= \frac{1}{\sqrt{2}} \begin{pmatrix}
+1 &amp; 1 \\
+1 &amp; -1
+\end{pmatrix}
+\begin{pmatrix}
+1 \\0
+\end{pmatrix}
+ =\frac{1}{\sqrt{2}}\begin{pmatrix}
+1 \\
+1
+\end{pmatrix}
+=\begin{pmatrix}
+0.707 \\
+0.707
+\end{pmatrix}
+=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)
+\end{split}\]</div>
+<p>です。</p>
+<p>この重ね合わせ状態は非常に一般的で重要であるため、独自の記号が付けられています。</p>
+<div class="math notranslate nohighlight">
+\[
+|+\rangle \equiv \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle).
+\]</div>
+<p><span class="math notranslate nohighlight">\(H\)</span>ゲートを<span class="math notranslate nohighlight">\(|0\rangle\)</span>に実行すると、<span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span>の均等な重ね合わせ状態が作れることが分かります。</p>
+</section>
+<section id="rangle">
+<h4><span class="math notranslate nohighlight">\(|-\rangle\)</span> 状態<a class="headerlink" href="#rangle" title="Link to this heading">#</a></h4>
+<p>You may have guessed that there is a corresponding  <span class="math notranslate nohighlight">\(|-\rangle\)</span> state:</p>
+<div class="math notranslate nohighlight">
+\[
+|-\rangle \equiv \frac{|0\rangle -|1\rangle}{\sqrt{2}}.
+\]</div>
+<p>To create this state, first apply an X gate to make <span class="math notranslate nohighlight">\(|1\rangle\)</span>, then apply an H gate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create the single-qubit quantum circuit</span>
+
+<span class="c1"># Apply a X gate to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Apply an Hadamard gate to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/b8e96fc4-6708-415e-b8fc-ac69eaeae750-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+
+<span class="c1"># Draw a Bloch sphere</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([ 0.70710678+0.j, -0.70710678+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/f42b82aa-7a15-4f81-8530-b997d4c6e0de-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>これは以下になります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H|1\rangle= \frac{1}{\sqrt{2}} \begin{pmatrix}
+1 &amp; 1 \\\
+1 &amp; -1
+\end{pmatrix}
+\begin{pmatrix}
+0 \\\
+1
+\end{pmatrix}
+ =\frac{1}{\sqrt{2}}\begin{pmatrix}
+1 \\\
+-1
+\end{pmatrix}
+=\begin{pmatrix}
+0.707 \\\
+-0.707
+\end{pmatrix}
+=\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle) = |-\rangle
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(|1\rangle\)</span>に<span class="math notranslate nohighlight">\(H\)</span>ゲートを実行した結果、<span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span>の均等な重ね合わせ状態になりますが、<span class="math notranslate nohighlight">\(|1\rangle\)</span>の符号がマイナスになります。</p>
+</section>
+</section>
+<section id="id6">
+<h3>3.2 量子状態とユニタリー行列<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>これまでQiskitで確認した量子状態の変化は、ユニタリー行列をかけることで表されます。
+$<span class="math notranslate nohighlight">\(|\psi^{'}\rangle = U|\psi\rangle\)</span>$</p>
+<p>ユニタリー行列とは、以下を満たす行列でした。
+$<span class="math notranslate nohighlight">\(U^{\dagger}U =U U^{\dagger} = I\)</span>$</p>
+<p>このユニタリー行列による変化が量子ビットに量子ゲートをかけることを意味します。代表的な1量子ビットゲートには以下のものがあります。</p>
+<p>パウリゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{pmatrix}
+= |0\rangle \langle 1|+|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Y = \begin{pmatrix}
+0 &amp; -i \\
+i &amp; 0 \\
+\end{pmatrix}
+= -i|0\rangle \langle 1|+i|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z = \begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{pmatrix}
+= |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
+<p>量ここで、外積は以下のように計算されました。
+$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 0|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+1 &amp; 0 \\
+\end{bmatrix}, \quad\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \langle 1|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 1 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 1|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix}, \quad\end{split}\]</div>
+<p>そのほかの代表的な1量子ビットゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{bmatrix},\quad
+S = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -i \\
+\end{bmatrix}, \quad
+T = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; exp(i\pi/4) \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
+-i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
+sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
+e^{-i\theta /2} &amp;  0 \\
+0 &amp; e^{i\theta /2} \\
+\end{bmatrix}$$こ\end{split}\\\begin{split}こで、外積は以下のように計算されました。
+$$|0\rangle \langle 0|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 0|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+1 &amp; 0 \\
+\end{bmatrix}, \quad\end{split}\end{aligned}\end{align} \]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \langle 1|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 1 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 1|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix}, \quad\end{split}\]</div>
+<p>そのほかの代表的な1量子ビットゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{bmatrix},\quad
+S = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -i \\
+\end{bmatrix}, \quad
+T = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; exp(i\pi/4) \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
+-i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
+sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
+e^{-i\theta /2} &amp;  0 \\
+0 &amp; e^{i\theta /2} \\
+\end{bmatrix}$$$$$$子状態とユニタリー行列\end{split}\\これまでQiskitで確認した量子状態の変化は、ユニタリー行列をかけることで表されます。
+$$|\psi^{'}\rangle = U|\psi\rangle\end{aligned}\end{align} \]</div>
+<p>ユニタリー行列とは、以下を満たす行列でした。
+$<span class="math notranslate nohighlight">\(U^{\dagger}U =U U^{\dagger} = I\)</span>$</p>
+<p>このユニタリー行列による変化が量子ビットに量子ゲートをかけることを意味します。代表的な1量子ビットゲートには以下のものがあります。</p>
+<p>パウリゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{pmatrix}
+= |0\rangle \langle 1|+|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Y = \begin{pmatrix}
+0 &amp; -i \\
+i &amp; 0 \\
+\end{pmatrix}
+= -i|0\rangle \langle 1|+i|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z = \begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{pmatrix}
+= |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
+<p>ここで、外積は以下のように計算されました。
+$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 0|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+1 &amp; 0 \\
+\end{bmatrix}, \quad\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \langle 1|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 1 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 1|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix}, \quad\end{split}\]</div>
+<p>そのほかの代表的な1量子ビットゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{bmatrix},\quad
+S = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -i \\
+\end{bmatrix}, \quad
+T = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; exp(i\pi/4) \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
+-i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
+sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
+e^{-i\theta /2} &amp;  0 \\
+0 &amp; e^{i\theta /2} \\
+\end{bmatrix}$$$$$$量子状態とユニタリー行列\end{split}\\これまでQiskitで確認した量子状態の変化は、ユニタリー行列をかけることで表されます。
+$$|\psi^{'}\rangle = U|\psi\rangle\end{aligned}\end{align} \]</div>
+<p>ユニタリー行列とは、以下を満たす行列でした。
+$<span class="math notranslate nohighlight">\(U^{\dagger}U =U U^{\dagger} = I\)</span>$</p>
+<p>このユニタリー行列による変化が量子ビットに量子ゲートをかけることを意味します。代表的な1量子ビットゲートには以下のものがあります。</p>
+<p>パウリゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{pmatrix}
+= |0\rangle \langle 1|+|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Y = \begin{pmatrix}
+0 &amp; -i \\
+i &amp; 0 \\
+\end{pmatrix}
+= -i|0\rangle \langle 1|+i|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z = \begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{pmatrix}
+= |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
+<p>ここで、外積は以下のように計算されました。
+$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 0|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+1 &amp; 0 \\
+\end{bmatrix}, \quad\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \langle 1|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 1 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 1|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix}, \quad\end{split}\]</div>
+<p>そのほかの代表的な1量子ビットゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{bmatrix},\quad
+S = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -i \\
+\end{bmatrix}, \quad
+T = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; exp(i\pi/4) \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
+-i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
+sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
+e^{-i\theta /2} &amp;  0 \\
+0 &amp; e^{i\theta /2} \\
+\end{bmatrix}$$$$$$量子状態とユニタリー行列\end{split}\\これまでQiskitで確認した量子状態の変化は、ユニタリー行列をかけることで表されます。
+$$|\psi^{'}\rangle = U|\psi\rangle\end{aligned}\end{align} \]</div>
+<p>ユニタリー行列とは、以下を満たす行列でした。
+$<span class="math notranslate nohighlight">\(U^{\dagger}U =U U^{\dagger} = I\)</span>$</p>
+<p>このユニタリー行列による変化が量子ビットに量子ゲートをかけることを意味します。代表的な1量子ビットゲートには以下のものがあります。</p>
+<p>パウリゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{pmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{pmatrix}
+= |0\rangle \langle 1|+|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Y = \begin{pmatrix}
+0 &amp; -i \\
+i &amp; 0 \\
+\end{pmatrix}
+= -i|0\rangle \langle 1|+i|1\rangle \langle 0|\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z = \begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{pmatrix}
+= |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
+<p>ここで、外積は以下のように計算されました。
+$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 0|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+1 &amp; 0 \\
+\end{bmatrix}, \quad\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \langle 1|= 
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 1 \\
+0 &amp; 0 \\
+\end{bmatrix}, \quad
+|1\rangle \langle 1|= 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1
+\end{bmatrix}
+=\begin{bmatrix}
+0 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix}, \quad\end{split}\]</div>
+<p>そのほかの代表的な1量子ビットゲート</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
+1 &amp; 1 \\
+1 &amp; -1 \\
+\end{bmatrix},\quad
+S = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -i \\
+\end{bmatrix}, \quad
+T = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; exp(i\pi/4) \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
+-i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
+cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
+sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
+\end{bmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
+e^{-i\theta /2} &amp;  0 \\
+0 &amp; e^{i\theta /2} \\
+\end{bmatrix}$$$$\end{split}\]</div>
+</section>
+<section id="id7">
+<h3>演習1<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>次の量子回路をプログラミングし、状態ベクトルシミュレーターで実行して、ブロッホ球を表示してみましょう。</p>
+<p>(1) <span class="math notranslate nohighlight">\(XX|0\rangle\)</span></p>
+<p>(2) <span class="math notranslate nohighlight">\(HH|0\rangle\)</span></p>
+<p>(3) <span class="math notranslate nohighlight">\(HZH|0\rangle\)</span></p>
+<p>Tips: Z gate can be used by</p>
+<p>qc.z(0)</p>
+<p><strong>Solution:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### (1) XX|0&gt; ###</span>
+
+<span class="c1"># Create the single-qubit quantum circuit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">##your code goes here##</span>
+
+<span class="c1"># Add a X gate to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">##your code goes here##</span>
+
+<span class="c1"># Add a X gate to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1">##your code goes here##</span>
+
+<span class="c1"># Draw a circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/148fdaf9-0398-4dd3-84b3-1a71a4f5d34e-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+
+<span class="c1"># Draw a Bloch sphere</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([1.+0.j, 0.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/4720c4a0-acc7-46cc-b8ba-be2ca87ab976-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### (2) HH|0&gt; ###</span>
+<span class="c1">##your code goes here##</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/361c09fe-c206-4355-b827-da7ede0848de-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+
+<span class="c1"># Draw a Bloch sphere</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([1.+0.j, 0.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/a4976a54-77e2-42b5-b492-49c8cdaf9c9f-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### (3) HZH|0&gt; ###</span>
+<span class="c1">##your code goes here##</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/cd01ed0c-8f9e-4689-b1ae-f028d588f81a-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+
+<span class="c1"># Draw a Bloch sphere</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.+0.j, 1.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/4bc91c2a-e097-44db-95bb-acf0d0ea0844-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>3.3 測定<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>量子ビット <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> は観測することによって、 <span class="math notranslate nohighlight">\(|0\rangle\)</span>または<span class="math notranslate nohighlight">\(|1\rangle\)</span>へ状態が変わります。そのとき、 <span class="math notranslate nohighlight">\(|0\rangle\)</span>を得る確率は、<span class="math notranslate nohighlight">\(|\alpha|^2\)</span> であり、<span class="math notranslate nohighlight">\(|1\rangle\)</span>を得る確率は、<span class="math notranslate nohighlight">\(|\beta|^2\)</span> です（ボルンの法則）。</p>
+<div class="math notranslate nohighlight">
+\[p(|0\rangle) = |\langle 0|\psi\rangle|^2 = |\alpha|^2\]</div>
+<div class="math notranslate nohighlight">
+\[p(|1\rangle) = |\langle 1|\psi\rangle|^2 = |\beta|^2\]</div>
+<p>例えば、<span class="math notranslate nohighlight">\(|\psi\rangle=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)\)</span> を測定すると</p>
+<div class="math notranslate nohighlight">
+\[\langle 0|\psi\rangle =\frac{1}{\sqrt{2}}\langle 0|0\rangle + \frac{1}{\sqrt{2}}\langle 0|1\rangle = \frac{1}{\sqrt{2}}\cdot 1+\frac{1}{\sqrt{2}} \cdot 0=\frac{1}{\sqrt{2}} \]</div>
+<div class="math notranslate nohighlight">
+\[|\langle 0|\psi\rangle|^2 =  \frac{1}{2} \]</div>
+<p>となり、50%の確率で<span class="math notranslate nohighlight">\(|0\rangle\)</span>が測定（50%の確率で<span class="math notranslate nohighlight">\(|1\rangle\)</span>が測定）されます。</p>
+<section id="qiskit-aer-simulator">
+<h4>Qiskit Aer Simulator<a class="headerlink" href="#qiskit-aer-simulator" title="Link to this heading">#</a></h4>
+<p>Aerシミュレーター（量子計算シミュレーター）で計算させ、測定します。1024回実行した結果、それぞれの状態が測定された回数を表示し、その測定確率をヒストグラムで表示します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new circuit with one qubits (first argument) and one classical bits (second argument)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Add the measurement gate</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/3956e602-9f1b-4083-b58d-26c91b50b75e-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now ready to run our circuit on the Aer simulator. In this example, we will apply the default shots=1024, which means we will measure 1024 times. Then we will plot those counts in a histogram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the circuit on a simulator to get the results</span>
+<span class="c1"># Define backend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+
+<span class="c1"># Transpile to backend</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># Run the job</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Print the results</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># Plot the counts in a histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 521, &#39;1&#39;: 503}
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/7cb7c5ab-7b12-4f77-aaca-1d7e6cff213c-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>ほぼ50％ずつの確率で0と1が測定されることが確認できました。</p>
+</section>
+</section>
+</section>
+<section id="id9">
+<h2>4. 複数量子ビット回路ともつれ状態<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h3>4.1 複数量子ビット回路<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>コードで2量子ビットの量子回路を作成できます。各量子ビットにHゲートを適用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the two qubits quantum circuit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Apply an H gate to qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Apply an H gate to qubit 1</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/e880f7eb-108c-4387-8ef4-97219fd5691c-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.5+0.j, 0.5+0.j, 0.5+0.j, 0.5+0.j],
+            dims=(2, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<p>２量子ビットの状態は、１量子ビットの積（テンソル積）で表せます。</p>
+<p><span class="math notranslate nohighlight">\(|\psi\rangle=|q0\rangle \otimes|q1\rangle = (a|0\rangle+b|1\rangle) \otimes (c|0\rangle+d|1\rangle) \)</span></p>
+<p><span class="math notranslate nohighlight">\(= ac|0\rangle|0\rangle+ad|0\rangle|1\rangle+bc|1\rangle|0\rangle+bd|1\rangle|1\rangle\)</span></p>
+<p><span class="math notranslate nohighlight">\(= ac|00\rangle+ad|01\rangle+bc|10\rangle+bd|11\rangle\)</span></p>
+<p>(ただし、<span class="math notranslate nohighlight">\(|ac|^2+ |ad|^2+ |bc|^2+ |bd|^2=1\)</span> )</p>
+<p>Qiskitの初期値は、<span class="math notranslate nohighlight">\(|0\rangle|0\rangle=|00\rangle\)</span>なので、<span class="math notranslate nohighlight">\(H\)</span>をそれぞれの量子ビットに操作させることで均等な重ね合わせの状態になります。</p>
+<p><span class="math notranslate nohighlight">\(H|0\rangle \otimes H|0\rangle=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) = \frac{1}{2}(|00\rangle+|01\rangle+|10\rangle+|11\rangle)\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+=\frac{1}{2}\left( \begin{bmatrix} 1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix} 1 \\ 1 \end{bmatrix}\right) = \frac{1}{2}\begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \end{bmatrix}=\frac{1}{2}\left(\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}+\begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}+\begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}+\begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}\right)
+\end{split}\]</div>
+<p>測定のルールも同じで、 <span class="math notranslate nohighlight">\(|00\rangle\)</span> を測定する確率は、以下のように計算されます。
+$<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\rangle|^2 = |ac|^2\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw a Bloch sphere</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/ebdf591f-18d0-4fd1-a3a3-b1cdac13bd97-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、この状態を測定してみましょう。</p>
+<p>まず、測定回路を追加します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new circuit with two qubits (first argument) and two classical bits (second argument)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Apply the gates</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Add the measurement gates</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Measure qubit 0 and save the result in bit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Measure qubit 1 and save the result in bit 1</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/2afdd5ac-e51a-4d94-9307-955cc8fbf821-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>次にAerシミュレーター（量子計算シミュレーター）で計算させ、測定します。1024回実行した結果、それぞれの状態が測定された回数を表示し、その測定確率をヒストグラムで表示します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the circuit on a simulator to get the results</span>
+<span class="c1"># Define backend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+
+<span class="c1"># Transpile to backend</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># Run the job</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Print the results</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># Plot the counts in a histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;10&#39;: 262, &#39;01&#39;: 246, &#39;00&#39;: 265, &#39;11&#39;: 251}
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/060512ac-a106-4ecd-94f5-119048a08467-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(|00\rangle\)</span>、<span class="math notranslate nohighlight">\(|01\rangle\)</span>、<span class="math notranslate nohighlight">\(|10\rangle\)</span>、<span class="math notranslate nohighlight">\(|11\rangle\)</span>の状態がほぼ25%ずつ均等に測定されました。</p>
+</section>
+<section id="id11">
+<h3>4.2 複数量子ゲート<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<section id="cnot">
+<h4>CNOT ゲート<a class="headerlink" href="#cnot" title="Link to this heading">#</a></h4>
+<p>代表的な複数量子ゲートである <span class="math notranslate nohighlight">\(CNOT\)</span>ゲート（<span class="math notranslate nohighlight">\(CX\)</span>ゲート）は、２量子ビットにかかる量子ゲートで、制御ビットが1のときのみ、目標ビットの値を反転します。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Input (target,control)</p></th>
+<th class="head text-center"><p>Output (target,control)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>00</p></td>
+<td class="text-center"><p>00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>01</p></td>
+<td class="text-center"><p>11</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>10</p></td>
+<td class="text-center"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>11</p></td>
+<td class="text-center"><p>01</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>まず、q0とq1が両方とも0の場合を計算してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a circuit with two quantum registers and two classical registers</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Apply the CNOT (cx) gate to a |00&gt; state.</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Here the control is set to q0 and the target is set to q1.</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/a5621efd-dd9f-4ea4-bf3a-be3cacb45287-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([1.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],
+            dims=(2, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(|00\rangle\)</span> に<span class="math notranslate nohighlight">\(CX\)</span>ゲートを操作しても<span class="math notranslate nohighlight">\(|00\rangle\)</span> のままです。</p>
+</section>
+<section id="qiskit">
+<h4>注: Qiskit のビット順について<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h4>
+<p>ここで、Qiskitでは、最下位ビット(LSB)が右端で、多くの量子情報の教科書とは逆であることに注意してください。つまり、1量子ビット目が一番右のビットで、2量子ビット目が右から２番目のビットです。<span class="math notranslate nohighlight">\(|01\rangle\)</span> とは、q0が1で、q1が0を表しています。</p>
+<p>次に、<span class="math notranslate nohighlight">\(|01\rangle\)</span> に<span class="math notranslate nohighlight">\(CX\)</span>ゲートを操作します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># q0=1, q1=0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Apply a X gate to initialize q0 to 1</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Set the control bit to q0 and the target bit to q1.</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/5a02de82-44ff-40eb-b64c-2389d6eae3ee-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.+0.j, 0.+0.j, 0.+0.j, 1.+0.j],
+            dims=(2, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(|01\rangle\)</span> に<span class="math notranslate nohighlight">\(CX\)</span>ゲートを操作すると<span class="math notranslate nohighlight">\(|11\rangle\)</span> になりました。</p>
+<p>シミュレーターで計算してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add measurements</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Draw the circuit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/abcafb77-20bf-4bb7-bf8d-57f33af280c1-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the circuit on a simulator to get the results</span>
+<span class="c1"># Define backend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+
+<span class="c1"># Transpile to backend</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># Run the job</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Print the results</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># Plot the counts in a histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 1024}
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/88b76f1d-083b-4f28-b415-380738d22599-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(|11\rangle\)</span>の状態が100%測定されます。</p>
+</section>
+</section>
+<section id="quantum-entanglement-and-execution-on-a-real-quantum-device">
+<h3>4.3 Quantum entanglement and execution on a real quantum device<a class="headerlink" href="#quantum-entanglement-and-execution-on-a-real-quantum-device" title="Link to this heading">#</a></h3>
+<p>量子計算上でも重要な状態となる、量子もつれ状態（エンタングルメント状態）を生成してみましょう。</p>
+<p>2量子ビットの量子もつれ状態の1つの例が次のような形になります。
+$<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle\)</span>$</p>
+<p>2つの量子状態がエンタングルした状態とは、量子状態<span class="math notranslate nohighlight">\(|\psi\rangle _A\)</span>と<span class="math notranslate nohighlight">\(|\psi\rangle _B\)</span>からなる状態<span class="math notranslate nohighlight">\(|\psi\rangle _{AB}\)</span>が、個別の量子状態のテンソル積では表せない状態です。</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle _{AB}= \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle) = \frac{1}{\sqrt{2}}(|0\rangle_A|0\rangle_B +|1\rangle_A|1\rangle_B)\]</div>
+<p>の個別の状態を以下とすると、</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle _A= a_0|0\rangle+a_1|1\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle _B= b_0|0\rangle+b_1|1\rangle\]</div>
+<p>この2つの状態のテンソル積は
+$<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangle _B = a_0 b_0|00\rangle+a_0 b_1|01\rangle+a_1 b_0|10\rangle+a_1 b_1|11\rangle\)</span><span class="math notranslate nohighlight">\(
+となりますが、これを満たす \)</span>a_0, a_1, b_0, b_1$ はありません。</p>
+<p>Let us create the Bell state and run it on a real quantum computer. Now we will follow the four steps to writing a quantum program, called <strong>Qiskit patterns</strong>:</p>
+<ol class="arabic simple">
+<li><p>Map problem to quantum circuits and operators</p></li>
+<li><p>Optimize for target hardware</p></li>
+<li><p>Execute on target hardware</p></li>
+<li><p>Post-process the results</p></li>
+</ol>
+<section id="step-1-map-problem-to-quantum-circuits-and-operators">
+<h4>Step 1. Map problem to quantum circuits and operators<a class="headerlink" href="#step-1-map-problem-to-quantum-circuits-and-operators" title="Link to this heading">#</a></h4>
+<p>In a quantum program, quantum circuits are the native format in which to represent quantum instructions. When creating a circuit, you’ll usually create a new QuantumCircuit object, then add instructions to it in sequence.</p>
+<p>The following code cell creates a circuit that produces a Bell state, the specific two-qubit entangled state from above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/5fdd9317-8fab-46ee-ac6d-25ef031dd52b-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-optimize-for-target-hardware">
+<h4>Step 2. Optimize for target hardware<a class="headerlink" href="#step-2-optimize-for-target-hardware" title="Link to this heading">#</a></h4>
+<p>Qiskit converts abstract circuits to QISA (Quantum Instruction Set Architecture) circuits that respect the constraints of the target hardware and optimizes circuit performance. So before the optimization, we will specify the target hardware.</p>
+<p>If you do not have <code class="docutils literal notranslate"><span class="pre">qiskit-ibm-runtime</span></code>, you will need to install this first. For more information about Qiskit Runtime, <a class="reference internal" href="#/docs/api/qiskit-ibm-runtime/runtime-service"><span class="xref myst">check out the API reference.</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install</span>
+<span class="c1"># !pip install qiskit-ibm-runtime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will specify the target hardware.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">service</span><span class="o">.</span><span class="n">backends</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can specify the device</span>
+<span class="c1"># backend = service.backend(&#39;ibm_kingston&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can also identify the least busy device</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The least busy device is &quot;</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Transpiling the circuit is yet another complex process. Very briefly, this rewrites the circuit into a logically equivalent one using “native gates” (gates that a particular quantum computer can implement) and maps the qubits in your circuit to optimal real qubits on the target quantum computer. For more on transpilation, see this <a class="reference internal" href="#/docs/api/qiskit/transpiler#overview"><span class="xref myst">documentation</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transpile the circuit into basis gates executable on the hardware</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">target_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="n">target_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see that in the transpilation the circuit was rewritten using new gates. For more on the ECR gate, please refer this <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.ECRGate#ecrgate"><span class="xref myst">documentation</span></a>.</p>
+</section>
+<section id="step-3-execute-the-target-circuit">
+<h4>Step 3. Execute the target circuit<a class="headerlink" href="#step-3-execute-the-target-circuit" title="Link to this heading">#</a></h4>
+<p>Now, we will run the target circuit on the real device.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job_real</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">target_circuit</span><span class="p">])</span>
+
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job_real</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Execution on the real device may require waiting in a queue, since quantum computers are valuable resources, and very much in demand. The job_id is used to check the execution status and results of the job later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the job status (replace the job id below with your own)</span>
+<span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also check the job status from your IBM Quantum dashboard：<a class="reference external" href="https://quantum.cloud.ibm.com/workloads">https://quantum.cloud.ibm.com/workloads</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the Notebook session got disconnected you can also check your job status by running the following code</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>  <span class="c1"># Input your job-id between the quotations</span>
+<span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute after job has successfully run</span>
+<span class="n">result_real</span> <span class="o">=</span> <span class="n">job_real</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-post-process-the-results">
+<h4>Step 4. Post-process the results<a class="headerlink" href="#step-4-post-process-the-results" title="Link to this heading">#</a></h4>
+<p>Finally, we must post-process our results to create outputs in the expected format, like values or graphs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, <span class="math notranslate nohighlight">\(|00\rangle\)</span> and <span class="math notranslate nohighlight">\(|11\rangle\)</span> are the most frequently observed. There are a few results other than the expected data, and they are due to noise and qubit decoherence. We will learn more about errors and noise in quantum computers in the later lessons of this course.</p>
+</section>
+</section>
+<section id="ghz">
+<h3>4.4 GHZ 状態<a class="headerlink" href="#ghz" title="Link to this heading">#</a></h3>
+<p>3量子ビット以上が完全にエンタングルした状態をGHZ状態 (Greenberger–Horne–Zeilinger state) と呼びます。</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt 2}(|000\rangle + |111\rangle)\]</div>
+<p>３量子ビットのGHZ状態は、次のような量子回路で作成することができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/459b6162-3a54-41fe-9b67-9c1f8e731ebc-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>量子回路の「深さ」は、量子回路を説明するための便利で一般的な指標です。量子回路内のパスをトレースし、左から右に移動し、複数量子ビットゲートによって接続されている場合にのみ量子ビットを変更します。そのパスに沿ったゲートの数を数えます。回路を通るこのようなパスの最大ゲート数は深さです。現代のノイズの多い量子コンピューターでは、奥行きの浅い回路はエラーが少なく、良好な結果を返す可能性があります。非常に深い回路はそうではありません。</p>
+<p><code class="docutils literal notranslate"><span class="pre">QuantumCircuit.depth()</span></code>を使用して、量子回路の深さを確認できます。上記の回路の深さは4です。一番上の量子ビットには、測定値を含めて 3 つのゲートしかありません。ただし、最上位の量子ビットから量子ビット 1 または量子ビット 2 までのパスがあり、これには別の CNOT ゲートが含まれます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(8\)</span> 量子ビットのGHZ状態は、以下のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt 2}(|00000000\rangle + |11111111\rangle)\]</div>
+<p>この状態を最も浅い回路で作ってみましょう。最も浅い量子回路の depth は、測定ゲートを合わせて 5 です！</p>
+<p><strong>Solution</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1">##your code goes here##</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visual separation</span>
+
+<span class="c1"># measure</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="c1"># print(qc.depth())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/153eefc8-f021-41ee-97c4-a9555370f197-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+<span class="c1"># Step 2</span>
+<span class="c1"># For this exercise, the circuit and operators are simple, so no optimizations are needed.</span>
+
+<span class="c1"># Step 3</span>
+<span class="c1"># Run the circuit on a simulator to get the results</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># Step 4</span>
+<span class="c1"># Plot the counts in a histogram</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11111111&#39;: 535, &#39;00000000&#39;: 489}
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/0daedbeb-c75c-4bcf-b6e0-1f9fa0403b0d-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2>5. まとめ<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>量子ビットと量子ゲートを用いた回路モデルによる量子計算を学習し、重ね合わせ、測定、エンタングルメントについて復習しました。また、実際の量子デバイス上で量子回路を実行する方法も学習しました。</p>
+<p>GHZ回路を作成する最後の演習では、ノイズの多い量子コンピューターでユーティリティスケールのソリューションを得るための重要な要素である回路の深さを減らすことを試みました。 このコースの後のレッスンでは、ノイズとエラー軽減方法について詳細に学習します。このレッスンでは、導入として理想的なデバイスの回路深度を小さくすることを検討しましたが、実際には、量子ビット接続などの実際のデバイスの制約を考慮する必要があります。 これについては、このコースの後続のレッスンで詳しく説明します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the version of Qiskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.0.2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>© IBM Corp., 2017-2025</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.紹介</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computation-as-a-diagram">2. Computation as a diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.  単一量子ビットゲート</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3.1 量子状態とブロッホ球</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">空の回路</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#x">Xゲート</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h">Hゲート</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rangle"><span class="math notranslate nohighlight">\(|-\rangle\)</span> 状態</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2 量子状態とユニタリー行列</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">演習1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.3 測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-aer-simulator">Qiskit Aer Simulator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4. 複数量子ビット回路ともつれ状態</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.1 複数量子ビット回路</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.2 複数量子ゲート</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cnot">CNOT ゲート</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">注: Qiskit のビット順について</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-entanglement-and-execution-on-a-real-quantum-device">4.3 Quantum entanglement and execution on a real quantum device</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-map-problem-to-quantum-circuits-and-operators">Step 1. Map problem to quantum circuits and operators</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-optimize-for-target-hardware">Step 2. Optimize for target hardware</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-execute-the-target-circuit">Step 3. Execute the target circuit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-post-process-the-results">Step 4. Post-process the results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz">4.4 GHZ 状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. まとめ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
