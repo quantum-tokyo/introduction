@@ -414,18 +414,18 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">注: Qiskit のビット順について</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-entanglement-and-execution-on-a-real-quantum-device">4.3 Quantum entanglement and execution on a real quantum device</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-map-problem-to-quantum-circuits-and-operators">Step 1. Map problem to quantum circuits and operators</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-optimize-for-target-hardware">Step 2. Optimize for target hardware</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-execute-the-target-circuit">Step 3. Execute the target circuit</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-post-process-the-results">Step 4. Post-process the results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">4.3 量子もつれと実デバイス上での実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1. 問題を量子回路と演算子にマッピングする</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2. ターゲットハードウェアでの最適化</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-e">Step 3. Eターゲット回路を実行する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4. 結果を後処理する</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz">4.4 GHZ 状態</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. まとめ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">5. まとめ</a></li>
 </ul>
             </nav>
         </div>
@@ -544,9 +544,7 @@ e^{i\varphi}\sin\frac{\theta}{2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/fdef9137-9e39-4b05-afa9-9091766053f6-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/814656da79da30dfb781ff6bd78d398aeb63b5f53960e53a82fdb93073c9db48.png" src="../../_images/814656da79da30dfb781ff6bd78d398aeb63b5f53960e53a82fdb93073c9db48.png" />
 </div>
 </div>
 </section>
@@ -571,9 +569,7 @@ e^{i\varphi}\sin\frac{\theta}{2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/b3468430-0cbc-44ab-bd21-901436662a4b-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/c57e7613fa9ac355661d3ec7ef33f291e28aba5171fc5d99429e01283a7d6d84.png" src="../../_images/c57e7613fa9ac355661d3ec7ef33f291e28aba5171fc5d99429e01283a7d6d84.png" />
 </div>
 </div>
 <p>IBM Quantum®では、初期状態は<span class="math notranslate nohighlight">\(|0\rangle\)</span>にセットされていますので、上記の量子回路は、行列ベクトル表示では</p>
@@ -606,9 +602,7 @@ e^{i\varphi}\sin\frac{\theta}{2}
             dims=(2,))
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/efb727e8-f51e-4903-aa0f-e4c099316815-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/66ca5f209e2ca9682fa856a045952a04afca594ae4629da72df0617e93bbb24e.png" src="../../_images/66ca5f209e2ca9682fa856a045952a04afca594ae4629da72df0617e93bbb24e.png" />
 </div>
 </div>
 <p>縦ベクトルが横ベクトル表示で、複素数(虚部の添字は <span class="math notranslate nohighlight">\(j\)</span>)で表示されています。</p>
@@ -634,9 +628,7 @@ e^{i\varphi}\sin\frac{\theta}{2}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/574c35f0-26a9-423a-8d65-7140ba7398e3-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/aca23d728089661da5e1657de16d7aa9f5df21f9ba68301cf2293d7396e37ce7.png" src="../../_images/aca23d728089661da5e1657de16d7aa9f5df21f9ba68301cf2293d7396e37ce7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -655,9 +647,7 @@ e^{i\varphi}\sin\frac{\theta}{2}
             dims=(2,))
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/7adf0e93-6db3-4aa8-800f-c91c8cc46001-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/9f34ad1b0e18f9ccc3412e9a40eb7f4fa2b7f0c40457b2ad48b5b02532ab31ac.png" src="../../_images/9f34ad1b0e18f9ccc3412e9a40eb7f4fa2b7f0c40457b2ad48b5b02532ab31ac.png" />
 </div>
 </div>
 <p>これは、</p>
@@ -690,12 +680,12 @@ H|0\rangle= \frac{1}{\sqrt{2}} \begin{pmatrix}
 </section>
 <section id="rangle">
 <h4><span class="math notranslate nohighlight">\(|-\rangle\)</span> 状態<a class="headerlink" href="#rangle" title="Link to this heading">#</a></h4>
-<p>You may have guessed that there is a corresponding  <span class="math notranslate nohighlight">\(|-\rangle\)</span> state:</p>
+<p><span class="math notranslate nohighlight">\(|-\rangle\)</span>状態もあります。</p>
 <div class="math notranslate nohighlight">
 \[
 |-\rangle \equiv \frac{|0\rangle -|1\rangle}{\sqrt{2}}.
 \]</div>
-<p>To create this state, first apply an X gate to make <span class="math notranslate nohighlight">\(|1\rangle\)</span>, then apply an H gate.</p>
+<p>この状態を作るには、まずXゲートを適用して<span class="math notranslate nohighlight">\(|1\rangle\)</span>を作り、次にHゲートを適用します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create the single-qubit quantum circuit</span>
@@ -712,9 +702,7 @@ H|0\rangle= \frac{1}{\sqrt{2}} \begin{pmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/b8e96fc4-6708-415e-b8fc-ac69eaeae750-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/d47c7ae7c142ca6fa18572ca973becfdc18031f703cdcae835cb2994ccc84a9d.png" src="../../_images/d47c7ae7c142ca6fa18572ca973becfdc18031f703cdcae835cb2994ccc84a9d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -733,9 +721,7 @@ H|0\rangle= \frac{1}{\sqrt{2}} \begin{pmatrix}
             dims=(2,))
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/f42b82aa-7a15-4f81-8530-b997d4c6e0de-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/011f682c6c5ecb33fb5f4e427e0dea8f3e736e4deaaf569714b0d7acfbf805f6.png" src="../../_images/011f682c6c5ecb33fb5f4e427e0dea8f3e736e4deaaf569714b0d7acfbf805f6.png" />
 </div>
 </div>
 <p>これは以下になります。</p>
@@ -788,8 +774,9 @@ i &amp; 0 \\
 0 &amp; -1 \\
 \end{pmatrix}
 = |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
-<p>量ここで、外積は以下のように計算されました。
-$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
+<p>ここで、外積は以下のように計算されました。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \langle 0|= 
 \begin{bmatrix}
 1 \\
 0
@@ -812,391 +799,7 @@ $<span class="math notranslate nohighlight">\(|0\rangle \langle 0|=
 =\begin{bmatrix}
 0 &amp; 0 \\
 1 &amp; 0 \\
-\end{bmatrix}, \quad\)</span>$</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}|0\rangle \langle 1|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 1|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-0 &amp; 1 \\
 \end{bmatrix}, \quad\end{split}\]</div>
-<p>そのほかの代表的な1量子ビットゲート</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; -1 \\
-\end{bmatrix},\quad
-S = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; -i \\
-\end{bmatrix}, \quad
-T = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; exp(i\pi/4) \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
--i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
-sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
-e^{-i\theta /2} &amp;  0 \\
-0 &amp; e^{i\theta /2} \\
-\end{bmatrix}$$こ\end{split}\\\begin{split}こで、外積は以下のように計算されました。
-$$|0\rangle \langle 0|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 0|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-1 &amp; 0 \\
-\end{bmatrix}, \quad\end{split}\end{aligned}\end{align} \]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}|0\rangle \langle 1|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 1|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-0 &amp; 1 \\
-\end{bmatrix}, \quad\end{split}\]</div>
-<p>そのほかの代表的な1量子ビットゲート</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; -1 \\
-\end{bmatrix},\quad
-S = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; -i \\
-\end{bmatrix}, \quad
-T = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; exp(i\pi/4) \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
--i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
-sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
-e^{-i\theta /2} &amp;  0 \\
-0 &amp; e^{i\theta /2} \\
-\end{bmatrix}$$$$$$子状態とユニタリー行列\end{split}\\これまでQiskitで確認した量子状態の変化は、ユニタリー行列をかけることで表されます。
-$$|\psi^{'}\rangle = U|\psi\rangle\end{aligned}\end{align} \]</div>
-<p>ユニタリー行列とは、以下を満たす行列でした。
-$<span class="math notranslate nohighlight">\(U^{\dagger}U =U U^{\dagger} = I\)</span>$</p>
-<p>このユニタリー行列による変化が量子ビットに量子ゲートをかけることを意味します。代表的な1量子ビットゲートには以下のものがあります。</p>
-<p>パウリゲート</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}X = \begin{pmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
-\end{pmatrix}
-= |0\rangle \langle 1|+|1\rangle \langle 0|\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}Y = \begin{pmatrix}
-0 &amp; -i \\
-i &amp; 0 \\
-\end{pmatrix}
-= -i|0\rangle \langle 1|+i|1\rangle \langle 0|\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}Z = \begin{pmatrix}
-1 &amp; 0 \\
-0 &amp; -1 \\
-\end{pmatrix}
-= |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
-<p>ここで、外積は以下のように計算されました。
-$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 0|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-1 &amp; 0 \\
-\end{bmatrix}, \quad\)</span>$</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}|0\rangle \langle 1|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 1|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-0 &amp; 1 \\
-\end{bmatrix}, \quad\end{split}\]</div>
-<p>そのほかの代表的な1量子ビットゲート</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; -1 \\
-\end{bmatrix},\quad
-S = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; -i \\
-\end{bmatrix}, \quad
-T = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; exp(i\pi/4) \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
--i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
-sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
-e^{-i\theta /2} &amp;  0 \\
-0 &amp; e^{i\theta /2} \\
-\end{bmatrix}$$$$$$量子状態とユニタリー行列\end{split}\\これまでQiskitで確認した量子状態の変化は、ユニタリー行列をかけることで表されます。
-$$|\psi^{'}\rangle = U|\psi\rangle\end{aligned}\end{align} \]</div>
-<p>ユニタリー行列とは、以下を満たす行列でした。
-$<span class="math notranslate nohighlight">\(U^{\dagger}U =U U^{\dagger} = I\)</span>$</p>
-<p>このユニタリー行列による変化が量子ビットに量子ゲートをかけることを意味します。代表的な1量子ビットゲートには以下のものがあります。</p>
-<p>パウリゲート</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}X = \begin{pmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
-\end{pmatrix}
-= |0\rangle \langle 1|+|1\rangle \langle 0|\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}Y = \begin{pmatrix}
-0 &amp; -i \\
-i &amp; 0 \\
-\end{pmatrix}
-= -i|0\rangle \langle 1|+i|1\rangle \langle 0|\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}Z = \begin{pmatrix}
-1 &amp; 0 \\
-0 &amp; -1 \\
-\end{pmatrix}
-= |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
-<p>ここで、外積は以下のように計算されました。
-$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 0|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-1 &amp; 0 \\
-\end{bmatrix}, \quad\)</span>$</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}|0\rangle \langle 1|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 1|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-0 &amp; 1
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-0 &amp; 1 \\
-\end{bmatrix}, \quad\end{split}\]</div>
-<p>そのほかの代表的な1量子ビットゲート</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H= \frac{1}{\sqrt{2}}\begin{bmatrix}
-1 &amp; 1 \\
-1 &amp; -1 \\
-\end{bmatrix},\quad
-S = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; -i \\
-\end{bmatrix}, \quad
-T = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; exp(i\pi/4) \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_x(\theta) = e^{-i\theta X/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}X = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  -i sin \frac{\theta}{2} \\
--i sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split} R_y(\theta) = e^{-i\theta Y/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Y = \begin{bmatrix}
-cos\frac{\theta}{2} &amp;  - sin \frac{\theta}{2} \\
-sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
-\end{bmatrix}\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
-e^{-i\theta /2} &amp;  0 \\
-0 &amp; e^{i\theta /2} \\
-\end{bmatrix}$$$$$$量子状態とユニタリー行列\end{split}\\これまでQiskitで確認した量子状態の変化は、ユニタリー行列をかけることで表されます。
-$$|\psi^{'}\rangle = U|\psi\rangle\end{aligned}\end{align} \]</div>
-<p>ユニタリー行列とは、以下を満たす行列でした。
-$<span class="math notranslate nohighlight">\(U^{\dagger}U =U U^{\dagger} = I\)</span>$</p>
-<p>このユニタリー行列による変化が量子ビットに量子ゲートをかけることを意味します。代表的な1量子ビットゲートには以下のものがあります。</p>
-<p>パウリゲート</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}X = \begin{pmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
-\end{pmatrix}
-= |0\rangle \langle 1|+|1\rangle \langle 0|\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}Y = \begin{pmatrix}
-0 &amp; -i \\
-i &amp; 0 \\
-\end{pmatrix}
-= -i|0\rangle \langle 1|+i|1\rangle \langle 0|\end{split}\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}Z = \begin{pmatrix}
-1 &amp; 0 \\
-0 &amp; -1 \\
-\end{pmatrix}
-= |0\rangle \langle 0|-|1\rangle \langle 1|\end{split}\]</div>
-<p>ここで、外積は以下のように計算されました。
-$<span class="math notranslate nohighlight">\(|0\rangle \langle 0|= 
-\begin{bmatrix}
-1 \\
-0
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; 0 \\
-\end{bmatrix}, \quad
-|1\rangle \langle 0|= 
-\begin{bmatrix}
-0 \\
-1
-\end{bmatrix}
-\begin{bmatrix}
-1 &amp; 0
-\end{bmatrix}
-=\begin{bmatrix}
-0 &amp; 0 \\
-1 &amp; 0 \\
-\end{bmatrix}, \quad\)</span>$</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}|0\rangle \langle 1|= 
 \begin{bmatrix}
@@ -1250,7 +853,8 @@ sin \frac{\theta}{2} &amp; cos\frac{\theta}{2} \\
 \[\begin{split} R_z(\theta) = e^{-i\theta Z/2} = cos\frac{\theta}{2}I - i sin \frac{\theta}{2}Z = \begin{bmatrix}
 e^{-i\theta /2} &amp;  0 \\
 0 &amp; e^{i\theta /2} \\
-\end{bmatrix}$$$$\end{split}\]</div>
+\end{bmatrix}\end{split}\]</div>
+<p>これらの意味と使用方法については、<a class="reference external" href="https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information">「量子情報の基礎」コース</a>で詳しく説明しています。</p>
 </section>
 <section id="id7">
 <h3>演習1<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
@@ -1258,8 +862,11 @@ e^{-i\theta /2} &amp;  0 \\
 <p>(1) <span class="math notranslate nohighlight">\(XX|0\rangle\)</span></p>
 <p>(2) <span class="math notranslate nohighlight">\(HH|0\rangle\)</span></p>
 <p>(3) <span class="math notranslate nohighlight">\(HZH|0\rangle\)</span></p>
-<p>Tips: Z gate can be used by</p>
-<p>qc.z(0)</p>
+<p>ヒント：Zゲートはブロッホ球の<span class="math notranslate nohighlight">\(z\)</span>軸周りの<span class="math notranslate nohighlight">\(\pi\)</span>回転です。位相反転とも呼ばれ、<code class="docutils literal notranslate"><span class="pre">qc.z(0)</span></code> のようにコーデイングします。</p>
+<p><span class="math notranslate nohighlight">\(Z = \begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{pmatrix}\)</span></p>
 <p><strong>Solution:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1280,9 +887,7 @@ e^{-i\theta /2} &amp;  0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/148fdaf9-0398-4dd3-84b3-1a71a4f5d34e-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/59274a35b868bd073d656db5c8b799ddd98e885dd7a11b4deae7485c1efa3bc1.png" src="../../_images/59274a35b868bd073d656db5c8b799ddd98e885dd7a11b4deae7485c1efa3bc1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1301,9 +906,7 @@ e^{-i\theta /2} &amp;  0 \\
             dims=(2,))
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/4720c4a0-acc7-46cc-b8ba-be2ca87ab976-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/bf8a8e1a026fbb6f6355b5add76e6198ab0d82b05992ca0b916d030d8d336819.png" src="../../_images/bf8a8e1a026fbb6f6355b5add76e6198ab0d82b05992ca0b916d030d8d336819.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1318,9 +921,7 @@ e^{-i\theta /2} &amp;  0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/361c09fe-c206-4355-b827-da7ede0848de-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/ad20f8d869a63c1cf76edb6ccafee5b95be230ebcb7b2319aed150b98befdeb9.png" src="../../_images/ad20f8d869a63c1cf76edb6ccafee5b95be230ebcb7b2319aed150b98befdeb9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1339,9 +940,7 @@ e^{-i\theta /2} &amp;  0 \\
             dims=(2,))
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/a4976a54-77e2-42b5-b492-49c8cdaf9c9f-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/bf8a8e1a026fbb6f6355b5add76e6198ab0d82b05992ca0b916d030d8d336819.png" src="../../_images/bf8a8e1a026fbb6f6355b5add76e6198ab0d82b05992ca0b916d030d8d336819.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1357,9 +956,7 @@ e^{-i\theta /2} &amp;  0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/cd01ed0c-8f9e-4689-b1ae-f028d588f81a-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/d53360a586754230a99d8d0223aa349534589ec5212d4391ca760a1db8105f4d.png" src="../../_images/d53360a586754230a99d8d0223aa349534589ec5212d4391ca760a1db8105f4d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1378,9 +975,7 @@ e^{-i\theta /2} &amp;  0 \\
             dims=(2,))
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/4bc91c2a-e097-44db-95bb-acf0d0ea0844-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/66ca5f209e2ca9682fa856a045952a04afca594ae4629da72df0617e93bbb24e.png" src="../../_images/66ca5f209e2ca9682fa856a045952a04afca594ae4629da72df0617e93bbb24e.png" />
 </div>
 </div>
 </section>
@@ -1412,12 +1007,10 @@ e^{-i\theta /2} &amp;  0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/3956e602-9f1b-4083-b58d-26c91b50b75e-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
+<img alt="../../_images/8a5856ef35a8300b88896e0335f59d08eacfa40849c675112b140c3be89b7de8.png" src="../../_images/8a5856ef35a8300b88896e0335f59d08eacfa40849c675112b140c3be89b7de8.png" />
 </div>
 </div>
-</div>
-<p>We are now ready to run our circuit on the Aer simulator. In this example, we will apply the default shots=1024, which means we will measure 1024 times. Then we will plot those counts in a histogram.</p>
+<p>これで、Aerシミュレーターで回路を実行する準備が整いました。この例では、デフォルトのshots=1024を適用し、1024回測定することを意味します。次に、それらのカウントをヒストグラムにプロットします。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the circuit on a simulator to get the results</span>
@@ -1443,12 +1036,10 @@ e^{-i\theta /2} &amp;  0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 521, &#39;1&#39;: 503}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 501, &#39;0&#39;: 523}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/7cb7c5ab-7b12-4f77-aaca-1d7e6cff213c-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/36a19b857a4be469963628ea52c144513b0d2fac42d8309ae24a568103429478.png" src="../../_images/36a19b857a4be469963628ea52c144513b0d2fac42d8309ae24a568103429478.png" />
 </div>
 </div>
 <p>ほぼ50％ずつの確率で0と1が測定されることが確認できました。</p>
@@ -1477,9 +1068,7 @@ e^{-i\theta /2} &amp;  0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/e880f7eb-108c-4387-8ef4-97219fd5691c-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/ccb884131c9d03a3216c66d916c71d99c7cb2cfdb05dd23531a6791d15f19a10.png" src="../../_images/ccb884131c9d03a3216c66d916c71d99c7cb2cfdb05dd23531a6791d15f19a10.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1518,9 +1107,7 @@ $<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/ebdf591f-18d0-4fd1-a3a3-b1cdac13bd97-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/c5df6847b495fb0686a37944f0f730e7673adcf9a561ced4f039bbfb17b81eb0.png" src="../../_images/c5df6847b495fb0686a37944f0f730e7673adcf9a561ced4f039bbfb17b81eb0.png" />
 </div>
 </div>
 <p>次に、この状態を測定してみましょう。</p>
@@ -1544,9 +1131,7 @@ $<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/2afdd5ac-e51a-4d94-9307-955cc8fbf821-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/d9efaf8a367c1643d8c05f10c3ec4a1ca6d51fef5fece97dba62933a139005a9.png" src="../../_images/d9efaf8a367c1643d8c05f10c3ec4a1ca6d51fef5fece97dba62933a139005a9.png" />
 </div>
 </div>
 <p>次にAerシミュレーター（量子計算シミュレーター）で計算させ、測定します。1024回実行した結果、それぞれの状態が測定された回数を表示し、その測定確率をヒストグラムで表示します。</p>
@@ -1575,12 +1160,10 @@ $<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;10&#39;: 262, &#39;01&#39;: 246, &#39;00&#39;: 265, &#39;11&#39;: 251}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;10&#39;: 254, &#39;01&#39;: 256, &#39;00&#39;: 241, &#39;11&#39;: 273}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/060512ac-a106-4ecd-94f5-119048a08467-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/4a7671cfdb07b9c2837ba234fa7ac240744ffd3bf361d613b54b060882a908af.png" src="../../_images/4a7671cfdb07b9c2837ba234fa7ac240744ffd3bf361d613b54b060882a908af.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(|00\rangle\)</span>、<span class="math notranslate nohighlight">\(|01\rangle\)</span>、<span class="math notranslate nohighlight">\(|10\rangle\)</span>、<span class="math notranslate nohighlight">\(|11\rangle\)</span>の状態がほぼ25%ずつ均等に測定されました。</p>
@@ -1627,9 +1210,7 @@ $<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/a5621efd-dd9f-4ea4-bf3a-be3cacb45287-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/de2ec8a1e67f5a4525d86f5ee7e2f56546c4322988e634152822a2ab6b35e0ec.png" src="../../_images/de2ec8a1e67f5a4525d86f5ee7e2f56546c4322988e634152822a2ab6b35e0ec.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1667,9 +1248,7 @@ $<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/5a02de82-44ff-40eb-b64c-2389d6eae3ee-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/a8307ea557d6a0c9cc3fed7acda7bbaae5e6774d10790284a4eb75661faa21f6.png" src="../../_images/a8307ea557d6a0c9cc3fed7acda7bbaae5e6774d10790284a4eb75661faa21f6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1701,9 +1280,7 @@ $<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/abcafb77-20bf-4bb7-bf8d-57f33af280c1-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/630f1c60ca7576340e0f2d9fbd0651f6bec4e12a46cf87c3348c63060eb90e4d.png" src="../../_images/630f1c60ca7576340e0f2d9fbd0651f6bec4e12a46cf87c3348c63060eb90e4d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1734,16 +1311,14 @@ $<span class="math notranslate nohighlight">\(p(|00\rangle) = |\langle 00|\psi\r
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 1024}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/88b76f1d-083b-4f28-b415-380738d22599-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/96686b000d8241920fa90cd6a5ef1ac1e64116aae72ed05b09c0ab35bd528e11.png" src="../../_images/96686b000d8241920fa90cd6a5ef1ac1e64116aae72ed05b09c0ab35bd528e11.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(|11\rangle\)</span>の状態が100%測定されます。</p>
 </section>
 </section>
-<section id="quantum-entanglement-and-execution-on-a-real-quantum-device">
-<h3>4.3 Quantum entanglement and execution on a real quantum device<a class="headerlink" href="#quantum-entanglement-and-execution-on-a-real-quantum-device" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h3>4.3 量子もつれと実デバイス上での実行<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <p>量子計算上でも重要な状態となる、量子もつれ状態（エンタングルメント状態）を生成してみましょう。</p>
 <p>2量子ビットの量子もつれ状態の1つの例が次のような形になります。
 $<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle\)</span>$</p>
@@ -1758,17 +1333,17 @@ $<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|00\rangle + \fr
 <p>この2つの状態のテンソル積は
 $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangle _B = a_0 b_0|00\rangle+a_0 b_1|01\rangle+a_1 b_0|10\rangle+a_1 b_1|11\rangle\)</span><span class="math notranslate nohighlight">\(
 となりますが、これを満たす \)</span>a_0, a_1, b_0, b_1$ はありません。</p>
-<p>Let us create the Bell state and run it on a real quantum computer. Now we will follow the four steps to writing a quantum program, called <strong>Qiskit patterns</strong>:</p>
+<p>ベル状態を作成し、実際の量子コンピューターで実行してみましょう。次に、<strong>Qiskit patterns</strong> と呼ばれる量子プログラムを作成するための 4 つの手順に従います。</p>
 <ol class="arabic simple">
-<li><p>Map problem to quantum circuits and operators</p></li>
-<li><p>Optimize for target hardware</p></li>
-<li><p>Execute on target hardware</p></li>
-<li><p>Post-process the results</p></li>
+<li><p>問題を量子回路と演算子にマッピングする</p></li>
+<li><p>ターゲットハードウェアに最適化する</p></li>
+<li><p>ターゲットハードウェアでの実行</p></li>
+<li><p>結果を後処理する</p></li>
 </ol>
-<section id="step-1-map-problem-to-quantum-circuits-and-operators">
-<h4>Step 1. Map problem to quantum circuits and operators<a class="headerlink" href="#step-1-map-problem-to-quantum-circuits-and-operators" title="Link to this heading">#</a></h4>
-<p>In a quantum program, quantum circuits are the native format in which to represent quantum instructions. When creating a circuit, you’ll usually create a new QuantumCircuit object, then add instructions to it in sequence.</p>
-<p>The following code cell creates a circuit that produces a Bell state, the specific two-qubit entangled state from above.</p>
+<section id="step-1">
+<h4>Step 1. 問題を量子回路と演算子にマッピングする<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h4>
+<p>量子プログラムでは、量子回路は量子命令を表すネイティブ形式です。回路を作成するときは、通常、新しい QuantumCircuit オブジェクトを作成し、それに命令を順番に追加します。</p>
+<p>次のコードセルは、2 量子ビットのもつれ状態であるベル状態を生成する回路を作成します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -1784,16 +1359,14 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/5fdd9317-8fab-46ee-ac6d-25ef031dd52b-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/5398424036bda46c59b216360afec10fc7fcbc5488bf7bbc56b3ca9e3b3c6962.png" src="../../_images/5398424036bda46c59b216360afec10fc7fcbc5488bf7bbc56b3ca9e3b3c6962.png" />
 </div>
 </div>
 </section>
-<section id="step-2-optimize-for-target-hardware">
-<h4>Step 2. Optimize for target hardware<a class="headerlink" href="#step-2-optimize-for-target-hardware" title="Link to this heading">#</a></h4>
-<p>Qiskit converts abstract circuits to QISA (Quantum Instruction Set Architecture) circuits that respect the constraints of the target hardware and optimizes circuit performance. So before the optimization, we will specify the target hardware.</p>
-<p>If you do not have <code class="docutils literal notranslate"><span class="pre">qiskit-ibm-runtime</span></code>, you will need to install this first. For more information about Qiskit Runtime, <a class="reference internal" href="#/docs/api/qiskit-ibm-runtime/runtime-service"><span class="xref myst">check out the API reference.</span></a></p>
+<section id="step-2">
+<h4>Step 2. ターゲットハードウェアでの最適化<a class="headerlink" href="#step-2" title="Link to this heading">#</a></h4>
+<p>Qiskitは、抽象的な回路をQISA(Quantum Instruction Set Architecture)回路に変換し、ターゲットとするハードウェアの制約を考慮して、回路のパフォーマンスを最適化します。まず、最適化の前に、ターゲットとするハードウェアを指定します。</p>
+<p><code class="docutils literal notranslate"><span class="pre">qiskit-ibm-runtime</span></code> をインストールしていない場合は、インストールしてください。Qiskit Runtimeの詳細については、<a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/runtime-service">APIリファレンス</a>をご覧ください。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install</span>
@@ -1830,7 +1403,7 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </div>
 </div>
 </div>
-<p>Transpiling the circuit is yet another complex process. Very briefly, this rewrites the circuit into a logically equivalent one using “native gates” (gates that a particular quantum computer can implement) and maps the qubits in your circuit to optimal real qubits on the target quantum computer. For more on transpilation, see this <a class="reference internal" href="#/docs/api/qiskit/transpiler#overview"><span class="xref myst">documentation</span></a>.</p>
+<p>回路のトランスパイルは、別の複雑なプロセスです。非常に簡単に言うと、これにより、”ネイティブ ゲート” (特定の量子コンピューターが実装できるゲート) を使用して回路が論理的に同等のものに書き換えられ、回路内の量子ビットがターゲットの量子コンピューター上の最適な実際の量子ビットにマップされます。トランスパイルの詳細については、この<a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/api/qiskit/transpiler#overview">ドキュメント</a>を参照してください。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transpile the circuit into basis gates executable on the hardware</span>
@@ -1841,12 +1414,15 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4d0c41e73bf88c190985b4ee4f25a13ee24e704bebfd77ec9c720d69de5977cb.png" src="../../_images/4d0c41e73bf88c190985b4ee4f25a13ee24e704bebfd77ec9c720d69de5977cb.png" />
 </div>
-<p>You can see that in the transpilation the circuit was rewritten using new gates. For more on the ECR gate, please refer this <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.ECRGate#ecrgate"><span class="xref myst">documentation</span></a>.</p>
+</div>
+<p>トランスパイルで、新しいゲートを使用して回路が書き換えられたことがわかります。ECRゲートの詳細については、こちらの<a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.library.ECRGate#ecrgate">ドキュメンテーション</a>を参照してください。</p>
 </section>
-<section id="step-3-execute-the-target-circuit">
-<h4>Step 3. Execute the target circuit<a class="headerlink" href="#step-3-execute-the-target-circuit" title="Link to this heading">#</a></h4>
-<p>Now, we will run the target circuit on the real device.</p>
+<section id="step-3-e">
+<h4>Step 3. Eターゲット回路を実行する<a class="headerlink" href="#step-3-e" title="Link to this heading">#</a></h4>
+<p>次に、実際のデバイス上でターゲット回路を実行します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
@@ -1857,25 +1433,41 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </pre></div>
 </div>
 </div>
-</div>
-<p>Execution on the real device may require waiting in a queue, since quantum computers are valuable resources, and very much in demand. The job_id is used to check the execution status and results of the job later.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the job status (replace the job id below with your own)</span>
-<span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: d1icj8kuvp6s73c6bd40
 </pre></div>
 </div>
 </div>
 </div>
-<p>You can also check the job status from your IBM Quantum dashboard：<a class="reference external" href="https://quantum.cloud.ibm.com/workloads">https://quantum.cloud.ibm.com/workloads</a></p>
+<p>量子コンピューターは貴重なリソースであり、非常に需要が高いため、実際に実デバイスで実行するとキューで待機しなければならない場合があります。job_idをつかって、ジョブの実行状況と結果を後で確認できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the job status (replace the job id below with your own)</span>
+<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span> 
+<span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>IBM Quantumダッシュボードからジョブのステータスを確認することもできます：<a class="reference external" href="https://quantum.cloud.ibm.com/workloads">https://quantum.cloud.ibm.com/workloads</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the Notebook session got disconnected you can also check your job status by running the following code</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
-<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>  <span class="c1"># Input your job-id between the quotations</span>
+<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;d1icj8kuvp6s73c6bd40&#39;</span><span class="p">)</span>  <span class="c1"># Input your job-id between the quotations</span>
 <span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
 </pre></div>
 </div>
 </div>
@@ -1888,19 +1480,27 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 1994, &#39;00&#39;: 1987, &#39;01&#39;: 52, &#39;10&#39;: 63}
+</pre></div>
+</div>
+</div>
 </div>
 </section>
-<section id="step-4-post-process-the-results">
-<h4>Step 4. Post-process the results<a class="headerlink" href="#step-4-post-process-the-results" title="Link to this heading">#</a></h4>
-<p>Finally, we must post-process our results to create outputs in the expected format, like values or graphs.</p>
+<section id="step-4">
+<h4>Step 4. 結果を後処理する<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h4>
+<p>最後に、結果を後処理して、値やグラフなどの期待される形式で出力を作成する必要があります。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/643bcd3eab76e299b7643d61a208940696b35daa07182ba21f4e3fe0066e2484.png" src="../../_images/643bcd3eab76e299b7643d61a208940696b35daa07182ba21f4e3fe0066e2484.png" />
 </div>
-<p>As you can see, <span class="math notranslate nohighlight">\(|00\rangle\)</span> and <span class="math notranslate nohighlight">\(|11\rangle\)</span> are the most frequently observed. There are a few results other than the expected data, and they are due to noise and qubit decoherence. We will learn more about errors and noise in quantum computers in the later lessons of this course.</p>
+</div>
+<p>ご覧の通り、<span class="math notranslate nohighlight">\(|00\rangle\)</span>と<span class="math notranslate nohighlight">\(|11\rangle\)</span>が最も頻繁に観測されています。予想されたデータ以外にも結果が少し観測されますが、これはノイズと量子ビットのデコヒーレンスによるものです。量子コンピューターのエラーとノイズについては、このコースの後半のレッスンで詳しく説明します。</p>
 </section>
 </section>
 <section id="ghz">
@@ -1926,9 +1526,7 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/459b6162-3a54-41fe-9b67-9c1f8e731ebc-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/2a7c0d3de14e3de24c7c974ff3e63cf0d25f00109d742d6e003839904eb0191b.png" src="../../_images/2a7c0d3de14e3de24c7c974ff3e63cf0d25f00109d742d6e003839904eb0191b.png" />
 </div>
 </div>
 <p>量子回路の「深さ」は、量子回路を説明するための便利で一般的な指標です。量子回路内のパスをトレースし、左から右に移動し、複数量子ビットゲートによって接続されている場合にのみ量子ビットを変更します。そのパスに沿ったゲートの数を数えます。回路を通るこのようなパスの最大ゲート数は深さです。現代のノイズの多い量子コンピューターでは、奥行きの浅い回路はエラーが少なく、良好な結果を返す可能性があります。非常に深い回路はそうではありません。</p>
@@ -1982,9 +1580,7 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/153eefc8-f021-41ee-97c4-a9555370f197-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/3a6de0f74f00ac35fa7253f4c4a54255f4a8562dc5c40997ef6f462362f6570b.png" src="../../_images/3a6de0f74f00ac35fa7253f4c4a54255f4a8562dc5c40997ef6f462362f6570b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2027,18 +1623,16 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11111111&#39;: 535, &#39;00000000&#39;: 489}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;00000000&#39;: 511, &#39;11111111&#39;: 513}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/bits-gates-and-circuits/extracted-outputs/0daedbeb-c75c-4bcf-b6e0-1f9fa0403b0d-1.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/ecd97d17ac0de10a25530efd4231ef024cdce011e5b0c515dba65f318a0c0ccf.png" src="../../_images/ecd97d17ac0de10a25530efd4231ef024cdce011e5b0c515dba65f318a0c0ccf.png" />
 </div>
 </div>
 </section>
 </section>
-<section id="id12">
-<h2>5. まとめ<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h2>5. まとめ<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
 <p>量子ビットと量子ゲートを用いた回路モデルによる量子計算を学習し、重ね合わせ、測定、エンタングルメントについて復習しました。また、実際の量子デバイス上で量子回路を実行する方法も学習しました。</p>
 <p>GHZ回路を作成する最後の演習では、ノイズの多い量子コンピューターでユーティリティスケールのソリューションを得るための重要な要素である回路の深さを減らすことを試みました。 このコースの後のレッスンでは、ノイズとエラー軽減方法について詳細に学習します。このレッスンでは、導入として理想的なデバイスの回路深度を小さくすることを検討しましたが、実際には、量子ビット接続などの実際のデバイスの制約を考慮する必要があります。 これについては、このコースの後続のレッスンで詳しく説明します。</p>
 <div class="cell docutils container">
@@ -2131,18 +1725,18 @@ $<span class="math notranslate nohighlight">\(|\psi\rangle _A\otimes |\psi\rangl
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">注: Qiskit のビット順について</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-entanglement-and-execution-on-a-real-quantum-device">4.3 Quantum entanglement and execution on a real quantum device</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-map-problem-to-quantum-circuits-and-operators">Step 1. Map problem to quantum circuits and operators</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-optimize-for-target-hardware">Step 2. Optimize for target hardware</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-execute-the-target-circuit">Step 3. Execute the target circuit</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-post-process-the-results">Step 4. Post-process the results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">4.3 量子もつれと実デバイス上での実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1. 問題を量子回路と演算子にマッピングする</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2. ターゲットハードウェアでの最適化</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-e">Step 3. Eターゲット回路を実行する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4. 結果を後処理する</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz">4.4 GHZ 状態</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5. まとめ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">5. まとめ</a></li>
 </ul>
   </nav></div>
 
