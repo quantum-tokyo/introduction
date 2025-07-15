@@ -1,0 +1,1618 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. 量子テレポーテーション &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/3_UTokyo_teleportation_solution-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/3_UTokyo_teleportation_solution-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/3_UTokyo_teleportation_solution-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3. 量子テレポーテーション</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 序論</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. 密度行列</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. 量子トモグラフィー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-z"><span class="math notranslate nohighlight">\(r_z\)</span>の推定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-r-x">Exercise 1: <span class="math notranslate nohighlight">\(r_x\)</span> の値の推定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-r-y">Exercise 2: <span class="math notranslate nohighlight">\(r_y\)</span>の値の推定</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4. 量子テレポーテーション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.1 量子テレポーテーションのプロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.2 量子テレポーテーションをシミュレートする量子回路</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1: 量子回路と演算子へのマッピング問題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#u">4.3 実行しUの逆数を適用して結果を確認する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.4 量子コンピュータ実機での量子テレポーテーション</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3">Exercise 3: テレポーテーション回路の設計</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2: ターゲットハードウェアへの最適化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">Step 3: 回路の実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 結果の後処理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.5 量子テレポーテーションの要点</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 超密度符号化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">5.1 超密度符号化のプロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5.2 超密度符号化の量子回路設計</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">7. まとめ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>3. 量子テレポーテーション<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Created by Kifumi Numata (Apr 26, 2024)
+Translated by Shiori Aoki (Jun 17, 2025)</p>
+<p><em>Approximate QPU time to run this experiment is 10 seconds.</em></p>
+<section id="id2">
+<h2>1. 序論<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>実用的な規模の量子問題を解決するためには，量子コンピュータ上で情報をある量子ビットから別の量子ビットへと移動させる必要がある．そのためのプロトコルはよく知られているが，最も基礎的なもののいくつかは遠く離れた者同士の間で情報を送るという文脈で使われている．このレッスンでは，「遠く離れた友人が情報を送る」というような，この文脈に沿った言葉を使うことがある．しかしこれらのプロトコルは量子コンピューティングにおいてより広い意味を持っていることを留意してほしい．このレッスンでは、以下の量子通信プロトコルを考える．：</p>
+<ul class="simple">
+<li><p><strong>量子テレポーテーション</strong><br />
+共有されたもつれ状態（e-bitと呼ばれることもある）を使って，未知の量子状態を遠くの友人に送信する．</p></li>
+<li><p><strong>量子超密度符号化</strong><br />
+1つの量子ビットを遠方の友人に送信して2ビットの情報を送信する方法（ここでも事前に共有されたもつれ量子ビットを使用）</p></li>
+</ul>
+<p>これらのトピックに関連する背景については，下記リンクの「Basics of Quantum Information」第四章を参照されたい．
+<a class="reference external" href="https://learning.quantum.ibm.com/course/basics-of-quantum-information/entanglement-in-action">Entanglement in Action</a>.</p>
+<p>上記の説明では、「未知の量子状態」とは、単に前のレッスンで説明した形式の状態を指す：
+$<span class="math notranslate nohighlight">\(|\psi\rangle =\alpha|0\rangle+\beta|1\rangle\)</span><span class="math notranslate nohighlight">\(
+ただし \)</span>\alpha<span class="math notranslate nohighlight">\( と \)</span>\beta<span class="math notranslate nohighlight">\( はそれぞれ\)</span>|\alpha|^2+|\beta|^2 = 1<span class="math notranslate nohighlight">\(となるような複素数である．これにより，量子状態は以下のように表現できる．
+\)</span><span class="math notranslate nohighlight">\(|\psi\rangle =\cos\frac{\theta}{2}|0\rangle+e^{i\varphi}\sin\frac{\theta}{2}|1\rangle= 
+\left(
+\begin{matrix}
+\cos\frac{\theta}{2}\\
+e^{i\varphi}\sin\frac{\theta}{2}
+\end{matrix}
+\right)
+.\)</span>$
+どのようなランダムな量子状態でも情報を転送できるようにしたいので，そのような状態を生成するところからこのレッスンを始める．</p>
+</section>
+<section id="id3">
+<h2>2. 密度行列<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>量子状態<span class="math notranslate nohighlight">\(|\psi \rangle\)</span> を密度行列として書くことができる．この形式は純粋量子状態の確率的混合を表すのに便利である．単一量子ビットの場合，次のように書ける．</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|\psi \rangle \langle \psi| \equiv  \rho = \left(
+\begin{matrix}
+\cos\frac{\theta}{2}\\
+e^{i\varphi}\sin\frac{\theta}{2}
+\end{matrix}
+\right) 
+\left(
+\begin{matrix}
+\cos\frac{\theta}{2} &amp; e^{-i\varphi}\sin\frac{\theta}{2}
+\end{matrix}
+\right)
+=\frac{1}{2}\left(\begin{matrix}
+1+\cos\theta &amp; e^{-i\varphi}\sin\theta\\
+e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
+\end{matrix}\right)\end{split}\]</div>
+<p>ただし，密度行列<span class="math notranslate nohighlight">\(\rho\)</span>は下記のようにPauli行列の線形和であることに注意されたい．</p>
+<div class="math notranslate nohighlight">
+\[\rho = \frac{1}{2}\bigl( \textbf{I} + (\sin{\theta}\cos{\varphi})\textbf{X}+  (\sin{\theta}\sin{\varphi})\textbf{Y} +  (\cos{\theta})\textbf{Z} \bigr)\]</div>
+<p>もしくは一般的に以下のようになる．</p>
+<div class="math notranslate nohighlight">
+\[\rho = \frac{1}{2}(\textbf{I} + r_{x}\textbf{X}+ r_{y}\textbf{Y} + r_{z}\textbf{Z})\]</div>
+<p>ただし，<span class="math notranslate nohighlight">\(r_{x}\)</span>,<span class="math notranslate nohighlight">\(r_{y}\)</span>,<span class="math notranslate nohighlight">\(r_{z}\)</span>は以下の通り．
+<span class="math notranslate nohighlight">\(r_{x}^2+r_{y}^2+r_{z}^2=1\)</span>.</p>
+<p>Blochベクトルはこのようになる．
+<span class="math notranslate nohighlight">\(\textbf{r} = (r_{x}, r_{y}, r_{z})\)</span></p>
+<p>では，乱数を用いて任意の量子状態を作ってみよう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1">#rベクトルを定義するために，ランダムな(θ, varphi)からランダムな1量子ビット状態を作成する．</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#fixing seed for repeatibility</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>    <span class="c1">#from 0 to pi</span>
+<span class="n">varphi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>    <span class="c1">#from 0 to 2*pi</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_r_vec</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">):</span>
+    <span class="n">rx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">varphi</span><span class="p">)</span>
+    <span class="n">ry</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">varphi</span><span class="p">)</span>
+    <span class="n">rz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">rz</span><span class="p">)</span>
+
+<span class="c1"># rベクトルを得る．</span>
+<span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">rz</span> <span class="o">=</span> <span class="n">get_r_vec</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;theta=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="s2">&quot;,varphi=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varphi</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(rx, ry, rz) = (&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ry</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rz</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>theta=1.3101132663588946 ,varphi=4.525932273597346
+(rx, ry, rz) = (-0.1791150283307452, -0.9494670044331133, 0.2577405946274022)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can show this bloch vector on the Bloch sphere.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_bloch_vector</span>
+<span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">rz</span><span class="p">]</span>
+<span class="n">plot_bloch_vector</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/914ea83b85980a7267cabefb1fc612cbce2f06f9ebf258e03e802e6abbcb83df.png" src="../../_images/914ea83b85980a7267cabefb1fc612cbce2f06f9ebf258e03e802e6abbcb83df.png" />
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>3. 量子トモグラフィー<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>計算基底(<span class="math notranslate nohighlight">\(|0 \rangle\)</span> and  <span class="math notranslate nohighlight">\(|1 \rangle\)</span>)で量子状態を測定するのならば，位相情報(複素数情報)は失われる．しかしながら，準備過程を繰り返して<span class="math notranslate nohighlight">\(|\psi \rangle\)</span> のコピーが複数あれば，(状態の複製は作れないが，準備過程を繰り返すことはできる),密度行列<span class="math notranslate nohighlight">\(\rho\)</span>に対して量子状態トモグラフィーを行うことで <span class="math notranslate nohighlight">\(r_{x},r_{y}, r_{z}\)</span>の値を推定できる．</p>
+<div class="math notranslate nohighlight">
+\[ \rho = \frac{1}{2}(\textbf{I} + r_{x}\textbf{X}+ r_{y}\textbf{Y} + r_{z}\textbf{Z})\]</div>
+<div class="math notranslate nohighlight">
+\[Tr(\textbf{X} \rho) =  r_{x}, \quad Tr(\textbf{Y} \rho) =  r_{y}, \quad Tr(\textbf{Z} \rho) =  r_{z} \]</div>
+<p><span class="math notranslate nohighlight">\(r_{z}\)</span>に対して，以下のようになる．</p>
+<div class="math notranslate nohighlight">
+\[Tr(\textbf{Z} \rho) =  \langle 0|\textbf{Z} \rho|0 \rangle +  \langle 1|\textbf{Z} \rho|1 \rangle \]</div>
+<div class="math notranslate nohighlight">
+\[ = \langle 0|(|0 \rangle\langle 0|-|1 \rangle\langle 1|) \rho|0 \rangle +\langle 1|(|0 \rangle\langle 0|-|1 \rangle\langle 1|) \rho|1 \rangle \]</div>
+<div class="math notranslate nohighlight">
+\[=\langle 0|\rho|0 \rangle- \langle 1| \rho|1 \rangle \]</div>
+<div class="math notranslate nohighlight">
+\[=\langle 0|\psi\rangle\langle \psi|0 \rangle -  \langle 1| \psi\rangle\langle \psi|1 \rangle \]</div>
+<div class="math notranslate nohighlight">
+\[=|\alpha|^2-|\beta|^2  \]</div>
+<p>等式の最後の変形は <span class="math notranslate nohighlight">\(|\psi \rangle  =\alpha|0\rangle+\beta|1\rangle\)</span>に対するものである．したがって，<span class="math notranslate nohighlight">\(r_{z}\)</span>は<span class="math notranslate nohighlight">\(|0 \rangle\)</span>  - <span class="math notranslate nohighlight">\(|1 \rangle\)</span>の確率で求めることができる．</p>
+<section id="r-z">
+<h3><span class="math notranslate nohighlight">\(r_z\)</span>の推定<a class="headerlink" href="#r-z" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(r_z\)</span>を推定するために，量子状態を作り，それを測定する．この準備と測定を何度も繰り返す．そして，この測定の統計を用いることで上記の確率を測定し，<span class="math notranslate nohighlight">\(r_z\)</span>を推定する．</p>
+<p>ランダムな量子状態を作り出すために，一般的なユニタリゲート<span class="math notranslate nohighlight">\(U\)</span>をパラメータ<span class="math notranslate nohighlight">\( \theta, \varphi\)</span>と用いる．(詳細な情報は下記リンクを参照<a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.circuit.library.UGate.html">U-gate</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+
+<span class="c1">#1qubitの量子状態psiをtheta, varphi から作る</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#計算基底を測定する</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4b369136fe90791f90939eea520c3d9902707cf78a83e144de9a6e304a00bf24.png" src="../../_images/4b369136fe90791f90939eea520c3d9902707cf78a83e144de9a6e304a00bf24.png" />
+</div>
+</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">AerSimulator</span></code>, we will measure it in the computational basis to estimate <span class="math notranslate nohighlight">\(r_z\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 計算基底の期待値を見る </span>
+<span class="c1"># rzの極限に近づく</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
+
+<span class="c1"># backendを定義</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">nshots</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># or 10000</span>
+<span class="c1">#nshots = 10000</span>
+
+<span class="c1"># backendのトランスパイル</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># jobの実行</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">nshots</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># 計測結果の抽出</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># ヒストグラムでのプロット</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">17</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># jobの実行</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">nshots</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="ne">TypeError</span>: SamplerV1.__init__() got an unexpected keyword argument &#39;mode&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rz_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rz = &quot;</span><span class="p">,</span> <span class="n">rz</span><span class="p">,</span> <span class="s2">&quot; and approx of rz = &quot;</span><span class="p">,</span> <span class="n">rz_approx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>量子トモグラフィーを用いて，<span class="math notranslate nohighlight">\(r_z\)</span> の値を推定した．このケースにおいて”ランダム”な状態のパラメータを選んだため，<span class="math notranslate nohighlight">\(r_z\)</span>の値を知り確認することができる．しかしその性質上，ユーティリティスケールの事は必ずしも確認が簡単ではない．量子状態の測定結果の確認についてはこのコースの後半で議論する．今のところは，我々の測定がそれなりに正確であったことだけを認識しておきたい．</p>
+</section>
+<section id="exercise-1-r-x">
+<h3>Exercise 1: <span class="math notranslate nohighlight">\(r_x\)</span> の値の推定<a class="headerlink" href="#exercise-1-r-x" title="Link to this heading">#</a></h3>
+<p>IBMの量子コンピュータが<span class="math notranslate nohighlight">\(z\)</span>軸に沿って測定を行ったことを思い出してほしい． (<span class="math notranslate nohighlight">\(z\)</span>基底もしくは計算基底と表記されることもある．)しかしながら，測定の前に回転を使えば，量子状態の<span class="math notranslate nohighlight">\(x\)</span>軸への射影も測定できる．より正確には，<span class="math notranslate nohighlight">\(x\)</span>軸を指していたものが<span class="math notranslate nohighlight">\(z\)</span>軸を指すように系を回転させれば，<span class="math notranslate nohighlight">\(z\)</span>軸に沿った測定ハードウェアを維持したまま，<span class="math notranslate nohighlight">\(x\)</span>軸に沿っていた状態を知ることができる．これがIBMの全ての量子コンピュータを含むほとんどの量子コンピュータが複数の軸に沿って測定を行う方法である．</p>
+<p>これを理解した上で，量子トモグラフィーを用いて<span class="math notranslate nohighlight">\(r_x\)</span>の値を推定するコードを書く．</p>
+<p><strong>Solution</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#1qubitの量子状態psiをtheta, varphi から作る</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b1434e47731e276da2cdc8a53bb6f7a5f620f17eed541072e0d38ac9b351c9a5.png" src="../../_images/b1434e47731e276da2cdc8a53bb6f7a5f620f17eed541072e0d38ac9b351c9a5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># backendの定義</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">nshots</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># backendのトランスパイル</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># jobの実行</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">nshots</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># 計測結果の抽出</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># ヒストグラムのプロット</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 5900, &#39;0&#39;: 4100}
+</pre></div>
+</div>
+<img alt="../../_images/bdddef124a63bf47cb1be0ad0834c5e1ee04672da97089b93a066f5486e6fb2c.png" src="../../_images/bdddef124a63bf47cb1be0ad0834c5e1ee04672da97089b93a066f5486e6fb2c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rx_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rx = &quot;</span><span class="p">,</span> <span class="n">rx</span><span class="p">,</span> <span class="s2">&quot; and approx of rx = &quot;</span><span class="p">,</span> <span class="n">rx_approx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rx =  -0.1791150283307452  and approx of rx =  -0.18
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-r-y">
+<h3>Exercise 2: <span class="math notranslate nohighlight">\(r_y\)</span>の値の推定<a class="headerlink" href="#exercise-2-r-y" title="Link to this heading">#</a></h3>
+<p>先ほどと同じ論理を用いれば，測定前に系を回転させて<span class="math notranslate nohighlight">\(r_y\)</span>について知ることができる．
+量子状態トモグラフィーを使って<span class="math notranslate nohighlight">\(r_y\)</span>の値を推定するコードを自分で書く．前の例から始めても良いが．回転を変えてみる．(<code class="docutils literal notranslate"><span class="pre">sdg</span></code>を含む使用されている様々なゲートについての詳細は以下リンクを参照 <a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit#sdg">this</a>.)</p>
+<p><strong>Solution</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create a 1-qubit quantum state psi from theta, varphi parameters</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">sdg</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ca2c6975c92a443059eb793cc8d5ea2e881ce63781a61af8784e9af3b665b4c4.png" src="../../_images/ca2c6975c92a443059eb793cc8d5ea2e881ce63781a61af8784e9af3b665b4c4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define backend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">nshots</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># Transpile to backend</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># Run the job</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">nshots</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Extract counts data</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># Plot the counts in a histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 9755, &#39;0&#39;: 245}
+</pre></div>
+</div>
+<img alt="../../_images/d0f73895c11a3219a488c65c08123bcb13d281942f05243ee471a3f09f132a5f.png" src="../../_images/d0f73895c11a3219a488c65c08123bcb13d281942f05243ee471a3f09f132a5f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ry_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ry = &quot;</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="s2">&quot; and approx of ry = &quot;</span><span class="p">,</span> <span class="n">ry_approx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ry =  -0.9494670044331133  and approx of ry =  -0.951
+</pre></div>
+</div>
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\vec{r}\)</span>の全成分を推定したので，全ベクトルを書き出すことができる．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated vector is (&quot;</span><span class="p">,</span> <span class="n">rx_approx</span><span class="p">,</span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="n">ry_approx</span><span class="p">,</span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="n">rz_approx</span><span class="p">,</span><span class="s2">&quot;).&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original random vector was (&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ry</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rz</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;).&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated vector is ( -0.18 , -0.951 , 0.246 ).
+Original random vector was (-0.1791150283307452, -0.9494670044331133, 0.2577405946274022).
+</pre></div>
+</div>
+</div>
+</div>
+<p>この量子トモグラフィーを使えば，かなり正確に元のランダムなベクトルを推定することができる．</p>
+</section>
+</section>
+<section id="id5">
+<h2>4. 量子テレポーテーション<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>キャラクターAliceが未知の量子状態<span class="math notranslate nohighlight">\(|\psi \rangle\)</span>を遠くにいる友人Bobに送りたい場合を考える．2人は古典的な通信（電子メールや電話など）しかできないと仮定する．Aliceは量子状態をコピーできない（クローン禁止定理による）．もしAliceが同じ準備プロセスを何度も繰り返せば，先ほどのように統計量を積み上げることができる．しかし，未知の状態が1つしかない場合はどうだろうか．この状態は，あなたが研究したい物理的プロセスから出現したものかもしれない．あるいは，より大きな量子計算の一部かもしれない．その場合，Aliceはどうやってその状態をBobに送ることができるだろうか？もしAliceとBobが貴重な量子リソースを共有すれば，それは可能である．前のレッスンで紹介したベル状態のような共有もつれ状態： <span class="math notranslate nohighlight">\(\frac {|00\rangle + |11\rangle}{\sqrt 2}\)</span> これを 「EPRペア」あるいは 「e-bit」（もつれの基本単位）と呼ぶこともある．もしAliceがこのようなもつれた状態をBobと共有すれば，一連の量子操作を行い，2ビットの古典情報を送ることで，未知の量子状態をBobに<em>テレポート</em>することができます。</p>
+<section id="id6">
+<h3>4.1 量子テレポーテーションのプロトコル<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p><strong>仮定</strong>: AliceはBobに送る未知の量子状態<span class="math notranslate nohighlight">\(|\psi \rangle\)</span>を持っている．AliceとBobは2量子ビットのもつれた状態（e-bit）を共有し，それぞれが物理的に1つの量子ビットを自分の場所に持っている．</p>
+<p>ここではその手順の概略を説明する．これらは以下で詳細に実施される．</p>
+<ol class="arabic simple">
+<li><p>AliceはCNOTゲートを使って<span class="math notranslate nohighlight">\(|\psi \rangle\)</span>をe-bitの自分の一部とエンタングルする．</p></li>
+<li><p>Aliceは<span class="math notranslate nohighlight">\(|\psi \rangle\)</span>にアダマールゲートを適用し計算基底で両者の量子ビットを測定する．</p></li>
+<li><p>AliceBobに測定結果（「00」，「01」，「10」，「11」のいずれか）を送る．</p></li>
+<li><p>BobはAliceの2ビットの情報に基づいて，eビットペアの自分の部分に<em>補正</em>演算を行う．</p>
+<ul class="simple">
+<li><p>もし“00”ならば，Bobは何もしない．</p></li>
+<li><p>もし“01”ならば，BobはXゲートを適用する．</p></li>
+<li><p>もし“10”ならば，BobはZゲートを適用する．</p></li>
+<li><p>もし“11”ならば，BobはiY = ZXゲートを適用する．</p></li>
+</ul>
+</li>
+<li><p>Bobのe-bitが<span class="math notranslate nohighlight">\(|\psi \rangle\)</span>となる．</p></li>
+</ol>
+<p>詳細は下記リンクにある．<a class="reference external" href="https://learning.quantum.ibm.com/course/basics-of-quantum-information/entanglement-in-action#teleportation">Basics of Quantum Information</a>
+Qiskitでインスタンス化することで明確にする．</p>
+</section>
+<section id="id7">
+<h3>4.2 量子テレポーテーションをシミュレートする量子回路<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>この章ではマッピングにのみ焦点を当てる．</p>
+</section>
+<section id="step-1">
+<h3>Step 1: 量子回路と演算子へのマッピング問題<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h3>
+<p>このシナリオを説明するためには，3つの量子ビットをもつ量子回路が必要である．２つはAliceとBobが共有するエンタングルされたペアであり，もう１つは未知の量子状態<span class="math notranslate nohighlight">\(|\psi\rangle\)</span>である．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create 3-qubits circuit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>    
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8073fd47efda3a1638a20c32398ba71c6c7686df381ab3f265d58e7e4c8a6931.png" src="../../_images/8073fd47efda3a1638a20c32398ba71c6c7686df381ab3f265d58e7e4c8a6931.png" />
+</div>
+</div>
+<p>初めに，Aliceは未知の量子状態 <span class="math notranslate nohighlight">\(|\psi \rangle\)</span>を持つ．この状態を<span class="math notranslate nohighlight">\(U\)</span>ゲートを用いて再現する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the unknown quantum state using the u-gate. Alice has this.</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>    <span class="c1"># for visual separation</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9454c18e60be38f46b313f678e85847f1b55f55f3de90ddcc977153d3fe51bed.png" src="../../_images/9454c18e60be38f46b313f678e85847f1b55f55f3de90ddcc977153d3fe51bed.png" />
+</div>
+</div>
+<p>この状態を可視化できるのは，<span class="math notranslate nohighlight">\(U\)</span>ゲートでどのようなパラメータが使われたかを知っているからである．もしこの状態が複雑な量子プロセスから生まれたものであれば，状態を作り出すプロセスを何度も実行しトモグラフィーのように統計量を集めなければ状態を知ることはできないだろう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the quantum state on bloch sphere</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ce9abd2d99d51875223f0ff7ca787b801d86ff63925cbbde0b12330727dbbb20.png" src="../../_images/ce9abd2d99d51875223f0ff7ca787b801d86ff63925cbbde0b12330727dbbb20.png" />
+</div>
+</div>
+<p>このプロトコルが始まる前に，AliceとBobが共有されたエンタングルのペアを持っていると仮定する．AliceとBobが本当に違う場所にいるならば，未知の状態<span class="math notranslate nohighlight">\(|\psi\rangle\)</span> が作成される前に共有状態を設定したかもしれない．これらのことは異なる量子ビット上で起きているので，ここでの順序は問題ではなく．可視化するのに便利である．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alice and Bob are together in the same place and set up an entangled pair.</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>    <span class="c1"># for visual separation.</span>
+<span class="c1"># We can consider that Alice and Bob may move their qubits to different physical locations, now.</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9a5bee327a4a26666a02ae5f8e918be664455150f9e8b34eb918f535c1da5dde.png" src="../../_images/9a5bee327a4a26666a02ae5f8e918be664455150f9e8b34eb918f535c1da5dde.png" />
+</div>
+</div>
+<p>つぎに，<span class="math notranslate nohighlight">\(CX\)</span>ゲートと<span class="math notranslate nohighlight">\(H\)</span>ゲートを用いてAliceは<span class="math notranslate nohighlight">\(|\psi \rangle\)</span>を共有されたe-bitとエンタグルさせ，計算基底において測定を行う．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alice entangles the unknown state with her part of the e-bit, using the CNOT gate &amp; H gate.</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Alice measures the two qubits.</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cf5cef03cc817bb3ab2ec00200a4e1e90f64f1a86803b312bfd4a372a1938183.png" src="../../_images/cf5cef03cc817bb3ab2ec00200a4e1e90f64f1a86803b312bfd4a372a1938183.png" />
+</div>
+</div>
+<p>AliceはBobに自分の測定結果(either “00”, “01”, “10”，“11”のいずれか)を送り，Bobは共有されたe-bitの自分の部分にAliceの2ビットの情報に基づいた補正演算を行う．すると，Bobのものは<span class="math notranslate nohighlight">\(|\psi \rangle\)</span>になる．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alice sent the results to Bob. Bob applies correction</span>
+<span class="k">with</span> <span class="n">qc</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>   
+    <span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">qc</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5f3e8cb30a74c063f96ab5f05f67da2d99e7369d1e9261f1734b8ff299511e9d.png" src="../../_images/5f3e8cb30a74c063f96ab5f05f67da2d99e7369d1e9261f1734b8ff299511e9d.png" />
+</div>
+</div>
+<p>量子テレポーテーション回路が完成した．状態ベクトルシミュレータを用いてこの回路の出力状態を見る．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorSimulator</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">StatevectorSimulator</span><span class="p">()</span>
+<span class="n">out_vector</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>    <span class="c1"># set shots = 1</span>
+
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">out_vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f3fd2327df14db20d2174ba53a9a7f2bbbb50cd8a7bdbdf94b2b9388dca1edf2.png" src="../../_images/f3fd2327df14db20d2174ba53a9a7f2bbbb50cd8a7bdbdf94b2b9388dca1edf2.png" />
+</div>
+</div>
+<p>量子ビット0（もともと秘密の状態を保持していた量子ビット）の<span class="math notranslate nohighlight">\(U\)</span>ゲートによって作られた量子状態が量子ビット2（Bobの量子ビット）に転送されているのがわかる．</p>
+<p>上記のセルを数回実行して確かめる．量子ビット0と1は状態が変わるが，量子ビット2は常に <span class="math notranslate nohighlight">\(\psi\rangle \)</span>の状態であることに気づくかもしれない．</p>
+</section>
+<section id="u">
+<h3>4.3 実行しUの逆数を適用して結果を確認する<a class="headerlink" href="#u" title="Link to this heading">#</a></h3>
+<p>上記ではテレポートされた状態が正しく見えることを目視で確認した．量子状態が正しくテレポートされたかどうかを確認するもう一つの方法は，Bobの量子ビットに<span class="math notranslate nohighlight">\(U\)</span>ゲートの逆数を適用し『0』を測定できるようにすることである．つまり，<span class="math notranslate nohighlight">\(U^{-1}U\)</span>は恒等式なので，Bobの量子ビットが<span class="math notranslate nohighlight">\(U|0\rangle,\)</span>から生成された状態にある場合，逆数を適用すると<span class="math notranslate nohighlight">\(U^{-1}U|0\rangle=|0\rangle.\)</span>が得られるはずである．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply the inverse of u-gate to measure |0&gt;   </span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>    <span class="c1"># inverse of u(theta,varphi,0.0)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># add measurement gate</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e0da3df3b9143ba2ff6bc7aab75335b8d488b713ed597864bdc517e32d5780d0.png" src="../../_images/e0da3df3b9143ba2ff6bc7aab75335b8d488b713ed597864bdc517e32d5780d0.png" />
+</div>
+</div>
+<p>実際の量子計算機に移る前にまずAerSimulatorを使って回路を実行する.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+
+<span class="c1"># Define backend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+
+<span class="c1"># Transpile to backend</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># Run the job</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">nshots</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Extract counts data</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># Plot the counts in a histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;011&#39;: 2553, &#39;000&#39;: 2526, &#39;010&#39;: 2525, &#39;001&#39;: 2396}
+</pre></div>
+</div>
+<img alt="../../_images/fea78505ad10296b7ad60747abb108d6dcdd658ad2f220f756ec4bb29fa20eab.png" src="../../_images/fea78505ad10296b7ad60747abb108d6dcdd658ad2f220f756ec4bb29fa20eab.png" />
+</div>
+</div>
+<p>little endian表記では，qubit2が一番左（列ラベルでは一番下）のqubitであることを思い出してほしい．列ラベルの一番左/一番下の量子ビットは，すべての可能な結果に対して0であることに注意する．これは<span class="math notranslate nohighlight">\(q_2\)</span>を100%の確率で<span class="math notranslate nohighlight">\(|0\rangle \)</span>の状態で測定できることを示している．これは期待された結果であり，テレポーテーションプロトコルが正しく機能したことを示している．</p>
+</section>
+<section id="id8">
+<h3>4.4 量子コンピュータ実機での量子テレポーテーション<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>次に実際の量子コンピュータ上でテレポーテーションを実行する．動的回路機能を使うことで，計測結果を使って回路の途中で操作することができ，テレポーテーション回路の条件演算をリアルタイムに実装することができる．実際の量子コンピュータで問題を解くには，Qiskit Patternsの4つのステップに従う．
+1. 量子回路と演算子への写像問題
+2. ターゲットハードウェアに最適化する
+3. ターゲットハードウェア上での実行
+4. 結果の後処理</p>
+</section>
+<section id="exercise-3">
+<h3>Exercise 3: テレポーテーション回路の設計<a class="headerlink" href="#exercise-3" title="Link to this heading">#</a></h3>
+<p>テレポーテーション回路全体をゼロから組み立てて理解度を試してみよう．</p>
+<p><strong>Solution</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Map problem to quantum circuits and operators</span>
+<span class="c1"># Create the circuit with 3-qubits and 1-bit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>    
+
+<span class="c1"># Alice creates an unknown quantum state using the u-gate.</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>    <span class="c1"># for visual separation</span>
+
+<span class="c1"># Eve creates EPR pair and sends q1 to Alice and q2 to Bob</span>
+<span class="c1">##your code goes here##</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Alice entangles the unknown state with her EPR part, using the CNOT gate &amp; H gate.</span>
+<span class="c1">##your code goes here##</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Alice measures the two qubits.</span>
+<span class="c1">##your code goes here##</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Alice sent the results to Bob. Now, Bob applies correction</span>
+<span class="c1">##your code goes here##</span>
+<span class="k">with</span> <span class="n">qc</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">qc</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Apply the inverse of u-gate to measure |0&gt;   </span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>    
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e0da3df3b9143ba2ff6bc7aab75335b8d488b713ed597864bdc517e32d5780d0.png" src="../../_images/e0da3df3b9143ba2ff6bc7aab75335b8d488b713ed597864bdc517e32d5780d0.png" />
+</div>
+</div>
+<p>注意点として，<span class="math notranslate nohighlight">\(U\)</span>ゲートの逆ゲートを適用するのは期待される振る舞いを検証するためである．量子情報の転送だけが目的なら<span class="math notranslate nohighlight">\(U\)</span>ゲートの逆は使わない．</p>
+</section>
+<section id="step-2">
+<h3>Step 2: ターゲットハードウェアへの最適化<a class="headerlink" href="#step-2" title="Link to this heading">#</a></h3>
+<p>ハードウェア上で実行するために，<code class="docutils literal notranslate"><span class="pre">QiskitRuntimeService</span></code>をimportし，IBM量子チャネルの保存された資格をロードする． そして，キュー内のジョブ数が最も少ないバックエンドを選択する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="c1"># If this is your first time running your circuit on a real device, </span>
+<span class="c1"># make sure you copy your API Token from [IBM Quantum Platform](https://quantum.ibm.com/) </span>
+<span class="c1"># QiskitRuntimeService.save_account(token=&#39;&lt;your_token&gt;&#39;, overwrite=True)</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">)</span>
+<span class="n">service</span><span class="o">.</span><span class="n">backends</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#You can also identify the least busy device</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The least busy device is &quot;</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The least busy device is  &lt;IBMBackend(&#39;ibm_nazca&#39;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can specifiy the device </span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s1">&#39;ibm_sherbrooke&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>選択したデバイスのカップリング・マップを見てみよう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_gate_map</span>
+<span class="n">plot_gate_map</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3439d552c020b8dd7d8e0d92feb8541b17765c7b3979599970cac6b3275e26f6.png" src="../../_images/3439d552c020b8dd7d8e0d92feb8541b17765c7b3979599970cac6b3275e26f6.png" />
+</div>
+</div>
+<p>異なるデバイスは異なるカップリングマップを持つかもしれない．また，各デバイスには他よりも性能の高い量子ビットやカップラーがある．最後に，異なる量子コンピュータは異なる<em>native gates</em> （ハードウェアが実行可能なゲート）を持っているかもしれない．回路をトランスパイルすることで，ターゲットとなる量子コンピュータが実行可能なゲートを用いて抽象量子回路を書き換え，物理量子ビットへの最適なマッピングを選択する．（中略）トランスパイルの詳細については下記リンク<a class="reference external" href="https://docs.quantum.ibm.com/api/qiskit/transpiler#overview">documentation</a>を参照．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2: Optimize for target hardware</span>
+<span class="c1"># Transpile the circuit into basis gates executable on the hardware</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_compiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="n">qc_compiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bf1087a353591330c290f31eee61d5007b1dfdbf6d6cd48737e4198e3c56b8fa.png" src="../../_images/bf1087a353591330c290f31eee61d5007b1dfdbf6d6cd48737e4198e3c56b8fa.png" />
+</div>
+</div>
+</section>
+<section id="step-3">
+<h3>Step 3: 回路の実行<a class="headerlink" href="#step-3" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Sampler</span></code>を用いてターゲット回路を実行する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3: Execute the target circuit</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc_compiled</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: cvn758n82hx0008489jg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the job status</span>
+<span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;RUNNING&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>jobのステータスはIBM Quantum Dashboardからも確認可能：<a class="reference external" href="https://quantum.ibm.com/jobs">https://quantum.ibm.com/jobs</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the Notebook session got disconnected you can also check your job statuse by running the following code</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span> 
+<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;cvn758n82hx0008489jg&#39;</span><span class="p">)</span> <span class="c1"># Input your job-id between the quotations</span>
+<span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">'DONE'</span></code>と表示されたら，以下のセルを実行すれば結果が得られる．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute after &#39;DONE&#39; is displayed</span>
+<span class="n">result_real</span> <span class="o">=</span> <span class="n">job_real</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;010&#39;: 769, &#39;001&#39;: 948, &#39;011&#39;: 773, &#39;000&#39;: 910, &#39;111&#39;: 232, &#39;100&#39;: 132, &#39;110&#39;: 219, &#39;101&#39;: 113}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4">
+<h3>Step 4: 結果の後処理<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 4: Post-process the results</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b055f70fe18c374044785986c2ede6dcef434e26703d2e55f05c5dbba9a816a8.png" src="../../_images/b055f70fe18c374044785986c2ede6dcef434e26703d2e55f05c5dbba9a816a8.png" />
+</div>
+</div>
+<p>上記の結果を直接解釈することができる．あるいは，<code class="docutils literal notranslate"><span class="pre">marginal_count</span></code>を用いればBobの量子ビットの結果をトレースすることができる．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># trace out Bob&#39;s results on qubit 2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">marginal_counts</span>
+<span class="n">bobs_qubit</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">real_counts</span> <span class="o">=</span> <span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">bobs_counts</span> <span class="o">=</span> <span class="n">marginal_counts</span><span class="p">(</span><span class="n">real_counts</span><span class="p">,</span> <span class="p">[</span><span class="n">bobs_qubit</span><span class="p">])</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">bobs_counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6869a2251e93430f224d7b2e81af22857c3ead6745d343c28f2c001d69225a27.png" src="../../_images/6869a2251e93430f224d7b2e81af22857c3ead6745d343c28f2c001d69225a27.png" />
+</div>
+</div>
+<p>このように，<span class="math notranslate nohighlight">\(|1 \rangle\)</span>を測定した結果がいくつかある．これらはノイズや誤差によるものである．特に，動的回路は途中の測定2時間がかかるため，誤差が大きくなる傾向にある．</p>
+</section>
+<section id="id9">
+<h3>4.5 量子テレポーテーションの要点<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>もつれた量子ビットのペアを共有することで，量子状態を遠くの友人に転送することができた．</p>
+<p>1.量子テレポーテーションは光よりも早く量子状態を送ることができるのか？</p>
+<p>いいえ．Aliceは古典的な方法で測定結果をBobに伝えなければならないため．</p>
+<ol class="arabic" start="2">
+<li><p>量子テレポーテーションは量子状態のコピーを禁じる「クローン禁止の定理」を破るだろうか</p>
+<p>いいえ．Aliceの量子ビットの１つに与えられたもとの量子状態が測定により失われたからである．<span class="math notranslate nohighlight">\(|0\rangle\)</span>か<span class="math notranslate nohighlight">\(|1\rangle\)</span>の状態になってしまう．</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="id10">
+<h2>5. 超密度符号化<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>ほとんど同じ設定を別の目的に使うことができる。AliceがBobに2ビットの古典的な情報を送りたいが、彼女はBobとの古典的な通信手段を持っていないとする。しかし彼女はBobともつれたペアを共有しており、自分の量子ビットをBobの場所に送ることができる。量子テレポーテーションプロトコルとの対比に注目してほしい。テレポーテーションでは、古典的な通信が可能で、量子状態を送ることが目的だった。テレポーテーションでは、古典的な通信は利用できず、2ビットの古典的な情報を共有するために量子ビットの転送を使用する。</p>
+<section id="id11">
+<h3>5.1 超密度符号化のプロトコル<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p><strong>仮定</strong>: Aliceが２ビットの情報<span class="math notranslate nohighlight">\(a_1a_2 \in \{00, 01, 10, 11\}\)</span>を持っている．AliceとBobはエンタングルしたペア(e-bit)を共有しているが，古典的にコミュニケーションできない．</p>
+<ol class="arabic simple">
+<li><p>Aliceは自分のパートのe-bitに対して以下のいずれかの操作を行う．</p>
+<ul class="simple">
+<li><p>もし<span class="math notranslate nohighlight">\(a_1a_2 = 00\)</span>ならば彼女は何もしない．</p></li>
+<li><p>もし<span class="math notranslate nohighlight">\(a_1a_2 = 01\)</span>ならば彼女はZゲートを適用する．</p></li>
+<li><p>もし<span class="math notranslate nohighlight">\(a_1a_2 = 10\)</span>ならば彼女はXゲートを適用する．</p></li>
+<li><p>もし<span class="math notranslate nohighlight">\(a_1a_2 = 11\)</span>ならば彼女はZゲートとXゲートを適用する．</p></li>
+</ul>
+</li>
+<li><p>Aliceは彼女の分のe-bitをBobの場所に送る．</p></li>
+<li><p>BobはAliceからの量子ビットをコントロール、自分の量子ビットをターゲットとしてCNOTゲートを適用し、次にAliceからの量子ビットにHゲートを適用し、2つの量子ビットを測定する。Bobの操作の開始状態と結果は次のようになる：
+$<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow |00\rangle\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( \frac {|00\rangle - |11\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow |01\rangle\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( \frac {|10\rangle + |01\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow |10\rangle\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\( \frac {|10\rangle - |01\rangle}{\sqrt 2} \rightarrow CX_{01}\otimes H_0 \rightarrow -|11\rangle\)</span>$</p></li>
+</ol>
+<p>負浮上の<span class="math notranslate nohighlight">\(-|11\rangle\)</span>は大域的な位相なので，測定不可能であることに注意．</p>
+</section>
+<section id="id12">
+<h3>5.2 超密度符号化の量子回路設計<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>超高密度符号化のプロトコルに基づき、以下のような超高密度符号化回路を作ることができる。AliceがBobに伝えたいメッセージ<code class="docutils literal notranslate"><span class="pre">msg</span></code>を変更してみてください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Qiskitのパターン・ステップはコード・コメントで特定される．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Map problem to quantum circuits and operators</span>
+<span class="c1"># Create 2-qubits circuit</span>
+<span class="n">qc</span><span class="o">=</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Eve creates EPR pair and send q0 to Alice and q1 to Bob</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># set message which Alice wants to transform to Bob</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;11&quot;</span>    <span class="c1"># You can change the message </span>
+
+<span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;00&quot;</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;10&quot;</span><span class="p">:</span>    
+    <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;01&quot;</span><span class="p">:</span>    
+    <span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;11&quot;</span><span class="p">:</span>    
+    <span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>   
+<span class="c1"># Bob receives EPR qubit from Alice and performs unitery operations</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Bob measures q0 and q1</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8de30f3fd7227e9e6ad149d444f8009e1a6a7796646b1d968d9f0cbb5b7609c6.png" src="../../_images/8de30f3fd7227e9e6ad149d444f8009e1a6a7796646b1d968d9f0cbb5b7609c6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will execute on a simulator first</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
+
+<span class="c1"># Define backend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">shots</span><span class="o">=</span><span class="mi">1000</span>
+
+<span class="c1"># Transpile to backend</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">isa_qc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="c1"># Run the job</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job_sim</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_qc</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+<span class="n">result_sim</span> <span class="o">=</span> <span class="n">job_sim</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Extract counts data</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 1000}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the results</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6c68fd0971f95065121b61ec7ef1064aee29cc8a6c9eb8d470ba986f3872d581.png" src="../../_images/6c68fd0971f95065121b61ec7ef1064aee29cc8a6c9eb8d470ba986f3872d581.png" />
+</div>
+</div>
+<p>BobはAliceが送りたかったメッセージを受け取ったことがわかるだろう．</p>
+<p>次に，本物の量子コンピューターで試してみる．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The least busy device is &quot;</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The least busy device is  &lt;IBMBackend(&#39;ibm_nazca&#39;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1 was already completed before the simulator job above.</span>
+<span class="c1"># Step 2: Optimize for target hardware</span>
+<span class="c1"># Transpile the circuit into basis gates executable on the hardware</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_compiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="n">qc_compiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0f4de0e34c685e0ce677d4d01f12ede69d5663246c606abca0afaeb9b5007d80.png" src="../../_images/0f4de0e34c685e0ce677d4d01f12ede69d5663246c606abca0afaeb9b5007d80.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3:Execute the target circuit</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc_compiled</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: cvn75rzqy6cg0089a7m0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the job status</span>
+<span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;RUNNING&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the Notebook session got disconnected you can also check your job statuse by running the following code</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>  
+<span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;cvn75rzqy6cg0089a7m0&#39;</span><span class="p">)</span> <span class="c1"># Input your job-id between the quotations</span>
+<span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute after job has successfully run</span>
+<span class="n">real_result</span><span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">real_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 3984, &#39;01&#39;: 72, &#39;00&#39;: 10, &#39;10&#39;: 30}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 4: Postprocess the results</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">real_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/04aebeae69b5cefb07954d038ee7005d7b3fd61804a187d24a664e2a18438265.png" src="../../_images/04aebeae69b5cefb07954d038ee7005d7b3fd61804a187d24a664e2a18438265.png" />
+</div>
+</div>
+<p>結果は予想通りである．実調子コンピュータ上での超密度符号化は，実量子コンピュータ上での量子テレポーテーションの場合よりもエラーが少なかった．この理由の一つは，量子テレポーテーションは動的回路を使用し，超密度符号化は使用しないためと考えられる．量子回路のエラーについては後のレッスンで詳しく学ぶ．</p>
+</section>
+</section>
+<section id="id13">
+<h2>7. まとめ<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>このセッションでは、2つの量子プロトコルを実装した。両者とも、遠く離れた友人を対象としたシナリオで、1つのQPU上での量子計算とはやや離れているが、量子計算への応用が可能であり、量子情報の転送をより深く理解するのに役立つものである。</p>
+<ul class="simple">
+<li><p><strong>量子テレポーテーション</strong>: 量子状態をコピーすることはできないが，エンタングルメントを共有することで未知の量子状態をテレポートすることができる．</p></li>
+<li><p><strong>量子超密度符号化</strong>: エンタングルされたペアを共有し，1量子ビットを転送することで，２ビットの古典情報の通信が可能になる．</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the version of Qiskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.3.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 序論</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. 密度行列</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. 量子トモグラフィー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-z"><span class="math notranslate nohighlight">\(r_z\)</span>の推定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-r-x">Exercise 1: <span class="math notranslate nohighlight">\(r_x\)</span> の値の推定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-r-y">Exercise 2: <span class="math notranslate nohighlight">\(r_y\)</span>の値の推定</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4. 量子テレポーテーション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4.1 量子テレポーテーションのプロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.2 量子テレポーテーションをシミュレートする量子回路</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">Step 1: 量子回路と演算子へのマッピング問題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#u">4.3 実行しUの逆数を適用して結果を確認する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.4 量子コンピュータ実機での量子テレポーテーション</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3">Exercise 3: テレポーテーション回路の設計</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2: ターゲットハードウェアへの最適化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">Step 3: 回路の実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 結果の後処理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.5 量子テレポーテーションの要点</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 超密度符号化</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">5.1 超密度符号化のプロトコル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5.2 超密度符号化の量子回路設計</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">7. まとめ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
