@@ -1,0 +1,1126 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ユーティリティー・スケール実験 I &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/utility-i';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/utility-i.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/utility-i.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ユーティリティー・スケール実験 I</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. ユーティリティー論文へのいざない</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 目標</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. 準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rzz-pi-2">2.1 RZZ(-<span class="math notranslate nohighlight">\(\pi\)</span> / 2)ゲートの作成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.2 カップリング・マップの色分け</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3. 2次元イジングモデルのトロッター分解を用いた時間発展</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4. 27量子ビットの規模でこの問題を解いてみる</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">4.1 ステップ1: Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-execute-aer">4.2 ステップ 2 および 3: Optimize と Execute (Aerシミュレーターを使用)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-execute">4.3 ステップ 2 および 3: Optimize と Execute (フェイク・デバイス)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-process">4.4 ステップ 4: Post-process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5. 127量子ビットのバージョンで問題を解く</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">5.1 ステップ 1: Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">5.2 ステップ 2 および 3: Optimize と execute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5.3 ステップ 4: Post-process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="i">
+<h1>ユーティリティー・スケール実験 I<a class="headerlink" href="#i" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Tamiya Onodera (5 July 2024)
+  Translated by Ryuki Tachibana
+<p><a class="reference external" href="https://ibm.box.com/shared/static/k38xhk5yaqy9b3gjdmu0ynhnd9i4c3e1.zip">Download the pdf</a> が元々の講義資料です。Qiskitの更新によって、コード・サンプルの中には今では非推奨となった機能を使っているものがあるかもしれないことをご容赦ください。</p>
+<p><em>この実験を実行するのに使われる QPU時間はおよそ45秒です。</em>
+</Admonition></p>
+<section id="id1">
+<h2>1. ユーティリティー論文へのいざない<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>このノートブックを使ったレッスンでは、私たちが <a class="reference external" href="https://www.nature.com/articles/s41586-023-06096-3">“ユーティリティー論文”</a>と呼んでいる、Nature Vol 618 (2023/6/15)に掲載された論文で利用された、ユーティリティー・スケール（実用規模）の量子回路を走らせます。この論文は2次元の横磁場イジングモデルの時間発展を扱います。特に扱われるのは、次のような形式のハミルトニアンです。</p>
+<div class="math notranslate nohighlight">
+\[
+H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
+\]</div>
+<p>ここで、 <span class="math notranslate nohighlight">\(i &lt; j\)</span> であり、 <span class="math notranslate nohighlight">\(J &gt; 0\)</span> は最近傍のスピンとのスピン結合定数、<span class="math notranslate nohighlight">\(h\)</span> は大局的な横磁場の強さを表す係数です。</p>
+<p>この論文では、この時間発展演算子の、次のような一次トロッター分解を用いて、初期状態からの時間変化をシミュレーションしました。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+ \exp(-i H_{ZZ} \delta t) &amp;= \prod_{(i,j)} \exp (i J \delta t Z_i Z_j)  = \prod_{(i,j)} \mathrm{R}_{Z_i Z_j} ( - 2 J \delta t) \\
+ \exp(-i H_X \delta t) &amp;= \prod_{i} \exp (-i h \delta t X_i )  = \prod_{i} \mathrm{R}_{X_i} ( 2 h \delta t)
+\end{aligned}
+\end{split}\]</div>
+<p>ここで、時間間隔 <span class="math notranslate nohighlight">\(T\)</span> は <span class="math notranslate nohighlight">\(T / \delta t\)</span> 回のTrotterステップに離散化されています。<span class="math notranslate nohighlight">\(\mathrm{R}_{Z_i Z_j}(\theta_J)\)</span> と <span class="math notranslate nohighlight">\(\mathrm{R}_{X_i}(\theta_h)\)</span>
+はそれぞれ <span class="math notranslate nohighlight">\(ZZ\)</span> と <span class="math notranslate nohighlight">\(X\)</span> 回転ゲートです。</p>
+<p>そして、ヘビーヘックス構造で互いに接続された 127量子ビットを持つ IBM Quantum® Eagleプロセッサー上で実験を行いました。この実験ではすべての量子ビットに <span class="math notranslate nohighlight">\(X\)</span>ゲートを、そして直接接続された量子ビットのすべてのペアに <span class="math notranslate nohighlight">\(ZZ\)</span> インタラクションを適用しました。</p>
+<p>ここで、「データの依存性」があるために、すべてのペアに <span class="math notranslate nohighlight">\(ZZ\)</span> インタラクションを同時に適用することはできません。そのため、<strong>量子ビットのペアを色分けし</strong>、いくつかのグループに分けました。同じグループに入れられたペアには同じ色が割り当てられていて、同時に <span class="math notranslate nohighlight">\(ZZ\)</span> ゲートを適用されます。</p>
+<p>加えて、実験の単純化のためにこの論文では <span class="math notranslate nohighlight">\(\theta_J=-\pi /2\)</span> のケースに絞りました。</p>
+<p>この論文の新規性ある価値は、古典コンピューター上でソフトウェア的に実行される statevectorシミュレーションの規模を超えた量子回路を構築し、ノイズが生じる量子コンピューターの実機で実際に実行し、そして信頼できる結果を得ることに成功したというところにあります。言い換えれば、ノイズの生じる量子コンピューターの実用性を実証したということです。これを実行するにあたって、彼らはノイズによって生じる誤差を緩和/補正するために、zero-noise extrapolation (ZNE) と probabilistic error amplification (PEA) というエラー緩和手法を利用しました。</p>
+<p>この論文以降、このような手法と規模を持った実験を私たちは、ユーティリティー・スケール（実用規模）の実験と呼んでいます。</p>
+<section id="id2">
+<h3>1.1 目標<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>このレッスンの目標は、ユーティリティー・スケールの量子回路を作り、Eagleプロセッサー上で実行することです。信頼性のある結果を得るというところまではこのノートブックの範囲では扱わないことにします。これは、このノートブックを最初に執筆した時点でPEAが Qiskitでまだ実験段階にあったことと、PEAやZNEの適用にはかなりの時間がかかることが理由です。</p>
+<p>具体的に目標を述べると、論文の図4bに対応する量子回路の構築と実行を行なって、このグラフで “unmitigated”（エラー緩和なし）と表示されている点を計算してプロットします。これらは、127量子ビット <span class="math notranslate nohighlight">\(\times\)</span> 60レイヤー（20トロッター・ステップ）の規模で、<span class="math notranslate nohighlight">\(\langle Z_{62} \rangle\)</span> をオブザーバブルとして利用する量子回路です。</p>
+<p><img alt="image.png" src="../../_images/utility1.avif" /></p>
+<p>難しそうでしょうか？ 心配は不要です。これまでの過去3回のレッスンがヒントになります。まず、27量子ビット <span class="math notranslate nohighlight">\(\times\)</span> 6レイヤー（2トロッター・ステップ）という小さな規模で、 <span class="math notranslate nohighlight">\(\langle Z_{13} \rangle\)</span>をオブザーバブルとして使う量子回路を構築し、実機ではなくシミュレーションされたデバイスで実行してみましょう。</p>
+<p>前置きは以上としまして、ユーティリティー・スケールの冒険に出発してみましょう！</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install qiskit_ibm_runtime</span>
+<span class="c1">#!pip install qiskit_aer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rustworkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rx</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parameter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">YGate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QiskitRuntimeService</span><span class="p">,</span>
+    <span class="n">fake_provider</span><span class="p">,</span>
+    <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># token = &quot;Sx2HlV3tqdCeLmE7HJd7TfMoDCWg3ybaR6srB7jYIOx5&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from qiskit_ibm_runtime import QiskitRuntimeService</span>
+ 
+<span class="c1"># QiskitRuntimeService.save_account(</span>
+<span class="c1">#  token=token,</span>
+<span class="c1">#  channel=&quot;ibm_quantum_platform&quot;, # `channel` distinguishes between different account types.</span>
+<span class="c1">#  instance=&quot;crn:v1:bluemix:public:quantum-computing:us-east:a/aa261b51b545de31d6dcf44505bc716a:ac6a1f88-6ae2-4e25-9afa-46d256e465b3::&quot;, # Optionally copy the instance CRN or name from the Instance section on the dashboard.</span>
+<span class="c1">#  name=&quot;upgraded IQP&quot;, # Optionally name this set of credentials.</span>
+<span class="c1">#  overwrite=True # Only needed if you already have Cloud credentials.</span>
+<span class="c1"># )</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h2>2. 準備<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="rzz-pi-2">
+<h3>2.1 RZZ(-<span class="math notranslate nohighlight">\(\pi\)</span> / 2)ゲートの作成<a class="headerlink" href="#rzz-pi-2" title="Link to this heading">#</a></h3>
+<p>まず、一般的なRZZゲートの実行には 2つの<span class="math notranslate nohighlight">\(CX\)</span>ゲートが必要になることを見てみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">RZZGate</span>
+
+<span class="n">θ_h</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
+<span class="n">qc1</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RZZGate</span><span class="p">(</span><span class="n">θ_h</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">qc1</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b9fda4ac2e0172316c29f2b93a3074365b625e5d11b887e0506b36895c21d2a1.svg" src="../../_images/b9fda4ac2e0172316c29f2b93a3074365b625e5d11b887e0506b36895c21d2a1.svg" />
+</div>
+</div>
+<p>前述したように、今回の実験は特定の回転角（-<span class="math notranslate nohighlight">\(\pi\)</span> / 2）の RZZゲートだけを用います。この論文の中でも示されています通り、その場合に限れば RZZゲートは <span class="math notranslate nohighlight">\(CX\)</span>ゲート 1つで実装できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc2</span><span class="o">.</span><span class="n">sdg</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">qc2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">YGate</span><span class="p">()</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">qc2</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">YGate</span><span class="p">()</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">adjoint</span><span class="p">(),</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">qc2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f79bb1547ab346defce15d6f5cb7718505bdb206b94fcd41728ffe085440e2fa.svg" src="../../_images/f79bb1547ab346defce15d6f5cb7718505bdb206b94fcd41728ffe085440e2fa.svg" />
+</div>
+</div>
+<p>あとでこの回路を使えるように、これをゲートとして定義しておきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rzz</span> <span class="o">=</span> <span class="n">qc2</span><span class="o">.</span><span class="n">to_gate</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;RZZ&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>こうして作った <code class="docutils literal notranslate"><span class="pre">rzz</span></code> ゲートは、たとえば次のように任意の回路の中で使うことができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rzz</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">qc3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rzz</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="c1"># display(qc.decompose(reps=1).draw(&quot;mpl&quot;))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a0944f3d4cfe48e3482e3476ff723e5b75fac1982ad359abd1f24aec3c6daa7a.svg" src="../../_images/a0944f3d4cfe48e3482e3476ff723e5b75fac1982ad359abd1f24aec3c6daa7a.svg" />
+</div>
+</div>
+<p>これを実際に目的の回路の中で使う前に、-<span class="math notranslate nohighlight">\(\pi\)</span> / 2 をRZZGateにパラメーターとして与えた場合 <code class="docutils literal notranslate"><span class="pre">qc1</span></code> と、自分で定義した <code class="docutils literal notranslate"><span class="pre">rzz</span></code> を使った場合 <code class="docutils literal notranslate"><span class="pre">qc2</span></code> が理論的に一致していることを確かめておきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Operator</span>
+
+<span class="n">op1</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc1</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="n">op2</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc2</span><span class="p">)</span>
+
+<span class="n">op1</span><span class="o">.</span><span class="n">equiv</span><span class="p">(</span><span class="n">op2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>2.2 カップリング・マップの色分け<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>バックエンド（QPU）のカップリング・マップを色分けする方法をやってみましょう。これは今回の目標回路で使う <span class="math notranslate nohighlight">\(ZZ\)</span>インタラクションをグループ分けするのに必要になります。</p>
+<p>手始めに、まずバックエンドのカップリング・マップを視覚化してみます。現時点でサービス提供している IBM Quantumデバイスのカップリング・マップはすべてヘビーヘックス構造を持っています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/126bda08eed5689115bbd416ced0c3b124f092c9e3036d2bd2e7a05a1a319891.png" src="../../_images/126bda08eed5689115bbd416ced0c3b124f092c9e3036d2bd2e7a05a1a319891.png" />
+</div>
+</div>
+<p>カップリング・マップの色分けにここでは <a class="reference external" href="https://www.rustworkx.org/">rustworkx</a> を使います。これは、グラフや複雑なネットワーク構造を扱うための Pythonパッケージです。このパッケージは色分けアルゴリズムを複数提供しています。ただし、それらはヒューリスティクスに基づくものであって、必ずしも最小色分け解を見つけることが保証されているわけではないことにご注意ください。</p>
+<p>一般論としてはそうではありますが、私たちが扱うヘビーヘックスのグラフは 2部グラフであるので、<a class="reference external" href="https://www.rustworkx.org/apiref/rustworkx.graph_bipartite_edge_color.html">graph_bipartite_edge_color</a> を使えば最小色分け解が得られるはずです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">color_coupling_map</span><span class="p">(</span><span class="n">backend</span><span class="p">):</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span>
+    <span class="n">undirected_graph</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">(</span><span class="n">multigraph</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">edge_color_map</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">graph_bipartite_edge_color</span><span class="p">(</span><span class="n">undirected_graph</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">edge_color_map</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">edge_color_map</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">graph_greedy_edge_color</span><span class="p">(</span><span class="n">undirected_graph</span><span class="p">)</span>
+    <span class="c1"># build a map from color to a list of edges</span>
+    <span class="n">edge_index_map</span> <span class="o">=</span> <span class="n">undirected_graph</span><span class="o">.</span><span class="n">edge_index_map</span><span class="p">()</span>
+    <span class="n">color_edges_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">color</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">edge_color_map</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+    <span class="k">for</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">edge_color_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">color_edges_map</span><span class="p">[</span><span class="n">color</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">edge_index_map</span><span class="p">[</span><span class="n">edge_index</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge_index_map</span><span class="p">[</span><span class="n">edge_index</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">edge_color_map</span><span class="p">,</span> <span class="n">color_edges_map</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ヘビーヘックスのグラフは一般に3色で色分けができるはずです。このことを先に視覚化したカップリング・マップで確認してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_color_map</span><span class="p">,</span> <span class="n">color_edges_map</span> <span class="o">=</span> <span class="n">color_coupling_map</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">-qubit device, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">color_edges_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> colors assigned.&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_torino, 133-qubit device, 3 colors assigned.
+</pre></div>
+</div>
+</div>
+</div>
+<p>確認できましたね。</p>
+<p>参考までに、得られた色分けで、この rustworkxの視覚化機能を使ってカップリング・マップを実際に色分けしてみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_str_map</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">}</span>
+
+<span class="n">undirected_graph</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">(</span><span class="n">multigraph</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">undirected_graph</span><span class="o">.</span><span class="n">edge_indices</span><span class="p">():</span>
+    <span class="n">undirected_graph</span><span class="o">.</span><span class="n">get_edge_data_by_index</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_str_map</span><span class="p">[</span>
+        <span class="n">edge_color_map</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="p">]</span>
+
+<span class="n">rx</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">graphviz_draw</span><span class="p">(</span>
+    <span class="n">undirected_graph</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;neato&quot;</span><span class="p">,</span> <span class="n">edge_attr_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">edge</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/575fbc4a59a25705019bd348242121fddb796d9fc1e426589049c26acb2a0acd.png" src="../../_images/575fbc4a59a25705019bd348242121fddb796d9fc1e426589049c26acb2a0acd.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>3. 2次元イジングモデルのトロッター分解を用いた時間発展<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>次に、このユーティリティー論文で 2次元イジング・モデルの時間発展のために使われている量子回路を構築するサブルーチンを定義します。サブルーチン化するのは、何度も同じ回路を作る必要があったり、パラメーターを変えた違うバージョンの回路を作る必要があったりするからです。このサブルーチンは、3つのパラメーターを引数として受け取ります。バックエンド backend、トロッター・ステップ数を表す整数 num_steps、そして、バリアの挿入を制御するためのブール値 barrier です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_utility_circuit</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">barrier</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">num_qubits</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">color_edges_map</span> <span class="o">=</span> <span class="n">color_coupling_map</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+    <span class="n">θ_h</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
+    <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">θ_h</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">edge_list</span> <span class="ow">in</span> <span class="n">color_edges_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edge_list</span><span class="p">:</span>
+                <span class="n">qc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rzz</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">barrier</span><span class="p">:</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">qc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>この先で注意していただきたいのは、私たちは先の色分けを使って量子ビットのマッピングとルーティングを手作業で済ませるつもりであるということです。ですので、ここで構築した量子回路をトランスパイルするときには、トランスパイラに量子ビットのマッピングやルーティングをさせませんし、<strong>させない方が良いです</strong> 。あとでコードに実演しますが、そのような制御は、optimization levelを1にして、layout methodを “trivial” にすれば可能です。</p>
+<p>さて次に、構築した回路についての情報を簡単にチェックするためのちょっとしたサブルーチンを定義しておきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">reps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">qc0</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">reps</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits × </span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> layers (</span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">-depth)&quot;</span>
+        <span class="o">+</span> <span class="s2">&quot;,  &quot;</span>
+        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">qc0</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>これらのサブルーチンを実行してみましょう。FakeTrontoというフェイク・デバイス（シミュレーションされたQPU）を使った以下の手続きでは、27量子ビット <span class="math notranslate nohighlight">\(\times\)</span> 15レイヤー（5 トロッター・ステップ）の回路が表示されるはずです。このフェイク・デバイス（FakeTronto）には 28本のエッジがありますので、構築した量子回路には量子もつれを生じさせる 28 <span class="math notranslate nohighlight">\(\times\)</span> 5 個の2量子ビット・ゲートが含まれるはずです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">fake_provider</span><span class="o">.</span><span class="n">FakeTorontoV2</span><span class="p">()</span>
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">get_utility_circuit</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/ryuki/work/qenv202506/lib/python3.13/site-packages/qiskit/visualization/circuit/matplotlib.py:270: UserWarning: Style JSON file &#39;default.json&#39; not found in any of these locations: /Users/ryuki/work/qenv202506/lib/python3.13/site-packages/qiskit/visualization/circuit/styles/default.json, ~/default.json, ~/.qiskit/default.json, default.json. Will use default style.
+  self._style, def_font_ratio = load_style(
+</pre></div>
+</div>
+<img alt="../../_images/38f465ea455c9aa3433f18010236b3994e671171946dae3726cb5d11ebb719fe.svg" src="../../_images/38f465ea455c9aa3433f18010236b3994e671171946dae3726cb5d11ebb719fe.svg" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27 qubits × 15 layers (20-depth),  Gate breakdown: CIRCUIT-177 140, RX 135, BARRIER 5
+27 qubits × 15 layers (60-depth),  Gate breakdown: SDG 280, UNITARY 280, CX 140, R 135, BARRIER 5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>4. 27量子ビットの規模でこの問題を解いてみる<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>ここではまずユーティリティー実験を縮小版で実演してみます。具体的には、27量子ビット <span class="math notranslate nohighlight">\(\times\)</span> 6レイヤー（2トロッター・ステップ）の規模で、<span class="math notranslate nohighlight">\(\langle Z_{13} \rangle\)</span> をオブザーバブルとして使用する量子回路を構築し、AerSimulatorとフェイク・デバイスのそれぞれで実行してみます。</p>
+<p>それをする際には、もちろん「Qiskitパターン」の 4ステップに従います。すなわち、Map、Optimize、Execute、Post-Processです。それぞれの役割は次のとおりです。</p>
+<ul class="simple">
+<li><p>古典入力を量子計算にマッピング（Map）します。</p></li>
+<li><p>量子計算のための回路を最適化（Optimize）します。</p></li>
+<li><p>プリミティブを使って回路を実行（Execute）します。</p></li>
+<li><p>得られた結果を後処理（Post-process）して、古典データのフォーマットで返します。</p></li>
+</ul>
+<p>以下ではまず、この小規模実験のための回路を構築して問題を Mapします。その次に、AerSimulatorとフェイク・デバイスのそれぞれについて、Optimizeと Executeを行います。最後に、結果をプロットするという Post-Processを行います。</p>
+<section id="map">
+<h3>4.1 ステップ1: Map<a class="headerlink" href="#map" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">fake_provider</span><span class="o">.</span><span class="n">FakeTorontoV2</span><span class="p">()</span>  <span class="c1"># a 27 qubit fake device.</span>
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">get_utility_circuit</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+    <span class="p">)</span>  <span class="c1"># Falcon</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mf">0.1</span><span class="p">,</span>
+    <span class="mf">0.2</span><span class="p">,</span>
+    <span class="mf">0.3</span><span class="p">,</span>
+    <span class="mf">0.4</span><span class="p">,</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="mf">0.6</span><span class="p">,</span>
+    <span class="mf">0.7</span><span class="p">,</span>
+    <span class="mf">0.8</span><span class="p">,</span>
+    <span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># We try 11 angles for theta_h.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optimize-execute-aer">
+<h3>4.2 ステップ 2 および 3: Optimize と Execute (Aerシミュレーターを使用)<a class="headerlink" href="#optimize-execute-aer" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend_sim</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">transpiled_qc_sim</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span>
+    <span class="n">qc</span><span class="p">,</span> <span class="n">backend_sim</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">&quot;trivial&quot;</span>
+<span class="p">)</span>
+<span class="n">transpiled_obs_sim</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">transpiled_qc_sim</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">transpiled_qc_sim</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27 qubits × 6 layers (23-depth),  Gate breakdown: SDG 112, UNITARY 112, CX 56, R 54
+27 qubits × 6 layers (16-depth),  Gate breakdown: U 108, CX 56, R 54, P 32
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aerシミュレーターは、ノイズを含まず、量子ビットが全結合した、理想的で完全に理論的なQPUのシミュレーションを行うシミュレーターです。</p>
+<p>32GB 3LPDDR4X RAMと 2.3 GHz クアッドコア Intel Core i7 プロセッサーを搭載し、macOS 14.5を用いた MacBook Proでこのプログラムを走らせた、あるユーザーの場合では、次のセルの実行にウォール・タイムで 161 msかかったと出力されました。実行環境によって実行時間は変わります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">angles</span><span class="p">]</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_sim</span><span class="p">)</span>
+<span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">transpiled_qc_sim</span><span class="p">,</span> <span class="n">transpiled_obs_sim</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="n">result_sim</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 627 ms, sys: 193 ms, total: 820 ms
+Wall time: 186 ms
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optimize-execute">
+<h3>4.3 ステップ 2 および 3: Optimize と Execute (フェイク・デバイス)<a class="headerlink" href="#optimize-execute" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend_fake</span> <span class="o">=</span> <span class="n">fake_provider</span><span class="o">.</span><span class="n">FakeTorontoV2</span><span class="p">()</span>
+<span class="n">transpiled_qc_fake</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span>
+    <span class="n">qc</span><span class="p">,</span> <span class="n">backend_fake</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">&quot;trivial&quot;</span>
+<span class="p">)</span>
+<span class="n">transpiled_obs_fake</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">transpiled_qc_fake</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">transpiled_qc_fake</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27 qubits × 6 layers (23-depth),  Gate breakdown: SDG 112, UNITARY 112, CX 56, R 54
+27 qubits × 6 layers (49-depth),  Gate breakdown: SDG 324, P 274, H 162, CX 56, U 14
+</pre></div>
+</div>
+</div>
+</div>
+<p>同じユーザーが同じ環境で次のセルを実行したときにはウォール・タイムで 2分 19秒かかったと出力されました。フェイク・デバイスは、量子ビットの接続性やノイズの性質など実際のQPUの特性をできる限りシミュレートしたもので、フェイク・デバイス上で回路を実行すると回路の計算自体よりも長い時間が、ノイズのシミュレーションにかかることがあります。フェイク・デバイス上では、たとえば 27量子ビット <span class="math notranslate nohighlight">\(\times\)</span> 9レイヤーで 3 トロッター・ステップの規模を超えるような大きい回路は実行しないことをお勧めします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">angles</span><span class="p">]</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_fake</span><span class="p">)</span>
+<span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">transpiled_qc_fake</span><span class="p">,</span> <span class="n">transpiled_obs_fake</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="n">result_fake</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5min 19s, sys: 3.53 s, total: 5min 22s
+Wall time: 38.2 s
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="post-process">
+<h3>4.4 ステップ 4: Post-process<a class="headerlink" href="#post-process" title="Link to this heading">#</a></h3>
+<p>AerSimulatorから得られた、ノイズのない正確な結果と、ノイズの影響もシミュレートしたフェイク・デバイスから得られた結果をグラフにプロットして比較します。FakeToronto上でシミュレートされたノイズによる影響を見ることができます。実際の量子HWでの実験結果もおよそこのようなものになることが予想されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_fake</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fake Device&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AerSimulator&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{R_x}</span><span class="s2">$ angle $</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="si">{13}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/328af3e9986a825114232ccc9fec5040edf49260cf5d2484f4615510f03bee25.svg" src="../../_images/328af3e9986a825114232ccc9fec5040edf49260cf5d2484f4615510f03bee25.svg" />
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2>5. 127量子ビットのバージョンで問題を解く<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>最初に述べましたとおり、ユーティリティー・スケールの実験を実行することが今回の目標です。127量子ビットと 60レイヤー (20トロッター・ステップ)の規模を持ち、<span class="math notranslate nohighlight">\(\langle Z_{62} \rangle\)</span>をオブザーバブルとして用いた回路を構築して実行してみてください。先に実演した 27量子ビットのバージョンを参考にご自分で実際に試されることをお勧めしますが、以下に解を掲載します。</p>
+<p><strong>解:</strong></p>
+<section id="id8">
+<h3>5.1 ステップ 1: Map<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># backend_map = service.backend(&quot;ibm_kyiv&quot;)</span>
+<span class="n">backend_map</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">num_steps</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">get_utility_circuit</span><span class="p">(</span><span class="n">backend_map</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">62</span><span class="p">],</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend_map</span><span class="o">.</span><span class="n">num_qubits</span>
+<span class="p">)</span>  <span class="c1"># Eagle</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>5.2 ステップ 2 および 3: Optimize と execute<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>参考までに、Eagleプロセッサーのカップリング・マップには 144個のエッジがあります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># backend = service.backend(&quot;ibm_kyiv&quot;)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">backend_map</span>
+
+<span class="n">transpiled_qc</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">&quot;trivial&quot;</span><span class="p">)</span>
+<span class="n">transpiled_obs</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">transpiled_qc</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">transpiled_qc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">[[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">angles</span><span class="p">]</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">transpiled_qc</span><span class="p">,</span> <span class="n">transpiled_obs</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;job id=</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>5.3 ステップ 4: Post-process<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>比較のために下のコードでは、エラー緩和手法を用いてユーティリティー論文で計算された図4bの “mitigated”ポイントの値を定数としてハードコードして与えています。ご自身の実験結果とあわせてプロットしてみてください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_paper</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mf">1.0171</span><span class="p">,</span>
+    <span class="mf">1.0044</span><span class="p">,</span>
+    <span class="mf">0.9563</span><span class="p">,</span>
+    <span class="mf">0.9602</span><span class="p">,</span>
+    <span class="mf">0.8394</span><span class="p">,</span>
+    <span class="mf">0.8120</span><span class="p">,</span>
+    <span class="mf">0.5466</span><span class="p">,</span>
+    <span class="mf">0.4556</span><span class="p">,</span>
+    <span class="mf">0.1953</span><span class="p">,</span>
+    <span class="mf">0.0141</span><span class="p">,</span>
+    <span class="mf">0.0117</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="c1"># REPLACE WITH YOUR OWN JOB ID</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">backend</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_paper</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Utility Paper&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{R_x}</span><span class="s2">$ angle $</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="si">{62}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>自分で計算して得られた結果は図4bの “unmitigated”の点と似たような結果になりましたでしょうか。回路を実行したデバイスの特性と、その時の条件によってはだいぶ違った結果になることもあります。ですので、結果自体にはあまりこだわらないでいただきたいと思います。大事なのはコーディングが正しくできたかどうかです。もしうまくできたようであれば、ユーティリティー時代へのスタートラインに立てたということになりますので、ようこそ！と歓迎させていただきます。</p>
+<p>ユーティリティー論文にも見られますように、今、世界中の科学者たちが、量子優位性を目指して、ノイズが存在する量子コンピューターの上でも価値ある結果が得られるように様々な工夫をしています。量子優位性とは、産業界の実用的な問題に対して、量子コンピューターが速度、信頼性、あるいは費用効率の点で古典コンピューターを超える解を提供できるようになった状態のことを指します。量子優位性はいちどきに起こる現象ではなくて、量子コンピューターの計算結果を古典コンピューターで再現しようとすると次第に長い時間がかかるようになっていって、ついには量子コンピューターで得られるリードタイムが重要な価値を持つようになっていく、という、ある程度の時間的長さを持った「時代 / 時期」を表す言葉と考えた方がよいかもしれません。量子優位性についてひとつ明らかなことは、そこに到達するためにはユーティリティー・スケールの実験を繰り返さなければいけないということです。今回のレッスンをご体験くださった皆様にとって、このレッスンが楽しく、そして適度に難しいものであって、そして量子優位性への冒険に皆様が踏み出すきっかけになっていれば、幸いです。</p>
+</section>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Kim, Y., Eddins, A., Anand, S. et al. Evidence for the utility of quantum computing before fault tolerance. Nature 618, 500–505 (2023). <a class="reference external" href="https://doi.org/10.1038/s41586-023-06096-3">https://doi.org/10.1038/s41586-023-06096-3</a></p></li>
+</ul>
+<p>© IBM Corp., 2017-2025</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. ユーティリティー論文へのいざない</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 目標</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. 準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rzz-pi-2">2.1 RZZ(-<span class="math notranslate nohighlight">\(\pi\)</span> / 2)ゲートの作成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.2 カップリング・マップの色分け</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3. 2次元イジングモデルのトロッター分解を用いた時間発展</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4. 27量子ビットの規模でこの問題を解いてみる</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#map">4.1 ステップ1: Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-execute-aer">4.2 ステップ 2 および 3: Optimize と Execute (Aerシミュレーターを使用)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-execute">4.3 ステップ 2 および 3: Optimize と Execute (フェイク・デバイス)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-process">4.4 ステップ 4: Post-process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">5. 127量子ビットのバージョンで問題を解く</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">5.1 ステップ 1: Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">5.2 ステップ 2 および 3: Optimize と execute</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5.3 ステップ 4: Post-process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
