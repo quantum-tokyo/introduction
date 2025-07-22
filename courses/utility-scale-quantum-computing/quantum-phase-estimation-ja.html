@@ -1,0 +1,1334 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子位相推定 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/quantum-phase-estimation-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/quantum-phase-estimation-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/quantum-phase-estimation-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子位相推定</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. イントロダクション</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qft">2. 量子フーリエ変換(QFT)の基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1. 直感的な理解　<a id="intuition"></a></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qubit-qft">2.2 例: 1-qubit QFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.3 QFTのテンソル積による表現</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.4 例: 3量子ビットQFT回路の構築</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.5 エクササイズ: QFT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">エクササイズの回答：QFT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qpe">3. 量子位相推定（QPE）の基本</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.1 手順</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">1. 準備</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2. 重ね合わせ</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3. ユニタリ演算子と制御ユニタリ演算</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tqpe">3.2 例：<span class="math notranslate nohighlight">\(T\)</span>ゲートに対するQPE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">3.3 エクササイズ</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#theta-1-3">エクササイズの解: <span class="math notranslate nohighlight">\(\theta = 1/3\)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-runtime-sampler-primitive">4. Qiskit Runtime Sampler primitiveによる実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">4.1 Step 1: 問題を量子回路へ落とし込む</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">4.2 Step 2: ターゲットのハードウェアに対して最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">4.3 Step 3: ターゲットのハードウェアで実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">4.4 Step 4: 結果の後処理をする</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子位相推定<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Kento Ueda (15 May 2024)　翻訳：Hotaka Hayashi（30 June 2025）
+<p>この教材では、量子フーリエ変換（QFT）と量子位相推定（QPE）の基本とその実装を学ぶ。</p>
+<p>講義資料のPDFは近日中にご覧になれます。</p>
+<p><em>QPU上の推定ランタイム：7秒</em>
+</Admonition></p>
+<section id="id2">
+<h2>1. イントロダクション<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><strong>量子フーリエ変換 (QFT)</strong></p>
+<p>量子フーリエ変換（QFT）は、古典計算における離散フーリエ変換に対応する量子計算である。これは量子状態の計算規定を、フーリエ変換に基づいた形式へ変換する線型写像である。QFTは量子状態から周期成分の情報を得る効率的な方法として、多くの量子アルゴリズムで重要な役割を果たしている。
+QFTは<span class="math notranslate nohighlight">\(H\)</span>ゲートや制御<span class="math notranslate nohighlight">\(P\)</span>ゲートなどを用いて、<span class="math notranslate nohighlight">\(N\)</span>量子ビットに対し<span class="math notranslate nohighlight">\(O(N^2)\)</span>のゲートで実装される。これは古典フーリエ変換に対する指数的な加速を示している。</p>
+<ul class="simple">
+<li><p><strong>応用</strong>: 巨大整数の素因数分解や離散対数を扱う、ショアのアルゴリズムなどの量子アルゴリズムにおける基礎的な部分を構成している。</p></li>
+</ul>
+<p><strong>量子位相推定（QPE）</strong></p>
+<p>量子位相推定は、あるユニタリ行列の固有ベクトルに紐づいた位相を推定するアルゴリズムである。これは量子状態の数学的性質を、計算における応用へとつなげる橋渡しとなるものである。</p>
+<ul class="simple">
+<li><p><strong>応用</strong>:ユニタリ行列の固有値を求めたり、量子系のシミュレーションといった問題を解くことができる。</p></li>
+</ul>
+<p>QFTとQPEは共に、古典コンピュータが現状敵わないような問題を解ける量子アルゴリズムの根幹となるものである。この教材を通して、これらの技術の実装方法を理解していただきたい。</p>
+</section>
+<section id="qft">
+<h2>2. 量子フーリエ変換(QFT)の基礎<a class="headerlink" href="#qft" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span><span class="p">,</span> <span class="n">plot_bloch_multivector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>離散フーリエ変換のアナロジーとして、量子フーリエ変換は<span class="math notranslate nohighlight">\(n\)</span>量子ビットの量子状態<span class="math notranslate nohighlight">\(\vert j \rangle\)</span>を以下のように変換する。</p>
+<div class="math notranslate nohighlight">
+\[
+QFT_{N}: \vert j \rangle \mapsto \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\omega_N^{jk} \vert k \rangle
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(N=2^n\)</span>, <span class="math notranslate nohighlight">\(\omega_N^{jk} = e^{2\pi i \frac{jk}{N}}\)</span>である。</p>
+<p>ユニタリ行列による表現は以下の通り：</p>
+<div class="math notranslate nohighlight">
+\[
+U_{QFT} = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} \sum_{k=0}^{N-1} \omega_N^{jk} \vert k \rangle \langle j \vert
+\]</div>
+<section id="id3">
+<h3>2.1. 直感的な理解　<a id="intuition"></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>QFTはZ基底とフーリエ基底の2つの間での基底変換である。ここで、フーリエ基底とは何を意味しているのだろうか。</p>
+<p>関数<span class="math notranslate nohighlight">\(f(x)\)</span>のフーリエ変換<span class="math notranslate nohighlight">\(F(\omega)\)</span>は、<span class="math notranslate nohighlight">\(f(x)\)</span>を周波数<span class="math notranslate nohighlight">\(\omega\)</span>の正弦波関数に畳み込みしたものである。簡単に言えば、フーリエ変換は、<span class="math notranslate nohighlight">\(f(x)\)</span>を正弦または余弦関数から生成するのに、それぞれの周波数成分<span class="math notranslate nohighlight">\(\omega\)</span>がどのくらい必要になるかを示す関数ということだ。QFTが意味するところをよりよく理解するために、以下の4量子ビットを用いた図を考えよう。</p>
+<p><img alt="zbasis-counting.gif" src="courses/utility-scale-quantum-computing/zbasis-counting.gif" /></p>
+<p>計算基底において、それぞれの数字は<span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>のバイナリで格納される。</p>
+<p>それぞれの量子ビットがフリップする周期が違うことを確認しておこう。
+最も左の量子ビットは全ての数字の増加に対してフリップしている。その1つ右は数字が2増加するたびにフリップし、その1つ右は数字が4増加するたびにフリップし、…と続く。</p>
+<p>これらの量子状態に量子フーリエ変換を施すと、フーリエ基底で記述される量子状態となる。</p>
+<div class="math notranslate nohighlight">
+\[
+|\text{計算基底の量子状態}\rangle \quad \xrightarrow[]{\text{QFT}} \quad |\text{フーリエ基底の量子状態}\rangle
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{QFT}|x\rangle = |\widetilde{x}\rangle
+\]</div>
+<p>（しばしば、フーリエ基底はチルダ(~)によって表現される。）</p>
+<p><img alt="fourierbasis-counting.gif" src="courses/utility-scale-quantum-computing/fourierbasis-counting.gif" /></p>
+<p>フーリエ基底において格納される数字は、各量子ビットがZ軸まわりに回転する角度を表現する。<span class="math notranslate nohighlight">\(|\widetilde{0}\rangle\)</span>の状態は、全ての量子ビットが<span class="math notranslate nohighlight">\(|{+}\rangle\)</span>にあることを表す。上の例のように、4量子ビット状態<span class="math notranslate nohighlight">\(|\widetilde{5}\rangle\)</span>において、最も左の量子ビットは<span class="math notranslate nohighlight">\(\tfrac{5}{2^n} = \tfrac{5}{16}\)</span>だけ回転している（つまり、1周<span class="math notranslate nohighlight">\(2\pi\)</span>ラジアンの<span class="math notranslate nohighlight">\(\tfrac{5}{16}\)</span>倍）。その右の量子ビットは、2倍の<span class="math notranslate nohighlight">\(\tfrac{10}{16}\times 2\pi\)</span> ラジアンだけ回転しており、その右は…と続いていく。</p>
+<p>それぞれの量子ビットが変化する周期が違うことを、改めて確認しておこう。最も左の量子ビット(量子ビット0)は最小の周波数を持ち、最も右が最大の周波数を持つ。</p>
+</section>
+<section id="qubit-qft">
+<h3>2.2 例: 1-qubit QFT<a class="headerlink" href="#qubit-qft" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(N = 2^1 = 2\)</span>のケースを見てみよう。</p>
+<p>ユニタリ行列は以下のように書ける。:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+U_{QFT} &amp; = \frac{1}{\sqrt{2}} \sum_{j=0}^{1} \sum_{k=0}^{1} \omega_2^{jk} \vert k \rangle \langle j \vert
+\\
+&amp; = \frac{1}{\sqrt{2}} (\omega_2^{0} \vert 0 \rangle \langle 0 \vert + \omega_2^{0} \vert 0 \rangle \langle 1 \vert + \omega_2^{0} \vert 1 \rangle \langle 0 \vert + \omega_2^{1} \vert 1 \rangle \langle 1 \vert)
+\\
+&amp; = \frac{1}{\sqrt{2}} (\vert 0 \rangle \langle 0 \vert + \vert 0 \rangle \langle 1 \vert + \vert 1 \rangle \langle 0 \vert - \vert 1 \rangle \langle 1 \vert)
+\\
+&amp; = H
+\end{aligned}
+\end{split}\]</div>
+<p>この演算は、アダマールゲート(<span class="math notranslate nohighlight">\(H\)</span>)をかけることと同じである。</p>
+</section>
+<section id="id4">
+<h3>2.3 QFTのテンソル積による表現<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(N = 2^n\)</span>次元へ一般化しよう。<span class="math notranslate nohighlight">\(QFT_{N}\)</span>は<span class="math notranslate nohighlight">\(\vert x \rangle = \vert x_1\ldots x_n \rangle\)</span>に対して以下のように作用する。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \vert y \rangle
+\\
+&amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} e^{2 \pi i xy / 2^n} \vert y \rangle ~\text{since}\: \omega_N^{xy} = e^{2\pi i \frac{xy}{N}} \:\text{and}\: N = 2^n
+\\
+&amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} e^{2 \pi i \left(\sum_{k=1}^n y_k/2^k\right) x} \vert y_1 \ldots y_n \rangle \:\text{rewriting in fractional binary notation}\: y = y_1\ldots y_n, y/2^n = \sum_{k=1}^n y_k/2^k
+\\
+&amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1} \prod_{k=1}^n e^{2 \pi i x y_k/2^k } \vert y_1 \ldots y_n \rangle \:\text{after expanding the exponential of a sum to a product of exponentials,}
+\\
+&amp; = \frac{1}{\sqrt{N}} \bigotimes_{k=1}^n  \left(\vert0\rangle + e^{2 \pi i x /2^k } \vert1\rangle \right) \:\text{after rearranging the sum and products, and expanding}
+\sum_{y=0}^{N-1} = \sum_{y_1=0}^{1}\sum_{y_2=0}^{1}\ldots\sum_{y_n=0}^{1}
+\\
+&amp; = \frac{1}{\sqrt{N}}
+\left(\vert0\rangle + e^{\frac{2\pi i}{2}x} \vert1\rangle\right)
+\otimes
+\left(\vert0\rangle + e^{\frac{2\pi i}{2^2}x} \vert1\rangle\right)
+\otimes
+\ldots
+\otimes
+\left(\vert0\rangle + e^{\frac{2\pi i}{2^{n-1}}x} \vert1\rangle\right)
+\otimes
+\left(\vert0\rangle + e^{\frac{2\pi i}{2^n}x} \vert1\rangle\right)
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id5">
+<h3>2.4 例: 3量子ビットQFT回路の構築<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>上記の説明からは、QFTの量子回路を作る方法は自明ではない。ここで、3量子ビットそれぞれの位相が異なる割合で発展することに注意して、この回路を構築してみよう。講義資料には多くの図や例が存在しており、またさらなる資料は、量子アルゴリズムの基礎コースに含まれる<a class="reference internal" href="#/learning/courses/fundamentals-of-quantum-algorithms/phase-estimation-and-factoring/introduction"><span class="xref myst">こちらの講義</span></a>を参照いただきたい。</p>
+<p>さて、QFTをシミュレータで実行してみよう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare for 3 qubits circuit</span>
+<span class="n">qr</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">cr</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr</span><span class="p">,</span> <span class="n">cr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Controlled-phase gate from qubit 1 to qubit 2</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Controlled-phase gate from qubit 0 to qubit 2</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/62b6e0a3350ae59eb6e33873a1ee3d6a77cc86a35ec56380d83ebe091fba4a5e.png" src="../../_images/62b6e0a3350ae59eb6e33873a1ee3d6a77cc86a35ec56380d83ebe091fba4a5e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Controlled-phase gate from qubit 0 to qubit 1</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f8a8e3905933fd85d54950e713784f1dfa7ac2a56f85ca512afcac721d4a7690.png" src="../../_images/f8a8e3905933fd85d54950e713784f1dfa7ac2a56f85ca512afcac721d4a7690.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/27cc8834213a0b32c308509685b53e71c51bd79f7bbbbd5429e8694d753ec11f.png" src="../../_images/27cc8834213a0b32c308509685b53e71c51bd79f7bbbbd5429e8694d753ec11f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d596873a73335114397f7057127a01d13cb2810d9b08461f0d5987e5d52256e7.png" src="../../_images/d596873a73335114397f7057127a01d13cb2810d9b08461f0d5987e5d52256e7.png" />
+</div>
+</div>
+<p>例として、<span class="math notranslate nohighlight">\(|5\rangle\)</span>にQFTを施してみよう。</p>
+<p>まず、整数5のバイナリが量子回路にエンコードされているかを確認する。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0b101&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6124a49ca12c67dbf79fc66f2cee2f53f46a956d61038b91e547e27589e002e6.png" src="../../_images/6124a49ca12c67dbf79fc66f2cee2f53f46a956d61038b91e547e27589e002e6.png" />
+</div>
+</div>
+<p>Aerシミュレータによって量子状態をチェックする：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statevector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">statevector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1281690951ddbae95806f1eb0bf150d1242e2826e4a0517c16e53a19032635e6.png" src="../../_images/1281690951ddbae95806f1eb0bf150d1242e2826e4a0517c16e53a19032635e6.png" />
+</div>
+</div>
+<p>最後に、QFTを施して終状態を見てみよう：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a16d37ad022f0e09c63e17e1c9a640eeef7dbbcb96810235e747105466bdf027.png" src="../../_images/a16d37ad022f0e09c63e17e1c9a640eeef7dbbcb96810235e747105466bdf027.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statevector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">statevector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f1d0727f83b245012ab74e84867848bf57facd4d95aefd0bd8a6724ba9c19a35.png" src="../../_images/f1d0727f83b245012ab74e84867848bf57facd4d95aefd0bd8a6724ba9c19a35.png" />
+</div>
+</div>
+<p>QFTが正しく機能したことを確認できた。量子ビット0は一周の<span class="math notranslate nohighlight">\(\tfrac{5}{8}\)</span>倍、量子ビット1は一周の<span class="math notranslate nohighlight">\(\tfrac{10}{8}\)</span>倍、量子ビット2は<span class="math notranslate nohighlight">\(\tfrac{20}{8}\)</span>倍の角度となっている。</p>
+</section>
+<section id="id6">
+<h3>2.5 エクササイズ: QFT<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>(1) 4量子ビットのQFTを実装しよう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##your code goes here##</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(2) <span class="math notranslate nohighlight">\(|14\rangle\)</span>にQFTを施し、Bloch球を用いて図示してみよう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##your code goes here##</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id7">
+<h4>エクササイズの回答：QFT<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>(1)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qr</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">cr</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr</span><span class="p">,</span> <span class="n">cr</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ca7c23d34fc328eca1c7d8078f5a4f9ed3bdb25cc1b2d5d2f6375c68925d5fab.png" src="../../_images/ca7c23d34fc328eca1c7d8078f5a4f9ed3bdb25cc1b2d5d2f6375c68925d5fab.png" />
+</div>
+</div>
+<p>(2)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0b1110&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/20f99090ba3c4052bf119753375d4f1989a6813eae57682f1be1dd763d01d841.png" src="../../_images/20f99090ba3c4052bf119753375d4f1989a6813eae57682f1be1dd763d01d841.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/11df646bb75f94a63d14ea4b53e90cd0a6d425f96847d84365441916cfe6d37b.png" src="../../_images/11df646bb75f94a63d14ea4b53e90cd0a6d425f96847d84365441916cfe6d37b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statevector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">statevector</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7e4720d37ef4a49053e5988b3340cbad76a4efc7a6af9ddb234fdb5c37c97b3e.png" src="../../_images/7e4720d37ef4a49053e5988b3340cbad76a4efc7a6af9ddb234fdb5c37c97b3e.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="qpe">
+<h2>3. 量子位相推定（QPE）の基本<a class="headerlink" href="#qpe" title="Link to this heading">#</a></h2>
+<p>QPEアルゴリズムは、あるユニタリ行列<span class="math notranslate nohighlight">\(U\)</span>に対し<span class="math notranslate nohighlight">\(U\vert\psi \rangle =e^{\boldsymbol{2\pi i} \theta }|\psi \rangle\)</span>を満たす<span class="math notranslate nohighlight">\(\theta\)</span>を推定する。ここで<span class="math notranslate nohighlight">\(U\)</span>はユニタリであるから、その固有値の絶対値は1であることに注意する。</p>
+<section id="id8">
+<h3>3.1 手順<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h4>1. 準備<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>量子状態<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>をある一連の量子ビットレジスタに格納しておく。これに加え、追加の<span class="math notranslate nohighlight">\(n\)</span>量子ビットを、<span class="math notranslate nohighlight">\(2^n\theta\)</span>の値を格納するための計算レジスタとして用意しておく。
+$<span class="math notranslate nohighlight">\(
+|\psi_0\rangle = \lvert 0 \rangle^{\otimes n} \lvert \psi \rangle
+\)</span>$</p>
+</section>
+<section id="id10">
+<h4>2. 重ね合わせ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p>計算レジスタの<span class="math notranslate nohighlight">\(n\)</span>ビット全てに対するアダマールゲート<span class="math notranslate nohighlight">\(H^{\otimes n}\)</span>を作用させる。</p>
+<div class="math notranslate nohighlight">
+\[
+|\psi_1\rangle = {\frac {1}{2^{\frac {n}{2}}}}\left(|0\rangle +|1\rangle \right)^{\otimes n} \lvert \psi \rangle
+\]</div>
+</section>
+<section id="id11">
+<h4>3. ユニタリ演算子と制御ユニタリ演算<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(U\)</span>は<span class="math notranslate nohighlight">\(|\psi\rangle\)</span>を固有状態にもつユニタリ演算子であるから、実数<span class="math notranslate nohighlight">\(\theta\)</span>を用いて<span class="math notranslate nohighlight">\(U|\psi \rangle =e^{\boldsymbol{2\pi i} \theta }|\psi \rangle\)</span>とかける。そのため、<span class="math notranslate nohighlight">\(U\)</span>を<span class="math notranslate nohighlight">\(|\psi\rangle\)</span>に<span class="math notranslate nohighlight">\(2^j\)</span>回かけると、：</p>
+<div class="math notranslate nohighlight">
+\[
+U^{2^{j}}|\psi \rangle =U^{2^{j}-1}U|\psi \rangle =U^{2^{j}-1}e^{2\pi i\theta }|\psi \rangle =\cdots =e^{2\pi i2^{j}\theta }|\psi \rangle
+\]</div>
+<p>また、ユニタリ演算子<span class="math notranslate nohighlight">\(U\)</span>についての制御ユニタリ演算<span class="math notranslate nohighlight">\(CU\)</span>を考えよう。これは、制御ビットの値が<span class="math notranslate nohighlight">\(|1\rangle\)</span>のときのみユニタリ演算子<span class="math notranslate nohighlight">\(U\)</span>が標的ビットにかかるものである。ここで制御ビットの状態が<span class="math notranslate nohighlight">\(|+\rangle\)</span>のケースを考えると、：</p>
+<div class="math notranslate nohighlight">
+\[
+CU|\psi\rangle|+\rangle=CU|\psi\rangle(\dfrac{1}{\sqrt{2}}(|0\rangle+|1\rangle))=\dfrac{1}{\sqrt{2}}(|\psi\rangle|0\rangle+U|\psi\rangle|1\rangle)=\dfrac{1}{\sqrt{2}}(|\psi\rangle|0\rangle+e^{\boldsymbol{2\pi i} \theta }|\psi\rangle|1\rangle)
+\]</div>
+</section>
+</section>
+<section id="tqpe">
+<h3>3.2 例：<span class="math notranslate nohighlight">\(T\)</span>ゲートに対するQPE<a class="headerlink" href="#tqpe" title="Link to this heading">#</a></h3>
+<p>例として、<span class="math notranslate nohighlight">\(T\)</span>ゲートに対してQPEを適用しよう。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T|1\rangle =
+\begin{pmatrix}
+1 &amp; 0\\
+0 &amp; e^\frac{i\pi}{4}\\
+\end{pmatrix}
+\begin{pmatrix}
+0\\
+1\\
+\end{pmatrix}
+= e^\frac{i\pi}{4}|1\rangle
+\end{split}\]</div>
+<p>である。ここで、</p>
+<div class="math notranslate nohighlight">
+\[
+T|1\rangle = e^{2i\pi\theta}|1\rangle
+\]</div>
+<p>に対する量子位相推定を実行して</p>
+<div class="math notranslate nohighlight">
+\[
+\theta = \frac{1}{8}
+\]</div>
+<p>を求められるだろうか。</p>
+<p>まずは<span class="math notranslate nohighlight">\(X\)</span>ゲートによって、<span class="math notranslate nohighlight">\(\vert\psi\rangle = \vert1\rangle\)</span> で初期化しよう：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qpe</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e4e18eb4e5e03a54d9475031edf339ec5a9d2e5c8b0a25eb690248186c9db5ac.png" src="../../_images/e4e18eb4e5e03a54d9475031edf339ec5a9d2e5c8b0a25eb690248186c9db5ac.png" />
+</div>
+</div>
+<p>続けて、アダマールゲートを計算ビットに適用する：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a15a12088fbaebe7e579df9fdc6f5501da98c1f277cbc6bb76d9f4be58982cfa.png" src="../../_images/a15a12088fbaebe7e579df9fdc6f5501da98c1f277cbc6bb76d9f4be58982cfa.png" />
+</div>
+</div>
+<p>制御ユニタリ演算を実行する：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">counting_qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">qpe</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">counting_qubit</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># This is C-U</span>
+    <span class="n">repetitions</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/365aba94636d95e9c9b9d65a13a2cd22705e9890fc3a281fdccddc2ba489f783.png" src="../../_images/365aba94636d95e9c9b9d65a13a2cd22705e9890fc3a281fdccddc2ba489f783.png" />
+</div>
+</div>
+<p>最後に計算レジスタに対して逆QFTを作用させ、測定してみよう：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QFT</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply inverse QFT</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">QFT</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/925a961ecb0f78715387e29612d5faab6abbee2496ef418858b989f61219dcdc.png" src="../../_images/925a961ecb0f78715387e29612d5faab6abbee2496ef418858b989f61219dcdc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b0ac714928a42e58923888c2244ab5981dd0ce75c026b7cf96647d3705807471.png" src="../../_images/b0ac714928a42e58923888c2244ab5981dd0ce75c026b7cf96647d3705807471.png" />
+</div>
+</div>
+<p>Aerシミュレータによって、実行してみよう：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aer_sim</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">2048</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">aer_sim</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t_qpe</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qpe</span><span class="p">)</span>
+
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">aer_sim</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">t_qpe</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/804492ef068c0837689553f45a6d355d36009adf5f687cb79e3d3e0102e104ba.png" src="../../_images/804492ef068c0837689553f45a6d355d36009adf5f687cb79e3d3e0102e104ba.png" />
+</div>
+</div>
+<p>終状態は(<code class="docutils literal notranslate"><span class="pre">001</span></code>)で確定している。これは整数<code class="docutils literal notranslate"><span class="pre">1</span></code>を表現し、これを<span class="math notranslate nohighlight">\(2^n\)</span>で割ることによって<span class="math notranslate nohighlight">\(\theta\)</span>を得る:</p>
+<div class="math notranslate nohighlight">
+\[
+\theta = \frac{1}{2^3} = \frac{1}{8}
+\]</div>
+<p>Shorのアルゴリズムは、量子回路に埋め込まれている未知の<span class="math notranslate nohighlight">\(\theta\)</span>を推定することを通して、素因数分解を行う。</p>
+</section>
+<section id="id12">
+<h3>3.3 エクササイズ<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>計算レジスタに3量子ビットを、固有状態に1量子ビットを用いて、<span class="math notranslate nohighlight">\(\theta = 1/3\)</span>を推定してみよう。</p>
+<p><span class="math notranslate nohighlight">\(P|1\rangle = e^{i\lambda}|1\rangle\)</span>であるので、ここで<span class="math notranslate nohighlight">\(\lambda = \tfrac{2 \pi}{3}\)</span>と設定することで、<span class="math notranslate nohighlight">\(U|1\rangle = e^{2\pi i \tfrac{1}{3}}|1\rangle\)</span>となる。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##your code goes here##</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="theta-1-3">
+<h4>エクササイズの解: <span class="math notranslate nohighlight">\(\theta = 1/3\)</span><a class="headerlink" href="#theta-1-3" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and set up circuit</span>
+<span class="n">qpe</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Apply H-Gates to counting qubits:</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Prepare our eigenstate |psi&gt;:</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Do the controlled-U operations:</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">counting_qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">qpe</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">counting_qubit</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">repetitions</span> <span class="o">*=</span> <span class="mi">2</span>
+
+<span class="c1"># Do the inverse QFT:</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">QFT</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/da41413cdc285b1ad813705528bfce5203a24719e1d3dd20eac852d9e225260f.png" src="../../_images/da41413cdc285b1ad813705528bfce5203a24719e1d3dd20eac852d9e225260f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aer_sim</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">4096</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">aer_sim</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t_qpe</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qpe</span><span class="p">)</span>
+
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">aer_sim</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">t_qpe</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8a14aab08b054245a1a3cf40f78cd9266da8e7f3efcb4e265c5781dafe3560a8.png" src="../../_images/8a14aab08b054245a1a3cf40f78cd9266da8e7f3efcb4e265c5781dafe3560a8.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="qiskit-runtime-sampler-primitive">
+<h2>4. Qiskit Runtime Sampler primitiveによる実行<a class="headerlink" href="#qiskit-runtime-sampler-primitive" title="Link to this heading">#</a></h2>
+<p>Qiskit Patternsとして以下の4ステップを実行し、QPEを本物の量子デバイスで実行してみよう。</p>
+<ol class="arabic simple">
+<li><p>問題を量子ネイティブな形式に落とし込む</p></li>
+<li><p>回路を最適化する</p></li>
+<li><p>量子回路を実行する</p></li>
+<li><p>結果の後処理を行う</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading your IBM Quantum account(s)</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="step-1">
+<h3>4.1 Step 1: 問題を量子回路へ落とし込む<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qpe</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">counting_qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">qpe</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">counting_qubit</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># This is C-U</span>
+    <span class="n">repetitions</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">QFT</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b0ac714928a42e58923888c2244ab5981dd0ce75c026b7cf96647d3705807471.png" src="../../_images/b0ac714928a42e58923888c2244ab5981dd0ce75c026b7cf96647d3705807471.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_torino&#39;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2">
+<h3>4.2 Step 2: ターゲットのハードウェアに対して最適化する<a class="headerlink" href="#step-2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transpile the circuit into basis gates executable on the hardware</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_compiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qpe</span><span class="p">)</span>
+
+<span class="n">qc_compiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4dd209ba11c76ac489cd1c5aadaa60e087ae1d51c6aedf6fa620ead7eecac9fc.png" src="../../_images/4dd209ba11c76ac489cd1c5aadaa60e087ae1d51c6aedf6fa620ead7eecac9fc.png" />
+</div>
+</div>
+</section>
+<section id="step-3">
+<h3>4.3 Step 3: ターゲットのハードウェアで実行する<a class="headerlink" href="#step-3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">real_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">real_sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc_compiled</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>  <span class="c1"># Input your job-id between the quotations</span>
+<span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_real</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4">
+<h3>4.4 Step 4: 結果の後処理をする<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1d1d9749bca31de75d8ff6031b92efddce70ccb4e2cee03d47fae066c9d3ddd1.png" src="../../_images/1d1d9749bca31de75d8ff6031b92efddce70ccb4e2cee03d47fae066c9d3ddd1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the version of Qiskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>© IBM Corp., 2017-2025</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. イントロダクション</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qft">2. 量子フーリエ変換(QFT)の基礎</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1. 直感的な理解　<a id="intuition"></a></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qubit-qft">2.2 例: 1-qubit QFT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.3 QFTのテンソル積による表現</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.4 例: 3量子ビットQFT回路の構築</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.5 エクササイズ: QFT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">エクササイズの回答：QFT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qpe">3. 量子位相推定（QPE）の基本</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.1 手順</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">1. 準備</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2. 重ね合わせ</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3. ユニタリ演算子と制御ユニタリ演算</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tqpe">3.2 例：<span class="math notranslate nohighlight">\(T\)</span>ゲートに対するQPE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">3.3 エクササイズ</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#theta-1-3">エクササイズの解: <span class="math notranslate nohighlight">\(\theta = 1/3\)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-runtime-sampler-primitive">4. Qiskit Runtime Sampler primitiveによる実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">4.1 Step 1: 問題を量子回路へ落とし込む</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">4.2 Step 2: ターゲットのハードウェアに対して最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">4.3 Step 3: ターゲットのハードウェアで実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">4.4 Step 4: 結果の後処理をする</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
