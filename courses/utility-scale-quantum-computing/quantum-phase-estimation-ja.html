@@ -437,24 +437,24 @@ document.write(`
 <h1>量子位相推定<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <Admonition type="note">
   Kento Ueda (15 May 2024)　翻訳：Hotaka Hayashi（30 June 2025）
-<p>この教材では、量子フーリエ変換（QFT）と量子位相推定（QPE）の基本とその実装を学ぶ。</p>
+<p>この教材では、量子フーリエ変換（QFT）と量子位相推定（QPE）の基本とその実装を学びます。</p>
 <p>講義資料のPDFは近日中にご覧になれます。</p>
 <p><em>QPU上の推定ランタイム：7秒</em>
 </Admonition></p>
 <section id="id2">
 <h2>1. イントロダクション<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><strong>量子フーリエ変換 (QFT)</strong></p>
-<p>量子フーリエ変換（QFT）は、古典計算における離散フーリエ変換に対応する量子計算である。これは量子状態の計算規定を、フーリエ変換に基づいた形式へ変換する線型写像である。QFTは量子状態から周期成分の情報を得る効率的な方法として、多くの量子アルゴリズムで重要な役割を果たしている。
-QFTは<span class="math notranslate nohighlight">\(H\)</span>ゲートや制御<span class="math notranslate nohighlight">\(P\)</span>ゲートなどを用いて、<span class="math notranslate nohighlight">\(N\)</span>量子ビットに対し<span class="math notranslate nohighlight">\(O(N^2)\)</span>のゲートで実装される。これは古典フーリエ変換に対する指数的な加速を示している。</p>
+<p>量子フーリエ変換（QFT）は、古典計算における離散フーリエ変換に対応する量子計算です。これは量子状態の計算基底を、フーリエ変換に基づいた形式へ変換する線型写像です。QFTは量子状態から周期成分の情報を得る効率的な方法として、多くの量子アルゴリズムで重要な役割を果たしています。
+QFTは<span class="math notranslate nohighlight">\(H\)</span>ゲートや制御<span class="math notranslate nohighlight">\(P\)</span>ゲートなどを用いて、<span class="math notranslate nohighlight">\(N\)</span>量子ビットに対し<span class="math notranslate nohighlight">\(O(N^2)\)</span>のゲートで実装されます。これは古典フーリエ変換に対する指数的な加速を示します。</p>
 <ul class="simple">
-<li><p><strong>応用</strong>: 巨大整数の素因数分解や離散対数を扱う、ショアのアルゴリズムなどの量子アルゴリズムにおける基礎的な部分を構成している。</p></li>
+<li><p><strong>応用</strong>: 巨大整数の素因数分解や離散対数を扱う、ショアのアルゴリズムなどの量子アルゴリズムにおける基礎的な部分を構成しています。</p></li>
 </ul>
 <p><strong>量子位相推定（QPE）</strong></p>
-<p>量子位相推定は、あるユニタリ行列の固有ベクトルに紐づいた位相を推定するアルゴリズムである。これは量子状態の数学的性質を、計算における応用へとつなげる橋渡しとなるものである。</p>
+<p>量子位相推定は、あるユニタリ行列の固有ベクトルに紐づいた位相を推定するアルゴリズムです。これは量子状態の数学的性質を、計算における応用へとつなげる橋渡しとなるものです。</p>
 <ul class="simple">
-<li><p><strong>応用</strong>:ユニタリ行列の固有値を求めたり、量子系のシミュレーションといった問題を解くことができる。</p></li>
+<li><p><strong>応用</strong>:ユニタリ行列の固有値を求めたり、量子系のシミュレーションといった問題を解くことができます。</p></li>
 </ul>
-<p>QFTとQPEは共に、古典コンピュータが現状敵わないような問題を解ける量子アルゴリズムの根幹となるものである。この教材を通して、これらの技術の実装方法を理解していただきたい。</p>
+<p>QFTとQPEは共に、古典コンピュータが現状敵わないような問題を解ける量子アルゴリズムの根幹となるものです。この教材を通して、これらの実装方法を理解していただけます。</p>
 </section>
 <section id="qft">
 <h2>2. 量子フーリエ変換(QFT)の基礎<a class="headerlink" href="#qft" title="Link to this heading">#</a></h2>
@@ -473,26 +473,26 @@ QFTは<span class="math notranslate nohighlight">\(H\)</span>ゲートや制御<
 </div>
 </div>
 </div>
-<p>離散フーリエ変換のアナロジーとして、量子フーリエ変換は<span class="math notranslate nohighlight">\(n\)</span>量子ビットの量子状態<span class="math notranslate nohighlight">\(\vert j \rangle\)</span>を以下のように変換する。</p>
+<p>離散フーリエ変換のアナロジーとして、量子フーリエ変換は<span class="math notranslate nohighlight">\(n\)</span>量子ビットの量子状態<span class="math notranslate nohighlight">\(\vert j \rangle\)</span>を以下のように変換します。</p>
 <div class="math notranslate nohighlight">
 \[
 QFT_{N}: \vert j \rangle \mapsto \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}\omega_N^{jk} \vert k \rangle
 \]</div>
-<p>ここで<span class="math notranslate nohighlight">\(N=2^n\)</span>, <span class="math notranslate nohighlight">\(\omega_N^{jk} = e^{2\pi i \frac{jk}{N}}\)</span>である。</p>
-<p>ユニタリ行列による表現は以下の通り：</p>
+<p>ここで<span class="math notranslate nohighlight">\(N=2^n\)</span>, <span class="math notranslate nohighlight">\(\omega_N^{jk} = e^{2\pi i \frac{jk}{N}}\)</span>です。</p>
+<p>ユニタリ行列による表現は以下の通りです：</p>
 <div class="math notranslate nohighlight">
 \[
 U_{QFT} = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} \sum_{k=0}^{N-1} \omega_N^{jk} \vert k \rangle \langle j \vert
 \]</div>
 <section id="id3">
 <h3>2.1. 直感的な理解　<a id="intuition"></a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>QFTはZ基底とフーリエ基底の2つの間での基底変換である。ここで、フーリエ基底とは何を意味しているのだろうか。</p>
-<p>関数<span class="math notranslate nohighlight">\(f(x)\)</span>のフーリエ変換<span class="math notranslate nohighlight">\(F(\omega)\)</span>は、<span class="math notranslate nohighlight">\(f(x)\)</span>を周波数<span class="math notranslate nohighlight">\(\omega\)</span>の正弦波関数に畳み込みしたものである。簡単に言えば、フーリエ変換は、<span class="math notranslate nohighlight">\(f(x)\)</span>を正弦または余弦関数から生成するのに、それぞれの周波数成分<span class="math notranslate nohighlight">\(\omega\)</span>がどのくらい必要になるかを示す関数ということだ。QFTが意味するところをよりよく理解するために、以下の4量子ビットを用いた図を考えよう。</p>
-<p><img alt="zbasis-counting.gif" src="courses/utility-scale-quantum-computing/zbasis-counting.gif" /></p>
-<p>計算基底において、それぞれの数字は<span class="math notranslate nohighlight">\(|0\rangle\)</span> and <span class="math notranslate nohighlight">\(|1\rangle\)</span>のバイナリで格納される。</p>
-<p>それぞれの量子ビットがフリップする周期が違うことを確認しておこう。
-最も左の量子ビットは全ての数字の増加に対してフリップしている。その1つ右は数字が2増加するたびにフリップし、その1つ右は数字が4増加するたびにフリップし、…と続く。</p>
-<p>これらの量子状態に量子フーリエ変換を施すと、フーリエ基底で記述される量子状態となる。</p>
+<p>QFTはZ基底とフーリエ基底の2つの間での基底変換です。ここで、フーリエ基底とは何を意味しているのでしょうか。</p>
+<p>関数<span class="math notranslate nohighlight">\(f(x)\)</span>のフーリエ変換<span class="math notranslate nohighlight">\(F(\omega)\)</span>は、<span class="math notranslate nohighlight">\(f(x)\)</span>を周波数<span class="math notranslate nohighlight">\(\omega\)</span>の正弦波関数に畳み込みしたものです。簡単に言えば、フーリエ変換は、<span class="math notranslate nohighlight">\(f(x)\)</span>を正弦または余弦関数から生成するのに、それぞれの周波数成分<span class="math notranslate nohighlight">\(\omega\)</span>がどのくらい必要になるかを示す関数ということです。QFTが意味するところをよりよく理解するために、以下の4量子ビットを用いた図を考えましょう。</p>
+<p><img alt="zbasis-counting.gif" src="../../_images/zbasis-counting.gif" /></p>
+<p>計算基底において、それぞれの数字は<span class="math notranslate nohighlight">\(|0\rangle\)</span>と<span class="math notranslate nohighlight">\(|1\rangle\)</span>のバイナリで格納されます。</p>
+<p>それぞれの量子ビットがフリップする周期が違うことを確認しましょう。
+最も左の量子ビットは全ての数字の増加に対してフリップしています。その1つ右は数字が2増加するたびにフリップし、その1つ右は数字が4増加するたびにフリップし、…と続きます。</p>
+<p>これらの量子状態に量子フーリエ変換を施すと、フーリエ基底で記述される量子状態となります。</p>
 <div class="math notranslate nohighlight">
 \[
 |\text{計算基底の量子状態}\rangle \quad \xrightarrow[]{\text{QFT}} \quad |\text{フーリエ基底の量子状態}\rangle
@@ -501,15 +501,15 @@ U_{QFT} = \frac{1}{\sqrt{N}} \sum_{j=0}^{N-1} \sum_{k=0}^{N-1} \omega_N^{jk} \ve
 \[
 \text{QFT}|x\rangle = |\widetilde{x}\rangle
 \]</div>
-<p>（しばしば、フーリエ基底はチルダ(~)によって表現される。）</p>
-<p><img alt="fourierbasis-counting.gif" src="courses/utility-scale-quantum-computing/fourierbasis-counting.gif" /></p>
-<p>フーリエ基底において格納される数字は、各量子ビットがZ軸まわりに回転する角度を表現する。<span class="math notranslate nohighlight">\(|\widetilde{0}\rangle\)</span>の状態は、全ての量子ビットが<span class="math notranslate nohighlight">\(|{+}\rangle\)</span>にあることを表す。上の例のように、4量子ビット状態<span class="math notranslate nohighlight">\(|\widetilde{5}\rangle\)</span>において、最も左の量子ビットは<span class="math notranslate nohighlight">\(\tfrac{5}{2^n} = \tfrac{5}{16}\)</span>だけ回転している（つまり、1周<span class="math notranslate nohighlight">\(2\pi\)</span>ラジアンの<span class="math notranslate nohighlight">\(\tfrac{5}{16}\)</span>倍）。その右の量子ビットは、2倍の<span class="math notranslate nohighlight">\(\tfrac{10}{16}\times 2\pi\)</span> ラジアンだけ回転しており、その右は…と続いていく。</p>
-<p>それぞれの量子ビットが変化する周期が違うことを、改めて確認しておこう。最も左の量子ビット(量子ビット0)は最小の周波数を持ち、最も右が最大の周波数を持つ。</p>
+<p>（しばしば、フーリエ基底はチルダ(~)によって表現されます。）</p>
+<p><img alt="fourierbasis-counting.gif" src="../../_images/fourierbasis-counting.gif" /></p>
+<p>フーリエ基底において格納される数字は、各量子ビットがZ軸まわりに回転する角度を表現します。<span class="math notranslate nohighlight">\(|\widetilde{0}\rangle\)</span>の状態は、全ての量子ビットが<span class="math notranslate nohighlight">\(|{+}\rangle\)</span>にあることを表します。上の例のように、4量子ビット状態<span class="math notranslate nohighlight">\(|\widetilde{5}\rangle\)</span>において、最も左の量子ビットは<span class="math notranslate nohighlight">\(\tfrac{5}{2^n} = \tfrac{5}{16}\)</span>だけ回転しています（つまり、1周<span class="math notranslate nohighlight">\(2\pi\)</span>ラジアンの<span class="math notranslate nohighlight">\(\tfrac{5}{16}\)</span>倍）。その右の量子ビットは、2倍の<span class="math notranslate nohighlight">\(\tfrac{10}{16}\times 2\pi\)</span> ラジアンだけ回転しており、その右は…と続いていきます。</p>
+<p>それぞれの量子ビットが変化する周期が違うことを、改めて確認しておきましょう。最も左の量子ビット(量子ビット0)は最小の周波数を持ち、最も右が最大の周波数を持ちます。</p>
 </section>
 <section id="qubit-qft">
 <h3>2.2 例: 1-qubit QFT<a class="headerlink" href="#qubit-qft" title="Link to this heading">#</a></h3>
-<p><span class="math notranslate nohighlight">\(N = 2^1 = 2\)</span>のケースを見てみよう。</p>
-<p>ユニタリ行列は以下のように書ける。:</p>
+<p><span class="math notranslate nohighlight">\(N = 2^1 = 2\)</span>のケースを見てみましょう。</p>
+<p>ユニタリ行列は以下のように書けます。:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -522,11 +522,11 @@ U_{QFT} &amp; = \frac{1}{\sqrt{2}} \sum_{j=0}^{1} \sum_{k=0}^{1} \omega_2^{jk} \
 &amp; = H
 \end{aligned}
 \end{split}\]</div>
-<p>この演算は、アダマールゲート(<span class="math notranslate nohighlight">\(H\)</span>)をかけることと同じである。</p>
+<p>この演算は、アダマールゲート(<span class="math notranslate nohighlight">\(H\)</span>)をかけることと同じです。</p>
 </section>
 <section id="id4">
 <h3>2.3 QFTのテンソル積による表現<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p><span class="math notranslate nohighlight">\(N = 2^n\)</span>次元へ一般化しよう。<span class="math notranslate nohighlight">\(QFT_{N}\)</span>は<span class="math notranslate nohighlight">\(\vert x \rangle = \vert x_1\ldots x_n \rangle\)</span>に対して以下のように作用する。</p>
+<p><span class="math notranslate nohighlight">\(N = 2^n\)</span>次元へ一般化しましょう。<span class="math notranslate nohighlight">\(QFT_{N}\)</span>は<span class="math notranslate nohighlight">\(\vert x \rangle = \vert x_1\ldots x_n \rangle\)</span>に対して以下のように作用します。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -556,8 +556,8 @@ QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \v
 </section>
 <section id="id5">
 <h3>2.4 例: 3量子ビットQFT回路の構築<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<p>上記の説明からは、QFTの量子回路を作る方法は自明ではない。ここで、3量子ビットそれぞれの位相が異なる割合で発展することに注意して、この回路を構築してみよう。講義資料には多くの図や例が存在しており、またさらなる資料は、量子アルゴリズムの基礎コースに含まれる<a class="reference internal" href="#/learning/courses/fundamentals-of-quantum-algorithms/phase-estimation-and-factoring/introduction"><span class="xref myst">こちらの講義</span></a>を参照いただきたい。</p>
-<p>さて、QFTをシミュレータで実行してみよう。</p>
+<p>上記の説明からは、QFTの量子回路を作る方法は自明ではありません。ここで、3量子ビットそれぞれの位相が異なる割合で発展することに注意して、この回路を構築してみましょう。もともとの講義資料には多くの図や例が存在しておりますし、さらなる資料は、量子アルゴリズムの基礎コースに含まれる<a class="reference internal" href="#/learning/courses/fundamentals-of-quantum-algorithms/phase-estimation-and-factoring/introduction"><span class="xref myst">こちらの講義</span></a>をご覧ください。</p>
+<p>さて、QFTをシミュレータで実行してみましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare for 3 qubits circuit</span>
@@ -618,8 +618,8 @@ QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \v
 <img alt="../../_images/d596873a73335114397f7057127a01d13cb2810d9b08461f0d5987e5d52256e7.png" src="../../_images/d596873a73335114397f7057127a01d13cb2810d9b08461f0d5987e5d52256e7.png" />
 </div>
 </div>
-<p>例として、<span class="math notranslate nohighlight">\(|5\rangle\)</span>にQFTを施してみよう。</p>
-<p>まず、整数5のバイナリが量子回路にエンコードされているかを確認する。</p>
+<p>例として、<span class="math notranslate nohighlight">\(|5\rangle\)</span>にQFTを施してみましょう。</p>
+<p>まず、整数5のバイナリが量子回路にエンコードされているかを確認します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -646,7 +646,7 @@ QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \v
 <img alt="../../_images/6124a49ca12c67dbf79fc66f2cee2f53f46a956d61038b91e547e27589e002e6.png" src="../../_images/6124a49ca12c67dbf79fc66f2cee2f53f46a956d61038b91e547e27589e002e6.png" />
 </div>
 </div>
-<p>Aerシミュレータによって量子状態をチェックする：</p>
+<p>Aerシミュレータによって量子状態をチェックします：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statevector</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
@@ -658,7 +658,7 @@ QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \v
 <img alt="../../_images/1281690951ddbae95806f1eb0bf150d1242e2826e4a0517c16e53a19032635e6.png" src="../../_images/1281690951ddbae95806f1eb0bf150d1242e2826e4a0517c16e53a19032635e6.png" />
 </div>
 </div>
-<p>最後に、QFTを施して終状態を見てみよう：</p>
+<p>最後に、QFTを施して終状態を見てみましょう：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -691,11 +691,11 @@ QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \v
 <img alt="../../_images/f1d0727f83b245012ab74e84867848bf57facd4d95aefd0bd8a6724ba9c19a35.png" src="../../_images/f1d0727f83b245012ab74e84867848bf57facd4d95aefd0bd8a6724ba9c19a35.png" />
 </div>
 </div>
-<p>QFTが正しく機能したことを確認できた。量子ビット0は一周の<span class="math notranslate nohighlight">\(\tfrac{5}{8}\)</span>倍、量子ビット1は一周の<span class="math notranslate nohighlight">\(\tfrac{10}{8}\)</span>倍、量子ビット2は<span class="math notranslate nohighlight">\(\tfrac{20}{8}\)</span>倍の角度となっている。</p>
+<p>QFTが正しく機能したことを確認できました。量子ビット0は一周の<span class="math notranslate nohighlight">\(\tfrac{5}{8}\)</span>倍、量子ビット1は一周の<span class="math notranslate nohighlight">\(\tfrac{10}{8}\)</span>倍、量子ビット2は<span class="math notranslate nohighlight">\(\tfrac{20}{8}\)</span>倍の角度となっています。</p>
 </section>
 <section id="id6">
 <h3>2.5 エクササイズ: QFT<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<p>(1) 4量子ビットのQFTを実装しよう。</p>
+<p>(1) 4量子ビットのQFTを実装しましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##your code goes here##</span>
@@ -703,7 +703,7 @@ QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \v
 </div>
 </div>
 </div>
-<p>(2) <span class="math notranslate nohighlight">\(|14\rangle\)</span>にQFTを施し、Bloch球を用いて図示してみよう。</p>
+<p>(2) <span class="math notranslate nohighlight">\(|14\rangle\)</span>にQFTを施し、Bloch球を用いて図示してみましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##your code goes here##</span>
@@ -815,19 +815,19 @@ QFT_N\vert x \rangle &amp; = \frac{1}{\sqrt{N}} \sum_{y=0}^{N-1}\omega_N^{xy} \v
 </section>
 <section id="qpe">
 <h2>3. 量子位相推定（QPE）の基本<a class="headerlink" href="#qpe" title="Link to this heading">#</a></h2>
-<p>QPEアルゴリズムは、あるユニタリ行列<span class="math notranslate nohighlight">\(U\)</span>に対し<span class="math notranslate nohighlight">\(U\vert\psi \rangle =e^{\boldsymbol{2\pi i} \theta }|\psi \rangle\)</span>を満たす<span class="math notranslate nohighlight">\(\theta\)</span>を推定する。ここで<span class="math notranslate nohighlight">\(U\)</span>はユニタリであるから、その固有値の絶対値は1であることに注意する。</p>
+<p>QPEアルゴリズムは、あるユニタリ行列<span class="math notranslate nohighlight">\(U\)</span>に対し<span class="math notranslate nohighlight">\(U\vert\psi \rangle =e^{\boldsymbol{2\pi i} \theta }|\psi \rangle\)</span>を満たす<span class="math notranslate nohighlight">\(\theta\)</span>を推定します。ここで<span class="math notranslate nohighlight">\(U\)</span>はユニタリであるから、その固有値の絶対値は1であることに注意します。</p>
 <section id="id8">
 <h3>3.1 手順<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <section id="id9">
 <h4>1. 準備<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
-<p>量子状態<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>をある一連の量子ビットレジスタに格納しておく。これに加え、追加の<span class="math notranslate nohighlight">\(n\)</span>量子ビットを、<span class="math notranslate nohighlight">\(2^n\theta\)</span>の値を格納するための計算レジスタとして用意しておく。
+<p>量子状態<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>をある一連の量子ビットレジスタに格納しておきます。これに加え、追加の<span class="math notranslate nohighlight">\(n\)</span>量子ビットを、<span class="math notranslate nohighlight">\(2^n\theta\)</span>の値を格納するための計算レジスタとして用意しておきます。
 $<span class="math notranslate nohighlight">\(
 |\psi_0\rangle = \lvert 0 \rangle^{\otimes n} \lvert \psi \rangle
 \)</span>$</p>
 </section>
 <section id="id10">
 <h4>2. 重ね合わせ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
-<p>計算レジスタの<span class="math notranslate nohighlight">\(n\)</span>ビット全てに対するアダマールゲート<span class="math notranslate nohighlight">\(H^{\otimes n}\)</span>を作用させる。</p>
+<p>計算レジスタの<span class="math notranslate nohighlight">\(n\)</span>ビット全てに対するアダマールゲート<span class="math notranslate nohighlight">\(H^{\otimes n}\)</span>を作用させます。</p>
 <div class="math notranslate nohighlight">
 \[
 |\psi_1\rangle = {\frac {1}{2^{\frac {n}{2}}}}\left(|0\rangle +|1\rangle \right)^{\otimes n} \lvert \psi \rangle
@@ -835,12 +835,12 @@ $<span class="math notranslate nohighlight">\(
 </section>
 <section id="id11">
 <h4>3. ユニタリ演算子と制御ユニタリ演算<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
-<p><span class="math notranslate nohighlight">\(U\)</span>は<span class="math notranslate nohighlight">\(|\psi\rangle\)</span>を固有状態にもつユニタリ演算子であるから、実数<span class="math notranslate nohighlight">\(\theta\)</span>を用いて<span class="math notranslate nohighlight">\(U|\psi \rangle =e^{\boldsymbol{2\pi i} \theta }|\psi \rangle\)</span>とかける。そのため、<span class="math notranslate nohighlight">\(U\)</span>を<span class="math notranslate nohighlight">\(|\psi\rangle\)</span>に<span class="math notranslate nohighlight">\(2^j\)</span>回かけると、：</p>
+<p><span class="math notranslate nohighlight">\(U\)</span>は<span class="math notranslate nohighlight">\(|\psi\rangle\)</span>を固有状態にもつユニタリ演算子であるから、実数<span class="math notranslate nohighlight">\(\theta\)</span>を用いて<span class="math notranslate nohighlight">\(U|\psi \rangle =e^{\boldsymbol{2\pi i} \theta }|\psi \rangle\)</span>と書けます。そのため、<span class="math notranslate nohighlight">\(U\)</span>を<span class="math notranslate nohighlight">\(|\psi\rangle\)</span>に<span class="math notranslate nohighlight">\(2^j\)</span>回かけると、：</p>
 <div class="math notranslate nohighlight">
 \[
 U^{2^{j}}|\psi \rangle =U^{2^{j}-1}U|\psi \rangle =U^{2^{j}-1}e^{2\pi i\theta }|\psi \rangle =\cdots =e^{2\pi i2^{j}\theta }|\psi \rangle
 \]</div>
-<p>また、ユニタリ演算子<span class="math notranslate nohighlight">\(U\)</span>についての制御ユニタリ演算<span class="math notranslate nohighlight">\(CU\)</span>を考えよう。これは、制御ビットの値が<span class="math notranslate nohighlight">\(|1\rangle\)</span>のときのみユニタリ演算子<span class="math notranslate nohighlight">\(U\)</span>が標的ビットにかかるものである。ここで制御ビットの状態が<span class="math notranslate nohighlight">\(|+\rangle\)</span>のケースを考えると、：</p>
+<p>また、ユニタリ演算子<span class="math notranslate nohighlight">\(U\)</span>についての制御ユニタリ演算<span class="math notranslate nohighlight">\(CU\)</span>を考えましょう。これは、制御ビットの値が<span class="math notranslate nohighlight">\(|1\rangle\)</span>のときのみユニタリ演算子<span class="math notranslate nohighlight">\(U\)</span>が標的ビットにかかるものです。ここで制御ビットの状態が<span class="math notranslate nohighlight">\(|+\rangle\)</span>のケースを考えると、：</p>
 <div class="math notranslate nohighlight">
 \[
 CU|\psi\rangle|+\rangle=CU|\psi\rangle(\dfrac{1}{\sqrt{2}}(|0\rangle+|1\rangle))=\dfrac{1}{\sqrt{2}}(|\psi\rangle|0\rangle+U|\psi\rangle|1\rangle)=\dfrac{1}{\sqrt{2}}(|\psi\rangle|0\rangle+e^{\boldsymbol{2\pi i} \theta }|\psi\rangle|1\rangle)
@@ -849,7 +849,7 @@ CU|\psi\rangle|+\rangle=CU|\psi\rangle(\dfrac{1}{\sqrt{2}}(|0\rangle+|1\rangle))
 </section>
 <section id="tqpe">
 <h3>3.2 例：<span class="math notranslate nohighlight">\(T\)</span>ゲートに対するQPE<a class="headerlink" href="#tqpe" title="Link to this heading">#</a></h3>
-<p>例として、<span class="math notranslate nohighlight">\(T\)</span>ゲートに対してQPEを適用しよう。</p>
+<p>例として、<span class="math notranslate nohighlight">\(T\)</span>ゲートに対してQPEを適用しましょう。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 T|1\rangle =
@@ -863,7 +863,7 @@ T|1\rangle =
 \end{pmatrix}
 = e^\frac{i\pi}{4}|1\rangle
 \end{split}\]</div>
-<p>である。ここで、</p>
+<p>です。ここで、</p>
 <div class="math notranslate nohighlight">
 \[
 T|1\rangle = e^{2i\pi\theta}|1\rangle
@@ -873,8 +873,8 @@ T|1\rangle = e^{2i\pi\theta}|1\rangle
 \[
 \theta = \frac{1}{8}
 \]</div>
-<p>を求められるだろうか。</p>
-<p>まずは<span class="math notranslate nohighlight">\(X\)</span>ゲートによって、<span class="math notranslate nohighlight">\(\vert\psi\rangle = \vert1\rangle\)</span> で初期化しよう：</p>
+<p>を求められるでしょうか。</p>
+<p>まずは<span class="math notranslate nohighlight">\(X\)</span>ゲートによって、<span class="math notranslate nohighlight">\(\vert\psi\rangle = \vert1\rangle\)</span> で初期化しましょう：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qpe</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -887,7 +887,7 @@ T|1\rangle = e^{2i\pi\theta}|1\rangle
 <img alt="../../_images/e4e18eb4e5e03a54d9475031edf339ec5a9d2e5c8b0a25eb690248186c9db5ac.png" src="../../_images/e4e18eb4e5e03a54d9475031edf339ec5a9d2e5c8b0a25eb690248186c9db5ac.png" />
 </div>
 </div>
-<p>続けて、アダマールゲートを計算ビットに適用する：</p>
+<p>続けて、アダマールゲートを計算ビットに適用します：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -900,7 +900,7 @@ T|1\rangle = e^{2i\pi\theta}|1\rangle
 <img alt="../../_images/a15a12088fbaebe7e579df9fdc6f5501da98c1f277cbc6bb76d9f4be58982cfa.png" src="../../_images/a15a12088fbaebe7e579df9fdc6f5501da98c1f277cbc6bb76d9f4be58982cfa.png" />
 </div>
 </div>
-<p>制御ユニタリ演算を実行する：</p>
+<p>制御ユニタリ演算を実行します：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
@@ -916,7 +916,7 @@ T|1\rangle = e^{2i\pi\theta}|1\rangle
 <img alt="../../_images/365aba94636d95e9c9b9d65a13a2cd22705e9890fc3a281fdccddc2ba489f783.png" src="../../_images/365aba94636d95e9c9b9d65a13a2cd22705e9890fc3a281fdccddc2ba489f783.png" />
 </div>
 </div>
-<p>最後に計算レジスタに対して逆QFTを作用させ、測定してみよう：</p>
+<p>最後に計算レジスタに対して逆QFTを作用させ、測定してみましょう：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QFT</span>
@@ -948,7 +948,7 @@ T|1\rangle = e^{2i\pi\theta}|1\rangle
 <img alt="../../_images/b0ac714928a42e58923888c2244ab5981dd0ce75c026b7cf96647d3705807471.png" src="../../_images/b0ac714928a42e58923888c2244ab5981dd0ce75c026b7cf96647d3705807471.png" />
 </div>
 </div>
-<p>Aerシミュレータによって、実行してみよう：</p>
+<p>Aerシミュレータによって、実行してみましょう：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aer_sim</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
@@ -970,17 +970,17 @@ T|1\rangle = e^{2i\pi\theta}|1\rangle
 <img alt="../../_images/804492ef068c0837689553f45a6d355d36009adf5f687cb79e3d3e0102e104ba.png" src="../../_images/804492ef068c0837689553f45a6d355d36009adf5f687cb79e3d3e0102e104ba.png" />
 </div>
 </div>
-<p>終状態は(<code class="docutils literal notranslate"><span class="pre">001</span></code>)で確定している。これは整数<code class="docutils literal notranslate"><span class="pre">1</span></code>を表現し、これを<span class="math notranslate nohighlight">\(2^n\)</span>で割ることによって<span class="math notranslate nohighlight">\(\theta\)</span>を得る:</p>
+<p>終状態は(<code class="docutils literal notranslate"><span class="pre">001</span></code>)で確定しています。これは整数<code class="docutils literal notranslate"><span class="pre">1</span></code>を表現し、これを<span class="math notranslate nohighlight">\(2^n\)</span>で割ることによって<span class="math notranslate nohighlight">\(\theta\)</span>を得ます:</p>
 <div class="math notranslate nohighlight">
 \[
 \theta = \frac{1}{2^3} = \frac{1}{8}
 \]</div>
-<p>Shorのアルゴリズムは、量子回路に埋め込まれている未知の<span class="math notranslate nohighlight">\(\theta\)</span>を推定することを通して、素因数分解を行う。</p>
+<p>Shorのアルゴリズムは、量子回路に埋め込まれている未知の<span class="math notranslate nohighlight">\(\theta\)</span>を推定することを通して、素因数分解を行います。</p>
 </section>
 <section id="id12">
 <h3>3.3 エクササイズ<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
-<p>計算レジスタに3量子ビットを、固有状態に1量子ビットを用いて、<span class="math notranslate nohighlight">\(\theta = 1/3\)</span>を推定してみよう。</p>
-<p><span class="math notranslate nohighlight">\(P|1\rangle = e^{i\lambda}|1\rangle\)</span>であるので、ここで<span class="math notranslate nohighlight">\(\lambda = \tfrac{2 \pi}{3}\)</span>と設定することで、<span class="math notranslate nohighlight">\(U|1\rangle = e^{2\pi i \tfrac{1}{3}}|1\rangle\)</span>となる。</p>
+<p>計算レジスタに3量子ビットを、固有状態に1量子ビットを用いて、<span class="math notranslate nohighlight">\(\theta = 1/3\)</span>を推定してみましょう。</p>
+<p><span class="math notranslate nohighlight">\(P|1\rangle = e^{i\lambda}|1\rangle\)</span>であるので、ここで<span class="math notranslate nohighlight">\(\lambda = \tfrac{2 \pi}{3}\)</span>と設定することで、<span class="math notranslate nohighlight">\(U|1\rangle = e^{2\pi i \tfrac{1}{3}}|1\rangle\)</span>となります。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##your code goes here##</span>
@@ -1050,7 +1050,7 @@ T|1\rangle = e^{2i\pi\theta}|1\rangle
 </section>
 <section id="qiskit-runtime-sampler-primitive">
 <h2>4. Qiskit Runtime Sampler primitiveによる実行<a class="headerlink" href="#qiskit-runtime-sampler-primitive" title="Link to this heading">#</a></h2>
-<p>Qiskit Patternsとして以下の4ステップを実行し、QPEを本物の量子デバイスで実行してみよう。</p>
+<p>Qiskit Patternsとして以下の4ステップを実行し、QPEを本物の量子デバイスで実行してみましょう。</p>
 <ol class="arabic simple">
 <li><p>問題を量子ネイティブな形式に落とし込む</p></li>
 <li><p>回路を最適化する</p></li>
