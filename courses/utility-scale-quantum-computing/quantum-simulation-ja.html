@@ -441,7 +441,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>量子シミュレーション<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <Admonition type="note">
-  Yukio Kawashima (May 30, 2024)　翻訳：Hotaka Hayashi(2025)
+  Yukio Kawashima (May 30, 2024)　翻訳：Hotaka Hayashi (August 19, 2025)
 <p>元の講義の<a class="reference external" href="https://github.com/quantum-tokyo/introduction/tree/main/src/courses/utility-scale-quantum-computing">PDFのダウンロードはこちらから</a>。</p>
 <p><em>QPU上の推定ランタイム：7秒</em>
 </Admonition></p>
@@ -450,21 +450,23 @@ document.write(`
 <p>トロッター分解は量子ゲートを応用し、量子系の時間発展を記述する方法として活用されています。これは量子系の時間発展を微小時間ごとに区切り、その区間内での時間発展を近似値として求める方法です。Schrödinger方程式によれば、<span class="math notranslate nohighlight">\(\vert\psi(0)\rangle\)</span>で初期化された量子系の時間発展は以下のように書けます。：</p>
 <div class="math notranslate nohighlight">
 \[
-\vert \psi(t) \rangle = e^{-i H t} \vert \psi(0) \rangle \text{,}
+\vert \psi(t) \rangle = e^{-i H t} \vert \psi(0) \rangle
 \]</div>
 <p>ここで<span class="math notranslate nohighlight">\(H\)</span>は時間依存のハミルトニアンです。このハミルトニアンをパウリ行列の重み付き和<span class="math notranslate nohighlight">\(H=\sum_j a_j P_j\)</span>で書けると考えましょう。ここで<span class="math notranslate nohighlight">\(P_j\)</span>はパウリ行列のテンソル積であり、<span class="math notranslate nohighlight">\(n\)</span>量子ビットに作用します。特に、テンソル積の各項は、高々2つのパウリ行列を含むものであると仮定しましょう。与えられた<span class="math notranslate nohighlight">\(t=0\)</span>の初期状態に対する、時間<span class="math notranslate nohighlight">\(t\)</span>後の量子状態<span class="math notranslate nohighlight">\(|\psi(t)\rangle\)</span>を、量子コンピュータを用いてどのように得られるでしょうか。ここで、行列の指数関数はテイラー展開を用いて以下のように簡単に表せます。：</p>
 <div class="math notranslate nohighlight">
 \[
 e^{-i H t} = 1-iHt-\frac{1}{2}H^2t^2+...
 \]</div>
-<p><span class="math notranslate nohighlight">\(e^{iZ}\)</span>のような簡単な行列指数関数は、量子コンピュータへ簡単に実装することができます。しかし実用上の多くのハミルトニアンは単一項でなく、多くの項を持つものです。ここで<span class="math notranslate nohighlight">\(H = H_1+H_2\)</span>とすれば以下のようになります。:
-$<span class="math notranslate nohighlight">\(
+<p><span class="math notranslate nohighlight">\(e^{iZ}\)</span>のような簡単な行列指数関数は、量子コンピュータへ簡単に実装することができます。しかし実用上の多くのハミルトニアンは単一項でなく、多くの項を持つものです。ここで<span class="math notranslate nohighlight">\(H = H_1+H_2\)</span>とすれば以下のようになります。:</p>
+<div class="math notranslate nohighlight">
+\[
 e^{-i H t} = 1-i(H_1+H_2)t-\frac{1}{2}(H_1+H_2)^2t^2+...
-\)</span>$</p>
-<p>もし<span class="math notranslate nohighlight">\(H_1\)</span>と<span class="math notranslate nohighlight">\(H_2\)</span>が可換ならば、複素数のときのように以下の形を得られます。（以下では変数は<span class="math notranslate nohighlight">\(a,b\)</span>です）：
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>もし<span class="math notranslate nohighlight">\(H_1\)</span>と<span class="math notranslate nohighlight">\(H_2\)</span>が可換ならば、複素数のときのように以下の形を得られます。（以下では変数は<span class="math notranslate nohighlight">\(a,b\)</span>です）：</p>
+<div class="math notranslate nohighlight">
+\[
 e^{-i (a+b) t} = e^{-i a t}e^{-i b t}
-\)</span>$</p>
+\]</div>
 <p>しかし演算子が可換でないならば、上記のように扱えず、テイラー展開の各項は簡単に表現することができません。そのため、複雑なハミルトニアンを量子ゲートで表現することは困難な課題です。</p>
 <p>これに対する1つの解決策は、微小時間<span class="math notranslate nohighlight">\(t\)</span>を考え、テイラー展開の1次の項が支配的であるとすることです。この仮定のもとでは、</p>
 <div class="math notranslate nohighlight">
@@ -474,18 +476,18 @@ e^{-i (H_1+H_2) t} \approx 1-i(H_1+H_2)t \approx (1-i H_1 t)(1-i H_2 t) \approx 
 <p>もちろん、微小時間ではなく長時間における時間発展を考える必要があるでしょう。そのためには、微小時間のステップを多用すればよいです。これをトロッター分解といいます。</p>
 <div class="math notranslate nohighlight">
 \[
-\vert \psi(t) \rangle \approx \left(\prod_j e^{-i a_j P_j t/r} \right)^r \vert\psi(0) \rangle \text{,}
+\vert \psi(t) \rangle \approx \left(\prod_j e^{-i a_j P_j t/r} \right)^r \vert\psi(0) \rangle
 \]</div>
 <p>ここで、<span class="math notranslate nohighlight">\(t/r\)</span>が時間ステップです。そのため、時間<span class="math notranslate nohighlight">\(t\)</span>の間の時間発展を表現するために、微小時間<span class="math notranslate nohighlight">\(t/r\)</span>の時間発展を表現するゲートを<span class="math notranslate nohighlight">\(r\)</span>回適用します。より時間幅を狭くすることで、推定値はより高い精度で得られます。しかしながらこれは量子回路が深くなっていくことにもつながり、実用上より大きなエラーを引き起こしてしまいます。（近年のNISQデバイスでは無視できない影響です。）</p>
 <p>今回は、<a class="reference external" href="https://en.wikipedia.org/wiki/Ising_model">イジングモデル</a>の時間発展について学びましょう。これらの格子は、隣り合うものとのみ相互作用するスピン<span class="math notranslate nohighlight">\(\sigma_i\)</span>の配列からなります。これらのスピンは2つの向き<span class="math notranslate nohighlight">\(\uparrow\)</span>, <span class="math notranslate nohighlight">\(\downarrow\)</span>を持ちます。これは磁化<span class="math notranslate nohighlight">\(+1\)</span>と<span class="math notranslate nohighlight">\(-1\)</span>に対応します。</p>
 <div class="math notranslate nohighlight">
 \[
-H = - J \sum_{i=0}^{N-2} Z_i Z_{i+1} - h \sum_{i=0}^{N-1} X_i  \text{,}
+H = - J \sum_{i=0}^{N-2} Z_i Z_{i+1} - h \sum_{i=0}^{N-1} X_i
 \]</div>
 <p>ここで<span class="math notranslate nohighlight">\(J\)</span>は相互作用のエネルギーを、<span class="math notranslate nohighlight">\(h\)</span>は外場の強さを示します（上記ではx方向のものを表しているが、後に角度を変えた別のパターンも示します。）。これをパウリ行列を用いて表現し、外場が横向きに対して角度<span class="math notranslate nohighlight">\(\alpha\)</span>のときのケースを考えましょう。</p>
 <div class="math notranslate nohighlight">
 \[
-H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\alpha X_i) \text{.}
+H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\alpha X_i)
 \]</div>
 <p>このハミルトニアンは、外場の影響を簡単に調べられるため便利です。計算基底としては、この系は以下のように表現されます。</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -663,9 +665,6 @@ H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\a
 \[
 e^{H_1+H_2} \approx e^{H_1} e^{H_2}
 \]</div>
-<p>$<span class="math notranslate nohighlight">\(
-e^{H_1+H_2} \approx e^{H_1} e^{H_2}
-\)</span>$真</p>
 <p>前に述べた通り、深い量子回路はエラーの蓄積を引き起こし、現代の量子コンピュータでの扱いを困難にします。2量子ビットゲートは1量子ビットゲートよりも高いエラー率であるため、特に2量子ビットゲートの深さが興味の対象です。真に注意すべき問題は、トランスパイル後の2量子ビットゲートの深さです（それが、量子コンピュータが実際に処理する量子回路であるため）。今はシミュレーターを用いているとはいえ、回路の操作の数を数えることを習慣づけましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
