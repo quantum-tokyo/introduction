@@ -1,0 +1,1842 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子シミュレーション &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/quantum-simulation-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/quantum-simulation-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/quantum-simulation-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子シミュレーション</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. イントロダクション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.1 要件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 ライブラリのインポート</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. 問題のマッピング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.1 イジングハミルトニアンの磁場の定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ハミルトニアンを定義する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.2 時間発展シミュレーションのパラメータ設定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2.3 量子回路１(初期状態)の準備</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.4 量子回路２(時間発展の回路)の準備</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.5 測定のための演算子の設定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">2.6 時間発展シミュレーションの実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">2.7 オブザーバブルの時間発展をプロットする</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">3. エクササイズ 1. 2次鈴木・トロッター分解によるシミュレーション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">3.1 1時間ステップの量子回路の実装</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">3.2 時間発展シミュレーションの実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">3.3 結果のプロット</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.4 解析解との比較</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">4. 量子ハードウェアでの実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">4.1  ステップ１.量子の問題へマッピング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">ハードウェア実験のための量子回路の構成</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">4.2 ステップ２. ターゲットのハードウェア向けに回路を最適化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-runtime">4.3 ステップ３. Qiskit Runtimeプリミティブを用いて実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">4.4 ステップ４. 結果の後処理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">1時間ステップの回路の構築</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子シミュレーション<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Yukio Kawashima (May 30, 2024)　翻訳：Hotaka Hayashi(2025)
+<p>元の講義の<a class="reference external" href="https://github.com/quantum-tokyo/introduction/tree/main/src/courses/utility-scale-quantum-computing">PDFのダウンロードはこちらから</a>。</p>
+<p><em>QPU上の推定ランタイム：7秒</em>
+</Admonition></p>
+<section id="id2">
+<h2>1. イントロダクション<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>トロッター分解は量子ゲートを応用し、量子系の時間発展を記述する方法として活用されています。これは量子系の時間発展を微小時間ごとに区切り、その区間内での時間発展を近似値として求める方法です。Schrödinger方程式によれば、<span class="math notranslate nohighlight">\(\vert\psi(0)\rangle\)</span>で初期化された量子系の時間発展は以下のように書けます。：</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi(t) \rangle = e^{-i H t} \vert \psi(0) \rangle \text{,}
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(H\)</span>は時間依存のハミルトニアンです。このハミルトニアンをパウリ行列の重み付き和<span class="math notranslate nohighlight">\(H=\sum_j a_j P_j\)</span>で書けると考えましょう。ここで<span class="math notranslate nohighlight">\(P_j\)</span>はパウリ行列のテンソル積であり、<span class="math notranslate nohighlight">\(n\)</span>量子ビットに作用します。特に、テンソル積の各項は、高々2つのパウリ行列を含むものであると仮定しましょう。与えられた<span class="math notranslate nohighlight">\(t=0\)</span>の初期状態に対する、時間<span class="math notranslate nohighlight">\(t\)</span>後の量子状態<span class="math notranslate nohighlight">\(|\psi(t)\rangle\)</span>を、量子コンピュータを用いてどのように得られるでしょうか。ここで、行列の指数関数はテイラー展開を用いて以下のように簡単に表せます。：</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i H t} = 1-iHt-\frac{1}{2}H^2t^2+...
+\]</div>
+<p><span class="math notranslate nohighlight">\(e^{iZ}\)</span>のような簡単な行列指数関数は、量子コンピュータへ簡単に実装することができます。しかし実用上の多くのハミルトニアンは単一項でなく、多くの項を持つものです。ここで<span class="math notranslate nohighlight">\(H = H_1+H_2\)</span>とすれば以下のようになります。:
+$<span class="math notranslate nohighlight">\(
+e^{-i H t} = 1-i(H_1+H_2)t-\frac{1}{2}(H_1+H_2)^2t^2+...
+\)</span>$</p>
+<p>もし<span class="math notranslate nohighlight">\(H_1\)</span>と<span class="math notranslate nohighlight">\(H_2\)</span>が可換ならば、複素数のときのように以下の形を得られます。（以下では変数は<span class="math notranslate nohighlight">\(a,b\)</span>です）：
+$<span class="math notranslate nohighlight">\(
+e^{-i (a+b) t} = e^{-i a t}e^{-i b t}
+\)</span>$</p>
+<p>しかし演算子が可換でないならば、上記のように扱えず、テイラー展開の各項は簡単に表現することができません。そのため、複雑なハミルトニアンを量子ゲートで表現することは困難な課題です。</p>
+<p>これに対する1つの解決策は、微小時間<span class="math notranslate nohighlight">\(t\)</span>を考え、テイラー展開の1次の項が支配的であるとすることです。この仮定のもとでは、</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i (H_1+H_2) t} \approx 1-i(H_1+H_2)t \approx (1-i H_1 t)(1-i H_2 t) \approx e^{-i H_1 t}e^{-i H_2 t}
+\]</div>
+<p>もちろん、微小時間ではなく長時間における時間発展を考える必要があるでしょう。そのためには、微小時間のステップを多用すればよいです。これをトロッター分解といいます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi(t) \rangle \approx \left(\prod_j e^{-i a_j P_j t/r} \right)^r \vert\psi(0) \rangle \text{,}
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(t/r\)</span>が時間ステップです。そのため、時間<span class="math notranslate nohighlight">\(t\)</span>の間の時間発展を表現するために、微小時間<span class="math notranslate nohighlight">\(t/r\)</span>の時間発展を表現するゲートを<span class="math notranslate nohighlight">\(r\)</span>回適用します。より時間幅を狭くすることで、推定値はより高い精度で得られます。しかしながらこれは量子回路が深くなっていくことにもつながり、実用上より大きなエラーを引き起こしてしまいます。（近年のNISQデバイスでは無視できない影響です。）</p>
+<p>今回は、<a class="reference external" href="https://en.wikipedia.org/wiki/Ising_model">イジングモデル</a>の時間発展について学びましょう。これらの格子は、隣り合うものとのみ相互作用するスピン<span class="math notranslate nohighlight">\(\sigma_i\)</span>の配列からなります。これらのスピンは2つの向き<span class="math notranslate nohighlight">\(\uparrow\)</span>, <span class="math notranslate nohighlight">\(\downarrow\)</span>を持ちます。これは磁化<span class="math notranslate nohighlight">\(+1\)</span>と<span class="math notranslate nohighlight">\(-1\)</span>に対応します。</p>
+<div class="math notranslate nohighlight">
+\[
+H = - J \sum_{i=0}^{N-2} Z_i Z_{i+1} - h \sum_{i=0}^{N-1} X_i  \text{,}
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(J\)</span>は相互作用のエネルギーを、<span class="math notranslate nohighlight">\(h\)</span>は外場の強さを示します（上記ではx方向のものを表しているが、後に角度を変えた別のパターンも示します。）。これをパウリ行列を用いて表現し、外場が横向きに対して角度<span class="math notranslate nohighlight">\(\alpha\)</span>のときのケースを考えましょう。</p>
+<div class="math notranslate nohighlight">
+\[
+H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\alpha X_i) \text{.}
+\]</div>
+<p>このハミルトニアンは、外場の影響を簡単に調べられるため便利です。計算基底としては、この系は以下のように表現されます。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>量子状態</p></th>
+<th class="head text-center"><p>スピン</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\lvert 0 0 0 0 \rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\uparrow\uparrow\uparrow\uparrow\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\lvert 1 0 0 0 \rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\downarrow\uparrow\uparrow\uparrow\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\lvert 1 1 1 1 \rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\downarrow\downarrow\downarrow\downarrow\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>まずは量子系の時間発展について知ることから始めましょう。さらにその1つのケースとして、磁化などの特性の時間発展を可視化してみましょう。</p>
+<section id="id3">
+<h3>1.1 要件<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>このチュートリアルを始める前に、以下のものがインストールされているか確認してください：</p>
+<ul class="simple">
+<li><p>v1.2以降のQiskit SDK( <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit</span></code> )</p></li>
+<li><p>v0.30以降のQiskit Runtime ( <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code> )</p></li>
+<li><p>v1.24.1以降v2以下のNumpy ( <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numpy</span></code> )</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>1.2 ライブラリのインポート<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>MatrixExponential, QDriftなど、このノートブックでは使用しないが有用なライブラリも含まれています。時間があれば、ぜひ使ってみてください！</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the version of Qiskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the qiskit library</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pylab</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">PauliEvolutionGate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorEstimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span><span class="p">,</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.synthesis</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SuzukiTrotter</span><span class="p">,</span>
+    <span class="n">LieTrotter</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">SamplerV2</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>2. 問題のマッピング<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h3>2.1 イジングハミルトニアンの磁場の定義<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>1次元イジングモデルの磁場を考えましょう。</p>
+<p>まず、系のパラメータ<span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(J\)</span>, <span class="math notranslate nohighlight">\(h\)</span>,<span class="math notranslate nohighlight">\(\alpha\)</span>を引数とし、<code class="docutils literal notranslate"><span class="pre">SparsePauliOp</span></code>としてハミルトニアンを返す関数を定義しましょう。<a class="reference internal" href="#/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp"><span class="xref myst">SparsePauliOp</span></a>は、ハミルトニアンを重み付きの<a class="reference internal" href="#/docs/api/qiskit/qiskit.quantum_info.Pauli"><span class="xref myst">Pauli</span></a>演算子の項によってスパースに表現します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_hamiltonian</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="c1"># List of Hamiltonian terms as 3-tuples containing</span>
+    <span class="c1"># (1) the Pauli string,</span>
+    <span class="c1"># (2) the qubit indices corresponding to the Pauli string,</span>
+    <span class="c1"># (3) the coefficient.</span>
+    <span class="n">ZZ_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">J</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">Z_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]</span>
+    <span class="n">X_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]</span>
+
+    <span class="c1"># We create the Hamiltonian as a SparsePauliOp, via the method</span>
+    <span class="c1"># `from_sparse_list`, and multiply by the interaction term.</span>
+    <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[</span><span class="o">*</span><span class="n">ZZ_tuples</span><span class="p">,</span> <span class="o">*</span><span class="n">Z_tuples</span><span class="p">,</span> <span class="o">*</span><span class="n">X_tuples</span><span class="p">],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">nqubits</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id7">
+<h4>ハミルトニアンを定義する<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>例として、<span class="math notranslate nohighlight">\(N=6\)</span>, <span class="math notranslate nohighlight">\(J=0.2\)</span>, <span class="math notranslate nohighlight">\(h=1.2\)</span>, <span class="math notranslate nohighlight">\(\alpha=\frac{\pi}{8.0}\)</span>の系を考えましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">get_hamiltonian</span><span class="p">(</span><span class="n">nqubits</span><span class="o">=</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">8.0</span><span class="p">)</span>
+<span class="n">hamiltonian</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;IIIIZZ&#39;, &#39;IIIZZI&#39;, &#39;IIZZII&#39;, &#39;IZZIII&#39;, &#39;ZZIIII&#39;, &#39;IIIIIZ&#39;, &#39;IIIIZI&#39;, &#39;IIIZII&#39;, &#39;IIZIII&#39;, &#39;IZIIII&#39;, &#39;ZIIIII&#39;, &#39;IIIIIX&#39;, &#39;IIIIXI&#39;, &#39;IIIXII&#39;, &#39;IIXIII&#39;, &#39;IXIIII&#39;, &#39;XIIIII&#39;],
+              coeffs=[-0.2       +0.j, -0.2       +0.j, -0.2       +0.j, -0.2       +0.j,
+ -0.2       +0.j, -0.45922012+0.j, -0.45922012+0.j, -0.45922012+0.j,
+ -0.45922012+0.j, -0.45922012+0.j, -0.45922012+0.j, -1.10865544+0.j,
+ -1.10865544+0.j, -1.10865544+0.j, -1.10865544+0.j, -1.10865544+0.j,
+ -1.10865544+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h3>2.2 時間発展シミュレーションのパラメータ設定<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>ここでは、以下の3つのトロッター分解の技法を学びましょう。</p>
+<ul class="simple">
+<li><p>リー・トロッター分解 (1次)</p></li>
+<li><p>2次 鈴木・トロッター分解</p></li>
+<li><p>4次 鈴木・トロッター分解</p></li>
+</ul>
+<p>後者の2つは例題や付録で登場します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_timesteps</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">evolution_time</span> <span class="o">=</span> <span class="mf">30.0</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">evolution_time</span> <span class="o">/</span> <span class="n">num_timesteps</span>
+<span class="n">product_formula_lt</span> <span class="o">=</span> <span class="n">LieTrotter</span><span class="p">()</span>
+<span class="n">product_formula_st2</span> <span class="o">=</span> <span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">product_formula_st4</span> <span class="o">=</span> <span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>2.3 量子回路１(初期状態)の準備<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>初期状態を作成します。<span class="math notranslate nohighlight">\(\uparrow\uparrow\downarrow\downarrow\uparrow\uparrow\)</span>のスピンから始めましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">initial_circuit</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span><span class="s2">&quot;001100&quot;</span><span class="p">)</span>
+<span class="c1"># Change reps and see the difference when you decompose the circuit</span>
+<span class="n">initial_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/35dd3c9cf89aaaf64ad7016c426cb790f5d27fddc9d4295b550c5a441dcd4c6e.png" src="../../_images/35dd3c9cf89aaaf64ad7016c426cb790f5d27fddc9d4295b550c5a441dcd4c6e.png" />
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>2.4 量子回路２(時間発展の回路)の準備<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>リー・トロッター分解の1時間ステップを表す量子回路を作ります。</p>
+<p>1次のリー積公式は、<a class="reference internal" href="#/docs/api/qiskit/qiskit.synthesis.LieTrotter"><span class="xref myst">LieTrotter</span></a>クラスで実装されています。1次の公式は、イントロダクションで説明したような、行列の和の指数関数を行列指数関数の積で表すという近似からなります。：</p>
+<div class="math notranslate nohighlight">
+\[
+e^{H_1+H_2} \approx e^{H_1} e^{H_2}
+\]</div>
+<p>$<span class="math notranslate nohighlight">\(
+e^{H_1+H_2} \approx e^{H_1} e^{H_2}
+\)</span>$真</p>
+<p>前に述べた通り、深い量子回路はエラーの蓄積を引き起こし、現代の量子コンピュータでの扱いを困難にします。2量子ビットゲートは1量子ビットゲートよりも高いエラー率であるため、特に2量子ビットゲートの深さが興味の対象です。真に注意すべき問題は、トランスパイル後の2量子ビットゲートの深さです（それが、量子コンピュータが実際に処理する量子回路であるため）。今はシミュレーターを用いているとはいえ、回路の操作の数を数えることを習慣づけましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">single_step_evolution_gates_lt</span> <span class="o">=</span> <span class="n">PauliEvolutionGate</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">product_formula_lt</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_lt</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">single_step_evolution_gates_lt</span><span class="p">,</span> <span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">qubits</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Trotter step with Lie-Trotter</span>
+<span class="s2">-----------------------------</span>
+<span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
+<span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trotter step with Lie-Trotter
+-----------------------------
+Depth: 17
+Gate count: 27
+Nonlocal gate count: 10
+Gate breakdown: U: 12, CX: 10, P: 5
+</pre></div>
+</div>
+<img alt="../../_images/a29101cf85465383f2a181e96ddac991845b364f00ee73565a4fc68695d4d54c.png" src="../../_images/a29101cf85465383f2a181e96ddac991845b364f00ee73565a4fc68695d4d54c.png" />
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>2.5 測定のための演算子の設定<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>磁化演算子を<span class="math notranslate nohighlight">\(\sum_i \langle Z_i \rangle / N\)</span>、平均スピン相関演算子を<span class="math notranslate nohighlight">\(\sum_i \langle Z_i Z_{i+1} \rangle/ (N - 1)\)</span>として定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">magnetization</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
+    <span class="p">)</span>
+    <span class="o">/</span> <span class="n">n_qubits</span>
+<span class="p">)</span>
+<span class="n">correlation</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
+<span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_qubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnetization : &quot;</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;correlation : &quot;</span><span class="p">,</span> <span class="n">correlation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnetization :  SparsePauliOp([&#39;IIIIIZ&#39;, &#39;IIIIZI&#39;, &#39;IIIZII&#39;, &#39;IIZIII&#39;, &#39;IZIIII&#39;, &#39;ZIIIII&#39;],
+              coeffs=[0.16666667+0.j, 0.16666667+0.j, 0.16666667+0.j, 0.16666667+0.j,
+ 0.16666667+0.j, 0.16666667+0.j])
+correlation :  SparsePauliOp([&#39;IIIIZZ&#39;, &#39;IIIZZI&#39;, &#39;IIZZII&#39;, &#39;IZZIII&#39;, &#39;ZZIIII&#39;],
+              coeffs=[0.2+0.j, 0.2+0.j, 0.2+0.j, 0.2+0.j, 0.2+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id12">
+<h3>2.6 時間発展シミュレーションの実行<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>エネルギー（ハミルトニアンの期待値）、磁化（磁化演算子の期待値）、平均スピン相関（平均スピン相関演算子の期待値）をモニタリングしましょう。</p>
+<p>Qiskitの<code class="docutils literal notranslate"><span class="pre">StatevectorEstimator</span></code> (EstimatorV2)プリミティブは、オブザーバブルの期待値<span class="math notranslate nohighlight">\(\langle\psi\vert\hat{O}\vert\psi\rangle\)</span>を推定することができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate the circuit</span>
+<span class="n">evolved_state</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="c1"># Start from the initial spin configuration</span>
+<span class="n">evolved_state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit</span><span class="p">,</span> <span class="n">evolved_state</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="c1"># Initiate Estimator (V2)</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">StatevectorEstimator</span><span class="p">()</span>
+<span class="c1"># Set number of shots</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># Translate the precision required from the number of shots</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">shots</span><span class="p">)</span>
+<span class="n">energy_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mag_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">corr_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Estimate expectation values for t=0.0</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[(</span><span class="n">evolved_state</span><span class="p">,</span> <span class="p">[</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">,</span> <span class="n">correlation</span><span class="p">])],</span> <span class="n">precision</span><span class="o">=</span><span class="n">precision</span>
+<span class="p">)</span>
+<span class="c1"># Get estimated expectation values</span>
+<span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+<span class="n">energy_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">mag_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">corr_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Start time evolution</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">):</span>
+    <span class="c1"># Expand the circuit to describe delta-t</span>
+    <span class="n">evolved_state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_gates_lt</span><span class="p">,</span> <span class="n">evolved_state</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="c1"># Estimate expectation values at delta-t</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[(</span><span class="n">evolved_state</span><span class="p">,</span> <span class="p">[</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">,</span> <span class="n">correlation</span><span class="p">])],</span>
+        <span class="n">precision</span><span class="o">=</span><span class="n">precision</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># Retrieve results (expectation values)</span>
+    <span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+    <span class="n">energy_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mag_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">corr_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Transform the list of expectation values (at each time step) to arrays</span>
+<span class="n">energy_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">energy_list</span><span class="p">)</span>
+<span class="n">mag_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mag_list</span><span class="p">)</span>
+<span class="n">corr_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">corr_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id13">
+<h3>2.7 オブザーバブルの時間発展をプロットする<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>各時間において測定したオブザーバブルの期待値をプロットしましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">evolution_time</span><span class="p">,</span> <span class="n">num_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># includes initial state</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span>
+    <span class="n">energy_array</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;First order&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">mag_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;First order&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">corr_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;First order&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Magnetization&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean spin correlation&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Observable evolution&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Observable evolution&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/9cda43267c405a1e030c53a7a0c13a59cb26361a7d107d2adaeac0af76575013.png" src="../../_images/9cda43267c405a1e030c53a7a0c13a59cb26361a7d107d2adaeac0af76575013.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h2>3. エクササイズ 1. 2次鈴木・トロッター分解によるシミュレーション<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p>上記したリー・トロッター分解に続いて、2次鈴木・トロッター分解によるシミュレーションを試してみましょう。</p>
+<p>Qiskitにおける2次鈴木・トロッター分解は、<a class="reference internal" href="#/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter"><span class="xref myst">SuzukiTrotter class</span></a>で実装されています。この方法における2次の分解は、：</p>
+<div class="math notranslate nohighlight">
+\[
+e^{H_1+H_2} \approx e^{H_1/2}e^{H_2}e^{H_1/2}
+\]</div>
+<section id="id15">
+<h3>3.1 1時間ステップの量子回路の実装<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>product_formula_st2 (SuzukiTrotter(order=2))を使い、2次鈴木・トロッター分解を用いて1時間ステップの回路を作成しましょう。また、リー・トロッター分解と比較して量子回路のゲート数と深さを数えましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify the line below (Use PauliEvolutionGate)</span>
+<span class="n">single_step_evolution_gates_st2</span> <span class="o">=</span> <span class="n">PauliEvolutionGate</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">product_formula_st2</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_st2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">single_step_evolution_gates_st2</span><span class="p">,</span> <span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">qubits</span>
+<span class="p">)</span>
+<span class="c1"># Let us print some stats</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Trotter step with second-order Suzuki-Trotter</span>
+<span class="s2">-----------------------------</span>
+<span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
+<span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trotter step with second-order Suzuki-Trotter
+-----------------------------
+Depth: 34
+Gate count: 53
+Nonlocal gate count: 20
+Gate breakdown: U: 23, CX: 20, P: 10
+</pre></div>
+</div>
+<img alt="../../_images/5e9d4a02e89cddcdb6f74e87ec71fbc5597fca946ce7d935a741c78c9f70fb00.png" src="../../_images/5e9d4a02e89cddcdb6f74e87ec71fbc5597fca946ce7d935a741c78c9f70fb00.png" />
+</div>
+</div>
+</section>
+<section id="id16">
+<h3>3.2 時間発展シミュレーションの実行<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>2次鈴木・トロッター分解による時間発展シミュレーションを実行します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate the circuit</span>
+<span class="n">evolved_state</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="c1"># Start from the initial spin configuration</span>
+<span class="n">evolved_state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit</span><span class="p">,</span> <span class="n">evolved_state</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="c1"># Initiate Estimator (V2)</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">StatevectorEstimator</span><span class="p">()</span>
+<span class="c1"># Set number of shots</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># Translate the precision required from the number of shots</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">shots</span><span class="p">)</span>
+<span class="n">energy_list_st2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mag_list_st2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">corr_list_st2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Estimate expectation values for t=0.0</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[(</span><span class="n">evolved_state</span><span class="p">,</span> <span class="p">[</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">,</span> <span class="n">correlation</span><span class="p">])],</span> <span class="n">precision</span><span class="o">=</span><span class="n">precision</span>
+<span class="p">)</span>
+<span class="c1"># Get estimated expectation values</span>
+<span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+<span class="n">energy_list_st2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">mag_list_st2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">corr_list_st2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Start time evolution</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">):</span>
+    <span class="c1"># Expand the circuit to describe delta-t</span>
+    <span class="n">evolved_state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_gates_st2</span><span class="p">,</span> <span class="n">evolved_state</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="c1"># Estimate expectation values at delta-t</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[(</span><span class="n">evolved_state</span><span class="p">,</span> <span class="p">[</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">,</span> <span class="n">correlation</span><span class="p">])],</span>
+        <span class="n">precision</span><span class="o">=</span><span class="n">precision</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># Retrieve results (expectation values)</span>
+    <span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+    <span class="n">energy_list_st2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">mag_list_st2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">corr_list_st2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Transform the list of expectation values (at each time step) to arrays</span>
+<span class="n">energy_array_st2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">energy_list_st2</span><span class="p">)</span>
+<span class="n">mag_array_st2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mag_list_st2</span><span class="p">)</span>
+<span class="n">corr_array_st2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">corr_list_st2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id17">
+<h3>3.3 結果のプロット<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span>
+    <span class="n">energy_array_st2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Second Order&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span>
+    <span class="n">mag_array_st2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Second Order&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span>
+    <span class="n">corr_array_st2</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Second Order&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Replace the legend</span>
+<span class="c1"># legend.remove()</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">(),</span>
+    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span>
+    <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a018381f4b4bb77997ec15a14e596a5559bd26edcf78c7cfb92298010242c728.png" src="../../_images/a018381f4b4bb77997ec15a14e596a5559bd26edcf78c7cfb92298010242c728.png" />
+</div>
+</div>
+</section>
+<section id="id18">
+<h3>3.4 解析解との比較<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>以下のデータは、古典コンピュータで計算された解析解です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="mf">0.0</span><span class="p">,</span>
+        <span class="mf">0.3</span><span class="p">,</span>
+        <span class="mf">0.6</span><span class="p">,</span>
+        <span class="mf">0.8999999999999999</span><span class="p">,</span>
+        <span class="mf">1.2</span><span class="p">,</span>
+        <span class="mf">1.5</span><span class="p">,</span>
+        <span class="mf">1.7999999999999998</span><span class="p">,</span>
+        <span class="mf">2.1</span><span class="p">,</span>
+        <span class="mf">2.4</span><span class="p">,</span>
+        <span class="mf">2.6999999999999997</span><span class="p">,</span>
+        <span class="mf">3.0</span><span class="p">,</span>
+        <span class="mf">3.3</span><span class="p">,</span>
+        <span class="mf">3.5999999999999996</span><span class="p">,</span>
+        <span class="mf">3.9</span><span class="p">,</span>
+        <span class="mf">4.2</span><span class="p">,</span>
+        <span class="mf">4.5</span><span class="p">,</span>
+        <span class="mf">4.8</span><span class="p">,</span>
+        <span class="mf">5.1</span><span class="p">,</span>
+        <span class="mf">5.3999999999999995</span><span class="p">,</span>
+        <span class="mf">5.7</span><span class="p">,</span>
+        <span class="mf">6.0</span><span class="p">,</span>
+        <span class="mf">6.3</span><span class="p">,</span>
+        <span class="mf">6.6</span><span class="p">,</span>
+        <span class="mf">6.8999999999999995</span><span class="p">,</span>
+        <span class="mf">7.199999999999999</span><span class="p">,</span>
+        <span class="mf">7.5</span><span class="p">,</span>
+        <span class="mf">7.8</span><span class="p">,</span>
+        <span class="mf">8.1</span><span class="p">,</span>
+        <span class="mf">8.4</span><span class="p">,</span>
+        <span class="mf">8.7</span><span class="p">,</span>
+        <span class="mf">9.0</span><span class="p">,</span>
+        <span class="mf">9.299999999999999</span><span class="p">,</span>
+        <span class="mf">9.6</span><span class="p">,</span>
+        <span class="mf">9.9</span><span class="p">,</span>
+        <span class="mf">10.2</span><span class="p">,</span>
+        <span class="mf">10.5</span><span class="p">,</span>
+        <span class="mf">10.799999999999999</span><span class="p">,</span>
+        <span class="mf">11.1</span><span class="p">,</span>
+        <span class="mf">11.4</span><span class="p">,</span>
+        <span class="mf">11.7</span><span class="p">,</span>
+        <span class="mf">12.0</span><span class="p">,</span>
+        <span class="mf">12.299999999999999</span><span class="p">,</span>
+        <span class="mf">12.6</span><span class="p">,</span>
+        <span class="mf">12.9</span><span class="p">,</span>
+        <span class="mf">13.2</span><span class="p">,</span>
+        <span class="mf">13.5</span><span class="p">,</span>
+        <span class="mf">13.799999999999999</span><span class="p">,</span>
+        <span class="mf">14.1</span><span class="p">,</span>
+        <span class="mf">14.399999999999999</span><span class="p">,</span>
+        <span class="mf">14.7</span><span class="p">,</span>
+        <span class="mf">15.0</span><span class="p">,</span>
+        <span class="mf">15.299999999999999</span><span class="p">,</span>
+        <span class="mf">15.6</span><span class="p">,</span>
+        <span class="mf">15.899999999999999</span><span class="p">,</span>
+        <span class="mf">16.2</span><span class="p">,</span>
+        <span class="mf">16.5</span><span class="p">,</span>
+        <span class="mf">16.8</span><span class="p">,</span>
+        <span class="mf">17.099999999999998</span><span class="p">,</span>
+        <span class="mf">17.4</span><span class="p">,</span>
+        <span class="mf">17.7</span><span class="p">,</span>
+        <span class="mf">18.0</span><span class="p">,</span>
+        <span class="mf">18.3</span><span class="p">,</span>
+        <span class="mf">18.599999999999998</span><span class="p">,</span>
+        <span class="mf">18.9</span><span class="p">,</span>
+        <span class="mf">19.2</span><span class="p">,</span>
+        <span class="mf">19.5</span><span class="p">,</span>
+        <span class="mf">19.8</span><span class="p">,</span>
+        <span class="mf">20.099999999999998</span><span class="p">,</span>
+        <span class="mf">20.4</span><span class="p">,</span>
+        <span class="mf">20.7</span><span class="p">,</span>
+        <span class="mf">21.0</span><span class="p">,</span>
+        <span class="mf">21.3</span><span class="p">,</span>
+        <span class="mf">21.599999999999998</span><span class="p">,</span>
+        <span class="mf">21.9</span><span class="p">,</span>
+        <span class="mf">22.2</span><span class="p">,</span>
+        <span class="mf">22.5</span><span class="p">,</span>
+        <span class="mf">22.8</span><span class="p">,</span>
+        <span class="mf">23.099999999999998</span><span class="p">,</span>
+        <span class="mf">23.4</span><span class="p">,</span>
+        <span class="mf">23.7</span><span class="p">,</span>
+        <span class="mf">24.0</span><span class="p">,</span>
+        <span class="mf">24.3</span><span class="p">,</span>
+        <span class="mf">24.599999999999998</span><span class="p">,</span>
+        <span class="mf">24.9</span><span class="p">,</span>
+        <span class="mf">25.2</span><span class="p">,</span>
+        <span class="mf">25.5</span><span class="p">,</span>
+        <span class="mf">25.8</span><span class="p">,</span>
+        <span class="mf">26.099999999999998</span><span class="p">,</span>
+        <span class="mf">26.4</span><span class="p">,</span>
+        <span class="mf">26.7</span><span class="p">,</span>
+        <span class="mf">27.0</span><span class="p">,</span>
+        <span class="mf">27.3</span><span class="p">,</span>
+        <span class="mf">27.599999999999998</span><span class="p">,</span>
+        <span class="mf">27.9</span><span class="p">,</span>
+        <span class="mf">28.2</span><span class="p">,</span>
+        <span class="mf">28.5</span><span class="p">,</span>
+        <span class="mf">28.799999999999997</span><span class="p">,</span>
+        <span class="mf">29.099999999999998</span><span class="p">,</span>
+        <span class="mf">29.4</span><span class="p">,</span>
+        <span class="mf">29.7</span><span class="p">,</span>
+        <span class="mf">30.0</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">exact_energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="o">-</span><span class="mf">1.1184402376762155</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762157</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762157</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762153</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762155</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676216</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676216</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762166</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676216</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762153</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676217</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676215</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762161</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762157</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676217</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762161</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762137</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762161</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762161</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676218</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762155</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762166</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762155</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762137</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762186</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762215</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676216</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762166</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762121</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762166</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762181</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762137</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762193</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762108</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762144</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676217</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762197</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762153</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762161</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762184</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762126</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676214</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676214</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762161</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676212</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762164</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676217</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762121</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762157</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762212</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762217</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762206</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676222</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762166</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676212</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762137</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.11844023767622</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762206</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676219</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762153</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762164</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676209</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762144</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762161</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676216</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762173</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676214</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762093</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762184</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762126</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676213</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762195</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762095</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762075</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762197</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762141</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762146</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762184</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676218</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762224</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676219</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676218</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762206</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762168</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676221</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676218</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762148</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762106</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762173</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676216</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.118440237676216</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762113</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762275</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.1184402376762195</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">exact_magnetization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="mf">0.3333333333333333</span><span class="p">,</span>
+        <span class="mf">0.26316769633415005</span><span class="p">,</span>
+        <span class="mf">0.0912947227110664</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.09317712543141576</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.20391854332115245</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.19318196655046493</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.06411527074401464</span><span class="p">,</span>
+        <span class="mf">0.12558269854206197</span><span class="p">,</span>
+        <span class="mf">0.28252754464640606</span><span class="p">,</span>
+        <span class="mf">0.3264196194042506</span><span class="p">,</span>
+        <span class="mf">0.2361586169847769</span><span class="p">,</span>
+        <span class="mf">0.060894367906122224</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.10842387093076275</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.18636359582538073</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.1338364343947887</span><span class="p">,</span>
+        <span class="mf">0.020284606520827753</span><span class="p">,</span>
+        <span class="mf">0.19151142743926025</span><span class="p">,</span>
+        <span class="mf">0.2905341647678381</span><span class="p">,</span>
+        <span class="mf">0.2723014646745304</span><span class="p">,</span>
+        <span class="mf">0.15147481733047252</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.008179102877790292</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.1242999208732406</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.1372529247781061</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.04083616185958952</span><span class="p">,</span>
+        <span class="mf">0.11066094926716476</span><span class="p">,</span>
+        <span class="mf">0.23140661570567636</span><span class="p">,</span>
+        <span class="mf">0.2587109403786205</span><span class="p">,</span>
+        <span class="mf">0.1868237670027325</span><span class="p">,</span>
+        <span class="mf">0.061201779383143744</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.051391248969654205</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.09843899603365061</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.061297056158849166</span><span class="p">,</span>
+        <span class="mf">0.04199010081939773</span><span class="p">,</span>
+        <span class="mf">0.15861461430963147</span><span class="p">,</span>
+        <span class="mf">0.22336830674799552</span><span class="p">,</span>
+        <span class="mf">0.20179555623336537</span><span class="p">,</span>
+        <span class="mf">0.11407111438609417</span><span class="p">,</span>
+        <span class="mf">0.01609419104778282</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.04239611796730001</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.04249123521065924</span><span class="p">,</span>
+        <span class="mf">0.008850291714888112</span><span class="p">,</span>
+        <span class="mf">0.08780898151558082</span><span class="p">,</span>
+        <span class="mf">0.1561486776507056</span><span class="p">,</span>
+        <span class="mf">0.17627348772811832</span><span class="p">,</span>
+        <span class="mf">0.13870676179652253</span><span class="p">,</span>
+        <span class="mf">0.07205869195282538</span><span class="p">,</span>
+        <span class="mf">0.018300003064909465</span><span class="p">,</span>
+        <span class="mf">0.0001095640839572417</span><span class="p">,</span>
+        <span class="mf">0.015157929316037586</span><span class="p">,</span>
+        <span class="mf">0.05077755280969454</span><span class="p">,</span>
+        <span class="mf">0.09245534457650838</span><span class="p">,</span>
+        <span class="mf">0.12206907551110702</span><span class="p">,</span>
+        <span class="mf">0.12284950557969157</span><span class="p">,</span>
+        <span class="mf">0.09570215398601932</span><span class="p">,</span>
+        <span class="mf">0.06294378255078983</span><span class="p">,</span>
+        <span class="mf">0.045503313813986014</span><span class="p">,</span>
+        <span class="mf">0.043389819499542556</span><span class="p">,</span>
+        <span class="mf">0.046725117769796744</span><span class="p">,</span>
+        <span class="mf">0.054956411358382404</span><span class="p">,</span>
+        <span class="mf">0.0713814528253614</span><span class="p">,</span>
+        <span class="mf">0.08743689703248492</span><span class="p">,</span>
+        <span class="mf">0.08951216359166674</span><span class="p">,</span>
+        <span class="mf">0.07878386475305985</span><span class="p">,</span>
+        <span class="mf">0.06955669116405788</span><span class="p">,</span>
+        <span class="mf">0.06639892435963689</span><span class="p">,</span>
+        <span class="mf">0.05890378761746903</span><span class="p">,</span>
+        <span class="mf">0.04541796525844558</span><span class="p">,</span>
+        <span class="mf">0.0414221088331947</span><span class="p">,</span>
+        <span class="mf">0.05499634106912299</span><span class="p">,</span>
+        <span class="mf">0.07409418836014572</span><span class="p">,</span>
+        <span class="mf">0.08371859070160165</span><span class="p">,</span>
+        <span class="mf">0.08211623987959302</span><span class="p">,</span>
+        <span class="mf">0.07615055161378328</span><span class="p">,</span>
+        <span class="mf">0.06702584458783024</span><span class="p">,</span>
+        <span class="mf">0.051891407742740085</span><span class="p">,</span>
+        <span class="mf">0.038049378383635625</span><span class="p">,</span>
+        <span class="mf">0.03825614149768043</span><span class="p">,</span>
+        <span class="mf">0.054183218463525695</span><span class="p">,</span>
+        <span class="mf">0.0753534475741016</span><span class="p">,</span>
+        <span class="mf">0.08853147112587295</span><span class="p">,</span>
+        <span class="mf">0.08767917178542013</span><span class="p">,</span>
+        <span class="mf">0.07709383184439536</span><span class="p">,</span>
+        <span class="mf">0.06308595032042386</span><span class="p">,</span>
+        <span class="mf">0.0498812359204284</span><span class="p">,</span>
+        <span class="mf">0.04299040064096167</span><span class="p">,</span>
+        <span class="mf">0.04769159891460652</span><span class="p">,</span>
+        <span class="mf">0.06483569572288776</span><span class="p">,</span>
+        <span class="mf">0.08698035745435016</span><span class="p">,</span>
+        <span class="mf">0.10047391641776235</span><span class="p">,</span>
+        <span class="mf">0.09747255683203637</span><span class="p">,</span>
+        <span class="mf">0.08098863187287358</span><span class="p">,</span>
+        <span class="mf">0.05959496723987331</span><span class="p">,</span>
+        <span class="mf">0.04383882265040485</span><span class="p">,</span>
+        <span class="mf">0.04232138798062125</span><span class="p">,</span>
+        <span class="mf">0.05720514169944535</span><span class="p">,</span>
+        <span class="mf">0.08201306299870219</span><span class="p">,</span>
+        <span class="mf">0.10274898262000469</span><span class="p">,</span>
+        <span class="mf">0.10707552455080133</span><span class="p">,</span>
+        <span class="mf">0.09210856128265357</span><span class="p">,</span>
+        <span class="mf">0.06379922105742579</span><span class="p">,</span>
+        <span class="mf">0.03624325103307953</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">exact_correlation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="mf">0.2</span><span class="p">,</span>
+        <span class="mf">0.1247704225763532</span><span class="p">,</span>
+        <span class="mf">0.01943938494098705</span><span class="p">,</span>
+        <span class="mf">0.03854917181332821</span><span class="p">,</span>
+        <span class="mf">0.11196616231067426</span><span class="p">,</span>
+        <span class="mf">0.0906546700356683</span><span class="p">,</span>
+        <span class="mf">0.01629373561896267</span><span class="p">,</span>
+        <span class="mf">0.011352652889791095</span><span class="p">,</span>
+        <span class="mf">0.0636185676540077</span><span class="p">,</span>
+        <span class="mf">0.09543834437789013</span><span class="p">,</span>
+        <span class="mf">0.10058518161011307</span><span class="p">,</span>
+        <span class="mf">0.11829217731417431</span><span class="p">,</span>
+        <span class="mf">0.1397812224038133</span><span class="p">,</span>
+        <span class="mf">0.12316460402216707</span><span class="p">,</span>
+        <span class="mf">0.08541383059335775</span><span class="p">,</span>
+        <span class="mf">0.06144846844403662</span><span class="p">,</span>
+        <span class="mf">0.020246372880505827</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.02693683090021662</span><span class="p">,</span>
+        <span class="mf">0.003919250903281282</span><span class="p">,</span>
+        <span class="mf">0.1117419430168554</span><span class="p">,</span>
+        <span class="mf">0.19676155181256794</span><span class="p">,</span>
+        <span class="mf">0.18594408880783336</span><span class="p">,</span>
+        <span class="mf">0.1002673802566004</span><span class="p">,</span>
+        <span class="mf">0.03821525827438024</span><span class="p">,</span>
+        <span class="mf">0.04485205090247377</span><span class="p">,</span>
+        <span class="mf">0.05348102743040269</span><span class="p">,</span>
+        <span class="mf">0.03160026140008638</span><span class="p">,</span>
+        <span class="mf">0.033437649060464834</span><span class="p">,</span>
+        <span class="mf">0.10486939975320728</span><span class="p">,</span>
+        <span class="mf">0.20249469538955758</span><span class="p">,</span>
+        <span class="mf">0.19735507621013149</span><span class="p">,</span>
+        <span class="mf">0.0553097261765083</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.04889114490131667</span><span class="p">,</span>
+        <span class="mf">0.011685690974970964</span><span class="p">,</span>
+        <span class="mf">0.11705971535823065</span><span class="p">,</span>
+        <span class="mf">0.11681165998194759</span><span class="p">,</span>
+        <span class="mf">0.06637091239560744</span><span class="p">,</span>
+        <span class="mf">0.10936684225958895</span><span class="p">,</span>
+        <span class="mf">0.20225454101061405</span><span class="p">,</span>
+        <span class="mf">0.16284420833341812</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.0025823294931362067</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.0763416631752919</span><span class="p">,</span>
+        <span class="mf">0.02985268630418397</span><span class="p">,</span>
+        <span class="mf">0.15234468006771007</span><span class="p">,</span>
+        <span class="mf">0.14606385406970995</span><span class="p">,</span>
+        <span class="mf">0.0935341856492092</span><span class="p">,</span>
+        <span class="mf">0.12325421854361143</span><span class="p">,</span>
+        <span class="mf">0.17130422930386324</span><span class="p">,</span>
+        <span class="mf">0.10383730044042278</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.031333159406547614</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.05241572078596815</span><span class="p">,</span>
+        <span class="mf">0.07722509925347705</span><span class="p">,</span>
+        <span class="mf">0.17642188574256007</span><span class="p">,</span>
+        <span class="mf">0.12765340239966838</span><span class="p">,</span>
+        <span class="mf">0.06309968945093776</span><span class="p">,</span>
+        <span class="mf">0.11574687130499339</span><span class="p">,</span>
+        <span class="mf">0.16978282647206913</span><span class="p">,</span>
+        <span class="mf">0.0736143632571229</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.05356602733119409</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.0009649396796768892</span><span class="p">,</span>
+        <span class="mf">0.15921620111869142</span><span class="p">,</span>
+        <span class="mf">0.17760366431811037</span><span class="p">,</span>
+        <span class="mf">0.04736297330213485</span><span class="p">,</span>
+        <span class="mf">0.012122870263181897</span><span class="p">,</span>
+        <span class="mf">0.13268065586830521</span><span class="p">,</span>
+        <span class="mf">0.1728473023503636</span><span class="p">,</span>
+        <span class="mf">0.03999259331072221</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.036997053070222885</span><span class="p">,</span>
+        <span class="mf">0.06951528580242439</span><span class="p">,</span>
+        <span class="mf">0.1769169993516561</span><span class="p">,</span>
+        <span class="mf">0.12290448295710298</span><span class="p">,</span>
+        <span class="mf">0.012897784654866427</span><span class="p">,</span>
+        <span class="mf">0.02859435620982225</span><span class="p">,</span>
+        <span class="mf">0.12895847695150875</span><span class="p">,</span>
+        <span class="mf">0.13629536955485938</span><span class="p">,</span>
+        <span class="mf">0.05394621059822597</span><span class="p">,</span>
+        <span class="mf">0.02298040588184324</span><span class="p">,</span>
+        <span class="mf">0.07036499900317271</span><span class="p">,</span>
+        <span class="mf">0.11706448623132719</span><span class="p">,</span>
+        <span class="mf">0.10435285842074606</span><span class="p">,</span>
+        <span class="mf">0.055721236329964965</span><span class="p">,</span>
+        <span class="mf">0.04676334743672697</span><span class="p">,</span>
+        <span class="mf">0.08417924910022263</span><span class="p">,</span>
+        <span class="mf">0.10611161955304965</span><span class="p">,</span>
+        <span class="mf">0.089304171047322</span><span class="p">,</span>
+        <span class="mf">0.06098589533081194</span><span class="p">,</span>
+        <span class="mf">0.06314519797488709</span><span class="p">,</span>
+        <span class="mf">0.09431492621892917</span><span class="p">,</span>
+        <span class="mf">0.09667836915967139</span><span class="p">,</span>
+        <span class="mf">0.0651298357290882</span><span class="p">,</span>
+        <span class="mf">0.05176966009147416</span><span class="p">,</span>
+        <span class="mf">0.06727229484222669</span><span class="p">,</span>
+        <span class="mf">0.08871788283607947</span><span class="p">,</span>
+        <span class="mf">0.09907054249093444</span><span class="p">,</span>
+        <span class="mf">0.09785167773502176</span><span class="p">,</span>
+        <span class="mf">0.09277216140054353</span><span class="p">,</span>
+        <span class="mf">0.07520999642062785</span><span class="p">,</span>
+        <span class="mf">0.05894392248382922</span><span class="p">,</span>
+        <span class="mf">0.07236135251622376</span><span class="p">,</span>
+        <span class="mf">0.08608284185200156</span><span class="p">,</span>
+        <span class="mf">0.07282922961856123</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_energy</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_magnetization</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_correlation</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact&quot;</span><span class="p">)</span>
+<span class="c1"># Replace the legend</span>
+<span class="n">legend</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+<span class="c1"># Select the labels of only the first axis</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">(),</span>
+    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span>
+    <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fe691472b45534be1a98ba28eb5c794c9b1ee3f8c2f2885ff171cc8fe7216a65.png" src="../../_images/fe691472b45534be1a98ba28eb5c794c9b1ee3f8c2f2885ff171cc8fe7216a65.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id19">
+<h2>4. 量子ハードウェアでの実行<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<p>次に、時間発展シミュレーションを量子ハードウェア上で実行しましょう。ここではより小さな、格子サイズ<span class="math notranslate nohighlight">\(N=2\)</span>の問題へ取り組みます。パラメータ<span class="math notranslate nohighlight">\(\alpha\)</span>を変え、波動関数のダイナミクスの変化を観察しましょう。</p>
+<section id="id20">
+<h3>4.1  ステップ１.量子の問題へマッピング<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<p>シミュレーションの初期条件を設定します：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits_2</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">dt_2</span> <span class="o">=</span> <span class="mf">1.6</span>
+<span class="n">product_formula</span> <span class="o">=</span> <span class="n">LieTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>初期回路を設定します。</p>
+<p>スピンの初期条件は”down-up”とします。：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We prepare an initial state ↓↑ (10).</span>
+<span class="c1"># Note that Statevector and SparsePauliOp interpret the qubits from right to left</span>
+<span class="n">initial_circuit_2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits_2</span><span class="p">)</span>
+<span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="c1"># Change reps and see the difference when you decompose the circuit</span>
+<span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/452fb7179a7e1becfd74310bf5d5cfc0d360d59f5a9a02f47c4404077ae79d21.png" src="../../_images/452fb7179a7e1becfd74310bf5d5cfc0d360d59f5a9a02f47c4404077ae79d21.png" />
+</div>
+</div>
+<p>ここで、理想的な状態ベクトルシミュレータを用いて、参照する値を計算します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bar_width</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="c1"># initial_state = Statevector.from_label(&quot;10&quot;)</span>
+<span class="n">final_time</span> <span class="o">=</span> <span class="mf">1.6</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="c1"># We create the list of angles in radians, with a small epsilon</span>
+<span class="c1"># the exactly longitudinal field, which would present no dynamics at all</span>
+<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">eps</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">eps</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphas</span><span class="p">):</span>
+    <span class="n">evolved_state_2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+    <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit_2</span><span class="p">,</span> <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">hamiltonian_2</span> <span class="o">=</span> <span class="n">get_hamiltonian</span><span class="p">(</span><span class="n">nqubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">single_step_evolution_gates_2</span> <span class="o">=</span> <span class="n">PauliEvolutionGate</span><span class="p">(</span>
+        <span class="n">hamiltonian_2</span><span class="p">,</span> <span class="n">dt_2</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">product_formula</span>
+    <span class="p">)</span>
+    <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_gates_2</span><span class="p">,</span> <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">evolved_state_2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">evolved_state_2</span><span class="p">)</span>
+    <span class="c1"># Dictionary of probabilities</span>
+    <span class="n">amplitudes_dict</span> <span class="o">=</span> <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">probabilities_dict</span><span class="p">()</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">amplitudes_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">amplitudes_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="c1"># Convert angle to degrees</span>
+    <span class="n">alpha_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">alpha=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="si">}</span><span class="s2">^</span><span class="se">\\</span><span class="s2">circ$&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">alpha_str</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Measurement&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Measurement probabilities at $t=</span><span class="si">{</span><span class="n">final_time</span><span class="si">}</span><span class="s2">$, for various field angles $</span><span class="se">\\</span><span class="s2">alpha$</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;Initial state: 10, Linear lattice of size $L=2$&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x22e132d8f50&gt;
+</pre></div>
+</div>
+<img alt="../../_images/94a6649703553520d35c2bfe68fa52e2d985a0372fd2f115e115cae208b2acdd.png" src="../../_images/94a6649703553520d35c2bfe68fa52e2d985a0372fd2f115e115cae208b2acdd.png" />
+</div>
+</div>
+<p>量子系の初期状態をスピン<span class="math notranslate nohighlight">\(\downarrow\uparrow\)</span>で初期化しました。これは量子状態<span class="math notranslate nohighlight">\(\vert\psi(0)\rangle = \vert10\rangle\)</span>に対応します。<span class="math notranslate nohighlight">\(\alpha=0^\circ\)</span>の横向き場で<span class="math notranslate nohighlight">\(t=1.6\)</span>まで時間発展したあと、ほとんど<span class="math notranslate nohighlight">\(\uparrow\downarrow\)</span>が測定できることを示しました。つまり、スピンの交換です（ラベルは右から左に読むことに注意してください）。もし場が縦向き(<span class="math notranslate nohighlight">\(\alpha=\pm90^\circ\)</span>)のとき、なんの時間発展もなく、初期状態で設定した<span class="math notranslate nohighlight">\(\downarrow\uparrow\)</span>が常に測定されます。中間の角度（<span class="math notranslate nohighlight">\(\alpha=\pm45^\circ\)</span>）では、あらゆる組み合わせを異なる確率で測定することができ、スピンの交換はおよそ確率0.67で得ることができます。</p>
+<section id="id21">
+<h4>ハードウェア実験のための量子回路の構成<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphas</span><span class="p">):</span>
+    <span class="n">evolved_state_2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+    <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit_2</span><span class="p">,</span> <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">hamiltonian_2</span> <span class="o">=</span> <span class="n">get_hamiltonian</span><span class="p">(</span><span class="n">nqubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">single_step_evolution_gates_2</span> <span class="o">=</span> <span class="n">PauliEvolutionGate</span><span class="p">(</span>
+        <span class="n">hamiltonian_2</span><span class="p">,</span> <span class="n">dt_2</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">product_formula</span>
+    <span class="p">)</span>
+    <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_gates_2</span><span class="p">,</span> <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="n">evolved_state_2</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+    <span class="n">circuit_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evolved_state_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id22">
+<h3>4.2 ステップ２. ターゲットのハードウェア向けに回路を最適化<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<p>バックエンドを識別します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ibm_torino&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>選択されたバックエンドに向けてトランスパイルします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">circuit_isa</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>回路を確認します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_isa</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/66ebdd0149593c9579b73240d371ba27b596296a3bcc82a6471d74a3a9299735.png" src="../../_images/66ebdd0149593c9579b73240d371ba27b596296a3bcc82a6471d74a3a9299735.png" />
+</div>
+</div>
+</section>
+<section id="qiskit-runtime">
+<h3>4.3 ステップ３. Qiskit Runtimeプリミティブを用いて実行<a class="headerlink" href="#qiskit-runtime" title="Link to this heading">#</a></h3>
+<p>Qiskitの<code class="docutils literal notranslate"><span class="pre">Sampler</span></code> (V2)プリミティブは、測定されたビット列の個数を提供します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit_isa</span><span class="p">)</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: d27fb4boctts738j8d20
+</pre></div>
+</div>
+</div>
+</div>
+<p>結果を保存します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id23">
+<h3>4.4 ステップ４. 結果の後処理<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>ビット列のヒストグラムを構築します。これは波動関数の解析に由来します。そして、これらを上で確認した理想の解と比較しましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_temp</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;11&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphas</span><span class="p">):</span>
+    <span class="c1"># Dictionary of probabilities</span>
+    <span class="n">amplitudes_dict</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">str_temp</span> <span class="ow">in</span> <span class="n">list_temp</span><span class="p">:</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">amplitudes_dict</span><span class="p">[</span><span class="n">str_temp</span><span class="p">]</span> <span class="o">/</span> <span class="mf">4096.0</span>
+        <span class="p">)</span>  <span class="c1"># divided by default number of shots</span>
+    <span class="c1"># Convert angle to degrees</span>
+    <span class="n">alpha_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">alpha=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="si">}</span><span class="s2">^</span><span class="se">\\</span><span class="s2">circ$&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">alpha_str</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Measurement&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probabilities&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Measurement probabilities at $t=</span><span class="si">{</span><span class="n">final_time</span><span class="si">}</span><span class="s2">$, for various field angles $</span><span class="se">\\</span><span class="s2">alpha$</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;Initial state: 10, Linear lattice of size $L=2$&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x22e15eb1590&gt;
+</pre></div>
+</div>
+<img alt="../../_images/f12c91a8dea4d39321acbaaf48b0c302340a5e61d4f683b7f378c2648d11bcd7.png" src="../../_images/f12c91a8dea4d39321acbaaf48b0c302340a5e61d4f683b7f378c2648d11bcd7.png" />
+</div>
+</div>
+<p>ここでは4次鈴木・トロッター分解の回路を構築した例を示します。</p>
+<p>上の例にしたがって、4次鈴木・トロッター分解の回路を構築しましょう。</p>
+<p>4次鈴木・トロッター分解は、<a class="reference internal" href="#/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter"><span class="xref myst">SuzukiTrotter class</span></a>を用いて実装できます。4次は以下に示すような再帰関係で評価できます。鈴木・トロッター分解の次数は、以下の式では”2k”と書かれていることに注意してください。</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{U}_{ST(2k)}\left(t\right) = \left[ \hat{U}_{ST(2k-2)}\left(p_k t\right) \right]^2 \hat{U}_{ST(2k-2)}\left( (1- 4 p_k) t\right)\left[ \hat{U}_{ST(2k-2)}\left(p_k t\right) \right]^2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+p_k = 1 / \left(4-4^{\frac{1}{2k-1}}\right)
+\]</div>
+<section id="id24">
+<h4>1時間ステップの回路の構築<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<p>product_formula_st4 (SuzukiTrotter(order=4))を用いて、4次鈴木・トロッター分解の1時間ステップ回路を構築しましょう。また、ゲート数と深さをカウントし、リー・トロッター分解や2次鈴木・トロッター分解の結果と比較しましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Modify the line below (Use PauliEvolutionGate)</span>
+<span class="n">single_step_evolution_gates_st4</span> <span class="o">=</span> <span class="n">PauliEvolutionGate</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">product_formula_st4</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_st4</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">single_step_evolution_gates_st4</span><span class="p">,</span> <span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">qubits</span>
+<span class="p">)</span>
+<span class="c1"># Let us print some stats</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Trotter step with second-order Suzuki-Trotter</span>
+<span class="s2">-----------------------------</span>
+<span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
+<span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trotter step with second-order Suzuki-Trotter
+-----------------------------
+Depth: 170
+Gate count: 265
+Nonlocal gate count: 100
+Gate breakdown: U: 115, CX: 100, P: 50
+</pre></div>
+</div>
+<img alt="../../_images/26b8b291acf2eca99309714997443818b2f0fa8e5fe9bfd7e95aa4ca98f8658f.png" src="../../_images/26b8b291acf2eca99309714997443818b2f0fa8e5fe9bfd7e95aa4ca98f8658f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check Qiskit version</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>© IBM Corp., 2017-2025</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. イントロダクション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.1 要件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.2 ライブラリのインポート</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2. 問題のマッピング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.1 イジングハミルトニアンの磁場の定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ハミルトニアンを定義する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.2 時間発展シミュレーションのパラメータ設定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2.3 量子回路１(初期状態)の準備</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.4 量子回路２(時間発展の回路)の準備</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.5 測定のための演算子の設定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">2.6 時間発展シミュレーションの実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">2.7 オブザーバブルの時間発展をプロットする</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">3. エクササイズ 1. 2次鈴木・トロッター分解によるシミュレーション</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">3.1 1時間ステップの量子回路の実装</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">3.2 時間発展シミュレーションの実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">3.3 結果のプロット</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.4 解析解との比較</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">4. 量子ハードウェアでの実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">4.1  ステップ１.量子の問題へマッピング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">ハードウェア実験のための量子回路の構成</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">4.2 ステップ２. ターゲットのハードウェア向けに回路を最適化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-runtime">4.3 ステップ３. Qiskit Runtimeプリミティブを用いて実行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">4.4 ステップ４. 結果の後処理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">1時間ステップの回路の構築</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
