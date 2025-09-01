@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子ハードウェア &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/hardware-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/hardware-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/hardware-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子ハードウェア</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. はじめに</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. バックエンドとターゲット</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.1 演習</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.2 カップリングマップ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 量子ビットのプロパティ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.1 演習</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2 ゲートエラーと読み出しエラー</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4. 付録</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子ハードウェア<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Masao Tokunari and Tamiya Onodera (14 June 2024)
+<p>このコースは、東京大学で提供された授業に基づいています。</p>
+<p>和訳版の講義スライドPDFは<a class="reference external" href="https://github.com/quantum-tokyo/introduction/blob/main/src/courses/utility-scale-quantum-computing/9_hardware_ja.pdf">こちら</a>です。</p>
+<p>このレッスンの講義 PDF は 2 つの部分に分かれています。<a class="reference external" href="https://ibm.box.com/shared/static/ruz8wf353hncenmaywjlfjilflaumnzt.zip">パート1をダウンロード</a> と <a class="reference external" href="https://ibm.box.com/shared/static/tg8vv00ern2bmxmm033xt9oe0fcvwamc.zip">パート 2 をダウンロード</a> を参照してください。コードは非推奨になる可能性があることに注意してください。
+</Admonition></p>
+<section id="id2">
+<h2>1. はじめに<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>このレッスンでは、最新の量子コンピューティング ハードウェアについて説明します。</p>
+<p>まず、いくつかのバージョンを確認し、関連するパッケージをインポートします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>2. バックエンドとターゲット<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Qiskitは、量子デバイスに関する静的および動的の両方の情報を取得するためのAPIを提供します。バックエンド・インスタンスを使用してデバイスとのインターフェースに使用します。ターゲット・インスタンスは、命令セットアーキテクチャ(ISA)やそれに関連するプロパティや制約などの関連機能を要約した抽象マシンモデルです。
+これらのバックエンド・インスタンスを使用して、IBM Quantum Platform® に表示される<a class="reference external" href="https://quantum.cloud.ibm.com/computers">Compute resources</a>ページの情報の一部を取得しましょう。
+まず、目的のデバイスのバックエンド・インスタンスを作成します。 以下では、 “ibm_kyoto” 、”ibm_kawasaki”、または最もビジーの少ない Eagle マシンを選択します。QPU へのアクセスは異なる場合があります。それに応じてバックエンド名を更新します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">service</span><span class="o">.</span><span class="n">backends</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;, &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="c1"># backend = service.backend(&quot;ibm_kawasaki&quot;) # an Eagle, if you have access to ibm_kawasaki</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
+    <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span>
+<span class="p">)</span>  <span class="c1"># Eagle</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ibm_torino&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>(訳註) 現在使える Eagle マシンを選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<p>デバイスに関するいくつかの基本的な(静的)情報から始めます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits</span>
+<span class="s2">processor type = </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">processor_type</span><span class="si">}</span>
+<span class="s2">basis gates = </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">basis_gates</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_brisbane, 127 qubits
+processor type = {&#39;family&#39;: &#39;Eagle&#39;, &#39;revision&#39;: 3}
+basis gates = [&#39;ecr&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id4">
+<h3>2.1 演習<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Heron デバイスに関する基本情報 “ibm_torino” を取得してみてください。自分で確認できるようにコードが以下に追加されています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_heron</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_torino&quot;</span><span class="p">)</span>  <span class="c1"># a Heron</span>
+
+<span class="c1"># your code here</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">a_heron</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits</span>
+<span class="s2">processor type = </span><span class="si">{</span><span class="n">a_heron</span><span class="o">.</span><span class="n">processor_type</span><span class="si">}</span>
+<span class="s2">basis gates = </span><span class="si">{</span><span class="n">a_heron</span><span class="o">.</span><span class="n">basis_gates</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_brisbane, 133 qubits
+processor type = {&#39;family&#39;: &#39;Heron&#39;, &#39;revision&#39;: &#39;1&#39;}
+basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>2.2 カップリングマップ<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>次に、デバイスのカップリングマップを描画します。ご覧のとおり、ノードは番号が付けられた量子ビットです。エッジは、2 量子ビットのエンタングルゲートを直接適用できるペアを示します。このトポロジーは “heavy-hex 格子” と呼ばれます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This function requires that Graphviz is installed. If you need to install Graphviz you can refer to:</span>
+<span class="c1"># https://graphviz.org/download/#executable-packages for instructions.</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/41fc9adacea7b9e49790eeb2b501f10e0bca0f26f95f0e89e79bac7472a204a3.png" src="../../_images/41fc9adacea7b9e49790eeb2b501f10e0bca0f26f95f0e89e79bac7472a204a3.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>3. 量子ビットのプロパティ<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>Eagle デバイスには 127 量子ビットがあります。特性をいくつか取得してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">qn</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">qn</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">qn</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">qubit_properties</span><span class="p">(</span><span class="n">qn</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0: QubitProperties(t1=0.000292034087560393, t2=5.3456867360362344e-05, frequency=4721903631.949188)
+1: QubitProperties(t1=0.00033950165515210127, t2=0.00039862146879251906, frequency=4815140551.859664)
+2: QubitProperties(t1=0.0001893656586259208, t2=0.0001490591570503984, frequency=4609660452.383167)
+3: QubitProperties(t1=0.00023199942551193687, t2=0.0002690041224425773, frequency=4875544904.133222)
+4: QubitProperties(t1=0.0002808657906566358, t2=0.00024100290228637778, frequency=4818195916.209471)
+</pre></div>
+</div>
+</div>
+</div>
+<p>量子ビットの T1 時間の中央値を計算してみましょう。この結果を <a class="reference external" href="https://quantum.cloud.ibm.com/computers">IBM Quantum Platform</a> 上のデバイスに対して示された結果と比較してみてください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1s</span> <span class="o">=</span> <span class="p">[</span><span class="n">backend</span><span class="o">.</span><span class="n">qubit_properties</span><span class="p">(</span><span class="n">qq</span><span class="p">)</span><span class="o">.</span><span class="n">t1</span> <span class="k">for</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)]</span>
+<span class="sa">f</span><span class="s2">&quot;Median T1: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">t1s</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\u03bc</span><span class="s2">s&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median T1: 228.90 μs&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id7">
+<h3>3.1 演習<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>量子ビットの T2 時間の中央値を計算します。自分で確認できるようにコードが以下に追加されています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
+
+<span class="n">t2s</span> <span class="o">=</span> <span class="p">[</span><span class="n">backend</span><span class="o">.</span><span class="n">qubit_properties</span><span class="p">(</span><span class="n">qq</span><span class="p">)</span><span class="o">.</span><span class="n">t2</span> <span class="k">for</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)]</span>
+<span class="sa">f</span><span class="s2">&quot;Median T2: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">t2s</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\u03bc</span><span class="s2">s&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median T2: 135.87 μs&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>3.2 ゲートエラーと読み出しエラー<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>次に、ゲートエラーに目を向けます。まず、ターゲット・インスタンスのデータ構造を調べます。キーが演算名である辞書になっています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span>
+<span class="n">target</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;ecr&#39;, &#39;x&#39;, &#39;id&#39;, &#39;measure&#39;, &#39;delay&#39;, &#39;rz&#39;, &#39;reset&#39;, &#39;sx&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>その値も辞書です。’sx’　演算の値(辞書)の項目をいくつか見てみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;sx&quot;</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">qq</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;sx&quot;</span><span class="p">][</span><span class="n">qq</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 (0,) InstructionProperties(duration=6e-08, error=0.00021078975905076041)
+1 (1,) InstructionProperties(duration=6e-08, error=8.106347000244111e-05)
+2 (2,) InstructionProperties(duration=6e-08, error=0.0001892776721271782)
+3 (3,) InstructionProperties(duration=6e-08, error=0.000152876721043599)
+4 (4,) InstructionProperties(duration=6e-08, error=0.002994344275735296)
+</pre></div>
+</div>
+</div>
+</div>
+<p>‘ecr’ と ‘measure’ 演算について同じことをしてみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">][</span><span class="n">edge</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 (1, 0) InstructionProperties(duration=6.6e-07, error=0.003287264393191658)
+1 (2, 1) InstructionProperties(duration=6.6e-07, error=0.0043295409327960555)
+2 (3, 2) InstructionProperties(duration=6.6e-07, error=0.007540236778437626)
+3 (4, 3) InstructionProperties(duration=6.6e-07, error=0.003984654372579111)
+4 (4, 5) InstructionProperties(duration=6.6e-07, error=0.005335475985054017)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">qq</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][</span><span class="n">qq</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 (0,) InstructionProperties(duration=1.3e-06, error=0.0321044921875)
+1 (1,) InstructionProperties(duration=1.3e-06, error=0.028076171875)
+2 (2,) InstructionProperties(duration=1.3e-06, error=0.0123291015625)
+3 (3,) InstructionProperties(duration=1.3e-06, error=0.0357666015625)
+4 (4,) InstructionProperties(duration=1.3e-06, error=0.0277099609375)
+</pre></div>
+</div>
+</div>
+</div>
+<p>ご覧のとおり、読み出しエラーは 2 量子ビット演算のエラーよりも大きい傾向があり、2 量子ビット演算のエラーは 1 量子ビット演算よりも大きい傾向があります。</p>
+<p>データ構造を理解したので、’sx’ ゲートと ‘ecr’ ゲートのエラーの中央値を計算する準備ができました。もう一度、結果を <a class="reference external" href="https://quantum.cloud.ibm.com/computers">IBM Quantum Platform</a> 上のデバイスに対して示されている結果と比べてみてください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sx_errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">inst_prop</span><span class="o">.</span><span class="n">error</span> <span class="k">for</span> <span class="n">inst_prop</span> <span class="ow">in</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;sx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="sa">f</span><span class="s2">&quot;Median SX error: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">sx_errors</span><span class="p">))</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median SX error: 2.420e-04&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ecr_errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">inst_prop</span><span class="o">.</span><span class="n">error</span> <span class="k">for</span> <span class="n">inst_prop</span> <span class="ow">in</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="sa">f</span><span class="s2">&quot;Median ECR error: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ecr_errors</span><span class="p">))</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median ECR error: 6.772e-03&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>4. 付録<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>Qiskit の人気のある機能は、視覚化です。回路ビジュアライザー、状態および分布ビジュアライザー、およびターゲットビジュアライザーがあります。最初の 2 つは、以前の jupyter notebook ですでに使用しています。ターゲットビジュアライザーのいくつかの機能を使用してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_gate_map</span>
+
+<span class="n">plot_gate_map</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7c5b6feff6672dd8a7d2d1e0a522b8ce33d4484f6498fa6240c693db36bc97ab.png" src="../../_images/7c5b6feff6672dd8a7d2d1e0a522b8ce33d4484f6498fa6240c693db36bc97ab.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_error_map</span>
+
+<span class="n">plot_error_map</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8cb0c2e47cf7562712482728030c2eaba0fa494120a427236fe2699172eeb0f4.png" src="../../_images/8cb0c2e47cf7562712482728030c2eaba0fa494120a427236fe2699172eeb0f4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check Qiskit version</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>© IBM Corp., 2017-2025</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. はじめに</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. バックエンドとターゲット</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.1 演習</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.2 カップリングマップ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3. 量子ビットのプロパティ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.1 演習</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">3.2 ゲートエラーと読み出しエラー</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4. 付録</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
