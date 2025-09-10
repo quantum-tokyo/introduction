@@ -183,6 +183,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="get_started.html">Qiskit の始め方</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
@@ -364,7 +365,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -380,6 +383,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-learning">IBM Quantum Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-documentation">IBM Quantum Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guides">Guides</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorials">Tutorials</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -391,7 +407,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ibm-quantum-plaform">
 <h1>IBM Quantum Plaform 教材 日本語訳<a class="headerlink" href="#ibm-quantum-plaform" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://docs.quantum.ibm.com/">IBM Quantum Documents</a>、<a class="reference external" href="https://learning.quantum.ibm.com/">IBM Quantum Learning</a> の教材からピックアップした和訳集です。</br></p>
+<p><a class="reference external" href="https://quantum.cloud.ibm.com/docs/en">IBM Quantum Documents</a>、<a class="reference external" href="https://quantum.cloud.ibm.com/learning">IBM Quantum Learning</a> の教材からピックアップした和訳集です。</br></p>
+<section id="ibm-quantum-learning">
+<h2><a class="reference external" href="https://quantum.cloud.ibm.com/learning">IBM Quantum Learning</a><a class="headerlink" href="#ibm-quantum-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="courses/basics/basics-of-quantum-information-ja.html"><span class="std std-doc">量子情報の基礎</span></a></p></li>
+<li><p><a class="reference internal" href="courses/foundations-of-quantum-error-correction/foundations-of-quantum-error-correction-ja.html"><span class="std std-doc">量子エラー訂正の基礎</span></a></p></li>
+<li><p><a class="reference internal" href="courses/utility-scale-quantum-computing/overview-ja.html"><span class="std std-doc">ユーティリティ・スケール量子コンピューティング</span></a></p></li>
+</ul>
+</section>
+<section id="ibm-quantum-documentation">
+<h2><a class="reference external" href="https://quantum.cloud.ibm.com/docs/en">IBM Quantum Documentation</a><a class="headerlink" href="#ibm-quantum-documentation" title="Link to this heading">#</a></h2>
+<section id="guides">
+<h3><a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/guides">Guides</a><a class="headerlink" href="#guides" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="documents/functions-ja.html"><span class="std std-doc">Qiskit Functions とは</span></a></br></p>
 <ul>
@@ -420,30 +448,38 @@ document.write(`
 </li>
 </ul>
 </li>
-<li><p>IBM Quantum Learning Tutorials</p>
-<ul>
-<li><p>Beginner</p>
+</ul>
+</section>
+<section id="tutorials">
+<h3><a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/tutorials">Tutorials</a><a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Overview</p>
 <ul>
 <li><p><a class="reference internal" href="tutorial/chsh-inequality-ja.html"><span class="std std-doc">CHSH 不等式</span></a></p></li>
+</ul>
+</li>
+<li><p>Explore workflows toward advantage</p>
+<ul>
+<li><p>Verifiable sampling algorithms</p>
+<ul>
+<li><p><a class="reference internal" href="tutorial/improving-energy-estimation-of-a-fermionic-hamiltonian-with-sqd-ja.html"><span class="std std-doc">SQD （サンプルベースの量子対角化）によるフェルミオン ハミルトニアンのエネルギー推定の改善</span></a></p></li>
 <li><p><a class="reference internal" href="documents/quantum-approximate-optimization-algorithm-ja.html"><span class="std std-doc">ユーティリティースケールの量子最適化問題を解く</span></a></p></li>
 </ul>
 </li>
-<li><p>Intermediate</p>
+</ul>
+</li>
+<li><p>Leverage Qiskit capabilities</p>
 <ul>
-<li><p><a class="reference internal" href="tutorial/improving-energy-estimation-of-a-fermionic-hamiltonian-with-sqd-ja.html"><span class="std std-doc">SQD （サンプルベースの量子対角化）によるフェルミオン ハミルトニアンのエネルギー推定の改善</span></a></p></li>
+<li><p>Qiskit addons</p>
+<ul>
 <li><p><a class="reference internal" href="tutorial/improved-trotterized-time-evolution-with-approximate-quantum-compilation-ja.html"><span class="std std-doc">改良されたトロッター化時間発展と近似量子コンパイル（Approximate Quantum Compilation, AQC-Tensor）</span></a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>IBM Quantum Learning Courses</p>
-<ul>
-<li><p><a class="reference internal" href="courses/basics/basics-of-quantum-information-ja.html"><span class="std std-doc">量子情報の基礎</span></a></p></li>
-<li><p><a class="reference internal" href="courses/foundations-of-quantum-error-correction/foundations-of-quantum-error-correction-ja.html"><span class="std std-doc">量子エラー訂正の基礎</span></a></p></li>
-<li><p><a class="reference internal" href="courses/utility-scale-quantum-computing/overview-ja.html"><span class="std std-doc">ユーティリティ・スケール量子コンピューティング</span></a></p></li>
 </ul>
-</li>
-</ul>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -500,6 +536,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-learning">IBM Quantum Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-documentation">IBM Quantum Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guides">Guides</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorials">Tutorials</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
