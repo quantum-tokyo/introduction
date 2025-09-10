@@ -390,14 +390,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. 古典計算によるシミュレーション</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrics-product-state-mps">行列積状態 (Matrics Product State, MPS) シミュレーター</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタビライザー・シミュレーター</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statevectormps">statevector、MPS、スタビライザー・シミュレーターの実行時間の比較</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statevectormps">statevector、MPS、スタビライザー・シミュレーターの実行時間の比較</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -414,7 +410,7 @@ Introduction to Near-Term Quantum Computing</p>
 <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>8. 古典計算によるシミュレーション<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <p>Yoshiaki Kawase (Jun 07, 2024)</p>
-<p>元のコードは<a class="reference external" href="https://github.com/puyokw/2024UTokyo_lecture8/blob/main/20240607_UTokyo_ClassicalSimulation_revised_0909.ipynb">こちら</a>、元のスライドは<a class="reference external" href="https://github.com/puyokw/2024UTokyo_lecture8/blob/main/20240607_UTokyo_ClassicalSimulation_slide_revised.pdf">こちら</a>をご覧ください。</p>
+<p>この講義は、東京大学の河瀬良亮先生によって作成されました。講義資料とコードは<a class="reference external" href="https://github.com/puyokw/2024UTokyo_lecture8/tree/main">GitHub</a>に公開されています。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -944,9 +940,8 @@ B^0_0=-0.77462551+0.00000000j, B^0_1=-0.63242020+0.00000000j, B^1_0=-0.62729957-
 </div>
 <p>クリフォード・ゲートには、回転角度が <span class="math notranslate nohighlight">\(m\pi/2\)</span> (<span class="math notranslate nohighlight">\(m\)</span> は整数) の単一量子ビット ゲートも含まれます。</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="statevectormps">
-<h1>statevector、MPS、スタビライザー・シミュレーターの実行時間の比較<a class="headerlink" href="#statevectormps" title="Link to this heading">#</a></h1>
+<section id="statevectormps">
+<h2>statevector、MPS、スタビライザー・シミュレーターの実行時間の比較<a class="headerlink" href="#statevectormps" title="Link to this heading">#</a></h2>
 <p>GHZ状態を生成する実行時間を比較します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1051,6 +1046,7 @@ Statevectorシミュレーターは、20量子ビット未満において、MPS�
 </div>
 <p>さきほどの結果と同様に、MPSシミュレーターを使用すると、Statevectorシミュレータよりも大きなシステムをシミュレートできます。</p>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1098,14 +1094,10 @@ Statevectorシミュレーターは、20量子ビット未満において、MPS�
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. 古典計算によるシミュレーション</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrics-product-state-mps">行列積状態 (Matrics Product State, MPS) シミュレーター</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタビライザー・シミュレーター</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statevectormps">statevector、MPS、スタビライザー・シミュレーターの実行時間の比較</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statevectormps">statevector、MPS、スタビライザー・シミュレーターの実行時間の比較</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
