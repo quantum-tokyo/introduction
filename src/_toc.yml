@@ -8,6 +8,8 @@ parts:
     chapters:
     - file: get_started
     - file: iqp_documents
+    - url: https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html
+      title: ユーティリティー・スケール量子コンピューティング    
     - file: ibm_research_blog
     - file: qiskit_textbook_ja
     - file: qiskit_textbook_new_ja
