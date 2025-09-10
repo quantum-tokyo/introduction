@@ -446,7 +446,7 @@ document.write(`
 <p>このノートブックを実行するには、環境に次のライブラリーが必要です。まだインストールしていない場合は、コメントを解除して次のセルを実行することでインストールできます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># % pip install qiskit[visualization] qiskit-ibm-runtime</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># % pip install qiskit[visualization] qiskit-ibm-runtime</span>
 </pre></div>
 </div>
 </div>
@@ -457,7 +457,7 @@ document.write(`
 <p>VQEを非常に単純なケースに適用して、それがどのように機能するかを確認することから始めます。VQEでパウリ <span class="math notranslate nohighlight">\(Z\)</span> 行列の最小固有値を計算します。まず、いくつかの一般的なパッケージをインポートします。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterVector</span><span class="p">,</span> <span class="n">QuantumCircuit</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorEstimator</span><span class="p">,</span> <span class="n">StatevectorSampler</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
@@ -469,7 +469,7 @@ document.write(`
 <p>はじめに、目的の演算子を定義し、行列形式で表示します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">op</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
 <span class="n">op</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -484,7 +484,7 @@ document.write(`
 <p>この固有値を古典的に取得するのは簡単なので、ここで確認のために計算します。この計算は、ユーティリティー規模に拡大するにつれて困難になる可能性があります。ここではnumpyを使用します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute eigenvalues with numpy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute eigenvalues with numpy</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalues:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">)</span>
 </pre></div>
@@ -499,7 +499,7 @@ document.write(`
 <p>変分量子アルゴリズムを使用して固有値を取得するために、変分パラメーターを使うゲートを用いた回路を構築します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
 <span class="n">param</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
@@ -510,15 +510,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/99d5d36b-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/ce176c43f1d7436652173bba07e4529a7474eccd15f06f459f86d3b138da1af7.png" src="../../_images/ce176c43f1d7436652173bba07e4529a7474eccd15f06f459f86d3b138da1af7.png" />
 </div>
 </div>
 <p>演算子の期待値( <span class="math notranslate nohighlight">\(Z\)</span> など)を推定したい場合は、Estimator を使用する必要があります。システムの状態を調べたい場合は、Sampler を使用します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">StatevectorSampler</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">StatevectorSampler</span><span class="p">()</span>
 <span class="n">estimator</span> <span class="o">=</span> <span class="n">StatevectorEstimator</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -527,7 +525,7 @@ document.write(`
 <p>Sampler を使用して、ランダムなパラメーター値 <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> を使用してビット文字列 0 と 1 のカウントを計算できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute counts of bitstrings with random parameter values by Sampler</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute counts of bitstrings with random parameter values by Sampler</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
 <span class="n">counts</span>
@@ -535,7 +533,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 783, &#39;1&#39;: 241}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 778, &#39;1&#39;: 246}
 </pre></div>
 </div>
 </div>
@@ -543,13 +541,13 @@ document.write(`
 <p>Zの期待値は、<span class="math notranslate nohighlight">\(\langle Z \rangle = p_0 - p_1\)</span>で、確率は<span class="math notranslate nohighlight">\(\{0:p_0、1:p_1\}\)</span>で計算できることがわかっています。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of Z based on the counts</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of Z based on the counts</span>
 <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.529296875
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.51953125
 </pre></div>
 </div>
 </div>
@@ -558,7 +556,7 @@ document.write(`
 <p>Estimator は測定なしで量子回路を取得することに注意してください。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc_estimator</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc_estimator</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
 </pre></div>
 </div>
@@ -573,7 +571,7 @@ document.write(`
 変分形式のパラメーター値を受け取り、期待値<span class="math notranslate nohighlight">\(\langle Z \rangle\)</span>を返す関数を作成します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a cost function to look for the minimum eigenvalue of Z</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a cost function to look for the minimum eigenvalue of Z</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="n">x</span><span class="p">)])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
@@ -588,7 +586,7 @@ document.write(`
 <p>SciPyの <code class="docutils literal notranslate"><span class="pre">minimize</span></code> 関数を適用して、Zの最小固有値を見つけましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
 <span class="n">min_result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;COBYLA&quot;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
 <span class="n">min_result</span>
 </pre></div>
@@ -596,53 +594,28 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0 {&#39;0&#39;: 1024}
-0.494140625 {&#39;0&#39;: 765, &#39;1&#39;: 259}
-0.466796875 {&#39;0&#39;: 751, &#39;1&#39;: 273}
-0.564453125 {&#39;0&#39;: 801, &#39;1&#39;: 223}
--0.4296875 {&#39;1&#39;: 732, &#39;0&#39;: 292}
--0.984375 {&#39;1&#39;: 1016, &#39;0&#39;: 8}
--0.8984375 {&#39;1&#39;: 972, &#39;0&#39;: 52}
--0.990234375 {&#39;1&#39;: 1019, &#39;0&#39;: 5}
--0.892578125 {&#39;1&#39;: 969, &#39;0&#39;: 55}
+0.544921875 {&#39;0&#39;: 791, &#39;1&#39;: 233}
+0.5703125 {&#39;1&#39;: 220, &#39;0&#39;: 804}
+0.56640625 {&#39;0&#39;: 802, &#39;1&#39;: 222}
+-0.439453125 {&#39;1&#39;: 737, &#39;0&#39;: 287}
+-0.64453125 {&#39;1&#39;: 842, &#39;0&#39;: 182}
+-0.607421875 {&#39;1&#39;: 823, &#39;0&#39;: 201}
+0.326171875 {&#39;0&#39;: 679, &#39;1&#39;: 345}
+-0.65625 {&#39;1&#39;: 848, &#39;0&#39;: 176}
+-0.9921875 {&#39;1&#39;: 1020, &#39;0&#39;: 4}
+-0.3984375 {&#39;1&#39;: 716, &#39;0&#39;: 308}
 -0.986328125 {&#39;1&#39;: 1017, &#39;0&#39;: 7}
--0.861328125 {&#39;1&#39;: 953, &#39;0&#39;: 71}
--1.0 {&#39;1&#39;: 1024}
--0.982421875 {&#39;1&#39;: 1015, &#39;0&#39;: 9}
--0.99609375 {&#39;1&#39;: 1022, &#39;0&#39;: 2}
 -0.986328125 {&#39;1&#39;: 1017, &#39;0&#39;: 7}
--1.0 {&#39;1&#39;: 1024}
--0.990234375 {&#39;1&#39;: 1019, &#39;0&#39;: 5}
+-0.94921875 {&#39;0&#39;: 26, &#39;1&#39;: 998}
+-0.9375 {&#39;1&#39;: 992, &#39;0&#39;: 32}
+-0.9765625 {&#39;1&#39;: 1012, &#39;0&#39;: 12}
 -0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.0 {&#39;1&#39;: 1024}
 -0.99609375 {&#39;1&#39;: 1022, &#39;0&#39;: 2}
 -1.0 {&#39;1&#39;: 1024}
 -1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--1.0 {&#39;1&#39;: 1024}
--0.99609375 {&#39;1&#39;: 1022, &#39;0&#39;: 2}
--1.0 {&#39;1&#39;: 1024}
--0.99609375 {&#39;1&#39;: 1022, &#39;0&#39;: 2}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.99609375 {&#39;1&#39;: 1022, &#39;0&#39;: 2}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.99609375 {&#39;1&#39;: 1022, &#39;0&#39;: 2}
--1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
 -0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
 -1.0 {&#39;1&#39;: 1024}
 -1.0 {&#39;1&#39;: 1024}
@@ -650,8 +623,7 @@ document.write(`
 -1.0 {&#39;1&#39;: 1024}
 -1.0 {&#39;1&#39;: 1024}
 -1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--0.994140625 {&#39;1&#39;: 1021, &#39;0&#39;: 3}
+-1.0 {&#39;1&#39;: 1024}
 -1.0 {&#39;1&#39;: 1024}
 -1.0 {&#39;1&#39;: 1024}
 -1.0 {&#39;1&#39;: 1024}
@@ -660,12 +632,12 @@ document.write(`
 -1.0 {&#39;1&#39;: 1024}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully.
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Return from COBYLA because the trust region radius reaches its lower bound.
  success: True
-  status: 1
+  status: 0
      fun: -1.0
-       x: [ 3.182e+00  1.338e+00  1.664e-01]
-    nfev: 63
+       x: [ 3.158e+00  2.386e-01 -4.966e-01]
+    nfev: 35
    maxcv: 0.0
 </pre></div>
 </div>
@@ -673,14 +645,14 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check counts of bitstrings with the optimal parameters</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># check counts of bitstrings with the optimal parameters</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="n">min_result</span><span class="o">.</span><span class="n">x</span><span class="p">)])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 1, &#39;1&#39;: 1023}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 1024}
 </pre></div>
 </div>
 </div>
@@ -690,7 +662,7 @@ document.write(`
 <p>VQE を使用して <span class="math notranslate nohighlight">\(Z \otimes Z\)</span> の最小固有値を計算します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
 </pre></div>
@@ -709,14 +681,14 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute eigenvalues with numpy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute eigenvalues with numpy</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
 <span class="c1"># qc = ...</span>
 </pre></div>
 </div>
@@ -724,7 +696,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute counts of bitstrings with a random parameter values by Sampler</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute counts of bitstrings with a random parameter values by Sampler</span>
 <span class="c1"># result = sampler.run(...)</span>
 <span class="c1"># result</span>
 </pre></div>
@@ -733,21 +705,21 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of ZZ based on the counts</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of ZZ based on the counts</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># verify the expectation value of ZZ with Estimator</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># verify the expectation value of ZZ with Estimator</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a cost function to look for the minimum eigenvalue of ZZ</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a cost function to look for the minimum eigenvalue of ZZ</span>
 <span class="c1"># def cost(x):</span>
 <span class="c1">#    expval = ...</span>
 <span class="c1">#    return expval</span>
@@ -757,7 +729,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
 <span class="c1"># min_result = minimize(cost, [...], method=&quot;COBYLA&quot;, tol=1e-8)</span>
 <span class="c1"># min_result</span>
 </pre></div>
@@ -766,7 +738,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check counts of bitstrings with the optimal parameter values</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># check counts of bitstrings with the optimal parameter values</span>
 <span class="c1"># result = sampler.run(qc, min_result.x).result()</span>
 <span class="c1"># result</span>
 </pre></div>
@@ -778,7 +750,7 @@ document.write(`
 <p>対象の演算子を定義し、行列形式で表示します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
 </pre></div>
@@ -798,7 +770,7 @@ document.write(`
 <p>変分量子アルゴリズムを使用して固有値を取得するために、変分パラメーターを使ったゲートを用いた回路を構築します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
 <span class="n">param</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
@@ -810,15 +782,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/7d5e894a-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/662fb4d47688f81667422797a7553574299f16adb7837db5d7602b9efcf95e0d.png" src="../../_images/662fb4d47688f81667422797a7553574299f16adb7837db5d7602b9efcf95e0d.png" />
 </div>
 </div>
 <p>演算子の期待値(<span class="math notranslate nohighlight">\(Z \otimes Z\)</span>など)を推定する場合は、Estimator を使用します。システムの状態を調べたい場合は、Sampler を使用します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">StatevectorSampler</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">StatevectorSampler</span><span class="p">()</span>
 <span class="n">estimator</span> <span class="o">=</span> <span class="n">StatevectorEstimator</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -826,7 +796,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute counts of bitstrings with random parameter values by Sampler</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute counts of bitstrings with random parameter values by Sampler</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
 <span class="n">counts</span>
@@ -834,25 +804,20 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;10&#39;: 661, &#39;11&#39;: 203, &#39;01&#39;: 47, &#39;00&#39;: 113}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 212, &#39;10&#39;: 644, &#39;01&#39;: 33, &#39;00&#39;: 135}
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of ZZ based on the counts</span>
-<span class="p">(</span>
-    <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of ZZ based on the counts</span>
+<span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.3828125
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.322265625
 </pre></div>
 </div>
 </div>
@@ -860,7 +825,7 @@ document.write(`
 <p>この回路は機能しましたが、選択されたパラメーター値は、非常に低エネルギー(または低い固有値)の状態に対応していませんでした。得られる固有値は最小値よりかなり高いです。Estimator を使用する場合も、結果は同様です。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># verify the expectation value of ZZ with Estimator</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># verify the expectation value of ZZ with Estimator</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc_estimator</span><span class="p">,</span> <span class="n">z2</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
 </pre></div>
@@ -875,16 +840,13 @@ document.write(`
 <p>パラメーターを検索して、最も低い固有値を生成するパラメーターを見つける必要があります。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a cost function to look for the minimum eigenvalue of ZZ</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a cost function to look for the minimum eigenvalue of ZZ</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="n">x</span><span class="p">)])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
-    <span class="n">expval</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">expval</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">expval</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">expval</span>
 </pre></div>
@@ -893,7 +855,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
 <span class="n">min_result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;COBYLA&quot;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
 <span class="n">min_result</span>
 </pre></div>
@@ -901,152 +863,163 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0 {&#39;00&#39;: 1024}
-0.578125 {&#39;00&#39;: 808, &#39;01&#39;: 216}
-0.5234375 {&#39;00&#39;: 780, &#39;01&#39;: 244}
-0.548828125 {&#39;00&#39;: 793, &#39;01&#39;: 231}
-0.3515625 {&#39;00&#39;: 637, &#39;10&#39;: 164, &#39;11&#39;: 55, &#39;01&#39;: 168}
-0.3359375 {&#39;00&#39;: 638, &#39;11&#39;: 46, &#39;10&#39;: 174, &#39;01&#39;: 166}
-0.283203125 {&#39;00&#39;: 602, &#39;10&#39;: 181, &#39;01&#39;: 186, &#39;11&#39;: 55}
--0.087890625 {&#39;01&#39;: 414, &#39;00&#39;: 184, &#39;10&#39;: 143, &#39;11&#39;: 283}
-0.236328125 {&#39;10&#39;: 27, &#39;11&#39;: 623, &#39;01&#39;: 364, &#39;00&#39;: 10}
--0.0625 {&#39;11&#39;: 261, &#39;01&#39;: 403, &#39;00&#39;: 219, &#39;10&#39;: 141}
-0.248046875 {&#39;01&#39;: 366, &#39;11&#39;: 628, &#39;00&#39;: 11, &#39;10&#39;: 19}
--0.0625 {&#39;10&#39;: 145, &#39;11&#39;: 254, &#39;01&#39;: 399, &#39;00&#39;: 226}
-0.228515625 {&#39;01&#39;: 373, &#39;11&#39;: 609, &#39;00&#39;: 20, &#39;10&#39;: 22}
-0.0546875 {&#39;11&#39;: 376, &#39;10&#39;: 273, &#39;01&#39;: 211, &#39;00&#39;: 164}
--0.447265625 {&#39;01&#39;: 731, &#39;10&#39;: 10, &#39;11&#39;: 267, &#39;00&#39;: 16}
--0.71484375 {&#39;01&#39;: 871, &#39;11&#39;: 99, &#39;00&#39;: 47, &#39;10&#39;: 7}
--0.46484375 {&#39;01&#39;: 741, &#39;00&#39;: 253, &#39;10&#39;: 9, &#39;11&#39;: 21}
--0.87890625 {&#39;01&#39;: 962, &#39;00&#39;: 39, &#39;11&#39;: 23}
--0.640625 {&#39;00&#39;: 176, &#39;01&#39;: 837, &#39;11&#39;: 8, &#39;10&#39;: 3}
--0.88671875 {&#39;01&#39;: 966, &#39;00&#39;: 41, &#39;11&#39;: 17}
--0.994140625 {&#39;01&#39;: 1021, &#39;11&#39;: 3}
--0.91796875 {&#39;01&#39;: 982, &#39;11&#39;: 35, &#39;00&#39;: 7}
--0.994140625 {&#39;01&#39;: 1021, &#39;11&#39;: 2, &#39;00&#39;: 1}
--0.939453125 {&#39;01&#39;: 993, &#39;00&#39;: 31}
--0.990234375 {&#39;01&#39;: 1019, &#39;11&#39;: 5}
--0.90234375 {&#39;01&#39;: 974, &#39;00&#39;: 21, &#39;11&#39;: 29}
--0.98046875 {&#39;01&#39;: 1014, &#39;11&#39;: 10}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.990234375 {&#39;01&#39;: 1019, &#39;11&#39;: 4, &#39;00&#39;: 1}
--0.98828125 {&#39;01&#39;: 1018, &#39;11&#39;: 6}
--0.990234375 {&#39;01&#39;: 1019, &#39;11&#39;: 4, &#39;00&#39;: 1}
--0.994140625 {&#39;01&#39;: 1021, &#39;11&#39;: 2, &#39;00&#39;: 1}
+0.515625 {&#39;01&#39;: 248, &#39;00&#39;: 776}
+0.568359375 {&#39;00&#39;: 803, &#39;01&#39;: 221}
+0.484375 {&#39;00&#39;: 760, &#39;01&#39;: 264}
+0.318359375 {&#39;00&#39;: 622, &#39;10&#39;: 174, &#39;01&#39;: 175, &#39;11&#39;: 53}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.28515625 {&#39;00&#39;: 607, &#39;01&#39;: 180, &#39;10&#39;: 186, &#39;11&#39;: 51}
+0.294921875 {&#39;10&#39;: 191, &#39;00&#39;: 604, &#39;01&#39;: 170, &#39;11&#39;: 59}
+-0.09375 {&#39;01&#39;: 440, &#39;00&#39;: 198, &#39;10&#39;: 120, &#39;11&#39;: 266}
+0.50390625 {&#39;01&#39;: 192, &#39;11&#39;: 745, &#39;00&#39;: 25, &#39;10&#39;: 62}
+0.009765625 {&#39;00&#39;: 313, &#39;11&#39;: 204, &#39;10&#39;: 247, &#39;01&#39;: 260}
+-0.0703125 {&#39;01&#39;: 442, &#39;11&#39;: 266, &#39;00&#39;: 210, &#39;10&#39;: 106}
+0.146484375 {&#39;01&#39;: 425, &#39;11&#39;: 578, &#39;10&#39;: 12, &#39;00&#39;: 9}
+-0.13671875 {&#39;00&#39;: 217, &#39;01&#39;: 467, &#39;11&#39;: 225, &#39;10&#39;: 115}
+-0.642578125 {&#39;11&#39;: 15, &#39;01&#39;: 839, &#39;00&#39;: 168, &#39;10&#39;: 2}
+-0.755859375 {&#39;01&#39;: 893, &#39;00&#39;: 99, &#39;11&#39;: 26, &#39;10&#39;: 6}
+-0.7421875 {&#39;01&#39;: 892, &#39;11&#39;: 131, &#39;00&#39;: 1}
+-0.810546875 {&#39;01&#39;: 927, &#39;00&#39;: 91, &#39;11&#39;: 6}
+-0.822265625 {&#39;01&#39;: 933, &#39;00&#39;: 18, &#39;11&#39;: 73}
+-0.314453125 {&#39;11&#39;: 278, &#39;01&#39;: 638, &#39;10&#39;: 35, &#39;00&#39;: 73}
+-0.80078125 {&#39;01&#39;: 919, &#39;11&#39;: 62, &#39;00&#39;: 40, &#39;10&#39;: 3}
+-0.861328125 {&#39;01&#39;: 952, &#39;11&#39;: 27, &#39;00&#39;: 44, &#39;10&#39;: 1}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.923828125 {&#39;01&#39;: 985, &#39;11&#39;: 39}
+-0.537109375 {&#39;01&#39;: 780, &#39;11&#39;: 217, &#39;10&#39;: 7, &#39;00&#39;: 20}
+-0.775390625 {&#39;11&#39;: 85, &#39;01&#39;: 905, &#39;00&#39;: 30, &#39;10&#39;: 4}
+-0.880859375 {&#39;00&#39;: 58, &#39;01&#39;: 962, &#39;10&#39;: 1, &#39;11&#39;: 3}
+-0.888671875 {&#39;01&#39;: 967, &#39;11&#39;: 57}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.923828125 {&#39;01&#39;: 985, &#39;11&#39;: 39}
+-0.896484375 {&#39;01&#39;: 971, &#39;11&#39;: 38, &#39;00&#39;: 15}
+-0.90234375 {&#39;01&#39;: 974, &#39;11&#39;: 49, &#39;00&#39;: 1}
+-0.9140625 {&#39;01&#39;: 980, &#39;11&#39;: 43, &#39;00&#39;: 1}
+-0.880859375 {&#39;01&#39;: 963, &#39;11&#39;: 60, &#39;00&#39;: 1}
+-0.9375 {&#39;01&#39;: 992, &#39;11&#39;: 32}
+-0.97265625 {&#39;01&#39;: 1010, &#39;11&#39;: 14}
+-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 1, &#39;11&#39;: 2}
+-0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
 -0.99609375 {&#39;01&#39;: 1022, &#39;11&#39;: 2}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+-0.99609375 {&#39;01&#39;: 1022, &#39;11&#39;: 1, &#39;00&#39;: 1}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 1, &#39;11&#39;: 1}
+-0.982421875 {&#39;01&#39;: 1015, &#39;00&#39;: 9}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 4, &#39;11&#39;: 1}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
+-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+-0.986328125 {&#39;01&#39;: 1017, &#39;00&#39;: 7}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+-1.0 {&#39;01&#39;: 1024}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
 -0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
 -0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
 -1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
 -0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
+-0.984375 {&#39;01&#39;: 1016, &#39;00&#39;: 8}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.986328125 {&#39;01&#39;: 1017, &#39;00&#39;: 7}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
 -0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
 -0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 3, &#39;11&#39;: 1}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
 -1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 1, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--0.99609375 {&#39;01&#39;: 1022, &#39;11&#39;: 1, &#39;00&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+-0.982421875 {&#39;01&#39;: 1015, &#39;00&#39;: 9}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
 -0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.99609375 {&#39;01&#39;: 1022, &#39;11&#39;: 2}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
--0.99609375 {&#39;01&#39;: 1022, &#39;11&#39;: 2}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;11&#39;: 1}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully.
- success: True
-  status: 1
-     fun: -0.998046875
-       x: [ 3.167e+00  6.940e-01  1.033e+00 -2.894e-02  8.933e-01
-            1.885e+00]
-    nfev: 128
-   maxcv: 0.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
+-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully.
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Return from COBYLA because the trust region radius reaches its lower bound.
  success: True
-  status: 1
-     fun: -0.99609375
-       x: [ 3.098e+00 -5.402e-01  1.091e+00 -1.004e-02  3.615e-01
-            6.913e-01]
-    nfev: 115
+  status: 0
+     fun: -1.0
+       x: [ 3.039e+00 -1.782e+00  2.364e+00  5.995e-03  2.273e+00
+           -1.037e+00]
+    nfev: 123
    maxcv: 0.0
 </pre></div>
 </div>
@@ -1055,14 +1028,14 @@ document.write(`
 <p>We obtained an eigenvalue extremely close to the minimum given to us from numpy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check counts of bitstrings with the optimal parameters</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># check counts of bitstrings with the optimal parameters</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="n">min_result</span><span class="o">.</span><span class="n">x</span><span class="p">)])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;01&#39;: 1024}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;01&#39;: 1020, &#39;00&#39;: 4}
 </pre></div>
 </div>
 </div>
@@ -1102,7 +1075,7 @@ document.write(`
 <p><span class="math notranslate nohighlight">\(n=5\)</span> ノードを持つグラフを作成して、問題を初期化します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">rustworkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rx</span>
@@ -1113,7 +1086,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
 
 <span class="n">graph</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">()</span>
 <span class="n">graph</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
@@ -1132,9 +1105,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/99e763fe-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/18d522177bd6206695170b9fa58d5b7a62b66b8c424af9906a2a1daa4f2ccb87.png" src="../../_images/18d522177bd6206695170b9fa58d5b7a62b66b8c424af9906a2a1daa4f2ccb87.png" />
 </div>
 </div>
 </section>
@@ -1142,11 +1113,11 @@ document.write(`
 <h3>3.2 Step 1. 古典的入力を量子問題へマッピングする<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h3>
 <p>このパターンの最初のステップは、古典的な問題（グラフ）を量子 <strong>回路</strong> や <strong>演算子</strong> にマッピングすることです。これを行うために、以下の3つの主要なステップを踏みます。</p>
 <ol class="arabic simple">
-<li><p>一連の数学的な書き換えを利用し、この問題を「二次の非制約二値最適化（Quadratic Unconstrained Binary Optimization, QUBO）」の表記を使って表す。</p></li>
+<li><p>一連の数学的な書き換えを利用し、この問題を「制約のない二次二値最適化（Quadratic Unconstrained Binary Optimization, QUBO）」の表記を使って表す。</p></li>
 <li><p>最適化問題を書き換えて、基底状態がコスト関数を最小化する解に対応するようなハミルトニアンにする。</p></li>
 <li><p>量子アニーリングに似たプロセスによって、このハミルトニアンの基底状態を準備する量子回路を作成する。</p></li>
 </ol>
-<p><strong>注意:</strong> QAOA（量子近似最適化アルゴリズム）の手法においては、最終的に必要なのは、ハイブリッドアルゴリズムの <strong>コスト関数</strong> を表す演算子（<strong>ハミルトニアン</strong>）と、問題の候補解に対応する量子状態を表すパラメーター化された回路（<strong>アンサッツ</strong>）です。これらの候補状態をサンプリングし、その後コスト関数を使って評価することができます。</p>
+<p><strong>注意:</strong> QAOA（量子近似最適化アルゴリズム）の手法においては、最終的に必要なのは、ハイブリッドアルゴリズムの <strong>コスト関数</strong> を表す演算子（<strong>ハミルトニアン</strong>）と、問題の候補解に対応する量子状態を表すパラメーター化された回路（<strong>アンザッツ</strong>）です。これらの候補状態をサンプリングし、その後コスト関数を使って評価することができます。</p>
 <section id="id7">
 <h4>グラフ → 最適化問題<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>マッピングの最初のステップは表記の変更です。以下のように、この問題をQUBO表記で表すことができます。</p>
@@ -1177,23 +1148,23 @@ document.write(`
 H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 \]</div>
 <p><strong>QAOA問題からハミルトニアンへの再定式化ステップ</strong></p>
-<p>QAOA問題がこのように書き換えられることを示すために、まず二値変数 <span class="math notranslate nohighlight">\(x\_i\)</span> を新しい変数 <span class="math notranslate nohighlight">\(z\_i\in{-1,1}\)</span> に置き換えます：</p>
+<p>QAOA問題がこのように書き換えられることを示すために、まず二値変数 <span class="math notranslate nohighlight">\(x_i\)</span> を新しい変数 <span class="math notranslate nohighlight">\(z_i\in\{-1,1\}\)</span> に置き換えます：</p>
 <div class="math notranslate nohighlight">
 \[
 x_i = \frac{1-z_i}{2}.
 \]</div>
-<p>ここでわかるように、もし <span class="math notranslate nohighlight">\(x\_i=0\)</span> であれば <span class="math notranslate nohighlight">\(z\_i=1\)</span> でなければなりません。<span class="math notranslate nohighlight">\(x\_i\)</span> を <span class="math notranslate nohighlight">\(z\_i\)</span> に置き換えて最適化問題（<span class="math notranslate nohighlight">\(x^TQx\)</span>）に代入すると、同値な定式化が得られます。</p>
+<p>ここでわかるように、もし <span class="math notranslate nohighlight">\(x_i=0\)</span> であれば <span class="math notranslate nohighlight">\(z_i=1\)</span> でなければなりません。<span class="math notranslate nohighlight">\(x_i\)</span> を <span class="math notranslate nohighlight">\(z_i\)</span> に置き換えて最適化問題（<span class="math notranslate nohighlight">\(x^TQx\)</span>）に代入すると、同値な定式化が得られます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 x^TQx=\sum_{ij}Q_{ij}x_ix_j \\ =\frac{1}{4}\sum_{ij}Q_{ij}(1-z_i)(1-z_j) \\=\frac{1}{4}\sum_{ij}Q_{ij}z_iz_j-\frac{1}{4}\sum_{ij}(Q_{ij}+Q_{ji})z_i + \frac{n^2}{4}.
 \end{split}\]</div>
-<p>ここで <span class="math notranslate nohighlight">\(b\_i=-\sum\_{j}(Q\_{ij}+Q\_{ji})\)</span> と定義し、係数や定数項 <span class="math notranslate nohighlight">\(n^2\)</span> を取り除くと、同じ最適化問題の二つの同値な定式化に到達します：</p>
+<p>ここで <span class="math notranslate nohighlight">\(b_i=-\sum\_{j}(Q\_{ij}+Q\_{ji})\)</span> と定義し、係数や定数項 <span class="math notranslate nohighlight">\(n^2\)</span> を取り除くと、同じ最適化問題の二つの同値な定式化に到達します：</p>
 <div class="math notranslate nohighlight">
 \[
 \min_{x\in\{0,1\}^n} x^TQx \Longleftrightarrow \min_{z\in\{-1,1\}^n} z^TQz + b^Tz
 \]</div>
 <p>ここで <span class="math notranslate nohighlight">\(b\)</span> は <span class="math notranslate nohighlight">\(Q\)</span> に依存します。なお、<span class="math notranslate nohighlight">\(z^TQz + b^Tz\)</span> を得るために、1/4 の係数と <span class="math notranslate nohighlight">\(n^2\)</span> の定数項を無視しました。これらは最適化においては役割を果たさないためです。</p>
-<p>次に、問題を量子形式にするために、変数 <span class="math notranslate nohighlight">\(z\_i\)</span> をパウリ <span class="math notranslate nohighlight">\(Z\)</span> 行列に置き換えます。例えば、次のような <span class="math notranslate nohighlight">\(2\times 2\)</span> の行列です：</p>
+<p>次に、問題を量子形式にするために、変数 <span class="math notranslate nohighlight">\(z_i\)</span> をパウリ <span class="math notranslate nohighlight">\(Z\)</span> 行列に置き換えます。例えば、次のような <span class="math notranslate nohighlight">\(2\times 2\)</span> の行列です：</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 Z_i = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; -1\end{pmatrix}.
@@ -1201,29 +1172,27 @@ Z_i = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; -1\end{pmatrix}.
 <p>この行列を最適化問題に代入すると、次のようなハミルトニアンが得られます：</p>
 <div class="math notranslate nohighlight">
 \[
-H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
+H_C=\sum_{ij}Q_{ij}Z_i Z_j + \sum_i b_i Z_i.
 \]</div>
-<p><em>また、<span class="math notranslate nohighlight">\(Z\)</span> 行列は量子コンピュータの計算空間、すなわち <span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> のヒルベルト空間に埋め込まれていることに注意してください。したがって <span class="math notranslate nohighlight">\(Z\_iZ\_j\)</span> のような項は、<span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> のヒルベルト空間におけるテンソル積 <span class="math notranslate nohighlight">\(Z\_i\otimes Z\_j\)</span> として理解する必要があります。たとえば、5つの決定変数を持つ問題において <span class="math notranslate nohighlight">\(Z\_1Z\_3\)</span> という項は、<span class="math notranslate nohighlight">\(I\otimes Z\_3\otimes I\otimes Z\_1\otimes I\)</span> を意味します。ここで <span class="math notranslate nohighlight">\(I\$ は \$2\times 2\)</span> の単位行列です。</em></p>
+<p><em>また、<span class="math notranslate nohighlight">\(Z\)</span> 行列は量子コンピュータの計算空間、すなわち <span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> のヒルベルト空間に埋め込まれていることに注意してください。したがって <span class="math notranslate nohighlight">\(Z_i Z_j\)</span> のような項は、<span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> のヒルベルト空間におけるテンソル積 <span class="math notranslate nohighlight">\(Z_i \otimes Z_j\)</span> として理解する必要があります。たとえば、5つの決定変数を持つ問題において <span class="math notranslate nohighlight">\(Z_1Z_3\)</span> という項は、<span class="math notranslate nohighlight">\(I \otimes Z_3 \otimes I \otimes Z_1 \otimes I\)</span> を意味します。ここで <span class="math notranslate nohighlight">\(I\)</span> は <span class="math notranslate nohighlight">\(2 \times 2\)</span> の単位行列です。</em></p>
 <p>このハミルトニアンは <strong>コスト関数ハミルトニアン</strong> と呼ばれます。その基底状態が <strong>コスト関数 <span class="math notranslate nohighlight">\(f(x)\)</span> を最小化する解</strong> に対応するという性質を持ちます。したがって、最適化問題を解くには、量子コンピュータ上で <span class="math notranslate nohighlight">\(H\_C\)</span> の基底状態（あるいはそれと高い重なりを持つ状態）を準備する必要があります。そして、この状態からサンプリングすることで、高い確率で <span class="math notranslate nohighlight">\(\min f(x)\)</span> の解を得ることができます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_max_cut_operator</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SparsePauliOp</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_max_cut_operator</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SparsePauliOp</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
     <span class="n">sp_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">constant</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edge_list</span><span class="p">():</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_edge_data</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
         <span class="n">sp_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">],</span> <span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">constant</span> <span class="o">-=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="k">return</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-        <span class="n">sp_list</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">()</span>
-    <span class="p">),</span> <span class="n">constant</span>
+    <span class="k">return</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span><span class="n">sp_list</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">()),</span> <span class="n">constant</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">constant</span> <span class="o">=</span> <span class="n">build_max_cut_operator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">constant</span> <span class="o">=</span> <span class="n">build_max_cut_operator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cost Function Hamiltonian:&quot;</span><span class="p">,</span> <span class="n">cost_hamiltonian</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Constant:&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
 </pre></div>
@@ -1240,48 +1209,44 @@ Constant: -3.0
 </section>
 <section id="id9">
 <h4>ハミルトニアン → 量子回路<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
-<p>ハミルトニアン <span class="math notranslate nohighlight">\(H\_C\)</span> には、問題の量子版の定義が含まれています。ここから、量子コンピュータから「良い解」を <em>サンプリング</em> するのに役立つ量子回路を作ることができます。QAOAは量子アニーリングに着想を得ており、量子回路の中で演算子を交互に適用する層を重ねていきます。</p>
-<p>基本的なアイデアは、既知の系の基底状態（上記の <span class="math notranslate nohighlight">\(H^{\otimes n}|0\rangle\)</span>）から始め、目的とするコスト演算子の基底状態へと系を導いていくというものです。これは、角度 <span class="math notranslate nohighlight">\(\gamma\_1, \dots, \gamma\_p\)</span> および <span class="math notranslate nohighlight">\(\beta\_1, \dots, \beta\_p\)</span> をパラメータとして持つ演算子 <span class="math notranslate nohighlight">\(
+<p>ハミルトニアン <span class="math notranslate nohighlight">\(H_C\)</span> には、問題の量子版の定義が含まれています。ここから、量子コンピュータから「良い解」を <em>サンプリング</em> するのに役立つ量子回路を作ることができます。QAOAは量子アニーリングに着想を得ており、量子回路の中で演算子を交互に適用する層を重ねていきます。</p>
+<p>基本的なアイデアは、既知の系の基底状態（上記の <span class="math notranslate nohighlight">\(H^{\otimes n}|0\rangle\)</span>）から始め、目的とするコスト演算子の基底状態へと系を導いていくというものです。これは、角度 <span class="math notranslate nohighlight">\(\gamma_1, \dots, \gamma_p\)</span> および <span class="math notranslate nohighlight">\(\beta_1, \dots, \beta_p\)</span> をパラメータとして持つ演算子 <span class="math notranslate nohighlight">\(
 \exp\{-i\gamma_k H_C\}, \quad \exp\{-i\beta_k H_m\}\)</span> を適用することによって行われます。</p>
 <p>生成される量子回路は <span class="math notranslate nohighlight">\(\gamma_i\)</span> と <span class="math notranslate nohighlight">\(\beta_i\)</span> によって <strong>パラメーター化</strong> されているので、これらの値をさまざまに試し、その結果得られる状態からサンプリングを行うことができます。</p>
 <p><img alt="&quot;QAOA&quot;" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Futility-scale-quantum-computing%2Fvariational-quantum-algorithms%2Fqaoa.avif&amp;w=3840&amp;q=75" /></p>
 <p>この場合、2つのパラメーター <span class="math notranslate nohighlight">\(\gamma\_1\)</span> と <span class="math notranslate nohighlight">\(\beta\_1\)</span> を含む <strong>1層のQAOA</strong> の例を試してみます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QAOAAnsatz</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QAOAAnsatz</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span> <span class="o">=</span> <span class="n">QAOAAnsatz</span><span class="p">(</span><span class="n">cost_operator</span><span class="o">=</span><span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span> <span class="o">=</span> <span class="n">QAOAAnsatz</span><span class="p">(</span><span class="n">cost_operator</span><span class="o">=</span><span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">circuit</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
 <span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/7bd8c6d4-f40f-4a11-a440-0b26d9021b53-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/521f11e10deb771f12eb558be8c5ee00a467269429a63aa031b58a4f770e145c.png" src="../../_images/521f11e10deb771f12eb558be8c5ee00a467269429a63aa031b58a4f770e145c.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/148d2d62-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/0e4670ce47b57dfabf5724b41d9e2bafc6aea42718e0be20f16e83f37ee7ffc8.png" src="../../_images/0e4670ce47b57dfabf5724b41d9e2bafc6aea42718e0be20f16e83f37ee7ffc8.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">parameters</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">parameters</span>
 </pre></div>
 </div>
 </div>
@@ -1299,10 +1264,10 @@ Constant: -3.0
 <p>Qiskitライブラリーは、幅広い回路変換に対応するさまざまな <strong>トランスパイルパス</strong> を提供しています。回路が自分の目的に合わせて <strong>最適化</strong> されていることを確認する必要があります。</p>
 <p>トランスパイルには、いくつかのステップが含まれる場合があります。例えば：</p>
 <ul class="simple">
-<li><p>回路内の量子ビット（意思決定変数など）をデバイス上の物理量子ビットに <strong>初期マッピング</strong> する。</p></li>
+<li><p>回路内の量子ビット（決定変数など）をデバイス上の物理量子ビットに <strong>初期マッピング</strong> する。</p></li>
 <li><p>量子回路内の命令を、バックエンドが理解できるハードウェアネイティブな命令に <strong>展開（アンローリング）</strong> する。</p></li>
 <li><p>回路内で相互作用する量子ビットを、隣接する物理量子ビットに <strong>ルーティング</strong> する。</p></li>
-<li><p>ダイナミカルデカップリングを用いた単一量子ビットゲートの追加による <strong>エラー抑制</strong> をする。</p></li>
+<li><p>動的デカップリングを用いた単一量子ビットゲートの追加による <strong>エラー抑制</strong> をする。</p></li>
 </ul>
 <p>トランスパイルに関する詳細は、<a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/guides/transpile">ドキュメント</a>に記載されています。</p>
 <p>以下のコードは、抽象的な回路を変換・最適化し、<strong>Qiskit IBM® Runtime service</strong> を使ってクラウド経由でアクセス可能な量子デバイスの1つで実行できる形式にします。</p>
@@ -1310,16 +1275,16 @@ Constant: -3.0
 ローカルテストモードの詳細は<a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/guides/local-testing-mode">ドキュメント</a>をご覧ください。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 
 <span class="c1"># Use a quantum device</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span><span class="p">)</span>
-<span class="c1"># backend = service.backend(&quot;ibm_kingston&quot;)</span>
 
 <span class="c1"># You can test your programs locally with a fake backend (local testing mode)</span>
-<span class="c1"># backend = FakeBrisbane()</span>
+<span class="c1"># from qiskit_ibm_runtime.fake_provider import FakeFez</span>
+<span class="c1"># backend = FakeFez()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 
@@ -1332,15 +1297,10 @@ Constant: -3.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  service = QiskitRuntimeService(channel=&quot;ibm_quantum_platform&quot;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_fez&#39;)&gt;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_strasbourg&#39;)&gt;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/95cd3eed-0348-4373-b664-16a65d42f1e7-2.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/69d250fbec49a9e04486b62238a2f7d073ba07971a2939e4731a5b8a042a00c7.png" src="../../_images/69d250fbec49a9e04486b62238a2f7d073ba07971a2939e4731a5b8a042a00c7.png" />
 </div>
 </div>
 </section>
@@ -1358,7 +1318,7 @@ Constant: -3.0
 <p>まずは任意に選んだパラメーターから始めます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">initial_gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 <span class="n">initial_beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="n">init_params</span> <span class="o">=</span> <span class="p">[</span><span class="n">initial_gamma</span><span class="p">,</span> <span class="n">initial_beta</span><span class="p">]</span>
 </pre></div>
@@ -1380,7 +1340,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <p>Sampler に基づくコスト関数を SciPy の最小化ルーチンに組み込み、最適なパラメーターを見つけることができます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cost_func_estimator</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">estimator</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cost_func_estimator</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">ansatz</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">estimator</span><span class="p">):</span>
     <span class="c1"># transform the observable defined on virtual qubits to</span>
     <span class="c1"># an observable defined on all physical qubits</span>
     <span class="n">isa_hamiltonian</span> <span class="o">=</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">ansatz</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
@@ -1400,18 +1360,18 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span><span class="p">,</span> <span class="n">EstimatorV2</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">EstimatorV2</span><span class="p">,</span> <span class="n">Session</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="n">objective_func_vals</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Global variable</span>
 <span class="k">with</span> <span class="n">Session</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-    <span class="c1"># If using qiskit-ibm-runtime&lt;0.24.0, change `mode=` to `session=`</span>
-    <span class="n">estimator</span> <span class="o">=</span> <span class="n">EstimatorV2</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">EstimatorV2</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">default_shots</span> <span class="o">=</span> <span class="mi">1000</span>
 
     <span class="c1"># Set simple error suppression/mitigation options</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XY4&quot;</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">skip_reset_qubits</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
 
@@ -1427,12 +1387,12 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Return from COBYLA because the trust region radius reaches its lower bound.
  success: True
-  status: 1
-     fun: -0.6557925874481715
-       x: [ 2.873e+00  9.414e-01]
-    nfev: 21
+  status: 0
+     fun: -1.0608700803908362
+       x: [ 2.739e+00  6.556e-01]
+    nfev: 20
    maxcv: 0.0
 </pre></div>
 </div>
@@ -1441,7 +1401,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <p>オプティマイザーはコストを下げ、回路に対してより良いパラメータを見つけることができました。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">objective_func_vals</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cost&quot;</span><span class="p">)</span>
@@ -1450,36 +1410,32 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/f923dd5d-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/01d31e0e025f575bcb82788bae0f50ce5ec816d6849fa83768d03ffea619b6ad.png" src="../../_images/01d31e0e025f575bcb82788bae0f50ce5ec816d6849fa83768d03ffea619b6ad.png" />
 </div>
 </div>
 <p>回路の最適なパラメーターが見つかったら、そのパラメーターを回路に割り当て、最適化されたパラメーターで得られる最終的な分布をサンプリングすることができます。ここでは <strong>Sampler</strong> primitive を使用します。なぜなら、この分布はビット列測定の確率分布であり、それがグラフの最適カットに対応するからです。</p>
 <p><strong>注:</strong> これは、量子コンピュータ内で量子状態 <span class="math notranslate nohighlight">\(\psi\)</span> を準備し、それを測定することを意味します。測定によって状態は単一の計算基底状態に崩壊します。例えば <code class="docutils literal notranslate"><span class="pre">010101110000...</span></code> のようなビット列で、これは元の最適化問題（<span class="math notranslate nohighlight">\(\max f(x)\)</span> または <span class="math notranslate nohighlight">\(\min f(x)\)</span>、タスクに応じて）の候補解 <span class="math notranslate nohighlight">\(x\)</span> に対応します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optimized_circuit</span> <span class="o">=</span> <span class="n">candidate_circuit</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimized_circuit</span> <span class="o">=</span> <span class="n">candidate_circuit</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 <span class="n">optimized_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/f8dddf5a-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/259c548a70f60d9a524c2fcec1e88191537308a74cfd8efe4a5fc4c692297fad.png" src="../../_images/259c548a70f60d9a524c2fcec1e88191537308a74cfd8efe4a5fc4c692297fad.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span>
 
-<span class="c1"># If using qiskit-ibm-runtime&lt;0.24.0, change `mode=` to `backend=`</span>
-<span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 
 <span class="c1"># Set simple error suppression/mitigation options</span>
 <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XY4&quot;</span>
+<span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">skip_reset_qubits</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
 
@@ -1495,7 +1451,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{12: 0.0652, 31: 0.0089, 4: 0.0085, 13: 0.0731, 26: 0.0256, 28: 0.0246, 17: 0.0405, 25: 0.0591, 20: 0.031, 15: 0.0221, 8: 0.017, 21: 0.0371, 14: 0.0461, 16: 0.0229, 19: 0.0723, 23: 0.0199, 22: 0.0478, 18: 0.0708, 24: 0.0165, 6: 0.0525, 7: 0.0155, 5: 0.0245, 3: 0.0231, 29: 0.0121, 30: 0.0062, 10: 0.0363, 1: 0.0097, 9: 0.042, 27: 0.0094, 11: 0.0349, 0: 0.0129, 2: 0.0119}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{9: 0.044, 13: 0.099, 12: 0.0964, 5: 0.0145, 22: 0.0468, 28: 0.0175, 18: 0.1035, 10: 0.0273, 25: 0.0604, 1: 0.0059, 4: 0.0144, 14: 0.0435, 31: 0.0057, 2: 0.0143, 6: 0.0622, 20: 0.0284, 0: 0.008, 16: 0.0108, 30: 0.0054, 19: 0.0971, 17: 0.0412, 8: 0.0091, 26: 0.0158, 11: 0.0257, 24: 0.0065, 3: 0.0176, 29: 0.0113, 27: 0.0127, 21: 0.0262, 15: 0.0105, 7: 0.0077, 23: 0.0106}
 </pre></div>
 </div>
 </div>
@@ -1506,7 +1462,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <p>後処理ステップでは、sampling 出力を解釈して、元の問題の解を返します。この場合、最適なカットを決定するため、確率が最も高いビット文字列に関心があります。問題の対称性により、4つの可能な解が可能になり、samplingのプロセスではそのうちの1つがわずかに高い確率で返されますが、以下のプロットされた分布では、ビットストリングのうち4つが他のビットストリングよりも明らかに高い可能性が高いことがわかります。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># auxiliary functions to sample most likely bitstring</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># auxiliary functions to sample most likely bitstring</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">to_bitstring</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">integer</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">num_bits</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">digit</span><span class="p">)</span> <span class="k">for</span> <span class="n">digit</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
@@ -1523,14 +1479,14 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result bitstring: [1, 0, 1, 1, 0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result bitstring: [0, 1, 0, 0, 1]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
 <span class="n">final_bits</span> <span class="o">=</span> <span class="n">final_distribution_bin</span>
@@ -1553,9 +1509,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/32a3020e-c1ea-4aff-988c-d7910a690fa8-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/9fbbae3327b7835d3b55452c5d6929700023de5927831996ebb14588d8be6676.png" src="../../_images/9fbbae3327b7835d3b55452c5d6929700023de5927831996ebb14588d8be6676.png" />
 </div>
 </div>
 <section id="id12">
@@ -1563,30 +1517,24 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <p>最適なビット文字列から、このカットを元のグラフで視覚化できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tab:grey&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;tab:purple&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">most_likely_bitstring</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tab:grey&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;tab:purple&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">most_likely_bitstring</span><span class="p">]</span>
 <span class="n">mpl_draw</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src=&quot;/learning/images/courses/utility-scale-quantum-computing/variational-quantum-algorithms/extracted-outputs/22a48124-e6b4-4144-bee1-f01fa4c7ccbb-0.avif&quot; alt=&quot;Output of the previous code cell&quot; /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/955281645018a5d5806e3e774528c64741ef01008f8a40bc1be46cede898cc9d.png" src="../../_images/955281645018a5d5806e3e774528c64741ef01008f8a40bc1be46cede898cc9d.png" />
 </div>
 </div>
 <p>そしてカットの値を計算します。解はノイズのために最適ではありません(最適解のカット値は5です)。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_sample</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span>
-        <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
-    <span class="p">),</span> <span class="s2">&quot;The length of x must coincide with the number of nodes in the graph.&quot;</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span>
-        <span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_list</span><span class="p">())</span>
-    <span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())),</span> <span class="s2">&quot;The length of x must coincide with the number of nodes in the graph.&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_list</span><span class="p">()))</span>
 
 
 <span class="n">cut_value</span> <span class="o">=</span> <span class="n">evaluate_sample</span><span class="p">(</span><span class="n">most_likely_bitstring</span><span class="p">,</span> <span class="n">graph</span><span class="p">)</span>
@@ -1604,7 +1552,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 QAOAをユーティリティスケールで適応させる方法は、<a class="reference internal" href="#/docs/tutorials/quantum-approximate-optimization-algorithm"><span class="xref myst">量子近似最適化アルゴリズム</span></a>チュートリアルの「パート2:スケールアップ!」で学習します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check Qiskit version</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check Qiskit version</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
 
 <span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
@@ -1612,7 +1560,7 @@ QAOAをユーティリティスケールで適応させる方法は、<a class="
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.0.2&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.2&#39;
 </pre></div>
 </div>
 </div>
