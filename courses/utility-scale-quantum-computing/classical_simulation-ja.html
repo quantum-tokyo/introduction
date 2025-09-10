@@ -1,0 +1,1161 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. 古典計算によるシミュレーション &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/classical_simulation-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/classical_simulation-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/classical_simulation-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8. 古典計算によるシミュレーション</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. 古典計算によるシミュレーション</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrics-product-state-mps">行列積状態 (Matrics Product State, MPS) シミュレーター</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタビライザー・シミュレーター</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statevectormps">statevector、MPS、スタビライザー・シミュレーターの実行時間の比較</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>The University of Tokyo<br />
+Special Lectures in Information Science Ⅱ<br />
+Introduction to Near-Term Quantum Computing</p>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>8. 古典計算によるシミュレーション<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Yoshiaki Kawase (Jun 07, 2024)</p>
+<p>元のコードは<a class="reference external" href="https://github.com/puyokw/2024UTokyo_lecture8/blob/main/20240607_UTokyo_ClassicalSimulation_revised_0909.ipynb">こちら</a>、元のスライドは<a class="reference external" href="https://github.com/puyokw/2024UTokyo_lecture8/blob/main/20240607_UTokyo_ClassicalSimulation_slide_revised.pdf">こちら</a>をご覧ください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.2.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+
+<span class="c1">#from qiskit_ibm_runtime import EstimatorV2 as Estimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="matrics-product-state-mps">
+<h2>行列積状態 (Matrics Product State, MPS) シミュレーター<a class="headerlink" href="#matrics-product-state-mps" title="Link to this heading">#</a></h2>
+<p>以下の回路を使って、MPS シミュレーターで、それがどのように機能するかを確認します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mps_simulator</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;matrix_product_state&#39;</span><span class="p">)</span>
+<span class="n">n_qubits</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="c1"># ランダムな角度を準備します</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_matrix_product_state</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mps_init&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># prepare a random quantum state</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">angles</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">angles</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># prepare a random quantum state</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_matrix_product_state</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mps1&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_matrix_product_state</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;mps2&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">))</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1776564b6623e4e075480ee9badfed54bddf2c47251e1fcd15e7d14386392b21.png" src="../../_images/1776564b6623e4e075480ee9badfed54bddf2c47251e1fcd15e7d14386392b21.png" />
+</div>
+</div>
+<p>まず初期状態、<code class="docutils literal notranslate"><span class="pre">mps_init</span></code> での状態を確認します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tqc</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">mps_simulator</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mps_simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tqc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps_init&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([(array([[1.+0.j]]), array([[0.+0.j]])),
+  (array([[1.+0.j]]), array([[0.+0.j]]))],
+ [array([1.])])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Qiskit Aerのチュートリアル <a class="reference external" href="https://qiskit.github.io/qiskit-aer/tutorials/7_matrix_product_state_method.html#id1">https://qiskit.github.io/qiskit-aer/tutorials/7_matrix_product_state_method.html#id1</a> より、
+MPS シミュレーターを使用すると、 量子状態は、正規形式 <span class="math notranslate nohighlight">\(\Gamma^{(1)} \lambda^{(1)} \cdots \Gamma^{(n-1)} \lambda^{(n-1)} \Gamma^{(n)}\)</span> で表されます。
+ここで、<span class="math notranslate nohighlight">\(\Gamma\)</span> はテンソルを表し、<span class="math notranslate nohighlight">\(\lambda\)</span> は正規化係数を表します。
+したがって、シミュレーターはテンソルと正規化係数のリストを持ちます。</p>
+<p>シミュレーターの出力は、テンソル A と B のリストと正規化係数 <span class="math notranslate nohighlight">\(\lambda\)</span> のリストを含みます。
+量子状態を <span class="math notranslate nohighlight">\( |\psi_{init}\rangle = \sum_{\sigma_0,\sigma_1} A^{\sigma_0} \lambda B^{\sigma_1} |\sigma_0 \sigma_1 \rangle\)</span> で記述すると、出力は、テンソルのリスト <span class="math notranslate nohighlight">\([A,B]=[A^0,A^1,B^0,B^1]\)</span> と正規化係数 <span class="math notranslate nohighlight">\([\lambda]\)</span> になります。</p>
+<p>上の <code class="docutils literal notranslate"><span class="pre">mps_init</span></code> 時点での出力結果から、初期状態 <span class="math notranslate nohighlight">\(|00\rangle\)</span> は <span class="math notranslate nohighlight">\(A^{0} = 1, A^{1}=0, B^{0}=1, B^{1}=0, \lambda=1\)</span> となる <span class="math notranslate nohighlight">\( |\psi_{init}\rangle = \sum_{\sigma_0,\sigma_1} A^{\sigma_0} \lambda B^{\sigma_1} |\sigma_0 \sigma_1 \rangle\)</span> で記述されていることがわかります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">B0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">B1</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、上記回路では、q0にユニタリーゲートUを作用させています。ユニタリーゲートは、以下のような <span class="math notranslate nohighlight">\(2 \times 2\)</span> 行列</p>
+<p><span class="math notranslate nohighlight">\(U=
+\begin{pmatrix}
+u_{00} &amp; u_{01} \\
+u_{10} &amp; u_{11}
+\end{pmatrix}
+=u_{00} |0\rangle \langle 0|+u_{01} |0\rangle \langle 1|+u_{10} |1\rangle \langle 0|+u_{11} |1\rangle \langle 1|\)</span>　であるため、この作用は</p>
+<p><span class="math notranslate nohighlight">\((U\otimes I)|\psi_{init} \rangle 
+= \sum_{\sigma_0} U A^{\sigma_0} |\sigma_0\rangle \otimes \sum_{\sigma_1} B^{\sigma_1} |\sigma_1 \rangle
+= \bigg( ( A^{0}u_{00} + A^{1}u_{01} )|0\rangle + (A^{0}u_{10} + A^{1}u_{11} ) |1\rangle \bigg) \otimes \sum_{\sigma_1} B^{\sigma_1} |\sigma_1 \rangle\)</span></p>
+<p>となります。QiskitのUゲートの定義より、</p>
+<p><span class="math notranslate nohighlight">\(U(\theta_1,\theta_2,\theta_3)=
+\begin{pmatrix}
+\cos{(\theta_1/2)} &amp; -e^{i\theta_3}\sin{(\theta_1/2)} \\
+e^{i\theta_2}\sin{(\theta_1/2)} &amp; e^{i(\theta_2+\theta_3)} \cos{(\theta_1/2)}
+\end{pmatrix}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(\theta_1、\theta_2\)</span>、<span class="math notranslate nohighlight">\(\theta_3\)</span>に値を割り当て、Uゲートを量子状態に適用し<span class="math notranslate nohighlight">\(A^0\)</span> と <span class="math notranslate nohighlight">\(A^1\)</span> を計算します：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QiskitのUゲートの定義より</span>
+<span class="n">u00</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">u01</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">u10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">u11</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;new A^0=&quot;</span><span class="p">,</span> <span class="n">A0</span><span class="o">*</span><span class="n">u00</span><span class="o">+</span><span class="n">A1</span><span class="o">*</span><span class="n">u01</span><span class="p">,</span> <span class="s2">&quot;new A^1=&quot;</span><span class="p">,</span> <span class="n">A0</span><span class="o">*</span><span class="n">u10</span><span class="o">+</span><span class="n">A1</span><span class="o">*</span><span class="n">u11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>new A^0= (0.7930134282051604+0j) new A^1= (-0.3887996598361402+0.4690037603235188j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>同様に、q1にユニタリーゲートUを作用させ、<span class="math notranslate nohighlight">\(B^0\)</span> と <span class="math notranslate nohighlight">\(B^1\)</span> を次のように計算します：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uゲートの定義より</span>
+<span class="n">v00</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">v01</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="n">angles</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">v10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="n">angles</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">v11</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="n">angles</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;new B^0=&quot;</span><span class="p">,</span> <span class="n">B0</span><span class="o">*</span><span class="n">v00</span><span class="o">+</span><span class="n">B1</span><span class="o">*</span><span class="n">u01</span><span class="p">,</span> <span class="s2">&quot;new B^1=&quot;</span><span class="p">,</span> <span class="n">B0</span><span class="o">*</span><span class="n">v10</span><span class="o">+</span><span class="n">B1</span><span class="o">*</span><span class="n">v11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>new B^0= (0.8893371274812134+0j) new B^1= (0.4095090690923406+0.20342516072155026j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>MPSシミュレーターによる <code class="docutils literal notranslate"><span class="pre">mps1</span></code> 時点でのテンソル A と B の値と正規化係数 <span class="math notranslate nohighlight">\(\lambda\)</span> を見てみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([(array([[0.79301343+0.j]]), array([[-0.38879966+0.46900376j]])),
+  (array([[0.88933713+0.j]]), array([[0.40950907+0.20342516j]]))],
+ [array([1.])])
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記のケースと同様に、シミュレーターの出力には、テンソルAとBのリストと、正規化係数<span class="math notranslate nohighlight">\(\lambda\)</span>を含むリストが含まれます。
+量子状態を <span class="math notranslate nohighlight">\( |\psi_{1}\rangle = \sum_{\sigma_0,\sigma_1} A^{\sigma_0} \lambda B^{\sigma_1} |\sigma_0 \sigma_1 \rangle\)</span> で記述すると、出力はテンソル <span class="math notranslate nohighlight">\([A,B]=[A^0,A^1,B^0,B^1]\)</span> と正規化係数 <span class="math notranslate nohighlight">\([\lambda]\)</span> のリストとなり、テンソルと正規化係数は、以下のように求められます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A^0=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;, A^1=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+      <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">B^0=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;, B^1=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+      <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">lambda=&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A^0= [0.79301343+0.j] , A^1= [-0.38879966+0.46900376j] 
+B^0= [0.88933713+0.j] , B^1= [0.40950907+0.20342516j] 
+lambda= [1.]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mps1</span></code> の状態において、ユニタリーゲートの定義から計算した結果が、MPSシミュレーターの結果と一致していることがわかります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;new A^0=&quot;</span><span class="p">,</span> <span class="n">A0</span><span class="o">*</span><span class="n">u00</span><span class="o">+</span><span class="n">A1</span><span class="o">*</span><span class="n">u01</span><span class="p">,</span> <span class="s2">&quot;, new A^1=&quot;</span><span class="p">,</span> <span class="n">A0</span><span class="o">*</span><span class="n">u10</span><span class="o">+</span><span class="n">A1</span><span class="o">*</span><span class="n">u11</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;new B^0=&quot;</span><span class="p">,</span> <span class="n">B0</span><span class="o">*</span><span class="n">v00</span><span class="o">+</span><span class="n">B1</span><span class="o">*</span><span class="n">u01</span><span class="p">,</span> <span class="s2">&quot;, new B^1=&quot;</span><span class="p">,</span> <span class="n">B0</span><span class="o">*</span><span class="n">v10</span><span class="o">+</span><span class="n">B1</span><span class="o">*</span><span class="n">v11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>new A^0= (0.7930134282051604+0j) , new A^1= (-0.3887996598361402+0.4690037603235188j)
+new B^0= (0.8893371274812134+0j) , new B^1= (0.4095090690923406+0.20342516072155026j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、シミュレーターがどのように機能するかを確認するために、ここでテンソルの値を更新しておきます：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A0</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">B0</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">B1</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps1&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">B0</span><span class="p">,</span> <span class="n">B1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7930134282051604+0j) (-0.3887996598361402+0.4690037603235188j) (0.8893371274812134+0j) (0.4095090690923406+0.20342516072155026j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、上記回路では量子状態にCNOTゲートを適用しています。</p>
+<p>CNOTゲートは<span class="math notranslate nohighlight">\(CX_{c,t} = |0_c\rangle \langle 0_c|\otimes I_t + |1_c\rangle \langle 1_c|\otimes X_t\)</span>です。
+<code class="docutils literal notranslate"><span class="pre">mps1</span></code> 時点での量子状態<span class="math notranslate nohighlight">\(|\psi_1 \rangle\)</span>に<span class="math notranslate nohighlight">\(CX_{0,1}\)</span>を適用すると、<code class="docutils literal notranslate"><span class="pre">mps2</span></code> 時点での量子状態<span class="math notranslate nohighlight">\(|\psi_2 \rangle\)</span> は、以下のようになります。</p>
+<p><span class="math notranslate nohighlight">\(|\psi_2 \rangle := CX_{0,1} |\psi_1\rangle= 
+(|0\rangle \langle 0| \otimes I + |1\rangle \langle 1| \otimes X)
+(A^0 B^0|00\rangle+A^0 B^1 |01\rangle+A^1 B^0|10\rangle+A^1 B^1|11\rangle)\)</span></p>
+<p><span class="math notranslate nohighlight">\(=(A^0 B^0|00\rangle+A^0 B^1 |01\rangle+A^1 B^1|10\rangle+A^1 B^0|11\rangle)\)</span></p>
+<p>ここで <span class="math notranslate nohighlight">\(|\psi_2 \rangle\)</span>の振幅は以下のように計算されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c00</span> <span class="o">=</span> <span class="n">A0</span><span class="o">*</span><span class="n">B0</span>
+<span class="n">c01</span> <span class="o">=</span> <span class="n">A0</span><span class="o">*</span><span class="n">B1</span>
+<span class="n">c10</span> <span class="o">=</span> <span class="n">A1</span><span class="o">*</span><span class="n">B1</span>
+<span class="n">c11</span> <span class="o">=</span> <span class="n">A1</span><span class="o">*</span><span class="n">B0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c00</span><span class="p">,</span> <span class="n">c01</span><span class="p">,</span> <span class="n">c10</span><span class="p">,</span> <span class="n">c11</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.7052562842940068+0j) (0.3247461907620209+0.1613188840869823j) (-0.25462415208573974+0.11296966000024053j) (-0.3457739726443458+0.4171024569840057j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、特異値分解 (singular value decomposition, SVD) を使用して <span class="math notranslate nohighlight">\((A^0 B^0|00\rangle+A^0 B^1 |01\rangle+A^1 B^1|10\rangle+A^1 B^0|11\rangle)\)</span>をMPS形式に分解します。</p>
+<p>ここでは、<span class="math notranslate nohighlight">\(|\psi\rangle = c_{00} |00\rangle + c_{01} |01\rangle + c_{10} |10\rangle + c_{11} |11\rangle\)</span> とその係数からなる行列<span class="math notranslate nohighlight">\(M=\begin{pmatrix}
+c_{00} &amp; c_{01} \\
+c_{10} &amp; c_{11}
+\end{pmatrix}\)</span>を考えます。
+この行列にSVDを適用すると、次のようになります。</p>
+<p><span class="math notranslate nohighlight">\(\begin{pmatrix}
+c_{00} &amp; c_{01} \\
+c_{10} &amp; c_{11}
+\end{pmatrix}
+=UDV^\dagger=
+\begin{pmatrix}
+u_{00} &amp; u_{01} \\
+u_{10} &amp; u_{11}
+\end{pmatrix}
+\begin{pmatrix}
+\lambda_{0} &amp; 0 \\
+0 &amp; \lambda_{1}
+\end{pmatrix}
+\begin{pmatrix}
+v_{00} &amp; v_{01} \\
+v_{10} &amp; v_{11}
+\end{pmatrix}\)</span></p>
+<p>したがって、この係数は <span class="math notranslate nohighlight">\(c_{\sigma_0 \sigma_1}=\sum_{k=0}^1 u_{\sigma_0 k} \lambda_{k} v_{k\sigma_1}\)</span> と書くことができます。
+これを <span class="math notranslate nohighlight">\(|\psi\rangle = c_{00} |00\rangle + c_{01} |01\rangle + c_{10} |10\rangle + c_{11} |11\rangle\)</span> に代入すると、次のようになります。</p>
+<p><span class="math notranslate nohighlight">\(|\psi \rangle=\sum_{\sigma_0=0}^1\sum_{\sigma_j=0}^1 c_{\sigma_0\sigma_1} |\sigma_0\rangle |\sigma_1\rangle 
+=\sum_{\sigma_0=0}^1 \sum_{\sigma_1=0}^1 \sum_{k=0}^1 u_{\sigma_0 k} \lambda_k v_{k \sigma_1} |\sigma_0\rangle |\sigma_1\rangle\)</span>.</p>
+<p>この式に、<span class="math notranslate nohighlight">\(u_{00}=A_0^0, u_{01}=A_1^0, u_{10}=A_0^1, u_{11}=A_1^1, v_{00}=B_0^0, v_{01}=B_0^1, v_{10}=B_1^0, v_{11}=B_1^1\)</span>を代入することで、<span class="math notranslate nohighlight">\( |\psi_2 \rangle\)</span>を<span class="math notranslate nohighlight">\(\sum_{\sigma_1=0}^1 \sum_{\sigma_0=0}^1 \sum_{k=0}^1 A^{\sigma_0}_k \lambda_k B^{\sigma_1}_k |\sigma_0 \sigma_1 \rangle\)</span> と表現できます。</p>
+<p>以下のセルで、係数行列
+<span class="math notranslate nohighlight">\(\begin{pmatrix}
+c_{00} &amp; c_{01} \\
+c_{10} &amp; c_{11}
+\end{pmatrix}\)</span>
+を作成し、SVDを適用し、A、B、<span class="math notranslate nohighlight">\(\lambda\)</span>の値を計算しました。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="n">c00</span><span class="p">,</span><span class="n">c01</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">c10</span><span class="p">,</span><span class="n">c11</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">M</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.70525628+0.j        ,  0.32474619+0.16131888j],
+       [-0.25462415+0.11296966j, -0.34577397+0.41710246j]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+<span class="c1"># res.U @np.diag(res.S)@res.Vh[:rank,:]</span>
+<span class="n">res</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SVDResult(U=array([[-0.81577887-0.08031113j, -0.51037011+0.25995635j],
+       [ 0.40698376-0.40301262j, -0.1797446 +0.79977304j]]), S=array([0.9352768, 0.3539171]), Vh=array([[-0.77462551+0.j        , -0.62729957-0.08031542j],
+       [-0.6324202 +0.j        ,  0.76835346+0.09837506j]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>SVDの結果と上記の説明から、係数を次のように決定できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A00</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">A01</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">A10</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">A11</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">S</span>
+<span class="n">B00</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">Vh</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">B01</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">Vh</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">B10</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">Vh</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">B11</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">Vh</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>一方、MPSシミュレーターの結果は以下です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([(array([[ 0.81577887+0.08031113j, -0.51037011+0.25995635j]]),
+   array([[-0.40698376+0.40301262j, -0.1797446 +0.79977304j]])),
+  (array([[ 0.77462551-0.j],
+          [-0.6324202 -0.j]]),
+   array([[0.62729957+0.08031542j],
+          [0.76835346+0.09837506j]]))],
+ [array([0.9352768, 0.3539171])])
+</pre></div>
+</div>
+</div>
+</div>
+<p>この出力は、テンソル A と B を含むリストで構成され、正規化係数 <span class="math notranslate nohighlight">\(\lambda\)</span> が含まれます。量子状態を <span class="math notranslate nohighlight">\(\sum_{\sigma_0=0}^1 \sum_{\sigma_1=0}^1 \sum_{k=0}^1 A^{\sigma_0}_k \lambda_k B^{\sigma_1}_k |\sigma_0 \sigma_1 \rangle\)</span> で記述すると、この出力にはテンソル <span class="math notranslate nohighlight">\([A,B]=[[A^0_0,A^0_1],[A^1_0,A^1_1]],[[B^0_0,B^0_1],[B^1_0,B^1_1]]]\)</span> と正規化係数 <span class="math notranslate nohighlight">\([\lambda_0,\lambda_1]\)</span> が含まれます。</p>
+<p>固有値について、SVDの結果の<code class="docutils literal notranslate"><span class="pre">lam</span></code>とMPS シミュレーターの結果<span class="math notranslate nohighlight">\([\lambda_0,\lambda_1]\)</span>を比べてみましょう。以下のように一致していることがわかります：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;mps2&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.9352768 0.3539171] [array([0.9352768, 0.3539171])]
+</pre></div>
+</div>
+</div>
+</div>
+<p>テンソルの値については、MPSシミュレーターの出力では次のようになっています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A^0_0=</span><span class="si">{</span><span class="mf">0.81577887</span><span class="o">+</span><span class="mf">0.08031113</span><span class="n">j</span><span class="si">}</span><span class="s2">, A^0_1=</span><span class="si">{</span><span class="o">-</span><span class="mf">0.51037011</span><span class="o">+</span><span class="mf">0.25995635</span><span class="n">j</span><span class="si">}</span><span class="s2">, A^1_0=</span><span class="si">{</span><span class="o">-</span><span class="mf">0.40698376</span><span class="o">+</span><span class="mf">0.40301262</span><span class="n">j</span><span class="si">}</span><span class="s2">, A^1_1=</span><span class="si">{</span><span class="o">-</span><span class="mf">0.1797446</span><span class="w"> </span><span class="o">+</span><span class="mf">0.79977304</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;B^0_0=</span><span class="si">{</span><span class="mf">0.77462551</span><span class="si">}</span><span class="s2">, B^0_1=</span><span class="si">{</span><span class="o">-</span><span class="mf">0.6324202</span><span class="si">}</span><span class="s2">, B^1_0=</span><span class="si">{</span><span class="mf">0.62729957</span><span class="o">+</span><span class="mf">0.08031542</span><span class="n">j</span><span class="si">}</span><span class="s2">, B^1_1=</span><span class="si">{</span><span class="mf">0.76835346</span><span class="o">+</span><span class="mf">0.09837506</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A^0_0=(0.81577887+0.08031113j), A^0_1=(-0.51037011+0.25995635j), A^1_0=(-0.40698376+0.40301262j), A^1_1=(-0.1797446+0.79977304j)
+B^0_0=0.77462551, B^0_1=-0.6324202, B^1_0=(0.62729957+0.08031542j), B^1_1=(0.76835346+0.09837506j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>一方、SVDの計算結果から、テンソルの値は以下のようになります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A^0_0=</span><span class="si">{</span><span class="n">A00</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">, A^0_1=</span><span class="si">{</span><span class="n">A01</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">, A^1_0=</span><span class="si">{</span><span class="n">A10</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">, A^1_1=</span><span class="si">{</span><span class="n">A11</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;B^0_0=</span><span class="si">{</span><span class="n">B00</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">, B^0_1=</span><span class="si">{</span><span class="n">B01</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">, B^1_0=</span><span class="si">{</span><span class="n">B10</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">, B^1_1=</span><span class="si">{</span><span class="n">B11</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A^0_0=-0.81577887-0.08031113j, A^0_1=-0.51037011+0.25995635j, A^1_0=0.40698376-0.40301262j, A^1_1=-0.17974460+0.79977304j
+
+B^0_0=-0.77462551+0.00000000j, B^0_1=-0.63242020+0.00000000j, B^1_0=-0.62729957-0.08031542j, B^1_1=0.76835346+0.09837506j
+</pre></div>
+</div>
+</div>
+</div>
+<p>このテンソルの値についてMPSシミュレーターの結果と比較すると、<span class="math notranslate nohighlight">\(A_0^0、A_0^1、B_0^0,\)</span>、<span class="math notranslate nohighlight">\(B_0^1\)</span>は、反対の符号を持っていますが、以下のように量子状態<span class="math notranslate nohighlight">\(|\psi_2 \rangle\)</span>について確認すると、MPSシミュレーターとSVDの結果は同じ量子状態を表していることがわかります。</p>
+<p><span class="math notranslate nohighlight">\(|\psi_2\rangle = 
+\lambda_0 \bigg( (A^0_0 |0\rangle + A^1_0 |1\rangle) \otimes (B^0_0 |0\rangle + B^1_0 |1\rangle) \bigg)
++\lambda_1 \bigg( (A^0_1 |0\rangle + A^1_1 |1\rangle) \otimes (B^0_1 |0\rangle + B^1_1 |1\rangle) \bigg)\)</span></p>
+<p><span class="math notranslate nohighlight">\(=\lambda_0 \bigg( (-A^0_0 |0\rangle - A^1_0 |1\rangle) \otimes (-B^0_0 |0\rangle - B^1_0 |1\rangle) \bigg)
++\lambda_1 \bigg( (A^0_1 |0\rangle + A^1_1 |1\rangle) \otimes (B^0_1 |0\rangle + B^1_1 |1\rangle) \bigg)\)</span></p>
+</section>
+<section id="id2">
+<h2>スタビライザー・シミュレーター<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>以下の回路を使って、スタビライザー・シミュレーターがどのように機能するかを確認します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stab_simulator</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;stabilizer&#39;</span><span class="p">)</span>
+
+<span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_clifford</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;clf_init&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_clifford</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;clf_h&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_clifford</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;clf_hcx&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_clifford</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;clf_hcxcz&#39;</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">))</span>
+<span class="n">tcirc</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">stab_simulator</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">stab_simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tcirc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0d0575423a789fee4479c6e84c8a9f58e15c5b5955c923b7f5e85ba98acd2ee5.png" src="../../_images/0d0575423a789fee4479c6e84c8a9f58e15c5b5955c923b7f5e85ba98acd2ee5.png" />
+</div>
+</div>
+<p>初期状態 <span class="math notranslate nohighlight">\(|00\rangle\)</span> のスタビライザー演算子は <span class="math notranslate nohighlight">\(I_2Z_1、Z_2I_1\)</span> であるため、バイナリー・テーブルは次のように表されます。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_1x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(z_1z_2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(Z_1I_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(00\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(10\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(I_1Z_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(00\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(01\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;clf_init&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">stab</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 0, 1, 0, 0],
+       [0, 0, 0, 1, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>シミュレーターでは、テーブルの最後にグローバル・フェーズを処理するために列が追加されています。</p>
+<p>Hゲートが第1量子ビットに作用した後の量子状態は、列を<span class="math notranslate nohighlight">\(x_1\)</span>と<span class="math notranslate nohighlight">\(z_1\)</span>の間で入れ替えることで見ることができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;clf_h&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">stab</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0, 0, 0],
+       [0, 0, 0, 1, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>このときのスタビライザーは <span class="math notranslate nohighlight">\(X_1I_2,I_1Z_2\)</span> なので、量子状態は <span class="math notranslate nohighlight">\(|0\rangle \otimes \frac{|0\rangle+|1\rangle}{\sqrt{2}}\)</span> です。(右端の量子ビットは 1 番目の量子ビットであることに注意してください。)</p>
+<p>CNOTゲートを第1量子ビットを制御、第2量子ビットをターゲットとして作用します。
+バイナリー・テーブルは、<span class="math notranslate nohighlight">\(x_2^{new}=x_1\oplus x_2、z_1^{new}=z_1\oplus z_2\)</span> によって更新されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;clf_hcx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">stab</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 1, 0, 0, 0],
+       [0, 0, 1, 1, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>スタビライザー演算子は <span class="math notranslate nohighlight">\(X_1X_2\)</span> と <span class="math notranslate nohighlight">\(Z_1 Z_2\)</span> であるため、現在の量子状態は <span class="math notranslate nohighlight">\(\frac{|00\rangle+|11\rangle}{\sqrt{2}}\)</span> です。</p>
+<p>CZゲートを第1量子ビットを制御、第2量子ビットをターゲットとして作用します。</p>
+<p>バイナリー・テーブルは、<span class="math notranslate nohighlight">\(z_1^{new}=x_2\oplus z_1、z_2^{new}=x_1\oplus z_2\)</span>によって更新されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;clf_hcxcz&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">stab</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 1, 1, 1, 0],
+       [0, 0, 1, 1, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>スタビライザー演算子は <span class="math notranslate nohighlight">\(Y_1Y_2、Z_1Z_2\)</span> であるため、このときの量子状態は <span class="math notranslate nohighlight">\((|00\rangle-|11\rangle)/\sqrt{2}\)</span> です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0x0&#39;: 493, &#39;0x3&#39;: 531}
+</pre></div>
+</div>
+</div>
+</div>
+<p>クリフォード・ゲートには、回転角度が <span class="math notranslate nohighlight">\(m\pi/2\)</span> (<span class="math notranslate nohighlight">\(m\)</span> は整数) の単一量子ビット ゲートも含まれます。</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="statevectormps">
+<h1>statevector、MPS、スタビライザー・シミュレーターの実行時間の比較<a class="headerlink" href="#statevectormps" title="Link to this heading">#</a></h1>
+<p>GHZ状態を生成する実行時間を比較します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statevec_simulator</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;statevector&#39;</span><span class="p">)</span>
+<span class="n">stab_simulator</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;stabilizer&#39;</span><span class="p">)</span>
+<span class="n">mps_simulator</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;matrix_product_state&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">simulation</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
+    <span class="n">circ</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)</span>
+    <span class="n">circ</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">circ</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">circ</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">))</span>
+    <span class="n">tcirc</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tcirc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">time_taken</span>
+
+<span class="n">nqubits_state_vec_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">nqubits_mps_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">61</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">nqubits_stab_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">statevec_exec_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulation</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">statevec_simulator</span><span class="p">)</span> <span class="k">for</span> <span class="n">n_qubits</span> <span class="ow">in</span> <span class="n">nqubits_state_vec_list</span> <span class="p">]</span>
+<span class="n">mps_exec_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulation</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">mps_simulator</span><span class="p">)</span> <span class="k">for</span> <span class="n">n_qubits</span> <span class="ow">in</span> <span class="n">nqubits_mps_list</span><span class="p">]</span>
+<span class="n">stab_exec_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulation</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">stab_simulator</span><span class="p">)</span> <span class="k">for</span> <span class="n">n_qubits</span> <span class="ow">in</span> <span class="n">nqubits_stab_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">nqubits_state_vec_list</span><span class="p">,</span> <span class="n">statevec_exec_time</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;state_vec&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">nqubits_mps_list</span><span class="p">,</span> <span class="n">mps_exec_time</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mps&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">nqubits_stab_list</span><span class="p">,</span> <span class="n">stab_exec_time</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;clifford&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">minor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1">#plt.ylim(0,0.3)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a4a917cdfc7bcb57ceb2a4baa8c9cabf0e9fbb3e3903c873a3720f1bc77514dc.png" src="../../_images/a4a917cdfc7bcb57ceb2a4baa8c9cabf0e9fbb3e3903c873a3720f1bc77514dc.png" />
+</div>
+</div>
+<p>スタビライザー・シミュレーターは高速で、100量子ビットをシミュレートできます。
+MPS シミュレーターはスタビライザー・シミュレーターよりも遅いですが、60 量子ビットをシミュレートできます。
+Statevectorシミュレーターは、20量子ビット未満において、MPSシミュレーターよりも高速です(これはキャッシュサイズによって異なります)が、実行時間とメモリー要件は 20 量子ビットを超えると指数関数的に増加します。</p>
+<p>次に、以下のイジング・ハミルトニアンのシミュレーション時間を比較します。</p>
+<div class="math notranslate nohighlight">
+\[H=h \sum_{i=1}^n X_i + j \sum_{i=1}^n \sum_{j=1}^i Z_iZ_j\]</div>
+<p>トロッター分解を用いて、以下の回路を計算します。</p>
+<div class="math notranslate nohighlight">
+\[e^{-iH \Delta t} \simeq (\Pi_{j=1}^n e^{-i h X_j \Delta t})(\Pi_{j=1}^n \Pi_{k=1}^{j-1} e^{-i J Z_j Z_k \Delta t})\]</div>
+<p>初期状態は <span class="math notranslate nohighlight">\(|+\rangle^{\otimes n}\)</span> として準備します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+
+<span class="n">delta</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">simulating_ising_model</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">simulator</span><span class="p">):</span>
+    <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)</span>
+    <span class="c1"># to prepare |+...+&gt;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">):</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="c1"># time-evolution by Ising Hamiltonian</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">):</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">h</span><span class="o">*</span><span class="n">delta</span><span class="p">),</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">rzz</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">J</span><span class="o">*</span><span class="n">delta</span><span class="p">),</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">))</span>
+    <span class="n">tcirc</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">simulator</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tcirc</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">time_taken</span>
+
+<span class="n">nqubits_state_vec_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">nqubits_mps_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">61</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">statevec_exec_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulating_ising_model</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">statevec_simulator</span><span class="p">)</span> <span class="k">for</span> <span class="n">n_qubits</span> <span class="ow">in</span> <span class="n">nqubits_state_vec_list</span> <span class="p">]</span>
+<span class="n">mps_exec_time</span> <span class="o">=</span> <span class="p">[</span><span class="n">simulating_ising_model</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">mps_simulator</span><span class="p">)</span> <span class="k">for</span> <span class="n">n_qubits</span> <span class="ow">in</span> <span class="n">nqubits_mps_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">nqubits_state_vec_list</span><span class="p">,</span> <span class="n">statevec_exec_time</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;state_vec&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">nqubits_mps_list</span><span class="p">,</span> <span class="n">mps_exec_time</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;mps&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n_qubits&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span><span class="n">minor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;sec&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1">#plt.ylim(0,1.5)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6c88ce14af5bab78fb700acd2c832d23c0b190aa7674f85b18696e27482d88b1.png" src="../../_images/6c88ce14af5bab78fb700acd2c832d23c0b190aa7674f85b18696e27482d88b1.png" />
+</div>
+</div>
+<p>さきほどの結果と同様に、MPSシミュレーターを使用すると、Statevectorシミュレータよりも大きなシステムをシミュレートできます。</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">8. 古典計算によるシミュレーション</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrics-product-state-mps">行列積状態 (Matrics Product State, MPS) シミュレーター</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタビライザー・シミュレーター</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statevectormps">statevector、MPS、スタビライザー・シミュレーターの実行時間の比較</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
