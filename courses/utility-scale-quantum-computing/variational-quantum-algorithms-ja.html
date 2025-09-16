@@ -435,7 +435,7 @@ document.write(`
 <Admonition type="note">
   Takashi Imamichi (24 May 2024)  
 <p>和訳版の講義スライドPDFは<a class="reference external" href="https://github.com/quantum-tokyo/introduction/blob/kifumi/src/courses/utility-scale-quantum-computing/6_variational-quantum-algorithms.pdf">こちら</a>です。コードは非推奨になる可能性があることに注意してください。</p>
-<p>*この実験を実行するためのおおよその QPU 時間は 9 分です (ibm_brisbane でテスト)。 *</p>
+<p><em>この実験を実行するためのおおよその QPU 時間は 9 分です (ibm_brisbane でテスト)</em></p>
 <p>(このノートブックは、オープンプランで許可されている時間内に終わらない可能性があります。量子コンピューティングのリソースを賢くご利用ください。)
 </Admonition></p>
 <section id="id2">
@@ -539,7 +539,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Zの期待値は、<span class="math notranslate nohighlight">\(\langle Z \rangle = p_0 - p_1\)</span>で、確率は<span class="math notranslate nohighlight">\(\{0:p_0、1:p_1\}\)</span>で計算できることがわかっています。</p>
+<p>Zの期待値は、<span class="math notranslate nohighlight">\(\langle Z \rangle = p_0 - p_1\)</span>で、確率は<span class="math notranslate nohighlight">\(\{0:p_0, 1:p_1\}\)</span>で計算できることがわかっています。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of Z based on the counts</span>
@@ -1048,7 +1048,7 @@ document.write(`
 <h2>3. Qiskit patternsによる量子最適化<a class="headerlink" href="#qiskit-patterns" title="Link to this heading">#</a></h2>
 <p>このハウツーでは、Qiskit patternsと量子近似最適化について学習します。Qiskit patternsは、量子コンピューティングのワークフローを実装するための直感的で反復可能な一連の手順です。</p>
 <p><img alt="&quot;Qiskit function&quot;" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Futility-scale-quantum-computing%2Fvariational-quantum-algorithms%2Fqiskit-function.avif&amp;w=1200&amp;q=75" /></p>
-<p>Qiskit patterns を <strong>組み合わせ最適化</strong> に適用し、ハイブリッド(量子古典)反復手法である <strong>量子近似最適化アルゴリズム(QAOA)</strong> を使用して <strong>Max-Cut</strong> 問題を解く方法を示します。</p>
+<p>Qiskit patterns を <strong>組合せ最適化</strong> に適用し、ハイブリッド(量子古典)反復手法である <strong>量子近似最適化アルゴリズム(QAOA)</strong> を使用して <strong>Max-Cut</strong> 問題を解く方法を示します。</p>
 <p>このQAOAパートは、<a class="reference internal" href="#/docs/tutorials/quantum-approximate-optimization-algorithm"><span class="xref myst">量子近似最適化アルゴリズム</span></a> チュートリアルの「パート1:小規模QAOA」に基づいていることに注意してください。スケールアップする方法については、チュートリアルを参照してください。</p>
 <section id="id6">
 <h3>3.1 (小規模) 最適化のための Qiskit patterns<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
@@ -1159,7 +1159,7 @@ x_i = \frac{1-z_i}{2}.
 \[\begin{split}
 x^TQx=\sum_{ij}Q_{ij}x_ix_j \\ =\frac{1}{4}\sum_{ij}Q_{ij}(1-z_i)(1-z_j) \\=\frac{1}{4}\sum_{ij}Q_{ij}z_iz_j-\frac{1}{4}\sum_{ij}(Q_{ij}+Q_{ji})z_i + \frac{n^2}{4}.
 \end{split}\]</div>
-<p>ここで <span class="math notranslate nohighlight">\(b_i=-\sum\_{j}(Q\_{ij}+Q\_{ji})\)</span> と定義し、係数や定数項 <span class="math notranslate nohighlight">\(n^2\)</span> を取り除くと、同じ最適化問題の二つの同値な定式化に到達します：</p>
+<p>ここで <span class="math notranslate nohighlight">\(b_i=-\sum_{j}(Q_{ij}+Q_{ji})\)</span> と定義し、係数や定数項 <span class="math notranslate nohighlight">\(n^2\)</span> を取り除くと、同じ最適化問題の二つの同値な定式化に到達します：</p>
 <div class="math notranslate nohighlight">
 \[
 \min_{x\in\{0,1\}^n} x^TQx \Longleftrightarrow \min_{z\in\{-1,1\}^n} z^TQz + b^Tz
@@ -1176,7 +1176,7 @@ Z_i = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; -1\end{pmatrix}.
 H_C=\sum_{ij}Q_{ij}Z_i Z_j + \sum_i b_i Z_i.
 \]</div>
 <p><em>また、<span class="math notranslate nohighlight">\(Z\)</span> 行列は量子コンピュータの計算空間、すなわち <span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> のヒルベルト空間に埋め込まれていることに注意してください。したがって <span class="math notranslate nohighlight">\(Z_i Z_j\)</span> のような項は、<span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> のヒルベルト空間におけるテンソル積 <span class="math notranslate nohighlight">\(Z_i \otimes Z_j\)</span> として理解する必要があります。たとえば、5つの決定変数を持つ問題において <span class="math notranslate nohighlight">\(Z_1Z_3\)</span> という項は、<span class="math notranslate nohighlight">\(I \otimes Z_3 \otimes I \otimes Z_1 \otimes I\)</span> を意味します。ここで <span class="math notranslate nohighlight">\(I\)</span> は <span class="math notranslate nohighlight">\(2 \times 2\)</span> の単位行列です。</em></p>
-<p>このハミルトニアンは <strong>コスト関数ハミルトニアン</strong> と呼ばれます。その基底状態が <strong>コスト関数 <span class="math notranslate nohighlight">\(f(x)\)</span> を最小化する解</strong> に対応するという性質を持ちます。したがって、最適化問題を解くには、量子コンピュータ上で <span class="math notranslate nohighlight">\(H\_C\)</span> の基底状態（あるいはそれと高い重なりを持つ状態）を準備する必要があります。そして、この状態からサンプリングすることで、高い確率で <span class="math notranslate nohighlight">\(\min f(x)\)</span> の解を得ることができます。</p>
+<p>このハミルトニアンは <strong>コスト関数ハミルトニアン</strong> と呼ばれます。その基底状態が <strong>コスト関数 <span class="math notranslate nohighlight">\(f(x)\)</span> を最小化する解</strong> に対応するという性質を持ちます。したがって、最適化問題を解くには、量子コンピュータ上で <span class="math notranslate nohighlight">\(H_C\)</span> の基底状態（あるいはそれと高い重なりを持つ状態）を準備する必要があります。そして、この状態からサンプリングすることで、高い確率で <span class="math notranslate nohighlight">\(\min f(x)\)</span> の解を得ることができます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_max_cut_operator</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SparsePauliOp</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
@@ -1215,7 +1215,7 @@ Constant: -3.0
 \exp\{-i\gamma_k H_C\}, \quad \exp\{-i\beta_k H_m\}\)</span> を適用することによって行われます。</p>
 <p>生成される量子回路は <span class="math notranslate nohighlight">\(\gamma_i\)</span> と <span class="math notranslate nohighlight">\(\beta_i\)</span> によって <strong>パラメーター化</strong> されているので、これらの値をさまざまに試し、その結果得られる状態からサンプリングを行うことができます。</p>
 <p><img alt="&quot;QAOA&quot;" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Futility-scale-quantum-computing%2Fvariational-quantum-algorithms%2Fqaoa.avif&amp;w=3840&amp;q=75" /></p>
-<p>この場合、2つのパラメーター <span class="math notranslate nohighlight">\(\gamma\_1\)</span> と <span class="math notranslate nohighlight">\(\beta\_1\)</span> を含む <strong>1層のQAOA</strong> の例を試してみます。</p>
+<p>この場合、2つのパラメーター <span class="math notranslate nohighlight">\(\gamma_1\)</span> と <span class="math notranslate nohighlight">\(\beta_1\)</span> を含む <strong>1層のQAOA</strong> の例を試してみます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QAOAAnsatz</span>
@@ -1330,7 +1330,7 @@ Constant: -3.0
 <section id="primitive">
 <h4>バックエンドの定義と primitive の実行<a class="headerlink" href="#primitive" title="Link to this heading">#</a></h4>
 <p><strong>Qiskit Runtime primitives</strong> を使って IBM® のバックエンドとやり取りを行います。Primitive には <strong>Sampler</strong> と <strong>Estimator</strong> の2種類があり、どちらを使うかは量子コンピューター上で実行したい測定の種類に依存します。
-<span class="math notranslate nohighlight">\(H\_C\)</span> の最小化では、コスト関数の測定が <span class="math notranslate nohighlight">\(\langle H\_C \rangle\)</span> の期待値に対応するため、<strong>Estimator</strong> を使用します。</p>
+<span class="math notranslate nohighlight">\(H_C\)</span> の最小化では、コスト関数の測定が <span class="math notranslate nohighlight">\(\langle H_C \rangle\)</span> の期待値に対応するため、<strong>Estimator</strong> を使用します。</p>
 </section>
 </section>
 <section id="id11">
@@ -1527,7 +1527,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <img alt="../../_images/955281645018a5d5806e3e774528c64741ef01008f8a40bc1be46cede898cc9d.png" src="../../_images/955281645018a5d5806e3e774528c64741ef01008f8a40bc1be46cede898cc9d.png" />
 </div>
 </div>
-<p>そしてカットの値を計算します。解はノイズのために最適ではありません(最適解のカット値は5です)。</p>
+<p>そしてカットの値を計算します。解はノイズのために必ずしも最適ではありません(最適解のカット値は5です)。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
