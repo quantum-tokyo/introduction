@@ -1,0 +1,1528 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ユーリティリティー・スケール実験 II &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/utility-ii-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/utility-ii-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/utility-ii-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ユーリティリティー・スケール実験 II</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 時間発展の導入と振り返り</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 横磁場イジングハミルトニアンの定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1 実践 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ハミルトニアンの定義</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">時間発展シミュレーションのパラメータを設定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">初期状態を作る量子回路の準備</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子回路2を準備 (時間発展を表す回路の単位)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">測定のための演算子を用意</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">時間発展シミュレーションの実行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">時間発展のプロット</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.2 実践2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">ハミルトニアンの定義</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">2.3 実践 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2.4 実践 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">70量子ビット問題における量子回路2の準備 (時間発展回路の単位)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">2.5 実践 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">測定する演算子の用意</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">2.6 実践 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">時間発展シミュレーション</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2: ターゲットハードウェアに対する最適化</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">Step 3: ターゲットハードウェアでの実行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 結果の後処理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3. 実際の量子コンピュータによるソリューションII</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">3.1 Step 1 問題を量子回路と演算子にマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">実践7</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">3.2 Step 2 ターゲットハードウェア向けに最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">3.3 Step 3. ターゲットハードウェアで実行します。</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">3.4 Step 4. 後処理</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ii">
+<h1>ユーリティリティー・スケール実験 II<a class="headerlink" href="#ii" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Yukio Kawashima (12 July 2024) Translated by Hotaka Hayashi(04 October 2025)
+<p>講義資料のPDFをこちらからダウンロードできます。現在は非推奨なコードが一部残存している可能性があることをご容赦ください。</p>
+<p><em>この実験を実行するのに使われるQPU時間は推定2分30秒です。</em></p>
+<p>(このノートブックでは、現在は非推奨である<a class="reference external" href="https://github.com/qiskit-community/qiskit-algorithms/blob/main/docs/tutorials/13_trotterQRTE.ipynb">チュートリアルノートブック</a>の文章や画像、コードを用いています。)
+</Admonition></p>
+<section id="id1">
+<h2>1. 時間発展の導入と振り返り<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>このノートブックは第7回で学んだ技術と方法に基づいています。今回のゴールは、時間依存のSchrödinger方程式の数値解を求めることです。第7回で見たように、トロッター分解は時間発展を細かく分割した微小時間ごとの時間発展を量子ゲートで近似するという応用を成果としています。まずは、ここでその議論を改めて復習しましょう。第7回ですでに見た部分のコードセルはスキップしていただいて構いません。</p>
+<p>Schrödinger 方程式に従うと、初期状態が<span class="math notranslate nohighlight">\(\vert\psi(0)\rangle\)</span>の量子系の時間発展は以下のように書けます。：</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi(t) \rangle = e^{-i H t} \vert \psi(0) \rangle
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(H\)</span>はこの量子系を支配する、時間非依存のハミルトニアンです。ここでハミルトニアンを各パウリ項の重み付き和<span class="math notranslate nohighlight">\(H=\sum_j a_j P_j\)</span>で書けるとしましょう。ここで<span class="math notranslate nohighlight">\(P_j\)</span>は<span class="math notranslate nohighlight">\(n\)</span>量子ビット系に作用するパウリ行列のテンソル積です。特に、このパウリ項は互いに可換なこともそうでないこともあります。<span class="math notranslate nohighlight">\(t=0\)</span>の初期状態が与えられたとき、どのようにして時刻<span class="math notranslate nohighlight">\(t\)</span>後の状態<span class="math notranslate nohighlight">\(|\psi(t)\rangle\)</span>を、量子コンピュータを用いて得ることができるでしょうか？行列の指数関数は、テイラー展開を用いて以下のように簡単に表せます。：</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i H t} = 1-iHt-\frac{1}{2}H^2t^2+...
+\]</div>
+<p><span class="math notranslate nohighlight">\(e^{iZ}\)</span>のような単純な行列指数関数は、量子コンピュータでは量子ゲートを用いて簡単に実装できます。ただし、私たちが興味のある多くのハミルトニアンはたいていの場合単一項ではなく、多くの項を持っています。<span class="math notranslate nohighlight">\(H = H_1+H_2\)</span>としたとき、以下のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i H t} = 1-i(H_1+H_2)t-\frac{1}{2}(H_1+H_2)^2t^2+...
+\]</div>
+<p><span class="math notranslate nohighlight">\(H_1\)</span>と<span class="math notranslate nohighlight">\(H_2\)</span>が可換であるならば、簡単に書くことができます。（実数<span class="math notranslate nohighlight">\(a\)</span>,<span class="math notranslate nohighlight">\(b\)</span>を用いたケースと同様です。）：</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i (a+b) t} = e^{-i a t}e^{-i b t}
+\]</div>
+<p>しかし演算子が可換でないならば、テイラー展開の各項はこのように簡単に書くことはできません。つまり、量子ゲートによって複雑なハミルトニアンを表現することは困難な課題なのです。</p>
+<p>1つの解決策は、テイラー展開の1次の項が支配的となるような極めて小さな<span class="math notranslate nohighlight">\(t\)</span>を考えることです。その仮定の下では、以下の近似が成り立ちます。：</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-i (H_1+H_2) t} \approx 1-i(H_1+H_2)t \approx (1-i H_1 t)(1-i H_2 t) \approx e^{-i H_1 t}e^{-i H_2 t}
+\]</div>
+<p>もちろん、量子状態を長時間にわたり時間発展させたものを考えたいです。これは、この小さな時間ステップを複数回繰り返すことで達成できます。この方法をトロッター分解と言います。：</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi(t) \rangle \approx \left(\prod_j e^{-i a_j P_j t/r} \right)^r \vert\psi(0) \rangle
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(t/r\)</span>は我々が選択する時間ステップの長さです。量子ゲートは<span class="math notranslate nohighlight">\(r\)</span>回適用されます。より小さな時間ステップをとることでより正確な近似を得ることができますが、これは量子回路が深くなることを意味し、大きなエラーを発生させることに繋がります（近年の量子デバイスでは無視できない懸念です。）。</p>
+<p>今回、私たちは<span class="math notranslate nohighlight">\(n=2\)</span>と<span class="math notranslate nohighlight">\(n=6\)</span>の頂点からなり、線形な格子を持つ<a class="reference external" href="https://en.wikipedia.org/wiki/Ising_model">イジングモデル</a>の時間発展について学びます。線形な格子とは、つまりスピン<span class="math notranslate nohighlight">\(\sigma_i\)</span>は隣り合う頂点とだけ相互作用します。このスピンは2つの方向<span class="math notranslate nohighlight">\(\uparrow\)</span>と<span class="math notranslate nohighlight">\(\downarrow\)</span>を持ち、これは磁化<span class="math notranslate nohighlight">\(+1\)</span>に<span class="math notranslate nohighlight">\(-1\)</span>それぞれ対応します。</p>
+<div class="math notranslate nohighlight">
+\[
+H = - J \sum_{i=0}^{n-2} Z_i Z_{i+1} - h \sum_{i=0}^{n-1} X_i 
+\]</div>
+<p><span class="math notranslate nohighlight">\(J\)</span>は相互作用のエネルギーに、<span class="math notranslate nohighlight">\(h\)</span>は外場(ここではx方向ですが、後に方向も変えます。)の強さに対応します。これをパウリ行列を用いて、また外場の方向も水平方向に対し角度<span class="math notranslate nohighlight">\(\alpha\)</span>の方向にしたものとして表現しましょう。：</p>
+<div class="math notranslate nohighlight">
+\[
+H = -J \sum_{i=0}^{n-2} Z_i Z_{i+1} -h \sum_{i=0}^{n-1} (\sin\alpha Z_i + \cos\alpha X_i)
+\]</div>
+<p>このハミルトニアンは外場の影響を簡単に理解するのに役立ちます。計算基底としては、この量子系は以下のように表現されます。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>量子状態</p></th>
+<th class="head text-center"><p>スピン表現</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\lvert 0 0 0 0 \rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\uparrow\uparrow\uparrow\uparrow\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\lvert 1 0 0 0 \rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\downarrow\uparrow\uparrow\uparrow\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\lvert 1 1 1 1 \rangle\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\downarrow\downarrow\downarrow\downarrow\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>まずは量子系の時間発展を調べることから始めましょう。具体的には、磁化のような特定の性質を持つ量子系の時間発展を可視化しましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the version of Qiskit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the qiskit library</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">PauliEvolutionGate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.synthesis</span><span class="w"> </span><span class="kn">import</span> <span class="n">LieTrotter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">Estimator</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>2. 横磁場イジングハミルトニアンの定義<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>1次元の横磁場イジングモデルを考えましょう。</p>
+<p>まず、系のパラメータ<span class="math notranslate nohighlight">\(n\)</span>,<span class="math notranslate nohighlight">\(J\)</span>,<span class="math notranslate nohighlight">\(h\)</span>を持つ関数を作り、そのハミルトニアンを<code class="docutils literal notranslate"><span class="pre">SparsePauliOp</span></code>に保存します。<a class="reference internal" href="#/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp"><span class="xref myst">SparsePauliOp</span></a>は重み付き<a class="reference internal" href="#/docs/api/qiskit/qiskit.quantum_info.Pauli"><span class="xref myst">Pauli</span></a>項の和によって演算子をスパースに表現します。</p>
+<section id="id3">
+<h3>2.1 実践 1<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>横磁場イジングハミルトニアンを作成する関数を作りましょう。引数は「量子ビット数」、「<span class="math notranslate nohighlight">\(J\)</span>」、「<span class="math notranslate nohighlight">\(h\)</span>」です。ぜひこれに挑戦しましょう。</p>
+<p><strong>解答</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_hamiltonian</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="c1"># List of Hamiltonian terms as 3-tuples containing</span>
+    <span class="c1"># (1) the Pauli string,</span>
+    <span class="c1"># (2) the qubit indices corresponding to the Pauli string,</span>
+    <span class="c1"># (3) the coefficient.</span>
+    <span class="n">ZZ_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">J</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">X_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">h</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]</span>
+
+    <span class="c1"># We create the Hamiltonian as a SparsePauliOp, via the method</span>
+    <span class="c1"># `from_sparse_list`, and multiply by the interaction term.</span>
+    <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[</span><span class="o">*</span><span class="n">ZZ_tuples</span><span class="p">,</span> <span class="o">*</span><span class="n">X_tuples</span><span class="p">],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">nqubits</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">simplify</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>磁化の変化を追跡することで、量子系の時間発展を調べましょう。ここでは、StatevectorとMatrix Product State simulatorsの結果を比較します。</p>
+<section id="id4">
+<h4>ハミルトニアンの定義<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>今回考える量子系のサイズは<span class="math notranslate nohighlight">\(n=20\)</span>です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">get_hamiltonian</span><span class="p">(</span><span class="n">nqubits</span><span class="o">=</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">h</span><span class="o">=-</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">hamiltonian</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIZZ&#39;, &#39;IIIIIIIIIIIIIIIIIZZI&#39;, &#39;IIIIIIIIIIIIIIIIZZII&#39;, &#39;IIIIIIIIIIIIIIIZZIII&#39;, &#39;IIIIIIIIIIIIIIZZIIII&#39;, &#39;IIIIIIIIIIIIIZZIIIII&#39;, &#39;IIIIIIIIIIIIZZIIIIII&#39;, &#39;IIIIIIIIIIIZZIIIIIII&#39;, &#39;IIIIIIIIIIZZIIIIIIII&#39;, &#39;IIIIIIIIIZZIIIIIIIII&#39;, &#39;IIIIIIIIZZIIIIIIIIII&#39;, &#39;IIIIIIIZZIIIIIIIIIII&#39;, &#39;IIIIIIZZIIIIIIIIIIII&#39;, &#39;IIIIIZZIIIIIIIIIIIII&#39;, &#39;IIIIZZIIIIIIIIIIIIII&#39;, &#39;IIIZZIIIIIIIIIIIIIII&#39;, &#39;IIZZIIIIIIIIIIIIIIII&#39;, &#39;IZZIIIIIIIIIIIIIIIII&#39;, &#39;ZZIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIX&#39;, &#39;IIIIIIIIIIIIIIIIIIXI&#39;, &#39;IIIIIIIIIIIIIIIIIXII&#39;, &#39;IIIIIIIIIIIIIIIIXIII&#39;, &#39;IIIIIIIIIIIIIIIXIIII&#39;, &#39;IIIIIIIIIIIIIIXIIIII&#39;, &#39;IIIIIIIIIIIIIXIIIIII&#39;, &#39;IIIIIIIIIIIIXIIIIIII&#39;, &#39;IIIIIIIIIIIXIIIIIIII&#39;, &#39;IIIIIIIIIIXIIIIIIIII&#39;, &#39;IIIIIIIIIXIIIIIIIIII&#39;, &#39;IIIIIIIIXIIIIIIIIIII&#39;, &#39;IIIIIIIXIIIIIIIIIIII&#39;, &#39;IIIIIIXIIIIIIIIIIIII&#39;, &#39;IIIIIXIIIIIIIIIIIIII&#39;, &#39;IIIIXIIIIIIIIIIIIIII&#39;, &#39;IIIXIIIIIIIIIIIIIIII&#39;, &#39;IIXIIIIIIIIIIIIIIIII&#39;, &#39;IXIIIIIIIIIIIIIIIIII&#39;, &#39;XIIIIIIIIIIIIIIIIIII&#39;],
+              coeffs=[-1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h4>時間発展シミュレーションのパラメータを設定する<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>ここでは、1次のリー・トロッター分解を考えます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_timesteps</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">evolution_time</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">evolution_time</span> <span class="o">/</span> <span class="n">num_timesteps</span>
+<span class="n">product_formula_lt</span> <span class="o">=</span> <span class="n">LieTrotter</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h4>初期状態を作る量子回路の準備<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>初期状態を作成しましょう。ここでは、強磁性(すべてが上向きまたは下向き)を表す基底状態からシミュレーションを開始します。今回は全て上向き、つまりすべての量子ビットが’0’から始めましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">initial_circuit</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span><span class="s2">&quot;00000000000000000000&quot;</span><span class="p">)</span>
+<span class="c1"># Change reps and see the difference when you decompose the circuit</span>
+<span class="n">initial_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5394ef61991eb46ca36b6076f2afc3551a28146fbed127befe69f59fa4055123.png" src="../../_images/5394ef61991eb46ca36b6076f2afc3551a28146fbed127befe69f59fa4055123.png" />
+</div>
+</div>
+</section>
+<section id="id7">
+<h4>量子回路2を準備 (時間発展を表す回路の単位)<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>ここではリー・トロッター分解を用いて、1時間ステップを表す回路を作成します。1次のリー積公式は<a class="reference internal" href="#/docs/api/qiskit/qiskit.synthesis.LieTrotter"><span class="xref myst">LieTrotter</span></a>クラスを用いて実装できます。1次の公式は、行列の和の指数関数が行列指数関数の積になるという、上で述べた近似に基づいています。：</p>
+<div class="math notranslate nohighlight">
+\[
+e^{H_1+H_2} \approx e^{H_1} e^{H_2}
+\]</div>
+<p>ここでこの回路の実行に必要な演算の数を数えましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">single_step_evolution_gates_lt</span> <span class="o">=</span> <span class="n">PauliEvolutionGate</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">product_formula_lt</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_lt</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
+<span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">single_step_evolution_gates_lt</span><span class="p">,</span> <span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">qubits</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Trotter step with Lie-Trotter</span>
+<span class="s2">-----------------------------</span>
+<span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
+<span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trotter step with Lie-Trotter
+-----------------------------
+Depth: 58
+Gate count: 77
+Nonlocal gate count: 38
+Gate breakdown: CX: 38, U: 20, P: 19
+</pre></div>
+</div>
+<img alt="../../_images/bd2c379e8f7b6233d22ff8eae9a0b4c81a186dd23c2fc853d6cce7b2d31b8a0b.png" src="../../_images/bd2c379e8f7b6233d22ff8eae9a0b4c81a186dd23c2fc853d6cce7b2d31b8a0b.png" />
+</div>
+</div>
+</section>
+<section id="id8">
+<h4>測定のための演算子を用意<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p><em>磁化演算子</em>を<span class="math notranslate nohighlight">\(\sum_i Z_i  / N\)</span>で定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">magnetization</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
+    <span class="p">)</span>
+    <span class="o">/</span> <span class="n">n_qubits</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnetization : &quot;</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnetization :  SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIZ&#39;, &#39;IIIIIIIIIIIIIIIIIIZI&#39;, &#39;IIIIIIIIIIIIIIIIIZII&#39;, &#39;IIIIIIIIIIIIIIIIZIII&#39;, &#39;IIIIIIIIIIIIIIIZIIII&#39;, &#39;IIIIIIIIIIIIIIZIIIII&#39;, &#39;IIIIIIIIIIIIIZIIIIII&#39;, &#39;IIIIIIIIIIIIZIIIIIII&#39;, &#39;IIIIIIIIIIIZIIIIIIII&#39;, &#39;IIIIIIIIIIZIIIIIIIII&#39;, &#39;IIIIIIIIIZIIIIIIIIII&#39;, &#39;IIIIIIIIZIIIIIIIIIII&#39;, &#39;IIIIIIIZIIIIIIIIIIII&#39;, &#39;IIIIIIZIIIIIIIIIIIII&#39;, &#39;IIIIIZIIIIIIIIIIIIII&#39;, &#39;IIIIZIIIIIIIIIIIIIII&#39;, &#39;IIIZIIIIIIIIIIIIIIII&#39;, &#39;IIZIIIIIIIIIIIIIIIII&#39;, &#39;IZIIIIIIIIIIIIIIIIII&#39;, &#39;ZIIIIIIIIIIIIIIIIIII&#39;],
+              coeffs=[0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j,
+ 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j,
+ 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j, 0.05+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h4>時間発展シミュレーションの実行<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>磁化（つまり磁化演算子の期待値）の発展を観察しましょう。StatevectorとMPS simulatorsの結果を比較します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1. Map the problem</span>
+<span class="c1"># Initiate the circuit</span>
+<span class="n">evolved_state</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="c1"># Start from the initial spin configuration</span>
+<span class="n">evolved_state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit</span><span class="p">,</span> <span class="n">evolved_state</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+
+<span class="c1"># Define backend (simulator)</span>
+<span class="c1"># MPS</span>
+<span class="n">backend_mps</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;matrix_product_state&quot;</span><span class="p">)</span>
+<span class="c1"># Statevector</span>
+<span class="n">backend_sv</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;statevector&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set Runtime Estimator</span>
+<span class="c1"># MPS</span>
+<span class="n">estimator_mps</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_mps</span><span class="p">)</span>
+<span class="c1"># Statevector</span>
+<span class="n">estimator_sv</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_sv</span><span class="p">)</span>
+
+<span class="c1"># Step 2. Optimize</span>
+<span class="c1"># Set pass manager</span>
+<span class="c1"># MPS</span>
+<span class="n">pm_mps</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend_mps</span><span class="p">)</span>
+<span class="c1"># Statevector</span>
+<span class="n">pm_sv</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend_sv</span><span class="p">)</span>
+
+<span class="c1"># Transpile initial circuit</span>
+<span class="c1"># MPS</span>
+<span class="n">evolved_state_mps</span> <span class="o">=</span> <span class="n">pm_mps</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state</span><span class="p">)</span>
+<span class="c1"># Statevector</span>
+<span class="n">evolved_state_sv</span> <span class="o">=</span> <span class="n">pm_sv</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state</span><span class="p">)</span>
+
+<span class="c1"># Apply layout to the operator</span>
+<span class="c1"># MPS</span>
+<span class="n">magnetization_mps</span> <span class="o">=</span> <span class="n">magnetization</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">evolved_state_mps</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="c1"># Statevector</span>
+<span class="n">magnetization_sv</span> <span class="o">=</span> <span class="n">magnetization</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">evolved_state_sv</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="n">mag_mps_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mag_sv_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Step 3. Run the circuit</span>
+<span class="c1"># Estimate expectation values for t=0.0: MPS</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator_mps</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">evolved_state_mps</span><span class="p">,</span> <span class="p">[</span><span class="n">magnetization_mps</span><span class="p">])])</span>
+<span class="c1"># Get estimated expectation values: MPS</span>
+<span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+<span class="c1"># Collect data: MPS</span>
+<span class="n">mag_mps_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Estimate expectation values for t=0.0: Statevector</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator_sv</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">evolved_state_sv</span><span class="p">,</span> <span class="p">[</span><span class="n">magnetization_sv</span><span class="p">])])</span>
+<span class="c1"># Get estimated expectation values: Statevector</span>
+<span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+<span class="c1"># Collect data: Statevector</span>
+<span class="n">mag_sv_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Start time evolution</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">):</span>
+    <span class="c1"># Step 1. Map the problem</span>
+    <span class="c1"># Expand the circuit to describe delta-t</span>
+    <span class="n">evolved_state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_lt</span><span class="p">,</span> <span class="n">evolved_state</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="c1"># Step 2. Optimize</span>
+    <span class="c1"># Transpile the circuit: MPS</span>
+    <span class="n">evolved_state_mps</span> <span class="o">=</span> <span class="n">pm_mps</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state</span><span class="p">)</span>
+    <span class="c1"># Apply the physical layout of the qubits to the operator: MPS</span>
+    <span class="n">magnetization_mps</span> <span class="o">=</span> <span class="n">magnetization</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">evolved_state_mps</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+    <span class="c1"># Step 3. Run the circuit</span>
+    <span class="c1"># Estimate expectation values at delta-t: MPS</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">estimator_mps</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">evolved_state_mps</span><span class="p">,</span> <span class="p">[</span><span class="n">magnetization_mps</span><span class="p">])])</span>
+    <span class="c1"># Get estimated expectation values: MPS</span>
+    <span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+    <span class="c1"># Collect data: MPS</span>
+    <span class="n">mag_mps_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Step 2. Optimize</span>
+    <span class="c1"># Transpile the circuit: Statevector</span>
+    <span class="n">evolved_state_sv</span> <span class="o">=</span> <span class="n">pm_sv</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state</span><span class="p">)</span>
+    <span class="c1"># Apply the physical layout of the qubits to the operator: Statevector</span>
+    <span class="n">magnetization_sv</span> <span class="o">=</span> <span class="n">magnetization</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">evolved_state_sv</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+    <span class="c1"># Step 3. Run the circuit</span>
+    <span class="c1"># Estimate expectation values at delta-t: Statevector</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">estimator_sv</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">evolved_state_sv</span><span class="p">,</span> <span class="p">[</span><span class="n">magnetization_sv</span><span class="p">])])</span>
+    <span class="c1"># Get estimated expectation values: Statevector</span>
+    <span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+    <span class="c1"># Collect data: Statevector</span>
+    <span class="n">mag_sv_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Transform the list of expectation values (at each time step) to arrays</span>
+<span class="n">mag_mps_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mag_mps_list</span><span class="p">)</span>
+<span class="n">mag_sv_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mag_sv_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h4>時間発展のプロット<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p>時間に対して、測定した期待値をプロットします。statevectorとmatrix product space simulatorsの結果が一致していることを確かめましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Step 4. Post-processing</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">evolution_time</span><span class="p">,</span> <span class="n">num_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># includes initial state</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">mag_mps_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MPS&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">mag_sv_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;SV&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;MPS&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Statevector&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Observable evolution&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Observable evolution&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/834e23db267f5c415f485d9bc5facffd8a765fa8d0adc30f169aff7fb7e05317.png" src="../../_images/834e23db267f5c415f485d9bc5facffd8a765fa8d0adc30f169aff7fb7e05317.png" />
+</div>
+</div>
+<p>特徴を示す値を追跡し、量子状態の時間発展を調査しましょう。ここでは、Matrix Product State simulatorと実際の量子デバイスにおける実験結果を比較します。</p>
+</section>
+</section>
+<section id="id11">
+<h3>2.2 実践2<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h4>ハミルトニアンの定義<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>ここでは<span class="math notranslate nohighlight">\(n=70\)</span>の量子系を考えます。ほかの条件は、先ほどまでと同じとします。ぜひ挑戦してみてください。下に模範解答があります。</p>
+<p><strong>解答:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the number of qubits</span>
+<span class="n">n_qubits2</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="c1"># Construct the Hamiltonian by calling the function you made in Activity 1</span>
+<span class="n">hamiltonian2</span> <span class="o">=</span> <span class="n">get_hamiltonian</span><span class="p">(</span><span class="n">nqubits</span><span class="o">=</span><span class="n">n_qubits2</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">h</span><span class="o">=-</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">hamiltonian2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZ&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZI&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;ZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIX&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXI&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IXIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;XIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;],
+              coeffs=[-1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,
+ -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j, -1.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,  5.+0.j,
+  5.+0.j,  5.+0.j,  5.+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id13">
+<h3>2.3 実践 3<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>初期状態を作りましょう。先ほどと同じように、すべてが上向き(‘0’)の基底状態とします。ぜひ挑戦してみてください。下に模範解答があります。</p>
+<p><strong>解答:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initiate the (quantum)circuit</span>
+<span class="n">initial_circuit2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits2</span><span class="p">)</span>
+<span class="c1"># Use QuantumCircuit.prepare_state() to define the initial state</span>
+<span class="n">initial_circuit2</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span>
+    <span class="s2">&quot;0000000000000000000000000000000000000000000000000000000000000000000000&quot;</span>
+<span class="p">)</span>
+<span class="c1"># Change reps and see the difference when you decompose the circuit</span>
+<span class="n">initial_circuit2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3c12f1d25c0bb02df81b48434c54b7cfc6d13715e385188e9a4a634b0aa968c1.png" src="../../_images/3c12f1d25c0bb02df81b48434c54b7cfc6d13715e385188e9a4a634b0aa968c1.png" />
+</div>
+</div>
+</section>
+<section id="id14">
+<h3>2.4 実践 4<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h4>70量子ビット問題における量子回路2の準備 (時間発展回路の単位)<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<p>ここでリー・トロッター分解の1時間ステップを表す量子回路を作成します。</p>
+<p>20量子ビットの時と全く同じく、1次のリー積公式は<a class="reference internal" href="#/docs/api/qiskit/qiskit.synthesis.LieTrotter"><span class="xref myst">LieTrotter</span></a>クラスで実装されます。</p>
+<p>20量子ビットのときと同じように、挑戦してみてください。</p>
+<p><strong>解答:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct the gates using PauliEvolutionGate()</span>
+<span class="n">single_step_evolution_gates_lt2</span> <span class="o">=</span> <span class="n">PauliEvolutionGate</span><span class="p">(</span>
+    <span class="n">hamiltonian2</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">LieTrotter</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="c1"># Initiate the quantum circuit</span>
+<span class="n">single_step_evolution_lt2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits2</span><span class="p">)</span>
+<span class="c1"># Append the gates defined above</span>
+<span class="n">single_step_evolution_lt2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="n">single_step_evolution_gates_lt2</span><span class="p">,</span> <span class="n">single_step_evolution_lt2</span><span class="o">.</span><span class="n">qubits</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Trotter step with Lie-Trotter</span>
+<span class="s2">-----------------------------</span>
+<span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_lt2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_lt2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
+<span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_lt2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_lt2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+<span class="n">single_step_evolution_lt2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trotter step with Lie-Trotter
+-----------------------------
+Depth: 208
+Gate count: 277
+Nonlocal gate count: 138
+Gate breakdown: CX: 138, U: 70, P: 69
+</pre></div>
+</div>
+<img alt="../../_images/e5063e51de4a0fb17c21ebd5c1fad3a6e5cc26346d6391adeca8d656d99e5655.png" src="../../_images/e5063e51de4a0fb17c21ebd5c1fad3a6e5cc26346d6391adeca8d656d99e5655.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h3>2.5 実践 5<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h4>測定する演算子の用意<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<p>20量子ビットの時と同じように磁化演算子を<span class="math notranslate nohighlight">\(\sum_i Z_i  / N\)</span>で定義します。20量子ビットの時と同様に、挑戦してみてください。</p>
+<p><strong>解答:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the magnetization operator in SparsePauliOp</span>
+<span class="n">magnetization2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits2</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits2</span>
+    <span class="p">)</span>
+    <span class="o">/</span> <span class="n">n_qubits2</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnetization : &quot;</span><span class="p">,</span> <span class="n">magnetization2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnetization :  SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZ&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZI&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;IZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;, &#39;ZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;],
+              coeffs=[0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j, 0.01428571+0.j,
+ 0.01428571+0.j, 0.01428571+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id18">
+<h3>2.6 実践 6<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<section id="id19">
+<h4>時間発展シミュレーション<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<p>磁化（磁化演算子の期待値）を観察しましょう。MPS simulatorを模範的な値として、量子ハードウェアの値と比較します。20量子ビットの時の例を、今回の計算に適するように変換しましょう。</p>
+<p><strong>解答:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1. Map the problem</span>
+<span class="c1"># Initiate the circuit</span>
+<span class="n">evolved_state2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit2</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="c1"># Start from the initial spin configuration</span>
+<span class="n">evolved_state2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit2</span><span class="p">,</span> <span class="n">evolved_state2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="c1"># Define backend (MPs simulator)</span>
+<span class="n">backend_mps2</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;matrix_product_state&quot;</span><span class="p">)</span>
+<span class="c1"># Initiate Runtime Estimator</span>
+<span class="n">estimator_mps2</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_mps2</span><span class="p">)</span>
+<span class="c1"># Step 2. Optimize</span>
+<span class="c1"># Initiate pass manager</span>
+<span class="n">pm_mps2</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend_mps2</span><span class="p">)</span>
+<span class="c1"># Transpile</span>
+<span class="n">evolved_state_mps2</span> <span class="o">=</span> <span class="n">pm_mps2</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state2</span><span class="p">)</span>
+<span class="c1"># Apply qubit layout to the observable to measure</span>
+<span class="n">magnetization_mps2</span> <span class="o">=</span> <span class="n">magnetization2</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">evolved_state_mps2</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="c1"># Initiate list</span>
+<span class="n">mag_mps_list2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Step 3. Run the circuit</span>
+<span class="c1"># Estimate expectation values for t=0.0</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator_mps2</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">evolved_state_mps2</span><span class="p">,</span> <span class="p">[</span><span class="n">magnetization_mps2</span><span class="p">])])</span>
+<span class="c1"># Get estimated expectation values</span>
+<span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+<span class="c1"># Append to list</span>
+<span class="n">mag_mps_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Start time evolution</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">):</span>
+    <span class="c1"># Step 1. Map the problem</span>
+    <span class="c1"># Expand the circuit to describe delta-t</span>
+    <span class="n">evolved_state2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_lt2</span><span class="p">,</span> <span class="n">evolved_state2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="c1"># Step 2. Optimize</span>
+    <span class="c1"># Transpile the circuit</span>
+    <span class="n">evolved_state_mps2</span> <span class="o">=</span> <span class="n">pm_mps2</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state2</span><span class="p">)</span>
+    <span class="c1"># Apply the physical layout of the qubits to the operator</span>
+    <span class="n">magnetization_mps2</span> <span class="o">=</span> <span class="n">magnetization2</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">evolved_state_mps2</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+    <span class="c1"># Step 3. Run the circuit</span>
+    <span class="c1"># Estimate expectation values at delta-t</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">estimator_mps2</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">evolved_state_mps2</span><span class="p">,</span> <span class="p">[</span><span class="n">magnetization_mps2</span><span class="p">])])</span>
+    <span class="c1"># Get estimated expectation values</span>
+    <span class="n">evs</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+    <span class="c1"># Append to list</span>
+    <span class="n">mag_mps_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># Transform the list of expectation values (at each time step) to arrays</span>
+<span class="n">mag_mps_array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mag_mps_list2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>これまで学んだように、Qiskitパターンフレームワークに基づいて実装します。ここまで取り組んだことは、問題を説明するための量子回路を適切に作ることに基づいています。これがStep1です。</p>
+</section>
+<section id="step-2">
+<h4>Step 2: ターゲットハードウェアに対する最適化<a class="headerlink" href="#step-2" title="Link to this heading">#</a></h4>
+<p>ますはターゲットバックエンドを定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ibm_torino&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>量子回路をトランスパイルし、リストに格納します。これには数分かかることがあります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm_hw</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">circuit_isa</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Step 1. Map the problem</span>
+<span class="n">evolved_state_hw</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit2</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">evolved_state_hw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit2</span><span class="p">,</span> <span class="n">evolved_state_hw</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="c1"># Step 2. Optimize</span>
+<span class="n">circuit_isa</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pm_hw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state_hw</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">):</span>
+    <span class="c1"># Step 1. Map the problem</span>
+    <span class="n">evolved_state_hw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_lt2</span><span class="p">,</span> <span class="n">evolved_state_hw</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="c1"># Step 2. Optimize</span>
+    <span class="n">circuit_isa</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pm_hw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state_hw</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3">
+<h4>Step 3: ターゲットハードウェアでの実行<a class="headerlink" href="#step-3" title="Link to this heading">#</a></h4>
+<p>Runtime Estimatorを定義し、PUBのリストを作成します。また観測のための演算子を適用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2. Optimize</span>
+<span class="n">estimator_hw</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">pub_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="n">circuit_isa</span><span class="p">:</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">magnetization2</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">))</span>
+    <span class="n">pub_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ジョブを実行する準備ができました。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">estimator_hw</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pub_list</span><span class="p">)</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d3gbc7c1nk1s739negg0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check job status</span>
+<span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4">
+<h4>Step 4: 結果の後処理<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h4>
+<p>まずは結果を取得します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+<span class="n">pub_result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>これらの結果から期待値を取得します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_hw_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">pub_result</span><span class="p">:</span>
+    <span class="n">evs</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+    <span class="n">mag_hw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>以下で、この結果を比較のために使います。まずは、量子回路が最適化されているかを確認しましょう。</p>
+</section>
+</section>
+</section>
+<section id="id20">
+<h2>3. 実際の量子コンピュータによるソリューションII<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
+<p>Qiskitパターン step 1に立ち戻り、量子回路の深さを減らせていることを確かめましょう。</p>
+<section id="step-1">
+<h3>3.1 Step 1 問題を量子回路と演算子にマッピングする<a class="headerlink" href="#step-1" title="Link to this heading">#</a></h3>
+<section id="id21">
+<h4>実践7<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<p>時間発展回路を実装します。これまで学習した知識を用いて、量子回路の深さを減らすことに挑戦しましょう。</p>
+<p><strong>解答:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define J</span>
+<span class="n">J</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1"># Define h</span>
+<span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.0</span>
+<span class="c1"># Create instruction for rotation around ZZ:</span>
+<span class="c1"># Initiate the circuit (use 2 qubits)</span>
+<span class="n">Rzz_circ</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Add Rzz gate (do not forget to multiply the angle by 2.0)</span>
+<span class="n">Rzz_circ</span><span class="o">.</span><span class="n">rzz</span><span class="p">(</span><span class="o">-</span><span class="n">J</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Transform the QuantumCircuit to instruction (QuantumCircuit.to_instruction())</span>
+<span class="n">Rzz_instr</span> <span class="o">=</span> <span class="n">Rzz_circ</span><span class="o">.</span><span class="n">to_instruction</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;RZZ&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create instruction for rotation around X:</span>
+<span class="c1"># Initiate the circuit (use 1 qubit)</span>
+<span class="n">Rx_circ</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Add Rx gate (do not forget to multiply the angle by 2.0)</span>
+<span class="n">Rx_circ</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Transform the QuantumCircuit to instruction (QuantumCircuit.to_instruction())</span>
+<span class="n">Rx_instr</span> <span class="o">=</span> <span class="n">Rx_circ</span><span class="o">.</span><span class="n">to_instruction</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;RX&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define the interaction list</span>
+<span class="n">interaction_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span>
+    <span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_qubits2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span>
+<span class="p">]</span>  <span class="c1"># linear chain</span>
+
+<span class="c1"># Define the registers</span>
+<span class="n">qr</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">n_qubits2</span><span class="p">)</span>
+<span class="c1"># Initiate the circuit</span>
+<span class="n">single_step_evolution_sh</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qr</span><span class="p">)</span>
+<span class="c1"># Construct the Rzz gates</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">interaction_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">interaction</span> <span class="ow">in</span> <span class="n">color</span><span class="p">:</span>
+        <span class="n">single_step_evolution_sh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Rzz_instr</span><span class="p">,</span> <span class="n">interaction</span><span class="p">)</span>
+
+<span class="c1"># Construct the Rx gates</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits2</span><span class="p">):</span>
+    <span class="n">single_step_evolution_sh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Rx_instr</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Trotter step with Lie-Trotter</span>
+<span class="s2">-----------------------------</span>
+<span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_sh</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_sh</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
+<span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_sh</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_sh</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="n">single_step_evolution_sh</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trotter step with Lie-Trotter
+-----------------------------
+Depth: 7
+Gate count: 277
+Nonlocal gate count: 138
+Gate breakdown: CX: 138, U: 70, P: 69
+</pre></div>
+</div>
+<img alt="../../_images/be20a5127203b1eedf762adebf581d9ce732c91798124f63f7b5e7a53fa8af78.png" src="../../_images/be20a5127203b1eedf762adebf581d9ce732c91798124f63f7b5e7a53fa8af78.png" />
+</div>
+</div>
+<p>成功しましたね。次のQiskitパターンのStepに進むことができます。</p>
+</section>
+</section>
+<section id="id22">
+<h3>3.2 Step 2 ターゲットハードウェア向けに最適化する<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<p>リストに入れた量子回路をトランスパイルしましょう。再度、これは数分かかる可能性があります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm_hw2</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">circuit_isa2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Step 1. Map the problem</span>
+<span class="n">evolved_state_hw2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">initial_circuit2</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">evolved_state_hw2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_circuit2</span><span class="p">,</span> <span class="n">evolved_state_hw2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="c1"># Step 2. Optimize</span>
+<span class="n">circuit_isa2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pm_hw2</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state_hw2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_timesteps</span><span class="p">):</span>
+    <span class="c1"># Step 1. Map the problem</span>
+    <span class="n">evolved_state_hw2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_step_evolution_sh</span><span class="p">,</span> <span class="n">evolved_state_hw2</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="c1"># Step 2. Optimize</span>
+    <span class="n">circuit_isa2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pm_hw2</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">evolved_state_hw2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Runtime Estimatorを定義し、PUBのリストを作成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator_hw2</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">pub_list2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="n">circuit_isa2</span><span class="p">:</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">magnetization2</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">))</span>
+    <span class="n">pub_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id23">
+<h3>3.3 Step 3. ターゲットハードウェアで実行します。<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>ジョブを実行します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job2</span> <span class="o">=</span> <span class="n">estimator_hw2</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pub_list2</span><span class="p">)</span>
+<span class="n">job2_id</span> <span class="o">=</span> <span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job2_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d3gvqq9b641c738lnm90
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check job status</span>
+<span class="n">job2</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>結果を得る。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job2</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job2_id</span><span class="p">)</span>
+<span class="n">pub_result2</span> <span class="o">=</span> <span class="n">job2</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id24">
+<h3>3.4 Step 4. 後処理<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<p>結果から期待値を取得します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_hw_list2</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">pub_result2</span><span class="p">:</span>
+    <span class="n">evs</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+    <span class="n">mag_hw_list2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">evs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>リストをnumpy arrayに変換し、プロットします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_hw_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mag_hw_list</span><span class="p">)</span>
+<span class="n">mag_hw_array2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mag_hw_list2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>結果をプロットし、量子ハードウェアとMPS simulatorの結果を比較しましょう。実際の量子エラーが結果にどのように影響するでしょうか？</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">evolution_time</span><span class="p">,</span> <span class="n">num_timesteps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># includes initial state</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">mag_mps_array2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MPS&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">mag_hw_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;HW&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">mag_hw_array2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;HW2&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;MPS&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;HW&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;HW2&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Observable evolution&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Observable evolution&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/80e9041e400fdb95e5ee62aad4a31d38adea1b571836a54b2a94f0ae52b67eee.png" src="../../_images/80e9041e400fdb95e5ee62aad4a31d38adea1b571836a54b2a94f0ae52b67eee.png" />
+</div>
+</div>
+<p>おめでとうございます！量子ユーティリティ・スケールの1つのステップをクリアしました。残るレッスンは1つだけです！</p>
+<p>© IBM Corp., 2017-2025</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 時間発展の導入と振り返り</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. 横磁場イジングハミルトニアンの定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.1 実践 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ハミルトニアンの定義</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">時間発展シミュレーションのパラメータを設定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">初期状態を作る量子回路の準備</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子回路2を準備 (時間発展を表す回路の単位)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">測定のための演算子を用意</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">時間発展シミュレーションの実行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">時間発展のプロット</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.2 実践2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">ハミルトニアンの定義</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">2.3 実践 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2.4 実践 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">70量子ビット問題における量子回路2の準備 (時間発展回路の単位)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">2.5 実践 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">測定する演算子の用意</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">2.6 実践 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">時間発展シミュレーション</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2">Step 2: ターゲットハードウェアに対する最適化</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">Step 3: ターゲットハードウェアでの実行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 結果の後処理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3. 実際の量子コンピュータによるソリューションII</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1">3.1 Step 1 問題を量子回路と演算子にマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">実践7</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">3.2 Step 2 ターゲットハードウェア向けに最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">3.3 Step 3. ターゲットハードウェアで実行します。</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">3.4 Step 4. 後処理</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
