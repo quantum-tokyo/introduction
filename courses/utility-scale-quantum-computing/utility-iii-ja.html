@@ -1,0 +1,2166 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ユーティリティー・スケール実験 III &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/utility-scale-quantum-computing/utility-iii-ja';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/utility-scale-quantum-computing/utility-iii-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/utility-scale-quantum-computing/utility-iii-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ユーティリティー・スケール実験 III</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. はじめに</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz">1.1 GHZ 状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 目標</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.戦略 1. ノイズを考慮した量子ビットの選択</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.1 最も良い量子ビット・チェーン上にGHZ回路を構築する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.戦略 2. 量子ビットのバランスツリー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-30">3.1 N = 30</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ステップ 1: 問題を量子回路と演算子にマッピングし、ステップ 2: ターゲット・ハードウェアに対して最適化する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2 別のルート・ノードを手動で選択</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">Step 3: ターゲット・ハードウェアで実行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 結果の後処理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4. 戦略 3. エラー抑制オプションを使って実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">5. 目標 (再度)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="iii">
+<h1>ユーティリティー・スケール実験 III<a class="headerlink" href="#iii" title="Link to this heading">#</a></h1>
+<Admonition type="note">
+  Toshinari Itoko, Tamiya Onodera, Kifumi Numata (19 July 2024)
+<p><a class="reference external" href="https://ibm.box.com/shared/static/fw1538dogvyv0qbfqg8tan1k2fs27mfv.zip">ここ</a>から元の講義資料をダウンロードできます。日本語版の講義資料は<a class="reference internal" href="#"><span class="xref myst">こちら</span></a>です。Qiskitの更新によって、コード・サンプルの中には今では非推奨となった機能を使っているものがあるかもしれないことをご容赦ください。</p>
+<p><em>この実験を実行するのに使われる QPU時間はおよそ 12 分 30 秒です。最後の追加の実験には 4 分かかります。</em></p>
+<p>(注: このノートブックは、オープンプランで許可されている時間内に評価されない場合があります。量子コンピューティングのリソースを賢く使用してください。)
+</Admonition></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.2.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span>
+
+<span class="n">qiskit_ibm_runtime</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.41.1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rustworkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rx</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_gate_map</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.providers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BackendV2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span><span class="p">,</span> <span class="n">Estimator</span><span class="p">,</span> <span class="n">Batch</span><span class="p">,</span> <span class="n">SamplerOptions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>1. はじめに<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>GHZ 状態と、GHZ 状態に適用された<code class="docutils literal notranslate"><span class="pre">Sampler</span></code> からどのような分布が期待できるかを簡単に確認しましょう。次に、このレッスンの目標を明確に説明します。</p>
+<section id="ghz">
+<h3>1.1 GHZ 状態<a class="headerlink" href="#ghz" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(n\)</span> 量子ビットの GHZ 状態 (Greenberger-Horne-Zeilinger 状態) は、次のように定義されます。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{\sqrt 2}(|0\rangle ^ {\otimes n}+ |1\rangle^ {\otimes n})
+\]</div>
+<p>自然な形として、6 量子ビットのものを以下の回路で作ることができます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># qc.measure_all()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/308865d41e9aad4cfee81eceb101820c0efc9d9d2a97641935d6925d20a8efe4.png" src="../../_images/308865d41e9aad4cfee81eceb101820c0efc9d9d2a97641935d6925d20a8efe4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">qc</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth: 7
+</pre></div>
+</div>
+</div>
+</div>
+<p>深さはそれほど大きくありませんが、以前のレッスンで学んだようにもう少し上手に作れることは分かっています。バックエンドを選んで、まずはこの回路をトランスパイルしましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">)</span>
+<span class="c1">#backend = service.least_busy(operational=True, simulator=False)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">name</span>
+<span class="c1"># or</span>
+<span class="c1"># backend = service.least_busy(operational=True)</span>
+<span class="c1"># backend.name</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ibm_brisbane&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">qc_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">qc_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e81f66bf9c6cef09b5f757c14e87fd577c6ca0d417b8c84087c23252f5f08c13.png" src="../../_images/e81f66bf9c6cef09b5f757c14e87fd577c6ca0d417b8c84087c23252f5f08c13.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">qc_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="n">qc_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth: 27
+Two-qubit Depth: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>ここでも、トランスパイルされた回路の 2 量子ビットの深さは大きすぎません。しかし、より多くの量子ビットでGHZ状態を扱うには、回路の最適化について明らかに考える必要があります。これを <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> を使用して実行し、実際の量子コンピューターが何を返すか見てみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">40000</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc_transpiled</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>d3irk50dd19c738el5i0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/338500ec2c31e33256a443c20b9c0a2b8265a4a1ca71de0dca0c71d3522531fc.png" src="../../_images/338500ec2c31e33256a443c20b9c0a2b8265a4a1ca71de0dca0c71d3522531fc.png" />
+</div>
+</div>
+<p>これは6量子ビットGHZ回路の結果です。ご覧のとおり、すべての <span class="math notranslate nohighlight">\(|0\rangle\)</span> とすべての <span class="math notranslate nohighlight">\(|1\rangle\)</span> の状態が支配的ですが、誤差はかなり大きいです。Eagle デバイスでどれだけの大きさの GHZ 回路を作成できるかを確認しながら、状態の忠実度が少なくとも 50% を超える可能性が高い結果を得てみましょう。</p>
+</section>
+<section id="id2">
+<h3>1.2 目標<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>20 量子ビット以上の GHZ 回路を構築して、測定時に <strong>GHZ 状態の忠実度が0.5より大きくなるように</strong> します。
+Note:</p>
+<ul class="simple">
+<li><p>Eagle デバイス (<code class="docutils literal notranslate"><span class="pre">min_num_qubits=127</span></code>) を使用し、ショット数を40,000に設定する必要があります。</p></li>
+<li><p>GHZ 回路の実行は <code class="docutils literal notranslate"><span class="pre">execute_ghz_fidelity</span></code> 関数で行い、忠実度は <code class="docutils literal notranslate"><span class="pre">check_ghz_fidelity_from_jobs</span></code> 関数で計算してください。</p></li>
+</ul>
+<p>これは、このコースでこれまでに学んだことを活用する独立した演習として意図されています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">execute_ghz_fidelity</span><span class="p">(</span>
+    <span class="n">ghz_circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span>  <span class="c1"># Quantum circuit to create GHZ state (Circuit after Routing or without Routing), Classical register name is &quot;c&quot;</span>
+    <span class="n">physical_qubits</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>  <span class="c1"># Physical qubits to represent GHZ state</span>
+    <span class="n">backend</span><span class="p">:</span> <span class="n">BackendV2</span><span class="p">,</span>
+    <span class="n">sampler_options</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="n">SamplerOptions</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">N_SHOTS</span> <span class="o">=</span> <span class="mi">40_000</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_qubits</span><span class="p">)</span>
+    <span class="n">base_circuit</span> <span class="o">=</span> <span class="n">ghz_circuit</span><span class="o">.</span><span class="n">remove_final_measurements</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># M_k measurement circuits</span>
+    <span class="n">mk_circuits</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="n">base_circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1"># change measurement basis</span>
+        <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">physical_qubits</span><span class="p">:</span>
+            <span class="n">circuit</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">N</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+            <span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">mk_circuits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="n">physical_qubits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+    <span class="p">)</span>
+    <span class="n">job_ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pm1</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+    <span class="n">org_transpiled</span> <span class="o">=</span> <span class="n">pm1</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz_circuit</span><span class="p">)</span>
+    <span class="n">mk_transpiled</span> <span class="o">=</span> <span class="n">pm1</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">mk_circuits</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">Batch</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">):</span>
+        <span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">sampler_options</span><span class="p">)</span>
+        <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">org_transpiled</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">N_SHOTS</span><span class="p">)</span>
+        <span class="n">job_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sampler job id: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">, shots=</span><span class="si">{</span><span class="n">N_SHOTS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span>  <span class="c1"># TREX is applied as default</span>
+        <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">rep_delay</span> <span class="o">=</span> <span class="mf">0.0005</span>
+        <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">job2</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">circ</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span> <span class="k">for</span> <span class="n">circ</span> <span class="ow">in</span> <span class="n">mk_transpiled</span><span class="p">],</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">job_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimator job id:&quot;</span><span class="p">,</span> <span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">(),</span> <span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">check_ghz_fidelity_from_jobs</span><span class="p">(</span>
+    <span class="n">sampler_job</span><span class="p">,</span>
+    <span class="n">estimator_job</span><span class="p">,</span>
+    <span class="n">num_qubits</span><span class="p">,</span>
+    <span class="n">shots</span><span class="o">=</span><span class="mi">40_000</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">num_qubits</span>
+    <span class="n">sampler_result</span> <span class="o">=</span> <span class="n">sampler_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">sampler_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+    <span class="n">all_zero</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;0&quot;</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
+    <span class="n">all_one</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
+    <span class="n">top3</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">: |00..0&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, |11..1&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, |3rd&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">top3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">top3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(|00..0&gt;)=</span><span class="si">{</span><span class="n">all_zero</span><span class="si">}</span><span class="s2">, P(|11..1&gt;)=</span><span class="si">{</span><span class="n">all_one</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">estimator_result</span> <span class="o">=</span> <span class="n">estimator_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="n">non_diagonal</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">k</span> <span class="o">*</span> <span class="n">estimator_result</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;REM: Coherence (non-diagonal): </span><span class="si">{</span><span class="n">non_diagonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fidelity</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">all_zero</span> <span class="o">+</span> <span class="n">all_one</span> <span class="o">+</span> <span class="n">non_diagonal</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">all_zero</span> <span class="o">-</span> <span class="n">all_one</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">all_zero</span> <span class="o">+</span> <span class="n">all_one</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
+        <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">estimator_result</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GHZ fidelity = </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fidelity</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GME (genuinely multipartite entangled) test: Passed&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GME (genuinely multipartite entangled) test: Failed&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;fidelity&quot;</span><span class="p">:</span> <span class="n">fidelity</span><span class="p">,</span>
+        <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="n">sigma</span><span class="p">,</span>
+        <span class="s2">&quot;shots&quot;</span><span class="p">:</span> <span class="n">shots</span><span class="p">,</span>
+        <span class="s2">&quot;job_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">sampler_job</span><span class="o">.</span><span class="n">job_id</span><span class="p">(),</span> <span class="n">estimator_job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()],</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>このノートブックでは、16量子ビットと30量子ビットを用いて良い GHZ 状態を作るための 3 つの戦略を紹介します。これらのアプローチは、以前のレッスンですでに学んだ戦略に基づいています。</p>
+</section>
+</section>
+<section id="id3">
+<h2>2.戦略 1. ノイズを考慮した量子ビットの選択<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>まず、バックエンドを指定します。特定のバックエンドのプロパティを広範囲に操作するため、 <code class="docutils literal notranslate"><span class="pre">least_busy</span></code> オプションを使用するのではなく、1つのバックエンドを指定することをお勧めします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">)</span>  <span class="c1"># eagle</span>
+<span class="n">twoq_gate</span> <span class="o">=</span> <span class="s2">&quot;ecr&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> Loaded with </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two Qubit Gate: </span><span class="si">{</span><span class="n">twoq_gate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Device ibm_brisbane Loaded with 127 qubits
+Two Qubit Gate: ecr
+</pre></div>
+</div>
+</div>
+</div>
+<p>私たちは、多くの2量子ビットのゲートを使った回路を構築しています。この 2 量子ビットゲートを実装するときに、誤差が最も少ない量子ビットを使用することは理にかなっています。2q ゲート・エラーの情報に基づいて最適な「量子ビット・チェーン」を見つけることは、自明な問題ではありません。以下のように最適な量子ビットを決定するための関数を定義しましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coupling_map</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">(</span><span class="n">twoq_gate</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">to_edges</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>  <span class="c1"># create edges list from node paths</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">prev_node</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">prev_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">prev_node</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">prev_node</span><span class="p">,</span> <span class="n">node</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">))</span>
+        <span class="n">prev_node</span> <span class="o">=</span> <span class="n">node</span>
+    <span class="k">return</span> <span class="n">edges</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">path_fidelity</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">correct_by_duration</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">readout_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute an estimate of the total fidelity of 2-qubit gates on a path.</span>
+<span class="sd">    If `correct_by_duration` is true, each gate fidelity is worsen by</span>
+<span class="sd">    scale = max_duration / duration, that is, gate_fidelity^scale.</span>
+<span class="sd">    If `readout_scale` &gt; 0 is supplied, readout_fidelity^readout_scale</span>
+<span class="sd">    for each qubit on the path is multiplied to the total fielity.</span>
+<span class="sd">    The path is given in node indices form, for example, [0, 1, 2].</span>
+<span class="sd">    An external function `to_edges` is used to obtain edge list, for example, [(0, 1), (1, 2)].&quot;&quot;&quot;</span>
+    <span class="n">path_edges</span> <span class="o">=</span> <span class="n">to_edges</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">max_duration</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">twoq_gate</span><span class="p">][</span><span class="n">qs</span><span class="p">]</span><span class="o">.</span><span class="n">duration</span> <span class="k">for</span> <span class="n">qs</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">gate_fidelity</span><span class="p">(</span><span class="n">qpair</span><span class="p">):</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">twoq_gate</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">duration</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">max_duration</span> <span class="o">/</span> <span class="n">duration</span> <span class="k">if</span> <span class="n">correct_by_duration</span> <span class="k">else</span> <span class="mf">1.0</span>
+        <span class="c1"># 1.25 = (d+1)/d with d = 4</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.25</span> <span class="o">*</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">twoq_gate</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="p">))</span> <span class="o">**</span> <span class="n">scale</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">readout_fidelity</span><span class="p">(</span><span class="n">qubit</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][(</span><span class="n">qubit</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
+
+    <span class="n">total_fidelity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">gate_fidelity</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="k">for</span> <span class="n">qs</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">]</span>
+    <span class="p">)</span>  <span class="c1"># two qubits gate fidelity for each path</span>
+    <span class="k">if</span> <span class="n">readout_scale</span><span class="p">:</span>
+        <span class="n">total_fidelity</span> <span class="o">*=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">([</span><span class="n">readout_fidelity</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">path</span><span class="p">])</span> <span class="o">**</span> <span class="n">readout_scale</span>
+        <span class="p">)</span>  <span class="c1"># multiply readout fidelity</span>
+    <span class="k">return</span> <span class="n">total_fidelity</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">flatten</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># cutoff is for not making run time too large</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">path</span>
+        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">s_paths</span> <span class="ow">in</span> <span class="n">paths</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">st_paths</span> <span class="ow">in</span> <span class="n">s_paths</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">st_paths</span><span class="p">[:</span><span class="n">cutoff</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="n">t</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Number of qubits to use in the GHZ circuit</span>
+<span class="n">num_qubits_in_chain</span> <span class="o">=</span> <span class="n">N</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記の関数を使用して、グラフ内のすべてのノードペア間の N 量子ビットのすべてのパスを見つけます(参照:<a class="reference external" href="https://www.rustworkx.org/apiref/rustworkx.all_pairs_all_simple_paths.html#rustworkx-all-pairs-all-simple-paths">all_pairs_all_simple_paths</a>)。</p>
+<p>次に、上記で作成した <code class="docutils literal notranslate"><span class="pre">path_fidelity</span></code> 関数を使用して、パスの忠実度が最も高い最適な量子ビット・チェーンを見つけます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+
+<span class="n">paths</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">all_pairs_all_simple_paths</span><span class="p">(</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">(</span><span class="n">multigraph</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">min_depth</span><span class="o">=</span><span class="n">num_qubits_in_chain</span><span class="p">,</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="n">num_qubits_in_chain</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>  <span class="c1"># If you have time, you could set a larger cutoff.</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;No qubit chain with length=</span><span class="si">{</span><span class="n">num_qubits_in_chain</span><span class="si">}</span><span class="s2"> exists in </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. Try smaller num_qubits_in_chain.&quot;</span>
+    <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selecting the best from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> candidate paths&quot;</span><span class="p">)</span>
+
+<span class="n">best_qubit_chain</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+    <span class="n">paths</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">path_fidelity</span><span class="p">,</span> <span class="n">correct_by_duration</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readout_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_qubits_in_chain</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicted (best possible) process fidelity: </span><span class="si">{</span><span class="n">path_fidelity</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting the best from 6046 candidate paths
+Predicted (best possible) process fidelity: 0.8980927432520546
+CPU times: user 228 ms, sys: 9.71 ms, total: 238 ms
+Wall time: 242 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([64, 63, 62, 61, 60, 53, 41, 40, 39, 38, 37, 52, 56, 57, 58, 71],
+      dtype=uint64)
+</pre></div>
+</div>
+</div>
+</div>
+<p>最適な量子ビット・チェーンをピンク色でカップリング・マップの図にプロットしてみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubit_chain</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>  <span class="c1"># pink</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+<span class="n">plot_gate_map</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span> <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span> <span class="n">qubit_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/77b4e62444e4caed3f3b8b625a8cc9ad31066f75538bc72634fb62fd44e8050d.png" src="../../_images/77b4e62444e4caed3f3b8b625a8cc9ad31066f75538bc72634fb62fd44e8050d.png" />
+</div>
+</div>
+<section id="id4">
+<h3>2.1 最も良い量子ビット・チェーン上にGHZ回路を構築する<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>チェーンの中央にある量子ビットを選択して、最初に H ゲートを適用します。これで回路の深さが約半分に減少するはずです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz1</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">ghz1</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">[</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">ghz1</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">best_qubit_chain</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">ghz1</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">best_qubit_chain</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ghz1</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
+<span class="n">ghz1</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
+<span class="n">ghz1</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c50df637e205847fa052e536ad2c9f0bf47b0a12f1d1221880e50a1d12883d73.png" src="../../_images/c50df637e205847fa052e536ad2c9f0bf47b0a12f1d1221880e50a1d12883d73.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz1</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">ghz1_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz1</span><span class="p">)</span>
+<span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1ca1ea3dbedc4a41b9a2ec4c3f80ad17a76b29adecd9a609b7b236af4eaa6d90.png" src="../../_images/1ca1ea3dbedc4a41b9a2ec4c3f80ad17a76b29adecd9a609b7b236af4eaa6d90.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth: 24
+Two-qubit Depth: 8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opts</span> <span class="o">=</span> <span class="n">SamplerOptions</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">execute_ghz_fidelity</span><span class="p">(</span>
+    <span class="n">ghz_circuit</span><span class="o">=</span><span class="n">ghz1</span><span class="p">,</span>
+    <span class="n">physical_qubits</span><span class="o">=</span><span class="n">best_qubit_chain</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
+    <span class="n">sampler_options</span><span class="o">=</span><span class="n">opts</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_s</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Use your job id showed above.</span>
+<span class="n">job_e</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job_s</span><span class="o">.</span><span class="n">status</span><span class="p">(),</span> <span class="n">job_e</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DONE DONE
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記のジョブのステータスが ‘DONE’ になった後に次のセルを実行し、 <code class="docutils literal notranslate"><span class="pre">check_ghz_fidelity_from_jobs</span></code> 関数を使用して結果を表示してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="c1"># Check fidelity from job IDs</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">check_ghz_fidelity_from_jobs</span><span class="p">(</span>
+    <span class="n">sampler_job</span><span class="o">=</span><span class="n">job_s</span><span class="p">,</span>
+    <span class="n">estimator_job</span><span class="o">=</span><span class="n">job_e</span><span class="p">,</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N=16: |00..0&gt;: 1727, |11..1&gt;: 10086, |3rd&gt;: 1957 (0000011000000000)
+P(|00..0&gt;)=0.043175, P(|11..1&gt;)=0.25215
+REM: Coherence (non-diagonal): 0.336718
+GHZ fidelity = 0.316022 ± 0.002298
+GME (genuinely multipartite entangled) test: Failed
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">job_s</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8bb31734ed0ced3b981ec801b4aed3fdb187d602d5bdecc6382a0e9ab00594ad.png" src="../../_images/8bb31734ed0ced3b981ec801b4aed3fdb187d602d5bdecc6382a0e9ab00594ad.png" />
+</div>
+</div>
+<p>この結果はクライテリアを満たしていません。次のアイデアに移りましょう。</p>
+</section>
+</section>
+<section id="id5">
+<h2>3.戦略 2. 量子ビットのバランスツリー<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>次のアイデアは、量子ビットのバランスの取れたツリーを見つけることです。チェーン形状ではなくツリーの形を使用すると、回路の深さが低くなるはずです。先に、読み出しエラーが “bad” のノードとゲートエラーが “bad” のエッジを結合グラフから削除します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BAD_READOUT_ERROR_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">BAD_ECRGATE_ERROR_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">bad_readout_qubits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">q</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][(</span><span class="n">q</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_READOUT_ERROR_THRESHOLD</span>
+<span class="p">]</span>
+<span class="n">bad_ecrgate_edges</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">qpair</span>
+    <span class="k">for</span> <span class="n">qpair</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_ECRGATE_ERROR_THRESHOLD</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad readout qubits:&quot;</span><span class="p">,</span> <span class="n">bad_readout_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad ECR gates:&quot;</span><span class="p">,</span> <span class="n">bad_ecrgate_edges</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad readout qubits: [17, 24, 67, 68, 74, 106]
+Bad ECR gates: [(24, 34), (85, 84)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">()</span>
+<span class="n">g</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span>
+    <span class="n">bad_ecrgate_edges</span>
+<span class="p">)</span>  <span class="c1"># remove edge first (otherwise might fail with a NoEdgeBetweenNodes error)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span><span class="n">bad_readout_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>悪いエッジと悪い量子ビットを除いたカップリング・マップの図を描いてみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>  <span class="c1"># black</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+<span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_ecrgate_edges</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>  <span class="c1"># white</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>  <span class="c1"># gray</span>
+<span class="n">plot_gate_map</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span>
+    <span class="n">qubit_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">font_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b3a74db54605beda9208025e94220ce346a08af13fc0b80bae6a42b0cc9d0d5b.png" src="../../_images/b3a74db54605beda9208025e94220ce346a08af13fc0b80bae6a42b0cc9d0d5b.png" />
+</div>
+</div>
+<p>先程と同じように 16 量子ビットの GHZ 状態を作成しします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">betweenness_centrality</span></code> 関数を呼び出して、ルート・ノードとなる量子ビットを見つけます。媒介中心性 (Betweenness Centrality) の値が最も高いノードは、グラフの中央にあります。参考:<a class="reference external" href="https://www.rustworkx.org/tutorial/betweenness_centrality.html">https://www.rustworkx.org/tutorial/betweenness_centrality.html</a></p>
+<p>または、ルート・ノードを手動で選択することもできます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># central = 65 #Select the center node manually</span>
+<span class="n">c_degree</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">rx</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+<span class="n">central</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">c_degree</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">c_degree</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+<span class="n">central</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>62
+</pre></div>
+</div>
+</div>
+</div>
+<p>ルート・ノードから始めて、幅優先検索 (Breadth First Search, BFS) でツリーを生成します。参考:<a class="reference external" href="https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.bfs_search.html#rustworkx-bfs-search">https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.bfs_search.html#rustworkx-bfs-search</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TreeEdgesRecorder</span><span class="p">(</span><span class="n">rx</span><span class="o">.</span><span class="n">visit</span><span class="o">.</span><span class="n">BFSVisitor</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tree_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">rx</span><span class="o">.</span><span class="n">visit</span><span class="o">.</span><span class="n">StopSearch</span><span class="p">()</span>
+
+
+<span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
+<span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
+<span class="c1"># print(&#39;Tree edges:&#39;, vis.edges)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubits selected: [53, 54, 59, 60, 61, 62, 63, 64, 65, 66, 72, 79, 80, 81, 82, 83]
+</pre></div>
+</div>
+</div>
+</div>
+<p>選択した量子ビットをピンク色でカップリング・マップの図にプロットしてみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>  <span class="c1"># black</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>  <span class="c1"># pink</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+<span class="n">plot_gate_map</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span>
+    <span class="n">qubit_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">font_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/85ba0afc66e9c1486e545fd232604942165153d5278828e883a7bcf340ee4615.png" src="../../_images/85ba0afc66e9c1486e545fd232604942165153d5278828e883a7bcf340ee4615.png" />
+</div>
+</div>
+<p>量子ビットのツリー構造を示してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rustworkx.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">graphviz_draw</span>
+
+<span class="n">tree</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyDiGraph</span><span class="p">()</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
+
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/970ea9fc5bd45b7d83df453c62fb37676ce5dc1532c478464a9aed22f0974fff.png" src="../../_images/970ea9fc5bd45b7d83df453c62fb37676ce5dc1532c478464a9aed22f0974fff.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">ghz2</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># apply H-gate to the root node</span>
+<span class="c1"># Apply CNOT from the root node to the each edge.</span>
+<span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">():</span>
+    <span class="n">ghz2</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">ghz2</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
+<span class="n">ghz2</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
+<span class="n">ghz2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bab80956197c859e03f7bed77fdb1b8fe5287cca426c6c46ce65b96983541700.png" src="../../_images/bab80956197c859e03f7bed77fdb1b8fe5287cca426c6c46ce65b96983541700.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz2</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">ghz2_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz2</span><span class="p">)</span>
+<span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2f9646c3434288d70304797f74c878794854e39cb377e7f6d6f942a5faaf361c.png" src="../../_images/2f9646c3434288d70304797f74c878794854e39cb377e7f6d6f942a5faaf361c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth: 22
+Two-qubit Depth: 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>回路の深さは、チェーン構造のときの深さよりもはるかに低くなりました。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">execute_ghz_fidelity</span><span class="p">(</span>
+    <span class="n">ghz_circuit</span><span class="o">=</span><span class="n">ghz2</span><span class="p">,</span>
+    <span class="n">physical_qubits</span><span class="o">=</span><span class="n">best_qubits</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
+    <span class="n">sampler_options</span><span class="o">=</span><span class="n">opts</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampler job id: d3irnao3qtks73888h4g, shots=40000
+Estimator job id: d3irnb0dd19c738el8og
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_s</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Use your job id showed above.</span>
+<span class="n">job_e</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job_s</span><span class="o">.</span><span class="n">status</span><span class="p">(),</span> <span class="n">job_e</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DONE DONE
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="c1"># Check fidelity from job IDs</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">check_ghz_fidelity_from_jobs</span><span class="p">(</span>
+    <span class="n">sampler_job</span><span class="o">=</span><span class="n">job_s</span><span class="p">,</span>
+    <span class="n">estimator_job</span><span class="o">=</span><span class="n">job_e</span><span class="p">,</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N=16: |00..0&gt;: 6195, |11..1&gt;: 9117, |3rd&gt;: 2541 (0000010000000000)
+P(|00..0&gt;)=0.154875, P(|11..1&gt;)=0.227925
+REM: Coherence (non-diagonal): 0.582622
+GHZ fidelity = 0.482711 ± 0.002649
+GME (genuinely multipartite entangled) test: Failed
+</pre></div>
+</div>
+</div>
+</div>
+<p>バランスの取れたツリー構造でクライテリアをパスしました！（そのときのデバイスのコンデイションによります。）</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">job_s</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/68b187880e02128b67a5ceb28731bd92e013534a96475a8e877c4d108c22f265.png" src="../../_images/68b187880e02128b67a5ceb28731bd92e013534a96475a8e877c4d108c22f265.png" />
+</div>
+</div>
+<p>それでは、より大きな GHZ 状態、つまり 30 量子ビットの GHZ 状態を作ってみましょう。</p>
+<section id="n-30">
+<h3>3.1 N = 30<a class="headerlink" href="#n-30" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/guides/intro-to-patterns">Qiskit patterns</a> のフレームワークに従います。</p>
+<ul class="simple">
+<li><p>ステップ 1: 問題の量子回路と演算子へのマッピング</p></li>
+<li><p>ステップ 2: ターゲット・ハードウェアに対する最適化</p></li>
+<li><p>ステップ 3: ターゲット・ハードウェアで実行</p></li>
+<li><p>ステップ 4: 結果の後処理</p></li>
+</ul>
+<section id="id6">
+<h4>ステップ 1: 問題を量子回路と演算子にマッピングし、ステップ 2: ターゲット・ハードウェアに対して最適化する<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>ここでは、ルート・ノードを手動で選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">central</span> <span class="o">=</span> <span class="mi">62</span>  <span class="c1"># Select the center node manually</span>
+<span class="c1"># c_degree = dict(rx.betweenness_centrality(g))</span>
+<span class="c1"># central = max(c_degree, key=c_degree.get)</span>
+<span class="c1"># central</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
+<span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubits selected: [40, 41, 42, 44, 45, 46, 53, 54, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 71, 72, 73, 78, 79, 80, 81, 82, 83, 84, 91, 92]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>
+<span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_ecrgate_edges</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>
+<span class="n">plot_gate_map</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span>
+    <span class="n">qubit_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">font_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a39e1bf2d831373c00cb24fe1c1bbf17d009029bc481357db151bd4237190fb0.png" src="../../_images/a39e1bf2d831373c00cb24fe1c1bbf17d009029bc481357db151bd4237190fb0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rustworkx.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">graphviz_draw</span>
+
+<span class="n">tree</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyDiGraph</span><span class="p">()</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
+
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1d01dd42d1b79f07eae3fb6a788c52c58d2b95b8c0fcd9f2b416900d5eadd4f4.png" src="../../_images/1d01dd42d1b79f07eae3fb6a788c52c58d2b95b8c0fcd9f2b416900d5eadd4f4.png" />
+</div>
+</div>
+<p>このツリーの深さは5です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">ghz3</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># apply H-gate to the root node</span>
+<span class="c1"># Apply CNOT from the root node to the each edge.</span>
+<span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">():</span>
+    <span class="n">ghz3</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b59f5546cb65bcdf4ebd15b97d5d8dcbe5a9fc03a885526e2bff756d76a76542.png" src="../../_images/b59f5546cb65bcdf4ebd15b97d5d8dcbe5a9fc03a885526e2bff756d76a76542.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz3</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">ghz3_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz3</span><span class="p">)</span>
+<span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0fe74fbe829bbb6f2b8ea2c49b3ff9756df15978b5aabf4be3c2dfbae5591c3f.png" src="../../_images/0fe74fbe829bbb6f2b8ea2c49b3ff9756df15978b5aabf4be3c2dfbae5591c3f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth: 30
+Two-qubit Depth: 9
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h3>3.2 別のルート・ノードを手動で選択<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">central</span> <span class="o">=</span> <span class="mi">72</span>
+
+<span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
+<span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubits selected: [41, 45, 53, 54, 58, 59, 60, 61, 62, 63, 64, 65, 66, 71, 72, 76, 77, 78, 79, 80, 81, 82, 83, 84, 91, 92, 98, 101, 102, 103]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rustworkx.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">graphviz_draw</span>
+
+<span class="n">tree</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyDiGraph</span><span class="p">()</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
+
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/34bdd161a8fd9b54c21b10eb21f848ee5dc79a42088c6a3ef725188803ea4656.png" src="../../_images/34bdd161a8fd9b54c21b10eb21f848ee5dc79a42088c6a3ef725188803ea4656.png" />
+</div>
+</div>
+<p>このツリーの深さは6です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">ghz3</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># apply H-gate to the root node</span>
+<span class="c1"># Apply CNOT from the root node to the each edge.</span>
+<span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">():</span>
+    <span class="n">ghz3</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6f07f01e8f4d7a03765e184b884b9b7eb19567bfd2df91f9fae5f4ab5eaae52d.png" src="../../_images/6f07f01e8f4d7a03765e184b884b9b7eb19567bfd2df91f9fae5f4ab5eaae52d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz3</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">ghz3_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz3</span><span class="p">)</span>
+<span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9e8a3b26c70f8b75b06ea13000d962893163e8c42cada4da1061058434f81858.png" src="../../_images/9e8a3b26c70f8b75b06ea13000d962893163e8c42cada4da1061058434f81858.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth: 28
+Two-qubit Depth: 8
+</pre></div>
+</div>
+</div>
+</div>
+<p>驚くべきことに、ツリーの深さは 5 から 6 に増加しましたが、2 量子ビットの深さは 9 から 8 に減少しました。よって、後者の回路を使用してみます。</p>
+<section id="step-3">
+<h4>Step 3: ターゲット・ハードウェアで実行<a class="headerlink" href="#step-3" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">execute_ghz_fidelity</span><span class="p">(</span>
+    <span class="n">ghz_circuit</span><span class="o">=</span><span class="n">ghz3</span><span class="p">,</span>
+    <span class="n">physical_qubits</span><span class="o">=</span><span class="n">best_qubits</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
+    <span class="n">sampler_options</span><span class="o">=</span><span class="n">opts</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampler job id: d3is2a9fk6qs73ekuotg, shots=40000
+Estimator job id: d3is2ao3qtks73888rlg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_s</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Use your job id showed above.</span>
+<span class="n">job_e</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job_s</span><span class="o">.</span><span class="n">status</span><span class="p">(),</span> <span class="n">job_e</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DONE DONE
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4">
+<h4>Step 4: 結果の後処理<a class="headerlink" href="#step-4" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="c1"># Check fidelity from job IDs</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">check_ghz_fidelity_from_jobs</span><span class="p">(</span>
+    <span class="n">sampler_job</span><span class="o">=</span><span class="n">job_s</span><span class="p">,</span>
+    <span class="n">estimator_job</span><span class="o">=</span><span class="n">job_e</span><span class="p">,</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N=30: |00..0&gt;: 9, |11..1&gt;: 24, |3rd&gt;: 867 (000100000100000100000000000000)
+P(|00..0&gt;)=0.000225, P(|11..1&gt;)=0.0006
+REM: Coherence (non-diagonal): -0.009830
+GHZ fidelity = -0.004502 ± 0.003860
+GME (genuinely multipartite entangled) test: Failed
+</pre></div>
+</div>
+</div>
+</div>
+<p>ご覧の通り、この結果はクライテリアを満たしません。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It will take some time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job_s</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/54d0209007e6d5df7b160b107ceca4f82d9cd450faa6144b5649ea82088b9039.png" src="../../_images/54d0209007e6d5df7b160b107ceca4f82d9cd450faa6144b5649ea82088b9039.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="id8">
+<h2>4. 戦略 3. エラー抑制オプションを使って実行する<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>Sampler V2では、エラー抑制オプションが設定できます。詳しくは、 ガイドの <a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/guides/configure-error-mitigation#advanced-error">エラー緩和の設定</a> および <a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-execution-options-v2">‘ExecutionOptionsV2’</a> API リファレンスを参照してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opts</span> <span class="o">=</span> <span class="n">SamplerOptions</span><span class="p">()</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">skip_reset_qubits</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XY4&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">execute_ghz_fidelity</span><span class="p">(</span>
+    <span class="n">ghz_circuit</span><span class="o">=</span><span class="n">ghz3</span><span class="p">,</span>
+    <span class="n">physical_qubits</span><span class="o">=</span><span class="n">best_qubits</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
+    <span class="n">sampler_options</span><span class="o">=</span><span class="n">opts</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampler job id: d3is50hfk6qs73ekurj0, shots=40000
+Estimator job id: d3is5134kkus738c2msg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_s</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Use your job id showed above.</span>
+<span class="n">job_e</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job_s</span><span class="o">.</span><span class="n">status</span><span class="p">(),</span> <span class="n">job_e</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DONE DONE
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">30</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check fidelity from job IDs</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">check_ghz_fidelity_from_jobs</span><span class="p">(</span>
+    <span class="n">sampler_job</span><span class="o">=</span><span class="n">job_s</span><span class="p">,</span>
+    <span class="n">estimator_job</span><span class="o">=</span><span class="n">job_e</span><span class="p">,</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N=30: |00..0&gt;: 166, |11..1&gt;: 104, |3rd&gt;: 383 (000100000000000000000000000010)
+P(|00..0&gt;)=0.00415, P(|11..1&gt;)=0.0026
+REM: Coherence (non-diagonal): -0.014548
+GHZ fidelity = -0.003899 ± 0.004156
+GME (genuinely multipartite entangled) test: Failed
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It will take some time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job_s</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c1f2929c909806d3f909ec01b0efc969d6ba2e9e2d81276156cf7b2441384224.png" src="../../_images/c1f2929c909806d3f909ec01b0efc969d6ba2e9e2d81276156cf7b2441384224.png" />
+</div>
+</div>
+<p>結果は改善されましたが、まだ基準を満たしていません。</p>
+<p>これまでに3つのアイデアを見てきました。これらのアイデアを組み合わせて拡張することも、独自のアイデアでより良い GHZ 回路を作成することもできます。それでは、もう一度目標を確認します。</p>
+<section id="id9">
+<h3>5. 目標 (再度)<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>20 量子ビット以上の GHZ 回路を構築して、測定時に <strong>GHZ 状態の忠実度が0.5より大きくなるように</strong> します。
+Note:</p>
+<ul class="simple">
+<li><p>Eagle デバイス (たとえば <code class="docutils literal notranslate"><span class="pre">ibm_brisbane</span></code>) を使用し、ショット数を40,000に設定する必要があります。</p></li>
+<li><p>GHZ 回路の実行は <code class="docutils literal notranslate"><span class="pre">execute_ghz_fidelity</span></code> 関数で行い、忠実度は <code class="docutils literal notranslate"><span class="pre">check_ghz_fidelity_from_jobs</span></code> 関数で計算してください。</p></li>
+</ul>
+<p>クライテリアを満たす最大の量子ビットの GHZ 回路を見つける必要があります。</p>
+<p>最後に、Heronデバイスに、さきほどと同じ GHZ ワークフローを実装します。これにより、Heronプロセッサーのレイアウトと機能についてある程度の経験が得られます。新しい戦略は導入されません。</p>
+<p><em>この次の実験を実行するためのおおよその QPU 時間は 4 分 40 秒です。</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;premium&quot;</span><span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_kingston&quot;</span><span class="p">)</span>
+
+<span class="n">twoq_gate</span> <span class="o">=</span> <span class="s2">&quot;cz&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> Loaded with </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two Qubit Gate: </span><span class="si">{</span><span class="n">twoq_gate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Device ibm_kingston Loaded with 156 qubits
+Two Qubit Gate: cz
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">BAD_READOUT_ERROR_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">BAD_CZGATE_ERROR_THRESHOLD</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">bad_readout_qubits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">q</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][(</span><span class="n">q</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_READOUT_ERROR_THRESHOLD</span>
+<span class="p">]</span>
+<span class="n">bad_czgate_edges</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">qpair</span>
+    <span class="k">for</span> <span class="n">qpair</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;cz&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;cz&quot;</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_CZGATE_ERROR_THRESHOLD</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad readout qubits:&quot;</span><span class="p">,</span> <span class="n">bad_readout_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad CZ gates:&quot;</span><span class="p">,</span> <span class="n">bad_czgate_edges</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bad readout qubits: [112, 113, 120, 131, 146]
+Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113, 119), (114, 113), (119, 113), (120, 121), (121, 120), (130, 131), (131, 130), (145, 146), (146, 145), (146, 147), (147, 146)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">()</span>
+<span class="n">g</span><span class="o">.</span><span class="n">remove_edges_from</span><span class="p">(</span>
+    <span class="n">bad_czgate_edges</span>
+<span class="p">)</span>  <span class="c1"># remove edge first (otherwise might fail with a NoEdgeBetweenNodes error)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span><span class="n">bad_readout_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>  <span class="c1"># black</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+<span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_czgate_edges</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>  <span class="c1"># white</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>  <span class="c1"># gray</span>
+<span class="n">plot_gate_map</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span>
+    <span class="n">qubit_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+    <span class="n">font_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7f72c9e41ecf9827c5385d5be2e4e036fdec402374fda06f1541863e9f0b287b.png" src="../../_images/7f72c9e41ecf9827c5385d5be2e4e036fdec402374fda06f1541863e9f0b287b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">central</span> <span class="o">=</span> <span class="mi">48</span>  <span class="c1"># Select the center node manually</span>
+<span class="c1"># c_degree = dict(rx.betweenness_centrality(g))</span>
+<span class="c1"># central = max(c_degree, key=c_degree.get)</span>
+<span class="c1"># central</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TreeEdgesRecorder</span><span class="p">(</span><span class="n">rx</span><span class="o">.</span><span class="n">visit</span><span class="o">.</span><span class="n">BFSVisitor</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">tree_edge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">rx</span><span class="o">.</span><span class="n">visit</span><span class="o">.</span><span class="n">StopSearch</span><span class="p">()</span>
+
+
+<span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
+<span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubits selected: [17, 18, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 56, 57, 58, 64, 65, 66, 67, 68, 69, 70, 71, 72, 77, 78]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>
+<span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_czgate_edges</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>
+<span class="n">plot_gate_map</span><span class="p">(</span>
+    <span class="n">backend</span><span class="p">,</span>
+    <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
+    <span class="n">line_color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span>
+    <span class="n">qubit_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+    <span class="n">font_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b9fdcdf370faf100649881f0d88d54e4f5bcd52abacf9feeceb2a779f9b4a384.png" src="../../_images/b9fdcdf370faf100649881f0d88d54e4f5bcd52abacf9feeceb2a779f9b4a384.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rustworkx.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">graphviz_draw</span>
+
+<span class="n">tree</span> <span class="o">=</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyDiGraph</span><span class="p">()</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
+
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/fb7731ebf8846ec343b4445544ae56ed366c2b69b9a0bcad7f52bac9da3a4caa.png" src="../../_images/fb7731ebf8846ec343b4445544ae56ed366c2b69b9a0bcad7f52bac9da3a4caa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz_h</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">ghz_h</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># apply H-gate to the root node</span>
+<span class="c1"># Apply CNOT from the root node to the each edge.</span>
+<span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">edge_list</span><span class="p">():</span>
+    <span class="n">ghz_h</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">ghz_h</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
+<span class="n">ghz_h</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
+<span class="n">ghz_h</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/34769757389af540549c9670d0ed96fd8eb61d391956bccbb9e0a2bb0c642a07.png" src="../../_images/34769757389af540549c9670d0ed96fd8eb61d391956bccbb9e0a2bb0c642a07.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ghz_h</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">ghz_h_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz_h</span><span class="p">)</span>
+<span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a176c2115b85d5f3f5674bf1c69a26e608ae67b2a1d7418f07ed20eb7c55fbbf.png" src="../../_images/a176c2115b85d5f3f5674bf1c69a26e608ae67b2a1d7418f07ed20eb7c55fbbf.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Depth: 31
+Two-qubit Depth: 9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opts</span> <span class="o">=</span> <span class="n">SamplerOptions</span><span class="p">()</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">rep_delay</span> <span class="o">=</span> <span class="mf">0.0005</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">execute_ghz_fidelity</span><span class="p">(</span>
+    <span class="n">ghz_circuit</span><span class="o">=</span><span class="n">ghz_h</span><span class="p">,</span>
+    <span class="n">physical_qubits</span><span class="o">=</span><span class="n">best_qubits</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
+    <span class="n">sampler_options</span><span class="o">=</span><span class="n">opts</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampler job id: d3iscub4kkus738c2uhg, shots=40000
+Estimator job id: d3iscuo3qtks7388969g
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_s</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Use your job id showed above.</span>
+<span class="n">job_e</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">job_s</span><span class="o">.</span><span class="n">status</span><span class="p">(),</span> <span class="n">job_e</span><span class="o">.</span><span class="n">status</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DONE DONE
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check fidelity from job IDs</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">check_ghz_fidelity_from_jobs</span><span class="p">(</span>
+    <span class="n">sampler_job</span><span class="o">=</span><span class="n">job_s</span><span class="p">,</span>
+    <span class="n">estimator_job</span><span class="o">=</span><span class="n">job_e</span><span class="p">,</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N=40: |00..0&gt;: 3275, |11..1&gt;: 3167, |3rd&gt;: 3275 (0000000000000000000000000000000000000000)
+P(|00..0&gt;)=0.081875, P(|11..1&gt;)=0.079175
+REM: Coherence (non-diagonal): 0.009702
+GHZ fidelity = 0.085376 ± 0.001965
+GME (genuinely multipartite entangled) test: Failed
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It will take some time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job_s</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/97bbd64a176a8edcea74ac40ae5f77956b1f251f6a62fb7d50e21fcb771deffd.png" src="../../_images/97bbd64a176a8edcea74ac40ae5f77956b1f251f6a62fb7d50e21fcb771deffd.png" />
+</div>
+</div>
+<p>おめでとうございます！これで、ユーティリティー・スケールの量子コンピューティングの入門が完了しました。あなたは今、量子的優位性の探求に有意義な貢献をする準備ができています! IBM Quantum® をあなたの量子の旅の一部にしていただきありがとうございます。</p>
+<p>© IBM Corp., 2017-2025</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/utility-scale-quantum-computing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. はじめに</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ghz">1.1 GHZ 状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 目標</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2.戦略 1. ノイズを考慮した量子ビットの選択</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2.1 最も良い量子ビット・チェーン上にGHZ回路を構築する</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3.戦略 2. 量子ビットのバランスツリー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-30">3.1 N = 30</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ステップ 1: 問題を量子回路と演算子にマッピングし、ステップ 2: ターゲット・ハードウェアに対して最適化する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.2 別のルート・ノードを手動で選択</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3">Step 3: ターゲット・ハードウェアで実行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4">Step 4: 結果の後処理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4. 戦略 3. エラー抑制オプションを使って実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">5. 目標 (再度)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
