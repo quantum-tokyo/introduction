@@ -1,0 +1,1711 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Shorのアルゴリズムに関する検証 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'events/20251014_shor/shor_21';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Quantum Tokyo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fevents/20251014_shor/shor_21.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/events/20251014_shor/shor_21.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Shorのアルゴリズムに関する検証</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Shorのアルゴリズムに関する検証</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Shorのアルゴリズムとは</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">素因数分解に対するShorのアルゴリズムのアプローチ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Shorのアルゴリズムのステップ概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">量子計算のポイント</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">位数探索における位相推定の役割</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">位数探索への応用</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-15">例：<span class="math notranslate nohighlight">\(N=15\)</span>の素因数分解</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子回路の構築</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">回路のトランスパイル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">回路の測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">結果の可視化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">位数の推定</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-21"><span class="math notranslate nohighlight">\(N=21\)</span> の素因数分解：スケールの壁</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">量子回路の構築</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">位数推定のための回路構造の増大</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qft">QFT（量子フーリエ変換）の影響</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">回路のトランスパイル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">回路の測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">結果の可視化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">位数の推定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">実機を使った計算</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">実用化への道のり</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">実用化を阻む最大の要因：量子ビット数と誤り率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">フォールトトレラント量子計算への挑戦</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nisq">現在地：NISQ時代からの進化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">まとめ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Shorのアルゴリズムの本質的な意義</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">暗号へのインパクトとパラダイムシフト</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="shor">
+<h1>Shorのアルゴリズムに関する検証<a class="headerlink" href="#shor" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Shorのアルゴリズムとは<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>量子コンピュータの可能性を語る上で、必ず登場するのが「Shor（ショア）のアルゴリズム」です。これは1994年に数学者 Peter Shor によって提案された、<strong>素因数分解を効率的に行うための量子アルゴリズム</strong>です。素因数分解とは、自然数を素数の積に分解する操作のことを指します。たとえば 15 を 3 × 5 に分解するのは容易ですが、桁数が数百桁に及ぶ大きな数を素因数分解するのは古典コンピュータにとって極めて困難です。</p>
+<p>この「素因数分解の困難さ」は、現代暗号の基盤のひとつになっています。特に広く利用されているRSA暗号は、大きな数を素因数分解することが実用的に不可能である、という前提の上に成り立っています。もし効率的な素因数分解の手法が見つかれば、RSA暗号は短時間で破られてしまい、現在のインターネットセキュリティに大きな影響を与えることになります。Shorのアルゴリズムは、まさにその「不可能と思われていた計算」を可能にする潜在力を持っています。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>アプローチ</p></th>
+<th class="head"><p>提案時期</p></th>
+<th class="head"><p>計算量の目安</p></th>
+<th class="head"><p>特徴</p></th>
+<th class="head"><p>現状の位置づけ</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>試し割り法</p></td>
+<td><p>古代〜</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(\sqrt{N})\)</span></p></td>
+<td><p>最も基本的。小さな数では有効だが、大きな数には非現実的。</p></td>
+<td><p>教材・理論的説明用</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pollard の rho 法</p></td>
+<td><p>1975</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(\sqrt{p})\)</span>（<span class="math notranslate nohighlight">\(p\)</span>は最小因数）</p></td>
+<td><p>疑似乱数を利用。中規模の因数探索に有効。</p></td>
+<td><p>実用的な下位手法として活用</p></td>
+</tr>
+<tr class="row-even"><td><p>楕円曲線法（ECM）</p></td>
+<td><p>1985</p></td>
+<td><p>因数の大きさに依存</p></td>
+<td><p>小さな因数が存在する場合に高速。並列化も可能。</p></td>
+<td><p>実用的手法として現役</p></td>
+</tr>
+<tr class="row-odd"><td><p>一般数体篩（GNFS）</p></td>
+<td><p>1990年代</p></td>
+<td><p>準指数時間 <span class="math notranslate nohighlight">\(L_N[1/3]\)</span></p></td>
+<td><p>現在知られる古典最速アルゴリズム。RSA 250 などを分解。</p></td>
+<td><p>古典的には最強</p></td>
+</tr>
+<tr class="row-even"><td><p>Shor のアルゴリズム</p></td>
+<td><p>1994</p></td>
+<td><p>多項式時間 <span class="math notranslate nohighlight">\(O((\log N)^3)\)</span></p></td>
+<td><p>位数推定を量子計算で効率化。RSA暗号を理論的に破れる。</p></td>
+<td><p>実機での実用は未達成</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id2">
+<h2>素因数分解に対するShorのアルゴリズムのアプローチ<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Shorのアルゴリズムの核心は、いったん「素因数分解」という問題を直接扱うのではなく、<strong>位数推定（order finding）問題に変換する</strong>点にあります。<br />
+位数とは、ある整数 <span class="math notranslate nohighlight">\(a\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[
+a^r \equiv 1 (\mathrm{mod} N)
+\]</div>
+<p>を満たす最小の正整数 <span class="math notranslate nohighlight">\(r\)</span>のことです。この <span class="math notranslate nohighlight">\(r\)</span> を求めることができれば、そこから高い確率で <span class="math notranslate nohighlight">\(N\)</span> の非自明な因数を導き出せることが知られています。<br />
+つまり、素因数分解を「位数を見つける」という別の問題に置き換えることが可能なのです。</p>
+<p>ではなぜ、この変換が重要なのでしょうか。古典計算機で位数を求めるには、順に累乗を計算しながら周期性を探すしかなく、計算量は指数関数的に増えていきます。しかし量子計算では、量子ビットの<strong>重ね合わせ</strong>と<strong>干渉</strong>の性質を活用することで、多数の累乗結果を一度に計算し、その周期性を効率的に抽出できるのです。特に、量子フーリエ変換（Quantum Fourier Transform, QFT）は周期構造を非常に高速に検出できる演算であり、この処理がShorのアルゴリズムにおける最大のブレイクスルーとなっています。</p>
+<p>このように、「素因数分解 → 位数推定 → 量子フーリエ変換」という流れを取ることで、量子計算の特性を最大限に活かすことができます。従来のコンピュータが指数時間を要する部分を、量子コンピュータは多項式時間で解ける可能性がある。これが、Shorのアルゴリズムが量子計算の代表例として注目され続けている理由です。</p>
+</section>
+<section id="id3">
+<h2>Shorのアルゴリズムのステップ概要<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Shorのアルゴリズムは、以下の主要なステップで構成されます。</p>
+<ol class="arabic simple">
+<li><p><strong>前処理（古典計算）</strong>:</p>
+<ul class="simple">
+<li><p>対象の数 <span class="math notranslate nohighlight">\(N\)</span> に対して、ランダムに整数 <span class="math notranslate nohighlight">\(a\)</span> (ただし <span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(N\)</span> は互いに素)を選びます。</p></li>
+<li><p><span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(N\)</span> の最大公約数を計算し、もし非自明な因数が見つかればそれを出力して終了します。</p></li>
+</ul>
+</li>
+<li><p><strong>量子位数推定（量子計算）</strong>:</p>
+<ul class="simple">
+<li><p>量子ビットを用いて、関数 <span class="math notranslate nohighlight">\(f(x) = a^x \mod N\)</span> の周期を見つけるための量子回路を構築します。</p></li>
+<li><p>量子フーリエ変換（QFT）を適用し、周期 <span class="math notranslate nohighlight">\(r\)</span> を効率的に推定します。</p></li>
+</ul>
+</li>
+<li><p><strong>後処理（古典計算）</strong>:</p>
+<ul class="simple">
+<li><p>推定された周期 <span class="math notranslate nohighlight">\(r\)</span> を用いて、因数を計算します。</p></li>
+<li><p>ただし、場合によっては条件を満たさず因数が得られないこともあります。そのときは再び別の <span class="math notranslate nohighlight">\(a\)</span> を選んで繰り返します。</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2>量子計算のポイント<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>位数探索における位相推定の役割<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>位数 <span class="math notranslate nohighlight">\(r\)</span> を古典的に求めるのは計算的に非常に困難ですが、量子計算では <strong>位相推定（phase estimation）</strong> を利用することで、この周期 <span class="math notranslate nohighlight">\(r\)</span> を効率的に推定できます。</p>
+<p>位相推定（phase estimation）は、「あるユニタリ演算子 <span class="math notranslate nohighlight">\(U\)</span> の固有値の位相 <span class="math notranslate nohighlight">\(\theta\)</span> を推定する」アルゴリズムです。
+固有方程式が</p>
+<div class="math notranslate nohighlight">
+\[
+U \ket{\psi} = e^{2\pi i \theta} \ket{\psi}
+\]</div>
+<p>で表されるとき、位相推定回路は <span class="math notranslate nohighlight">\(\theta\)</span> の近似値 <span class="math notranslate nohighlight">\(\frac{y}{2^m}\)</span> を 一定の精度（<span class="math notranslate nohighlight">\(m\)</span> ビットの精度）で出力します。</p>
+<p>量子回路の上側の <span class="math notranslate nohighlight">\(m\)</span> 量子ビットが測定レジスタ、下側の <span class="math notranslate nohighlight">\(n\)</span> 量子ビットが固有状態 <span class="math notranslate nohighlight">\(\ket{\psi}\)</span> です。
+制御付きユニタリ <span class="math notranslate nohighlight">\(U^{2^k}\)</span> によって生じる「位相キックバック」により、固有値の位相情報が上側のビット列に転写されます。
+その後、<strong>逆量子フーリエ変換（inverse QFT）</strong> を適用することで、周期的な位相構造を <strong>測定可能なピーク（周波数成分）</strong> として抽出します。
+このメカニズムが、位数探索における周期性検出の中核を担っています。</p>
+<p>位相推定では、制御付きの <span class="math notranslate nohighlight">\(U^{2^k} = M_a^{2^k}\)</span> を効率的に実装する必要があります。これは単純に回路を <span class="math notranslate nohighlight">\(2^k\)</span> 回繰り返すのではなく、古典的に <span class="math notranslate nohighlight">\(b = a^{2^k} ; (\mathrm{mod}; N)\)</span> を計算し、その結果を用いて <span class="math notranslate nohighlight">\(M_b\)</span> の回路を構成することで効率化できます。(Modular exponentiation  )
+この方法により、指数を2の累乗に限定して事前計算することで、回路の深さを大幅に抑えることができます。</p>
+</section>
+<hr class="docutils" />
+<section id="id6">
+<h3>位数探索への応用<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>この位相推定を位数探索に応用するには、まずユニタリ演算 <span class="math notranslate nohighlight">\(U\)</span> を「法 <span class="math notranslate nohighlight">\(N\)</span> の下での掛け算」として定義します。
+具体的には、<span class="math notranslate nohighlight">\(a \in \mathbb{Z}^*_N\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[
+M_a \ket{x} = \ket{a x ; (\mathrm{mod}; N)}
+\]</div>
+<p>と定義します。
+数学的に <span class="math notranslate nohighlight">\(M_a\)</span> はユニタリ演算であり、固有値は</p>
+<div class="math notranslate nohighlight">
+\[
+\omega_r^j = e^{2\pi i \frac{j}{r}} \quad (j=0,\dots,r-1)
+\]</div>
+<p>という形になります。
+ここで分母 <span class="math notranslate nohighlight">\(r\)</span> がまさに求めたい「位数」に対応しているため、
+位相推定によって固有値の位相 <span class="math notranslate nohighlight">\(\frac{j}{r}\)</span> を推定できれば、<span class="math notranslate nohighlight">\(r\)</span> を高精度に求めることができます。</p>
+<p>理想的には固有状態 <span class="math notranslate nohighlight">\(\ket{\psi_1}\)</span> を直接準備するのが最も簡潔ですが、これは実際には難しいため、
+計算基底状態 <span class="math notranslate nohighlight">\(\ket{1}\)</span> を用いて代替します。
+<span class="math notranslate nohighlight">\(\ket{1}\)</span> は <span class="math notranslate nohighlight">\(M_a\)</span> の固有状態ではありませんが、すべての固有状態 <span class="math notranslate nohighlight">\(\ket{\psi_k}\)</span> の一様重ね合わせとして表せます：</p>
+<div class="math notranslate nohighlight">
+\[
+\ket{1} = \frac{1}{\sqrt{r}} \sum^{r-1}_{k=0} \ket{\psi_k}
+\]</div>
+<p>そのため、位相推定を <span class="math notranslate nohighlight">\(\ket{1}\)</span> で実行すると、固有値のいずれか <span class="math notranslate nohighlight">\(\frac{k}{r}\)</span> に対応する位相がランダムに得られます。
+複数回の試行を通じて、十分な精度で <span class="math notranslate nohighlight">\(r\)</span> を推定することが可能です。</p>
+</section>
+</section>
+<section id="n-15">
+<h2>例：<span class="math notranslate nohighlight">\(N=15\)</span>の素因数分解<a class="headerlink" href="#n-15" title="Link to this heading">#</a></h2>
+<p>Shorのアルゴリズムの実装は2001年にIBMの研究チームによって初めて実現されました。この実験では、<span class="math notranslate nohighlight">\(N=15\)</span> の素因数分解を対象とし、量子ビット数が非常に限られた中でアルゴリズムの基本的な動作を示しました。まずは、<span class="math notranslate nohighlight">\(N=15\)</span> の素因数分解をShorのアルゴリズムでどのように進めるかを見ていきましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>qiskit<span class="o">[</span>visualization<span class="o">]</span>&gt;<span class="o">=</span><span class="m">2</span>.1.2
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>qiskit_ibm_runtime&gt;<span class="o">=</span><span class="m">0</span>.41.1
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>matplotlib&gt;<span class="o">=</span><span class="m">3</span>.10.6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fractions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fraction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">QFT</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime.fake_provider</span><span class="w"> </span><span class="kn">import</span> <span class="n">FakePerth</span><span class="p">,</span> <span class="n">FakeTorino</span>
+
+<span class="n">backend</span> <span class="o">=</span> <span class="n">FakePerth</span><span class="p">()</span>
+<span class="n">backend_torino</span> <span class="o">=</span> <span class="n">FakeTorino</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_factors</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate non-trivial factors of N given a, r.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        a (int): A randomly chosen integer such that 1 &lt; a &lt; N and gcd(a, N) = 1.</span>
+<span class="sd">        r (int): The order of a modulo N (the smallest integer such that a^r ≡ 1 (mod N)).</span>
+<span class="sd">        N (int): The integer to be factored</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;r must be even to compute factors.&quot;</span><span class="p">)</span>
+    
+    <span class="n">x_plus</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">x_minus</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="n">factor1</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">x_plus</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">factor2</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">x_minus</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">factor1</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">factor1</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to find non-trivial factor with x+.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-trivial factor found with x+: </span><span class="si">{</span><span class="n">factor1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">factor2</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">factor2</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to find non-trivial factor with x-.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-trivial factor found with x-: </span><span class="si">{</span><span class="n">factor2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">factor1</span><span class="p">,</span> <span class="n">factor2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id7">
+<h3>量子回路の構築<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>例えば <span class="math notranslate nohighlight">\(a=11\)</span> を例に、関数 <span class="math notranslate nohighlight">\(M_{11} \ket{x} = \ket{11x ; (\mathrm{mod}; 15)}\)</span> を計算する量子回路 <span class="math notranslate nohighlight">\(M_{11}\)</span> を構築します。<br />
+ここで <span class="math notranslate nohighlight">\(x\)</span> は「古典的な整数変数」として現れる一方で、量子回路上では <span class="math notranslate nohighlight">\(|x\rangle\)</span> という状態に符号化された量子レジスタで表現されます。</p>
+<p>必要な量子ビットは以下の3種類です。</p>
+<ul class="simple">
+<li><p>量子レジスタ control: 入力整数 <span class="math notranslate nohighlight">\(x\)</span> を符号化する（制御レジスタ）</p></li>
+<li><p>量子レジスタ target: 法 <span class="math notranslate nohighlight">\(N\)</span> の下での掛け算の結果を格納する（出力レジスタ）</p></li>
+<li><p>古典レジスタ output: 測定結果を保存する</p></li>
+</ul>
+<p><strong>ここで少しズルを行います。</strong><br />
+<span class="math notranslate nohighlight">\(a=11\)</span> の場合、<span class="math notranslate nohighlight">\(M^k_{11}\)</span> は次のように計算されます。</p>
+<p>\begin{align*}
+M^{2^0}<em>{11}\ket{1} &amp;\equiv　M</em>{11} \ket{1} &amp;\equiv \ket{11} \pmod{15} \
+M^{2^1}<em>{11}\ket{1} &amp;\equiv　M</em>{11} \ket{11} &amp;\equiv \ket{1} \pmod{15} \
+M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} \pmod{15} \
+\vdots \
+\end{align*}</p>
+<p><span class="math notranslate nohighlight">\(k\geq1\)</span> のとき、<span class="math notranslate nohighlight">\(M^{2^k}_{11} = I\)</span> とみなせるため無視できます。初期状態は <span class="math notranslate nohighlight">\(|1\rangle\)</span> なので、<span class="math notranslate nohighlight">\(|1\rangle \to |11\rangle\)</span> に写像するだけで十分です。<br />
+すなわち、<span class="math notranslate nohighlight">\(|0001\rangle \mapsto |1011\rangle\)</span> という操作を実装した回路を構築します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">M11mod15</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    M_11(mod15)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">11</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">U</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">U</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">U</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">to_gate</span><span class="p">()</span>
+    <span class="n">U</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;M_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">a2kmodN</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute a^{2^k} (mod N) by repeated squaring&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">11</span> 
+
+<span class="c1"># 必要な量子ビット数の計算</span>
+<span class="c1"># num_target = floor(log(N - 1, 2)) + 1  # モジュラー展開のための量子ビット</span>
+<span class="c1"># num_control = 2 * num_target  # 位相推定精度のための量子ビット</span>
+
+<span class="n">num_target</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">num_control</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># List of M_b operators in order</span>
+<span class="n">k_list</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_control</span><span class="p">)</span>
+<span class="n">b_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">a2kmodN</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_list</span><span class="p">]</span>
+ 
+<span class="c1"># Initialize the circuit</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">num_control</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">num_target</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="n">num_control</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">)</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+ 
+<span class="c1"># Initialize the target register to the state |1&gt;</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">num_control</span><span class="p">)</span>
+ 
+<span class="c1"># Add the Hadamard gates and controlled versions of the</span>
+<span class="c1"># multiplication gates</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">control</span><span class="p">):</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
+        <span class="n">circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span>
+            <span class="n">M11mod15</span><span class="p">()</span><span class="o">.</span><span class="n">control</span><span class="p">(),</span> <span class="n">qubits</span><span class="o">=</span><span class="p">[</span><span class="n">qubit</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">target</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">continue</span>  <span class="c1"># M1 is the identity operator</span>
+ 
+<span class="c1"># Apply the inverse QFT to the control register</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">QFT</span><span class="p">(</span><span class="n">num_control</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">qubits</span><span class="o">=</span><span class="n">control</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ 
+<span class="c1"># Measure the control register</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/5d/m3c9w3p12qj3whkf54ysd62m0000gn/T/ipykernel_86958/2590135748.py:37: DeprecationWarning: The class ``qiskit.circuit.library.basis_change.qft.QFT`` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. (&#39;Use qiskit.circuit.library.QFTGate or qiskit.synthesis.qft.synth_qft_full instead, for access to all previous arguments.&#39;,)
+  circuit.compose(QFT(num_control, inverse=True), qubits=control, inplace=True)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;qiskit.circuit.instructionset.InstructionSet at 0x11fee2200&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a452f4914ce3d42a6faca3af755baea39a5d1f4c28f0c00917bad85774a8db3f.png" src="../../_images/a452f4914ce3d42a6faca3af755baea39a5d1f4c28f0c00917bad85774a8db3f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_decomposed</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qubits: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-depth: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-size: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operator counts: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qubits: 7
+2q-depth: 21
+2q-size: 21
+Operator counts: OrderedDict([(&#39;u&#39;, 34), (&#39;cx&#39;, 21), (&#39;measure&#39;, 3)])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>回路のトランスパイル<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">circ_a11</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>回路の測定<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">circ_a11</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job ID: cc410766-9476-47a7-b9e2-f9804703768d
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>結果の可視化<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get results</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/096ac36083303fd6b998ab762bb74d862a093ef5b23491dd319b8ecca4870b65.png" src="../../_images/096ac36083303fd6b998ab762bb74d862a093ef5b23491dd319b8ecca4870b65.png" />
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>位数の推定<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rows to be displayed in table</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Corresponding phase of each bitstring</span>
+<span class="n">measured_phases</span> <span class="o">=</span> <span class="p">[]</span>
+ 
+<span class="k">for</span> <span class="n">bitstring</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bitstring</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Convert bitstring to decimal</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">decimal</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">num_control</span><span class="p">)</span>  <span class="c1"># Find corresponding eigenvalue</span>
+    <span class="n">measured_phases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span>
+    <span class="n">frac</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+    <span class="c1"># Add these values to the rows in our table:</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">frac</span><span class="o">.</span><span class="n">denominator</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+ 
+<span class="c1"># Print the rows in a table</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Register Output&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span> <span class="s2">&quot;Phase&quot;</span><span class="p">,</span> <span class="s2">&quot;Fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;Guess for r&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Register Output</th>
+      <th>Count</th>
+      <th>Phase</th>
+      <th>Fraction</th>
+      <th>Guess for r</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>000(bin) =   0(dec)</td>
+      <td>4245 shots</td>
+      <td>0/8 = 0.00</td>
+      <td>0/1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100(bin) =   4(dec)</td>
+      <td>4186 shots</td>
+      <td>4/8 = 0.50</td>
+      <td>1/2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>010(bin) =   2(dec)</td>
+      <td>349 shots</td>
+      <td>2/8 = 0.25</td>
+      <td>1/4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>110(bin) =   6(dec)</td>
+      <td>336 shots</td>
+      <td>6/8 = 0.75</td>
+      <td>3/4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>001(bin) =   1(dec)</td>
+      <td>333 shots</td>
+      <td>1/8 = 0.12</td>
+      <td>1/8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>101(bin) =   5(dec)</td>
+      <td>294 shots</td>
+      <td>5/8 = 0.62</td>
+      <td>5/8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>111(bin) =   7(dec)</td>
+      <td>145 shots</td>
+      <td>7/8 = 0.88</td>
+      <td>7/8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>011(bin) =   3(dec)</td>
+      <td>112 shots</td>
+      <td>3/8 = 0.38</td>
+      <td>3/8</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_factors</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Non-trivial factor found with x+: 3
+Non-trivial factor found with x-: 5
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 5)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="n-21">
+<h2><span class="math notranslate nohighlight">\(N=21\)</span> の素因数分解：スケールの壁<a class="headerlink" href="#n-21" title="Link to this heading">#</a></h2>
+<p>前節では、比較的単純なケースとして <span class="math notranslate nohighlight">\( N = 15 \)</span> の因数分解を扱いました。<br />
+この節では、より大きな数 <span class="math notranslate nohighlight">\( N = 21 \)</span> を対象とした場合に、量子回路の構造や実行コストがどのように変化するかを確認します。</p>
+<section id="id12">
+<h3>量子回路の構築<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h4>位数推定のための回路構造の増大<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<p>Shorのアルゴリズムの中核である量子位数推定では、
+関数 <span class="math notranslate nohighlight">\(f(x) = a^x \bmod N\)</span> の周期 <span class="math notranslate nohighlight">\(r\)</span> を見つけるために、<strong>モジュラー指数演算</strong> を量子回路として実装する必要があります。<br />
+この部分は、入力レジスタの値 <span class="math notranslate nohighlight">\( x \)</span> に応じて、累乗 <span class="math notranslate nohighlight">\( a^x \)</span> を mod <span class="math notranslate nohighlight">\( N \)</span> で計算し出力する処理であり、ビット数が1増えるごとに、指数演算と剰余演算の組み合わせが指数的に複雑化します。</p>
+<p>たとえば、
+<span class="math notranslate nohighlight">\( N=15 \)</span> の場合はおよそ 7量子ビットで回路を構成できましたが、<span class="math notranslate nohighlight">\( N=21 \)</span> の場合には 10量子ビット以上が必要となり、ゲート数も数倍に増加します。</p>
+<p>この増大は単に「回路が長くなる」だけでなく、各ゲートに付随する誤りやノイズが蓄積するため、<strong>実機で安定して周期を観測することが極めて難しく</strong>なります。</p>
+</section>
+<section id="qft">
+<h4>QFT（量子フーリエ変換）の影響<a class="headerlink" href="#qft" title="Link to this heading">#</a></h4>
+<p>位数推定の最後には QFT（Quantum Fourier Transform）が適用され、周期性を干渉パターンとして観測可能な形に変換します。</p>
+<p><span class="math notranslate nohighlight">\( N=21 \)</span> のように必要なレジスタビット数が増えると、QFT自体のゲート数も急増し、
+さらに全ビット間の相互作用を必要とするため、回路の深さが増大します。<br />
+結果として、シミュレーション上では周期的ピークが現れるものの、実機ではノイズによりピークがぼやけ、周期を正確に読み取ることが困難になります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">qasm2</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">4</span> 
+
+<span class="n">num_control</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">qasm2</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;factor21.qasm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7d093fbdaa3d751adfd1377f154b4248e1f49d7e98a336363935b69517417f6b.png" src="../../_images/7d093fbdaa3d751adfd1377f154b4248e1f49d7e98a336363935b69517417f6b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_decomposed</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qubits: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-depth: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-size: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operator counts: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qubits: 15
+2q-depth: 2057
+2q-size: 2405
+Operator counts: OrderedDict([(&#39;u&#39;, 3414), (&#39;cx&#39;, 2405), (&#39;if_else&#39;, 45), (&#39;measure&#39;, 10)])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h3>回路のトランスパイル<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm_torino</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend_torino</span><span class="p">)</span>
+<span class="n">circ_a4_torino</span> <span class="o">=</span> <span class="n">pm_torino</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id15">
+<h3>回路の測定<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>※注意: 実行に時間を要します</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_torino</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">circ_a4_torino</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job ID: 015e4751-582a-49e4-b0fd-433596977c58
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id16">
+<h3>結果の可視化<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_n21</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">counts_n21</span> <span class="o">=</span> <span class="n">result_n21</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">join_data</span><span class="p">()</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts_n21</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/665cda526eb7647b5b62f1b33258b470bc474856a602391ebdaf3daa1b69852f.png" src="../../_images/665cda526eb7647b5b62f1b33258b470bc474856a602391ebdaf3daa1b69852f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rows to be displayed in table</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Corresponding phase of each bitstring</span>
+<span class="n">measured_phases</span> <span class="o">=</span> <span class="p">[]</span>
+ 
+<span class="k">for</span> <span class="n">bitstring</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts_n21</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bitstring</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Convert bitstring to decimal</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">decimal</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">num_control</span><span class="p">)</span>  <span class="c1"># Find corresponding eigenvalue</span>
+    <span class="n">measured_phases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span>
+    <span class="n">frac</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+    <span class="c1"># Add these values to the rows in our table:</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">frac</span><span class="o">.</span><span class="n">denominator</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+ 
+<span class="c1"># Print the rows in a table</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Register Output&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span> <span class="s2">&quot;Phase&quot;</span><span class="p">,</span> <span class="s2">&quot;Fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;Guess for r&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Register Output</th>
+      <th>Count</th>
+      <th>Phase</th>
+      <th>Fraction</th>
+      <th>Guess for r</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0111001110(bin) = 462(dec)</td>
+      <td>22 shots</td>
+      <td>462/1024 = 0.45</td>
+      <td>5/11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0111011000(bin) = 472(dec)</td>
+      <td>21 shots</td>
+      <td>472/1024 = 0.46</td>
+      <td>6/13</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0110011110(bin) = 414(dec)</td>
+      <td>20 shots</td>
+      <td>414/1024 = 0.40</td>
+      <td>2/5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1100011011(bin) = 795(dec)</td>
+      <td>20 shots</td>
+      <td>795/1024 = 0.78</td>
+      <td>7/9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1111001111(bin) = 975(dec)</td>
+      <td>20 shots</td>
+      <td>975/1024 = 0.95</td>
+      <td>14/15</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1019</th>
+      <td>1111101010(bin) = 1002(dec)</td>
+      <td>3 shots</td>
+      <td>1002/1024 = 0.98</td>
+      <td>1/1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1020</th>
+      <td>0101010010(bin) = 338(dec)</td>
+      <td>2 shots</td>
+      <td>338/1024 = 0.33</td>
+      <td>1/3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1021</th>
+      <td>1000001010(bin) = 522(dec)</td>
+      <td>2 shots</td>
+      <td>522/1024 = 0.51</td>
+      <td>1/2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1022</th>
+      <td>1000000101(bin) = 517(dec)</td>
+      <td>1 shots</td>
+      <td>517/1024 = 0.50</td>
+      <td>1/2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1023</th>
+      <td>1001100101(bin) = 613(dec)</td>
+      <td>1 shots</td>
+      <td>613/1024 = 0.60</td>
+      <td>3/5</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+<p>1024 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id17">
+<h3>位数の推定<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_factors</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Failed to find non-trivial factor with x+.
+Non-trivial factor found with x-: 3
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 3)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id18">
+<h1>実機を使った計算<a class="headerlink" href="#id18" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="n">QiskitRuntimeService</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span>
+  <span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum_platform&quot;</span><span class="p">,</span>
+  <span class="n">token</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR_IBM_QUANTUM_TOKEN&gt;&quot;</span><span class="p">,</span>
+  <span class="n">instance</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR_IBM_QUANTUM_INSTANCE&gt;&quot;</span><span class="p">,</span>
+  <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_shor&quot;</span><span class="p">,</span>
+  <span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+  <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_shor&quot;</span><span class="p">)</span>
+<span class="n">service</span><span class="o">.</span><span class="n">saved_accounts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend_hardware</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">backend_hardware</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_torino
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm_torino</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend_hardware</span><span class="p">)</span>
+<span class="n">circ_a4_torino</span> <span class="o">=</span> <span class="n">pm_torino</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_hardware</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pubs</span><span class="o">=</span><span class="p">[</span><span class="n">circ_a4_torino</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job ID: d3lqkdb4kkus739d1bd0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_n21_hardware</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">counts_n21_hardware</span> <span class="o">=</span> <span class="n">result_n21_hardware</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">join_data</span><span class="p">()</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts_n21_hardware</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/335714898f1bb4f322ca3358505f348ca424a3dccc942e321206adbca7a9bcf0.png" src="../../_images/335714898f1bb4f322ca3358505f348ca424a3dccc942e321206adbca7a9bcf0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rows to be displayed in table</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># Corresponding phase of each bitstring</span>
+<span class="n">measured_phases</span> <span class="o">=</span> <span class="p">[]</span>
+ 
+<span class="k">for</span> <span class="n">bitstring</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts_n21_hardware</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">decimal</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bitstring</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Convert bitstring to decimal</span>
+    <span class="n">phase</span> <span class="o">=</span> <span class="n">decimal</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">num_control</span><span class="p">)</span>  <span class="c1"># Find corresponding eigenvalue</span>
+    <span class="n">measured_phases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span>
+    <span class="n">frac</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">phase</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+    <span class="c1"># Add these values to the rows in our table:</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">frac</span><span class="o">.</span><span class="n">denominator</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+ 
+<span class="c1"># Print the rows in a table</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Register Output&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span> <span class="s2">&quot;Phase&quot;</span><span class="p">,</span> <span class="s2">&quot;Fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;Guess for r&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Register Output</th>
+      <th>Count</th>
+      <th>Phase</th>
+      <th>Fraction</th>
+      <th>Guess for r</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0011001100(bin) = 204(dec)</td>
+      <td>21 shots</td>
+      <td>204/1024 = 0.20</td>
+      <td>1/5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1100111110(bin) = 830(dec)</td>
+      <td>20 shots</td>
+      <td>830/1024 = 0.81</td>
+      <td>9/11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0000000000(bin) =   0(dec)</td>
+      <td>20 shots</td>
+      <td>0/1024 = 0.00</td>
+      <td>0/1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0000000101(bin) =   5(dec)</td>
+      <td>20 shots</td>
+      <td>5/1024 = 0.00</td>
+      <td>0/1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1110110110(bin) = 950(dec)</td>
+      <td>20 shots</td>
+      <td>950/1024 = 0.93</td>
+      <td>13/14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1018</th>
+      <td>1110101110(bin) = 942(dec)</td>
+      <td>2 shots</td>
+      <td>942/1024 = 0.92</td>
+      <td>12/13</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>1019</th>
+      <td>1000110110(bin) = 566(dec)</td>
+      <td>2 shots</td>
+      <td>566/1024 = 0.55</td>
+      <td>5/9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1020</th>
+      <td>1111000011(bin) = 963(dec)</td>
+      <td>2 shots</td>
+      <td>963/1024 = 0.94</td>
+      <td>14/15</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>1021</th>
+      <td>0001110111(bin) = 119(dec)</td>
+      <td>2 shots</td>
+      <td>119/1024 = 0.12</td>
+      <td>1/9</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1022</th>
+      <td>1110101111(bin) = 943(dec)</td>
+      <td>1 shots</td>
+      <td>943/1024 = 0.92</td>
+      <td>12/13</td>
+      <td>13</td>
+    </tr>
+  </tbody>
+</table>
+<p>1023 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>まだまだ位数の推定は難しいです。</p>
+<section id="id19">
+<h2>実用化への道のり<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<p>前節で確認したように、Shorのアルゴリズムをわずかにスケールアップするだけでも、<br />
+量子回路の複雑さは急激に増大し、現実の量子ハードウェアでは安定した結果を得ることが難しくなります。<br />
+この節では、「理論上のブレークスルー」と「実機での実現」の間にあるギャップを整理します。</p>
+<section id="id20">
+<h3>実用化を阻む最大の要因：量子ビット数と誤り率<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<p>RSA-2048をShorのアルゴリズムで解読するには、<br />
+<strong>理論上、数百万〜数千万の論理量子ビット（error-corrected qubits）</strong> が必要とされます。</p>
+<p>しかし、現在の量子デバイスはまだ <strong>数百〜数千の物理量子ビット</strong> にとどまっており、<br />
+しかもこれらのビットはノイズに非常に敏感です。<br />
+各ゲート操作や測定でわずかな誤りが生じるため、長い回路では誤りが累積して結果が崩壊してしまいます。</p>
+<p>これを克服するには「<strong>量子誤り訂正（Quantum Error Correction）</strong>」が不可欠です。<br />
+誤り訂正では、1つの論理量子ビットを維持するために多数の物理量子ビットを束ねて冗長化します。<br />
+そのため、実際には「量子ビット数を増やす」だけでは不十分であり、<br />
+<strong>誤り耐性を確保しつつ動作する巨大な量子プロセッサ</strong> が必要となります。</p>
+</section>
+<section id="id21">
+<h3>フォールトトレラント量子計算への挑戦<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<p>フォールトトレラント（Fault-Tolerant）量子計算とは、<br />
+ノイズや誤りが一定の範囲内であっても計算結果を安定して得られるよう設計された計算方式です。</p>
+<p>これを実現するには、</p>
+<ul class="simple">
+<li><p>高忠実度の量子ゲート（誤り率 10⁻⁴ 以下）</p></li>
+<li><p>低クロストークのデバイスアーキテクチャ</p></li>
+<li><p>トポロジカル量子ビットや表面符号（Surface Code）などの誤り訂正手法<br />
+が必要になります。</p></li>
+</ul>
+<p>これらの開発には膨大なハードウェア工学と制御技術の進展が求められており、<br />
+現在は各国の研究機関や企業（IBM、Google、IonQ、Rigetti など）が競い合いながら進めています。</p>
+</section>
+<section id="nisq">
+<h3>現在地：NISQ時代からの進化<a class="headerlink" href="#nisq" title="Link to this heading">#</a></h3>
+<p>私たちが現在扱える量子デバイスは「<strong>NISQ（Noisy Intermediate-Scale Quantum）</strong>」と呼ばれる段階にあります。<br />
+これは「量子ビット数は100〜1000程度だが、誤り訂正はまだ導入できない」時代を意味します。</p>
+<p>このNISQ時代には、Shorのようなフルスケールのアルゴリズムを動かすことは難しいものの、<br />
+以下のような「中間的なアプローチ」が模索されています。</p>
+<ul class="simple">
+<li><p>ノイズを補償するためのエラー緩和技術（ZNE, Dynamical Decoupling, Probabilistic Error Cancellation）</p></li>
+<li><p>部分的な誤り訂正を行うハイブリッド方式</p></li>
+<li><p>位数推定を部分的に古典計算と組み合わせる<strong>ハイブリッドShor回路</strong></p></li>
+</ul>
+<p>これらの試みは、将来的な大規模量子計算の道筋を見出す上で重要なステップとなっています。</p>
+</section>
+</section>
+<section id="id22">
+<h2>まとめ<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<p>ここまで、Shorのアルゴリズムの仕組みと、現在の量子ハードウェアでの実行例、そして実用化に向けた課題について見てきました。</p>
+<section id="id23">
+<h3>Shorのアルゴリズムの本質的な意義<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>Shorのアルゴリズムは、単なる「素因数分解の高速化手法」ではありません。<br />
+量子コンピュータが<strong>古典計算では不可能なスケールで干渉・重ね合わせを利用できる</strong>ことを最も明確に示したアルゴリズムです。</p>
+<p>具体的には、</p>
+<ul class="simple">
+<li><p>「周期性の検出」を量子並列性と干渉によって実現し、</p></li>
+<li><p>フーリエ変換によってその周期を効率的に抽出する、<br />
+という量子情報処理の本質が凝縮されています。</p></li>
+</ul>
+<p>この意味で、Shorのアルゴリズムは「量子計算の象徴的存在」であり、<br />
+その実現は量子コンピューティング分野全体の技術的指標（ベンチマーク）ともなっています。</p>
+</section>
+<section id="id24">
+<h3>暗号へのインパクトとパラダイムシフト<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<p>もし大規模量子コンピュータが実現すれば、<br />
+現在広く使われているRSAや楕円曲線暗号（ECC）は数学的に破られることになります。</p>
+<p>この事実は、<strong>暗号の安全性を「計算の困難さ」に頼る時代の終焉</strong>を意味します。<br />
+そのため、各国ではすでに「ポスト量子暗号（Post-Quantum Cryptography, PQC）」の研究・標準化が進められています。</p>
+<ul class="simple">
+<li><p>米国NISTは2022年に初のPQC標準候補（CRYSTALS-Kyber、Dilithiumなど）を選定。</p></li>
+<li><p>日本でもNICTや産総研が中心となり、量子安全な通信技術の開発を進行中。</p></li>
+</ul>
+<p>このように、Shorのアルゴリズムの登場は<strong>暗号技術そのものの進化を促す引き金</strong>となりました。</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./events/20251014_shor"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Shorのアルゴリズムに関する検証</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Shorのアルゴリズムとは</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">素因数分解に対するShorのアルゴリズムのアプローチ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Shorのアルゴリズムのステップ概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">量子計算のポイント</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">位数探索における位相推定の役割</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">位数探索への応用</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-15">例：<span class="math notranslate nohighlight">\(N=15\)</span>の素因数分解</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子回路の構築</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">回路のトランスパイル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">回路の測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">結果の可視化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">位数の推定</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#n-21"><span class="math notranslate nohighlight">\(N=21\)</span> の素因数分解：スケールの壁</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">量子回路の構築</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">位数推定のための回路構造の増大</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qft">QFT（量子フーリエ変換）の影響</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">回路のトランスパイル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">回路の測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">結果の可視化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">位数の推定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">実機を使った計算</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">実用化への道のり</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">実用化を阻む最大の要因：量子ビット数と誤り率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">フォールトトレラント量子計算への挑戦</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nisq">現在地：NISQ時代からの進化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">まとめ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Shorのアルゴリズムの本質的な意義</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">暗号へのインパクトとパラダイムシフト</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
