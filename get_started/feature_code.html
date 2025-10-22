@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Qiskit のインストール手順 (macOS版) &#8212; Quantum Tokyo</title>
+    <title>IBM Quantum アカウント設定〜学生・先生バージョン &#8212; Quantum Tokyo</title>
   
   
   
@@ -57,7 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'get_started/install_mac';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'get_started/feature_code';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -264,7 +264,7 @@
       
       
       
-      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fget_started/install_mac.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fget_started/feature_code.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +294,7 @@
       
       
       
-      <li><a href="../_sources/get_started/install_mac.md" target="_blank"
+      <li><a href="../_sources/get_started/feature_code.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -378,7 +378,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Qiskit のインストール手順 (macOS版)</h1>
+    <h1>IBM Quantum アカウント設定〜学生・先生バージョン</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,20 +388,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 「ターミナル」を起動</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2. Pythonの新しい仮想環境を作成する</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activate">3. 仮想環境をActivateする</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">4. pip のインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">5. Qiskit のインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6. 必要なライブラリーをインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-hello-world">7. Qiskit で Hello world</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8. インストール後、再度、Qiskitを使う時</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1. ターミナルから仮想環境の立ち上げ</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">2. Jupyter notebookの立ち上げ</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3. Jupyter notebookの終了</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4. 仮想環境の終了</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-skillsbuild">1. IBM SkillsBuild の登録</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-cloud-feture-code">2. IBM Cloud Feture Code の申請</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. IBM Cloud Feture Code の適用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-crn-api-key">4. IBM Quantum で CRN と API Key を作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考文献</a></li>
 </ul>
             </nav>
         </div>
@@ -413,126 +404,119 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qiskit-macos">
-<h1>Qiskit のインストール手順 (macOS版)<a class="headerlink" href="#qiskit-macos" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://www.ibm.com/quantum/qiskit">Qiskit</a> をmacOSにインストールします。（Windows版は<a class="reference internal" href="install_win.html"><span class="std std-doc">こちら</span></a>です。）
-<a class="reference external" href="https://quantum.cloud.ibm.com/docs/ja/guides/install-qiskit">公式インストール手順</a>をもとに行います。</p>
-<p>注意点：Qiskit 0.x をご自身の環境にインストールしたことがある方は、上書きアップグレードをしないでください。エラーが発生しやすくなります。</p>
-<section id="id1">
-<h2>1. 「ターミナル」を起動<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>以下のいずれかの操作で、「ターミナル」を起動します。</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ibm-quantum">
+<h1>IBM Quantum アカウント設定〜学生・先生バージョン<a class="headerlink" href="#ibm-quantum" title="Link to this heading">#</a></h1>
+<p>学生(高校生含む)・先生のみなさまは、<a class="reference external" href="https://www.ibm.com/academic/">IBM SkillsBuild</a> の Feature Code の適用により、クレジットカードの登録なしに、IBM Cloudのトライアルアカウントの期限を30日から365日に伸ばすことができます。
+(期限が切れる30日前から新しいFeature Codeの申請と更新ができ、教育機関に所属している間は引き続き利用が可能です。この期間を過ぎるとクレジットカードの登録が必要になるので注意が必要です。）</p>
+<p>この文書では、以下の順で登録することで、IBM Quantum を使う準備を行います。</p>
+<ol class="arabic simple">
+<li><p>IBM SkillsBuild の登録</p></li>
+<li><p>IBM Cloud Feture Code の申請</p></li>
+<li><p>IBM Cloud Feture Code の適用</p></li>
+<li><p>IBM Quantum で CRN と API Key を作成</p></li>
+</ol>
+<section id="ibm-skillsbuild">
+<h2>1. IBM SkillsBuild の登録<a class="headerlink" href="#ibm-skillsbuild" title="Link to this heading">#</a></h2>
+<p>1-1. <a class="reference external" href="https://www.ibm.com/academic/">IBM SkillsBuild</a> をWebブラウザで開きます。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/4393e4b5-a5b6-44e2-bd34-393107e7be84.png" />
+1-2. 「Access software downloads」 をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/48f37ed3-18a0-46d5-976f-557245732522.png" />
+1-3. 教育機関、大学で発行されたeメールIDを入力してください。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/f1a1d940-d6c9-4781-906d-b5db2dc942fb.png" />
+1-4. 学生(Student)か教員(Faculty)かを選択します。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/68d86458-2c25-447a-8b3f-586fd731bc2b.png" />
+1-5. 必要な情報を入力します。(学生の場合は以下です。)</p>
 <ul class="simple">
-<li><p>DockでLaunchpadのアイコンをクリックして、検索フィールドに「ターミナル」と入力してから、「ターミナル」をクリックします。</p></li>
-<li><p>Finder で、「/アプリケーション/ユーティリティ」フォルダを開いてから、「ターミナル」をダブルクリックします。</p></li>
+<li><p>Sought degree: 取得する学位</p></li>
+<li><p>Expected graduation Date: 卒業予定日</p></li>
+<li><p>Month: 卒業予定月</p></li>
+<li><p>Department: 学部
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ca543b75-c598-4b3d-b191-b4f423a1c895.png" /></p></li>
 </ul>
+<p>1-6. Software Downloads terms of service をお読みになった後、「I agree」 をクリックしてください。</p>
+<ul class="simple">
+<li><p>リンクをクリックすると文章が表示されます。文章を読んだ後、「I agree」をクリックしてください。</p></li>
+<li><p>情報をメールでもらいたい方は次のボックスもクリックしてください。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/48f6b258-ed2f-468e-ae96-a92e5eee5b5e.png" /></p></li>
+</ul>
+<p>1-7. Register をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/57a33821-9226-4818-9f47-a49110b7a026.png" />
+1-8. 登録内容に問題なければ「Proceed」で進みます。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ccfa85d0-176d-4b7a-87fa-6232944efbaf.png" />
+1-9. すでに教育機関発行のEメールIDでIBM IDをお持ちの方は、同じアカウントでここでログインしていただきます。教育機関で発行されたEメールIDのIBM IDをお持ちでない方は、今回ここでIBM IDを作成していただきます。表示される指示に従ってIBMIDを作成お願いします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b0645039-18ac-4237-bfca-82baf80a40a3.png" />
+1-10. 表示される指示に従ってIBMIDを作成お願いします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/77109ca6-9373-4f6e-9101-a10766164136.png" /></p>
 </section>
-<section id="python">
-<h2>2. Pythonの新しい仮想環境を作成する<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
-<p>以下のコマンドで <code class="docutils literal notranslate"><span class="pre">qiskit_env</span></code> の部分にご自分の使いたい仮想環境名（ディレクトリー名）と必要であればそのパスを入れ、実行します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">qiskit_env</span>
-</pre></div>
-</div>
+<section id="ibm-cloud-feture-code">
+<h2>2. IBM Cloud Feture Code の申請<a class="headerlink" href="#ibm-cloud-feture-code" title="Link to this heading">#</a></h2>
+<p>2-1. <a class="reference external" href="https://www.ibm.com/academic/">IBM SkillsBuild</a> をWebブラウザで開きます。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9ede6bfe-dccd-4974-89c8-729ff488e340.png" />
+2-2. 「Access software downloads」 をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/eac96be2-ee2d-471a-801b-9d28091ecbf6.png" />
+2-3. 教育機関、大学で発行されたeメールIDを入力してください。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/80980c4e-1c78-48c6-8dff-ebfe2f68a824.png" />
+2-4. IBM Cloudトピックページにアクセスします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/e6a14407-33c6-4c85-b474-d288e2ac2d96.png" />
+2-5. IBM Cloud Feature Codeをクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/e99e0cc2-ed26-4620-bf62-c4d9af8de662.png" />
+2-6. Request Feature Code をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/52e4f9dd-1bd5-4ed9-be5a-e1d301f5a4e9.png" />
+2-7. Feature Codeが表示されます。登録したメールIDにもメールが届きます。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/8b718b03-08fb-46f4-9b9f-1603f40625ba.png" /></p>
 </section>
-<section id="activate">
-<h2>3. 仮想環境をActivateする<a class="headerlink" href="#activate" title="Link to this heading">#</a></h2>
-<p>以下のコマンドで <code class="docutils literal notranslate"><span class="pre">qiskit_env</span></code> に作成した仮想環境名を入れて実行します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">qiskit_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
-</pre></div>
-</div>
-<p>正しく仮想環境に入れていれば、以下の図のように、ターミナルのコマンドラインの左端に作った仮想環境名が <code class="docutils literal notranslate"><span class="pre">(仮想環境名)</span></code> という状態で現れます。</p>
-<p><img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/7525a607-c6c4-7b82-98b9-4fa785aae442.png" /></p>
+<section id="id1">
+<h2>3. IBM Cloud Feture Code の適用<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>3-1. <a class="reference external" href="https://cloud.ibm.com/login">IBM Cloud ウェブサイト</a> を Web ブラウザで開き、IBMid を入力し、「続行」をクリックし、次にパスワードを入力し、ログインします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/1b983c34-6555-432c-968e-d4139acb9384.png" /></p>
+<p>3-2. 「コードを使用して登録する」をクリックします。このポップアップ画面が出ない人は、3-4 に飛んでください。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/c2cc4bcd-0a7d-4abf-9bd5-1d13452d3998.png" />
+3-3. 2-7で得た32文字のFeature code を入力（またはコピー／ペースト）し、「アカウントのアップグレード」をクリックします。 「4. IBM Quantum で CRN とAPI Key を作成」に進んでください。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/2e1dc282-f8dd-4518-a644-d44f1cb156ea.png" />
+3-4. ダッシュボードから、右上のメニューにある「管理」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/66f82ecd-37cb-41db-b292-8d55546541b8.png" />
+3-5. ドロップダウンメニューから「アカウント」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9a004e50-66cb-4a14-9d3a-cff84bc53318.png" />
+3-6. 左側のメニューから「アカウント設定」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ac44a1e1-0eae-48a6-b166-b26d615f1a82.png" />
+3-7. 「サブスクリプション・コードおよびフィーチャー・コード」セクションが表示されるまで下にスクロールし、「コードの適用」ボタンをクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/bf292137-a1dd-47a1-85fd-4ba30d831b38.png" />
+3-8. 32文字の Feature code を入力（またはコピー／ペースト）し、「適用」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/82bcdfca-91d4-4d72-aa4e-6e0fc3300579.png" /></p>
 </section>
-<section id="pip">
-<h2>4. pip のインストール<a class="headerlink" href="#pip" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://pip.pypa.io/en/stable/installation/">pip</a>がインストールされているか確認します。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="o">--</span><span class="n">version</span>
-</pre></div>
-</div>
-<p>インストールされている場合は、以下のようなメッセージが出ます。</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">24.0</span> <span class="pre">from</span> <span class="pre">/Users/../../qiskit_env/lib/python3.12/site-packages/pip</span> <span class="pre">(python</span> <span class="pre">3.12)</span></code></p>
-<p>インストールされていない場合は、以下のようなメッセージが出ます。</p>
-<p><code class="docutils literal notranslate"><span class="pre">zsh:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found:</span> <span class="pre">pip</span></code></p>
-<p>インストールされていなかった場合は、以下のコマンドでpipをインストールします。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">ensurepip</span> <span class="o">--</span><span class="n">upgrade</span>
-</pre></div>
-</div>
-</section>
-<section id="qiskit">
-<h2>5. Qiskit のインストール<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h2>
-<p>以下のコマンドでQiskitをインストールします。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">qiskit</span>
-</pre></div>
-</div>
+<section id="ibm-quantum-crn-api-key">
+<h2>4. IBM Quantum で CRN と API Key を作成<a class="headerlink" href="#ibm-quantum-crn-api-key" title="Link to this heading">#</a></h2>
+<p>4-1. <a class="reference external" href="https://quantum.cloud.ibm.com/">IBM Quantum Platform</a> を Web ブラウザで開き、IBM ID でサインインします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/129fdd04-92af-4e0e-8561-0bd3bd147fc2.png" />
+4-2. 「インスタンスの作成」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/e674b04a-b4a5-4126-854a-86aa0a58d937.png" />
+4-3. 「インスタンス名」に好きな名前を入れます：「Open instance」など。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/f0116278-a1aa-4244-bc23-9afd8c494e64.png" />
+4-4. 「Open」を選択し、「用語」を確認しチェックボックスをクリックし、「次へ」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/8922678d-61d3-476f-8e06-981f26c2ed90.png" />
+4-5. 「次へ」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/55746d24-065c-4294-958b-c69b34afef6c.png" />
+4-6. 「インスタンスの作成」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/630157b7-42fa-46f5-aacf-11a159e05919.png" />
+4-7. Instanceが作れたので、このトップページから「CRN」をコピーできます。実機のIBM Quantum デバイスで計算を実行する際に必要になります。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/696bdf6d-54a2-4908-a5e7-bc9bf8b4b4f7.png" />
+4-8. API key のとなりの「作成＋」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/703f70ec-f936-4125-9cb3-0ac0e26740f4.png" />
+4-9. 「名前」に好きな名前を入れ(自分の名前など)、「作成」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/0a8dcf51-5cbe-464d-8386-60c660e5303a.png" />
+4-10. 「ダウンロード」をクリックして、「apikey.json」を保存します。実機のIBM Quantum デバイスで計算を実行する際に必要になります。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/4cdb4079-cae9-46e5-bd3e-ae411a1401db.png" /></p>
+<p>以上で、IBM Quantumアカウント設定とIBM Quantumデバイスで実行するための設定は終了しました。
+お疲れ様でした！</p>
 </section>
 <section id="id2">
-<h2>6. 必要なライブラリーをインストール<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>Qiskit本体以外に必要となるライブラリーをインストールします。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">qiskit</span><span class="o">-</span><span class="n">ibm</span><span class="o">-</span><span class="n">runtime</span> <span class="n">jupyter</span> <span class="n">qiskit</span><span class="o">-</span><span class="n">aer</span>
-</pre></div>
-</div>
-<p>表示に必要なライブラリーをインストールします。以下のどちらかを実行してください。</p>
-<ul class="simple">
-<li><p>zshシェルの方：</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="s1">&#39;qiskit[visualization]&#39;</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>bashシェルの方：</p></li>
-</ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">qiskit</span><span class="p">[</span><span class="n">visualization</span><span class="p">]</span>
-</pre></div>
-</div>
-</section>
-<section id="qiskit-hello-world">
-<h2>7. Qiskit で Hello world<a class="headerlink" href="#qiskit-hello-world" title="Link to this heading">#</a></h2>
-<p>続けて、QiskitのHello worldを実行して、Qiskitが正しく動くか確認してみましょう。
-以下のコマンドで、Jupyter notebookを立ち上げます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
-</pre></div>
-</div>
-<p>以下のようにChromeなどのウェブブラウザーが起動します。右上の「New」をクリックし、「Python 3」を選んで、新しいNotebookを起動します。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/57f9b06c-d797-67f4-44d8-d61946521602.png" /></p>
-<p><a class="reference external" href="https://quantum.cloud.ibm.com/docs/ja/tutorials/hello-world">IBM Quantum Platform 資料のハローワールド</a> から最初のセルのコードをコピーします。</p>
-<p><img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/f28ca8d6-99ac-e749-2fa6-daaaf1632445.png" /></p>
-<p>自分のNotebookのセルに貼り付けます。「Shift」+「Enter」かまたは、上の方にある右向き三角アイコンで実行できます。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/7ceccdb1-66eb-80ee-3a35-d1dffbab177f.png" /></p>
-<p>正しくQiskitが動いている場合、以下の回路図が表示されます。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ff7df460-6907-9956-fb16-27f7c22a79df.png" /></p>
-<p>ファイルを閉じるには、左上の「File」→「Close and Shut Down Notebook」→「Ok」で終了できます。
-Jupyter notebookの環境を修了するには、ターミナルに戻り「Ctrl」+「c」のあと、「y」と入れて「Enter」キーを押します。
-ターミナルで以下のコマンドを実行すると、仮想環境から抜けることができます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
-</pre></div>
-</div>
-</section>
-<section id="id3">
-<h2>8. インストール後、再度、Qiskitを使う時<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>次にQiskitを使う時は、以下のようにしてください。</p>
-<section id="id4">
-<h3>1. ターミナルから仮想環境の立ち上げ<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">qiskit_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
-</pre></div>
-</div>
-</section>
-<section id="jupyter-notebook">
-<h3>2. Jupyter notebookの立ち上げ<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
-</pre></div>
-</div>
-<p>ここで新しいPython3のNotebookを立ち上げて、Qiskitを使うことができます。</p>
-</section>
-<section id="id5">
-<h3>3. Jupyter notebookの終了<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<p>必要なNotebookをSaveした後、ターミナルで「Ctrl」+「c」のあと、「y」と入れて「Enter」キー。</p>
-</section>
-<section id="id6">
-<h3>4. 仮想環境の終了<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
-</pre></div>
-</div>
-<p>以上です。お疲れ様でした！</p>
-</section>
+<h2>参考文献<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>以下の文書を参考に、内容を現在のものに改めて作成しました。</p>
+<ol class="arabic simple">
+<li><p>IBM SkillsBuild Software Downloadsの登録方法, <a class="github reference external" href="https://github.com/academic-initiative/documentation/blob/main/academic-initiative/jp/how-to/How-to-register-with-the-IBM-Academic-Initiative/readme.md">academic-initiative/documentation</a></p></li>
+<li><p>IBM Cloud フィーチャー・コードのリクエスト方法, <a class="github reference external" href="https://github.com/academic-initiative/documentation/blob/main/academic-initiative/jp/how-to/How-to-request-and-IBM-Cloud-Feature-Code/readme.md">academic-initiative/documentation</a></p></li>
+<li><p>IBM Cloud アカウントの登録方法, <a class="github reference external" href="https://github.com/academic-initiative/documentation/blob/main/academic-initiative/jp/how-to/How-to-create-an-IBM-Cloud-account/readme.md">academic-initiative/documentation</a></p></li>
+</ol>
 </section>
 </section>
 
@@ -582,20 +566,11 @@ Jupyter notebookの環境を修了するには、ターミナルに戻り「Ctrl
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. 「ターミナル」を起動</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">2. Pythonの新しい仮想環境を作成する</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activate">3. 仮想環境をActivateする</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pip">4. pip のインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">5. Qiskit のインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6. 必要なライブラリーをインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-hello-world">7. Qiskit で Hello world</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8. インストール後、再度、Qiskitを使う時</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1. ターミナルから仮想環境の立ち上げ</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">2. Jupyter notebookの立ち上げ</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3. Jupyter notebookの終了</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">4. 仮想環境の終了</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-skillsbuild">1. IBM SkillsBuild の登録</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-cloud-feture-code">2. IBM Cloud Feture Code の申請</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. IBM Cloud Feture Code の適用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-crn-api-key">4. IBM Quantum で CRN と API Key を作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">参考文献</a></li>
 </ul>
   </nav></div>
 
