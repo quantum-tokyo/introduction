@@ -1,8 +1,8 @@
-# Qiskit 1.x のインストール手順 (Windows版)
-[Qiskit 1.x](https://www.ibm.com/quantum/qiskit) をWindowsにインストールします。（macOS版は[こちら](install_mac.md)です。）
-[公式インストール手順](https://docs.quantum.ibm.com/start/install)をもとに行います。
+# Qiskit のインストール手順 (Windows版)
+[Qiskit](https://www.ibm.com/quantum/qiskit) をWindowsにインストールします。（macOS版は[こちら](install_mac.md)です。）
+[公式インストール手順](docs.quantum.ibm.com/start/install)をもとに行います。
 
-注意点：以前のバージョンのQiskitをご自身の環境にインストールしたことがある方は、上書きアップグレードをしないでください。エラーが発生しやすくなります。
+注意点：Qiskit 0.x をご自身の環境にインストールしたことがある方は、上書きアップグレードをしないでください。エラーが発生しやすくなります。
 
 
 ## 0. 「Python」のインストール
@@ -68,7 +68,7 @@ jupyter notebook
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ede8f62f-ce17-95b1-c774-48b720567093.png)
 
 
-[公式QiskitドキュメントのHello world](https://docs.quantum.ibm.com/start/hello-world) から最初のセルのコードをコピーします。
+[IBM Quantum Platform 資料のハローワールド](https://quantum.cloud.ibm.com/docs/ja/tutorials/hello-world) から最初のセルのコードをコピーします。
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/f28ca8d6-99ac-e749-2fa6-daaaf1632445.png)
 
