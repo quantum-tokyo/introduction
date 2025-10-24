@@ -388,13 +388,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">qBraid Lab で Qiskit を使う手順</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">補足：ファイルアップロード時には Qiskit カーネルを選択</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Qiskitで回路を作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">補足：ファイルアップロード時には Qiskit カーネルを選択</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Qiskitで回路を作成</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -408,11 +406,10 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="qbraid-lab-qiskit">
 <h1>qBraid Lab で Qiskit を使う手順<a class="headerlink" href="#qbraid-lab-qiskit" title="Link to this heading">#</a></h1>
 <p><a class="reference external" href="https://www.qbraid.com/">qBraid Lab</a>でQiskitを使う場合の手順です。はじめに 1 回 Qiskit をインストールすれば、次回からインストールなしで Qiskit を使うことができます。</p>
-<p><strong>ご注意</strong>：公式には、ご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（<a class="reference external" href="https://qiita.com/kifumi/items/8f3617051635f986cc5f">macOS版</a>、<a class="reference external" href="https://qiita.com/kifumi/items/d36d0601d963a17bcf93">Windows版</a>）をご覧ください。</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="qbraid">
-<h1>1. qBraid環境へのログイン<a class="headerlink" href="#qbraid" title="Link to this heading">#</a></h1>
-<p>ブラウザーを開き、 <a class="reference external" href="https://www.qbraid.com/">https://www.qbraid.com/</a> のサイトに入り、右上の「START NOW」をクリックします。</p>
+<p><strong>ご注意</strong>：公式には、ご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（<a class="reference internal" href="install_mac.html"><span class="std std-doc">macOS版</span></a>、<a class="reference internal" href="install_win.html"><span class="std std-doc">Windows版</span></a>）をご覧ください。</p>
+<section id="qbraid">
+<h2>1. qBraid環境へのログイン<a class="headerlink" href="#qbraid" title="Link to this heading">#</a></h2>
+<p>ブラウザーを開き、 <a class="reference external" href="https://www.qbraid.com/">https://www.qbraid.com/</a> のサイトに入り、右上の「Sign Up」をクリックします。</p>
 <p><img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/58016fd4-2238-4751-98d0-65c353a8b6d6.png" /></p>
 <p>GoogleのID(gmail)かまたは、Emailアドレスでログインできます。Emailアドレスの場合は、下の方の「Create An Account」でアカウントを作ってログインします。</p>
 <p><img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/d8d9a778-20ca-51be-7445-4cf350e0fc8a.png" /></p>
@@ -423,8 +420,8 @@ document.write(`
 <p>アンケートに答えない場合は「Skip」をクリックします。
 <img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/d3733b37-e4f6-179e-e298-91a22859cbd1.png" /></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="qbraid-lab">
-<h1>2. qBraid Labでの最初の操作手順<a class="headerlink" href="#qbraid-lab" title="Link to this heading">#</a></h1>
+<section id="qbraid-lab">
+<h2>2. qBraid Labでの最初の操作手順<a class="headerlink" href="#qbraid-lab" title="Link to this heading">#</a></h2>
 <p>上側中央のブロックの「Default Workspace」をクリックします。
 <img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/4718a0d0-ed32-455a-8dda-ec2717e8d05c.png" /></p>
 <p>引き続き、中央のブロックから一つラボイメージを選び、「Launch Lab」をクリックします。
@@ -451,13 +448,13 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="qiskit">
-<h1>補足：ファイルアップロード時には Qiskit カーネルを選択<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h1>
+<section id="qiskit">
+<h2>補足：ファイルアップロード時には Qiskit カーネルを選択<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h2>
 <p>ファイルをアップロードして開いたノートブックは、デフォルトのPython 3 のカーネルが使われ、そのままではQiskitが使えないので、右上の「Python 3 [Default]」をクリックして、インストールしたQiskitの入っているカーネルを選んで実行してください。
 <img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/87369347-4987-6259-9b3d-2563a8f03138.png" /></p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>3. Qiskitで回路を作成<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>3. Qiskitで回路を作成<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>続けて、ベル状態(2量子ビットのエンタングルメント)の回路を作成して実行してみましょう。</p>
 <p>以下のコードをノートブックの最初のセルに貼り付け、「Shift」+「Enter」で実行します。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
@@ -499,6 +496,7 @@ document.write(`
 <img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/a61a6e15-987c-48ec-b529-615251672d29.png" /></p>
 <p>IBMの実機の量子コンピューターで実行する手法はこちらをご確認ください：<a class="reference external" href="https://quantum-tokyo.github.io/introduction/get_started/bell.html">https://quantum-tokyo.github.io/introduction/get_started/bell.html</a></p>
 <p>お疲れ様でした！</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -547,13 +545,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">qBraid Lab で Qiskit を使う手順</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">補足：ファイルアップロード時には Qiskit カーネルを選択</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Qiskitで回路を作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">補足：ファイルアップロード時には Qiskit カーネルを選択</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Qiskitで回路を作成</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

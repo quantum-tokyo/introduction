@@ -1,10 +1,10 @@
 # qBraid Lab で Qiskit を使う手順
 [qBraid Lab](https://www.qbraid.com/)でQiskitを使う場合の手順です。はじめに 1 回 Qiskit をインストールすれば、次回からインストールなしで Qiskit を使うことができます。
 
-**ご注意**：公式には、ご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（[macOS版](https://qiita.com/kifumi/items/8f3617051635f986cc5f)、[Windows版](https://qiita.com/kifumi/items/d36d0601d963a17bcf93)）をご覧ください。
+**ご注意**：公式には、ご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（[macOS版](install_mac.md)、[Windows版](install_win.md)）をご覧ください。
 
-# 1. qBraid環境へのログイン
-ブラウザーを開き、 https://www.qbraid.com/ のサイトに入り、右上の「START NOW」をクリックします。
+## 1. qBraid環境へのログイン
+ブラウザーを開き、 https://www.qbraid.com/ のサイトに入り、右上の「Sign Up」をクリックします。
 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/58016fd4-2238-4751-98d0-65c353a8b6d6.png)
 
@@ -23,7 +23,7 @@ Googleでログインする場合を紹介します。アカウントを選択�
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/d3733b37-e4f6-179e-e298-91a22859cbd1.png)
 
 
-# 2. qBraid Labでの最初の操作手順
+## 2. qBraid Labでの最初の操作手順
 上側中央のブロックの「Default Workspace」をクリックします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/4718a0d0-ed32-455a-8dda-ec2717e8d05c.png)
 
@@ -63,13 +63,13 @@ Qiskitを使って、IBM Quantumの実機の量子コンピューターを使う
 !pip install qiskit-ibm-runtime qiskit-aer
 ```
 
-# 補足：ファイルアップロード時には Qiskit カーネルを選択
+## 補足：ファイルアップロード時には Qiskit カーネルを選択
 ファイルをアップロードして開いたノートブックは、デフォルトのPython 3 のカーネルが使われ、そのままではQiskitが使えないので、右上の「Python 3 [Default]」をクリックして、インストールしたQiskitの入っているカーネルを選んで実行してください。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/87369347-4987-6259-9b3d-2563a8f03138.png)
 
 
 
-# 3. Qiskitで回路を作成
+## 3. Qiskitで回路を作成
 続けて、ベル状態(2量子ビットのエンタングルメント)の回路を作成して実行してみましょう。
 
 以下のコードをノートブックの最初のセルに貼り付け、「Shift」+「Enter」で実行します。
