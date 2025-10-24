@@ -388,10 +388,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-hello-world">3. Qiskit で Hello world</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">qBraid Lab で Qiskit を使う手順</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">補足：ファイルアップロード時には Qiskit カーネルを選択</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Qiskitで回路を作成</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -404,12 +407,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="qbraid-lab-qiskit">
 <h1>qBraid Lab で Qiskit を使う手順<a class="headerlink" href="#qbraid-lab-qiskit" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://www.qbraid.com/">qBraid Lab</a>で Web ブラウザー上から Qiskit を使う場合の手順です。はじめに 1 回 Qiskit をインストールすれば、次回からインストールなしで Qiskit を使うことができます。</p>
-<p><strong>ご注意</strong>：<a class="reference external" href="https://quantum.cloud.ibm.com/docs/ja/guides/install-qiskit">公式には、ご自身のパソコンにQiskitをインストール</a>して使うことをおすすめしています。インストールの手順はこちら（<a class="reference internal" href="install_mac.html"><span class="std std-doc">macOS版</span></a>、<a class="reference internal" href="install_win.html"><span class="std std-doc">Windows版</span></a>）をご覧ください。</p>
-<section id="qbraid">
-<h2>1. qBraid環境へのログイン<a class="headerlink" href="#qbraid" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.qbraid.com/">qBraid Lab</a>でQiskitを使う場合の手順です。はじめに 1 回 Qiskit をインストールすれば、次回からインストールなしで Qiskit を使うことができます。</p>
+<p><strong>ご注意</strong>：公式には、ご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（<a class="reference external" href="https://qiita.com/kifumi/items/8f3617051635f986cc5f">macOS版</a>、<a class="reference external" href="https://qiita.com/kifumi/items/d36d0601d963a17bcf93">Windows版</a>）をご覧ください。</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="qbraid">
+<h1>1. qBraid環境へのログイン<a class="headerlink" href="#qbraid" title="Link to this heading">#</a></h1>
 <p>ブラウザーを開き、 <a class="reference external" href="https://www.qbraid.com/">https://www.qbraid.com/</a> のサイトに入り、右上の「START NOW」をクリックします。</p>
-<p><img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/288986d0-f689-802f-6d2e-4479a32a07c9.png" /></p>
+<p><img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/58016fd4-2238-4751-98d0-65c353a8b6d6.png" /></p>
 <p>GoogleのID(gmail)かまたは、Emailアドレスでログインできます。Emailアドレスの場合は、下の方の「Create An Account」でアカウントを作ってログインします。</p>
 <p><img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/d8d9a778-20ca-51be-7445-4cf350e0fc8a.png" /></p>
 <p>Googleでログインする場合を紹介します。アカウントを選択します。
@@ -419,43 +423,82 @@ document.write(`
 <p>アンケートに答えない場合は「Skip」をクリックします。
 <img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/d3733b37-e4f6-179e-e298-91a22859cbd1.png" /></p>
 </section>
-<section id="qbraid-lab">
-<h2>2. qBraid Labでの最初の操作手順<a class="headerlink" href="#qbraid-lab" title="Link to this heading">#</a></h2>
-<p>上側中央の紫色の「Launch Lab&gt;」をクリックします。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/29799381-b8ad-09f4-ec19-f6e96abc453d.png" /></p>
-<p>右側一番上のFreeのタブの「Start」をクリックします。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/739bda57-6df6-747c-22ae-6ebdda223adf.png" /></p>
-<p>以下のようにLab環境に入れます。真ん中の紫の「Start Tour」をクリックします。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b67cbb25-473d-3b5f-3ebd-0d2ddae89b16.png" /></p>
-<p>使い方のツアーを見たい方は「Next」を押していきます。見なくてもいい人は右上の「x」をクリックします。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/d39a4eb0-2430-c38e-5d89-7ce53453e5fc.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="qbraid-lab">
+<h1>2. qBraid Labでの最初の操作手順<a class="headerlink" href="#qbraid-lab" title="Link to this heading">#</a></h1>
+<p>上側中央のブロックの「Default Workspace」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/4718a0d0-ed32-455a-8dda-ec2717e8d05c.png" /></p>
+<p>引き続き、中央のブロックから一つラボイメージを選び、「Launch Lab」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/37b5fc82-a93c-47e1-8a74-cb4dbe78760e.png" /></p>
+<p>しばらくすると、以下のようにLab環境に入れます。使い方のツアーを見たくない人は「Stop Tour」をクリックします。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/c91753fd-70b1-47b0-b804-cf0ab2c68d22.png" /></p>
 <p>Qiskitを使って、IBM Quantumの実機の量子コンピューターを使うのであれば、課金は必要ないので、左の「Not Now」をクリックします。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/f28e62af-776d-a831-1f78-a9d91e580505.png" /></p>
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9e0c47ac-5537-42ef-9247-765372560297.png" /></p>
 <p>右側の「ENVIRONMENTS」枠から「＋ADD」をクリックして、
 <img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/931af54c-092c-678f-4d7d-29f70fb19de6.png" /></p>
 <p>たくさんの環境が出てきますので、「Qiskit」と名前のつく環境を探します。
-検索バーで「qiskit」を検索した結果、以下のように様々なバージョンのQiskitカーネル環境が出てきますので、この中から最新のものを選びましょう。2025年1月現在、最新は「QDC 2024」なので、今回はこちらを選びます。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/3bc6063c-495f-d3e7-7b9a-9287a22ab1e7.png" /></p>
+検索バーで「qiskit」を検索して、さらに「Qiskit」をクリックすると、
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/6d06aea7-2776-4a27-8e57-81ae30d880f7.png" /></p>
+<p>結果、以下のように様々なバージョンのQiskitカーネル環境が出てきますので、この中から最新のものを選びましょう。<strong>2025年10月現在、最新は「Qiskit (V2.2.1)」ですがこちらは調子が悪いようなので「Qiksit(v2.0.2)」を選びます。</strong>
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/6b78fa11-3565-4908-b0f5-2dd945816006.png" /></p>
 <p>「Install」をクリックするとインストールが始まり、インストール終了までしばらく時間がかかります。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9db02c64-2342-9fdf-17cb-2b00a8955d1b.png" /></p>
-<p>インストールが終了すると真ん中の「Launcher」タブに、Qiskit印の「Python 3[QDC 24]」のアイコンが増えているので、こちらをクリックすると、
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/7245d828-3b80-4ec1-4515-81e01dcea8f2.png" /></p>
-<p>新しいjupyter ノートブックが開きます。この環境には、Qiskitがインストールされているため、そのままコーディングをすることができます。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b6e31ea8-7a3f-f77e-0ccd-814d6631e994.png" /></p>
-<p><strong>ファイルをアップロードして開いたノートブックは、デフォルトのPython 3 のカーネルが使われ、そのままではQiskitが使えないので、右上の「Python 3 [Default]」をクリックして、インストールしたQiskitの入っているカーネルを選んで実行してください。</strong>
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ab4eb341-c0a3-459c-8589-a30281c644d0.png" /></p>
+<p>インストールが終了すると真ん中の「Launcher」タブに、Qiskit印の「Python3[qiksit(v2.0.2)]」のアイコンが増えているので、こちらをクリックすると、
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/f721e44d-0010-48cf-bc03-0945d258f8dc.png" /></p>
+<p>新しいjupyter ノートブックが開きます。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b6e31ea8-7a3f-f77e-0ccd-814d6631e994.png" />
+不足している可能性のあるライブラリーをインストールしておきます。以下のコマンドをコピーして、最初のセルに貼り付け、「Shift」+「Enter」で実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install qiskit-ibm-runtime qiskit-aer
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="qiskit">
+<h1>補足：ファイルアップロード時には Qiskit カーネルを選択<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h1>
+<p>ファイルをアップロードして開いたノートブックは、デフォルトのPython 3 のカーネルが使われ、そのままではQiskitが使えないので、右上の「Python 3 [Default]」をクリックして、インストールしたQiskitの入っているカーネルを選んで実行してください。
 <img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/87369347-4987-6259-9b3d-2563a8f03138.png" /></p>
 </section>
-<section id="qiskit-hello-world">
-<h2>3. Qiskit で Hello world<a class="headerlink" href="#qiskit-hello-world" title="Link to this heading">#</a></h2>
-<p>続けて、QiskitのHello worldを実行して、Qiskitが正しく動くか確認してみましょう。
-<a class="reference external" href="https://docs.quantum.ibm.com/start/hello-world">Qiskit公式ドキュメントのHello world</a> から最初のセルのコードをコピーします。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/2ed9083d-715a-b365-6b0d-6548eb739a14.png" /></p>
-<p>ノートブックの最初のセルに貼り付け、「Shift」+「Enter」で実行します。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/5a0f0fb5-a95b-7628-18c9-a65930e9fd7b.png" /></p>
-<p>正しくQiskitが動いている場合は、以下の回路図が出力されます。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/49937210-b757-9638-e800-89f4a042fb3e.png" /></p>
-<p>以上です！</p>
-</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>3. Qiskitで回路を作成<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>続けて、ベル状態(2量子ビットのエンタングルメント)の回路を作成して実行してみましょう。</p>
+<p>以下のコードをノートブックの最初のセルに貼り付け、「Shift」+「Enter」で実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_histogram</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注：<code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'qiskit_aer'</span></code>のエラーが出て qiskit-aer がインストールされていなかった場合には、以下のコマンドで qiskit-aer をインストールし、再度上のコードを実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install qiskit_aer
+</pre></div>
+</div>
+<p>問題ない場合には、以下のようにベル状態を作る量子回路が表示されるでしょう。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/fccb71fa-e014-4ab8-a585-ad97c4348257.png" /></p>
+<p>以下のコードでQiskit Aer シミュレーターを使って実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># シミュレーターで実験</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1">#  測定された回数を表示</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+<span class="c1"># ヒストグラムで測定された確率をプロット</span>
+<span class="n">plot_histogram</span><span class="p">(</span> <span class="n">counts</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>以下のような結果が出てきたら成功です。
+<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/a61a6e15-987c-48ec-b529-615251672d29.png" /></p>
+<p>IBMの実機の量子コンピューターで実行する手法はこちらをご確認ください：<a class="reference external" href="https://quantum-tokyo.github.io/introduction/get_started/bell.html">https://quantum-tokyo.github.io/introduction/get_started/bell.html</a></p>
+<p>お疲れ様でした！</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -504,10 +547,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-hello-world">3. Qiskit で Hello world</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">qBraid Lab で Qiskit を使う手順</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid">1. qBraid環境へのログイン</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qbraid-lab">2. qBraid Labでの最初の操作手順</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">補足：ファイルアップロード時には Qiskit カーネルを選択</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Qiskitで回路を作成</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
