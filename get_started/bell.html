@@ -388,7 +388,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">実機で実行する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 事前準備</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. 量子回路の作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. 量子シミュレーターでの実行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4. フェイクデバイスでの実行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5. 実機で実行する</a></li>
 </ul>
             </nav>
         </div>
@@ -402,7 +406,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>実機での実行<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>ベル状態を作成し、IBMの量子コンピューターで実行します。</p>
+<p>実機の量子コンピューターで実行する際には、実行時間である QPU time に注意して実行するようにしましょう。事前にシミュレーターや擬似バックエンドでテストし、回路が正しく動くことを確認してから実デバイスで実行します。</p>
+<section id="id2">
+<h2>1. 事前準備<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>IBMの量子コンピューターを使うためには、まず、<a class="reference external" href="https://quantum.cloud.ibm.com/">IBM Quantum Platform</a> にサインインするために、IBM Cloud アカウントが必要です。以下の方法で、IBM Cloud アカウントを作成し、<a class="reference external" href="https://quantum.cloud.ibm.com/">IBM Quantum Platform</a> にサインインしてください。</p>
+<ul class="simple">
+<li><p>学生(高校生含む)・教育機関に所属する先生は、<a class="reference external" href="https://quantum-tokyo.github.io/introduction/get_started/feature_code.html">「IBM Quantum アカウント設定〜学生・先生バージョン」</a>に従ってクレジットカードなしで IBM Cloud アカウントの登録を行います。</p></li>
+<li><p>上記以外の方は、<a class="reference external" href="https://quantum.cloud.ibm.com/registration">こちら</a>から IBM Cloud アカウントを作成してください。その際、有効なメールアドレスとクレジットカード情報が必要となります。</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>2. 量子回路の作成<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>今回は、ベル状態を例に回路を作成します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Qiskitライブラリーを導入</span>
@@ -416,7 +431,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p>ベル状態を作成します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -429,10 +443,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9d92244d3874789f0ded66580419863a01db55a3942cbacc51f01fc5460fe4a7.png" src="../_images/9d92244d3874789f0ded66580419863a01db55a3942cbacc51f01fc5460fe4a7.png" />
+<img alt="../_images/ae82829bc75e54dd56bda837ff1715950875f2d2f1fd8d355ec6bfe479622b97.png" src="../_images/ae82829bc75e54dd56bda837ff1715950875f2d2f1fd8d355ec6bfe479622b97.png" />
 </div>
 </div>
-<p>まずはシミュレーターで実験してみます。</p>
+</section>
+<section id="id4">
+<h2>3. 量子シミュレーターでの実行<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>まずはシミュレーターで実験してみます。Qiskit Aerを使います。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># シミュレーターで実験</span>
@@ -451,14 +468,50 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 508, &#39;00&#39;: 516}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 523, &#39;00&#39;: 501}
 </pre></div>
 </div>
-<img alt="../_images/4198896395124bad0692618623a79c8d9b81519ae26a0e26a4c5337730b49c3f.png" src="../_images/4198896395124bad0692618623a79c8d9b81519ae26a0e26a4c5337730b49c3f.png" />
+<img alt="../_images/e0cb5798ea10cca3a23347e798ad7d367e1b7773d3ecd2a3fdaba55f06cec390.png" src="../_images/e0cb5798ea10cca3a23347e798ad7d367e1b7773d3ecd2a3fdaba55f06cec390.png" />
 </div>
 </div>
-<section id="id2">
-<h2>実機で実行する<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+</section>
+<section id="id5">
+<h2>4. フェイクデバイスでの実行<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>実機の量子コンピューターで実験する前に、実際の量子コンピューターをモデル化した(量子ノイズもデバイスごとにモデル化されています) 擬似バックエンドである Fake device で実行してみます。今回は、<a class="reference external" href="https://quantum.cloud.ibm.com/docs/ja/api/qiskit-ibm-runtime/fake-provider-fake-torino">FakeTorino</a> デバイスを使います。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">fake_provider</span>
+<span class="n">backend_fake</span> <span class="o">=</span> <span class="n">fake_provider</span><span class="o">.</span><span class="n">FakeTorino</span><span class="p">()</span>
+
+<span class="c1"># 擬似バックエンドでの実行に最適な回路にトランスパイルします</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend_fake</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/777438f46ee793c2506918e2402d96726e003c488df3c81da91ca21243e37cb4.png" src="../_images/777438f46ee793c2506918e2402d96726e003c488df3c81da91ca21243e37cb4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend_fake</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_circuit</span><span class="p">])</span> <span class="c1"># デフォルトのショット数は1024です</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d5fa0bb8bb19e1516c0fd5169f224317aeb01921db1dce63339c26143ae9cf0b.png" src="../_images/d5fa0bb8bb19e1516c0fd5169f224317aeb01921db1dce63339c26143ae9cf0b.png" />
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>5. 実機で実行する<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>実量子コンピューターで実験するため次の手順で、API keyとCRNを次のセルのコードに入力してください。</p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://quantum.cloud.ibm.com/">https://quantum.cloud.ibm.com/</a> にサインインし、左側 「API key」の横にある「Create +」をクリックします。
@@ -499,12 +552,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend(&#39;ibm_kingston&#39;)&gt;,
- &lt;IBMBackend(&#39;ibm_marrakesh&#39;)&gt;,
- &lt;IBMBackend(&#39;ibm_pittsburgh&#39;)&gt;,
- &lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;,
- &lt;IBMBackend(&#39;ibm_fez&#39;)&gt;,
- &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;, &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;]
 </pre></div>
 </div>
 </div>
@@ -526,7 +574,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最も空いているバックエンドは:  &lt;IBMBackend(&#39;ibm_fez&#39;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最も空いているバックエンドは:  &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;
 </pre></div>
 </div>
 </div>
@@ -542,9 +590,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/819d996ff827d3ccba2bf18e958f75da4a8de350e5051cb3656c8cd80c956593.png" src="../_images/819d996ff827d3ccba2bf18e958f75da4a8de350e5051cb3656c8cd80c956593.png" />
+<img alt="../_images/52bb5b165f7628d5e35e87541df181add15b470401d2acceaa2654a205075ed8.png" src="../_images/52bb5b165f7628d5e35e87541df181add15b470401d2acceaa2654a205075ed8.png" />
 </div>
 </div>
+<p><strong>注意！！以下のセルを実行すると、実機の量子コンピューターで実行されます。QPU 時間を無駄に消費しないために、回路に問題がないかシミュレーターや擬似デバイスで確認してから実行しましょう。Open userの方の QPU 時間の上限は1ヶ月に10分です。</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Samplerで実行します</span>
@@ -557,7 +606,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: d30lk05otchc73baioeg
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: d3tm08cv6o9s73ct2c1g
 </pre></div>
 </div>
 </div>
@@ -566,7 +615,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> 
-<span class="c1">#job = service.job(&quot;d2voc9jok8rs73cua4k0&quot;) </span>
+<span class="c1">#job = service.job(&quot;d3tm08cv6o9s73ct2c1g&quot;) </span>
 <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span> <span class="c1"># ジョブの実行状態を確認します</span>
 </pre></div>
 </div>
@@ -582,13 +631,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 待ち時間が長い時に後から結果を確認する場合</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>  
-<span class="n">job</span><span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;d30lk05otchc73baioeg&#39;</span><span class="p">)</span> <span class="c1"># 例です。上に出力された自分のjob_idを入れて実行してください。</span>
+<span class="n">job</span><span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;d3tm08cv6o9s73ct2c1g&#39;</span><span class="p">)</span> <span class="c1"># 例です。上に出力された自分のjob_idを入れて実行してください。</span>
 <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span> <span class="c1"># ジョブの実行状態を確認します</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;QUEUED&#39;
 </pre></div>
 </div>
 </div>
@@ -681,7 +730,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">実機で実行する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 事前準備</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. 量子回路の作成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">3. 量子シミュレーターでの実行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">4. フェイクデバイスでの実行</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">5. 実機で実行する</a></li>
 </ul>
   </nav></div>
 
