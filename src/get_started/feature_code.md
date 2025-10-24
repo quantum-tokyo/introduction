@@ -6,8 +6,8 @@
 この文書では、以下の順で登録することで、IBM Quantum を使う準備を行います。
 
 1. IBM SkillsBuild の登録
-2. IBM Cloud Feture Code の申請
-3. IBM Cloud Feture Code の適用
+2. IBM Cloud Feature Code の申請
+3. IBM Cloud Feature Code の適用
 4. IBM Quantum で CRN と API Key を作成
 
 ## 1. IBM SkillsBuild の登録
@@ -40,7 +40,7 @@
 1-10. 表示される指示に従ってIBMIDを作成お願いします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/77109ca6-9373-4f6e-9101-a10766164136.png)
 
-## 2. IBM Cloud Feture Code の申請
+## 2. IBM Cloud Feature Code の申請
 2-1. [IBM SkillsBuild](https://www.ibm.com/academic/) をWebブラウザで開きます。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9ede6bfe-dccd-4974-89c8-729ff488e340.png)
 2-2. 「Access software downloads」 をクリックします。
@@ -56,7 +56,7 @@
 2-7. Feature Codeが表示されます。登録したメールIDにもメールが届きます。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/8b718b03-08fb-46f4-9b9f-1603f40625ba.png)
 
-## 3. IBM Cloud Feture Code の適用
+## 3. IBM Cloud Feature Code の適用
 3-1. [IBM Cloud ウェブサイト](https://cloud.ibm.com/login) を Web ブラウザで開き、IBMid を入力し、「続行」をクリックし、次にパスワードを入力し、ログインします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/1b983c34-6555-432c-968e-d4139acb9384.png)
 
