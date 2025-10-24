@@ -37,7 +37,7 @@ Googleでログインする場合を紹介します。アカウントを選択�
 Qiskitを使って、IBM Quantumの実機の量子コンピューターを使うのであれば、課金は必要ないので、左の「Not Now」をクリックします。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/9e0c47ac-5537-42ef-9247-765372560297.png)
 
-右側の「ENVIRONMENTS」枠から「＋ADD」をクリックして、
+右側の「ENVIRONMENTS」枠から「＋ADD」をクリックすると、
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/931af54c-092c-678f-4d7d-29f70fb19de6.png)
 
 たくさんの環境が出てきますので、「Qiskit」と名前のつく環境を探します。
@@ -45,10 +45,10 @@ Qiskitを使って、IBM Quantumの実機の量子コンピューターを使う
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/6d06aea7-2776-4a27-8e57-81ae30d880f7.png)
 
 
-結果、以下のように様々なバージョンのQiskitカーネル環境が出てきますので、この中から最新のものを選びましょう。**2025年10月現在、最新は「Qiskit (V2.2.1)」ですがこちらは調子が悪いようなので「Qiksit(v2.0.2)」を選びます。** 
+以下のように様々なバージョンのQiskitカーネル環境が出てきますので、この中から最新のものを選びましょう。**注：2025年10月現在、最新は「Qiskit (V2.2.1)」ですがこちらは調子が悪いようなので「Qiksit(v2.0.2)」を選びます。** 
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/6b78fa11-3565-4908-b0f5-2dd945816006.png)
 
-「Install」をクリックするとインストールが始まり、インストール終了までしばらく時間がかかります。
+「Install」をクリックするとインストールが始まり、完了までしばらく時間がかかります。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ab4eb341-c0a3-459c-8589-a30281c644d0.png)
 
 インストールが終了すると真ん中の「Launcher」タブに、Qiskit印の「Python3[qiksit(v2.0.2)]」のアイコンが増えているので、こちらをクリックすると、
