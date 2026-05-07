@@ -1,0 +1,769 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>title: 密度行列の基礎 description: 量子情報と計算に関する無料のIBMコース &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/density-matrices/density-matrix-basics_ja';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/density-matrices/density-matrix-basics_ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/density-matrices/density-matrix-basics_ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>title: 密度行列の基礎
+description: 量子情報と計算に関する無料のIBMコース</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">title: 密度行列の基礎
+description: 量子情報と計算に関する無料のIBMコース</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">密度行列の基礎</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">行列のトレース</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正半定値行列</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">密度行列の解釈</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">状態ベクトルとの関係</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <hr class="docutils" />
+<section id="title-description-ibm">
+<h1>title: 密度行列の基礎
+description: 量子情報と計算に関する無料のIBMコース<a class="headerlink" href="#title-description-ibm" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>密度行列の基礎<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>まず、密度行列が何であるかを数学的な観点から記述し、その後いくつかの例を見ていきます。
+その後、密度行列がどのように機能するかに関するいくつかの基本的側面と、それらが量子情報の簡略化された定式化における量子状態ベクトルとどのように関係するかを議論します。</p>
+<section id="id2">
+<h2>定義<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>量子系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> があると仮定し、この系の（有限で空でない）古典状態集合を <span class="math notranslate nohighlight">\(\Sigma\)</span> とします。
+ここでは「量子情報の基礎」コースで用いられている命名規則を踏襲しており、機会があれば今後も同様に従います。</p>
+<p>量子情報の一般的な定式化において、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の量子状態は <em>密度行列</em> <span class="math notranslate nohighlight">\(\rho\)</span> によって記述されます。
+その成分は複素数であり、行と列の添字（両方とも）は古典状態集合 <span class="math notranslate nohighlight">\(\Sigma\)</span> と対応付けられています。
+小文字のギリシャ文字 <span class="math notranslate nohighlight">\(\rho\)</span> は密度行列の名前として慣習的に最もよく使われますが、<span class="math notranslate nohighlight">\(\sigma\)</span> や <span class="math notranslate nohighlight">\(\xi\)</span> も一般的に用いられます。</p>
+<p>以下は量子ビットの状態を表す密度行列のいくつかの例です：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+1 &amp; 0\\
+0 &amp; 0
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+\frac{1}{2} &amp; \frac{1}{2}\\[2mm]
+\frac{1}{2} &amp; \frac{1}{2}
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+\frac{3}{4} &amp; \frac{i}{8}\\[2mm]
+-\frac{i}{8} &amp; \frac{1}{4}
+\end{pmatrix},
+\quad\text{and}\quad
+\begin{pmatrix}
+\frac{1}{2} &amp; 0\\[2mm]
+0 &amp; \frac{1}{2}
+\end{pmatrix}.
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\rho\)</span> が密度行列であるとは、次の2つの条件（これらはすぐに説明されます）がともに満たされていることを意味します：</p>
+<ol class="arabic simple">
+<li><p>トレースが1であること：<span class="math notranslate nohighlight">\(\operatorname{Tr}(\rho) = 1\)</span></p></li>
+<li><p>正半定値性：<span class="math notranslate nohighlight">\(\rho \geq 0\)</span></p></li>
+</ol>
+<section id="id3">
+<h3>行列のトレース<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>密度行列に関する最初の条件は、行列の <em>トレース</em> を指します。
+これはすべての正方行列に対して定義される関数であり、対角成分の総和として定義されます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{Tr}
+\begin{pmatrix}
+\alpha_{0,0} &amp; \alpha_{0,1} &amp; \cdots &amp; \alpha_{0,n-1}\\[1.5mm]
+\alpha_{1,0} &amp; \alpha_{1,1} &amp; \cdots &amp; \alpha_{1,n-1}\\[1.5mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1.5mm]
+\alpha_{n-1,0} &amp; \alpha_{n-1,1} &amp; \cdots &amp; \alpha_{n-1,n-1}
+\end{pmatrix}
+= \alpha_{0,0} + \alpha_{1,1} + \cdots + \alpha_{n-1,n-1}.
+\end{split}\]</div>
+<p>トレースは <em>線形</em> 関数です：同じサイズの任意の2つの正方行列 <span class="math notranslate nohighlight">\(A\)</span> と <span class="math notranslate nohighlight">\(B\)</span>、および任意の複素数 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> に対して、次の等式が常に成り立ちます。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}(\alpha A + \beta B) = \alpha \operatorname{Tr}(A) + \beta \operatorname{Tr}(B)
+\]</div>
+<p>トレースは非常に重要な関数であり、これについてはさらに多くのことが言えますが、必要になったときに詳しく述べることにします。</p>
+</section>
+<section id="id4">
+<h3>正半定値行列<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>2つ目の条件は、行列が <em>正半定値</em> であるという性質に関するものです。これは量子情報理論や他の多くの分野において基本的な概念です。</p>
+<p>行列 <span class="math notranslate nohighlight">\(P\)</span> が <em>正半定値</em> であるとは、ある行列 <span class="math notranslate nohighlight">\(M\)</span> が存在して</p>
+<div class="math notranslate nohighlight">
+\[
+P = M^{\dagger} M
+\]</div>
+<p>と書けることを意味します。</p>
+<p>ここで、<span class="math notranslate nohighlight">\(M\)</span> を <span class="math notranslate nohighlight">\(P\)</span> と同じサイズの正方行列と要求してもよいですし、非正方行列であっても構いませんが、いずれにしても同じクラスの行列が得られます。</p>
+<p>この条件にはいくつかの同値な（しかし等価な）定義があり、例えば次のようなものがあります：</p>
+<ul class="simple">
+<li><p>行列 <span class="math notranslate nohighlight">\(P\)</span> は、<span class="math notranslate nohighlight">\(P\)</span> がエルミート（すなわち自身の共役転置に等しい）であり、そのすべての固有値が非負の実数であるとき、かつそのときに限り正半定値である。
+エルミート性と固有値が非負であることを確認することは、正半定値性を検証するための簡単な計算的方法です。</p></li>
+<li><p>行列 <span class="math notranslate nohighlight">\(P\)</span> が正半定値であるとは、<span class="math notranslate nohighlight">\(P\)</span> と同じ次元をもつ任意の複素ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> に対して、<span class="math notranslate nohighlight">\(\langle \psi \vert P \vert \psi \rangle\)</span> が常に0以上になることと同値である。</p></li>
+</ul>
+<p>正半定値行列を直感的に理解する一つの方法は、それらが非負実数の行列版であると考えることです。
+すなわち、正半定値行列は複素正方行列に対して、非負実数が複素数に対するのと同じ関係にあります。</p>
+<p>例えば、複素数 <span class="math notranslate nohighlight">\(\alpha\)</span> が非負実数であることは、ある複素数 <span class="math notranslate nohighlight">\(\beta\)</span> が存在して</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha = \overline{\beta} \beta
+\]</div>
+<p>と書けることと同値であり、これはスカラーの場合における正半定値性の定義に対応しています。</p>
+<p>一般に行列はスカラーより複雑な対象ですが、それでもこの見方は有用です。</p>
+<p>また、記号 <span class="math notranslate nohighlight">\(P \geq 0\)</span> は <span class="math notranslate nohighlight">\(P\)</span> が正半定値であることを表します。
+特に注意すべき点として、この文脈において <span class="math notranslate nohighlight">\(P \geq 0\)</span> は <span class="math notranslate nohighlight">\(P\)</span> の各成分が非負であることを意味するわけではありません。
+実際、負の成分を持つ正半定値行列も存在し、逆にすべての成分が正であっても正半定値でない行列も存在します。</p>
+</section>
+<section id="id5">
+<h3>密度行列の解釈<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>ここまでの時点では、密度行列の定義はやや恣意的で抽象的に見えるかもしれません。
+なぜなら、これらの行列やその成分にまだ意味付けを与えていないからです。</p>
+<p>密度行列がどのように機能し、どのように解釈されるかはこの後で明らかになりますが、現時点では次のように（やや非形式的に）考えると役立つかもしれません：</p>
+<ul class="simple">
+<li><p>密度行列の <em>対角成分</em> は、標準基底測定を行ったときに各古典状態が現れる確率を与える。</p></li>
+<li><p>密度行列の <em>非対角成分</em> は、その成分に対応する2つの古典状態がどの程度量子重ね合わせにあるか、およびそれらの相対位相を記述する。</p></li>
+</ul>
+<p>量子状態が密度行列で表されるべきであることは、先験的には明らかではありません。
+実際には、量子状態を密度行列で表すという選択から、量子情報の数学的記述全体が自然に導かれるという意味があります。
+量子情報の他のすべての内容は、この一つの選択からかなり論理的に導かれます。</p>
+</section>
+</section>
+<section id="id6">
+<h2>状態ベクトルとの関係<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> は、ユークリッドノルムが1であり、その成分が古典状態集合 <span class="math notranslate nohighlight">\(\Sigma\)</span> と対応付けられた列ベクトルであることを思い出してください。
+同じ状態の密度行列表現 <span class="math notranslate nohighlight">\(\rho\)</span> は次のように定義されます：</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \vert\psi\rangle\langle\psi\vert
+\]</div>
+<p>これは列ベクトルと行ベクトルの積であり、その結果は行と列が <span class="math notranslate nohighlight">\(\Sigma\)</span> に対応する正方行列になります。
+この形の行列は密度行列であるだけでなく、常に射影であり、ランクは1です。</p>
+<p>例として、まず、2つの量子ビット状態ベクトルを定義します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert {+i} \rangle &amp; = \frac{1}{\sqrt{2}} \vert 0 \rangle + \frac{i}{\sqrt{2}} \vert 1 \rangle
+= \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] \frac{i}{\sqrt{2}} \end{pmatrix} \\[5mm]
+\vert {-i} \rangle &amp; = \frac{1}{\sqrt{2}} \vert 0 \rangle - \frac{i}{\sqrt{2}} \vert 1 \rangle
+= \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] -\frac{i}{\sqrt{2}} \end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>これら2つのベクトルに対応する密度行列は次の通りです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert {+i} \rangle\langle{+i}\vert
+&amp; = \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] \frac{i}{\sqrt{2}}\end{pmatrix}
+\begin{pmatrix} \frac{1}{\sqrt{2}} &amp; - \frac{i}{\sqrt{2}}\end{pmatrix}
+= \begin{pmatrix}
+\frac{1}{2} &amp; -\frac{i}{2}\\[2mm]
+\frac{i}{2} &amp; \frac{1}{2}
+\end{pmatrix}\\[5mm]
+\vert {-i} \rangle\langle{-i}\vert
+&amp; = \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] -\frac{i}{\sqrt{2}}\end{pmatrix}
+\begin{pmatrix} \frac{1}{\sqrt{2}} &amp; \frac{i}{\sqrt{2}}\end{pmatrix}
+= \begin{pmatrix}
+\frac{1}{2} &amp; \frac{i}{2}\\[2mm]
+-\frac{i}{2} &amp; \frac{1}{2}
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>以下は、これらの状態と、他のいくつかの基本的な例
+<span class="math notranslate nohighlight">\(\vert 0\rangle,\ \vert 1\rangle,\ \vert {+}\rangle,\ \vert {-}\rangle\)</span>
+を並べた表です。これら6つの状態は後のレッスンでも再び登場します。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>状態ベクトル</p></th>
+<th class="head text-center"><p>密度行列</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vert 0\rangle = \begin{pmatrix} 1 \\[1mm] 0 \end{pmatrix}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert 0\rangle\langle 0\vert = \begin{pmatrix} 1 &amp; 0\\[1mm] 0 &amp; 0 \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vert 1\rangle = \begin{pmatrix} 0 \\[1mm] 1 \end{pmatrix}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert 1\rangle\langle 1\vert = \begin{pmatrix} 0 &amp; 0\\[1mm] 0 &amp; 1 \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {+}\rangle = \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] \frac{1}{\sqrt{2}} \end{pmatrix}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {+}\rangle\langle {+}\vert = \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2}\\[2mm] \frac{1}{2} &amp; \frac{1}{2} \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {-} \rangle = \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] -\frac{1}{\sqrt{2}}\end{pmatrix}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {-}\rangle\langle {-}\vert = \begin{pmatrix} \frac{1}{2} &amp; -\frac{1}{2}\\[2mm] -\frac{1}{2} &amp; \frac{1}{2} \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {+i} \rangle = \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] \frac{i}{\sqrt{2}} \end{pmatrix}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {+i} \rangle\langle {+i} \vert = \begin{pmatrix} \frac{1}{2} &amp; -\frac{i}{2}\\[2mm] \frac{i}{2} &amp; \frac{1}{2} \end{pmatrix}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {-i} \rangle = \begin{pmatrix} \frac{1}{\sqrt{2}} \\[2mm] -\frac{i}{\sqrt{2}}\end{pmatrix}\)</span></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(\vert {-i} \rangle\langle {-i} \vert = \begin{pmatrix} \frac{1}{2} &amp; \frac{i}{2}\\[2mm] -\frac{i}{2} &amp; \frac{1}{2} \end{pmatrix}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>もう一つの例として、「量子情報の基礎」コースの <em>Single systems</em> レッスンに登場した状態を示します。
+状態ベクトル表示と密度行列表現の両方を含みます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert v\rangle = \frac{1 + 2 i}{3}\,\vert 0\rangle - \frac{2}{3}\,\vert 1\rangle
+\qquad
+\vert v\rangle\langle v\vert =
+\begin{pmatrix}
+  \frac{5}{9} &amp; \frac{-2 - 4 i}{9}\\[2mm]
+  \frac{-2 + 4 i}{9} &amp; \frac{4}{9}
+\end{pmatrix}
+\end{split}\]</div>
+<p>量子状態ベクトル <span class="math notranslate nohighlight">\(\vert \psi \rangle\)</span> に対して
+<span class="math notranslate nohighlight">\(\rho = \vert \psi \rangle \langle \psi \vert\)</span> の形をとる密度行列は <em>純粋状態</em> と呼ばれます。
+すべての密度行列がこの形で書けるわけではなく、純粋でない状態も存在します。</p>
+<p>純粋状態の密度行列は、固有値として1を1つ持ち、他のすべての固有値は0です。
+これは、密度行列の固有値がその状態に内在するランダム性や不確定性を記述するという解釈と一致しています。
+本質的に、純粋状態 <span class="math notranslate nohighlight">\(\rho = \vert \psi \rangle \langle \psi \vert\)</span> には不確定性がなく、状態は確実に <span class="math notranslate nohighlight">\(\vert \psi \rangle\)</span> です。</p>
+<p>一般に、量子状態ベクトル</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert\psi\rangle =
+\begin{pmatrix}
+\alpha_0\\
+\alpha_1\\
+\vdots\\
+\alpha_{n-1}
+\end{pmatrix}
+\end{split}\]</div>
+<p>（古典状態が <span class="math notranslate nohighlight">\(n\)</span> 個ある系）に対して、その密度行列表現は次の通りです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\psi\rangle\langle\psi\vert
+&amp; =
+\begin{pmatrix}
+\alpha_0 \overline{\alpha_0} &amp; \alpha_0 \overline{\alpha_1} &amp; \cdots &amp; \alpha_0 \overline{\alpha_{n-1}}\\[1mm]
+\alpha_1 \overline{\alpha_0} &amp; \alpha_1 \overline{\alpha_1} &amp; \cdots &amp; \alpha_1 \overline{\alpha_{n-1}}\\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+\alpha_{n-1} \overline{\alpha_0} &amp; \alpha_{n-1} \overline{\alpha_1} &amp; \cdots &amp; \alpha_{n-1} \overline{\alpha_{n-1}}
+\end{pmatrix}\\[10mm]
+&amp; = \begin{pmatrix}
+\vert\alpha_0\vert^2 &amp; \alpha_0 \overline{\alpha_1} &amp; \cdots &amp; \alpha_0 \overline{\alpha_{n-1}}\\[1mm]
+\alpha_1 \overline{\alpha_0} &amp; \vert\alpha_1\vert^2 &amp; \cdots &amp; \alpha_1 \overline{\alpha_{n-1}}\\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+\alpha_{n-1} \overline{\alpha_0} &amp; \alpha_{n-1} \overline{\alpha_1} &amp; \cdots &amp; \vert\alpha_{n-1}\vert^2
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、純粋状態の場合には、密度行列の対角成分が標準基底測定において各古典状態が出現する確率を与えることが確認できます。</p>
+<p>純粋状態に関する最後の注意として、密度行列は量子状態ベクトルに存在する <em>グローバル位相</em> に関する縮退(冗長性)を取り除きます。
+実数 <span class="math notranslate nohighlight">\(\theta\)</span> に対して、グローバル位相だけが異なる2つの量子状態ベクトル
+<span class="math notranslate nohighlight">\(\vert \psi \rangle\)</span> と <span class="math notranslate nohighlight">\(\vert \phi \rangle = e^{i \theta} \vert \psi \rangle\)</span>
+があると仮定します。
+これらはグローバル位相だけが異なるため、たとえベクトル自体は異なっていても、まったく同じ量子状態を表しています。
+一方で、これら2つの状態ベクトルから得られる密度行列は同一になります。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \phi \rangle \langle \phi \vert =
+\bigl( e^{i\theta} \vert \psi \rangle \bigr) \bigl( e^{i\theta} \vert \psi \rangle \bigr)^{\dagger}
+= e^{i(\theta - \theta)} \vert \psi \rangle \langle \psi \vert
+= \vert \psi \rangle \langle \psi \vert
+\]</div>
+<p>一般に、密度行列は量子状態の一意な表現を与えます：
+任意の測定に対してまったく同じ結果の統計を生成する2つの量子状態は、<strong>そのときに限り</strong>密度行列表現が等しいです。
+数学的な言い方をすると、密度行列は量子状態の <em>忠実な（faithful）表現</em> を与えます。</p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/density-matrices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">title: 密度行列の基礎
+description: 量子情報と計算に関する無料のIBMコース</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">密度行列の基礎</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">行列のトレース</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正半定値行列</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">密度行列の解釈</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">状態ベクトルとの関係</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
