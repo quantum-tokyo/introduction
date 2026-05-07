@@ -378,7 +378,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定義</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">行列のトレース</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正半定値行列</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">半正定値行列</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">密度行列の解釈</a></li>
 </ul>
 </li>
@@ -431,7 +431,7 @@
 <p><span class="math notranslate nohighlight">\(\rho\)</span> が密度行列であるとは、次の2つの条件（これらはすぐに説明されます）がともに満たされていることを意味します：</p>
 <ol class="arabic simple">
 <li><p>トレースが1であること：<span class="math notranslate nohighlight">\(\operatorname{Tr}(\rho) = 1\)</span></p></li>
-<li><p>正半定値性：<span class="math notranslate nohighlight">\(\rho \geq 0\)</span></p></li>
+<li><p>半正定値性：<span class="math notranslate nohighlight">\(\rho \geq 0\)</span></p></li>
 </ol>
 <section id="id3">
 <h3>行列のトレース<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
@@ -456,9 +456,9 @@
 <p>トレースは非常に重要な関数であり、これについてはさらに多くのことが言えますが、必要になったときに詳しく述べることにします。</p>
 </section>
 <section id="id4">
-<h3>正半定値行列<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>2つ目の条件は、行列が <em>正半定値</em> であるという性質に関するものです。これは量子情報理論や他の多くの分野において基本的な概念です。</p>
-<p>行列 <span class="math notranslate nohighlight">\(P\)</span> が <em>正半定値</em> であるとは、ある行列 <span class="math notranslate nohighlight">\(M\)</span> が存在して</p>
+<h3>半正定値行列<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>2つ目の条件は、行列が <em>半正定値</em> であるという性質に関するものです。これは量子情報理論や他の多くの分野において基本的な概念です。</p>
+<p>行列 <span class="math notranslate nohighlight">\(P\)</span> が <em>半正定値</em> であるとは、ある行列 <span class="math notranslate nohighlight">\(M\)</span> が存在して</p>
 <div class="math notranslate nohighlight">
 \[
 P = M^{\dagger} M
@@ -467,22 +467,22 @@ P = M^{\dagger} M
 <p>ここで、<span class="math notranslate nohighlight">\(M\)</span> を <span class="math notranslate nohighlight">\(P\)</span> と同じサイズの正方行列と要求してもよいですし、非正方行列であっても構いませんが、いずれにしても同じクラスの行列が得られます。</p>
 <p>この条件にはいくつかの同値な（しかし等価な）定義があり、例えば次のようなものがあります：</p>
 <ul class="simple">
-<li><p>行列 <span class="math notranslate nohighlight">\(P\)</span> は、<span class="math notranslate nohighlight">\(P\)</span> がエルミート（すなわち自身の共役転置に等しい）であり、そのすべての固有値が非負の実数であるとき、かつそのときに限り正半定値である。
-エルミート性と固有値が非負であることを確認することは、正半定値性を検証するための簡単な計算的方法です。</p></li>
-<li><p>行列 <span class="math notranslate nohighlight">\(P\)</span> が正半定値であるとは、<span class="math notranslate nohighlight">\(P\)</span> と同じ次元をもつ任意の複素ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> に対して、<span class="math notranslate nohighlight">\(\langle \psi \vert P \vert \psi \rangle\)</span> が常に0以上になることと同値である。</p></li>
+<li><p>行列 <span class="math notranslate nohighlight">\(P\)</span> は、<span class="math notranslate nohighlight">\(P\)</span> がエルミート（すなわち自身の共役転置に等しい）であり、そのすべての固有値が非負の実数であるとき、かつそのときに限り半正定値である。
+エルミート性と固有値が非負であることを確認することは、半正定値性を検証するための簡単な計算的方法です。</p></li>
+<li><p>行列 <span class="math notranslate nohighlight">\(P\)</span> が半正定値であるとは、<span class="math notranslate nohighlight">\(P\)</span> と同じ次元をもつ任意の複素ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> に対して、<span class="math notranslate nohighlight">\(\langle \psi \vert P \vert \psi \rangle\)</span> が常に0以上になることと同値である。</p></li>
 </ul>
-<p>正半定値行列を直感的に理解する一つの方法は、それらが非負実数の行列版であると考えることです。
-すなわち、正半定値行列は複素正方行列に対して、非負実数が複素数に対するのと同じ関係にあります。</p>
+<p>半正定値行列を直感的に理解する一つの方法は、それらが非負実数の行列版であると考えることです。
+すなわち、半正定値行列は複素正方行列に対して、非負実数が複素数に対するのと同じ関係にあります。</p>
 <p>例えば、複素数 <span class="math notranslate nohighlight">\(\alpha\)</span> が非負実数であることは、ある複素数 <span class="math notranslate nohighlight">\(\beta\)</span> が存在して</p>
 <div class="math notranslate nohighlight">
 \[
 \alpha = \overline{\beta} \beta
 \]</div>
-<p>と書けることと同値であり、これはスカラーの場合における正半定値性の定義に対応しています。</p>
+<p>と書けることと同値であり、これはスカラーの場合における半正定値性の定義に対応しています。</p>
 <p>一般に行列はスカラーより複雑な対象ですが、それでもこの見方は有用です。</p>
-<p>また、記号 <span class="math notranslate nohighlight">\(P \geq 0\)</span> は <span class="math notranslate nohighlight">\(P\)</span> が正半定値であることを表します。
+<p>また、記号 <span class="math notranslate nohighlight">\(P \geq 0\)</span> は <span class="math notranslate nohighlight">\(P\)</span> が半正定値であることを表します。
 特に注意すべき点として、この文脈において <span class="math notranslate nohighlight">\(P \geq 0\)</span> は <span class="math notranslate nohighlight">\(P\)</span> の各成分が非負であることを意味するわけではありません。
-実際、負の成分を持つ正半定値行列も存在し、逆にすべての成分が正であっても正半定値でない行列も存在します。</p>
+実際、負の成分を持つ半正定値行列も存在し、逆にすべての成分が正であっても半正定値でない行列も存在します。</p>
 </section>
 <section id="id5">
 <h3>密度行列の解釈<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
@@ -689,7 +689,7 @@ P = M^{\dagger} M
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定義</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">行列のトレース</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正半定値行列</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">半正定値行列</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">密度行列の解釈</a></li>
 </ul>
 </li>
