@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ブロッホ球 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/density-matrices/bloch-sphere-ja';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/density-matrices/bloch-sphere-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/density-matrices/bloch-sphere-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ブロッホ球</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">球面上の点としての量子ビット状態</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6つの重要な例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">点の凸結合</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>ブロッホ球<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>量子ビットの状態を表現するための有用な幾何学的手法として、<em>ブロッホ球（Bloch sphere）</em> と呼ばれるものがあります。
+これは非常に便利な表現ですが、残念ながら量子ビットに対してのみ有効です。系が3つ以上の古典状態をもつ場合には、対応する表現はもはや球面にはなりません。</p>
+<section id="id2">
+<h2>球面上の点としての量子ビット状態<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>まず、量子ビットの量子状態ベクトル <span class="math notranslate nohighlight">\(\alpha \vert 0\rangle + \beta \vert 1\rangle\)</span> について考えましょう。
+すべての量子ビットの状態ベクトルはグローバル位相を除いて同値であり、<span class="math notranslate nohighlight">\(\alpha \geq 0\)</span>を満たす形にできるため、 <span class="math notranslate nohighlight">\(\alpha\)</span> を非負の実数とするベクトルに限定して考えることができます。
+このことにより、次のように書くことができます：</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi\rangle = \cos\bigl(\theta/2\bigr) \vert 0\rangle + e^{i\phi} \sin\bigl(\theta/2\bigr) \vert 1\rangle
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(\theta \in [0,\pi]\)</span> 、 <span class="math notranslate nohighlight">\(\phi\in[0,2\pi)\)</span>は実数です。
+<span class="math notranslate nohighlight">\(\theta\)</span>を<span class="math notranslate nohighlight">\(0\)</span> から<span class="math notranslate nohighlight">\(\pi\)</span> の範囲に取り、さらに正弦と余弦の引数を <span class="math notranslate nohighlight">\(1/2\)</span> しているのは、この種のベクトルを表現する際の慣習であり、後の議論を少し簡単にするためです。</p>
+<p>さて、与えられた量子状態ベクトル<span class="math notranslate nohighlight">\(\alpha \vert 0\rangle + \beta \vert 1\rangle\)</span> に対して、<span class="math notranslate nohighlight">\(\theta\)</span>と<span class="math notranslate nohighlight">\(\phi\)</span> が完全に一意に定まるわけではありませんが、ほぼ一意に定まります。
+特に、<span class="math notranslate nohighlight">\(\beta = 0\)</span> の場合には <span class="math notranslate nohighlight">\(\theta = 0\)</span> となり、このとき <span class="math notranslate nohighlight">\(\phi\)</span>の値は何であっても結果に影響しないため、任意に選ぶことができます。
+同様に、<span class="math notranslate nohighlight">\(\alpha = 0\)</span> の場合には<span class="math notranslate nohighlight">\(\theta = \pi\)</span> となり、この場合も <span class="math notranslate nohighlight">\(\phi\)</span> は本質的に無関係です (任意の<span class="math notranslate nohighlight">\(\phi\)</span>に対して、状態はグローバル位相を除いて <span class="math notranslate nohighlight">\(e^{i\phi}\vert 1\rangle\)</span> と同値になります)。
+一方、 <span class="math notranslate nohighlight">\(\alpha\)</span> と <span class="math notranslate nohighlight">\(\beta\)</span> のどちらも 0 でない場合には、グローバル位相を除いて <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>が<span class="math notranslate nohighlight">\(\alpha\vert 0\rangle + \beta\vert 1\rangle\)</span>と一致するような <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> の組は一意に定まります。</p>
+<p>次に、この状態の密度行列表現について考えましょう。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert\psi\rangle\langle\psi\vert
+= \begin{pmatrix}
+\cos^2(\theta/2) &amp; e^{-i\phi}\cos(\theta/2)\sin(\theta/2)\\[2mm]
+e^{i\phi}\cos(\theta/2)\sin(\theta/2) &amp; \sin^2(\theta/2)
+\end{pmatrix}
+\end{split}\]</div>
+<p>いくつかの三角関数の恒等式</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+\cos^2(\theta/2) = \frac{1 + \cos(\theta)}{2},\\[2mm]
+\sin^2(\theta/2) = \frac{1 - \cos(\theta)}{2},\\[2mm]
+\cos(\theta/2) \sin(\theta/2) = \frac{\sin(\theta)}{2},
+\end{gathered}
+\end{split}\]</div>
+<p>および公式 <span class="math notranslate nohighlight">\(e^{i\phi} = \cos(\phi) + i\sin(\phi)\)</span> を用いると、密度行列を次のように簡単化できます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert\psi\rangle\langle\psi\vert
+= \frac{1}{2}
+\begin{pmatrix}
+1 + \cos(\theta) &amp; (\cos(\phi) - i \sin(\phi)) \sin(\theta)\\[1mm]
+(\cos(\phi) + i \sin(\phi)) \sin(\theta) &amp; 1 - \cos(\theta)
+\end{pmatrix}
+\end{split}\]</div>
+<p>これにより、この密度行列をパウリ行列の線形結合として簡単に表すことができます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \mathbb{I} =
+  \begin{pmatrix}
+    1 &amp; 0\\[1mm]
+    0 &amp; 1
+  \end{pmatrix},
+  \quad
+  \sigma_x =
+  \begin{pmatrix}
+    0 &amp; 1\\[1mm]
+    1 &amp; 0
+  \end{pmatrix},
+  \quad
+  \sigma_y =
+  \begin{pmatrix}
+    0 &amp; -i\\[1mm]
+    i &amp; 0
+  \end{pmatrix},
+  \quad
+  \sigma_z =
+  \begin{pmatrix}
+    1 &amp; 0\\[1mm]
+    0 &amp; -1
+  \end{pmatrix}.
+\end{split}\]</div>
+<p>具体的には、次の式が得られます：</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi\rangle\langle\psi\vert
+= \frac{\mathbb{I} + \sin(\theta) \cos(\phi)\sigma_x + \sin(\theta)\sin(\phi) \sigma_y + \cos(\theta) \sigma_z}{2}.
+\]</div>
+<p>この式の分子における <span class="math notranslate nohighlight">\(\sigma_x,\)</span> <span class="math notranslate nohighlight">\(\sigma_y,\)</span>  <span class="math notranslate nohighlight">\(\sigma_z\)</span> の係数はすべて実数なので、それらをまとめて通常の3次元ユークリッド空間内のベクトルとして表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl(\sin(\theta) \cos(\phi), \sin(\theta)\sin(\phi), \cos(\theta)\bigr)
+\]</div>
+<p>実際、これは単位ベクトルになっています。
+これは<em>球面座標</em>を用いると <span class="math notranslate nohighlight">\((1,\theta,\phi)\)</span>と書くことができます。
+最初の座標である <span class="math notranslate nohighlight">\(1\)</span> は<em>半径</em>（あるいは<em>動径距離</em>）を表し（この場合は常に <span class="math notranslate nohighlight">\(1\)</span>）、<span class="math notranslate nohighlight">\(\theta\)</span>  は<em>極角</em>、<span class="math notranslate nohighlight">\(\phi\)</span> は<em>方位角</em>を表します。</p>
+<p>言葉で説明すると、球を地球に見立てたとき、極角 <span class="math notranslate nohighlight">\(\theta\)</span> は北極から南へどれだけ回転してその点に到達するかを表し、その範囲は <span class="math notranslate nohighlight">\(0\)</span> から <span class="math notranslate nohighlight">\(\pi = 180^{\circ}\)</span> です。一方、方位角  <span class="math notranslate nohighlight">\(\phi\)</span> は本初子午線から東へどれだけ回転するかを表し、その範囲は <span class="math notranslate nohighlight">\(0\)</span> から <span class="math notranslate nohighlight">\(2\pi = 360^{\circ}\)</span>です。
+ここでは、本初子午線を正の <span class="math notranslate nohighlight">\(x\)</span>軸を通り、球面上で一方の極からもう一方の極へとつながる曲線と定義しています。</p>
+<p><img alt="Illustration of a point on the unit 2-sphere in terms of its spherical coordinates." src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Fgeneral-formulation-of-quantum-information%2Fdensity-matrices%2Fspherical-coordinates.avif&amp;w=3840&amp;q=75" /></p>
+<p>球面上の任意の点はこのように表すことができます。ー すなわち、量子ビットのすべての純粋状態に対応する点は、ちょうど<span class="math notranslate nohighlight">\(3\)</span>次元実空間内の球面に一致します。（この球面は通常、表面が2次元であることから<em>単位<span class="math notranslate nohighlight">\(2\)</span>球面</em>と呼ばれます。）</p>
+<p>この単位<span class="math notranslate nohighlight">\(2\)</span>球面上の点と量子ビットの純粋状態を対応付けることで、これらの状態の<em>ブロッホ球</em>表現が得られます。</p>
+</section>
+<section id="id3">
+<h2>6つの重要な例<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><em>標準基底</em> <span class="math notranslate nohighlight">\(\{\vert 0\rangle,\vert 1\rangle\}.\)</span>
+まず状態 <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span>から始めましょう。
+その密度行列は次のように書けます：</p>
+<div class="math notranslate nohighlight">
+\[
+   \vert 0 \rangle \langle 0 \vert = \frac{\mathbb{I} + \sigma_z}{2}
+   \]</div>
+<p>分子に現れるパウリ行列の係数をまとめると、対応する単位<span class="math notranslate nohighlight">\(2\)</span>球面上の点（デカルト座標）は<span class="math notranslate nohighlight">\((0,0,1)\)</span>になります。
+球面座標では <span class="math notranslate nohighlight">\((1,0,\phi)\)</span>と表され、<span class="math notranslate nohighlight">\(\phi\)</span> は任意の角度を取れます。</p>
+<p>これは次の表式とも一致しています：</p>
+<div class="math notranslate nohighlight">
+\[
+   \vert 0\rangle = \cos(0) \vert 0\rangle + e^{i \phi} \sin(0) \vert 1\rangle,
+   \]</div>
+<p>この式も任意の <span class="math notranslate nohighlight">\(\phi\)</span>に対して成り立ちます。
+直感的には、極角 <span class="math notranslate nohighlight">\(\theta=0\)</span> なので、ブロッホ球の北極に位置しており、このとき方位角<span class="math notranslate nohighlight">\(\phi\)</span> は意味を持ちません。</p>
+<p>同様に、状態<span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> の密度行列は</p>
+<div class="math notranslate nohighlight">
+\[
+   \vert 1 \rangle \langle 1 \vert = \frac{\mathbb{I} - \sigma_z}{2}
+   \]</div>
+<p>と書けます。この場合のデカルト座標は <span class="math notranslate nohighlight">\((0,0,-1)\)</span>、球面座標では <span class="math notranslate nohighlight">\((1,\pi,\phi)\)</span> ( <span class="math notranslate nohighlight">\(\phi\)</span> は任意)です。 極角が<span class="math notranslate nohighlight">\(\pi\)</span> なので、ブロッホ球の南極に対応し、ここでも方位角は重要ではありません。</p>
+</li>
+<li><p><em>基底 <span class="math notranslate nohighlight">\(\{\vert + \rangle, \vert - \rangle\}.\)</span></em>
+これらの状態に対応する密度行列は次の通りです：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{aligned}
+   \vert {+} \rangle\langle {+} \vert &amp; = \frac{\mathbb{I} + \sigma_x}{2}\\[2mm]
+   \vert {-} \rangle\langle {-} \vert &amp; = \frac{\mathbb{I} - \sigma_x}{2}
+   \end{aligned}
+   \end{split}\]</div>
+<p>対応する単位<span class="math notranslate nohighlight">\(2\)</span>球面上の点は、デカルト座標で<span class="math notranslate nohighlight">\((1,0,0)\)</span>と <span class="math notranslate nohighlight">\((-1,0,0)\)</span>、
+球面座標ではそれぞれ <span class="math notranslate nohighlight">\((1,\pi/2,0)\)</span> と <span class="math notranslate nohighlight">\((1,\pi/2,\pi)\)</span> です。</p>
+<p>言い換えると、<span class="math notranslate nohighlight">\(\vert +\rangle\)</span> cは正の <span class="math notranslate nohighlight">\(x\)</span>軸が球面と交わる点、<span class="math notranslate nohighlight">\(\vert -\rangle\)</span> は負の<span class="math notranslate nohighlight">\(x\)</span>軸との交点に対応します。 より直感的には、<span class="math notranslate nohighlight">\(\vert +\rangle\)</span> はブロッホ球の赤道上で本初子午線と交わる点、 <span class="math notranslate nohighlight">\(\vert - \rangle\)</span> はその反対側の赤道上の点です。</p>
+</li>
+<li><p><em>基底</em> <span class="math notranslate nohighlight">\(\{\vert {+i} \rangle, \vert {-i} \rangle\}.\)</span>
+前のレッスンで学んだように、これらの状態は次のように定義されます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{aligned}
+   \vert {+i} \rangle &amp; = \frac{1}{\sqrt{2}} \vert 0 \rangle + \frac{i}{\sqrt{2}} \vert 1 \rangle\\[2mm]
+   \vert {-i} \rangle &amp; = \frac{1}{\sqrt{2}} \vert 0 \rangle - \frac{i}{\sqrt{2}} \vert 1 \rangle.
+   \end{aligned}
+   \end{split}\]</div>
+<p>このとき密度行列は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{aligned}
+   \vert {+i} \rangle\langle {+i} \vert &amp; = \frac{\mathbb{I} + \sigma_y}{2}\\[2mm]
+   \vert {-i} \rangle\langle {-i} \vert &amp; = \frac{\mathbb{I} - \sigma_y}{2}
+   \end{aligned}
+   \end{split}\]</div>
+<p>となります。
+単位<span class="math notranslate nohighlight">\(2\)</span>球面上の対応する点は、デカルト座標で <span class="math notranslate nohighlight">\((0,1,0)\)</span> と<span class="math notranslate nohighlight">\((0,-1,0)\)</span>、球面座標ではそれぞれ <span class="math notranslate nohighlight">\((1,\pi/2,\pi/2)\)</span>と <span class="math notranslate nohighlight">\((1,\pi/2,3\pi/2)\)</span>です。</p>
+<p>言い換えると、 <span class="math notranslate nohighlight">\(\vert {+i} \rangle\)</span> は正の <span class="math notranslate nohighlight">\(y\)</span>軸との交点、<span class="math notranslate nohighlight">\(\vert {-i} \rangle\)</span> tは負の <span class="math notranslate nohighlight">\(y\)</span>軸との交点に対応します。</p>
+</li>
+</ol>
+<p><img alt="Illustration of six examples of pure states on the Bloch sphere" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Fgeneral-formulation-of-quantum-information%2Fdensity-matrices%2Fsix-Bloch-sphere-points.avif&amp;w=3840&amp;q=75" /></p>
+<p>このシリーズの中で何度も登場している別のクラスの量子状態ベクトルとして、次のものがあります：</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi_{\alpha} \rangle = \cos(\alpha) \vert 0\rangle + \sin(\alpha) \vert 1\rangle \qquad \text{(for $\alpha \in [0,\pi)$)}
+\]</div>
+<p>これらの状態の密度行列は次のように表されます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \psi_{\alpha} \rangle \langle \psi_{\alpha} \vert =
+\begin{pmatrix}
+\cos^2(\alpha) &amp; \cos(\alpha)\sin(\alpha)\\[2mm]
+\cos(\alpha)\sin(\alpha) &amp; \sin^2(\alpha)
+\end{pmatrix}
+= \frac{\mathbb{I} + \sin(2\alpha) \sigma_x + \cos(2\alpha) \sigma_z}{2}
+\end{split}\]</div>
+<p>以下の図は、いくつかの <span class="math notranslate nohighlight">\(\alpha\)</span>の値に対して、ブロッホ球上でこれらの状態がどのような点に対応するかを示しています。</p>
+<p><img alt="Illustration of real-valued qubit state vectors on the Bloch sphere" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Fgeneral-formulation-of-quantum-information%2Fdensity-matrices%2Freal-Bloch-sphere-points.avif&amp;w=3840&amp;q=75" /></p>
+</section>
+<section id="id4">
+<h2>点の凸結合<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>これまで密度行列について見てきたのと同様に、ブロッホ球上の点の凸結合をとることで、量子ビットの密度行列を表現することができます。
+一般には、その結果はブロッホ球の<em>内部</em>の点となり、これは純粋状態ではない状態（混合状態）の密度行列を表します。
+ブロッホ球の内部の点も含めて明示的に扱う場合には、<em>ブロッホ球体（Bloch ball）</em>　という言い方をすることもあります。</p>
+<p>例えば、量子ビットの完全混合状態を表す密度行列 <span class="math notranslate nohighlight">\(\frac{1}{2}\mathbb{I}\)</span> は、次の2通りの方法で表せることを見てきました：
+$<span class="math notranslate nohighlight">\(
+\frac{1}{2} \mathbb{I} = \frac{1}{2} \vert 0\rangle\langle 0\vert + \frac{1}{2} \vert 1\rangle\langle 1\vert
+\quad\text{and}\quad
+\frac{1}{2} \mathbb{I} = \frac{1}{2} \vert +\rangle\langle +\vert + \frac{1}{2} \vert -\rangle\langle -\vert.
+\)</span>$</p>
+<p>さらに、</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2} \mathbb{I} =
+\frac{1}{2} \vert {+i}\rangle\langle {+i} \vert
++ \frac{1}{2} \vert {-i} \rangle\langle {-i}\vert,
+\]</div>
+<p>とも書けます。
+より一般には、任意の2つの直交する量子ビット状態（これはブロッホ球上の互いに正反対の点に対応します）を用いることができます。
+ブロッホ球上でこれらの点を同様に平均すると、常に同じ点、すなわち球の中心が得られます。
+これは次の式とも一致しています：</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2} \mathbb{I} = \frac{\mathbb{I} + 0 \cdot \sigma_x + 0 \cdot \sigma_y + 0 \cdot \sigma_z}{2},
+\]</div>
+<p>したがって、対応するデカルト座標は<span class="math notranslate nohighlight">\((0,0,0)\)</span>となります。</p>
+<p>ブロッホ球上の点の凸結合の別の例として、前の節で扱った次のものがあります：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2} \vert 0\rangle\langle 0 \vert + \frac{1}{2} \vert +\rangle\langle + \vert
+= \begin{pmatrix} \frac{3}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+= \cos^2(\pi/8) \vert \psi_{\pi/8} \rangle \langle \psi_{\pi/8}\vert +
+\sin^2(\pi/8) \vert \psi_{5\pi/8} \rangle \langle \psi_{5\pi/8}\vert
+\end{split}\]</div>
+<p>以下の図は、この密度行列が純粋状態の凸結合として得られる2つの異なる方法を示しています。</p>
+<p><img alt="Illustration of the average of the zero state and the plus state on the Bloch sphere" src="https://quantum.cloud.ibm.com/assets-docs-learning/_next/image?url=%2Flearning%2Fimages%2Fcourses%2Fgeneral-formulation-of-quantum-information%2Fdensity-matrices%2FBloch-sphere-zero-plus-average.avif&amp;w=3840&amp;q=75" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/density-matrices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">球面上の点としての量子ビット状態</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6つの重要な例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">点の凸結合</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

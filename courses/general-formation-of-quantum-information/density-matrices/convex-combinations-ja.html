@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>密度行列の凸結合 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/density-matrices/convex-combinations-ja';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/density-matrices/convex-combinations-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/density-matrices/convex-combinations-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>密度行列の凸結合</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">密度行列の確率的選択</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完全混合状態</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">確率的状態</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">密度行列とスペクトル定理</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>密度行列の凸結合<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>密度行列の確率的選択<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>密度行列の重要な特徴の一つは、量子状態の<em>確率的な選択</em>が、それらに対応する密度行列の<em>凸結合</em>として表されることです。</p>
+<p>例えば、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の量子状態を表す2つの密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> と <span class="math notranslate nohighlight">\(\sigma\)</span> があり、確率 <span class="math notranslate nohighlight">\(p\)</span> で状態 <span class="math notranslate nohighlight">\(\rho\)</span>、確率  <span class="math notranslate nohighlight">\(1 - p\)</span> で状態 <span class="math notranslate nohighlight">\(\sigma\)</span> を準備するとします。このとき得られる量子状態は、次の密度行列で表されます：</p>
+<div class="math notranslate nohighlight">
+\[
+p \rho + (1 - p) \sigma.
+\]</div>
+<p>より一般に、密度行列 <span class="math notranslate nohighlight">\(\rho_0,\ldots,\rho_{m-1}\)</span> で表される <span class="math notranslate nohighlight">\(m\)</span> 個の量子状態があり、確率ベクトル <span class="math notranslate nohighlight">\((p_0,\ldots,p_{m-1})\)</span> に従って、状態 <span class="math notranslate nohighlight">\(\rho_k\)</span> を確率 <span class="math notranslate nohighlight">\(p_k\)</span> で準備するとします。このとき得られる状態は、次の密度行列で表されます：</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{m-1} p_k \rho_k.
+\]</div>
+<p>これは、密度行列 <span class="math notranslate nohighlight">\(\rho_0,\ldots,\rho_{m-1}\)</span> の<em>凸結合</em>です。</p>
+<p>同様に、量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi_0\rangle,\ldots,\vert\psi_{m-1}\rangle\)</span> があり、各 <span class="math notranslate nohighlight">\(k\in\{0,\ldots,m-1\}\)</span> に対して確率 <span class="math notranslate nohighlight">\(p_k\)</span> で状態 <span class="math notranslate nohighlight">\(\vert\psi_k\rangle\)</span> に系を準備する場合、得られる状態は次の密度行列で表されます：</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{m-1} p_k \vert\psi_k\rangle\langle\psi_k\vert.
+\]</div>
+<p>例えば、1量子ビットが確率 <span class="math notranslate nohighlight">\(1/2\)</span> で <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span>、確率 <span class="math notranslate nohighlight">\(1/2\)</span>  で <span class="math notranslate nohighlight">\(\vert + \rangle\)</span>  に準備されるとします。このときの密度行列は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2} \vert 0\rangle\langle 0 \vert + \frac{1}{2} \vert +\rangle\langle + \vert
+= \frac{1}{2} \begin{pmatrix} 1 &amp; 0\\[1mm] 0 &amp; 0 \end{pmatrix} + \frac{1}{2} \begin{pmatrix} \frac{1}{2} &amp; \frac{1}{2}\\[2mm] \frac{1}{2} &amp; \frac{1}{2} \end{pmatrix}
+= \begin{pmatrix} \frac{3}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}.
+\end{split}\]</div>
+<p>一方で、量子情報の簡略化された定式化においては、このように量子状態ベクトルを単純に平均する方法はうまくいきません。</p>
+<p>例えば、次のベクトル</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2} \vert 0\rangle + \frac{1}{2} \vert + \rangle
+= \frac{1}{2} \begin{pmatrix}1\\[1mm] 0\end{pmatrix} + \frac{1}{2} \begin{pmatrix}\frac{1}{\sqrt{2}}\\[2mm]\frac{1}{\sqrt{2}}\end{pmatrix}
+= \begin{pmatrix}\frac{2 + \sqrt{2}}{4}\\[2mm]\frac{\sqrt{2}}{4}\end{pmatrix}
+\end{split}\]</div>
+<p>は、そのユークリッドノルムが <span class="math notranslate nohighlight">\(1\)</span> ではないため、正しい量子状態ベクトルではありません。さらに極端な例として、任意の量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> を固定し、確率 <span class="math notranslate nohighlight">\(1/2\)</span> で <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>、確率 <span class="math notranslate nohighlight">\(1/2\)</span> で <span class="math notranslate nohighlight">\(-\vert\psi\rangle\)</span> を取るとします。これらはグローバル位相が異なるだけなので、実際には同じ状態を表しています。しかし、それらを平均するとゼロベクトルになってしまい、これは有効な量子状態ベクトルではありません。</p>
+</section>
+<section id="id3">
+<h2>完全混合状態<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>量子ビットの状態を <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> または <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span>  にランダムに設定し、それぞれ確率 <span class="math notranslate nohighlight">\(1/2\)</span>で選ぶとします。このとき得られる状態を表す密度行列は次の通りです：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2} \vert 0\rangle\langle 0\vert + \frac{1}{2} \vert 1\rangle\langle 1\vert
+= \frac{1}{2}
+\begin{pmatrix}
+1 &amp; 0\\[1mm]
+0 &amp; 0
+\end{pmatrix} + \frac{1}{2}
+\begin{pmatrix}
+0 &amp; 0\\[1mm]
+0 &amp; 1
+\end{pmatrix}
+= \begin{pmatrix}
+\frac{1}{2} &amp; 0\\[1mm]
+0 &amp; \frac{1}{2}
+\end{pmatrix}
+= \frac{1}{2} \mathbb{I}
+\end{split}\]</div>
+<p>（ここで <span class="math notranslate nohighlight">\(\mathbb{I}\)</span> は <span class="math notranslate nohighlight">\(2\times 2\)</span>の単位行列を表します。）
+これは<em>完全混合状態</em>と呼ばれる特別な状態です。これは量子ビットの状態としては完全に不確定であることを表しており、確率論における一様にランダムなビットに相当します。</p>
+<p>次に手続きを変更してみましょう：<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> と <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> の代わりに、<span class="math notranslate nohighlight">\(\vert + \rangle\)</span> と <span class="math notranslate nohighlight">\(\vert - \rangle\)</span> を使います。このときの密度行列も同様に計算できます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2} \vert +\rangle\langle +\vert + \frac{1}{2} \vert -\rangle\langle -\vert
+= \frac{1}{2}
+\begin{pmatrix}
+\frac{1}{2} &amp; \frac{1}{2}\\[2mm]
+\frac{1}{2} &amp; \frac{1}{2}
+\end{pmatrix}
++ \frac{1}{2}
+\begin{pmatrix}
+\frac{1}{2} &amp; -\frac{1}{2}\\[2mm]
+-\frac{1}{2} &amp; \frac{1}{2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{1}{2} &amp; 0\\[2mm]
+0 &amp; \frac{1}{2}
+\end{pmatrix}
+= \frac{1}{2} \mathbb{I}
+\end{split}\]</div>
+<p>状態を変えたにもかかわらず、先ほどと同じ密度行列になります。
+実際、<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> と <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> の代わりに<em>任意の</em>直交する2つの量子ビット状態ベクトルを用いても、同じ結果 — 完全混合状態 — が得られます。</p>
+<p>これはバグではなく、重要な特徴です！
+実際、どちらの方法でも全く同じ状態が得られます。
+つまり、生成された量子ビットを測定しても（統計的に見ても）この2つの手続きを区別することはできません。
+これらは単に同じ状態を準備する異なる方法にすぎません。</p>
+<p>このことが妥当であることは、次のように考えると確認できます。
+2つの状態集合 <span class="math notranslate nohighlight">\(\{\vert 0\rangle,\vert 1\rangle\}\)</span> または <span class="math notranslate nohighlight">\(\{\vert +\rangle,\vert -\rangle\}\)</span> のどちらかからランダムに状態が選ばれるとき、そこから何が分かるかを考えます。
+簡単のため、量子ビットにユニタリー演算 <span class="math notranslate nohighlight">\(U\)</span> を施し、その後、標準基底で測定するとします。</p>
+<p>最初の手続きでは、量子ビットの状態は、<span class="math notranslate nohighlight">\(\{\vert 0\rangle,\vert 1\rangle\}\)</span>からランダムに選ばれるとします。
+状態が <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> のとき、測定結果 <span class="math notranslate nohighlight">\(0\)</span> と <span class="math notranslate nohighlight">\(1\)</span> の確率はそれぞれ</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \langle 0 \vert U \vert 0 \rangle \vert^2
+\quad\text{and}\quad
+\vert \langle 1 \vert U \vert 0 \rangle \vert^2
+\]</div>
+<p>状態が <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> のとき、測定結果 <span class="math notranslate nohighlight">\(0\)</span> と <span class="math notranslate nohighlight">\(1\)</span> の確率はそれぞれ</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \langle 0 \vert U \vert 1 \rangle \vert^2
+\quad\text{and}\quad
+\vert \langle 1 \vert U \vert 1 \rangle \vert^2.
+\]</div>
+<p>となります。</p>
+<p>それぞれが確率 <span class="math notranslate nohighlight">\(1/2\)</span> で起こるため、結果 <span class="math notranslate nohighlight">\(0\)</span> の確率は</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2}\vert \langle 0 \vert U \vert 0 \rangle \vert^2
++ \frac{1}{2}\vert \langle 0 \vert U \vert 1 \rangle \vert^2
+\]</div>
+<p>結果<span class="math notranslate nohighlight">\(1\)</span> の確率は</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2}\vert \langle 1 \vert U \vert 0 \rangle \vert^2
++ \frac{1}{2}\vert \langle 1 \vert U \vert 1 \rangle \vert^2.
+\]</div>
+<p>となり、これらはどちらも <span class="math notranslate nohighlight">\(1/2\)</span> となります。
+これは線形代数の次の事実（ピタゴラスの定理の一般化）から分かります：</p>
+<Figure title="Theorem">
+$\{\vert\psi_1\rangle,\ldots,\vert\psi_n\rangle\}$ が（実数または複素数の）ベクトル空間 $\mathcal{V}$ の正規直交基底であるとする。このとき、任意のベクトル $\vert \phi\rangle \in \mathcal{V}$ に対して、
+$\vert \langle \psi_1\vert\phi\rangle\vert^2 + \cdots + \vert \langle \psi_n \vert \phi \rangle\vert^2 = \| \vert\phi\rangle \|^2$ が成り立つ。
+</Figure>
+<p>この定理を用いることで、確率を次のように求めることができます。
+結果 <span class="math notranslate nohighlight">\(0\)</span> を得る確率は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{1}{2}\vert \langle 0 \vert U \vert 0 \rangle \vert^2
++ \frac{1}{2}\vert \langle 0 \vert U \vert 1 \rangle \vert^2
+&amp; = \frac{1}{2} \Bigl(
+\vert \langle 0 \vert U \vert 0 \rangle \vert^2
++ \vert \langle 0 \vert U \vert 1 \rangle \vert^2
+\Bigr) \\[2mm]
+&amp; = \frac{1}{2} \Bigl(
+\vert \langle 0 \vert U^{\dagger} \vert 0 \rangle \vert^2
++ \vert \langle 1 \vert U^{\dagger} \vert 0 \rangle \vert^2
+\Bigr)\\[2mm]
+&amp; = \frac{1}{2} \bigl\| U^{\dagger} \vert 0 \rangle \bigr\|^2
+\end{aligned}
+\end{split}\]</div>
+<p>となります。
+同様に、結果 <span class="math notranslate nohighlight">\(1\)</span>を得る確率は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{1}{2}\vert \langle 1 \vert U \vert 0 \rangle \vert^2
++ \frac{1}{2}\vert \langle 1 \vert U \vert 1 \rangle \vert^2
+&amp; = \frac{1}{2} \Bigl(
+\vert \langle 1 \vert U \vert 0 \rangle \vert^2
++ \vert \langle 1 \vert U \vert 1 \rangle \vert^2
+\Bigr) \\[2mm]
+&amp; = \frac{1}{2} \Bigl(
+\vert \langle 0 \vert U^{\dagger} \vert 1 \rangle \vert^2
++ \vert \langle 1 \vert U^{\dagger} \vert 1 \rangle \vert^2
+\Bigr)\\[2mm]
+&amp; = \frac{1}{2} \bigl\| U^{\dagger} \vert 1 \rangle \bigr\|^2.
+\end{aligned}
+\end{split}\]</div>
+<p>となります。</p>
+<p>ここで、 <span class="math notranslate nohighlight">\(U\)</span> はユニタリーであるため、 <span class="math notranslate nohighlight">\(U^{\dagger}\)</span> もまたユニタリーです。したがって、 <span class="math notranslate nohighlight">\(U^{\dagger} \vert 0 \rangle\)</span>と<span class="math notranslate nohighlight">\(U^{\dagger} \vert 1 \rangle\)</span> はいずれも長さ1のベクトル（単位ベクトル）になります。
+よって、これらの確率はいずれも <span class="math notranslate nohighlight">\(1/2\)</span>になります。
+つまり、どのように <span class="math notranslate nohighlight">\(U\)</span> を選んでも、測定によって得られるのは一様ランダムなビットに過ぎません。</p>
+<p>同様の検証は、 <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> と<span class="math notranslate nohighlight">\(\vert 1\rangle\)</span>の代わりに任意の正規直交な状態の組についても行えます。
+例えば、 <span class="math notranslate nohighlight">\(\{\vert + \rangle, \vert - \rangle\}\)</span> が正規直交基底であることから、2つ目の手続きにおいて測定結果<span class="math notranslate nohighlight">\(0\)</span> を得る確率は</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2}\vert \langle 0 \vert U \vert + \rangle \vert^2
++ \frac{1}{2}\vert \langle 0 \vert U \vert - \rangle \vert^2
+= \frac{1}{2} \bigl\| U^{\dagger} \vert 0 \rangle \bigr\|^2 = \frac{1}{2}
+\]</div>
+<p>となり、結果 <span class="math notranslate nohighlight">\(1\)</span> を得る確率は</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2}\vert \langle 1 \vert U \vert + \rangle \vert^2
++ \frac{1}{2}\vert \langle 1 \vert U \vert - \rangle \vert^2
+= \frac{1}{2} \bigl\| U^{\dagger} \vert 1 \rangle \bigr\|^2 = \frac{1}{2}.
+\]</div>
+<p>となります。
+特に、<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> と<span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> の場合とまったく同じ測定統計が得られることが分かります。</p>
+</section>
+<section id="id4">
+<h2>確率的状態<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>古典状態は密度行列によって表すことができます。
+特に、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の各古典状態 <span class="math notranslate nohighlight">\(a\)</span> に対して、密度行列
+$<span class="math notranslate nohighlight">\(
+\rho = \vert a\rangle \langle a \vert
+\)</span><span class="math notranslate nohighlight">\(
+は、\)</span>\mathsf{X}<span class="math notranslate nohighlight">\( が確定的に古典状態 \)</span>a$ にあることを表します。
+量子ビットの場合には、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert 0\rangle \langle 0 \vert = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 0\end{pmatrix}
+\quad\text{and}\quad
+\vert 1\rangle \langle 1 \vert = \begin{pmatrix}0 &amp; 0 \\ 0 &amp; 1\end{pmatrix},
+\end{split}\]</div>
+<p>となります。</p>
+<p>一般には、考えている古典状態に対応する位置の対角成分に <span class="math notranslate nohighlight">\(1\)</span> が1つ入り、それ以外の成分はすべて 0 になります。</p>
+<p>これらの密度行列の凸結合を取ることで、確率的状態を表すことができます。
+簡単のため、古典状態の集合が<span class="math notranslate nohighlight">\(\{0,\ldots,n-1\}\)</span>であるとします。各<span class="math notranslate nohighlight">\(a\in\{0,\ldots,n-1\}\)</span> に対して、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が状態 <span class="math notranslate nohighlight">\(a\)</span> に確率 <span class="math notranslate nohighlight">\(p_a\)</span> であるとすると、対応する密度行列は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\rho = \sum_{a = 0}^{n-1} p_a \vert a\rangle \langle a \vert
+= \begin{pmatrix}
+p_0 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; p_1 &amp; \ddots &amp; \vdots\\
+\vdots &amp; \ddots &amp; \ddots &amp; 0\\
+0 &amp; \cdots &amp; 0 &amp; p_{n-1}
+\end{pmatrix}.
+\end{split}\]</div>
+<p>となります。
+逆に言えば、任意の対角な密度行列は、その対角成分を読み取ることで対応する確率分布（確率ベクトル）として自然に解釈できます。</p>
+<p>ただし明確にしておくと、密度行列が対角であるからといって、必ずしもその系が古典的であるとか、古典状態のランダムな選択によって準備されたとは限りません。
+そうではなく、その状態は「古典状態のランダム選択によって得られた<em>可能性がある</em>」ということを意味します。</p>
+<p>確率的状態が対角な密度行列で表されるという事実は、この講義の冒頭で述べた直感とも一致しています。すなわち、非対角成分は、その行と列に対応する2つの古典状態がどの程度量子重ね合わせにあるかを表しています。
+ここではすべての非対角成分が 0 であるため、単なる古典的なランダム性だけが存在し、量子重ね合わせは全く含まれていません。</p>
+</section>
+<section id="id5">
+<h2>密度行列とスペクトル定理<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>純粋状態の凸結合</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{k = 0}^{m-1} p_k \vert \psi_k\rangle \langle \psi_k \vert,
+\]</div>
+<p>を取ると、密度行列が得られることを見てきました。</p>
+<p>実際には、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span>  は、このような純粋状態の凸結合として表すことができます。
+すなわち、ある単位ベクトルの集合<span class="math notranslate nohighlight">\(\{\vert\psi_0\rangle,\ldots,\vert\psi_{m-1}\rangle\}\)</span> と確率ベクトル<span class="math notranslate nohighlight">\((p_0,\ldots,p_{m-1})\)</span> が存在して、上の式が成り立ちます。</p>
+<p>さらに、数 <span class="math notranslate nohighlight">\(m\)</span> は考えている系の古典状態の数と一致するように常に選ぶことができ、また量子状態ベクトルは互いに直交するように選ぶこともできます。
+これは、”量子アルゴリズムの基礎” コースで扱ったスペクトル定理から導かれます。
+以下に便宜のため、そのスペクトル定理を改めて述べます。</p>
+<Figure title="Theorem">
+スペクトル定理: $M$ を $n\times n$ の *正規* 複素行列とする。
+このとき、$n$次元複素ベクトル空間の正規直交基底$\{\vert\psi_0\rangle,\ldots,\vert\psi_{n-1}\rangle \}$ と複素数 $\lambda_0,\ldots,\lambda_{n-1}$ が存在して、
+$$
+M = \lambda_0 \vert \psi_0\rangle\langle \psi_0\vert + \cdots + \lambda_{n-1} \vert \psi_{n-1}\rangle\langle \psi_{n-1}\vert.
+$$と表すことができる。
+</Figure>
+<p>(行列 <span class="math notranslate nohighlight">\(M\)</span> が <em>正規</em> であるとは、<span class="math notranslate nohighlight">\(M^{\dagger} M = M M^{\dagger}.\)</span> を満たすことを思い出してください。言い換えると、正規行列とは自分自身の共役転置と可換な行列のことです。)</p>
+<p>密度行列は常にエルミートであり、したがって正規行列でもあるため、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span>  に対してスペクトル定理を適用することができます。
+これにより、次のように書くことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \lambda_0 \vert \psi_0\rangle\langle \psi_0\vert + \cdots + \lambda_{n-1} \vert \psi_{n-1}\rangle\langle \psi_{n-1}\vert
+\]</div>
+<p>ある正規直交基底 <span class="math notranslate nohighlight">\(\{\vert\psi_0\rangle,\ldots,\vert\psi_{n-1}\rangle\}\)</span> に対して。
+あとは、 <span class="math notranslate nohighlight">\((\lambda_0,\ldots,\lambda_{n-1})\)</span> が確率ベクトルであることを確認すればよく、その後で必要に応じて <span class="math notranslate nohighlight">\((p_0,\ldots,p_{n-1})\)</span> と書き直すことができます。</p>
+<p>これらの数 <span class="math notranslate nohighlight">\(\lambda_0,\ldots,\lambda_{n-1}\)</span> は <span class="math notranslate nohighlight">\(\rho\)</span> の固有値であり、<span class="math notranslate nohighlight">\(\rho\)</span> は半正定値であるため、これらは非負の実数でなければなりません。
+さらに、  <span class="math notranslate nohighlight">\(\rho\)</span> のトレースが<span class="math notranslate nohighlight">\(1\)</span>であることから、<span class="math notranslate nohighlight">\(\lambda_0 + \cdots + \lambda_{n-1} = 1\)</span> が成り立つことが分かります。
+詳細を確認することで、トレースに関する次の重要で非常に有用な性質を指摘することができます。</p>
+<Figure title="Theorem">
+定理（トレースの巡回性）: 行列の積$AB$ が正方行列になるような任意の2つの行列$A$、 $B$ に対して、 $\operatorname{Tr}(AB) = \operatorname{Tr}(BA)$ が成り立つ。
+</Figure>
+<p>この定理は、<span class="math notranslate nohighlight">\(A\)</span>や <span class="math notranslate nohighlight">\(B\)</span> 自体が正方行列でない場合でも成立することに注意してください。
+すなわち、ある正の整数 <span class="math notranslate nohighlight">\(n\)</span> ,<span class="math notranslate nohighlight">\(m\)</span> に対して、<span class="math notranslate nohighlight">\(A\)</span> が <span class="math notranslate nohighlight">\(n\times m\)</span>行列、<span class="math notranslate nohighlight">\(B\)</span> が <span class="math notranslate nohighlight">\(m\times n\)</span> 行列である場合でも、<span class="math notranslate nohighlight">\(AB\)</span>は<span class="math notranslate nohighlight">\(n\times n\)</span> の正方行列、<span class="math notranslate nohighlight">\(BA\)</span> は<span class="math notranslate nohighlight">\(m\times m\)</span>の正方行列となり、この関係は成り立ちます。</p>
+<p>特に、<span class="math notranslate nohighlight">\(A\)</span>を列ベクトル <span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>、 <span class="math notranslate nohighlight">\(B\)</span>を行ベクトル<span class="math notranslate nohighlight">\(\langle \phi\vert\)</span> とすると、</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}\bigl(\vert\phi\rangle\langle\phi\vert\bigr)
+= \operatorname{Tr}\bigl(\langle\phi\vert\phi\rangle\bigr) = \langle\phi\vert\phi\rangle.
+\]</div>
+<p>が成り立つことが分かります。</p>
+<p>2つ目の等式は、 <span class="math notranslate nohighlight">\(\langle\phi\vert\phi\rangle\)</span>がスカラーであり、<span class="math notranslate nohighlight">\(1\times 1\)</span>行列（唯一の成分がその値）とみなせるため、そのトレースがその値に等しいことから従います。
+この事実を用いると、トレースの線形性により、 <span class="math notranslate nohighlight">\(\lambda_0 + \cdots + \lambda_{n-1} = 1\)</span> が成り立つことが分かります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+1 = \operatorname{Tr}(\rho) =
+\operatorname{Tr}\bigl(\lambda_0 \vert \psi_0\rangle\langle \psi_0\vert + \cdots + \lambda_{n-1} \vert \psi_{n-1}\rangle\langle \psi_{n-1}\vert\bigr)\\[2mm]
+= \lambda_0 \operatorname{Tr}\bigl(\vert \psi_0\rangle\langle \psi_0\vert\bigr) + \cdots + \lambda_{n-1} \operatorname{Tr}\bigl(\vert \psi_{n-1}\rangle\langle \psi_{n-1}\vert\bigr)
+= \lambda_0 + \cdots + \lambda_{n-1}
+\end{gathered}
+\end{split}\]</div>
+<p>別の方法として、正方行列のトレースは（正規行列であるかどうかに関わらず）その固有値の和に等しいという事実からも、同じ結論に到達できます。</p>
+<p>以上より、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span>は純粋状態の凸結合として表せることが分かりました。さらに、その純粋状態を互いに<em>直交</em>するように選ぶことも可能です。
+これは特に、必要となる数 <span class="math notranslate nohighlight">\(n\)</span> が、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の古典状態の数を超える必要がないことを意味します。</p>
+<p>一般に、密度行列を純粋状態の凸結合として表す方法は、スペクトル定理によるものに限らず、複数存在することに注意が必要です。
+このことは、先ほどの例からも分かります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2} \vert 0\rangle\langle 0 \vert + \frac{1}{2} \vert +\rangle\langle + \vert
+= \begin{pmatrix}
+\frac{3}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+\end{split}\]</div>
+<p>これはこの行列のスペクトル分解ではありません。なぜなら、 <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> と<span class="math notranslate nohighlight">\(\vert + \rangle\)</span>は直交していないからです。
+次がスペクトル分解の一例です：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\frac{3}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+= \cos^2(\pi/8) \vert \psi_{\pi/8} \rangle \langle \psi_{\pi/8}\vert +
+\sin^2(\pi/8) \vert \psi_{5\pi/8} \rangle \langle \psi_{5\pi/8}\vert
+\end{split}\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(\vert \psi_{\theta} \rangle = \cos(\theta)\vert 0\rangle + \sin(\theta)\vert 1\rangle\)</span>です。
+固有値は、見覚えのある形をしています：</p>
+<div class="math notranslate nohighlight">
+\[
+\cos^2(\pi/8) = \frac{2+\sqrt{2}}{4} \approx 0.85 \quad\text{and}\quad \sin^2(\pi/8) = \frac{2-\sqrt{2}}{4} \approx 0.15.
+\]</div>
+<p>固有ベクトルは明示的に次のように書けます</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+  \vert\psi_{\pi/8}\rangle &amp; =
+  \frac{\sqrt{2 + \sqrt{2}}}{2}\vert 0\rangle + \frac{\sqrt{2 - \sqrt{2}}}{2}\vert 1\rangle \\[3mm]
+  \vert\psi_{5\pi/8}\rangle &amp; =
+  -\frac{\sqrt{2 - \sqrt{2}}}{2}\vert 0\rangle + \frac{\sqrt{2 + \sqrt{2}}}{2}\vert 1\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>別の、より一般的な例を考えます。 <span class="math notranslate nohighlight">\(\vert \phi_0\rangle,\ldots,\vert \phi_{99} \rangle\)</span> を1量子ビットの状態を表す量子状態ベクトルとし、これらは任意に選ばれている（つまり特別な関係は仮定しない）とします。
+このとき、これら<span class="math notranslate nohighlight">\(100\)</span>個の状態の中から一様ランダムに1つを選ぶことで得られる状態を考えると、
+$<span class="math notranslate nohighlight">\(
+\rho = \frac{1}{100} \sum_{k = 0}^{99} \vert \phi_k\rangle\langle \phi_k \vert.
+\)</span><span class="math notranslate nohighlight">\(
+となります。
+量子ビットについて考えているので、密度行列 \)</span>\rho<span class="math notranslate nohighlight">\( は \)</span>2\times 2$ 行列です。したがってスペクトル定理より、これを</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = p \vert\psi_0\rangle\langle\psi_0\vert + (1 - p) \vert\psi_1\rangle\langle\psi_1\vert
+\]</div>
+<p>という形でも書くことができます。ここで<span class="math notranslate nohighlight">\(p\in[0,1]\)</span> は実数であり、<span class="math notranslate nohighlight">\(\{\vert\psi_0\rangle,\vert\psi_1\rangle\}\)</span> は正規直交基底です。— しかし、このような表現が存在するからといって、<span class="math notranslate nohighlight">\(\rho\)</span> を100個の純粋状態の平均として表すことができないわけではありません。もちろん、そのように表すことも可能です。</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/density-matrices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">密度行列の確率的選択</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完全混合状態</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">確率的状態</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">密度行列とスペクトル定理</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
