@@ -1,0 +1,1019 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>複数システムと縮約状態 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/density-matrices/multiple-systems-ja';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challenge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/density-matrices/multiple-systems-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/density-matrices/multiple-systems-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>複数システムと縮約状態</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">複数システム</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">積状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">相関状態とエンタングル状態</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">縮約状態と部分トレース</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">例：eビットの縮約状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">一般的な量子状態ベクトルの縮約状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">部分トレース</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">部分トレースの代替的な記述</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2つの量子ビットに対する部分トレース</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>複数システムと縮約状態<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>ここからは、複数の系に対して密度行列がどのように機能するかに注目します。これには、密度行列が表現できるさまざまな種類の相関の例や、複合系から切り離された部分の状態を記述するために密度行列がどのように使用できるかが含まれます。</p>
+<section id="id2">
+<h2>複数システム<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>密度行列は、量子情報の簡略化された定式化における状態ベクトルと類似した方法で、複数システムの状態を表現することができます。これは、複数システムをあたかも単一の複合システムであるかのように見なすことができるという、同じ基本的な考え方に従っています。
+数学的な用語で言えば、複数システムの状態を表現する密度行列の行と列は、個々の系の古典的な状態集合のデカルト積（直積）と対応付けられます。</p>
+<p>例えば、4つのベル状態の状態ベクトル表現を思い出してください。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+  \vert \phi^+ \rangle &amp; = \frac{1}{\sqrt{2}} \vert 00 \rangle + \frac{1}{\sqrt{2}} \vert 11 \rangle \\[2mm]
+  \vert \phi^- \rangle &amp; = \frac{1}{\sqrt{2}} \vert 00 \rangle - \frac{1}{\sqrt{2}} \vert 11 \rangle \\[2mm]
+  \vert \psi^+ \rangle &amp; = \frac{1}{\sqrt{2}} \vert 01 \rangle + \frac{1}{\sqrt{2}} \vert 10 \rangle \\[2mm]
+  \vert \psi^- \rangle &amp; = \frac{1}{\sqrt{2}} \vert 01 \rangle - \frac{1}{\sqrt{2}} \vert 10 \rangle
+\end{aligned}
+\end{split}\]</div>
+<p>これらの状態の密度行列表現は以下の通りです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \phi^+ \rangle \langle \phi^+ \vert =
+\begin{pmatrix}
+  \frac{1}{2} &amp; 0 &amp; 0 &amp; \frac{1}{2}\\[2mm]
+  0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+  0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+  \frac{1}{2} &amp; 0 &amp; 0 &amp; \frac{1}{2}
+\end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \phi^- \rangle \langle \phi^- \vert =
+\begin{pmatrix}
+  \frac{1}{2} &amp; 0 &amp; 0 &amp; -\frac{1}{2}\\[2mm]
+  0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+  0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+  -\frac{1}{2} &amp; 0 &amp; 0 &amp; \frac{1}{2}
+\end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \psi^+ \rangle \langle \psi^+ \vert =
+\begin{pmatrix}
+  0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+  0 &amp; \frac{1}{2} &amp; \frac{1}{2} &amp; 0\\[2mm]
+  0 &amp; \frac{1}{2} &amp; \frac{1}{2} &amp; 0\\[2mm]
+  0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \psi^- \rangle \langle \psi^- \vert =
+\begin{pmatrix}
+  0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+  0 &amp; \frac{1}{2} &amp; -\frac{1}{2} &amp; 0\\[2mm]
+  0 &amp; -\frac{1}{2} &amp; \frac{1}{2} &amp; 0\\[2mm]
+  0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
+<section id="id3">
+<h3>積状態<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>状態ベクトルの場合と同様に、密度行列のテンソル積は複数のシステムの状態間の <em>独立性</em> を表します。例えば、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> で表される状態に準備され、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が密度行列 <span class="math notranslate nohighlight">\(\sigma\)</span> で表される状態に独立して準備された場合、<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span> の状態を記述する密度行列はテンソル積 <span class="math notranslate nohighlight">\(\rho\otimes\sigma\)</span> となります。</p>
+<p>ここでは、量子情報の簡略化された定式化と同じ用語が使用されます。つまり、この形式の状態は積状態と呼ばれます。</p>
+</section>
+<section id="id4">
+<h3>相関状態とエンタングル状態<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>積状態として表現できない状態は、システム間の <em>相関</em> を表します。
+実際には、密度行列によって表現できる相関にはさまざまな種類があります。
+ここにいくつかの例を挙げます。</p>
+<ol class="arabic">
+<li><p><em>相関した古典状態</em>。
+例えば、アリスとボブがランダムなビットを共有している状況を次のように表現できます：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \frac{1}{2} \vert 0 \rangle \langle 0 \vert \otimes \vert 0 \rangle \langle 0 \vert +
+   \frac{1}{2} \vert 1 \rangle \langle 1 \vert \otimes \vert 1 \rangle \langle 1 \vert
+   =
+   \begin{pmatrix}
+   \frac{1}{2} &amp; 0 &amp; 0 &amp; 0\\[2mm]
+   0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+   0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+   0 &amp; 0 &amp; 0 &amp; \frac{1}{2}
+   \end{pmatrix}
+   \end{split}\]</div>
+</li>
+<li><p><em>量子状態のアンサンブル</em>。
+<span class="math notranslate nohighlight">\(m\)</span> 個の密度行列 <span class="math notranslate nohighlight">\(\rho_0,\ldots,\rho_{m-1}\)</span> があり、それらがすべて系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態を表しているとします。そして、確率ベクトル <span class="math notranslate nohighlight">\((p_0,\ldots,p_{m-1})\)</span> に従って、これらの状態の1つをランダムに選択するとします。このようなプロセスは状態の <em>アンサンブル</em> によって表現されます。これには、確率 <span class="math notranslate nohighlight">\((p_0,\ldots,p_{m-1})\)</span> だけでなく、密度行列 <span class="math notranslate nohighlight">\(\rho_0,\ldots,\rho_{m-1}\)</span> の指定も含まれます。<span class="math notranslate nohighlight">\(k\)</span> のランダムな選択とそれに対応する密度行列 <span class="math notranslate nohighlight">\(\rho_k\)</span> の両方を記述する単一の密度行列に、状態のアンサンブルを次のように関連付けることができます。</p>
+<div class="math notranslate nohighlight">
+\[
+   \sum_{k = 0}^{m-1} p_k \vert k\rangle \langle k \vert \otimes \rho_k.
+   \]</div>
+<p>明確にしておくと、これはペア <span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span> の状態であり、ここで <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> は <span class="math notranslate nohighlight">\(k\)</span> の古典的な選択を表します。したがって、その古典的な状態集合は <span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span> であると仮定しています。この形式の状態は、 <em>古典・量子状態</em> と呼ばれることがあります。</p>
+</li>
+<li><p><em>セパラブル状態</em>。次のように、2つの系の量子状態間に古典的な相関がある状況を想像することができます：</p>
+<div class="math notranslate nohighlight">
+\[
+   \sum_{k = 0}^{m-1} p_k \rho_k \otimes \sigma_k.
+   \]</div>
+<p>言い換えると、<span class="math notranslate nohighlight">\(0\)</span> から <span class="math notranslate nohighlight">\(m-1\)</span> までの各 <span class="math notranslate nohighlight">\(k\)</span> について、確率 <span class="math notranslate nohighlight">\(p_k\)</span> で左側の系が状態 <span class="math notranslate nohighlight">\(\rho_k\)</span> にあり、右側の系が状態 <span class="math notranslate nohighlight">\(\sigma_k\)</span> にあるということになります。このような状態はセパラブル状態と呼ばれます。この概念は、2つ以上の系に拡張することもできます。</p>
+</li>
+<li><p><em>エンタングル状態</em>。 系のペアのすべての状態がセパラブルであるとは限りません。量子情報の一般的な定式化では、エンタングルメントはこのように定義されます。つまり、セパラブルではない状態は <em>エンタングルしている</em> と言われます。</p>
+<p>この用語は、「量子情報の基礎」コースで使用した用語と一致していることに注意してください。そこでは、積状態ではない量子状態ベクトルはエンタングル状態を表すと述べました。そして実際、積状態ではない任意の量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> について、密度行列 <span class="math notranslate nohighlight">\(\vert\psi\rangle\langle\psi\vert\)</span> で表される状態はセパラブルではないことがわかります。純粋状態ではない状態の場合、エンタングルメントの判定はこれよりもはるかに複雑です。</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="id5">
+<h2>縮約状態と部分トレース<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>複数のシステムの文脈において、密度行列を用いてできる単純ですが重要なことがあります。それは、いくつかのシステムを無視することによって得られる状態を記述することです。
+複数のシステムが量子状態にあり、1つ以上のシステムを破棄するか、無視することを選択した場合、残りのシステムの状態はそれらのシステムの <em>縮約状態</em> と呼ばれます。
+縮約状態の密度行列表現は、全体の状態を記述する密度行列からの、<em>部分トレース</em> として知られる写像を通じて簡単に得られます。</p>
+<section id="e">
+<h3>例：eビットの縮約状態<a class="headerlink" href="#e" title="Link to this heading">#</a></h3>
+<p>次の状態を共にしている量子ビットのペア <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> があると仮定します。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\phi^+\rangle = \frac{1}{\sqrt{2}} \vert 00 \rangle + \frac{1}{\sqrt{2}} \vert 11 \rangle.
+\]</div>
+<p>アリスが量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> を保持し、ボブが <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を保持していると想像することができます。つまり、彼らは共に1つのeビットを共有していると言えます。ボブが自分の量子ビットを持って星々を訪れる決心をして、二度と姿を見せなくなったかのように、孤立したアリスの量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の密度行列表現を得たいと思います。</p>
+<p>まず、ボブが旅の途中で、標準基底の測定に関して自分の量子ビットを測定することに決めた場合に何が起こるか考えてみましょう。もし彼がそうした場合、彼は次の確率で結果 <span class="math notranslate nohighlight">\(0\)</span> を得ます。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl\| \bigl( \mathbb{I}_{\mathsf{A}} \otimes \langle 0\vert \bigr) \vert \phi^+ \rangle \bigr\|^2
+= \Bigl\| \frac{1}{\sqrt{2}} \vert 0 \rangle \Bigr\|^2 = \frac{1}{2},
+\]</div>
+<p>この場合、アリスの量子ビットの状態は <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> になります。そして、彼は次の確率で結果 <span class="math notranslate nohighlight">\(1\)</span> を得ます。</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl\| \bigl( \mathbb{I}_{\mathsf{A}} \otimes \langle 1\vert \bigr) \vert \phi^+ \rangle \bigr\|^2
+= \Bigl\| \frac{1}{\sqrt{2}} \vert 1 \rangle \Bigr\|^2 = \frac{1}{2},
+\]</div>
+<p>この場合、アリスの量子ビットの状態は <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> になります。</p>
+<p>したがって、ボブの測定結果を無視してアリスの量子ビットに焦点を当てると、彼女は確率 <span class="math notranslate nohighlight">\(1/2\)</span> で状態 <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> を得て、確率 <span class="math notranslate nohighlight">\(1/2\)</span> で状態 <span class="math notranslate nohighlight">\(\vert 1\rangle\)</span> を得るという結論に至ります。
+これは、孤立したアリスの量子ビットの状態を、次の密度行列によって記述することにつながります。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2} \vert 0\rangle\langle 0\vert + \frac{1}{2} \vert 1\rangle\langle 1\vert = \frac{1}{2} \mathbb{I}_{\mathsf{A}}.
+\]</div>
+<p>すなわち、アリスの量子ビットは完全混合状態にあります。
+明確にしておくと、アリスの量子ビットの状態に対するこの記述には、ボブの測定結果は含まれていません。私たちはボブを完全に無視しています。</p>
+<p>さて、たった今得られた、孤立したアリスの量子ビットの密度行列表現は、ボブが自分の量子ビットを測定したという仮定に依存しているように見えるかもしれませんが、実際はそうではありません。
+私たちが行ったことは、ボブが自分の量子ビットを測定する可能性を用いて、すでに学んだことに基づき、完全混合状態がアリスの量子ビットの状態として生じることを論証したことです。
+もちろん、ボブが自分の量子ビットを測定しなければならないとはどこにも書かれていません。しかし、彼が測定しないとも書かれていません。
+そして、もし彼が何光年も離れているならば、彼が何をしようがしまいが、孤立して見られているアリスの量子ビットの状態に影響を与えることはあり得ません。
+つまり、アリスの量子ビットの状態に対して得られた記述は、光よりも速い通信の不可能性と矛盾しない唯一の記述なのです。</p>
+<p>ボブの量子ビット <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の状態について考えることもできますが、これも偶然、完全混合状態になります。
+実際に、4つのベル状態すべてについて、アリスの量子ビットとボブの量子ビットの両方の縮約状態が完全混合状態であることがわかります。</p>
+</section>
+<section id="id6">
+<h3>一般的な量子状態ベクトルの縮約状態<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>さて、先ほど議論した例を、必ずしも状態 <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> の量子ビットではない、2つの任意のシステム <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に一般化してみましょう。
+システム <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の古典的な状態集合が、それぞれ <span class="math notranslate nohighlight">\(\Sigma\)</span> と <span class="math notranslate nohighlight">\(\Gamma\)</span> であると仮定します。
+したがって、結合されたシステム <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の状態を表現する密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> は、デカルト積 <span class="math notranslate nohighlight">\(\Sigma\times\Gamma\)</span> に対応する行と列のインデックスを持ちます。</p>
+<p><span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の状態が量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> によって記述されていると仮定します。したがって、この状態を記述する密度行列は <span class="math notranslate nohighlight">\(\rho = \vert\psi\rangle\langle\psi\vert\)</span> となります。
+孤立した <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の状態の密度行列表現を求めます。これは慣例的に <span class="math notranslate nohighlight">\(\rho_{\mathsf{A}}\)</span> と表記されます。
+（下付き文字の代わりに上付き文字が使用されることもあります。）</p>
+<p>The state vector <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> can be expressed in the form</p>
+<p>状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> は、一意に決定されるベクトルの集合 <span class="math notranslate nohighlight">\(\{\vert\phi_b\rangle : b\in\Gamma\}\)</span> に対して、以下の形式で表現することができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi\rangle = \sum_{b\in\Gamma} \vert\phi_b\rangle \otimes \vert b\rangle
+\]</div>
+<p>特に、これらのベクトルは単純な公式を通じて決定することができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\phi_b\rangle = \bigl(\mathbb{I}_{\mathsf{A}} \otimes \langle b\vert\bigr)\vert\psi\rangle
+\]</div>
+<p>前回のeビットの例と同様に推論すると、システム <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> を標準基底の測定で測定した場合、それぞれの結果 <span class="math notranslate nohighlight">\(b\in\Gamma\)</span> を確率 <span class="math notranslate nohighlight">\(\|\vert\phi_b\rangle\|^2\)</span> で得ることになり、その場合 <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の状態は以下のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\vert \phi_b \rangle}{\|\vert\phi_b\rangle\|}.
+\]</div>
+<p>密度行列として、この状態は次のように記述することができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\biggl(\frac{\vert \phi_b \rangle}{\|\vert\phi_b\rangle\|}\biggr)
+\biggl(\frac{\vert \phi_b \rangle}{\|\vert\phi_b\rangle\|}\biggr)^{\dagger}
+= \frac{\vert \phi_b \rangle\langle\phi_b\vert}{\|\vert\phi_b\rangle\|^2}
+\]</div>
+<p>それぞれの結果の確率に従って異なる状態の平均をとることで、次の密度行列に行き着きます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_{\mathsf{A}} = \sum_{b\in\Gamma}
+\|\vert\phi_b\rangle\|^2 \frac{\vert \phi_b \rangle\langle\phi_b\vert}{\|\vert\phi_b\rangle\|^2}
+= \sum_{b\in\Gamma} \vert \phi_b \rangle\langle\phi_b\vert
+= \sum_{b\in\Gamma}
+\bigl(\mathbb{I}_{\mathsf{A}} \otimes \langle b\vert\bigr) \vert\psi\rangle\langle\psi\vert
+\bigl(\mathbb{I}_{\mathsf{A}} \otimes \vert b\rangle\bigr)
+\]</div>
+</section>
+<section id="id7">
+<h3>部分トレース<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>公式</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_{\mathsf{A}}
+= \sum_{b\in\Gamma}
+\bigl(\mathbb{I}_{\mathsf{A}} \otimes \langle b\vert\bigr)
+\vert\psi\rangle\langle\psi\vert
+\bigl(\mathbb{I}_{\mathsf{A}} \otimes \vert b\rangle\bigr)
+\]</div>
+<p>は、純粋状態だけでなく、ペア <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対する <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の縮約状態の記述を導きます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_{\mathsf{A}} = \sum_{b\in\Gamma}
+\bigl( \mathbb{I}_{\mathsf{A}} \otimes \langle b \vert\bigr)
+\rho
+\bigl( \mathbb{I}_{\mathsf{A}} \otimes \vert b \rangle\bigr)
+\]</div>
+<p>単に線形性と、すべての密度行列が純粋状態の凸結合として記述できるという事実により、この公式は必ず機能します。</p>
+<p>この方程式において <span class="math notranslate nohighlight">\(\rho_{\mathsf{A}}\)</span> を得るために <span class="math notranslate nohighlight">\(\rho\)</span> に対して実行されている操作は、<em>部分トレース</em> として知られています。より正確には、部分トレースは <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に対して実行される、あるいは <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> が <em>トレースアウト</em>される（トレース消去される）と言います。
+この操作は <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{B}}\)</span> と表記されるため、次のように書くことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{B}} (\rho) =
+\sum_{b\in\Gamma}
+\bigl( \mathbb{I}_{\mathsf{A}} \otimes \langle b \vert\bigr)
+\rho
+\bigl( \mathbb{I}_{\mathsf{A}} \otimes \vert b \rangle\bigr).
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に対して部分トレースを定義することもできます。これにより、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> ではなくシステム <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> がトレースアウトされます。次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{A}} (\rho) =
+\sum_{a\in\Sigma}
+\bigl(\langle a \vert\otimes\mathbb{I}_{\mathsf{B}}\bigr)
+\rho
+\bigl(\vert a \rangle\otimes\mathbb{I}_{\mathsf{B}}\bigr)
+\]</div>
+<p>これにより、<span class="math notranslate nohighlight">\(\mathsf{A}\)</span> ではなく、孤立した <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の状態の密度行列表現 <span class="math notranslate nohighlight">\(\rho_{\mathsf{B}}\)</span> が得られます。</p>
+<p>要約すると、<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> が任意のシステムのペアであり、<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の状態を記述する密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> がある場合、システム <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の縮約状態は以下のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\rho_{\mathsf{A}} &amp; = \operatorname{Tr}_{\mathsf{B}}(\rho)
+= \sum_{b\in\Gamma} \bigl( \mathbb{I}_{\mathsf{A}} \otimes \langle b \vert\bigr) \rho \bigl( \mathbb{I}_{\mathsf{A}} \otimes \vert b \rangle\bigr)\\[2mm]
+\rho_{\mathsf{B}} &amp; = \operatorname{Tr}_{\mathsf{A}}(\rho) = \sum_{a\in\Sigma}
+\bigl( \langle a \vert \otimes \mathbb{I}_{\mathsf{B}}\bigr) \rho
+\bigl( \vert a \rangle\otimes \mathbb{I}_{\mathsf{B}} \bigr)
+\end{aligned}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\rho\)</span> が密度行列であれば、<span class="math notranslate nohighlight">\(\rho_{\mathsf{A}}\)</span> と <span class="math notranslate nohighlight">\(\rho_{\mathsf{B}}\)</span> も必然的に密度行列になります。</p>
+<p>これらの概念は、2つではなく任意の数のシステムに、自然な形で一般化することができます。
+一般に、密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> の下付き文字に、選択した任意のシステムの名前を配置して、それらのシステムのみの縮約状態を記述することができます。
+例えば、<span class="math notranslate nohighlight">\(\mathsf{A},\)</span> <span class="math notranslate nohighlight">\(\mathsf{B},\)</span> および <span class="math notranslate nohighlight">\(\mathsf{C}\)</span> がシステムであり、<span class="math notranslate nohighlight">\(\rho\)</span> が <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B},\mathsf{C})\)</span> の状態を記述する密度行列である場合、次のように定義できます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\rho_{\mathsf{AC}} &amp; = \operatorname{Tr}_{\mathsf{B}}(\rho) = \sum_{b\in\Gamma}
+\bigl( \mathbb{I}_{\mathsf{A}} \otimes \langle b \vert \otimes \mathbb{I}_{\mathsf{C}} \bigr) \rho
+\bigl( \mathbb{I}_{\mathsf{A}} \otimes \vert b \rangle \otimes \mathbb{I}_{\mathsf{C}} \bigr) \\[2mm]
+\rho_{\mathsf{C}} &amp; = \operatorname{Tr}_{\mathsf{AB}}(\rho) = \sum_{a\in\Sigma} \sum_{b\in\Gamma}
+\bigl( \langle a \vert \otimes \langle b \vert \otimes \mathbb{I}_{\mathsf{C}} \bigr) \rho
+\bigl( \vert a \rangle \otimes \vert b \rangle \otimes \mathbb{I}_{\mathsf{C}} \bigr)
+\end{aligned}
+\end{split}\]</div>
+<p>システムの他の選択についても同様です。</p>
+</section>
+<section id="id8">
+<h3>部分トレースの代替的な記述<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>部分トレース写像 <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{A}}\)</span> と <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{B}}\)</span> を記述する代替的な方法は、それらが以下の公式を満たす <em>一意</em> の線形写像であるとすることです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{A}}(M \otimes N) &amp; = \operatorname{Tr}(M) N \\[2mm]
+\operatorname{Tr}_{\mathsf{B}}(M \otimes N) &amp; = \operatorname{Tr}(N) M.
+\end{aligned}
+\end{split}\]</div>
+<p>これらの公式において、<span class="math notranslate nohighlight">\(N\)</span> と <span class="math notranslate nohighlight">\(M\)</span> は適切なサイズの正方行列です：
+<span class="math notranslate nohighlight">\(M\)</span> の行と列は <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の古典的な状態に対応し、<span class="math notranslate nohighlight">\(N\)</span> の行と列は <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の古典的な状態に対応します。</p>
+<p>部分トレースのこの特徴づけは、数学的な観点から基本的であるだけでなく、状況によっては迅速な計算を可能にすることもあります。
+例えば、量子ビットのペア <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> の次の状態を考えてみましょう。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho =
+\frac{1}{2} \vert 0\rangle\langle 0\vert \otimes \vert 0\rangle\langle 0\vert +
+\frac{1}{2} \vert 1\rangle\langle 1\vert \otimes \vert +\rangle\langle +\vert
+\]</div>
+<p>例えば縮約状態 <span class="math notranslate nohighlight">\(\rho_{\mathsf{A}}\)</span> を計算するには、線形性と、<span class="math notranslate nohighlight">\(\vert 0\rangle\langle 0\vert\)</span> および <span class="math notranslate nohighlight">\(\vert +\rangle\langle +\vert\)</span> が単位トレース（トレースが1）を持つという事実を利用することができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_{\mathsf{A}} =
+\operatorname{Tr}_{\mathsf{B}}(\rho) =
+\frac{1}{2} \operatorname{Tr}\bigl(\vert 0\rangle\langle 0\vert\bigr)\, \vert 0\rangle\langle 0\vert  +
+\frac{1}{2} \operatorname{Tr}\bigl(\vert +\rangle\langle +\vert\bigr) \vert 1\rangle\langle 1\vert =
+\frac{1}{2} \vert 0\rangle\langle 0\vert + \frac{1}{2} \vert 1\rangle\langle 1\vert
+\]</div>
+<p>縮約状態 <span class="math notranslate nohighlight">\(\rho_{\mathsf{B}}\)</span> も同様に計算することができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_{\mathsf{B}} =
+\operatorname{Tr}_{\mathsf{A}}(\rho) =
+\frac{1}{2} \operatorname{Tr}\bigl(\vert 0\rangle\langle 0\vert\bigr)\, \vert 0\rangle\langle 0\vert  +
+\frac{1}{2} \operatorname{Tr}\bigl(\vert 1\rangle\langle 1\vert\bigr) \vert +\rangle\langle +\vert =
+\frac{1}{2} \vert 0\rangle\langle 0\vert + \frac{1}{2} \vert +\rangle\langle +\vert
+\]</div>
+</section>
+<section id="id9">
+<h3>2つの量子ビットに対する部分トレース<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>部分トレースは、行列を用いて明示的に記述することもできます。
+ここでは2つの量子ビットに対してのみこれを行いますが、これはより大きなシステムに一般化することもできます。
+2つの量子ビット <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> があると仮定します。そうすると、これら2つの量子ビットの状態を記述する任意の密度行列は次のように書くことができます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\rho = \begin{pmatrix}
+\alpha_{00} &amp; \alpha_{01} &amp; \alpha_{02} &amp; \alpha_{03}\\[2mm]
+\alpha_{10} &amp; \alpha_{11} &amp; \alpha_{12} &amp; \alpha_{13}\\[2mm]
+\alpha_{20} &amp; \alpha_{21} &amp; \alpha_{22} &amp; \alpha_{23}\\[2mm]
+\alpha_{30} &amp; \alpha_{31} &amp; \alpha_{32} &amp; \alpha_{33}
+\end{pmatrix}
+\end{split}\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(\{\alpha_{jk} : 0\leq j,k\leq 3\}\)</span> はある複素数の選択です。</p>
+<p>最初のシステムに対する部分トレースは、次の公式を持ちます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{Tr}_{\mathsf{A}} \begin{pmatrix}
+\alpha_{00} &amp; \alpha_{01} &amp; \alpha_{02} &amp; \alpha_{03}\\[2mm]
+\alpha_{10} &amp; \alpha_{11} &amp; \alpha_{12} &amp; \alpha_{13}\\[2mm]
+\alpha_{20} &amp; \alpha_{21} &amp; \alpha_{22} &amp; \alpha_{23}\\[2mm]
+\alpha_{30} &amp; \alpha_{31} &amp; \alpha_{32} &amp; \alpha_{33}
+\end{pmatrix}
+= \begin{pmatrix}
+\alpha_{00} &amp; \alpha_{01} \\[2mm]
+\alpha_{10} &amp; \alpha_{11}
+\end{pmatrix} +
+\begin{pmatrix}
+\alpha_{22} &amp; \alpha_{23}\\[2mm]
+\alpha_{32} &amp; \alpha_{33}
+\end{pmatrix}
+= \begin{pmatrix}
+\alpha_{00} + \alpha_{22} &amp; \alpha_{01} + \alpha_{23}\\[2mm]
+\alpha_{10} + \alpha_{32} &amp; \alpha_{11} + \alpha_{33}
+\end{pmatrix}
+\end{split}\]</div>
+<p>この公式について考える1つの方法は、<span class="math notranslate nohighlight">\(4\times 4\)</span> 行列を、各ブロックが <span class="math notranslate nohighlight">\(2\times 2\)</span> である <span class="math notranslate nohighlight">\(2\times 2\)</span> ブロック行列として見なすことから始まります。
+すなわち、
+$<span class="math notranslate nohighlight">\(
+\rho = \begin{pmatrix}
+M_{0,0} &amp; M_{0,1} \\[1mm]
+M_{1,0} &amp; M_{1,1}
+\end{pmatrix}
+\)</span>$</p>
+<p>ここで、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+M_{0,0} = \begin{pmatrix}
+\alpha_{00} &amp; \alpha_{01} \\[2mm]
+\alpha_{10} &amp; \alpha_{11}
+\end{pmatrix},
+\quad
+M_{0,1} = \begin{pmatrix}
+\alpha_{02} &amp; \alpha_{03} \\[2mm]
+\alpha_{12} &amp; \alpha_{13}
+\end{pmatrix},
+\quad
+M_{1,0} = \begin{pmatrix}
+\alpha_{20} &amp; \alpha_{21} \\[2mm]
+\alpha_{30} &amp; \alpha_{31}
+\end{pmatrix},
+\quad
+M_{1,1} = \begin{pmatrix}
+\alpha_{22} &amp; \alpha_{23} \\[2mm]
+\alpha_{32} &amp; \alpha_{33}
+\end{pmatrix}.
+\end{split}\]</div>
+<p>すると、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{Tr}_{\mathsf{A}}\begin{pmatrix}
+M_{0,0} &amp; M_{0,1} \\[1mm]
+M_{1,0} &amp; M_{1,1}
+\end{pmatrix}
+= M_{0,0} + M_{1,1}.
+\end{split}\]</div>
+<p>最初のシステムではなく、2番目のシステムがトレースアウトされる場合の公式は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{Tr}_{\mathsf{B}}
+\begin{pmatrix}
+\alpha_{00} &amp; \alpha_{01} &amp; \alpha_{02} &amp; \alpha_{03}\\[2mm]
+\alpha_{10} &amp; \alpha_{11} &amp; \alpha_{12} &amp; \alpha_{13}\\[2mm]
+\alpha_{20} &amp; \alpha_{21} &amp; \alpha_{22} &amp; \alpha_{23}\\[2mm]
+\alpha_{30} &amp; \alpha_{31} &amp; \alpha_{32} &amp; \alpha_{33}
+\end{pmatrix}
+= \begin{pmatrix}
+\operatorname{Tr} \begin{pmatrix}
+\alpha_{00} &amp; \alpha_{01}\\[1mm]
+\alpha_{10} &amp; \alpha_{11}
+\end{pmatrix}
+&amp;
+\operatorname{Tr} \begin{pmatrix}
+\alpha_{02} &amp; \alpha_{03}\\[1mm]
+\alpha_{12} &amp; \alpha_{13}
+\end{pmatrix}
+\\[4mm]
+\operatorname{Tr} \begin{pmatrix}
+\alpha_{20} &amp; \alpha_{21}\\[1mm]
+\alpha_{30} &amp; \alpha_{31}
+\end{pmatrix}
+&amp;
+\operatorname{Tr} \begin{pmatrix}
+\alpha_{22} &amp; \alpha_{23}\\[1mm]
+\alpha_{32} &amp; \alpha_{33}
+\end{pmatrix}
+\end{pmatrix}
+= \begin{pmatrix}
+\alpha_{00} + \alpha_{11} &amp; \alpha_{02} + \alpha_{13}\\[2mm]
+\alpha_{20} + \alpha_{31} &amp; \alpha_{22} + \alpha_{33}
+\end{pmatrix}
+\end{split}\]</div>
+<p>以前と同様の形式のブロック行列の観点からは、この公式が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{Tr}_{\mathsf{B}}
+\begin{pmatrix}
+M_{0,0} &amp; M_{0,1} \\[1mm]
+M_{1,0} &amp; M_{1,1}
+\end{pmatrix}
+= \begin{pmatrix}
+\operatorname{Tr}(M_{0,0}) &amp; \operatorname{Tr}(M_{0,1}) \\[1mm]
+\operatorname{Tr}(M_{1,0}) &amp; \operatorname{Tr}(M_{1,1})
+\end{pmatrix}
+\end{split}\]</div>
+<p>これらの関数のブロック行列による記述は、自然かつ直接的な方法で、量子ビットよりも大きなシステムに拡張することができます。</p>
+<p>このレッスンを終えるにあたり、これらの公式を上で考慮したのと同じ状態に適用してみましょう。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\rho = \frac{1}{2} \vert 0\rangle \langle 0 \vert \otimes \vert 0\rangle \langle 0 \vert
++ \frac{1}{2} \vert 1\rangle \langle 1 \vert \otimes \vert +\rangle \langle + \vert
+=
+\begin{pmatrix}
+\frac{1}{2} &amp; 0 &amp; 0 &amp; 0\\[2mm]
+0 &amp; 0 &amp; 0 &amp; 0 \\[2mm]
+0 &amp; 0 &amp; \frac{1}{4} &amp; \frac{1}{4}\\[2mm]
+0 &amp; 0 &amp; \frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}.
+\end{split}\]</div>
+<p>最初のシステム <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> の縮約状態は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{Tr}_{\mathsf{B}}
+\begin{pmatrix}
+\frac{1}{2} &amp; 0 &amp; 0 &amp; 0\\[2mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+0 &amp; 0 &amp; \frac{1}{4} &amp; \frac{1}{4}\\[2mm]
+0 &amp; 0 &amp; \frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+= \begin{pmatrix}
+\operatorname{Tr} \begin{pmatrix}
+\frac{1}{2} &amp; 0\\[1mm]
+0 &amp; 0
+\end{pmatrix}
+&amp;
+\operatorname{Tr} \begin{pmatrix}
+0 &amp; 0\\[1mm]
+0 &amp; 0
+\end{pmatrix}
+\\[4mm]
+\operatorname{Tr} \begin{pmatrix}
+0 &amp; 0\\[1mm]
+0 &amp; 0
+\end{pmatrix}
+&amp;
+\operatorname{Tr} \begin{pmatrix}
+\frac{1}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+\end{pmatrix}
+= \begin{pmatrix}
+\frac{1}{2} &amp; 0\\[2mm]
+0 &amp; \frac{1}{2}
+\end{pmatrix}
+\end{split}\]</div>
+<p>であり、2番目のシステム <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の縮約状態は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{Tr}_{\mathsf{A}}
+\begin{pmatrix}
+\frac{1}{2} &amp; 0 &amp; 0 &amp; 0\\[2mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[2mm]
+0 &amp; 0 &amp; \frac{1}{4} &amp; \frac{1}{4}\\[2mm]
+0 &amp; 0 &amp; \frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+= \begin{pmatrix}
+\frac{1}{2} &amp; 0\\[1mm]
+0 &amp; 0
+\end{pmatrix}
++
+\begin{pmatrix}
+\frac{1}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+= \begin{pmatrix}
+\frac{3}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}.
+\end{split}\]</div>
+<p>です。</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/density-matrices"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">複数システム</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">積状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">相関状態とエンタングル状態</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">縮約状態と部分トレース</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">例：eビットの縮約状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">一般的な量子状態ベクトルの縮約状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">部分トレース</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">部分トレースの代替的な記述</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2つの量子ビットに対する部分トレース</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
