@@ -62,8 +62,8 @@ pip install 'qiskit[visualization]'
 ```
 pip install qiskit[visualization]
 ```
-## 7. Qiskit で Hello world
-続けて、QiskitのHello worldを実行して、Qiskitが正しく動くか確認してみましょう。
+## 7. ベル状態の回路で動作確認
+続けて、Qiskitが正しく動くか確認してみましょう。
 以下のコマンドで、Jupyter notebookを立ち上げます。
 ```
 jupyter notebook
@@ -71,12 +71,16 @@ jupyter notebook
 以下のようにChromeなどのウェブブラウザーが起動します。右上の「New」をクリックし、「Python 3」を選んで、新しいNotebookを起動します。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/57f9b06c-d797-67f4-44d8-d61946521602.png)
 
-[IBM Quantum Platform 資料のハローワールド](https://quantum.cloud.ibm.com/docs/ja/tutorials/hello-world) から最初のセルのコードをコピーします。
-
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/f28ca8d6-99ac-e749-2fa6-daaaf1632445.png)
-
-自分のNotebookのセルに貼り付けます。「Shift」+「Enter」かまたは、上の方にある右向き三角アイコンで実行できます。
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/7ceccdb1-66eb-80ee-3a35-d1dffbab177f.png)
+以下のコードをコピーします。
+```
+from qiskit import QuantumCircuit
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.draw("mpl")
+```
+自分のNotebookのセルに貼り付け、実行します。「Shift」+「Enter」かまたは、上の方にある右向き三角アイコンで実行できます。
+![alt text](image.png)
 
 正しくQiskitが動いている場合、以下の回路図が表示されます。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/ff7df460-6907-9956-fb16-27f7c22a79df.png)
