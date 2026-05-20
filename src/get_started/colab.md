@@ -3,7 +3,6 @@
 Google Colaboratory でQiskitを使いたい場合の手順です。
 
 **ご注意**：Google Colabでは、毎回、Qiskitのインストールが必要になってしまうので、公式にはご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（[macOS版](install_mac.md)、[Windows版](install_win.md)）をご覧ください。
-また、qBraidの場合は、はじめに1回インストールするのみで毎回のインストールは必要ありません。[「qBraid LabでQiskitを使う手順」](qbraid.md)をご参照ください。
 
 ## 1. クラウド環境へのログイン
 ブラウザーを開き、 https://colab.research.google.com/ のサイトに入り、右上の「ログイン」からログインします。
@@ -21,14 +20,15 @@ Google Colaboratory でQiskitを使いたい場合の手順です。
 !pip install qiskit qiskit-ibm-runtime jupyter qiskit-aer qiskit[visualization]
 ```
 
-## 4. Qiskit で Hello world
-続けて、QiskitのHello worldを実行して、Qiskitが正しく動くか確認してみましょう。
-[Qiskit公式ドキュメントのHello world](https://docs.quantum.ibm.com/start/hello-world) から最初のセルのコードをコピーします。
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/2ed9083d-715a-b365-6b0d-6548eb739a14.png)
-
-ノートブックの次のセルに貼り付け、「Shift」+「Enter」で実行します。
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/5a0f0fb5-a95b-7628-18c9-a65930e9fd7b.png)
-
+## 4. ベル状態の回路で確認
+続けて「＋コード」をクリックしてセルを追加し、以下のコードをコピペして実行し、Qiskitが正しく動くか確認してみましょう。
+```
+from qiskit import QuantumCircuit
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.draw("mpl")
+```
 正しくQiskitが動いている場合は、以下の回路図が出力されます。
 ![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/49937210-b757-9638-e800-89f4a042fb3e.png)
 
