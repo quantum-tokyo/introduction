@@ -514,10 +514,8 @@ p \rho + (1 - p) \sigma.
 \]</div>
 <p>となり、これらはどちらも <span class="math notranslate nohighlight">\(1/2\)</span> となります。
 これは線形代数の次の事実（ピタゴラスの定理の一般化）から分かります：</p>
-<Figure title="Theorem">
-$\{\vert\psi_1\rangle,\ldots,\vert\psi_n\rangle\}$ が（実数または複素数の）ベクトル空間 $\mathcal{V}$ の正規直交基底であるとする。このとき、任意のベクトル $\vert \phi\rangle \in \mathcal{V}$ に対して、
-$\vert \langle \psi_1\vert\phi\rangle\vert^2 + \cdots + \vert \langle \psi_n \vert \phi \rangle\vert^2 = \| \vert\phi\rangle \|^2$ が成り立つ。
-</Figure>
+<p><span class="math notranslate nohighlight">\(\{\vert\psi_1\rangle,\ldots,\vert\psi_n\rangle\}\)</span> が（実数または複素数の）ベクトル空間 <span class="math notranslate nohighlight">\(\mathcal{V}\)</span> の正規直交基底であるとする。このとき、任意のベクトル <span class="math notranslate nohighlight">\(\vert \phi\rangle \in \mathcal{V}\)</span> に対して、
+<span class="math notranslate nohighlight">\(\vert \langle \psi_1\vert\phi\rangle\vert^2 + \cdots + \vert \langle \psi_n \vert \phi \rangle\vert^2 = \| \vert\phi\rangle \|^2\)</span> が成り立つ。</p>
 <p>この定理を用いることで、確率を次のように求めることができます。
 結果 <span class="math notranslate nohighlight">\(0\)</span> を得る確率は</p>
 <div class="math notranslate nohighlight">
@@ -579,17 +577,16 @@ $\vert \langle \psi_1\vert\phi\rangle\vert^2 + \cdots + \vert \langle \psi_n \ve
 <section id="id4">
 <h2>確率的状態<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <p>古典状態は密度行列によって表すことができます。
-特に、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の各古典状態 <span class="math notranslate nohighlight">\(a\)</span> に対して、密度行列
-$<span class="math notranslate nohighlight">\(
-\rho = \vert a\rangle \langle a \vert
-\)</span><span class="math notranslate nohighlight">\(
-は、\)</span>\mathsf{X}<span class="math notranslate nohighlight">\( が確定的に古典状態 \)</span>a$ にあることを表します。
+特に、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の各古典状態 <span class="math notranslate nohighlight">\(a\)</span> に対して、密度行列</p>
+<div class="math notranslate nohighlight">
+\[ \rho = \vert a\rangle \langle a \vert \]</div>
+<p>は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が確定的に古典状態 <span class="math notranslate nohighlight">\(a\)</span> にあることを表します。
 量子ビットの場合には、</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \vert 0\rangle \langle 0 \vert = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; 0\end{pmatrix}
 \quad\text{and}\quad
-\vert 1\rangle \langle 1 \vert = \begin{pmatrix}0 &amp; 0 \\ 0 &amp; 1\end{pmatrix},
+\vert 1\rangle \langle 1 \vert = \begin{pmatrix}0 &amp; 0 \\ 0 &amp; 1\end{pmatrix}
 \end{split}\]</div>
 <p>となります。</p>
 <p>一般には、考えている古典状態に対応する位置の対角成分に <span class="math notranslate nohighlight">\(1\)</span> が1つ入り、それ以外の成分はすべて 0 になります。</p>
@@ -617,7 +614,7 @@ p_0 &amp; 0 &amp; \cdots &amp; 0\\
 <p>純粋状態の凸結合</p>
 <div class="math notranslate nohighlight">
 \[
-\rho = \sum_{k = 0}^{m-1} p_k \vert \psi_k\rangle \langle \psi_k \vert,
+\rho = \sum_{k = 0}^{m-1} p_k \vert \psi_k\rangle \langle \psi_k \vert
 \]</div>
 <p>を取ると、密度行列が得られることを見てきました。</p>
 <p>実際には、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span>  は、このような純粋状態の凸結合として表すことができます。
@@ -625,13 +622,11 @@ p_0 &amp; 0 &amp; \cdots &amp; 0\\
 <p>さらに、数 <span class="math notranslate nohighlight">\(m\)</span> は考えている系の古典状態の数と一致するように常に選ぶことができ、また量子状態ベクトルは互いに直交するように選ぶこともできます。
 これは、”量子アルゴリズムの基礎” コースで扱ったスペクトル定理から導かれます。
 以下に便宜のため、そのスペクトル定理を改めて述べます。</p>
-<Figure title="Theorem">
-スペクトル定理: $M$ を $n\times n$ の *正規* 複素行列とする。
-このとき、$n$次元複素ベクトル空間の正規直交基底$\{\vert\psi_0\rangle,\ldots,\vert\psi_{n-1}\rangle \}$ と複素数 $\lambda_0,\ldots,\lambda_{n-1}$ が存在して、
-$$
+<p>スペクトル定理: <span class="math notranslate nohighlight">\(M\)</span> を <span class="math notranslate nohighlight">\(n\times n\)</span> の <em>正規</em> 複素行列とする。
+このとき、<span class="math notranslate nohighlight">\(n\)</span>次元複素ベクトル空間の正規直交基底<span class="math notranslate nohighlight">\(\{\vert\psi_0\rangle,\ldots,\vert\psi_{n-1}\rangle \}\)</span> と複素数 <span class="math notranslate nohighlight">\(\lambda_0,\ldots,\lambda_{n-1}\)</span> が存在して、
+$<span class="math notranslate nohighlight">\(
 M = \lambda_0 \vert \psi_0\rangle\langle \psi_0\vert + \cdots + \lambda_{n-1} \vert \psi_{n-1}\rangle\langle \psi_{n-1}\vert.
-$$と表すことができる。
-</Figure>
+\)</span>$と表すことができる。</p>
 <p>(行列 <span class="math notranslate nohighlight">\(M\)</span> が <em>正規</em> であるとは、<span class="math notranslate nohighlight">\(M^{\dagger} M = M M^{\dagger}.\)</span> を満たすことを思い出してください。言い換えると、正規行列とは自分自身の共役転置と可換な行列のことです。)</p>
 <p>密度行列は常にエルミートであり、したがって正規行列でもあるため、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span>  に対してスペクトル定理を適用することができます。
 これにより、次のように書くことができます。</p>
@@ -644,9 +639,7 @@ $$と表すことができる。
 <p>これらの数 <span class="math notranslate nohighlight">\(\lambda_0,\ldots,\lambda_{n-1}\)</span> は <span class="math notranslate nohighlight">\(\rho\)</span> の固有値であり、<span class="math notranslate nohighlight">\(\rho\)</span> は半正定値であるため、これらは非負の実数でなければなりません。
 さらに、  <span class="math notranslate nohighlight">\(\rho\)</span> のトレースが<span class="math notranslate nohighlight">\(1\)</span>であることから、<span class="math notranslate nohighlight">\(\lambda_0 + \cdots + \lambda_{n-1} = 1\)</span> が成り立つことが分かります。
 詳細を確認することで、トレースに関する次の重要で非常に有用な性質を指摘することができます。</p>
-<Figure title="Theorem">
-定理（トレースの巡回性）: 行列の積$AB$ が正方行列になるような任意の2つの行列$A$、 $B$ に対して、 $\operatorname{Tr}(AB) = \operatorname{Tr}(BA)$ が成り立つ。
-</Figure>
+<p>定理（トレースの巡回性）: 行列の積<span class="math notranslate nohighlight">\(AB\)</span> が正方行列になるような任意の2つの行列<span class="math notranslate nohighlight">\(A\)</span>、 <span class="math notranslate nohighlight">\(B\)</span> に対して、 <span class="math notranslate nohighlight">\(\operatorname{Tr}(AB) = \operatorname{Tr}(BA)\)</span> が成り立つ。</p>
 <p>この定理は、<span class="math notranslate nohighlight">\(A\)</span>や <span class="math notranslate nohighlight">\(B\)</span> 自体が正方行列でない場合でも成立することに注意してください。
 すなわち、ある正の整数 <span class="math notranslate nohighlight">\(n\)</span> ,<span class="math notranslate nohighlight">\(m\)</span> に対して、<span class="math notranslate nohighlight">\(A\)</span> が <span class="math notranslate nohighlight">\(n\times m\)</span>行列、<span class="math notranslate nohighlight">\(B\)</span> が <span class="math notranslate nohighlight">\(m\times n\)</span> 行列である場合でも、<span class="math notranslate nohighlight">\(AB\)</span>は<span class="math notranslate nohighlight">\(n\times n\)</span> の正方行列、<span class="math notranslate nohighlight">\(BA\)</span> は<span class="math notranslate nohighlight">\(m\times m\)</span>の正方行列となり、この関係は成り立ちます。</p>
 <p>特に、<span class="math notranslate nohighlight">\(A\)</span>を列ベクトル <span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>、 <span class="math notranslate nohighlight">\(B\)</span>を行ベクトル<span class="math notranslate nohighlight">\(\langle \phi\vert\)</span> とすると、</p>
@@ -708,12 +701,11 @@ $$と表すことができる。
 \end{aligned}
 \end{split}\]</div>
 <p>別の、より一般的な例を考えます。 <span class="math notranslate nohighlight">\(\vert \phi_0\rangle,\ldots,\vert \phi_{99} \rangle\)</span> を1量子ビットの状態を表す量子状態ベクトルとし、これらは任意に選ばれている（つまり特別な関係は仮定しない）とします。
-このとき、これら<span class="math notranslate nohighlight">\(100\)</span>個の状態の中から一様ランダムに1つを選ぶことで得られる状態を考えると、
-$<span class="math notranslate nohighlight">\(
-\rho = \frac{1}{100} \sum_{k = 0}^{99} \vert \phi_k\rangle\langle \phi_k \vert.
-\)</span><span class="math notranslate nohighlight">\(
-となります。
-量子ビットについて考えているので、密度行列 \)</span>\rho<span class="math notranslate nohighlight">\( は \)</span>2\times 2$ 行列です。したがってスペクトル定理より、これを</p>
+このとき、これら<span class="math notranslate nohighlight">\(100\)</span>個の状態の中から一様ランダムに1つを選ぶことで得られる状態を考えると、</p>
+<div class="math notranslate nohighlight">
+\[\rho = \frac{1}{100} \sum_{k = 0}^{99} \vert \phi_k\rangle\langle \phi_k \vert\]</div>
+<p>となります。
+量子ビットについて考えているので、密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> は <span class="math notranslate nohighlight">\(2\times 2\)</span> 行列です。したがってスペクトル定理より、これを</p>
 <div class="math notranslate nohighlight">
 \[
 \rho = p \vert\psi_0\rangle\langle\psi_0\vert + (1 - p) \vert\psi_1\rangle\langle\psi_1\vert
