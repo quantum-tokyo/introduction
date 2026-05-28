@@ -1,6 +1,6 @@
 # Qiskit のインストール手順 (Windows版)
 [Qiskit](https://www.ibm.com/quantum/qiskit) をWindowsにインストールします。（macOS版は[こちら](install_mac.md)です。）
-[公式インストール手順](docs.quantum.ibm.com/start/install)をもとに行います。
+[公式インストール手順](https://quantum.cloud.ibm.com/docs/ja/guides/install-qiskit)をもとに行います。
 
 注意点：Qiskit 0.x をご自身の環境にインストールしたことがある方は、上書きアップグレードをしないでください。エラーが発生しやすくなります。
 
