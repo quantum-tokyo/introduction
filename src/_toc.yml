@@ -7,15 +7,19 @@ parts:
   - caption: 学習コンテンツ
     chapters:
     - file: get_started
-    - file: iqp_documents
+    - url: https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html
+      title: 量子情報の基礎 
+    - url: https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html
+      title: 量子情報の一般的定式化  
     - url: https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html
-      title: ユーティリティー・スケール量子コンピューティング    
+      title: ユーティリティー・スケール量子コンピューティング   
+    - file: iqp_documents 
     - file: ibm_research_blog
     - file: qiskit_textbook_ja
     - file: qiskit_textbook_new_ja
     - file: qiskit_documents_ja
     - url: https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html
-      title: IBM Quantum Challenge
+      title: IBM Quantum Challengeで学ぶ量子コンピューティング
     - file: qgss_ja
     - file: quantum_tokyo_materials
     - file: events
