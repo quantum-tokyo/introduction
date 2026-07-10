@@ -379,12 +379,12 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">チャネルは線形写像である</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">チャネルは密度行列を密度行列へ写す</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ユニタリー操作をチャネルとして表す</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">チャネルは密度行列を密度行列に変換する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">チャネルとしてのユニタリ操作</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">チャネルの凸結合</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子ビットチャネルの例</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子ビットのリセットチャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">完全デコヒーレンスチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">完全位相緩和チャネル</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">完全脱分極チャネル</a></li>
 </ul>
 </li>
@@ -401,35 +401,38 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>量子チャネルの基礎<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>数学的には、チャネルは、密度行列を別の密度行列へ写す線形写像であり、さらにいくつかの条件を満たすものです。
-このレッスンでは、チャネルを表すために、大文字のギリシャ文字である <span class="math notranslate nohighlight">\(\Phi\)</span> や <span class="math notranslate nohighlight">\(\Psi\)</span> をはじめ、特定の場合には他の文字も用います。</p>
-<p>すべてのチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> は、入力系と出力系を持ちます。通常、このレッスンでは入力系を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>、出力系を <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> と表します。
-チャネルの出力系が入力系と同じである場合もよくあります。そのような場合には、入力系と出力系の両方を同じ記号 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> で表します。</p>
+<p>数学的に言えば、チャネルとは、ある種の要件を満たす、密度行列から密度行列への線形写像です。
+この講義を通して、チャネルを指すのに <span class="math notranslate nohighlight">\(\Phi\)</span> や <span class="math notranslate nohighlight">\(\Psi\)</span> を含む大文字のギリシャ文字を用い、特定の場合には他の文字も用います。</p>
+<p>すべてのチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> は入力系と出力系を持ちます。ここでは通常、入力系を指すのに <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>、出力系を指すのに <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> という名前を用います。
+チャネルの出力系が入力系と同じであることはよくあり、この場合は両方を指すのに同じ文字 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を使えます。</p>
 <section id="id2">
 <h2>チャネルは線形写像である<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>チャネルは、古典情報の標準的な定式化における確率的操作や、量子情報の簡略化された定式化におけるユニタリ操作と同様に、<em>線形な写像</em>によって記述されます。</p>
-<p>チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に作用し、その状態が密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> によって表されているとします。このとき、チャネルの出力系の状態は密度行列 <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> によって表されます。
-<span class="math notranslate nohighlight">\(\Phi\)</span> の出力系も <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> である場合には、チャネルは単に  <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態を <span class="math notranslate nohighlight">\(\rho\)</span> から <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> へ変化させるものと考えることができます。
-一方、<span class="math notranslate nohighlight">\(\Phi\)</span> の出力系が <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> ではなく別の系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> である場合には、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> はチャネルを適用する過程で新たに生成された系であり、入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> はチャネル適用後にはもはや利用できないものと理解すべきです。
-つまり、チャネルそのものが <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> に変換し、その結果として <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が状態 <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> に置かれるかのように考えます。</p>
-<p>チャネルが<em>線形写像</em>で記述されるという仮定は、公理、すなわち理論の基本的な仮定として捉えることができます。言い換えれば、これは証明されるものではなく、理論の出発点として採用されるものです。しかし、チャネルが密度行列の凸結合に対して線形に作用しなければならない理由は、確率論およびこれまで学んできた密度行列の性質との整合性から理解することができます。</p>
-<p>より具体的には、チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> を考え、そのチャネルを密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> または <span class="math notranslate nohighlight">\(\sigma\)</span> で表される状態にある系へ適用するとします。<span class="math notranslate nohighlight">\(\rho\)</span> にチャネルを適用すると <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> が得られ、<span class="math notranslate nohighlight">\(\sigma\)</span> に適用すると <span class="math notranslate nohighlight">\(\Phi(\sigma)\)</span> が得られます。したがって、入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態を 確率 <span class="math notranslate nohighlight">\(p\)</span> で <span class="math notranslate nohighlight">\(\rho\)</span>、確率 <span class="math notranslate nohighlight">\(1-p\)</span> で <span class="math notranslate nohighlight">\(\sigma\)</span> にランダムに選んだ場合、出力状態は、確率 <span class="math notranslate nohighlight">\(p\)</span> で <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span>、確率 <span class="math notranslate nohighlight">\(1-p\)</span> で <span class="math notranslate nohighlight">\(\Phi(\sigma)\)</span> となります。密度行列を用いて表せば、この出力状態は <span class="math notranslate nohighlight">\(p\Phi(\rho) + (1-p)\Phi(\sigma)\)</span> です。</p>
-<p>一方で、入力状態そのものを <span class="math notranslate nohighlight">\(p\rho + (1-p)\sigma\)</span> という重み付き平均で表すこともできます。この見方をすると、出力状態は<span class="math notranslate nohighlight">\(\Phi(p\rho + (1-p)\sigma)\)</span>となります。しかし、どちらの見方をしても物理的には同じ状況を表しているので、出力状態も同じでなければなりません。したがって、</p>
+<p>チャネルは <em>線形</em> 写像で記述されます。これは、古典情報の標準的な定式化における確率的操作や、量子情報の簡易的な定式化におけるユニタリ操作と同様です。</p>
+<p>チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が、密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> で記述される状態にある入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対して実行されると、チャネルの出力系は密度行列 <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> で記述されます。
+<span class="math notranslate nohighlight">\(\Phi\)</span> の出力系も <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> である場合、そのチャネルは <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態が <span class="math notranslate nohighlight">\(\rho\)</span> から <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> へ変化することを表していると単純に見なせます。
+<span class="math notranslate nohighlight">\(\Phi\)</span> の出力系が <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> ではなく別の系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> である場合、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> はチャネルを適用する過程で生成される新しい系であり、チャネルが適用されると入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> はもはや利用できなくなる、と理解すべきです。あたかもチャネル自体が <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> へと変換し、それを状態 <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> に残すかのようにです。</p>
+<p>チャネルが <em>線形</em> 写像で記述されるという仮定は、公理——言い換えれば、証明されるものではなく理論の基本的な要請——と見なせます。
+ただし、チャネルが確率論やこれまで密度行列について学んだことと整合するためには、密度行列を入力とする凸結合に対してチャネルが線形に作用する必要があることは理解できます。</p>
+<p>より具体的に述べると、チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> があり、それを密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> と <span class="math notranslate nohighlight">\(\sigma\)</span> で表される2つの状態のいずれかにある系に適用するとします。
+<span class="math notranslate nohighlight">\(\rho\)</span> にチャネルを適用すると密度行列 <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> が得られ、<span class="math notranslate nohighlight">\(\sigma\)</span> に適用すると密度行列 <span class="math notranslate nohighlight">\(\Phi(\sigma)\)</span> が得られます。
+したがって、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の入力状態を確率 <span class="math notranslate nohighlight">\(p\)</span> で <span class="math notranslate nohighlight">\(\rho\)</span>、確率 <span class="math notranslate nohighlight">\(1-p\)</span> で <span class="math notranslate nohighlight">\(\sigma\)</span> とランダムに選ぶと、確率 <span class="math notranslate nohighlight">\(p\)</span> で出力状態 <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span>、確率 <span class="math notranslate nohighlight">\(1-p\)</span> で <span class="math notranslate nohighlight">\(\Phi(\sigma)\)</span> が得られます。これを密度行列の加重平均として <span class="math notranslate nohighlight">\(p\Phi(\rho) + (1-p)\Phi(\sigma)\)</span> と表します。</p>
+<p>一方、チャネルの入力状態を加重平均 <span class="math notranslate nohighlight">\(p\rho + (1-p)\sigma\)</span> で表されると考えることもでき、この場合の出力は <span class="math notranslate nohighlight">\(\Phi(p\rho + (1-p)\sigma)\)</span> です。
+どちらの考え方をしても同じ状態なので、次が成り立たなければなりません。</p>
 <div class="math notranslate nohighlight">
 \[
 \Phi(p\rho + (1-p)\sigma) = p\Phi(\rho) + (1-p)\Phi(\sigma).
 \]</div>
-<p>が成立しなければなりません。
-密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> 、 <span class="math notranslate nohighlight">\(\sigma\)</span>  と実数 <span class="math notranslate nohighlight">\(p\in [0,1]\)</span> の任意の選び方についてこの条件を満たす写像が与えられると、その写像をすべての行列（密度行列に限らない）に対して定義された線形写像へ、一意的に拡張する方法が常に存在します。</p>
+<p>任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span>、<span class="math notranslate nohighlight">\(\sigma\)</span> とスカラー <span class="math notranslate nohighlight">\(p\in [0,1]\)</span> の選び方に対してこの条件を満たす写像がある場合、その写像を線形になるように任意の行列入力（つまり密度行列に限らない入力）へ拡張する方法が、常に一意に存在します。</p>
 </section>
 <section id="id3">
-<h2>チャネルは密度行列を密度行列へ写す<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>当然ながら、チャネルは線形写像であるだけでなく、密度行列を密度行列へ写さなければなりません。チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が、状態が密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> で表される入力系に適用されたとします。すると、得られる系の状態は <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> によって表されます。この状態を物理的な状態として解釈するためには、<span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> が有効な密度行列でなければなりません。</p>
-<p>しかしながら、さらに一般的な状況を考えることが極めて重要です。それは、チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> に変換する際に、何の操作も受けない追加の系 <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> が存在する場合です。
-つまり、系の組 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> がある密度行列で表される状態にあるところから出発し、<span class="math notranslate nohighlight">\(\Phi\)</span> を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> にだけ適用して <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> に変換したとき、結果として得られる <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{Y})\)</span> の状態もまた、密度行列によって記述されなければなりません。</p>
-<p>入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> と出力系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> を持つチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が、<span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の状態を  <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{Y})\)</span> の状態へどのように変換するのかを、数学的に表現することができます。ここで重要なのは、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> には何の操作も行わないという点です。
-説明を簡単にするため、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> の古典状態集合が <span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span> であると仮定します。
-この仮定により、<span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の状態を表す任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> を、次のような形で書くことができます。</p>
+<h2>チャネルは密度行列を密度行列に変換する<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>当然ながら、チャネルは線形写像であることに加えて、密度行列を密度行列に変換しなければなりません。
+チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が、密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> で表される状態にある入力系に適用されると、状態が <span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> で表される系が得られます。これを状態として解釈するためには、<span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> が有効な密度行列でなければなりません。</p>
+<p>しかし、決定的に重要なのは、もっと一般的な状況、すなわちチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が、何も起こらない追加の系 <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> が存在する状況で、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> に変換する場合を考えることです。
+つまり、系の組 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> が何らかの密度行列で記述される状態から始め、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> だけに <span class="math notranslate nohighlight">\(\Phi\)</span> を適用して <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> に変換すると、組 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{Y})\)</span> の状態を記述する密度行列が得られなければなりません。</p>
+<p>入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> と出力系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> を持つチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> に何もしないときに、組 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の状態を <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{Y})\)</span> の状態へどのように変換するかを、数学的に記述できます。
+簡単のため、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> の古典的状態集合は <span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span> であると仮定します。
+これにより、<span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の状態を表す任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> を次の形で書くことができます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \rho = \sum_{a,b = 0}^{m-1} \vert a\rangle\langle b\vert \otimes \rho_{a,b}
@@ -440,14 +443,15 @@
 \rho_{m-1,0} &amp; \rho_{m-1,1} &amp; \cdots &amp; \rho_{m-1,m-1}
 \end{pmatrix}
 \end{split}\]</div>
-<p>この式の右辺には、ブロック行列が現れています。これは、各要素が数ではなく行列になっている行列の行列と考えることができます。ただし、内側の括弧を取り除いて並べたものとして表されています。
-その結果、全体としては通常の行列となり、中央の式で示されているように、ディラック記法を用いて表すこともできます。各行列 <span class="math notranslate nohighlight">\(\rho_{a,b}\)</span> の行と列は、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典状態に対応しています。そして、これらの行列 <span class="math notranslate nohighlight">\(\rho_{a,b}\)</span> は、簡単な公式によって求めることができます。</p>
+<p>この式の右辺にはブロック行列があります。これは、内側の括弧を取り除いた行列の行列と考えることができます。
+これにより、中央の式でディラック記法を用いて別の形で記述できる、通常の行列が残ります。
+各行列 <span class="math notranslate nohighlight">\(\rho_{a,b}\)</span> は <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典的状態に対応する行と列を持ち、これらの行列は単純な式で決まります。</p>
 <div class="math notranslate nohighlight">
 \[
 \rho_{a,b} = \bigl(\langle a \vert \otimes \mathbb{I}_{\mathsf{X}} \bigr) \rho \bigl(\vert b \rangle \otimes \mathbb{I}_{\mathsf{X}} \bigr)
 \]</div>
-<p>なお、これらは一般には密度行列ではありません。これらを組み合わせて <span class="math notranslate nohighlight">\(\rho\)</span> を構成したときに初めて、<span class="math notranslate nohighlight">\(\rho\)</span> は密度行列となります。</p>
-<p>次の式は、<span class="math notranslate nohighlight">\(\Phi\)</span> を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に適用したときに得られる <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{Y})\)</span> の状態を表しています。</p>
+<p>これらは一般には密度行列ではないことに注意してください。それらを組み合わせて <span class="math notranslate nohighlight">\(\rho\)</span> を形成したときにのみ、密度行列が得られます。</p>
+<p>次の式は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に <span class="math notranslate nohighlight">\(\Phi\)</span> を適用したときに得られる <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{Y})\)</span> の状態を記述します。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \sum_{a,b = 0}^{m-1} \vert a\rangle\langle b\vert \otimes \Phi(\rho_{a,b})
@@ -458,66 +462,60 @@
 \Phi(\rho_{m-1,0}) &amp; \Phi(\rho_{m-1,1}) &amp; \cdots &amp; \Phi(\rho_{m-1,m-1})
 \end{pmatrix}
 \end{split}\]</div>
-<p>この式を、与えられた <span class="math notranslate nohighlight">\(\Phi\)</span> と <span class="math notranslate nohighlight">\(\rho\)</span> に対して評価するためには、<span class="math notranslate nohighlight">\(\Phi\)</span> が密度行列ではない行列に対しても線形写像としてどのように作用するかを理解しておく必要があることに注意してください。というのも、各 <span class="math notranslate nohighlight">\(\rho_{a,b}\)</span> は一般にはそれ単独では密度行列ではないからです。
-この式は、<span class="math notranslate nohighlight">\((\operatorname{Id}_{\mathsf{Z}} \otimes \Phi)(\rho)\)</span> という表現と一致しています。ここで、<span class="math notranslate nohighlight">\(\operatorname{Id}_{\mathsf{Z}}\)</span> は系 <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> 上の <em>恒等チャネル</em> を表します。この表現では、行列から行列への線形写像に対してもテンソル積の概念を拡張していることを前提としています。この拡張自体は容易に定義できますが、このレッスンの本質的な内容ではないため、これ以上の説明は行いません。</p>
-<p>先ほど述べたことを繰り返しますが、線形写像 <span class="math notranslate nohighlight">\(\Phi\)</span> が有効なチャネルであるためには、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> の取り方や、系 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> の選び方にかかわらず、<span class="math notranslate nohighlight">\(\Phi\)</span> を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に適用した結果として、常に密度行列が得られなければなりません。
-数学的には、写像がチャネルであるためには、<em>トレース保存</em> であること、すなわちチャネルを適用して得られる行列のトレースが 1 に保たれることに加え、<em>完全正</em> であること、すなわち得られる行列が正半定値となることが必要です。
-これらはいずれも重要な性質であり、それぞれ独立に考察・研究することができます。しかし、このレッスンでは、これらの性質を個別に詳しく扱うことは本質的ではありません。</p>
-<p>実際、入力として密度行列を与えたときには常に密度行列を出力する線形写像であっても、複合系に対しては密度行列を密度行列へ写さないものが存在します。そのため、このような線形写像はチャネルのクラスから除外されます。
-（最も簡単な例は、<em>行列の転置</em> によって定義される線形写像です。）</p>
-<p>また、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> の順序を入れ替え、<span class="math notranslate nohighlight">\(\Phi\)</span> を右側の系ではなく左側の系に適用する場合についても、先ほどと同様の式が成り立ちます。</p>
+<p><span class="math notranslate nohighlight">\(\Phi\)</span> と <span class="math notranslate nohighlight">\(\rho\)</span> の与えられた選び方に対してこの式を評価するには、各 <span class="math notranslate nohighlight">\(\rho_{a,b}\)</span> が一般にはそれ単独では密度行列にならないため、<span class="math notranslate nohighlight">\(\Phi\)</span> が密度行列でない入力に対する線形写像としてどう働くかを理解しなければならないことに注意してください。
+この式は表式 <span class="math notranslate nohighlight">\((\operatorname{Id}_{\mathsf{Z}} \otimes \,\Phi)(\rho)\)</span> と整合します。ここで <span class="math notranslate nohighlight">\(\operatorname{Id}_{\mathsf{Z}}\)</span> は系 <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> 上の <em>恒等チャネル</em> を表します。
+これはテンソル積の概念を行列から行列への線形写像へ拡張したことを前提としています。それは直接的ですが、この講義に本質的なものではなく、これ以上の説明はしません。</p>
+<p>上で述べたことを繰り返すと、線形写像 <span class="math notranslate nohighlight">\(\Phi\)</span> が有効なチャネルであるためには、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> のあらゆる選び方と組 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> のあらゆる密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対して、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に <span class="math notranslate nohighlight">\(\Phi\)</span> を適用したとき常に密度行列が得られなければなりません。
+数学的に言えば、写像がチャネルであるために持たねばならない性質は、<em>トレース保存</em> であること——チャネルを適用して得られる行列のトレースが1に等しくなるように——と、<em>完全正値</em> であること——結果として得られる行列が半正定値になるように——です。
+これらはどちらも別々に考察・研究できる重要な性質ですが、この講義のためにこれらの性質を単独で考えることは重要ではありません。</p>
+<p>実際、密度行列を入力として与えられると常に密度行列を出力するが、複合系に対しては密度行列を密度行列に写せない線形写像も存在します。したがって、このやり方によっていくつかの線形写像がチャネルのクラスから除外されます。
+（行列の転置で与えられる線形写像が最も単純な例です。）</p>
+<p>2つの系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> を入れ替えて、<span class="math notranslate nohighlight">\(\Phi\)</span> を右側ではなく左側の系に適用する場合にも、上の式と類似の式が得られます。</p>
 <div class="math notranslate nohighlight">
 \[
 \bigl(\Phi\otimes\operatorname{Id}_{\mathsf{Z}}\bigr)(\rho)
 = \sum_{a,b = 0}^{m-1} \Phi(\rho_{a,b}) \otimes \vert a\rangle\langle b\vert
 \]</div>
-<p>ここでは、<span class="math notranslate nohighlight">\(\rho\)</span> は <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の状態ではなく、<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Z})\)</span> の状態であると仮定しています。
-この場合には、ブロック行列による表現はうまく機能しません。というのも、行列 <span class="math notranslate nohighlight">\(\rho_{a,b}\)</span> が <span class="math notranslate nohighlight">\(\rho\)</span> の中で連続した行や列を構成していないからです。しかし、その根底にある数学的構造は同じです。</p>
-<p>複合系の一部分にだけ適用された場合であっても、常に密度行列を密度行列へ写すという条件を満たすすべての線形写像は、有効なチャネルを表します。
-したがって、抽象的な観点から言えば、チャネルという概念は、密度行列の概念と、チャネルは線形に作用するという仮定によって定まります。
-この意味で、チャネルは、量子情報の簡略化された定式化におけるユニタリー操作や、古典情報の標準的な定式化における確率的操作と類似しています。
-具体的には、ユニタリー操作とは、与えられた系に対して量子状態ベクトルを常に量子状態ベクトルへ写す線形写像にほかなりません。また、確率的操作（確率行列で表される）は、確率ベクトルを常に確率ベクトルへ写す線形写像にほかなりません。</p>
+<p>これは <span class="math notranslate nohighlight">\(\rho\)</span> が <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> ではなく <span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Z})\)</span> の状態であることを仮定しています。
+今回は、行列 <span class="math notranslate nohighlight">\(\rho_{a,b}\)</span> が <span class="math notranslate nohighlight">\(\rho\)</span> の中で連続した行と列に収まらないためブロック行列による記述はうまくいきませんが、根底にある数学的構造は同じです。</p>
+<p>複合系の一部だけに適用された場合でも常に密度行列を密度行列に変換するという要件を満たす任意の線形写像は、有効なチャネルを表します。
+したがって、抽象的な意味では、チャネルの概念は、密度行列の概念と、チャネルが線形に作用するという仮定によって決まります。
+この点でチャネルは、量子情報の簡易的な定式化におけるユニタリ操作——与えられた系について量子状態ベクトルを常に量子状態ベクトルに変換する線形写像がまさにそれです——や、古典情報の標準的な定式化における（確率行列で表される）確率的操作——確率ベクトルを常に確率ベクトルに変換する線形写像がまさにそれです——に類似しています。</p>
 </section>
 <section id="id4">
-<h2>ユニタリー操作をチャネルとして表す<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span> をある系とし、<span class="math notranslate nohighlight">\(U\)</span> を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> 上の操作を表すユニタリ行列とします。この操作を密度行列上で表すチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の量子状態を表す任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対して、次のように定義されます。</p>
+<h2>チャネルとしてのユニタリ操作<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を系とし、<span class="math notranslate nohighlight">\(U\)</span> を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対する操作を表すユニタリ行列とします。
+密度行列に対するこの操作を記述するチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の量子状態を表すあらゆる密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対して次のように定義されます。</p>
 <div class="math notranslate nohighlight">
 \[
 \Phi(\rho) = U \rho U^{\dagger}
 \tag{1}
 \]</div>
-<p>このように、左から <span class="math notranslate nohighlight">\(U\)</span> を、右から <span class="math notranslate nohighlight">\(U^{\dagger}\)</span> を掛ける操作は、一般に行列 <span class="math notranslate nohighlight">\(U\)</span> による <em>共役</em> と呼ばれます。</p>
-<p>この記述は、ある量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> を表す密度行列が <span class="math notranslate nohighlight">\(\vert\psi\rangle\langle\psi\vert\)</span> であるという事実と一致しています。
-具体的には、ユニタリ操作 <span class="math notranslate nohighlight">\(U\)</span> を <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> に適用すると、出力状態はベクトル <span class="math notranslate nohighlight">\(U\vert\psi\rangle\)</span> によって表されます。
-したがって、この状態を表す密度行列は、次のようになります。</p>
+<p>左から <span class="math notranslate nohighlight">\(U\)</span>、右から <span class="math notranslate nohighlight">\(U^{\dagger}\)</span> を掛けるこの作用は、一般に行列 <span class="math notranslate nohighlight">\(U\)</span> による <em>共役</em> と呼ばれます。</p>
+<p>この記述は、与えられた量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> を表す密度行列が <span class="math notranslate nohighlight">\(\vert\psi\rangle\langle\psi\vert\)</span> であるという事実と整合します。
+特に、ユニタリ操作 <span class="math notranslate nohighlight">\(U\)</span> が <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> に対して実行されると、出力状態はベクトル <span class="math notranslate nohighlight">\(U\vert\psi\rangle\)</span> で表され、したがってこの状態を記述する密度行列は次に等しくなります。</p>
 <div class="math notranslate nohighlight">
 \[
 (U \vert \psi \rangle )( U \vert \psi \rangle )^{\dagger} = U \vert\psi\rangle\langle\psi\vert U^{\dagger}.
 \]</div>
-<p>チャネルとして、操作 <span class="math notranslate nohighlight">\(U\)</span> が純粋状態に対して <span class="math notranslate nohighlight">\(
-\vert\psi\rangle\langle\psi\vert \mapsto U\vert\psi\rangle\langle\psi\vert U^{\dagger}\)</span>
-という作用をもつことが分かれば、線形性により、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対しても、上の式 <span class="math notranslate nohighlight">\((1)\)</span> で与えられたとおりに作用することが結論できます。</p>
-<p><span class="math notranslate nohighlight">\(U=\mathbb{I}\)</span> としたときに得られるチャネルは、<em>恒等チャネル</em> <span class="math notranslate nohighlight">\(\operatorname{Id}\)</span> と呼ばれます。
-また、このチャネルがどの系に作用するかを明示したい場合には、（すでに見た <span class="math notranslate nohighlight">\(\operatorname{Id}_{\mathsf{Z}}\)</span> のように）添字を付けて表すこともできます。
-このチャネルの出力は常に入力と等しく、<span class="math notranslate nohighlight">\(
-\operatorname{Id}(\rho)=\rho\)</span>
-となります。
-これは一見するとあまり興味深いチャネルではないように思えるかもしれません。しかし実際には非常に重要なチャネルであり、最初の例として取り上げるのにふさわしいものです。
-ある文脈では、恒等チャネルは <em>完全なチャネル</em> を表し、理想的な量子メモリや、送信者から受信者への完全でノイズのない情報伝送を表現します。</p>
-<p>このようにユニタリー操作から定義されるチャネルは、いずれも実際に有効なチャネルです。
-行列 <span class="math notranslate nohighlight">\(U\)</span> による共役は線形写像を与えます。また、<span class="math notranslate nohighlight">\(\rho\)</span> が系 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の密度行列であり、<span class="math notranslate nohighlight">\(U\)</span> がユニタリー行列であるならば、その結果は</p>
+<p>チャネルとして操作 <span class="math notranslate nohighlight">\(U\)</span> が純粋状態に対して <span class="math notranslate nohighlight">\(\vert\psi\rangle\langle \psi\vert \mapsto U \vert\psi\rangle\langle\psi\vert U^{\dagger}\)</span> という作用を持つことがわかれば、線形性により、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対して上の式 <span class="math notranslate nohighlight">\((1)\)</span> で指定されるとおりに働かなければならないと結論できます。</p>
+<p><span class="math notranslate nohighlight">\(U = \mathbb{I}\)</span> ととったときに得られる特定のチャネルが <em>恒等チャネル</em> <span class="math notranslate nohighlight">\(\;\operatorname{Id}\)</span> です。このチャネルがどの系に作用するかを明示したいときには（すでに出てきた <span class="math notranslate nohighlight">\(\operatorname{Id}_{\mathsf{Z}}\)</span> のように）添字を付けることもできます。
+その出力は常に入力に等しくなります。<span class="math notranslate nohighlight">\(\operatorname{Id}(\rho) = \rho\)</span> です。
+これは面白いチャネルには見えないかもしれませんが、実際には非常に重要なもので、これが最初の例であるのは適切です。
+恒等チャネルは、文脈によっては <em>完璧な</em> チャネルであり、理想的なメモリや、送信者から受信者への完璧でノイズのない情報伝送を表します。</p>
+<p>このようにユニタリ操作で定義されるすべてのチャネルは、確かに有効なチャネルです。
+行列 <span class="math notranslate nohighlight">\(U\)</span> による共役は線形写像を与えます。そして <span class="math notranslate nohighlight">\(\rho\)</span> が系 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の密度行列で <span class="math notranslate nohighlight">\(U\)</span> がユニタリであれば、次のように表せる結果もまた密度行列です。</p>
 <div class="math notranslate nohighlight">
 \[
-(\mathbb{I}_{\mathsf{Z}} \otimes U) \rho (\mathbb{I}_{\mathsf{Z}} \otimes U^{\dagger})
+(\mathbb{I}_{\mathsf{Z}} \otimes U) \rho (\mathbb{I}_{\mathsf{Z}} \otimes U^{\dagger}),
 \]</div>
-<p>と表すことができ、これもまた密度行列となります。
-具体的には、この行列は正半定値でなければなりません。実際、<span class="math notranslate nohighlight">\(\rho = M^{\dagger} M\)</span> と書けるならば、</p>
+<p>具体的には、この行列は半正定値でなければなりません。なぜなら <span class="math notranslate nohighlight">\(\rho = M^{\dagger} M\)</span> ならば</p>
 <div class="math notranslate nohighlight">
 \[
 (\mathbb{I}_{\mathsf{Z}} \otimes U) \rho (\mathbb{I}_{\mathsf{Z}} \otimes U^{\dagger}) = K^{\dagger} K
 \]</div>
-<p>となります。ただし、<span class="math notranslate nohighlight">\(K = M (\mathbb{I}_{\mathsf{Z}} \otimes U^{\dagger})\)</span> です。
-また、この行列のトレースは、トレースの巡回性により 1 でなければなりません。</p>
+<p>が <span class="math notranslate nohighlight">\(K = M (\mathbb{I}_{\mathsf{Z}} \otimes U^{\dagger})\)</span> について成り立つからです。
+また、トレースの巡回性により、単位トレースを持たなければなりません。</p>
 <div class="math notranslate nohighlight">
 \[
 \operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{Z}} \otimes U) \rho (\mathbb{I}_{\mathsf{Z}} \otimes U^{\dagger})\bigr)
@@ -528,43 +526,44 @@
 </section>
 <section id="id5">
 <h2>チャネルの凸結合<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>入力系と出力系が共通である 2 つのチャネル <span class="math notranslate nohighlight">\(\Phi_0\)</span> と <span class="math notranslate nohighlight">\(\Phi_1\)</span> があるとします。
-任意の実数 <span class="math notranslate nohighlight">\(p\in[0,1]\)</span> に対して、確率 <span class="math notranslate nohighlight">\(p\)</span> で <span class="math notranslate nohighlight">\(\Phi_0\)</span> を、確率 <span class="math notranslate nohighlight">\(1-p\)</span> で <span class="math notranslate nohighlight">\(\Phi_1\)</span> を適用することを考えることができます。このとき、新しいチャネル <span class="math notranslate nohighlight">\(p \Phi_0 + (1-p) \Phi_1\)</span> が得られます。このチャネルが与えられた密度行列にどのように作用するかは、次の簡単な式で表されます。</p>
+<p>同じ入力系と同じ出力系を共有する2つのチャネル <span class="math notranslate nohighlight">\(\Phi_0\)</span> と <span class="math notranslate nohighlight">\(\Phi_1\)</span> があるとします。
+任意の実数 <span class="math notranslate nohighlight">\(p\in[0,1]\)</span> について、確率 <span class="math notranslate nohighlight">\(p\)</span> で <span class="math notranslate nohighlight">\(\Phi_0\)</span> を、確率 <span class="math notranslate nohighlight">\(1-p\)</span> で <span class="math notranslate nohighlight">\(\Phi_1\)</span> を適用すると決めることができ、これにより <span class="math notranslate nohighlight">\(p \Phi_0 + (1-p) \Phi_1\)</span> と書ける新しいチャネルが得られます。
+明示的に書くと、このチャネルが与えられた密度行列に作用する仕方は、次の単純な式で指定されます。</p>
 <div class="math notranslate nohighlight">
 \[
 (p \Phi_0 + (1-p) \Phi_1)(\rho) = p \Phi_0(\rho) + (1-p) \Phi_1(\rho)
 \]</div>
-<p>より一般には、チャネル <span class="math notranslate nohighlight">\(\Phi_{0},\ldots,\Phi_{m-1}\)</span> と、確率ベクトル <span class="math notranslate nohighlight">\((p_0,\ldots, p_{m-1})\)</span> が与えられているとします。このとき、これらのチャネルを平均して、新しいチャネル</p>
+<p>より一般に、チャネル <span class="math notranslate nohighlight">\(\Phi_{0},\ldots,\Phi_{m-1}\)</span> と確率ベクトル <span class="math notranslate nohighlight">\((p_0,\ldots, p_{m-1})\)</span> があれば、これらのチャネルを平均して新しいチャネルを得ることができます。</p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{k = 0}^{m-1} p_k \Phi_k
 \]</div>
-<p>を得ることができます。これは <em>チャネルの凸結合</em> と呼ばれ、このようにして得られるチャネルは常に有効なチャネルとなります。
-これを数学的には、入力系と出力系を固定したとき、すべてのチャネルの集合は <em>凸集合</em> であると表現します。</p>
-<p>例として、ある系に対して、いくつかの <em>ユニタリー操作</em> のうちの一つを確率的に選んで適用することを考えます。
-このとき得られるチャネルは、<em>混合ユニタリーチャネル</em> と呼ばれ、次の形で表されます。</p>
+<p>これはチャネルの <em>凸結合</em> であり、この過程を通じて常に有効なチャネルが得られます。
+これを数学的に簡単に言えば、与えられた入力系と出力系の選び方に対して、すべてのチャネルの集合は <em>凸集合</em> である、ということです。</p>
+<p>例として、ある系に一連の <em>ユニタリ</em> 操作のうちの一つを適用することを選べます。
+こうして得られるのが <em>混合ユニタリ</em> チャネルと呼ばれるもので、次の形で表せるチャネルです。</p>
 <div class="math notranslate nohighlight">
 \[
 \Phi(\rho) = \sum_{k=0}^{m-1} p_k U_k \rho U_k^{\dagger}
 \]</div>
-<p>さらに、用いられるすべてのユニタリー操作がパウリ行列（あるいはパウリ行列のテンソル積）である混合ユニタリーチャネルは、<em>パウリチャネル</em> と呼ばれます。パウリチャネルは、量子コンピューティングにおいて非常によく用いられるチャネルです。</p>
+<p>すべてのユニタリ操作がパウリ行列（またはパウリ行列のテンソル積）である混合ユニタリチャネルは <em>パウリチャネル</em> と呼ばれ、量子計算でよく現れます。</p>
 </section>
 <section id="id6">
 <h2>量子ビットチャネルの例<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>ここからは、ユニタリーではないチャネルの具体例をいくつか見ていきます。
-これらの例では、入力系と出力系はいずれも単一の量子ビットです。つまり、これらはすべて <em>量子ビットチャネル</em> の例です。</p>
+<p>次に、ユニタリでないチャネルの具体的な例をいくつか見ていきます。
+これらの例ではいずれも入力系と出力系がともに単一の量子ビットです。つまり、これらは <em>量子ビットチャネル</em> の例です。</p>
 <section id="id7">
-<h3>量子ビットのリセットチャネル<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
-<p>このチャネルは非常に単純なことを行います。すなわち、量子ビットを <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> 状態へリセットします。
-線形写像として、このチャネルは任意の量子ビットの密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対して、次のように表されます。</p>
+<h3>量子ビットリセットチャネル<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>このチャネルは非常に単純なことを行います。量子ビットを <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> 状態にリセットするのです。
+線形写像として、このチャネルはあらゆる量子ビット密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> に対して次のように表せます。</p>
 <div class="math notranslate nohighlight">
 \[
 \Lambda(\rho) = \operatorname{Tr}(\rho) \vert 0\rangle\langle 0\vert
 \]</div>
-<p>すべての密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> のトレースは <span class="math notranslate nohighlight">\(1\)</span> に等しいため、一見すると <span class="math notranslate nohighlight">\(\operatorname{Tr}(\rho)\)</span> を書く必要はないように思えます。しかし、このように書くことで、このチャネルが密度行列だけでなく、任意の <span class="math notranslate nohighlight">\(2\times 2\)</span> 行列に対しても適用できる線形写像であることが明確になります。
-すでに述べたように、チャネルが複合系の一部分にだけ適用されたときに何が起こるかを記述するためには、チャネルが密度行列ではない入力に対しても線形写像としてどのように作用するかを理解しておく必要があります。</p>
-<p>例えば、<span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> が量子ビットであり、組 <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> がベル状態 <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> にあるとします。
-この状態は、密度行列では次のように表されます。</p>
+<p>あらゆる密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> のトレースは <span class="math notranslate nohighlight">\(1\)</span> に等しいのですが、チャネルをこのように書くことで、これが密度行列に限らず任意の <span class="math notranslate nohighlight">\(2\times 2\)</span> 行列に適用できる線形写像であることが明確になります。
+すでに述べたように、チャネルが複合系の一部だけに適用されたときに何が起こるかを記述するには、チャネルが密度行列でない入力に対する線形写像としてどう働くかを理解する必要があります。</p>
+<p>たとえば、<span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> が量子ビットで、組 <span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> がベル状態 <span class="math notranslate nohighlight">\(\vert \phi^+\rangle\)</span> にあるとします。
+密度行列として、この状態は次で与えられます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \vert \phi^+\rangle\langle \phi^+ \vert =
@@ -575,7 +574,7 @@
 \frac{1}{2} &amp; 0 &amp; 0 &amp; \frac{1}{2}
 \end{pmatrix}.
 \end{split}\]</div>
-<p>ディラック記法を用いると、この状態は次のように表すこともできます。</p>
+<p>ディラック記法を用いると、この状態を別の形で次のように表せます。</p>
 <div class="math notranslate nohighlight">
 \[
 \vert \phi^+\rangle\langle \phi^+ \vert =
@@ -584,7 +583,7 @@
 \frac{1}{2} \vert 1 \rangle \langle 0 \vert \otimes \vert 1 \rangle \langle 0 \vert +
 \frac{1}{2} \vert 1 \rangle \langle 1 \vert \otimes \vert 1 \rangle \langle 1 \vert
 \]</div>
-<p><span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に量子ビットのリセットチャネルを適用し、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> には何も行わないと、次の状態が得られます。</p>
+<p><span class="math notranslate nohighlight">\(\mathsf{A}\)</span> に量子ビットリセットチャネルを適用し、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> には何もしないことで、次の状態が得られます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -598,12 +597,12 @@
 = \vert 0\rangle \langle 0\vert \otimes \frac{\mathbb{I}}{2} &amp;
 \end{aligned}
 \end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(\mathsf{A}\)</span> をリセットした結果、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> にも影響が及び、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> が完全混合状態になったと言いたくなるかもしれません。しかし、ある意味では実際にはその逆です。
-<span class="math notranslate nohighlight">\(\mathsf{A}\)</span> をリセットする前から、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の縮約状態は完全混合状態であり、<span class="math notranslate nohighlight">\(\mathsf{A}\)</span> をリセットしてもそのことは変わりません。</p>
+<p><span class="math notranslate nohighlight">\(\mathsf{A}\)</span> をリセットすると <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> に影響が及び、完全混合状態になった、と言いたくなるかもしれません。しかしある意味では、実際はその逆です。
+<span class="math notranslate nohighlight">\(\mathsf{A}\)</span> がリセットされる前から、<span class="math notranslate nohighlight">\(\mathsf{B}\)</span> の縮約状態は完全混合状態であり、それは <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> をリセットした結果として変わることはありません。</p>
 </section>
 <section id="id8">
-<h3>完全デコヒーレンスチャネル<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
-<p>次に、<span class="math notranslate nohighlight">\(\Delta\)</span> と呼ばれる量子ビットチャネルの例を示します。このチャネルは、<span class="math notranslate nohighlight">\(2\times 2\)</span> 行列に対する作用として次のように定義されます。</p>
+<h3>完全位相緩和チャネル<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>以下は <span class="math notranslate nohighlight">\(\Delta\)</span> と呼ばれる量子ビットチャネルの例で、<span class="math notranslate nohighlight">\(2\times 2\)</span> 行列への作用によって記述されます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \Delta
@@ -616,17 +615,14 @@
    0 &amp; \alpha_{11}
 \end{pmatrix}.
 \end{split}\]</div>
-<p>言葉で言えば、<span class="math notranslate nohighlight">\(\Delta\)</span> は <span class="math notranslate nohighlight">\(2\times 2\)</span> 行列の非対角成分をすべて 0 にします。
-この例は、量子ビットに限らず任意の系へ一般化することができます。すなわち、入力された密度行列に対して、すべての非対角成分を 0 にし、対角成分はそのまま保持するチャネルです。</p>
-<p>このチャネルは <em>完全デコヒーレンスチャネル</em> と呼ばれます。
-これは、<em>デコヒーレンス</em> と呼ばれる過程の極端な例を表していると考えることができます。デコヒーレンスとは、本質的には量子重ね合わせを破壊し、それを古典的な確率状態へと変えてしまう現象です。</p>
-<p>このチャネルは、量子ビットに対する標準基底測定を表すものと考えることもできます。
-すなわち、入力された量子ビットを測定してその量子ビット自体は破棄し、その代わりに測定結果を表す密度行列を出力すると考えることができます。
-あるいは、これと等価な見方として、測定結果を破棄し、その結果として量子ビットを測定後の状態のまま残すと考えることもできます。</p>
-<p>ここでも再び e-bit を考え、その 2 つの量子ビットのうち一方にだけ <span class="math notranslate nohighlight">\(\Delta\)</span> を適用するとどうなるかを見てみましょう。
-具体的には、量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> があり、<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> は状態 <span class="math notranslate nohighlight">\(\vert\phi^+\rangle\)</span> にあるとします。
-今回は、このチャネルを 2 番目の量子ビットに適用します。
-その結果得られる状態は次のとおりです。</p>
+<p>言葉で言えば、<span class="math notranslate nohighlight">\(\Delta\)</span> は <span class="math notranslate nohighlight">\(2\times 2\)</span> 行列の非対角成分をゼロにします。
+この例は、量子ビットに限らず任意の系に一般化できます。すなわち、どのような密度行列が入力されても、チャネルは非対角成分をすべてゼロにし、対角成分はそのまま残します。</p>
+<p>このチャネルは <em>完全位相緩和チャネル</em> と呼ばれ、<em>デコヒーレンス</em> として知られる過程——本質的に量子重ね合わせを台無しにして古典的な確率的状態に変えてしまう過程——の極端な形を表すものと考えられます。</p>
+<p>このチャネルを考えるもう一つの方法は、量子ビットに対する標準基底測定を記述しているというものです。ここでは入力量子ビットが測定されてから捨てられ、出力は測定結果を記述する密度行列です。
+あるいは、等価的に、測定結果が捨てられ、量子ビットが測定後の状態に残されると考えることもできます。</p>
+<p>再びe-bit（1つのもつれビット）を考え、2つの量子ビットの一方だけに <span class="math notranslate nohighlight">\(\Delta\)</span> を適用したときに何が起こるかを見てみましょう。
+具体的には、<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span> が状態 <span class="math notranslate nohighlight">\(\vert\phi^+\rangle\)</span> にある量子ビット <span class="math notranslate nohighlight">\(\mathsf{A}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{B}\)</span> があり、今回は2番目の量子ビットにチャネルを適用してみます。
+得られる状態は次のとおりです。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
@@ -638,7 +634,7 @@
 + \frac{1}{2} \vert 1 \rangle \langle 1 \vert \otimes \vert 1 \rangle \langle 1 \vert &amp;
 \end{aligned}
 \end{split}\]</div>
-<p>この式は、ブロック行列を用いて次のように表すこともできます。</p>
+<p>あるいは、この式をブロック行列を用いて表すこともできます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{pmatrix}
@@ -666,21 +662,20 @@
 0 &amp; 0 &amp; 0 &amp; \frac{1}{2}
 \end{pmatrix}
 \end{split}\]</div>
-<p>また、量子ビットを完全にデコヒーレンスさせるのではなく、わずかにデコヒーレンスさせる量子ビットチャネルを考えることもできます。これは、完全デコヒーレンスチャネルが表すものよりも穏やかなデコヒーレンスのモデルです。
-具体的には、<span class="math notranslate nohighlight">\(\varepsilon \in (0,1)\)</span> を小さい正の実数とします。
-このとき、次のチャネル</p>
+<p>量子ビットを完全に位相緩和させるのではなく、わずかに位相緩和させるだけの量子ビットチャネルも考えることができます。これは完全位相緩和チャネルが表すものよりも穏やかな形のデコヒーレンスです。
+特に、<span class="math notranslate nohighlight">\(\varepsilon \in (0,1)\)</span> を小さいがゼロでない実数とします。
+次のチャネルを定義できます。</p>
 <div class="math notranslate nohighlight">
 \[
 \Delta_{\varepsilon} = (1 - \varepsilon) \operatorname{Id} + \varepsilon \Delta,
 \]</div>
-<p>を定義することができます。
-このチャネルは、任意の量子ビットの密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> を次のように変換します。</p>
+<p>これは与えられた量子ビット密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> を次のように変換します。</p>
 <div class="math notranslate nohighlight">
 \[
 \Delta_{\varepsilon}(\rho) = (1 - \varepsilon) \rho + \varepsilon \Delta(\rho).
 \]</div>
-<p>つまり、確率 <span class="math notranslate nohighlight">\(1-\varepsilon\)</span> では何も起こらず、確率 <span class="math notranslate nohighlight">\(\varepsilon\)</span> で量子ビットがデコヒーレンスします。
-行列で表すと、この作用は次のようになります。対角成分はそのまま保たれ、非対角成分は <span class="math notranslate nohighlight">\(1-\varepsilon\)</span> 倍されます。</p>
+<p>つまり、確率 <span class="math notranslate nohighlight">\(1-\varepsilon\)</span> で何も起こらず、確率 <span class="math notranslate nohighlight">\(\varepsilon\)</span> で量子ビットが位相緩和します。
+行列の観点では、この作用は次のように表せます。対角成分はそのまま残り、非対角成分は <span class="math notranslate nohighlight">\(1-\varepsilon\)</span> を掛けられます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \rho =
@@ -697,16 +692,16 @@
 </section>
 <section id="id9">
 <h3>完全脱分極チャネル<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
-<p>もう一つの量子ビットチャネルの例として、<span class="math notranslate nohighlight">\(\Omega\)</span> と呼ばれるチャネルがあります。</p>
+<p>こちらは <span class="math notranslate nohighlight">\(\Omega\)</span> と呼ばれる別の量子ビットチャネルの例です。</p>
 <div class="math notranslate nohighlight">
 \[
 \Omega(\rho) = \operatorname{Tr}(\rho) \frac{\mathbb{I}}{2}
 \]</div>
-<p>ここで、<span class="math notranslate nohighlight">\(\mathbb{I}\)</span> は <span class="math notranslate nohighlight">\(2\times 2\)</span> の単位行列を表します。
-言葉で言えば、任意の密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> を入力すると、チャネル <span class="math notranslate nohighlight">\(\Omega\)</span> は完全混合状態を出力します。
-これ以上ノイズの大きいチャネルはありません！
-このチャネルは <em>完全脱分極チャネル</em> と呼ばれます。また、完全デコヒーレンスチャネルと同様に、このチャネルも量子ビットに限らず任意の系へ一般化することができます。</p>
-<p>また、デコヒーレンスチャネルの場合と同様に、確率 <span class="math notranslate nohighlight">\(\varepsilon\)</span> で脱分極が起こる、より穏やかな形のチャネルを考えることもできます。</p>
+<p>ここで <span class="math notranslate nohighlight">\(\mathbb{I}\)</span> は <span class="math notranslate nohighlight">\(2\times 2\)</span> の単位行列を表します。
+言葉で言えば、任意の密度行列入力 <span class="math notranslate nohighlight">\(\rho\)</span> に対して、チャネル <span class="math notranslate nohighlight">\(\Omega\)</span> は完全混合状態を出力します。
+これ以上ノイズが大きくなることはありません。
+このチャネルは <em>完全脱分極チャネル</em> と呼ばれ、完全位相緩和チャネルと同様に、量子ビットの代わりに任意の系へ一般化できます。</p>
+<p>位相緩和チャネルで見たのと同様に、確率 <span class="math notranslate nohighlight">\(\varepsilon\)</span> で脱分極が起こる、より穏やかなこのチャネルの変種も考えることができます。</p>
 <div class="math notranslate nohighlight">
 \[
 \Omega_{\varepsilon}(\rho) = (1 - \varepsilon) \rho + \varepsilon \Omega(\rho).
@@ -764,12 +759,12 @@
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">チャネルは線形写像である</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">チャネルは密度行列を密度行列へ写す</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ユニタリー操作をチャネルとして表す</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">チャネルは密度行列を密度行列に変換する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">チャネルとしてのユニタリ操作</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">チャネルの凸結合</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子ビットチャネルの例</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子ビットのリセットチャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">完全デコヒーレンスチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">完全位相緩和チャネル</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">完全脱分極チャネル</a></li>
 </ul>
 </li>

@@ -1,0 +1,1234 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>チャネルの表現 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/quantum-channels/representations-of-channels-ja';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/quantum-channels/representations-of-channels-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/quantum-channels/representations-of-channels-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>チャネルの表現</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタインスプリング表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">完全位相緩和チャネル（別法）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">量子ビットリセットチャネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">クラウス表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ユニタリチャネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">チョイ表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">定義</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">チャネルのチョイ状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">恒等チャネル</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>チャネルの表現<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>次に、チャネルの数学的な表現について説明します。</p>
+<p>ベクトルからベクトルへの線形写像は、線形写像の作用が行列とベクトルの積で記述されるという、よく知られた方法で行列によって表現できます。
+しかしチャネルは、ベクトルからベクトルへの線形写像ではなく、行列から行列への線形写像です。
+では <em>一般に</em>、チャネルを数学的にどのように表現すればよいのでしょうか。</p>
+<p>チャネルによっては、先に説明した3つの非ユニタリな量子ビットチャネルの例のように、それらを記述する単純な式が得られる場合もあります。
+しかし任意のチャネルがそのような便利な式を持つとは限らないため、一般にチャネルをこの方法で表現するのは実用的ではありません。</p>
+<p>比較のために述べると、量子情報の簡易的な定式化では、量子状態ベクトルに対する操作を表すのに <em>ユニタリ行列</em> を用います。すべてのユニタリ行列は有効な操作を表し、すべての有効な操作はユニタリ行列として表現できます。
+ここで問われているのは本質的に次の問いです。チャネルについても、これに類することができるだろうか。</p>
+<p>この問いに答えるには、いくつかの追加的な数学的道具立てが必要になります。
+実は、チャネルはいくつかの異なる方法で数学的に記述できることがわかります。その中には、それらの発展に重要な役割を果たした3人の人物にちなんで名付けられた表現も含まれます。
+<DefinitionTooltip definition="William Forrest Stinespring（1929 – 2012）は作用素論を専門とした数学者であり、作用素論は関数解析の一分野で、量子情報に対して多くの興味深い含意を持ちます。">スタインスプリング、</DefinitionTooltip>
+<DefinitionTooltip definition="Karl Kraus（1938 – 1988）は量子力学の基礎を専門とした理論物理学者でした。この講義で扱う数学的形式の多くは、彼の1983年の講義ノート（States, effects, and operations: fundamental notions of quantum theory）で説明されました。" align="top-left">クラウス、</DefinitionTooltip> そして
+<DefinitionTooltip definition="Man-Duen Choi はトロント大学の名誉教授で、作用素論と行列論を専門としています。1975年の完全正値写像に関する彼の論文は、チャネルを理解するための重要な数学的道具を提供します。" align="top-left">チョイ</DefinitionTooltip>
+です。
+これらの異なるチャネルの記述方法は、それらを見たり分析したりするためのさまざまな視点を与えてくれます。</p>
+<section id="id2">
+<h2>スタインスプリング表現<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>スタインスプリング表現は、あらゆるチャネルが標準的な方法で実装できるという考え方に基づいています。
+その方法とは、まず入力系を初期化された作業用の系と結合して複合系を形成し、
+次に複合系にユニタリ操作を施し、
+最後に作業用の系を捨てる（あるいはトレースアウトする）ことで、チャネルの出力を得るというものです。</p>
+<p>次の図は、入力系と出力系が同じ系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> であるチャネルについて、このような実装を回路図の形で表したものです。</p>
+<p><img alt="入力系と出力系が同じであるチャネルのスタインスプリング表現を描いた図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/Stinespring-X-to-X.svg" /></p>
+<p>この図では、ワイヤーの上のラベルで示されているように、ワイヤーは任意の系を表しており、必ずしも単一の量子ビットとは限りません。
+また、電気工学で一般的に用いられる <em>接地（グラウンド）</em> の記号は、<span class="math notranslate nohighlight">\(\mathsf{W}\)</span> が捨てられることを明示的に示しています。</p>
+<p>言葉で述べると、この実装の仕組みは次のとおりです。
+入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> は何らかの状態 <span class="math notranslate nohighlight">\(\rho\)</span> で始まり、作業用の系 <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> は標準基底状態 <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> に初期化されます。
+組 <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> にユニタリ操作 <span class="math notranslate nohighlight">\(U\)</span> を施し、最後に作業用の系 <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> を <em>トレースアウト</em> して、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を出力として残します。</p>
+<p>ここでは <span class="math notranslate nohighlight">\(0\)</span> を <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> の古典的な状態とみなし、それをこの系の初期化状態として選んでいることに注意してください。これは数学を簡単にするのに役立ちます。
+ただし、表現の基本的な性質を変えることなく、任意の固定された純粋状態を <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> の初期化状態として選ぶこともできます。</p>
+<p>得られるチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> の数学的な表式は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \operatorname{Tr}_{\mathsf{W}} \bigl( U (\vert 0\rangle \langle 0 \vert_{\mathsf{W}} \otimes \rho) U^{\dagger} \bigr)
+\]</div>
+<p>いつものように、Qiskit の順序の慣例を用いています。すなわち、系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> は図の上側にあり、したがって式では右側のテンソル因子に対応します。</p>
+<p>一般に、チャネルの入力系と出力系は同じである必要はありません。
+次の図は、入力系が <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> で出力系が <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> であるチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> の実装を描いたものです。</p>
+<p><img alt="入力系と出力系が異なる場合があるチャネルのスタインスプリング表現を描いた図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/Stinespring-X-to-Y.svg" /></p>
+<p>今回のユニタリ操作は、組 <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> を組 <span class="math notranslate nohighlight">\((\mathsf{G},\mathsf{Y})\)</span> に変換します。ここで <span class="math notranslate nohighlight">\(\mathsf{G}\)</span> はトレースアウトされる新しい「ゴミ」の系で、出力系として <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が残ります。
+<span class="math notranslate nohighlight">\(U\)</span> がユニタリであるためには、それは正方行列でなければなりません。
+このため、組 <span class="math notranslate nohighlight">\((\mathsf{G},\mathsf{Y})\)</span> は組 <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> と同じ数の古典的状態を持つ必要があり、したがって系 <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{G}\)</span> はそれを可能にするように選ばれなければなりません。</p>
+<p>得られるチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> の数学的な表式は、以前と同様の形になります。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \operatorname{Tr}_{\mathsf{G}} \bigl( U (\vert 0\rangle \langle 0 \vert_{\mathsf{W}} \otimes \rho) U^{\dagger} \bigr)
+\]</div>
+<p>チャネルがこのように、ユニタリ操作と、作業用の系をどのように初期化しどのように出力系を選ぶかの指定とともに記述されるとき、それは <em>スタインスプリング形式</em> で表現されている、あるいはそのチャネルの <em>スタインスプリング表現</em> であるといいます。</p>
+<p>まったく自明ではありませんが、実際あらゆるチャネルはスタインスプリング表現を持ちます。これはこの講義の終わりまでに見ていきます。
+また、スタインスプリング表現は一意ではないこともわかります。すなわち、記述されたやり方で同じチャネルを実装する方法は常に複数存在します。</p>
+<Figure title="Remark">
+量子情報の文脈では、 *スタインスプリング表現* という用語は、次の形を持つ、チャネルのやや一般的な表式を指すことがよくあります。
+$$
+\Phi(\rho) = \operatorname{Tr}_{\mathsf{G}} \bigl( A \rho A^{\dagger} \bigr)
+$$
+ここで $A$ は *等長写像（アイソメトリ）* であり、列が正規直交であるが必ずしも正方行列でない行列です。
+ここで定義として採用した形のスタインスプリング表現については、
+$$
+A = U (\vert 0\rangle_{\mathsf{W}} \otimes \mathbb{I}_{\mathsf{X}})
+$$
+とすることで、このもう一方の形の表式を得ることができます。
+</Figure>
+<section id="id3">
+<h3>完全位相緩和チャネル<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>以下は、量子ビットの位相緩和チャネル <span class="math notranslate nohighlight">\(\Delta\)</span> のスタインスプリング表現です。
+この図では両方のワイヤーが単一の量子ビットを表しているので、これは通常の量子回路図です。</p>
+<p><img alt="完全位相緩和チャネルを表す量子回路図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/dephasing-circuit.svg" /></p>
+<p>この回路が入力量子ビットに及ぼす効果が、確かに完全位相緩和チャネルで記述されることを確認するために、前の講義で説明した部分トレースの明示的な行列表現を用いて、回路を一段階ずつたどってみましょう。
+上側の量子ビットを <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> と呼ぶことにします。これはチャネルの入力と出力です。そして <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> は何らかの任意の状態 <span class="math notranslate nohighlight">\(\rho\)</span> で始まると仮定します。</p>
+<p>最初のステップは、作業用の量子ビット <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> の導入です。
+制御NOTゲートが施される前の組 <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> の状態は、次の密度行列で表されます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert 0\rangle \langle 0 \vert_{\mathsf{W}} \otimes \rho
+&amp; = \begin{pmatrix}
+1 &amp; 0\\
+0 &amp; 0
+\end{pmatrix}
+\otimes
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[4mm]
+&amp; = \begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp; 0 &amp; 0 \\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp; 0 &amp; 0 \\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0 \\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>Qiskit の順序の慣例に従い、上側の量子ビット <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> は右側に、下側の量子ビット <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> は左側にあります。
+ここでは量子状態ベクトルではなく密度行列を用いていますが、量子情報の簡易的な定式化で行われるのと同じように、それらをテンソル積で結合しています。</p>
+<p>次のステップは制御NOT操作を施すことです。ここで <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が制御で <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> が標的です。
+引き続き Qiskit の順序の慣例を念頭に置くと、このゲートの行列表現は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix}
+\end{split}\]</div>
+<p>これはユニタリ操作であり、密度行列に適用するにはユニタリ行列で共役をとります。
+この特定の行列については共役転置をとっても変わらないので、結果は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 1\\[1mm]
+0 &amp; 0 &amp; 1 &amp; 0\\[1mm]
+0 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp; 0 &amp; 0 \\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp; 0 &amp; 0 \\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0 \\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 1\\[1mm]
+0 &amp; 0 &amp; 1 &amp; 0\\[1mm]
+0 &amp; 1 &amp; 0 &amp; 0
+\end{pmatrix}\\[3mm]
+= \begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; 0 &amp; 0 &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; 0 &amp; 0 &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
+\end{split}\]</div>
+<p>最後に、<span class="math notranslate nohighlight">\(\mathsf{W}\)</span> について部分トレースを実行します。
+前の講義で説明した、<span class="math notranslate nohighlight">\(4\times 4\)</span> 行列に対するこの操作の作用を思い出すと、次の密度行列の出力が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{W}} \begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; 0 &amp; 0 &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; 0 &amp; 0 &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
+&amp; = \begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; 0 \\[1mm]
+0 &amp; 0
+\end{pmatrix}
++
+\begin{pmatrix}
+0 &amp; 0 \\[1mm]
+0 &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[3mm]
+&amp; = \begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; 0 \\[1mm]
+0 &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[4mm]
+&amp; = \Delta(\rho)
+\end{aligned}
+\end{split}\]</div>
+<p>あるいは、まずディラック記法に変換することで部分トレースを計算することもできます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\langle 0\vert \rho \vert 0\rangle &amp; 0 &amp; 0 &amp; \langle 0\vert \rho \vert 1\rangle\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+\langle 1\vert \rho \vert 0\rangle &amp; 0 &amp; 0 &amp; \langle 1\vert \rho \vert 1\rangle
+\end{pmatrix}
+=
+\begin{array}{r}
+\langle 0\vert \rho \vert 0\rangle \, \vert 0\rangle\langle 0\vert \otimes \vert 0\rangle\langle 0\vert \\[1mm]
++\, \langle 0\vert \rho \vert 1\rangle \, \vert 0\rangle\langle 1\vert \otimes \vert 0\rangle\langle 1\vert \\[1mm]
++\, \langle 1\vert \rho \vert 0\rangle \, \vert 1\rangle\langle 0\vert \otimes \vert 1\rangle\langle 0\vert \\[1mm]
++\, \langle 1\vert \rho \vert 1\rangle \, \vert 1\rangle\langle 1\vert \otimes \vert 1\rangle\langle 1\vert
+\end{array}
+\end{split}\]</div>
+<p>左側の量子ビットをトレースアウトすると、以前と同じ答えが得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle 0\vert \rho \vert 0\rangle \, \vert 0\rangle\langle 0\vert
++\, \langle 1\vert \rho \vert 1\rangle \, \vert 1\rangle\langle 1\vert
+= \Delta(\rho)
+\]</div>
+<p>この回路を直観的に考える一つの方法は、制御NOT操作が入力量子ビットの古典的状態を実質的にコピーし、そのコピーがゴミ箱に捨てられると、入力量子ビットが2つの可能な古典的状態のいずれかに確率的に「収縮」する、というものです。これは完全な位相緩和と等価です。</p>
+</section>
+<section id="id4">
+<h3>完全位相緩和チャネル（別法）<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>上で説明した回路は、完全位相緩和チャネルを実装する唯一の方法ではありません。
+ここでは別のやり方を示します。</p>
+<p><img alt="完全位相緩和チャネルを表す別の量子回路図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/dephasing-alternative.svg" /></p>
+<p>この実装がうまくいくことを示す簡単な分析を以下に示します。
+アダマールゲートが施された後、密度行列としての次の2量子ビット状態が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert + \rangle\langle + \vert \otimes \rho
+&amp; = \frac{1}{2}\begin{pmatrix}
+1 &amp; 1\\[1mm]
+1 &amp; 1
+\end{pmatrix}
+\otimes
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[4mm]
+&amp; = \frac{1}{2}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp;
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp;
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}.
+\end{aligned}
+\end{split}\]</div>
+<p>制御<span class="math notranslate nohighlight">\(\sigma_z\)</span>ゲートは、次のように共役によって作用します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 1 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 1 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; -1
+\end{pmatrix}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp;
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp;
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
+\begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 1 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 1 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; -1
+\end{pmatrix}\\[3mm]
+= \frac{1}{2}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; -\langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp;
+\langle 1 \vert \rho \vert 0 \rangle &amp; -\langle 1 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; -\langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+-\langle 1 \vert \rho \vert 0 \rangle &amp; -\langle 1 \vert \rho \vert 1 \rangle &amp;
+-\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
+\end{split}\]</div>
+<p>最後に作業用の系 <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> がトレースアウトされます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2}
+\operatorname{Tr}_{\mathsf{W}}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; -\langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle &amp;
+\langle 1 \vert \rho \vert 0 \rangle &amp; -\langle 1 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle &amp;
+\langle 0 \vert \rho \vert 0 \rangle &amp; -\langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+-\langle 1 \vert \rho \vert 0 \rangle &amp; -\langle 1 \vert \rho \vert 1 \rangle &amp;
+-\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[3mm]
+\begin{aligned}
+&amp; = \frac{1}{2}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
++ \frac{1}{2}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; -\langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+-\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[4mm]
+&amp; = \begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; 0\\[2mm]
+0 &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>この実装は単純な考え方に基づいています。すなわち、位相緩和は、何もしない（つまり恒等操作を施す）か、<span class="math notranslate nohighlight">\(\sigma_z\)</span>ゲートを施すかを、それぞれ確率 <span class="math notranslate nohighlight">\(1/2\)</span> で行うことと等価です。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{1}{2} \rho + \frac{1}{2} \sigma_z \rho \sigma_z
+&amp; = \frac{1}{2}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; \langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
++ \frac{1}{2}
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; -\langle 0 \vert \rho \vert 1 \rangle\\[1mm]
+-\langle 1 \vert \rho \vert 0 \rangle &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[4mm]
+&amp; = \begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; 0\\[1mm]
+0 &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}\\[2mm]
+&amp; = \Delta(\rho)
+\end{aligned}
+\end{split}\]</div>
+<p>つまり、完全位相緩和チャネルは混合ユニタリチャネルの一例であり、より具体的にはパウリチャネルの一例です。</p>
+</section>
+<section id="id5">
+<h3>量子ビットリセットチャネル<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>量子ビットリセットチャネルは次のように実装できます。</p>
+<p><img alt="量子ビットリセットチャネルを表す量子回路図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/reset-stinespring-1.svg" /></p>
+<p>スワップゲートは、作業用量子ビットの <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> に初期化された状態を単純に移して出力させ、一方で入力状態 <span class="math notranslate nohighlight">\(\rho\)</span> は下側の量子ビットに移されてからトレースアウトされます。</p>
+<p>あるいは、チャネルの出力が上側に残ることを要求しないのであれば、この非常に単純な回路を表現として採用できます。</p>
+<p><img alt="量子ビットリセットチャネルを表す別の量子回路図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/reset-stinespring-2.svg" /></p>
+<p>言葉で言えば、量子ビットを <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> 状態にリセットすることは、その量子ビットをゴミ箱に捨てて新しいものを手に入れることと等価です。</p>
+</section>
+</section>
+<section id="id6">
+<h2>クラウス表現<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>次に <em>クラウス表現</em> について説明します。これは、行列の積と和を通じてチャネルの作用を表す便利な公式的な方法を提供します。
+具体的には、クラウス表現はチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> を次の形で指定するものです。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \sum_{k = 0}^{N-1} A_k \rho A_k^{\dagger}
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> はすべて同じ次元を持つ行列です。
+それらの列は入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典的状態に対応し、それらの行は出力系（<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> であれ他の系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> であれ）の古典的状態に対応します。
+<span class="math notranslate nohighlight">\(\Phi\)</span> が有効なチャネルであるためには、これらの行列は次の条件を満たさなければなりません。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{N-1} A_k^{\dagger} A_k = \mathbb{I}_{\mathsf{X}}
+\]</div>
+<p>この条件は、<span class="math notranslate nohighlight">\(\Phi\)</span> がトレースを保存するという条件と等価です。
+チャネルに要求されるもう一つの性質——完全正値性——は、<span class="math notranslate nohighlight">\(\Phi\)</span> の式が共役の和であるという一般的な形から従います。</p>
+<p>行列 <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> を別の方法で名付けると便利なこともあります。
+たとえば <span class="math notranslate nohighlight">\(1\)</span> から番号を付けたり、添字に数の代わりに何らかの任意の古典的状態集合 <span class="math notranslate nohighlight">\(\Gamma\)</span> の状態を用いたりできます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \sum_{a\in\Gamma} A_a \rho A_a^{\dagger}
+\quad
+\text{ここで}
+\quad
+\sum_{a\in\Gamma} A_a^{\dagger} A_a  = \mathbb{I}.
+\]</div>
+<p>これらの行列——<em>クラウス行列</em> と呼ばれます——の名付け方はどれもよく使われ、状況によって便利です。しかしこの講義では、簡単のため名前 <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> を用いることにします。</p>
+<p>数 <span class="math notranslate nohighlight">\(N\)</span> は任意の正の整数でよいのですが、大きくする必要はありません。
+入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が <span class="math notranslate nohighlight">\(n\)</span> 個の古典的状態を持ち、出力系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が <span class="math notranslate nohighlight">\(m\)</span> 個の古典的状態を持つ場合、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> への任意のチャネルは、常に <span class="math notranslate nohighlight">\(N\)</span> が積 <span class="math notranslate nohighlight">\(nm\)</span> 以下となるクラウス表現を持ちます。</p>
+<section id="id7">
+<h3>完全位相緩和チャネル<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(A_0 = \vert 0\rangle\langle 0\vert\)</span> と <span class="math notranslate nohighlight">\(A_1 = \vert 1\rangle\langle 1\vert\)</span> をとることで、完全位相緩和チャネルのクラウス表現が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sum_{k = 0}^1 A_k \rho A_k^{\dagger}
+&amp; =
+\vert 0\rangle\langle 0 \vert \rho \vert 0\rangle\langle 0 \vert
++ \vert 1\rangle\langle 1 \vert \rho \vert 1\rangle\langle 1 \vert\\
+&amp; = \langle 0 \vert \rho \vert 0\rangle \, \vert 0\rangle\langle 0 \vert
++ \langle 1 \vert \rho \vert 1\rangle \, \vert 1\rangle\langle 1 \vert \\[2mm]
+&amp; =
+\begin{pmatrix}
+\langle 0 \vert \rho \vert 0 \rangle &amp; 0 \\[1mm]
+0 &amp; \langle 1 \vert \rho \vert 1 \rangle
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>これらの行列は必要な条件を満たします。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^1 A_k^{\dagger} A_k
+= \vert 0\rangle\langle 0\vert 0\rangle\langle 0\vert + \vert 1\rangle\langle 1\vert 1\rangle\langle 1\vert
+= \vert 0\rangle\langle 0\vert + \vert 1\rangle\langle 1\vert = \mathbb{I}
+\]</div>
+<p>あるいは <span class="math notranslate nohighlight">\(A_0 = \frac{1}{\sqrt{2}}\mathbb{I}\)</span> と <span class="math notranslate nohighlight">\(A_1 = \frac{1}{\sqrt{2}}\sigma_z\)</span> をとることもでき、このとき</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^1 A_k \rho A_k^{\dagger} = \frac{1}{2} \rho + \frac{1}{2} \sigma_z \rho \sigma_z = \Delta(\rho),
+\]</div>
+<p>となり、これは以前計算したとおりです。今回、必要な条件は次のように確認できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^1 A_k^{\dagger} A_k = \frac{1}{2} \mathbb{I} + \frac{1}{2} \sigma_z^2 = \frac{1}{2} \mathbb{I} + \frac{1}{2} \mathbb{I} = \mathbb{I}
+\]</div>
+</section>
+<section id="id8">
+<h3>量子ビットリセットチャネル<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(A_0 = \vert 0\rangle\langle 0\vert\)</span> と <span class="math notranslate nohighlight">\(A_1 = \vert 0\rangle\langle 1\vert\)</span> をとることで、量子ビットリセットチャネルのクラウス表現が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sum_{k = 0}^1 A_k \rho A_k^{\dagger}
+&amp; =
+\vert 0\rangle\langle 0 \vert \rho \vert 0\rangle\langle 0 \vert
++ \vert 0\rangle\langle 1 \vert \rho \vert 1\rangle\langle 0 \vert\\
+&amp; = \langle 0 \vert \rho \vert 0\rangle \, \vert 0\rangle\langle 0 \vert
++ \langle 1 \vert \rho \vert 1\rangle \, \vert 0\rangle\langle 0 \vert\\[2mm]
+&amp; = \operatorname{Tr}(\rho) \vert 0\rangle \langle 0 \vert
+\end{aligned}
+\end{split}\]</div>
+<p>これらの行列は必要な条件を満たします。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^1 A_k^{\dagger} A_k
+= \vert 0\rangle\langle 0\vert 0\rangle\langle 0\vert + \vert 1\rangle\langle 0\vert 0\rangle\langle 1\vert
+= \vert 0\rangle\langle 0\vert + \vert 1\rangle\langle 1\vert = \mathbb{I}
+\]</div>
+</section>
+<section id="id9">
+<h3>完全脱分極チャネル<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>完全脱分極チャネルのクラウス表現を得る一つの方法は、クラウス行列 <span class="math notranslate nohighlight">\(A_0,\ldots,A_3\)</span> を次のように選ぶことです。</p>
+<div class="math notranslate nohighlight">
+\[
+A_0 = \frac{\vert 0\rangle\langle 0\vert}{\sqrt{2}} \quad
+A_1 = \frac{\vert 0\rangle\langle 1\vert}{\sqrt{2}} \quad
+A_2 = \frac{\vert 1\rangle\langle 0\vert}{\sqrt{2}} \quad
+A_3 = \frac{\vert 1\rangle\langle 1\vert}{\sqrt{2}}
+\]</div>
+<p>任意の量子ビット密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> について、次が成り立ちます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sum_{k = 0}^3 A_k \rho A_k^{\dagger}
+&amp; = \frac{1}{2} \bigl(\vert 0\rangle\langle 0\vert \rho \vert 0\rangle\langle 0\vert
++ \vert 0\rangle\langle 1\vert \rho \vert 1\rangle\langle 0\vert
++ \vert 1\rangle\langle 0\vert \rho \vert 0\rangle\langle 1\vert
++ \vert 1\rangle\langle 1\vert \rho \vert 1\rangle\langle 1\vert\bigr)\\
+&amp; = \operatorname{Tr}(\rho) \frac{\mathbb{I}}{2}\\[1mm]
+&amp; = \Omega(\rho).
+\end{aligned}
+\end{split}\]</div>
+<p>別のクラウス表現は、次のようにクラウス行列を選ぶことで得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+A_0 = \frac{\mathbb{I}}{2} \quad
+A_1 = \frac{\sigma_x}{2} \quad
+A_2 = \frac{\sigma_y}{2} \quad
+A_3 = \frac{\sigma_z}{2}
+\]</div>
+<p>これらのクラウス行列が実際に完全脱分極チャネルを表すことを確認するために、まず任意の <span class="math notranslate nohighlight">\(2\times 2\)</span> 行列をパウリ行列で共役をとる操作が次のように働くことに注目しましょう。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sigma_x
+\begin{pmatrix}
+\alpha_{0,0} &amp; \alpha_{0,1}\\[1mm]
+\alpha_{1,0} &amp; \alpha_{1,1}
+\end{pmatrix}
+\sigma_x
+&amp; =
+\begin{pmatrix}
+\alpha_{1,1} &amp; \alpha_{1,0}\\[1mm]
+\alpha_{0,1} &amp; \alpha_{0,0}
+\end{pmatrix}\\[5mm]
+\sigma_y
+\begin{pmatrix}
+\alpha_{0,0} &amp; \alpha_{0,1}\\[1mm]
+\alpha_{1,0} &amp; \alpha_{1,1}
+\end{pmatrix}
+\sigma_y
+&amp; =
+\begin{pmatrix}
+\alpha_{1,1} &amp; -\alpha_{1,0}\\[1mm]
+-\alpha_{0,1} &amp; \alpha_{0,0}
+\end{pmatrix}\\[5mm]
+\sigma_z
+\begin{pmatrix}
+\alpha_{0,0} &amp; \alpha_{0,1}\\[1mm]
+\alpha_{1,0} &amp; \alpha_{1,1}
+\end{pmatrix}
+\sigma_z
+&amp; =
+\begin{pmatrix}
+\alpha_{0,0} &amp; -\alpha_{0,1}\\[1mm]
+-\alpha_{1,0} &amp; \alpha_{1,1}
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>これにより、クラウス表現の正しさを確認できます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sum_{k = 0}^3 A_k \rho A_k^{\dagger}
+&amp; = \frac{\rho + \sigma_x \rho \sigma_x + \sigma_y \rho \sigma_y + \sigma_z \rho \sigma_z}{4} \\
+&amp; =
+\frac{1}{4}
+\begin{pmatrix}
+\langle 0\vert\rho\vert 0\rangle
++ \langle 1\vert\rho\vert 1\rangle
++ \langle 1\vert\rho\vert 1\rangle
++ \langle 0\vert\rho\vert 0\rangle
+&amp;
+\langle 0\vert\rho\vert 1\rangle
++ \langle 1\vert\rho\vert 0\rangle
+- \langle 1\vert\rho\vert 0\rangle
+- \langle 0\vert\rho\vert 1\rangle
+\\[2mm]
+\langle 1\vert\rho\vert 0\rangle
++ \langle 0\vert\rho\vert 1\rangle
+- \langle 0\vert\rho\vert 1\rangle
+- \langle 1\vert\rho\vert 0\rangle
+&amp;
+\langle 1\vert\rho\vert 1\rangle
++ \langle 0\vert\rho\vert 0\rangle
++ \langle 0\vert\rho\vert 0\rangle
++ \langle 1\vert\rho\vert 1\rangle
+\end{pmatrix}
+\\[4mm]
+&amp; = \operatorname{Tr}(\rho) \frac{\mathbb{I}}{2}
+\end{aligned}
+\end{split}\]</div>
+<p>このクラウス表現は重要な考え方を表しています。それは、量子ビットの状態は、4つのパウリ行列（恒等行列を含む）のいずれかを一様ランダムに選んで適用することで、完全にランダム化できるということです。
+したがって、完全脱分極チャネルはパウリチャネルのもう一つの例です。</p>
+<p>完全脱分極チャネル <span class="math notranslate nohighlight">\(\Omega\)</span> について、3つ以下のクラウス行列を持つクラウス表現を見つけることはできません。このチャネルには少なくとも4つが必要です。</p>
+</section>
+<section id="id10">
+<h3>ユニタリチャネル<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対する操作を表すユニタリ行列 <span class="math notranslate nohighlight">\(U\)</span> があるとき、このユニタリ操作の作用をチャネルとして表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = U \rho U^{\dagger}.
+\]</div>
+<p>この表式は、たまたまクラウス行列が <span class="math notranslate nohighlight">\(A_0 = U\)</span> の1つだけである、チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> の有効なクラウス表現になっています。この場合、必要な条件</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{N-1} A_k^{\dagger} A_k = \mathbb{I}_{\mathsf{X}}
+\]</div>
+<p>は、ずっと単純な形 <span class="math notranslate nohighlight">\(U^{\dagger} U = \mathbb{I}_{\mathsf{X}}\)</span> となります。これは <span class="math notranslate nohighlight">\(U\)</span> がユニタリであることから真であるとわかります。</p>
+</section>
+</section>
+<section id="id11">
+<h2>チョイ表現<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>次に、チャネルを記述する3つ目の方法である <em>チョイ表現</em> について説明します。
+その仕組みは、各チャネルを <em>チョイ行列</em> として知られる単一の行列で表現するというものです。
+入力系が <span class="math notranslate nohighlight">\(n\)</span> 個の古典的状態を持ち、出力系が <span class="math notranslate nohighlight">\(m\)</span> 個の古典的状態を持つ場合、そのチャネルのチョイ行列は <span class="math notranslate nohighlight">\(nm\)</span> 行 <span class="math notranslate nohighlight">\(nm\)</span> 列を持ちます。</p>
+<p>チョイ行列はチャネルを <em>忠実に</em> 表現します。つまり、2つのチャネルが同じであるための必要十分条件は、それらが同じチョイ行列を持つことです。
+これが重要である理由の一つは、2つの異なる記述が同じチャネルに対応するのか異なるチャネルに対応するのかを判定する方法を与えてくれることです。すなわち、単にチョイ行列を計算して、それらが等しいかどうかを比較すればよいのです。
+対照的に、スタインスプリング表現やクラウス表現は、これまで見てきたようにこの意味で一意ではありません。</p>
+<p>チョイ行列は、チャネルのさまざまな数学的性質を明らかにするうえでも、他の点で有用です。</p>
+<section id="id12">
+<h3>定義<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\Phi\)</span> を系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> へのチャネルとし、入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典的状態集合が <span class="math notranslate nohighlight">\(\Sigma\)</span> であると仮定します。
+<span class="math notranslate nohighlight">\(\Phi\)</span> のチョイ表現は <span class="math notranslate nohighlight">\(J(\Phi)\)</span> と表記され、次の式で定義されます。</p>
+<div class="math notranslate nohighlight">
+\[
+J(\Phi) = \sum_{a,b\in\Sigma} \vert a\rangle\langle b \vert \otimes \Phi\bigl( \vert a\rangle\langle b \vert\bigr)
+\]</div>
+<p>ある正の整数 <span class="math notranslate nohighlight">\(n\)</span> について <span class="math notranslate nohighlight">\(\Sigma = \{0,\ldots, n-1\}\)</span> と仮定すると、<span class="math notranslate nohighlight">\(J(\Phi)\)</span> を別の形でブロック行列として表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J(\Phi)
+= \begin{pmatrix}
+\Phi\bigl(\vert 0\rangle\langle 0\vert\bigr) &amp; \Phi\bigl(\vert 0\rangle\langle 1\vert\bigr) &amp; \cdots &amp; \Phi\bigl(\vert 0\rangle\langle n-1\vert\bigr) \\[1mm]
+\Phi\bigl(\vert 1\rangle\langle 0\vert\bigr) &amp; \Phi\bigl(\vert 1\rangle\langle 1\vert\bigr) &amp; \cdots &amp; \Phi\bigl(\vert 1\rangle\langle n-1\vert\bigr) \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+\Phi\bigl(\vert n-1\rangle\langle 0\vert\bigr) &amp; \Phi\bigl(\vert n-1\rangle\langle 1\vert\bigr) &amp; \cdots &amp; \Phi\bigl(\vert n-1\rangle\langle n-1\vert\bigr)
+\end{pmatrix}
+\end{split}\]</div>
+<p>すなわち、ブロック行列として見ると、チャネルのチョイ行列は、入力系の古典的状態の各組 <span class="math notranslate nohighlight">\((a,b)\)</span> に対して1つのブロック <span class="math notranslate nohighlight">\(\Phi(\vert a\rangle\langle b\vert)\)</span> を持ち、それらのブロックが自然な形で配置されています。</p>
+<p>集合 <span class="math notranslate nohighlight">\(\{\vert a\rangle\langle b\vert \,:\, 0\leq a,b &lt; n\}\)</span> が、すべての <span class="math notranslate nohighlight">\(n\times n\)</span> 行列の空間の基底をなすことに注意してください。
+<span class="math notranslate nohighlight">\(\Phi\)</span> は線形なので、その作用はチョイ行列からブロックの線形結合をとることで復元できます。</p>
+</section>
+<section id="id13">
+<h3>チャネルのチョイ状態<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>チャネルのチョイ行列を考えるもう一つの方法は、<span class="math notranslate nohighlight">\(n = \vert\Sigma\vert\)</span> で割ればそれが密度行列になるということです。
+簡単のため <span class="math notranslate nohighlight">\(\Sigma = \{0,\ldots,n-1\}\)</span> の場合に焦点を当て、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の2つの同一のコピーが一緒にもつれ状態</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi \rangle = \frac{1}{\sqrt{n}} \sum_{a = 0}^{n-1} \vert a \rangle \otimes \vert a \rangle.
+\]</div>
+<p>にあると想像しましょう。
+密度行列としてこの状態は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi \rangle \langle \psi \vert = \frac{1}{n} \sum_{a,b = 0}^{n-1}
+\vert a\rangle\langle b \vert \otimes \vert a\rangle\langle b \vert
+\]</div>
+<p>右側の <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> のコピーに <span class="math notranslate nohighlight">\(\Phi\)</span> を適用すると、<span class="math notranslate nohighlight">\(n\)</span> で割ったチョイ行列が得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+(\operatorname{Id}\otimes \,\Phi) \bigl(\vert \psi \rangle \langle \psi \vert\bigr)
+= \frac{1}{n} \sum_{a,b = 0}^{n-1} \vert a\rangle\langle b \vert \otimes \Phi\bigl(\vert a\rangle\langle b \vert\bigr)
+= \frac{J(\Phi)}{n}
+\]</div>
+<p>言葉で言えば、正規化因子 <span class="math notranslate nohighlight">\(1/n\)</span> を除けば、<span class="math notranslate nohighlight">\(\Phi\)</span> のチョイ行列は、<em>最大もつれ</em> した入力系の対の片方に <span class="math notranslate nohighlight">\(\Phi\)</span> を作用させることで得られる密度行列です。次の図がそれを描いています。</p>
+<p><img alt="チャネルのチョイ状態を示す図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/Choi-state.svg" /></p>
+<p>特に、これはチャネルのチョイ行列が常に半正定値でなければならないことを意味することに注意してください。</p>
+<p>また、チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> は右／上の系にのみ適用されるため、左／下の系の縮約状態に影響を与えることはできない、ということもわかります。
+今の場合、その状態は完全混合状態 <span class="math notranslate nohighlight">\(\mathbb{I}_{\mathsf{X}}/n\)</span> であり、したがって</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{Y}} \biggl(\frac{J(\Phi)}{n}\biggr) = \frac{\mathbb{I}_{\mathsf{X}}}{n}.
+\]</div>
+<p>両辺から分母 <span class="math notranslate nohighlight">\(n\)</span> を払うと <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{Y}} (J(\Phi)) = \mathbb{I}_{\mathsf{X}}\)</span> が得られます。</p>
+<p>チャネルは常にトレースを保存しなければならないという事実を用いても、同じ結論を導くことができます。したがって</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{Y}} (J(\Phi))
+&amp; = \sum_{a,b\in\Sigma} \operatorname{Tr}\bigl(\Phi( \vert a\rangle\langle b \vert)\bigr) \, \vert a\rangle\langle b \vert \\
+&amp; = \sum_{a,b\in\Sigma} \operatorname{Tr}\bigl(\vert a\rangle\langle b \vert\bigr) \, \vert a\rangle\langle b \vert \\
+&amp; = \sum_{a\in\Sigma} \vert a\rangle\langle a \vert \\
+&amp; = \mathbb{I}_{\mathsf{X}}.
+\end{aligned}
+\end{split}\]</div>
+<p>まとめると、任意のチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> のチョイ表現 <span class="math notranslate nohighlight">\(J(\Phi)\)</span> は半正定値でなければならず、かつ次を満たさなければなりません。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{Y}} (J(\Phi)) = \mathbb{I}_{\mathsf{X}}.
+\]</div>
+<p>この講義の終わりまでに見るように、これら2つの条件は必要であるだけでなく十分でもあります。つまり、これらの要件を満たす行列から行列への任意の線形写像 <span class="math notranslate nohighlight">\(\Phi\)</span> は、実際にチャネルでなければなりません。</p>
+</section>
+<section id="id14">
+<h3>完全位相緩和チャネル<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>完全位相緩和チャネル <span class="math notranslate nohighlight">\(\Delta\)</span> のチョイ表現は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+J(\Delta) &amp; = \sum_{a,b = 0}^{1} \vert a\rangle\langle b \vert \otimes \Delta\bigl(\vert a\rangle\langle b \vert\bigr) \\
+&amp; = \sum_{a = 0}^{1} \vert a\rangle\langle a \vert \otimes \vert a\rangle\langle a \vert \\[4mm]
+&amp; = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id15">
+<h3>完全脱分極チャネル<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>完全脱分極チャネルのチョイ表現は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+J(\Omega) &amp; = \sum_{a,b = 0}^{1} \vert a\rangle\langle b \vert \otimes \Omega\bigl(\vert a\rangle\langle b \vert\bigr)\\
+&amp; = \sum_{a = 0}^{1} \vert a\rangle\langle a \vert \otimes \frac{1}{2} \mathbb{I} \\[4mm]
+&amp; = \frac{1}{2} \mathbb{I} \otimes \mathbb{I}\\[3mm]
+&amp; = \begin{pmatrix}
+\frac{1}{2} &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; \frac{1}{2} &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; \frac{1}{2} &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; \frac{1}{2}
+\end{pmatrix}.
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id16">
+<h3>量子ビットリセットチャネル<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>量子ビットリセットチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> のチョイ表現は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+J(\Lambda) &amp; = \sum_{a,b = 0}^{1} \vert a\rangle\langle b \vert \otimes \Lambda\bigl(\vert a\rangle\langle b \vert\bigr)\\
+&amp; = \sum_{a = 0}^{1} \vert a\rangle\langle a \vert \otimes \vert 0\rangle \langle 0\vert\\[4mm]
+&amp; = \mathbb{I} \otimes \vert 0\rangle \langle 0\vert\\[3mm]
+&amp; = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 1 &amp; 0\\[1mm]
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}.
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id17">
+<h3>恒等チャネル<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p>量子ビットの恒等チャネル <span class="math notranslate nohighlight">\(\operatorname{Id}\)</span> のチョイ表現は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+J(\operatorname{Id})
+&amp; = \sum_{a,b = 0}^{1} \vert a\rangle\langle b \vert \otimes \operatorname{Id}\bigl(\vert a\rangle\langle b \vert\bigr) \\
+&amp; = \sum_{a,b = 0}^{1} \vert a \rangle\langle b \vert \otimes \vert a\rangle \langle b \vert \\
+&amp; = \begin{pmatrix}
+  1 &amp; 0 &amp; 0 &amp; 1\\[1mm]
+  0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+  0 &amp; 0 &amp; 0 &amp; 0\\[1mm]
+  1 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}.
+\end{aligned}
+\end{split}\]</div>
+<p>特に <span class="math notranslate nohighlight">\(J(\operatorname{Id})\)</span> は単位行列ではないことに注意してください。
+チョイ表現は、行列が線形写像を表す通常の方法で、チャネルの作用を直接記述するものではありません。</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/quantum-channels"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタインスプリング表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">完全位相緩和チャネル（別法）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">量子ビットリセットチャネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">クラウス表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ユニタリチャネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">チョイ表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">定義</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">チャネルのチョイ状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">恒等チャネル</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
