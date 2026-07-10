@@ -379,25 +379,26 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタインスプリング表現</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完全位相緩和チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">完全位相緩和チャネル（別法）</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">補足</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">完全位相緩和チャネル（別法）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子ビットリセットチャネル</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">クラウス表現</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">完全位相緩和チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子ビットリセットチャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">完全脱分極チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ユニタリチャネル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">クラウス表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ユニタリチャネル</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">チョイ表現</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">定義</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">チャネルのチョイ状態</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">完全位相緩和チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">完全脱分極チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">量子ビットリセットチャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">恒等チャネル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">チョイ表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">定義</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">チャネルのチョイ状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">恒等チャネル</a></li>
 </ul>
 </li>
 </ul>
@@ -463,20 +464,21 @@
 <p>チャネルがこのように、ユニタリ操作と、作業用の系をどのように初期化しどのように出力系を選ぶかの指定とともに記述されるとき、それは <em>スタインスプリング形式</em> で表現されている、あるいはそのチャネルの <em>スタインスプリング表現</em> であるといいます。</p>
 <p>まったく自明ではありませんが、実際あらゆるチャネルはスタインスプリング表現を持ちます。これはこの講義の終わりまでに見ていきます。
 また、スタインスプリング表現は一意ではないこともわかります。すなわち、記述されたやり方で同じチャネルを実装する方法は常に複数存在します。</p>
-<Figure title="Remark">
-量子情報の文脈では、 *スタインスプリング表現* という用語は、次の形を持つ、チャネルのやや一般的な表式を指すことがよくあります。
-$$
-\Phi(\rho) = \operatorname{Tr}_{\mathsf{G}} \bigl( A \rho A^{\dagger} \bigr)
-$$
-ここで $A$ は *等長写像（アイソメトリ）* であり、列が正規直交であるが必ずしも正方行列でない行列です。
-ここで定義として採用した形のスタインスプリング表現については、
-$$
-A = U (\vert 0\rangle_{\mathsf{W}} \otimes \mathbb{I}_{\mathsf{X}})
-$$
-とすることで、このもう一方の形の表式を得ることができます。
-</Figure>
 <section id="id3">
-<h3>完全位相緩和チャネル<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h3>補足<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>量子情報の文脈では、 <em>スタインスプリング表現</em> という用語は、次の形を持つ、チャネルのやや一般的な表式を指すことがよくあります。
+$<span class="math notranslate nohighlight">\(
+\Phi(\rho) = \operatorname{Tr}_{\mathsf{G}} \bigl( A \rho A^{\dagger} \bigr)
+\)</span><span class="math notranslate nohighlight">\(
+ここで \)</span>A<span class="math notranslate nohighlight">\( は *等長写像（アイソメトリ）* であり、列が正規直交であるが必ずしも正方行列でない行列です。
+ここで定義として採用した形のスタインスプリング表現については、
+\)</span><span class="math notranslate nohighlight">\(
+A = U (\vert 0\rangle_{\mathsf{W}} \otimes \mathbb{I}_{\mathsf{X}})
+\)</span>$
+とすることで、このもう一方の形の表式を得ることができます。</p>
+</section>
+<section id="id4">
+<h3>完全位相緩和チャネル<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>以下は、量子ビットの位相緩和チャネル <span class="math notranslate nohighlight">\(\Delta\)</span> のスタインスプリング表現です。
 この図では両方のワイヤーが単一の量子ビットを表しているので、これは通常の量子回路図です。</p>
 <p><img alt="完全位相緩和チャネルを表す量子回路図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/dephasing-circuit.svg" /></p>
@@ -600,8 +602,8 @@ $$
 \]</div>
 <p>この回路を直観的に考える一つの方法は、制御NOT操作が入力量子ビットの古典的状態を実質的にコピーし、そのコピーがゴミ箱に捨てられると、入力量子ビットが2つの可能な古典的状態のいずれかに確率的に「収縮」する、というものです。これは完全な位相緩和と等価です。</p>
 </section>
-<section id="id4">
-<h3>完全位相緩和チャネル（別法）<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>完全位相緩和チャネル（別法）<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>上で説明した回路は、完全位相緩和チャネルを実装する唯一の方法ではありません。
 ここでは別のやり方を示します。</p>
 <p><img alt="完全位相緩和チャネルを表す別の量子回路図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/dephasing-alternative.svg" /></p>
@@ -727,8 +729,8 @@ $$
 \end{split}\]</div>
 <p>つまり、完全位相緩和チャネルは混合ユニタリチャネルの一例であり、より具体的にはパウリチャネルの一例です。</p>
 </section>
-<section id="id5">
-<h3>量子ビットリセットチャネル<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3>量子ビットリセットチャネル<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>量子ビットリセットチャネルは次のように実装できます。</p>
 <p><img alt="量子ビットリセットチャネルを表す量子回路図" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/quantum-channels/reset-stinespring-1.svg" /></p>
 <p>スワップゲートは、作業用量子ビットの <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> に初期化された状態を単純に移して出力させ、一方で入力状態 <span class="math notranslate nohighlight">\(\rho\)</span> は下側の量子ビットに移されてからトレースアウトされます。</p>
@@ -737,8 +739,8 @@ $$
 <p>言葉で言えば、量子ビットを <span class="math notranslate nohighlight">\(\vert 0\rangle\)</span> 状態にリセットすることは、その量子ビットをゴミ箱に捨てて新しいものを手に入れることと等価です。</p>
 </section>
 </section>
-<section id="id6">
-<h2>クラウス表現<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2>クラウス表現<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>次に <em>クラウス表現</em> について説明します。これは、行列の積と和を通じてチャネルの作用を表す便利な公式的な方法を提供します。
 具体的には、クラウス表現はチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> を次の形で指定するものです。</p>
 <div class="math notranslate nohighlight">
@@ -767,8 +769,8 @@ $$
 <p>これらの行列——<em>クラウス行列</em> と呼ばれます——の名付け方はどれもよく使われ、状況によって便利です。しかしこの講義では、簡単のため名前 <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> を用いることにします。</p>
 <p>数 <span class="math notranslate nohighlight">\(N\)</span> は任意の正の整数でよいのですが、大きくする必要はありません。
 入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が <span class="math notranslate nohighlight">\(n\)</span> 個の古典的状態を持ち、出力系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が <span class="math notranslate nohighlight">\(m\)</span> 個の古典的状態を持つ場合、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> への任意のチャネルは、常に <span class="math notranslate nohighlight">\(N\)</span> が積 <span class="math notranslate nohighlight">\(nm\)</span> 以下となるクラウス表現を持ちます。</p>
-<section id="id7">
-<h3>完全位相緩和チャネル<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h3>完全位相緩和チャネル<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(A_0 = \vert 0\rangle\langle 0\vert\)</span> と <span class="math notranslate nohighlight">\(A_1 = \vert 1\rangle\langle 1\vert\)</span> をとることで、完全位相緩和チャネルのクラウス表現が得られます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -804,8 +806,8 @@ $$
 \sum_{k = 0}^1 A_k^{\dagger} A_k = \frac{1}{2} \mathbb{I} + \frac{1}{2} \sigma_z^2 = \frac{1}{2} \mathbb{I} + \frac{1}{2} \mathbb{I} = \mathbb{I}
 \]</div>
 </section>
-<section id="id8">
-<h3>量子ビットリセットチャネル<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>量子ビットリセットチャネル<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(A_0 = \vert 0\rangle\langle 0\vert\)</span> と <span class="math notranslate nohighlight">\(A_1 = \vert 0\rangle\langle 1\vert\)</span> をとることで、量子ビットリセットチャネルのクラウス表現が得られます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -827,8 +829,8 @@ $$
 = \vert 0\rangle\langle 0\vert + \vert 1\rangle\langle 1\vert = \mathbb{I}
 \]</div>
 </section>
-<section id="id9">
-<h3>完全脱分極チャネル<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h3>完全脱分極チャネル<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p>完全脱分極チャネルのクラウス表現を得る一つの方法は、クラウス行列 <span class="math notranslate nohighlight">\(A_0,\ldots,A_3\)</span> を次のように選ぶことです。</p>
 <div class="math notranslate nohighlight">
 \[
@@ -934,8 +936,8 @@ A_3 = \frac{\sigma_z}{2}
 したがって、完全脱分極チャネルはパウリチャネルのもう一つの例です。</p>
 <p>完全脱分極チャネル <span class="math notranslate nohighlight">\(\Omega\)</span> について、3つ以下のクラウス行列を持つクラウス表現を見つけることはできません。このチャネルには少なくとも4つが必要です。</p>
 </section>
-<section id="id10">
-<h3>ユニタリチャネル<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<section id="id11">
+<h3>ユニタリチャネル<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
 <p>系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対する操作を表すユニタリ行列 <span class="math notranslate nohighlight">\(U\)</span> があるとき、このユニタリ操作の作用をチャネルとして表すことができます。</p>
 <div class="math notranslate nohighlight">
 \[
@@ -949,8 +951,8 @@ A_3 = \frac{\sigma_z}{2}
 <p>は、ずっと単純な形 <span class="math notranslate nohighlight">\(U^{\dagger} U = \mathbb{I}_{\mathsf{X}}\)</span> となります。これは <span class="math notranslate nohighlight">\(U\)</span> がユニタリであることから真であるとわかります。</p>
 </section>
 </section>
-<section id="id11">
-<h2>チョイ表現<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h2>チョイ表現<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
 <p>次に、チャネルを記述する3つ目の方法である <em>チョイ表現</em> について説明します。
 その仕組みは、各チャネルを <em>チョイ行列</em> として知られる単一の行列で表現するというものです。
 入力系が <span class="math notranslate nohighlight">\(n\)</span> 個の古典的状態を持ち、出力系が <span class="math notranslate nohighlight">\(m\)</span> 個の古典的状態を持つ場合、そのチャネルのチョイ行列は <span class="math notranslate nohighlight">\(nm\)</span> 行 <span class="math notranslate nohighlight">\(nm\)</span> 列を持ちます。</p>
@@ -958,8 +960,8 @@ A_3 = \frac{\sigma_z}{2}
 これが重要である理由の一つは、2つの異なる記述が同じチャネルに対応するのか異なるチャネルに対応するのかを判定する方法を与えてくれることです。すなわち、単にチョイ行列を計算して、それらが等しいかどうかを比較すればよいのです。
 対照的に、スタインスプリング表現やクラウス表現は、これまで見てきたようにこの意味で一意ではありません。</p>
 <p>チョイ行列は、チャネルのさまざまな数学的性質を明らかにするうえでも、他の点で有用です。</p>
-<section id="id12">
-<h3>定義<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h3>定義<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(\Phi\)</span> を系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> へのチャネルとし、入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典的状態集合が <span class="math notranslate nohighlight">\(\Sigma\)</span> であると仮定します。
 <span class="math notranslate nohighlight">\(\Phi\)</span> のチョイ表現は <span class="math notranslate nohighlight">\(J(\Phi)\)</span> と表記され、次の式で定義されます。</p>
 <div class="math notranslate nohighlight">
@@ -981,8 +983,8 @@ J(\Phi)
 <p>集合 <span class="math notranslate nohighlight">\(\{\vert a\rangle\langle b\vert \,:\, 0\leq a,b &lt; n\}\)</span> が、すべての <span class="math notranslate nohighlight">\(n\times n\)</span> 行列の空間の基底をなすことに注意してください。
 <span class="math notranslate nohighlight">\(\Phi\)</span> は線形なので、その作用はチョイ行列からブロックの線形結合をとることで復元できます。</p>
 </section>
-<section id="id13">
-<h3>チャネルのチョイ状態<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h3>チャネルのチョイ状態<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <p>チャネルのチョイ行列を考えるもう一つの方法は、<span class="math notranslate nohighlight">\(n = \vert\Sigma\vert\)</span> で割ればそれが密度行列になるということです。
 簡単のため <span class="math notranslate nohighlight">\(\Sigma = \{0,\ldots,n-1\}\)</span> の場合に焦点を当て、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の2つの同一のコピーが一緒にもつれ状態</p>
 <div class="math notranslate nohighlight">
@@ -1031,8 +1033,8 @@ J(\Phi)
 \]</div>
 <p>この講義の終わりまでに見るように、これら2つの条件は必要であるだけでなく十分でもあります。つまり、これらの要件を満たす行列から行列への任意の線形写像 <span class="math notranslate nohighlight">\(\Phi\)</span> は、実際にチャネルでなければなりません。</p>
 </section>
-<section id="id14">
-<h3>完全位相緩和チャネル<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h3>完全位相緩和チャネル<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <p>完全位相緩和チャネル <span class="math notranslate nohighlight">\(\Delta\)</span> のチョイ表現は次のとおりです。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1048,8 +1050,8 @@ J(\Delta) &amp; = \sum_{a,b = 0}^{1} \vert a\rangle\langle b \vert \otimes \Delt
 \end{aligned}
 \end{split}\]</div>
 </section>
-<section id="id15">
-<h3>完全脱分極チャネル<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h3>完全脱分極チャネル<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <p>完全脱分極チャネルのチョイ表現は次のとおりです。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1066,8 +1068,8 @@ J(\Omega) &amp; = \sum_{a,b = 0}^{1} \vert a\rangle\langle b \vert \otimes \Omeg
 \end{aligned}
 \end{split}\]</div>
 </section>
-<section id="id16">
-<h3>量子ビットリセットチャネル<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h3>量子ビットリセットチャネル<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <p>量子ビットリセットチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> のチョイ表現は次のとおりです。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1084,8 +1086,8 @@ J(\Lambda) &amp; = \sum_{a,b = 0}^{1} \vert a\rangle\langle b \vert \otimes \Lam
 \end{aligned}
 \end{split}\]</div>
 </section>
-<section id="id17">
-<h3>恒等チャネル<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h3>恒等チャネル<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <p>量子ビットの恒等チャネル <span class="math notranslate nohighlight">\(\operatorname{Id}\)</span> のチョイ表現は次のとおりです。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1156,25 +1158,26 @@ J(\operatorname{Id})
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">スタインスプリング表現</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完全位相緩和チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">完全位相緩和チャネル（別法）</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">補足</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">完全位相緩和チャネル（別法）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子ビットリセットチャネル</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">クラウス表現</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">完全位相緩和チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子ビットリセットチャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">完全脱分極チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ユニタリチャネル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">クラウス表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ユニタリチャネル</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">チョイ表現</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">定義</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">チャネルのチョイ状態</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">完全位相緩和チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">完全脱分極チャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">量子ビットリセットチャネル</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">恒等チャネル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">チョイ表現</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">定義</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">チャネルのチョイ状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">完全位相緩和チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">完全脱分極チャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">量子ビットリセットチャネル</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">恒等チャネル</a></li>
 </ul>
 </li>
 </ul>
