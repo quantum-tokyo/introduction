@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>表現の同値性 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/quantum-channels/representation-equivalence-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/quantum-channels/representation-equivalence-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/quantum-channels/representation-equivalence-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>表現の同値性</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">証明の概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">チャネルからチョイ行列へ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">チョイ表現からクラウス表現へ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">クラウス表現からスタインスプリング表現へ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">スタインスプリング表現から定義へ戻る</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>表現の同値性<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>これまでに、チャネルを数学的に表現する3つの異なる方法、すなわちスタインスプリング表現、クラウス表現、チョイ表現について説明してきました。
+また、チャネルの定義もあります。それは、チャネルとは、複合系の一部にだけ適用された場合でも常に密度行列を密度行列に変換する線形写像である、というものです。
+この講義の残りの部分は、これら3つの表現が同値であり、定義を正確に捉えていることの数学的な証明に充てられます。</p>
+<section id="id2">
+<h2>証明の概要<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>私たちの目標は、4つの命題からなる集まりの同値性を確立することです。まずはそれらを正確に書き下すことから始めましょう。
+4つの命題はいずれも、この講義を通して用いてきた慣例に従います。すなわち、<span class="math notranslate nohighlight">\(\Phi\)</span> は正方行列から正方行列への線形写像であり、入力行列の行と列は系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>（入力系）の古典的状態に対応させられ、出力行列の行と列は系 <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>（出力系）の古典的状態に対応させられています。</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\Phi\)</span> は <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> へのチャネルである。すなわち、<span class="math notranslate nohighlight">\(\Phi\)</span> は、より大きな複合系の一部に作用する場合でも、常に密度行列を密度行列に変換する。</p></li>
+<li><p>チョイ行列 <span class="math notranslate nohighlight">\(J(\Phi)\)</span> は半正定値であり、条件 <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{Y}}(J(\Phi)) = \mathbb{I}_{\mathsf{X}}\)</span> を満たす。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi\)</span> にはクラウス表現が存在する。すなわち、あらゆる入力 <span class="math notranslate nohighlight">\(\rho\)</span> に対して式 <span class="math notranslate nohighlight">\(\Phi(\rho) = \sum_{k = 0}^{N-1} A_k \rho A_k^{\dagger}\)</span> が真となり、かつ条件 <span class="math notranslate nohighlight">\(\sum_{k = 0}^{N-1} A_k^{\dagger} A_k = \mathbb{I}_{\mathsf{X}}\)</span> を満たす行列 <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> が存在する。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi\)</span> にはスタインスプリング表現が存在する。すなわち、組 <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> と <span class="math notranslate nohighlight">\((\mathsf{G},\mathsf{Y})\)</span> が同じ数の古典的状態を持つような系 <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{G}\)</span>、および <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> から <span class="math notranslate nohighlight">\((\mathsf{G},\mathsf{Y})\)</span> へのユニタリ操作を表すユニタリ行列 <span class="math notranslate nohighlight">\(U\)</span> が存在して、<span class="math notranslate nohighlight">\(\Phi(\rho) = \operatorname{Tr}_{\mathsf{G}}\bigl( U (\vert 0\rangle\langle 0 \vert \otimes \rho) U^{\dagger} \bigr)\)</span> が成り立つ。</p></li>
+</ol>
+<p>証明の進め方は、含意の巡回（サイクル）を証明するというものです。
+すなわち、リストの1番目の命題が2番目を含意し、2番目が3番目を含意し、3番目が4番目を含意し、4番目の命題が1番目を含意することを示します。
+これにより4つの命題がすべて同値であること——つまり、与えられた <span class="math notranslate nohighlight">\(\Phi\)</span> に対してそれらがすべて真であるか、すべて偽であるかのいずれかであること——が確立されます。なぜなら、含意はどの命題からどの命題へも推移的にたどれるからです。</p>
+<p>これは、複数の命題が同値であることを証明するときの一般的な戦略であり、そのような文脈で使える便利なコツは、できるだけ証明しやすくなるように含意を設定することです。
+ここではまさにそうしています——そして実際、4つの含意のうち2つはすでに登場しています。</p>
+</section>
+<section id="id3">
+<h2>チャネルからチョイ行列へ<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>上に挙げた命題を番号で参照すると、最初に証明する含意は 1 <span class="math notranslate nohighlight">\(\Rightarrow\)</span> 2 です。
+この含意は、チャネルのチョイ状態の文脈ですでに議論しました。
+ここでは数学的な詳細をまとめます。</p>
+<p>入力系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典的状態集合を <span class="math notranslate nohighlight">\(\Sigma\)</span> とし、<span class="math notranslate nohighlight">\(n = \vert\Sigma\vert\)</span> とします。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の2つのコピーが一緒に状態</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi \rangle = \frac{1}{\sqrt{n}} \sum_{a \in \Sigma} \vert a \rangle \otimes \vert a \rangle,
+\]</div>
+<p>にあり、その2番目のコピーに <span class="math notranslate nohighlight">\(\Phi\)</span> を適用する状況を考えます。密度行列として、これは次で与えられます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi \rangle \langle \psi \vert = \frac{1}{n} \sum_{a,b \in \Sigma}
+\vert a\rangle\langle b \vert \otimes \vert a\rangle\langle b \vert.
+\]</div>
+<p>結果は次のように書けます。</p>
+<div class="math notranslate nohighlight">
+\[
+(\operatorname{Id}\otimes \,\Phi) \bigl(\vert \psi \rangle \langle \psi \vert\bigr)
+= \frac{1}{n} \sum_{a,b = 0}^{n-1} \vert a\rangle\langle b \vert \otimes \Phi\bigl(\vert a\rangle\langle b \vert\bigr)
+= \frac{J(\Phi)}{n},
+\]</div>
+<p>そして <span class="math notranslate nohighlight">\(\Phi\)</span> がチャネルであるという仮定により、これは密度行列でなければなりません。
+すべての密度行列と同様にこれは半正定値でなければならず、半正定値行列に正の実数を掛けると別の半正定値行列が得られるので、<span class="math notranslate nohighlight">\(J(\Phi) \geq 0\)</span> となります。</p>
+<p>さらに、<span class="math notranslate nohighlight">\(\Phi\)</span> がチャネルであるという仮定の下では、トレースを保存しなければならないので、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{Y}} (J(\Phi))
+&amp; = \sum_{a,b\in\Sigma} \operatorname{Tr}\bigl(\Phi( \vert a\rangle\langle b \vert)\bigr) \, \vert a\rangle\langle b \vert\\
+&amp; = \sum_{a,b\in\Sigma} \operatorname{Tr}\bigl(\vert a\rangle\langle b \vert\bigr) \, \vert a\rangle\langle b \vert\\
+&amp; = \sum_{a\in\Sigma} \vert a\rangle\langle a \vert\\
+&amp; = \mathbb{I}_{\mathsf{X}}.
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id4">
+<h2>チョイ表現からクラウス表現へ<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>2番目の含意は、再びリストの命題を番号で参照すると、2 <span class="math notranslate nohighlight">\(\Rightarrow\)</span> 3 です。
+明確にしておくと、ここでは他の命題は無視します——特に、<span class="math notranslate nohighlight">\(\Phi\)</span> がチャネルであるという仮定を置くことはできません。
+使えるのは、<span class="math notranslate nohighlight">\(\Phi\)</span> が線形写像であり、そのチョイ表現が <span class="math notranslate nohighlight">\(J(\Phi) \geq 0\)</span> と <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{Y}} (J(\Phi)) = \mathbb{I}_{\mathsf{X}}\)</span> を満たす、ということだけです。</p>
+<p>しかし、これだけあれば、<span class="math notranslate nohighlight">\(\Phi\)</span> が条件</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{N-1} A_k^{\dagger} A_k = \mathbb{I}_{\mathsf{X}}
+\]</div>
+<p>を満たすクラウス表現</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \sum_{k = 0}^{N-1} A_k \rho A_k^{\dagger}
+\]</div>
+<p>を持つと結論するのに十分です。</p>
+<p>まず、<span class="math notranslate nohighlight">\(J(\Phi)\)</span> が半正定値であるという決定的に重要な仮定から始めます。これは、<span class="math notranslate nohighlight">\(J(\Phi)\)</span> をベクトル <span class="math notranslate nohighlight">\(\vert\psi_0\rangle,\ldots,\vert\psi_{N-1}\rangle\)</span> の何らかの選び方によって次の形で表せることを意味します。</p>
+<div class="math notranslate nohighlight">
+\[
+J(\Phi) = \sum_{k = 0}^{N-1} \vert \psi_k \rangle \langle \psi_k \vert
+\tag{1}
+\]</div>
+<p>一般に、これを行う方法は複数あります——そして実際、これは <span class="math notranslate nohighlight">\(\Phi\)</span> のクラウス表現を選ぶ際の自由度を直接反映しています。</p>
+<p>そのような表式を得る一つの方法は、まずスペクトル定理を用いて次のように書くことです。</p>
+<div class="math notranslate nohighlight">
+\[
+J(\Phi) = \sum_{k = 0}^{N-1} \lambda_k \vert \gamma_k \rangle \langle \gamma_k \vert,
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(\lambda_0,\ldots,\lambda_{N-1}\)</span> は <span class="math notranslate nohighlight">\(J(\Phi)\)</span> の固有値（<span class="math notranslate nohighlight">\(J(\Phi)\)</span> が半正定値であるため、必ず非負の実数です）、<span class="math notranslate nohighlight">\(\vert\gamma_0\rangle,\ldots,\vert\gamma_{N-1}\rangle\)</span> は固有値 <span class="math notranslate nohighlight">\(\lambda_0,\ldots,\lambda_{N-1}\)</span> に対応する単位固有ベクトルです。</p>
+<p>固有値の選び方には（順序を除いて）自由度がありませんが、固有ベクトルの選び方には自由度があることに注意してください。特に、重複度が1より大きい固有値がある場合はそうです。
+したがって、これは <span class="math notranslate nohighlight">\(J(\Phi)\)</span> の一意な表式ではありません——単にそのような表式が一つあると仮定しているだけです。
+いずれにせよ、固有値は非負の実数なので、非負の平方根を持ちます。よって、各 <span class="math notranslate nohighlight">\(k = 0,\ldots,N-1\)</span> に対して</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi_k\rangle = \sqrt{\lambda_k} \vert \gamma_k\rangle
+\]</div>
+<p>を選ぶことで、形 <span class="math notranslate nohighlight">\((1)\)</span> の表式が得られます。</p>
+<p>ただし、表式 <span class="math notranslate nohighlight">\((1)\)</span> がこのようにスペクトル分解から得られることは本質的ではなく、特にベクトル <span class="math notranslate nohighlight">\(\vert\psi_0\rangle,\ldots,\vert\psi_{N-1}\rangle\)</span> は一般には直交している必要はありません。
+とはいえ、望むならこれらのベクトルを直交するように選べること、さらに <span class="math notranslate nohighlight">\(N\)</span> を <span class="math notranslate nohighlight">\(nm\)</span> より大きくする必要は決してないこと（<span class="math notranslate nohighlight">\(n\)</span> と <span class="math notranslate nohighlight">\(m\)</span> はそれぞれ <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> の古典的状態の数を表すことを思い出してください）は注目に値します。</p>
+<p>次に、ベクトル <span class="math notranslate nohighlight">\(\vert\psi_0\rangle,\ldots,\vert\psi_{N-1}\rangle\)</span> のそれぞれをさらに次のように分解できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi_k\rangle = \sum_{a\in\Sigma} \vert a\rangle \otimes \vert \phi_{k,a}\rangle,
+\]</div>
+<p>ここでベクトル <span class="math notranslate nohighlight">\(\{ \vert \phi_{k,a}\rangle \}\)</span> は <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> の古典的状態に対応する成分を持ち、各 <span class="math notranslate nohighlight">\(a\in\Sigma\)</span> と <span class="math notranslate nohighlight">\(k=0,\ldots,N-1\)</span> に対して次の式で明示的に決まります。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \phi_{k,a}\rangle = \bigl( \langle a \vert \otimes \mathbb{I}_{\mathsf{Y}}\bigr) \vert \psi_k\rangle
+\]</div>
+<p><span class="math notranslate nohighlight">\(\vert\psi_0\rangle,\ldots,\vert\psi_{N-1}\rangle\)</span> は必ずしも単位ベクトルではありませんが、これは、組 <span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span> の量子状態ベクトルが与えられたときに系 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対して標準基底測定を行うと何が起こるかを分析するのに用いるのと同じ手続きです。</p>
+<p>そしてここで、この部分の証明を成立させるコツにたどり着きます。
+クラウス行列 <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> を次の式に従って定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+A_k = \sum_{a\in\Sigma} \vert \phi_{k,a}\rangle\langle a \vert
+\]</div>
+<p>この式を純粋に記号的に考えることができます。<span class="math notranslate nohighlight">\(\vert a\rangle\)</span> は事実上ひっくり返されて <span class="math notranslate nohighlight">\(\langle a\vert\)</span> になり、右側に移されて行列を形成します。
+証明を検証する目的では、この式だけあれば十分です。</p>
+<p>しかし、ベクトル <span class="math notranslate nohighlight">\(\vert\psi_k\rangle\)</span> と行列 <span class="math notranslate nohighlight">\(A_k\)</span> の間には単純で直観的な関係があります。それは、<span class="math notranslate nohighlight">\(A_k\)</span> を <em>ベクトル化</em> すると <span class="math notranslate nohighlight">\(\vert\psi_k\rangle\)</span> が得られる、というものです。
+<span class="math notranslate nohighlight">\(A_k\)</span> をベクトル化するとは、列を上から下へ積み重ねて（一番左の列を一番上に、一番右の列を一番下にして）ベクトルを形成することを意味します。
+たとえば、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> と <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> がともに量子ビットで、ある <span class="math notranslate nohighlight">\(k\)</span> の選び方に対して</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\psi_k\rangle &amp; = \alpha_{00} \vert 0\rangle \otimes \vert 0\rangle +
+\alpha_{01} \vert 0\rangle \otimes \vert 1\rangle +
+\alpha_{10} \vert 1\rangle \otimes \vert 0\rangle +
+\alpha_{11} \vert 1\rangle \otimes \vert 1\rangle\\[2mm]
+&amp; = \begin{pmatrix}
+\alpha_{00} \\[1mm]
+\alpha_{01} \\[1mm]
+\alpha_{10} \\[1mm]
+\alpha_{11}
+\end{pmatrix},
+\end{aligned}
+\end{split}\]</div>
+<p>であれば、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+A_k &amp; = \alpha_{00} \vert 0\rangle\langle 0\vert +
+\alpha_{01} \vert 1\rangle\langle 0\vert +
+\alpha_{10} \vert 0\rangle\langle 1\vert +
+\alpha_{11} \vert 1\rangle\langle 1\vert\\[2mm]
+&amp; = \begin{pmatrix}
+\alpha_{00} &amp; \alpha_{10}\\[1mm]
+\alpha_{01} &amp; \alpha_{11}
+\end{pmatrix}.
+\end{aligned}
+\end{split}\]</div>
+<p>（注意：行列のベクトル化は、行列の <em>行</em> を転置して上から下へ積み重ねて列ベクトルを形成する、というやや異なる方法で定義されることもあります。）</p>
+<p>まず、このクラウス行列の選び方が写像 <span class="math notranslate nohighlight">\(\Phi\)</span> を正しく記述することを検証し、その後で残りの必要条件を検証します。
+話を整理するために、新しい写像 <span class="math notranslate nohighlight">\(\Psi\)</span> を次のように定義しましょう。</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi(\rho) = \sum_{k = 0}^{N-1} A_k \rho A_k^{\dagger}
+\]</div>
+<p>したがって、私たちの目標は <span class="math notranslate nohighlight">\(\Psi = \Phi\)</span> を検証することです。</p>
+<p>これを行う方法は、これらの写像のチョイ表現を比較することです。
+チョイ表現は忠実なので、<span class="math notranslate nohighlight">\(J(\Phi) = J(\Psi)\)</span> であるとき、かつそのときに限り <span class="math notranslate nohighlight">\(\Psi = \Phi\)</span> が成り立ちます。
+ここで、表式</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi_k\rangle = \sum_{a\in\Sigma} \vert a\rangle \otimes \vert \phi_{k,a}\rangle
+\quad\text{および}\quad
+A_k = \sum_{a\in\Sigma} \vert \phi_{k,a}\rangle\langle a \vert
+\]</div>
+<p>とテンソル積の双線形性を用いて <span class="math notranslate nohighlight">\(J(\Psi)\)</span> を計算し、単純化するだけです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+J(\Psi) &amp; = \sum_{a,b\in\Sigma}  \vert a\rangle \langle b \vert \otimes \sum_{k = 0}^{N-1} A_k \vert a\rangle \langle b \vert A_k^{\dagger}\\[2mm]
+&amp; = \sum_{a,b\in\Sigma}  \vert a\rangle \langle b \vert \otimes \sum_{k = 0}^{N-1}  \vert \phi_{k,a} \rangle \langle \phi_{k,b} \vert \\[2mm]
+&amp; = \sum_{k = 0}^{N-1} \biggl(\sum_{a\in\Sigma} \vert a\rangle \otimes \vert \phi_{k,a} \rangle\biggr)
+\biggl(\sum_{b\in\Sigma} \langle b\vert \otimes \langle \phi_{k,b} \vert\biggr)\\[2mm]
+&amp; = \sum_{k = 0}^{N-1} \vert \psi_k \rangle \langle \psi_k \vert \\[2mm]
+&amp; = J(\Phi)
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、私たちのクラウス行列は <span class="math notranslate nohighlight">\(\Phi\)</span> を正しく記述しています。</p>
+<p>残るは <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> に対する必要条件を確認することです。これは（まだ使っていない）仮定 <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{Y}}(J(\Phi)) = \mathbb{I}_{\mathsf{X}}\)</span> と等価であることがわかります。
+示すのは次の関係です。</p>
+<div class="math notranslate nohighlight">
+\[
+\Biggl( \sum_{k = 0}^{N-1} A_k^{\dagger} A_k \Biggr)^{T} = \operatorname{Tr}_{\mathsf{Y}}(J(\Phi))
+\tag{2}
+\]</div>
+<p>（ここで左辺は <em>行列の転置</em> を指しています。）</p>
+<p>左辺から始めると、まず次のことがわかります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\Biggl(\sum_{k = 0}^{N-1} A_k^{\dagger} A_k\Biggr)^T
+&amp; = \Biggl(\sum_{k = 0}^{N-1} \sum_{a,b\in\Sigma} \vert b \rangle \langle \phi_{k,b} \vert \phi_{k,a} \rangle \langle a \vert\Biggr)^T\\
+&amp; = \sum_{k = 0}^{N-1} \sum_{a,b\in\Sigma} \langle \phi_{k,b} \vert \phi_{k,a} \rangle \vert a \rangle  \langle b \vert.
+\end{aligned}
+\end{split}\]</div>
+<p>最後の等式は、転置が線形であり <span class="math notranslate nohighlight">\(\vert b\rangle\langle a \vert\)</span> を <span class="math notranslate nohighlight">\(\vert a\rangle\langle b \vert\)</span> に写すという事実から従います。</p>
+<p>式の右辺に移ると、</p>
+<div class="math notranslate nohighlight">
+\[
+J(\Phi) = \sum_{k = 0}^{N-1} \vert \psi_k\rangle\langle\psi_k \vert
+= \sum_{k = 0}^{N-1} \sum_{a,b\in\Sigma} \vert a\rangle \langle b \vert \otimes \vert\phi_{k,a}\rangle\langle \phi_{k,b} \vert
+\]</div>
+<p>であり、したがって</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{Y}}(J(\Phi))
+&amp; = \sum_{k = 0}^{N-1} \sum_{a,b\in\Sigma} \operatorname{Tr}\bigl(\vert\phi_{k,a}\rangle\langle \phi_{k,b} \vert \bigr)\,
+\vert a\rangle \langle b \vert\\
+&amp; = \sum_{k = 0}^{N-1} \sum_{a,b\in\Sigma} \langle \phi_{k,b} \vert \phi_{k,a} \rangle \vert a \rangle  \langle b \vert.
+\end{aligned}
+\end{split}\]</div>
+<p>同じ結果が得られたので、式 <span class="math notranslate nohighlight">\((2)\)</span> が検証されました。
+仮定 <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{Y}} (J(\Phi)) = \mathbb{I}_{\mathsf{X}}\)</span> により、</p>
+<div class="math notranslate nohighlight">
+\[
+\Biggl(\sum_{k = 0}^{N-1} A_k^{\dagger} A_k\Biggr)^T = \mathbb{I}_{\mathsf{X}}
+\]</div>
+<p>が従い、したがって、単位行列はそれ自身の転置であるため、必要条件が成り立ちます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{N-1} A_k^{\dagger} A_k = \mathbb{I}_{\mathsf{X}}
+\]</div>
+</section>
+<section id="id5">
+<h2>クラウス表現からスタインスプリング表現へ<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>ここで、写像</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \sum_{k = 0}^{N-1} A_k \rho A_k^{\dagger}
+\]</div>
+<p>のクラウス表現があり、</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{N-1} A_k^{\dagger} A_k = \mathbb{I}_{\mathsf{X}}.
+\]</div>
+<p>を満たすとします。
+私たちの目標は <span class="math notranslate nohighlight">\(\Phi\)</span> のスタインスプリング表現を見つけることです。</p>
+<p>まず行いたいのは、ゴミの系 <span class="math notranslate nohighlight">\(\mathsf{G}\)</span> の古典的状態集合が <span class="math notranslate nohighlight">\(\{0,\ldots,N-1\}\)</span> となるように <span class="math notranslate nohighlight">\(\mathsf{G}\)</span> を選ぶことです。
+しかし <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> と <span class="math notranslate nohighlight">\((\mathsf{G},\mathsf{Y})\)</span> が同じ大きさであるためには、<span class="math notranslate nohighlight">\(n\)</span> が <span class="math notranslate nohighlight">\(m N\)</span> を割り切る必要があり、これにより <span class="math notranslate nohighlight">\(d = mN/n\)</span> として <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> が古典的状態 <span class="math notranslate nohighlight">\(\{0,\ldots,d-1\}\)</span> を持つようにできます。</p>
+<p><span class="math notranslate nohighlight">\(n\)</span>、<span class="math notranslate nohighlight">\(m\)</span>、<span class="math notranslate nohighlight">\(N\)</span> の任意の選び方に対して、<span class="math notranslate nohighlight">\(mN/n\)</span> が整数になるとは限らないので、実際には <span class="math notranslate nohighlight">\(\mathsf{G}\)</span> の古典的状態集合が <span class="math notranslate nohighlight">\(\{0,\ldots,N-1\}\)</span> となるように自由に選べるわけではありません。
+しかし、<span class="math notranslate nohighlight">\(k\)</span> の追加の値を望むだけ用意し、それらに対して <span class="math notranslate nohighlight">\(A_k = 0\)</span> と選ぶことで、クラウス表現において <span class="math notranslate nohighlight">\(N\)</span> を常に任意に増やすことができます。</p>
+<p>したがって、<span class="math notranslate nohighlight">\(mN/n\)</span> が整数であること——これは <span class="math notranslate nohighlight">\(N\)</span> が <span class="math notranslate nohighlight">\(n/\operatorname{gcd}(n,m)\)</span> の倍数であることと等価です——を暗黙のうちに仮定すれば、<span class="math notranslate nohighlight">\(\mathsf{G}\)</span> の古典的状態集合が <span class="math notranslate nohighlight">\(\{0,\ldots,N-1\}\)</span> となるように自由に選べます。
+特に、<span class="math notranslate nohighlight">\(N = nm\)</span> である場合には、<span class="math notranslate nohighlight">\(\mathsf{W}\)</span> が <span class="math notranslate nohighlight">\(m^2\)</span> 個の古典的状態を持つように選べます。</p>
+<p>残るは <span class="math notranslate nohighlight">\(U\)</span> を選ぶことであり、これは次のパターンに合わせることで行います。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U =
+\begin{pmatrix}
+A_{0} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+A_{1} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+A_{N-1} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?}
+\end{pmatrix}
+\end{split}\]</div>
+<p>明確にしておくと、このパターンはブロック行列を示唆するもので、各ブロック（<span class="math notranslate nohighlight">\(A_{0},\ldots,A_{N-1}\)</span> および疑問符で示されたブロックを含む）は <span class="math notranslate nohighlight">\(m\)</span> 行 <span class="math notranslate nohighlight">\(n\)</span> 列を持ちます。
+ブロックの行は <span class="math notranslate nohighlight">\(N\)</span> 個あり、これはブロックの列が <span class="math notranslate nohighlight">\(d = mN/n\)</span> 個あることを意味します。</p>
+<p>より公式的な形で表すと、<span class="math notranslate nohighlight">\(U\)</span> を次のように定義します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+U &amp; = \sum_{k=0}^{N-1} \sum_{j=0}^{d-1} \vert k \rangle \langle j \vert \otimes M_{k,j} \\[4mm]
+&amp; = \begin{pmatrix}
+M_{0,0} &amp; M_{0,1} &amp; \cdots &amp; M_{0,d-1} \\[1mm]
+M_{1,0} &amp; M_{1,1} &amp; \cdots &amp; M_{1,d-1} \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+M_{N-1,0} &amp; M_{N-1,1} &amp; \cdots &amp; M_{N-1,d-1}
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>ここで各行列 <span class="math notranslate nohighlight">\(M_{k,j}\)</span> は <span class="math notranslate nohighlight">\(m\)</span> 行 <span class="math notranslate nohighlight">\(n\)</span> 列を持ち、特に <span class="math notranslate nohighlight">\(k = 0,\ldots,N-1\)</span> に対して <span class="math notranslate nohighlight">\(M_{k,0} = A_k\)</span> とします。</p>
+<p>これはユニタリ行列でなければならず、疑問符でラベル付けされたブロック、すなわち <span class="math notranslate nohighlight">\(j&gt;0\)</span> に対する <span class="math notranslate nohighlight">\(M_{k,j}\)</span> は、このことを念頭に置いて選ばなければなりません——しかし <span class="math notranslate nohighlight">\(U\)</span> をユニタリにできるという点を除けば、疑問符でラベル付けされたブロックは証明には何の関係もありません。</p>
+<p><span class="math notranslate nohighlight">\(U\)</span> がユニタリであるという懸念をひとまず脇に置き、私たちのスタインスプリング表現について <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の入力状態 <span class="math notranslate nohighlight">\(\rho\)</span> が与えられたときの <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> の出力状態を記述する式</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{G}} \bigl( U (\vert 0\rangle \langle 0 \vert_{\mathsf{W}} \otimes \rho)U^{\dagger}\bigr)
+\]</div>
+<p>に注目しましょう。
+これは次のように書き換えることもできます。</p>
+<div class="math notranslate nohighlight">
+\[
+U(\vert 0\rangle\langle 0 \vert \otimes \rho)U^{\dagger}
+= U(\vert 0\rangle\otimes\mathbb{I}_{\mathsf{X}}) \rho (\langle 0\vert \otimes \mathbb{I}_{\mathsf{X}}) U^{\dagger},
+\]</div>
+<p>そして <span class="math notranslate nohighlight">\(U\)</span> の選び方から、次がわかります。</p>
+<div class="math notranslate nohighlight">
+\[
+U(\vert 0\rangle\otimes\mathbb{I}_{\mathsf{X}}) =
+\sum_{k = 0}^{N-1} \vert k\rangle \otimes A_k.
+\]</div>
+<p>したがって次が得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+U(\vert 0\rangle\langle 0 \vert \otimes \rho)U^{\dagger}
+= \sum_{j,k = 0}^{N-1} \vert k\rangle\langle j\vert \otimes A_k \rho A_j^{\dagger},
+\]</div>
+<p>よって</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{G}} \bigl( U (\vert 0\rangle \langle 0 \vert_{\mathsf{W}} \otimes \rho) U^{\dagger}\bigr)
+&amp; = \sum_{j,k = 0}^{N-1} \operatorname{Tr}\bigl(\vert k\rangle\langle j\vert\bigr) \, A_k \rho A_j^{\dagger} \\
+&amp; = \sum_{k = 0}^{N-1} A_k \rho A_k^{\dagger} \\
+&amp; = \Phi(\rho).
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、写像 <span class="math notranslate nohighlight">\(\Phi\)</span> の正しい表現が得られました。残るは、<span class="math notranslate nohighlight">\(U\)</span> をユニタリに選べることを検証することです。</p>
+<p>上のパターンに従って選んだときの <span class="math notranslate nohighlight">\(U\)</span> の最初の <span class="math notranslate nohighlight">\(n\)</span> 列を考えます。
+これらの列だけをとると、ブロック行列</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+A_0\\[1mm]
+A_1\\[1mm]
+\vdots\\[1mm]
+A_{N-1}
+\end{pmatrix}.
+\end{split}\]</div>
+<p>が得られます。
+列は <span class="math notranslate nohighlight">\(n\)</span> 個あり、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の各古典的状態に1つ対応します。ベクトルとして、これらの列を各 <span class="math notranslate nohighlight">\(a\in\Sigma\)</span> に対して <span class="math notranslate nohighlight">\(\vert \gamma_a \rangle\)</span> と名付けましょう。
+上のブロック行列表現に対応させられる、これらのベクトルの式は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \gamma_a\rangle = \sum_{k = 0}^{N-1} \vert k\rangle \otimes A_k \vert a \rangle
+\]</div>
+<p>さて、これらのベクトルのうち任意の2つ、すなわち任意の <span class="math notranslate nohighlight">\(a,b\in\Sigma\)</span> の選び方に対応するものの間の内積を計算しましょう。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \gamma_a \vert \gamma_b \rangle =
+\sum_{j,k = 0}^{N-1} \langle k \vert j \rangle \, \langle a \vert A_k^{\dagger} A_j \vert b\rangle =
+\langle a \vert \Biggl( \sum_{k = 0}^{N-1} A_k^{\dagger} A_k \Biggr) \vert b\rangle
+\]</div>
+<p>仮定</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k = 0}^{m-1} A_k^{\dagger} A_k = \mathbb{I}_{\mathsf{X}}
+\]</div>
+<p>により、<span class="math notranslate nohighlight">\(n\)</span> 個の列ベクトル <span class="math notranslate nohighlight">\(\{\vert\gamma_a\rangle\,:\,a\in\Sigma\}\)</span> が正規直交集合をなすと結論できます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\langle \gamma_a \vert \gamma_b \rangle = \begin{cases}
+1 &amp; a = b\\
+0 &amp; a\neq b
+\end{cases}
+\end{split}\]</div>
+<p>がすべての <span class="math notranslate nohighlight">\(a,b\in\Sigma\)</span> に対して成り立ちます。</p>
+<p>これは、<span class="math notranslate nohighlight">\(U\)</span> がユニタリ行列になるように残りの列を埋めることが可能であることを意味します。
+特に、残りの列を選ぶのにグラム・シュミットの直交化過程を用いることができます。
+同様のことは、「量子情報の基礎」の <em>量子回路</em> の講義で、状態識別問題の文脈で行いました。</p>
+</section>
+<section id="id6">
+<h2>スタインスプリング表現から定義へ戻る<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>最後の含意は 4 <span class="math notranslate nohighlight">\(\Rightarrow\)</span> 1 です。
+すなわち、系の組 <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{X})\)</span> を組 <span class="math notranslate nohighlight">\((\mathsf{G},\mathsf{Y})\)</span> に変換するユニタリ操作があると仮定し、私たちの目標は、写像</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \operatorname{Tr}_{\mathsf{G}} \bigl( U (\vert 0\rangle \langle 0 \vert_{\mathsf{W}} \otimes \rho)U^{\dagger}\bigr)
+\]</div>
+<p>が有効なチャネルであると結論することです。
+その形から、<span class="math notranslate nohighlight">\(\Phi\)</span> が線形であることは明らかであり、残るはそれが常に密度行列を密度行列に変換することを検証することです。
+これはかなり単純で、要点はすでに議論しました。</p>
+<p>特に、複合系 <span class="math notranslate nohighlight">\((\mathsf{Z},\mathsf{X})\)</span> の密度行列 <span class="math notranslate nohighlight">\(\sigma\)</span> から始め、そこに追加の作業用の系 <span class="math notranslate nohighlight">\(\mathsf{W}\)</span> を加えると、確かに密度行列が残ります。
+便宜上、系を <span class="math notranslate nohighlight">\((\mathsf{W},\mathsf{Z},\mathsf{X})\)</span> の順に並べ替えると、この状態は次のように書けます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert 0\rangle\langle 0\vert_{\mathsf{W}} \otimes \sigma.
+\]</div>
+<p>次にユニタリ操作 <span class="math notranslate nohighlight">\(U\)</span> を適用します。すでに議論したように、これは有効なチャネルであり、したがって密度行列を密度行列に写します。
+最後に、密度行列の部分トレースは別の密度行列です。</p>
+<p>これを別の言い方で言えば、まず次のそれぞれが有効なチャネルであることに注目します。</p>
+<ol class="arabic simple">
+<li><p>初期化された作業用の系を導入すること。</p></li>
+<li><p>ユニタリ操作を実行すること。</p></li>
+<li><p>ある系をトレースアウトすること。</p></li>
+</ol>
+<p>そして最後に、チャネルの任意の合成は別のチャネルです——これは定義から直ちに従いますが、それ自体として注目に値する事実でもあります。</p>
+<p>これで最後の含意の証明が完了し、したがってこの節の冒頭に挙げた4つの命題の同値性が確立されました。</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/quantum-channels"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">証明の概要</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">チャネルからチョイ行列へ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">チョイ表現からクラウス表現へ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">クラウス表現からスタインスプリング表現へ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">スタインスプリング表現から定義へ戻る</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
