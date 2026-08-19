@@ -497,7 +497,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
-<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;2e3c9b01ed7d8788964de9238b932e9f7828418afa373dd180fcbad2da42ece4513aa23ac879c28ea24a3092cb15f476d24b8920b3d0239fd521f645a72c8f8e&#39;</span><span class="p">)</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">'2e3c9b01ed7d8788964de9238b932e9f7828418afa373dd180fcbad2da42ece4513aa23ac879c28ea24a3092cb15f476d24b8920b3d0239fd521f645a72c8f8e'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -506,7 +506,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
-<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;&lt;YOUR_IQP_API_TOKEN&gt;&#39;</span><span class="p">)</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">'&lt;YOUR_IQP_API_TOKEN&gt;'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -517,7 +517,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="c1"># This can be skipped if you previously did QiskitRuntimeService.save_account()</span>
-<span class="n">QiskitFunctionsCatalog</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>
+<span class="n">QiskitFunctionsCatalog</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s2">"&lt;YOUR_IQP_API_TOKEN&gt;"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -554,7 +554,7 @@
 <p>カタログ オブジェクトがインスタンス化されたら、<code class="docutils literal notranslate"><span class="pre">catalog.load(provider/function-name)</span></code> でfunctionを選択できます</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ibm_cf</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;ibm/circuit-function&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ibm_cf</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'ibm/circuit-function'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -565,7 +565,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">ibm_cf</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="n">instance</span><span class="o">=...</span><span class="p">,</span>
     <span class="n">pubs</span><span class="o">=</span><span class="p">[],</span>
-    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;backend_name&quot;</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s2">"backend_name"</span>
 <span class="p">)</span>
 
 <span class="n">job</span><span class="o">.</span><span class="n">job_id</span>
@@ -600,7 +600,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'DONE'
 </pre></div>
 </div>
 </div>
@@ -617,12 +617,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(20,), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(20,), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(20, 2, 4), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(20, 2, 4), dtype=float64&gt;), shape=(20,)), metadata={&#39;shots&#39;: 4096, &#39;target_precision&#39;: 0.015625, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {&#39;zne&#39;: {&#39;extrapolator&#39;: array([&#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
-       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
-       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
-       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;,
-       &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;, &#39;exponential&#39;],
-      dtype=&#39;&lt;U11&#39;)}, &#39;layer_noise&#39;: {&#39;noise_overhead&#39;: 1, &#39;total_mitigated_layers&#39;: 0, &#39;unique_mitigated_layers&#39;: 0, &#39;unique_mitigated_layers_noise_overhead&#39;: []}}, &#39;num_randomizations&#39;: 32})
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(20,), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(20,), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(20, 3), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(20, 2, 4), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(20, 2, 4), dtype=float64&gt;), shape=(20,)), metadata={'shots': 4096, 'target_precision': 0.015625, 'circuit_metadata': {}, 'resilience': {'zne': {'extrapolator': array(['exponential', 'exponential', 'exponential', 'exponential',
+       'exponential', 'exponential', 'exponential', 'exponential',
+       'exponential', 'exponential', 'exponential', 'exponential',
+       'exponential', 'exponential', 'exponential', 'exponential',
+       'exponential', 'exponential', 'exponential', 'exponential'],
+      dtype='&lt;U11')}, 'layer_noise': {'noise_overhead': 1, 'total_mitigated_layers': 0, 'unique_mitigated_layers': 0, 'unique_mitigated_layers_noise_overhead': []}}, 'num_randomizations': 32})
       
 </pre></div>
 </div>
@@ -636,7 +636,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Job has been stopped.&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Job has been stopped.'
 </pre></div>
 </div>
 </div>

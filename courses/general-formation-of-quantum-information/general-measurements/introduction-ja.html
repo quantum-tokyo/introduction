@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Google Colab で Qiskit を使う手順 &#8212; Quantum Tokyo</title>
+    <title>はじめに &#8212; Quantum Tokyo</title>
   
   
   
@@ -27,51 +27,51 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'get_started/colab';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/general-measurements/introduction-ja';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
   
     
-    <script src="../_static/searchtools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../searchindex.js"></script>
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
   
   </head>
   <body data-default-mode="">
@@ -91,7 +91,7 @@
   <dialog id="pst-search-dialog">
     
 <form class="bd-search d-flex align-items-center"
-      action="../search.html"
+      action="../../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -186,7 +186,7 @@
     
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../../../intro.html">
   
   
   
@@ -197,8 +197,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
   
   
 </a></div>
@@ -214,27 +214,27 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
+                <a class="reference internal" href="../../../intro.html">
                     Quantum Tokyo へようこそ
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
 </ul>
 
     </div>
@@ -311,7 +311,7 @@
       
       
       
-      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fget_started/colab.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/general-measurements/introduction-ja.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,7 +341,7 @@
       
       
       
-      <li><a href="../_sources/get_started/colab.md" target="_blank"
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/general-measurements/introduction-ja.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -351,7 +351,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -417,7 +417,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Google Colab で Qiskit を使う手順</h1>
+    <h1>はじめに</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -427,11 +427,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. クラウド環境へのログイン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. ノートブックを開く</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">3. Qiskit をインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4. ベル状態の回路で確認</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5. 次にQiskitを使う場合</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">レッスン動画</a></li>
 </ul>
             </nav>
         </div>
@@ -443,48 +439,22 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="google-colab-qiskit">
-<h1>Google Colab で Qiskit を使う手順<a class="headerlink" href="#google-colab-qiskit" title="Link to this heading">#</a></h1>
-<p>Google Colaboratory でQiskitを使いたい場合の手順です。</p>
-<p><strong>ご注意</strong>：Google Colabでは、毎回、Qiskitのインストールが必要になってしまうので、公式にはご自身のパソコンにQiskitをインストールして使うことをおすすめしています。インストールの手順はこちら（<a class="reference internal" href="install_mac.html"><span class="std std-doc">macOS版</span></a>、<a class="reference internal" href="install_win.html"><span class="std std-doc">Windows版</span></a>）をご覧ください。</p>
-<section id="id1">
-<h2>1. クラウド環境へのログイン<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>ブラウザーを開き、 <a class="reference external" href="https://colab.research.google.com/">https://colab.research.google.com/</a> のサイトに入り、右上の「ログイン」からログインします。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/b25ea38f-e18d-8c5b-0220-0af4ed1cf4e8.png" /></p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>はじめに<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>測定は、量子情報と古典情報の間のインターフェースを提供します。
+量子状態にあるシステムに対して測定が行われると、古典情報が抽出され、その量子状態について何らかの情報が明らかになります。そして一般に、その過程で量子状態が変化したり破壊されたりします。
+簡略化された量子情報の形式（<em>量子情報の基礎</em>コースで紹介されている形式）では、通常、<em>射影測定</em>、その中でも最も単純な種類の測定である<em>標準基底測定</em>にのみ注目します。
+しかし、測定の概念は射影測定を超えて一般化することができます。</p>
+<p>このレッスンでは、より一般的な測定について考察します。
+一般的な測定を数学的に記述するいくつかの異なる方法について議論し、それらをこのコースでこれまでに議論してきた概念と結びつけます。</p>
+<p>また、測定に関連する2つの概念、すなわち<em>量子状態識別</em>と<em>量子状態トモグラフィー</em>についても見ていきます。
+量子状態識別とは、量子計算や暗号においてよく見られる状況を指し、システムが既知の状態の集合の中のいずれか1つに用意されており、測定によってどの状態が用意されたのかを判定することが目標となるものです。
+一方、量子状態トモグラフィーでは、1つの未知の量子状態の独立なコピーが多数用意されており、それらのコピーに対して測定を行うことで、その状態の密度行列による記述を再構成することが目標となります。</p>
 <section id="id2">
-<h2>2. ノートブックを開く<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>以下のいずれかの方法で、ノートブックを開きます。</p>
-<ul class="simple">
-<li><p>左下の「＋ノートブックを新規作成」をクリック。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/5929f457-cdb1-6127-6102-d01f9bcaa247.png" /></p></li>
-<li><p>上記のウィンドウが出てこなかった場合、左上の「ファイル」→「ドライブの新しいノートブック」をクリック。</p></li>
-</ul>
-</section>
-<section id="qiskit">
-<h2>3. Qiskit をインストール<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h2>
-<p>以下のコマンドを最初のセルに入れて、「Shift」+「Enter」で実行します。Qiskitと関連ライブラリーがインストールされます。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!pip install qiskit qiskit-ibm-runtime jupyter qiskit-aer qiskit[visualization]
-</pre></div>
-</div>
-</section>
-<section id="id3">
-<h2>4. ベル状態の回路で確認<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>続けて「＋コード」をクリックしてセルを追加し、以下のコードをコピペして実行し、Qiskitが正しく動くか確認してみましょう。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
-<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>正しくQiskitが動いている場合は、以下の回路図が出力されます。
-<img alt="image.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/151117/49937210-b757-9638-e800-89f4a042fb3e.png" /></p>
-</section>
-<section id="id4">
-<h2>5. 次にQiskitを使う場合<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<p>次にQiskitを使う場合や、新しいノートブックを立ち上げた場合、上記の3の手順を毎回行います。</p>
-<p>以上です！</p>
+<h2>レッスン動画<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>以下の動画では、John Watrousがこのレッスンの一般的な測定に関する内容を説明します。別のウィンドウでこのレッスンの<a class="reference external" href="https://www.youtube.com/watch?v=Xi9YTYzQErY&amp;amp;list=PLOFEBzvs-VvqKKMXX4vbi4EB1uaErFMSO&amp;amp;index=13">YouTube動画</a>を開くこともできます。このレッスンの<a class="reference external" href="https://ibm.box.com/public/static/plp9gokjjpvktdsclrex0pg3q2n8f3op.pdf">スライドをダウンロード</a>することもできます。</p>
+<IBMVideo id="134063423" title="In this video, John Watrous discusses mathematical formulations of measurements. He discusses Naimark's theorem. Finally he describes quantum state discrimination and tomography. " />
+<p>© IBM Corp., 2017-2026</p>
 </section>
 </section>
 
@@ -501,7 +471,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./get_started"
+            path: "./courses/general-formation-of-quantum-information/general-measurements"
         },
         predefinedOutput: true
     }
@@ -536,11 +506,7 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1. クラウド環境へのログイン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2. ノートブックを開く</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">3. Qiskit をインストール</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">4. ベル状態の回路で確認</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5. 次にQiskitを使う場合</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">レッスン動画</a></li>
 </ul>
   </nav></div>
 
@@ -589,8 +555,8 @@ By Quantum Tokyo
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

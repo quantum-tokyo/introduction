@@ -661,16 +661,16 @@ M_a \ket{x} = \ket{a x ; (\mathrm{mod}; N)}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_factors</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Calculate non-trivial factors of N given a, r.</span>
 <span class="sd">    Args:</span>
 <span class="sd">        a (int): A randomly chosen integer such that 1 &lt; a &lt; N and gcd(a, N) = 1.</span>
 <span class="sd">        r (int): The order of a modulo N (the smallest integer such that a^r ≡ 1 (mod N)).</span>
 <span class="sd">        N (int): The integer to be factored</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     
     <span class="k">if</span> <span class="n">r</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;r must be even to compute factors.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"r must be even to compute factors."</span><span class="p">)</span>
     
     <span class="n">x_plus</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">x_minus</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
@@ -678,13 +678,13 @@ M_a \ket{x} = \ket{a x ; (\mathrm{mod}; N)}
     <span class="n">factor1</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">x_plus</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">factor2</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">x_minus</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">factor1</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">factor1</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to find non-trivial factor with x+.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Failed to find non-trivial factor with x+."</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-trivial factor found with x+: </span><span class="si">{</span><span class="n">factor1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Non-trivial factor found with x+: </span><span class="si">{</span><span class="n">factor1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">factor2</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">factor2</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to find non-trivial factor with x-.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Failed to find non-trivial factor with x-."</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-trivial factor found with x-: </span><span class="si">{</span><span class="n">factor2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Non-trivial factor found with x-: </span><span class="si">{</span><span class="n">factor2</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">factor1</span><span class="p">,</span> <span class="n">factor2</span>
 </pre></div>
 </div>
@@ -713,16 +713,16 @@ M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">M11mod15</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    M_11(mod15)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">b</span> <span class="o">=</span> <span class="mi">11</span>
     <span class="n">U</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">U</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">U</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
     <span class="n">U</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">to_gate</span><span class="p">()</span>
-    <span class="n">U</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;M_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">U</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"M_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">"</span>
 
     <span class="k">return</span> <span class="n">U</span>
 </pre></div>
@@ -732,7 +732,7 @@ M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">a2kmodN</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute a^{2^k} (mod N) by repeated squaring&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Compute a^{2^k} (mod N) by repeated squaring"""</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">a</span>
@@ -757,9 +757,9 @@ M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} 
 <span class="n">b_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">a2kmodN</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_list</span><span class="p">]</span>
  
 <span class="c1"># Initialize the circuit</span>
-<span class="n">control</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">num_control</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
-<span class="n">target</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">num_target</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
-<span class="n">output</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="n">num_control</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">)</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">num_control</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"C"</span><span class="p">)</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">num_target</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"T"</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="n">num_control</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"out"</span><span class="p">)</span>
 <span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
  
 <span class="c1"># Initialize the target register to the state |1&gt;</span>
@@ -786,7 +786,7 @@ M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/5d/m3c9w3p12qj3whkf54ysd62m0000gn/T/ipykernel_86958/2590135748.py:37: DeprecationWarning: The class ``qiskit.circuit.library.basis_change.qft.QFT`` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. (&#39;Use qiskit.circuit.library.QFTGate or qiskit.synthesis.qft.synth_qft_full instead, for access to all previous arguments.&#39;,)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/5d/m3c9w3p12qj3whkf54ysd62m0000gn/T/ipykernel_86958/2590135748.py:37: DeprecationWarning: The class ``qiskit.circuit.library.basis_change.qft.QFT`` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. ('Use qiskit.circuit.library.QFTGate or qiskit.synthesis.qft.synth_qft_full instead, for access to all previous arguments.',)
   circuit.compose(QFT(num_control, inverse=True), qubits=control, inplace=True)
 </pre></div>
 </div>
@@ -797,7 +797,7 @@ M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -808,10 +808,10 @@ M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_decomposed</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qubits: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-depth: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-size: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operator counts: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"qubits: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"2q-depth: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"2q-size: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Operator counts: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -819,7 +819,7 @@ M^{2^2}<em>{11}\ket{1} &amp;\equiv　M^{2}</em>{11} \ket{1} &amp;\equiv \ket{1} 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qubits: 7
 2q-depth: 21
 2q-size: 21
-Operator counts: OrderedDict([(&#39;u&#39;, 34), (&#39;cx&#39;, 21), (&#39;measure&#39;, 3)])
+Operator counts: OrderedDict([('u', 34), ('cx', 21), ('measure', 3)])
 </pre></div>
 </div>
 </div>
@@ -842,7 +842,7 @@ Operator counts: OrderedDict([(&#39;u&#39;, 34), (&#39;cx&#39;, 21), (&#39;measu
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">circ_a11</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -886,16 +886,16 @@ Operator counts: OrderedDict([(&#39;u&#39;, 34), (&#39;cx&#39;, 21), (&#39;measu
     <span class="c1"># Add these values to the rows in our table:</span>
     <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
             <span class="n">frac</span><span class="o">.</span><span class="n">denominator</span>
         <span class="p">]</span>
     <span class="p">)</span>
  
 <span class="c1"># Print the rows in a table</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Register Output&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span> <span class="s2">&quot;Phase&quot;</span><span class="p">,</span> <span class="s2">&quot;Fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;Guess for r&quot;</span><span class="p">]</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Register Output"</span><span class="p">,</span> <span class="s2">"Count"</span><span class="p">,</span> <span class="s2">"Phase"</span><span class="p">,</span> <span class="s2">"Fraction"</span><span class="p">,</span> <span class="s2">"Guess for r"</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 <span class="n">df</span>
@@ -1045,14 +1045,14 @@ Non-trivial factor found with x-: 5
 
 <span class="n">num_control</span> <span class="o">=</span> <span class="mi">10</span>
 
-<span class="n">circuit</span> <span class="o">=</span> <span class="n">qasm2</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;factor21.qasm&#39;</span><span class="p">)</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">qasm2</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'factor21.qasm'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">'mpl'</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1064,10 +1064,10 @@ Non-trivial factor found with x-: 5
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_decomposed</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qubits: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-depth: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2q-size: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operator counts: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"qubits: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"2q-depth: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"2q-size: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Operator counts: </span><span class="si">{</span><span class="n">circuit_decomposed</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1075,7 +1075,7 @@ Non-trivial factor found with x-: 5
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qubits: 15
 2q-depth: 2057
 2q-size: 2405
-Operator counts: OrderedDict([(&#39;u&#39;, 3414), (&#39;cx&#39;, 2405), (&#39;if_else&#39;, 45), (&#39;measure&#39;, 10)])
+Operator counts: OrderedDict([('u', 3414), ('cx', 2405), ('if_else', 45), ('measure', 10)])
 </pre></div>
 </div>
 </div>
@@ -1100,7 +1100,7 @@ Operator counts: OrderedDict([(&#39;u&#39;, 3414), (&#39;cx&#39;, 2405), (&#39;i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_torino</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">circ_a4_torino</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1140,16 +1140,16 @@ Operator counts: OrderedDict([(&#39;u&#39;, 3414), (&#39;cx&#39;, 2405), (&#39;i
     <span class="c1"># Add these values to the rows in our table:</span>
     <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
             <span class="n">frac</span><span class="o">.</span><span class="n">denominator</span>
         <span class="p">]</span>
     <span class="p">)</span>
  
 <span class="c1"># Print the rows in a table</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Register Output&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span> <span class="s2">&quot;Phase&quot;</span><span class="p">,</span> <span class="s2">&quot;Fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;Guess for r&quot;</span><span class="p">]</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Register Output"</span><span class="p">,</span> <span class="s2">"Count"</span><span class="p">,</span> <span class="s2">"Phase"</span><span class="p">,</span> <span class="s2">"Fraction"</span><span class="p">,</span> <span class="s2">"Guess for r"</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 <span class="n">df</span>
@@ -1305,10 +1305,10 @@ Non-trivial factor found with x-: 3
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 
 <span class="n">QiskitRuntimeService</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span>
-  <span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum_platform&quot;</span><span class="p">,</span>
-  <span class="n">token</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR_IBM_QUANTUM_TOKEN&gt;&quot;</span><span class="p">,</span>
-  <span class="n">instance</span><span class="o">=</span><span class="s2">&quot;&lt;YOUR_IBM_QUANTUM_INSTANCE&gt;&quot;</span><span class="p">,</span>
-  <span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_shor&quot;</span><span class="p">,</span>
+  <span class="n">channel</span><span class="o">=</span><span class="s2">"ibm_quantum_platform"</span><span class="p">,</span>
+  <span class="n">token</span><span class="o">=</span><span class="s2">"&lt;YOUR_IBM_QUANTUM_TOKEN&gt;"</span><span class="p">,</span>
+  <span class="n">instance</span><span class="o">=</span><span class="s2">"&lt;YOUR_IBM_QUANTUM_INSTANCE&gt;"</span><span class="p">,</span>
+  <span class="n">name</span><span class="o">=</span><span class="s2">"demo_shor"</span><span class="p">,</span>
   <span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
   <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
@@ -1318,7 +1318,7 @@ Non-trivial factor found with x-: 3
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;demo_shor&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"demo_shor"</span><span class="p">)</span>
 <span class="n">service</span><span class="o">.</span><span class="n">saved_accounts</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1351,7 +1351,7 @@ Non-trivial factor found with x-: 3
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend_hardware</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pubs</span><span class="o">=</span><span class="p">[</span><span class="n">circ_a4_torino</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Job ID: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1388,16 +1388,16 @@ Non-trivial factor found with x-: 3
     <span class="c1"># Add these values to the rows in our table:</span>
     <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">bitstring</span><span class="si">}</span><span class="s2">(bin) = </span><span class="si">{</span><span class="n">decimal</span><span class="si">:</span><span class="s2">&gt;3</span><span class="si">}</span><span class="s2">(dec)"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> shots"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">num_control</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">phase</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">numerator</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">frac</span><span class="o">.</span><span class="n">denominator</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
             <span class="n">frac</span><span class="o">.</span><span class="n">denominator</span>
         <span class="p">]</span>
     <span class="p">)</span>
  
 <span class="c1"># Print the rows in a table</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Register Output&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span> <span class="s2">&quot;Phase&quot;</span><span class="p">,</span> <span class="s2">&quot;Fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;Guess for r&quot;</span><span class="p">]</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Register Output"</span><span class="p">,</span> <span class="s2">"Count"</span><span class="p">,</span> <span class="s2">"Phase"</span><span class="p">,</span> <span class="s2">"Fraction"</span><span class="p">,</span> <span class="s2">"Guess for r"</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 <span class="n">df</span>

@@ -613,8 +613,8 @@ $<span class="math notranslate nohighlight">\(
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
-<span class="n">tem_function_name</span> <span class="o">=</span> <span class="s2">&quot;algorithmiq/tem&quot;</span>
-<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span><span class="p">)</span>
+<span class="n">tem_function_name</span> <span class="o">=</span> <span class="s2">"algorithmiq/tem"</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_API_TOKEN&gt;"</span><span class="p">)</span>
 
 <span class="c1"># Load your function</span>
 <span class="n">tem</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">tem_function_name</span><span class="p">)</span>
@@ -647,17 +647,17 @@ $<span class="math notranslate nohighlight">\(
     <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Define the observables</span>
-<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;YXZ&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">"YXZ"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
 <span class="c1"># Define the execution options</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
 <span class="n">backend_name</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
-<span class="n">instance</span> <span class="o">=</span> <span class="s2">&quot;&lt;IQP_HUB/IQP_GROUP/IQP_PROJECT&gt;&quot;</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="s2">"&lt;IQP_HUB/IQP_GROUP/IQP_PROJECT&gt;"</span>
 
 <span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
 <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">,</span>
-    <span class="s2">&quot;num_max_shots&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"backend_name"</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">,</span>
+    <span class="s2">"num_max_shots"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">tem</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">instance</span><span class="p">,</span> <span class="n">pub</span><span class="o">=</span><span class="n">pub</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
 </pre></div>
@@ -682,12 +682,12 @@ $<span class="math notranslate nohighlight">\(
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
 <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">,</span>
-        <span class="s2">&quot;num_max_shots&quot;</span><span class="p">:</span> <span class="mi">1_000</span><span class="p">,</span>
-        <span class="s2">&quot;simulate_with_noise_model&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s2">&quot;mitigate_readout_error&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s2">&quot;num_readout_calibration_shots&quot;</span><span class="p">:</span> <span class="mi">10_000</span><span class="p">,</span>
-        <span class="s2">&quot;logging_level&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span>
+        <span class="s2">"backend_name"</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">,</span>
+        <span class="s2">"num_max_shots"</span><span class="p">:</span> <span class="mi">1_000</span><span class="p">,</span>
+        <span class="s2">"simulate_with_noise_model"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"mitigate_readout_error"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">"num_readout_calibration_shots"</span><span class="p">:</span> <span class="mi">10_000</span><span class="p">,</span>
+        <span class="s2">"logging_level"</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span>
     <span class="p">}</span>
 
 

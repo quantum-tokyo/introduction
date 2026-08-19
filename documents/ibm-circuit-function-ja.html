@@ -483,7 +483,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">()</span>
-<span class="n">function</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;ibm/circuit-function&quot;</span><span class="p">)</span>
+<span class="n">function</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"ibm/circuit-function"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -498,17 +498,17 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 
 <span class="c1"># You can skip this step if you have a target backend, e.g.</span>
-<span class="c1"># backend_name = &quot;ibm_sherbrooke&quot;</span>
-<span class="c1"># You&#39;ll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.</span>
+<span class="c1"># backend_name = "ibm_sherbrooke"</span>
+<span class="c1"># You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">circuit</span> <span class="o">=</span> <span class="n">random_circuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">observable</span> <span class="o">=</span> <span class="s2">&quot;Z&quot;</span> <span class="o">*</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="s2">"Z"</span> <span class="o">*</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span>
 <span class="n">pubs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">observable</span><span class="p">)]</span>
 
 <span class="n">job</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-  <span class="n">backend_name</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>  <span class="c1"># Or `backend=backend_name`, if you didn&#39;t initialize a backend object</span>
+  <span class="n">backend_name</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>  <span class="c1"># Or `backend=backend_name`, if you didn't initialize a backend object</span>
   <span class="n">pubs</span><span class="o">=</span><span class="n">pubs</span>
 <span class="p">)</span>
 </pre></div>
@@ -543,10 +543,10 @@
 <p>結果は<a class="reference external" href="https://docs.quantum.ibm.com/guides/primitive-input-output#estimator-output">Estimator result</a>と同じ形式になります。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The result of the submitted job had </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s1"> PUB</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The associated PubResult of this job has the following DataBins:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;And this DataBin has attributes: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The expectation values measured from this PUB are: </span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'The result of the submitted job had </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s1"> PUB</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'The associated PubResult of this job has the following DataBins:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'And this DataBin has attributes: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'The expectation values measured from this PUB are: </span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -556,7 +556,7 @@
 The associated PubResult of this job has the following DataBins:
  DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), ensemble_standard_error=np.ndarray(&lt;shape=(), dtype=float64&gt;))
 
-And this DataBin has attributes: dict_keys([&#39;evs&#39;, &#39;stds&#39;, &#39;ensemble_standard_error&#39;])
+And this DataBin has attributes: dict_keys(['evs', 'stds', 'ensemble_standard_error'])
 The expectation values measured from this PUB are: 
 0.961499493414387
 </pre></div>
@@ -649,7 +649,7 @@ The expectation values measured from this PUB are:
 <p>次の例は、緩和レベルの設定を示しています：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mitigation_level&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"mitigation_level"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 
 <span class="n">job</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
   <span class="n">backend_name</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
@@ -787,8 +787,8 @@ The expectation values measured from this PUB are:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s2">&quot;mitigation_level&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s2">&quot;resilience&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;zne_mitigation&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+  <span class="s2">"mitigation_level"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"resilience"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"zne_mitigation"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -812,9 +812,9 @@ The expectation values measured from this PUB are:
 <p>次のコード スニペットは、<code class="docutils literal notranslate"><span class="pre">PrimitiveResult</span></code> (および関連する<code class="docutils literal notranslate"><span class="pre">PubResult</span></code>) 形式について説明します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The result of the submitted job had </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s1"> PUB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The expectation values measured from this PUB are: </span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;And the associated metadata is: </span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'The result of the submitted job had </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s1"> PUB'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'The expectation values measured from this PUB are: </span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'And the associated metadata is: </span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -823,7 +823,7 @@ The expectation values measured from this PUB are:
 The expectation values measured from this PUB are: 
 0.961499493414387
 And the associated metadata is: 
-{&#39;shots&#39;: 4096, &#39;target_precision&#39;: 0.015625, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {}, &#39;num_randomizations&#39;: 32}
+{'shots': 4096, 'target_precision': 0.015625, 'circuit_metadata': {}, 'resilience': {}, 'num_randomizations': 32}
 </pre></div>
 </div>
 </div>
@@ -835,7 +835,7 @@ And the associated metadata is:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-  <span class="n">backend_name</span><span class="o">=</span><span class="s2">&quot;bad_backend_name&quot;</span><span class="p">,</span>
+  <span class="n">backend_name</span><span class="o">=</span><span class="s2">"bad_backend_name"</span><span class="p">,</span>
   <span class="n">pubs</span><span class="o">=</span><span class="n">pubs</span><span class="p">,</span>
   <span class="n">options</span><span class="o">=</span><span class="n">options</span>
 <span class="p">)</span>
@@ -846,18 +846,18 @@ And the associated metadata is:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;/runner/runner.py&quot;, line 10, in run
+  File "/runner/runner.py", line 10, in run
     func = CircuitFunction(**arguments)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/runner/circuit_function/circuit_function.py&quot;, line 86, in __init__
+  File "/runner/circuit_function/circuit_function.py", line 86, in __init__
     self._backend = self._service.backend(
                     ^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/local/lib/python3.11/site-packages/qiskit_ibm_runtime/qiskit_runtime_service.py&quot;, line 787, in backend
+  File "/usr/local/lib/python3.11/site-packages/qiskit_ibm_runtime/qiskit_runtime_service.py", line 787, in backend
     backends = self.backends(name, instance=instance, use_fractional_gates=use_fractional_gates)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/usr/local/lib/python3.11/site-packages/qiskit_ibm_runtime/qiskit_runtime_service.py&quot;, line 536, in backends
-    raise QiskitBackendNotFoundError(&quot;No backend matches the criteria.&quot;)
-qiskit.providers.exceptions.QiskitBackendNotFoundError: &#39;No backend matches the criteria.&#39;
+  File "/usr/local/lib/python3.11/site-packages/qiskit_ibm_runtime/qiskit_runtime_service.py", line 536, in backends
+    raise QiskitBackendNotFoundError("No backend matches the criteria.")
+qiskit.providers.exceptions.QiskitBackendNotFoundError: 'No backend matches the criteria.'
 </pre></div>
 </div>
 </div>

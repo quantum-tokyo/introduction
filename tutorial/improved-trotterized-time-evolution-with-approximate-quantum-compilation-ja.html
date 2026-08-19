@@ -528,30 +528,30 @@
 <span class="c1"># XXZハミルトニアンのランダム係数を生成する。</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">&quot;I&quot;</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">"I"</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">even_edges</span> <span class="o">+</span> <span class="n">odd_edges</span><span class="p">):</span>
     <span class="n">hamiltonian</span> <span class="o">+=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="p">(</span><span class="s2">&quot;XX&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;YY&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+            <span class="p">(</span><span class="s2">"XX"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"YY"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
         <span class="p">],</span>
         <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
     <span class="p">)</span>
 
 <span class="c1">#  2つの中間量子ビット間でZZオブザーバブルを生成する。</span>
 <span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-    <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
+    <span class="p">[(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
 <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hamiltonian:&quot;</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable:&quot;</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
-<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;circo&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Hamiltonian:"</span><span class="p">,</span> <span class="n">hamiltonian</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Observable:"</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"circo"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hamiltonian: SparsePauliOp([&#39;IIIIIIIIII&#39;, &#39;IIIIIIIIXX&#39;, &#39;IIIIIIIIYY&#39;, &#39;IIIIIIIIZZ&#39;, &#39;IIIIIIXXII&#39;, &#39;IIIIIIYYII&#39;, &#39;IIIIIIZZII&#39;, &#39;IIIIXXIIII&#39;, &#39;IIIIYYIIII&#39;, &#39;IIIIZZIIII&#39;, &#39;IIXXIIIIII&#39;, &#39;IIYYIIIIII&#39;, &#39;IIZZIIIIII&#39;, &#39;XXIIIIIIII&#39;, &#39;YYIIIIIIII&#39;, &#39;ZZIIIIIIII&#39;, &#39;IIIIIIIXXI&#39;, &#39;IIIIIIIYYI&#39;, &#39;IIIIIIIZZI&#39;, &#39;IIIIIXXIII&#39;, &#39;IIIIIYYIII&#39;, &#39;IIIIIZZIII&#39;, &#39;IIIXXIIIII&#39;, &#39;IIIYYIIIII&#39;, &#39;IIIZZIIIII&#39;, &#39;IXXIIIIIII&#39;, &#39;IYYIIIIIII&#39;, &#39;IZZIIIIIII&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hamiltonian: SparsePauliOp(['IIIIIIIIII', 'IIIIIIIIXX', 'IIIIIIIIYY', 'IIIIIIIIZZ', 'IIIIIIXXII', 'IIIIIIYYII', 'IIIIIIZZII', 'IIIIXXIIII', 'IIIIYYIIII', 'IIIIZZIIII', 'IIXXIIIIII', 'IIYYIIIIII', 'IIZZIIIIII', 'XXIIIIIIII', 'YYIIIIIIII', 'ZZIIIIIIII', 'IIIIIIIXXI', 'IIIIIIIYYI', 'IIIIIIIZZI', 'IIIIIXXIII', 'IIIIIYYIII', 'IIIIIZZIII', 'IIIXXIIIII', 'IIIYYIIIII', 'IIIZZIIIII', 'IXXIIIIIII', 'IYYIIIIIII', 'IZZIIIIIII'],
               coeffs=[1.        +0.j, 0.52440675+0.j, 0.52440675+0.j, 1.0488135 +0.j,
  0.60759468+0.j, 0.60759468+0.j, 1.21518937+0.j, 0.55138169+0.j,
  0.55138169+0.j, 1.10276338+0.j, 0.52244159+0.j, 0.52244159+0.j,
@@ -559,7 +559,7 @@
  0.57294706+0.j, 0.57294706+0.j, 1.14589411+0.j, 0.46879361+0.j,
  0.46879361+0.j, 0.93758721+0.j, 0.6958865 +0.j, 0.6958865 +0.j,
  1.391773  +0.j, 0.73183138+0.j, 0.73183138+0.j, 1.46366276+0.j])
-Observable: SparsePauliOp([&#39;IIIIZZIIII&#39;],
+Observable: SparsePauliOp(['IIIIZZIIII'],
               coeffs=[1.+0.j])
 </pre></div>
 </div>
@@ -637,7 +637,7 @@ Observable: SparsePauliOp([&#39;IIIIZZIIII&#39;],
         <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">subsequent_num_trotter_steps</span><span class="p">),</span>
         <span class="n">time</span><span class="o">=</span><span class="n">subsequent_evolution_time</span><span class="p">,</span>
     <span class="p">)</span>
-<span class="n">subsequent_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">subsequent_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -656,7 +656,7 @@ Observable: SparsePauliOp([&#39;IIIIZZIIII&#39;],
 <span class="n">aqc_comparison_num_trotter_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
     <span class="n">subsequent_num_trotter_steps</span> <span class="o">/</span> <span class="n">subsequent_evolution_time</span> <span class="o">*</span> <span class="n">aqc_evolution_time</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of Trotter steps for comparison:&quot;</span><span class="p">,</span> <span class="n">aqc_comparison_num_trotter_steps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of Trotter steps for comparison:"</span><span class="p">,</span> <span class="n">aqc_comparison_num_trotter_steps</span><span class="p">)</span>
 
 <span class="n">aqc_comparison_circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="p">,</span>
@@ -718,7 +718,7 @@ Observable: SparsePauliOp([&#39;IIIIZZIIII&#39;],
 <span class="p">)</span>
 
 <span class="n">aqc_ansatz</span><span class="p">,</span> <span class="n">aqc_initial_parameters</span> <span class="o">=</span> <span class="n">generate_ansatz_from_circuit</span><span class="p">(</span><span class="n">aqc_good_circuit</span><span class="p">)</span>
-<span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -728,9 +728,9 @@ Observable: SparsePauliOp([&#39;IIIIZZIIII&#39;],
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison circuit: depth </span><span class="si">{</span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target circuit:         depth </span><span class="si">{</span><span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ansatz circuit:         depth </span><span class="si">{</span><span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">, with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aqc_initial_parameters</span><span class="p">)</span><span class="si">}</span><span class="s2"> parameters&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AQC Comparison circuit: depth </span><span class="si">{</span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Target circuit:         depth </span><span class="si">{</span><span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ansatz circuit:         depth </span><span class="si">{</span><span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">, with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aqc_initial_parameters</span><span class="p">)</span><span class="si">}</span><span class="s2"> parameters"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -751,12 +751,12 @@ Ansatz circuit:         depth 7, with 156 parameters
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">quimb.tensor</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_aqc_tensor.simulation.quimb</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuimbSimulator</span>
 
-<span class="n">simulator_settings</span> <span class="o">=</span> <span class="n">QuimbSimulator</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">CircuitMPS</span><span class="p">,</span> <span class="n">autodiff_backend</span><span class="o">=</span><span class="s2">&quot;jax&quot;</span><span class="p">)</span>
+<span class="n">simulator_settings</span> <span class="o">=</span> <span class="n">QuimbSimulator</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">CircuitMPS</span><span class="p">,</span> <span class="n">autodiff_backend</span><span class="o">=</span><span class="s2">"jax"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/henryzou/.venvs/learning-aqc-1/lib/python3.11/site-packages/cotengra/hyperoptimizers/hyper.py:33: UserWarning: Couldn&#39;t import `kahypar` - skipping from default hyper optimizer and using basic `labels` method instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/henryzou/.venvs/learning-aqc-1/lib/python3.11/site-packages/cotengra/hyperoptimizers/hyper.py:33: UserWarning: Couldn't import `kahypar` - skipping from default hyper optimizer and using basic `labels` method instead.
   warnings.warn(
 </pre></div>
 </div>
@@ -768,12 +768,12 @@ Ansatz circuit:         depth 7, with 156 parameters
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_aqc_tensor.simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">tensornetwork_from_circuit</span>
 
 <span class="n">aqc_target_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_target_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target MPS maximum bond dimension:&quot;</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Target MPS maximum bond dimension:"</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
 
 <span class="c1"># 参照MPS（行列積状態）を取得し、`local_expectation` を調べることで正確な期待値を得ることができます。</span>
 <span class="n">reference_mps</span>  <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">reference_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
-<span class="n">reference_expval</span> <span class="o">=</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">local_expectation</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reference MPS maximum bond dimension:&quot;</span><span class="p">,</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
+<span class="n">reference_expval</span> <span class="o">=</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">local_expectation</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">'Z'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">'Z'</span><span class="p">),</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Reference MPS maximum bond dimension:"</span><span class="p">,</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -791,7 +791,7 @@ Reference MPS maximum bond dimension: 7
 
 <span class="n">good_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_good_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
 <span class="n">starting_fidelity</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">compute_overlap</span><span class="p">(</span><span class="n">good_mps</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting fidelity:&quot;</span><span class="p">,</span> <span class="n">starting_fidelity</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Starting fidelity:"</span><span class="p">,</span> <span class="n">starting_fidelity</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -820,7 +820,7 @@ Reference MPS maximum bond dimension: 7
 
 <span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span><span class="n">intermediate_result</span><span class="p">:</span> <span class="n">OptimizeResult</span><span class="p">):</span>
     <span class="n">fidelity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> Intermediate result: Fidelity </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> Intermediate result: Fidelity </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">stopping_point</span><span class="p">:</span>
         <span class="c1"># Good enough for now</span>
         <span class="k">raise</span> <span class="ne">StopIteration</span>
@@ -828,9 +828,9 @@ Reference MPS maximum bond dimension: 7
 <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
     <span class="n">objective</span><span class="p">,</span>
     <span class="n">aqc_initial_parameters</span><span class="p">,</span>
-    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">"L-BFGS-B"</span><span class="p">,</span>
     <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="n">aqc_max_iterations</span><span class="p">},</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"maxiter"</span><span class="p">:</span> <span class="n">aqc_max_iterations</span><span class="p">},</span>
     <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
@@ -839,10 +839,10 @@ Reference MPS maximum bond dimension: 7
     <span class="mi">99</span><span class="p">,</span>
 <span class="p">):</span>  <span class="c1"># 0 =&gt; success; 1 =&gt; max iterations reached; 99 =&gt; early termination via StopIteration</span>
     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Optimization failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> (status=</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="sa">f</span><span class="s2">"Optimization failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> (status=</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">)"</span>
     <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Done after </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="si">}</span><span class="s2"> iterations.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Done after </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="si">}</span><span class="s2"> iterations."</span><span class="p">)</span>
 <span class="n">aqc_final_parameters</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
 </pre></div>
 </div>
@@ -884,7 +884,7 @@ Done after 28 iterations.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">aqc_final_parameters</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final parameters:&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Final parameters:"</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -899,7 +899,7 @@ Done after 28 iterations.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_final_circuit</span> <span class="o">=</span> <span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">aqc_final_parameters</span><span class="p">)</span>
 <span class="n">aqc_final_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">subsequent_circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">aqc_final_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">aqc_final_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -911,7 +911,7 @@ Done after 28 iterations.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">subsequent_circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -928,15 +928,15 @@ Done after 28 iterations.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 
-<span class="c1"># QiskitRuntimeService.save_account(channel=&quot;ibm_quantum&quot;, token=&quot;&lt;MY_IBM_QUANTUM_TOKEN&gt;&quot;, overwrite=True, set_as_default=True)</span>
-<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;ibm_quantum&#39;</span><span class="p">)</span>
+<span class="c1"># QiskitRuntimeService.save_account(channel="ibm_quantum", token="&lt;MY_IBM_QUANTUM_TOKEN&gt;", overwrite=True, set_as_default=True)</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">'ibm_quantum'</span><span class="p">)</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_brisbane')&gt;
 </pre></div>
 </div>
 </div>
@@ -950,14 +950,14 @@ Done after 28 iterations.
 <span class="n">pass_manager</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_final_circuit</span><span class="p">)</span>
 <span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
-<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Observable info:"</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Circuit depth:"</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZ&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp(['IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZ'],
               coeffs=[1.+0.j])
 Circuit depth: 121
 </pre></div>
@@ -970,14 +970,14 @@ Circuit depth: 121
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isa_comparison_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_comparison_circuit</span><span class="p">)</span>
 <span class="n">isa_comparison_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_observable</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
-<span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Observable info:"</span><span class="p">,</span> <span class="n">isa_comparison_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Circuit depth:"</span><span class="p">,</span> <span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZ&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp(['IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZ'],
               coeffs=[1.+0.j])
 Circuit depth: 157
 </pre></div>
@@ -995,7 +995,7 @@ Circuit depth: 157
 
 <span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Job ID:"</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
 <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1004,7 +1004,7 @@ Circuit depth: 157
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job ID: cwsrz54ehebg008j5jz0
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), ensemble_standard_error=np.ndarray(&lt;shape=(), dtype=float64&gt;)), metadata={&#39;shots&#39;: 4096, &#39;target_precision&#39;: 0.015625, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {}, &#39;num_randomizations&#39;: 32})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: False, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: &#39;auto&#39;, &#39;shots_per_randomization&#39;: &#39;auto&#39;, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active-accum&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: False, &#39;pec_mitigation&#39;: False}, &#39;version&#39;: 2})
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), ensemble_standard_error=np.ndarray(&lt;shape=(), dtype=float64&gt;)), metadata={'shots': 4096, 'target_precision': 0.015625, 'circuit_metadata': {}, 'resilience': {}, 'num_randomizations': 32})], metadata={'dynamical_decoupling': {'enable': False, 'sequence_type': 'XX', 'extra_slack_distribution': 'middle', 'scheduling_method': 'alap'}, 'twirling': {'enable_gates': False, 'enable_measure': True, 'num_randomizations': 'auto', 'shots_per_randomization': 'auto', 'interleave_randomizations': True, 'strategy': 'active-accum'}, 'resilience': {'measure_mitigation': True, 'zne_mitigation': False, 'pec_mitigation': False}, 'version': 2})
 </pre></div>
 </div>
 </div>
@@ -1013,7 +1013,7 @@ Circuit depth: 157
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_comparison</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_comparison_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job Comparison ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Job Comparison ID:"</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
 <span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1022,7 +1022,7 @@ Circuit depth: 157
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job Comparison ID: cwsrz54ehebg008j5jz0
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), ensemble_standard_error=np.ndarray(&lt;shape=(), dtype=float64&gt;)), metadata={&#39;shots&#39;: 4096, &#39;target_precision&#39;: 0.015625, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {}, &#39;num_randomizations&#39;: 32})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: False, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: &#39;auto&#39;, &#39;shots_per_randomization&#39;: &#39;auto&#39;, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active-accum&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: False, &#39;pec_mitigation&#39;: False}, &#39;version&#39;: 2})
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), ensemble_standard_error=np.ndarray(&lt;shape=(), dtype=float64&gt;)), metadata={'shots': 4096, 'target_precision': 0.015625, 'circuit_metadata': {}, 'resilience': {}, 'num_randomizations': 32})], metadata={'dynamical_decoupling': {'enable': False, 'sequence_type': 'XX', 'extra_slack_distribution': 'middle', 'scheduling_method': 'alap'}, 'twirling': {'enable_gates': False, 'enable_measure': True, 'num_randomizations': 'auto', 'shots_per_randomization': 'auto', 'interleave_randomizations': True, 'strategy': 'active-accum'}, 'resilience': {'measure_mitigation': True, 'zne_mitigation': False, 'pec_mitigation': False}, 'version': 2})
 </pre></div>
 </div>
 </div>
@@ -1037,18 +1037,18 @@ Circuit depth: 157
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AQC results</span>
 <span class="n">hw_results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">hw_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_results</span><span class="p">]</span>
-<span class="n">hw_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_results_dicts</span><span class="p">]</span>
+<span class="n">hw_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">"evs"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_results_dicts</span><span class="p">]</span>
 <span class="n">aqc_expval</span> <span class="o">=</span> <span class="n">hw_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># AQC comparison results</span>
 <span class="n">hw_comparison_results</span> <span class="o">=</span> <span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">hw_comparison_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_comparison_results</span><span class="p">]</span>
-<span class="n">hw_comparison_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_comparison_results_dicts</span><span class="p">]</span>
+<span class="n">hw_comparison_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">"evs"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_comparison_results_dicts</span><span class="p">]</span>
 <span class="n">aqc_compare_expval</span> <span class="o">=</span> <span class="n">hw_comparison_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exact:         </span><span class="se">\t</span><span class="si">{</span><span class="n">reference_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC:           </span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison:</span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_compare_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_compare_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Exact:         </span><span class="se">\t</span><span class="si">{</span><span class="n">reference_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AQC:           </span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AQC Comparison:</span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_compare_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_compare_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1064,21 +1064,21 @@ AQC Comparison:	0.4317, |∆| = 0.9569
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'seaborn-v0_8'</span><span class="p">)</span>
 
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AQC Result&#39;</span><span class="p">,</span> <span class="s1">&#39;AQC Comparison Result&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'AQC Result'</span><span class="p">,</span> <span class="s1">'AQC Comparison Result'</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">aqc_expval</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">aqc_compare_expval</span><span class="p">)]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="s1">&#39;tab:purple&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact Result&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Results&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Absolute Expected Value&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;AQC Result vs AQC Comparison Result (Absolute Values)&#39;</span><span class="p">)</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">'tab:blue'</span><span class="p">,</span> <span class="s1">'tab:purple'</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Exact Result'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Results'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Absolute Expected Value'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'AQC Result vs AQC Comparison Result (Absolute Values)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars</span><span class="p">:</span>
     <span class="n">yval</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">'bottom'</span><span class="p">)</span>  
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1116,19 +1116,19 @@ AQC Comparison:	0.4317, |∆| = 0.9569
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">Js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">&quot;I&quot;</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">"I"</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">even_edges</span> <span class="o">+</span> <span class="n">odd_edges</span><span class="p">):</span>
     <span class="n">hamiltonian</span> <span class="o">+=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="p">(</span><span class="s2">&quot;XX&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;YY&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
-            <span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+            <span class="p">(</span><span class="s2">"XX"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"YY"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
         <span class="p">],</span>
         <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
     <span class="p">)</span>
 
 <span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-    <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
+    <span class="p">[(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
 <span class="p">)</span>
 
 <span class="c1"># Generate an initial state</span>
@@ -1190,7 +1190,7 @@ AQC Comparison:	0.4317, |∆| = 0.9569
 <span class="n">aqc_comparison_num_trotter_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
     <span class="n">subsequent_num_trotter_steps</span> <span class="o">/</span> <span class="n">subsequent_evolution_time</span> <span class="o">*</span> <span class="n">aqc_evolution_time</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of Trotter steps for comparison:&quot;</span><span class="p">,</span> <span class="n">aqc_comparison_num_trotter_steps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Number of Trotter steps for comparison:"</span><span class="p">,</span> <span class="n">aqc_comparison_num_trotter_steps</span><span class="p">)</span>
 
 <span class="n">aqc_comparison_circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
     <span class="n">hamiltonian</span><span class="p">,</span>
@@ -1247,9 +1247,9 @@ AQC Comparison:	0.4317, |∆| = 0.9569
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison circuit: depth </span><span class="si">{</span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target circuit:         depth </span><span class="si">{</span><span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ansatz circuit:         depth </span><span class="si">{</span><span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">, with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aqc_initial_parameters</span><span class="p">)</span><span class="si">}</span><span class="s2"> parameters&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AQC Comparison circuit: depth </span><span class="si">{</span><span class="n">aqc_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Target circuit:         depth </span><span class="si">{</span><span class="n">aqc_target_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Ansatz circuit:         depth </span><span class="si">{</span><span class="n">aqc_ansatz</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">, with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aqc_initial_parameters</span><span class="p">)</span><span class="si">}</span><span class="s2"> parameters"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1264,20 +1264,20 @@ Ansatz circuit:         depth 7, with 816 parameters
 <p>テンソルネットワークシミュレーションの設定を行い、その後、最適化のためにターゲット状態の行列積状態（MPS）表現を構築します。次に、初期回路とターゲット状態の間の忠実度を評価し、トロッター誤差の違いを定量化します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulator_settings</span> <span class="o">=</span> <span class="n">QuimbSimulator</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">CircuitMPS</span><span class="p">,</span> <span class="n">autodiff_backend</span><span class="o">=</span><span class="s2">&quot;jax&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulator_settings</span> <span class="o">=</span> <span class="n">QuimbSimulator</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">CircuitMPS</span><span class="p">,</span> <span class="n">autodiff_backend</span><span class="o">=</span><span class="s2">"jax"</span><span class="p">)</span>
 
 <span class="c1"># Build the matrix-product representation of the state to be approximated by AQC</span>
 <span class="n">aqc_target_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_target_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target MPS maximum bond dimension:&quot;</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Target MPS maximum bond dimension:"</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="o">.</span><span class="n">psi</span><span class="o">.</span><span class="n">max_bond</span><span class="p">())</span>
 
 <span class="c1"># Obtains the reference MPS, where we can obtain the exact expectation value by examing the `local_expectation``</span>
 <span class="n">reference_mps</span>  <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">reference_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
-<span class="n">reference_expval</span> <span class="o">=</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">local_expectation</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">reference_expval</span> <span class="o">=</span> <span class="n">reference_mps</span><span class="o">.</span><span class="n">local_expectation</span><span class="p">(</span><span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">'Z'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">quimb</span><span class="o">.</span><span class="n">pauli</span><span class="p">(</span><span class="s1">'Z'</span><span class="p">),</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 
 <span class="c1"># Compute the starting fidelity</span>
 <span class="n">good_mps</span> <span class="o">=</span> <span class="n">tensornetwork_from_circuit</span><span class="p">(</span><span class="n">aqc_good_circuit</span><span class="p">,</span> <span class="n">simulator_settings</span><span class="p">)</span>
 <span class="n">starting_fidelity</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">compute_overlap</span><span class="p">(</span><span class="n">good_mps</span><span class="p">,</span> <span class="n">aqc_target_mps</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting fidelity:&quot;</span><span class="p">,</span> <span class="n">starting_fidelity</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Starting fidelity:"</span><span class="p">,</span> <span class="n">starting_fidelity</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1296,7 +1296,7 @@ Starting fidelity: 0.9926466919924661</p>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span><span class="n">intermediate_result</span><span class="p">:</span> <span class="n">OptimizeResult</span><span class="p">):</span>
     <span class="n">fidelity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> Intermediate result: Fidelity </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> Intermediate result: Fidelity </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">intermediate_result</span><span class="o">.</span><span class="n">fun</span> <span class="o">&lt;</span> <span class="n">stopping_point</span><span class="p">:</span>
         <span class="c1"># Good enough for now</span>
         <span class="k">raise</span> <span class="ne">StopIteration</span>
@@ -1304,9 +1304,9 @@ Starting fidelity: 0.9926466919924661</p>
 <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
     <span class="n">objective</span><span class="p">,</span>
     <span class="n">aqc_initial_parameters</span><span class="p">,</span>
-    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">"L-BFGS-B"</span><span class="p">,</span>
     <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="n">aqc_max_iterations</span><span class="p">},</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"maxiter"</span><span class="p">:</span> <span class="n">aqc_max_iterations</span><span class="p">},</span>
     <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span>
@@ -1315,10 +1315,10 @@ Starting fidelity: 0.9926466919924661</p>
     <span class="mi">99</span><span class="p">,</span>
 <span class="p">):</span>  <span class="c1"># 0 =&gt; success; 1 =&gt; max iterations reached; 99 =&gt; early termination via StopIteration</span>
     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Optimization failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> (status=</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="sa">f</span><span class="s2">"Optimization failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2"> (status=</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">)"</span>
     <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Done after </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="si">}</span><span class="s2"> iterations.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Done after </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="si">}</span><span class="s2"> iterations."</span><span class="p">)</span>
 <span class="n">aqc_final_parameters</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
 </pre></div>
 </div>
@@ -1399,15 +1399,15 @@ Done after 41 iterations.
 <p>バックエンドを選択します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QiskitRuntimeService.save_account(channel=&quot;ibm_quantum&quot;, token=&quot;&lt;MY_IBM_QUANTUM_TOKEN&gt;&quot;, overwrite=True, set_as_default=True)</span>
-<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;ibm_quantum&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QiskitRuntimeService.save_account(channel="ibm_quantum", token="&lt;MY_IBM_QUANTUM_TOKEN&gt;", overwrite=True, set_as_default=True)</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">'ibm_quantum'</span><span class="p">)</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_brisbane')&gt;
 </pre></div>
 </div>
 </div>
@@ -1418,14 +1418,14 @@ Done after 41 iterations.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pass_manager</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_final_circuit</span><span class="p">)</span>
 <span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
-<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Observable info:"</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Circuit depth:"</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp(['IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII'],
               coeffs=[1.+0.j])
 Circuit depth: 122
 </pre></div>
@@ -1437,14 +1437,14 @@ Circuit depth: 122
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isa_comparison_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">aqc_comparison_circuit</span><span class="p">)</span>
 <span class="n">isa_comparison_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Observable info:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_observable</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Circuit depth:&quot;</span><span class="p">,</span> <span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
-<span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Observable info:"</span><span class="p">,</span> <span class="n">isa_comparison_observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Circuit depth:"</span><span class="p">,</span> <span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">isa_comparison_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp([&#39;IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIII&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observable info: SparsePauliOp(['IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIII'],
               coeffs=[1.+0.j])
 Circuit depth: 158
 </pre></div>
@@ -1461,32 +1461,32 @@ Circuit depth: 158
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">twirling_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;enable_gates&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;enable_measure&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;num_randomizations&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
-    <span class="s2">&quot;shots_per_randomization&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">&quot;strategy&quot;</span><span class="p">:</span> <span class="s2">&quot;active&quot;</span><span class="p">,</span>
+    <span class="s2">"enable_gates"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">"enable_measure"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">"num_randomizations"</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+    <span class="s2">"shots_per_randomization"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">"strategy"</span><span class="p">:</span> <span class="s2">"active"</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">zne_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;amplifier&quot;</span><span class="p">:</span> <span class="s2">&quot;gate_folding&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;noise_factors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-    <span class="s2">&quot;extrapolated_noise_factors&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">)),</span>
-    <span class="s2">&quot;extrapolator&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;exponential&quot;</span><span class="p">,</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span> <span class="s2">&quot;fallback&quot;</span><span class="p">],</span>
+    <span class="s2">"amplifier"</span><span class="p">:</span> <span class="s2">"gate_folding"</span><span class="p">,</span>
+    <span class="s2">"noise_factors"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="s2">"extrapolated_noise_factors"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">31</span><span class="p">)),</span>
+    <span class="s2">"extrapolator"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"exponential"</span><span class="p">,</span> <span class="s2">"linear"</span><span class="p">,</span> <span class="s2">"fallback"</span><span class="p">],</span>
 <span class="p">}</span>
 
-<span class="n">meas_learning_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;num_randomizations&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">&quot;shots_per_randomization&quot;</span><span class="p">:</span> <span class="mi">512</span><span class="p">}</span>
+<span class="n">meas_learning_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"num_randomizations"</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span> <span class="s2">"shots_per_randomization"</span><span class="p">:</span> <span class="mi">512</span><span class="p">}</span>
 
 <span class="n">resilience_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;measure_mitigation&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;zne_mitigation&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s2">&quot;zne&quot;</span><span class="p">:</span> <span class="n">zne_options</span><span class="p">,</span>
-    <span class="s2">&quot;measure_noise_learning&quot;</span><span class="p">:</span> <span class="n">meas_learning_options</span><span class="p">,</span>
+    <span class="s2">"measure_mitigation"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">"zne_mitigation"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">"zne"</span><span class="p">:</span> <span class="n">zne_options</span><span class="p">,</span>
+    <span class="s2">"measure_noise_learning"</span><span class="p">:</span> <span class="n">meas_learning_options</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">estimator_options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;resilience&quot;</span><span class="p">:</span> <span class="n">resilience_options</span><span class="p">,</span>
-    <span class="s2">&quot;twirling&quot;</span><span class="p">:</span> <span class="n">twirling_options</span><span class="p">,</span>
+    <span class="s2">"resilience"</span><span class="p">:</span> <span class="n">resilience_options</span><span class="p">,</span>
+    <span class="s2">"twirling"</span><span class="p">:</span> <span class="n">twirling_options</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">estimator_options</span><span class="p">)</span>
@@ -1497,7 +1497,7 @@ Circuit depth: 158
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Job ID:"</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
 <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1506,7 +1506,7 @@ Circuit depth: 158
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job ID: cwss0vv5v39g008hd7m0
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;)), metadata={&#39;shots&#39;: 30000, &#39;target_precision&#39;: 0.005773502691896258, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {&#39;zne&#39;: {&#39;extrapolator&#39;: &#39;exponential&#39;}}, &#39;num_randomizations&#39;: 300})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: True, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: 300, &#39;shots_per_randomization&#39;: 100, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: True, &#39;pec_mitigation&#39;: False, &#39;zne&#39;: {&#39;noise_factors&#39;: [1, 2, 3], &#39;extrapolator&#39;: [&#39;exponential&#39;, &#39;linear&#39;, &#39;fallback&#39;], &#39;extrapolated_noise_factors&#39;: [0, 0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6000000000000001, 0.7000000000000001, 0.8, 0.9, 1, 1.1, 1.2000000000000002, 1.3, 1.4000000000000001, 1.5, 1.6, 1.7000000000000002, 1.8, 1.9000000000000001, 2, 2.1, 2.2, 2.3000000000000003, 2.4000000000000004, 2.5, 2.6, 2.7, 2.8000000000000003, 2.9000000000000004, 3]}}, &#39;version&#39;: 2})
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;)), metadata={'shots': 30000, 'target_precision': 0.005773502691896258, 'circuit_metadata': {}, 'resilience': {'zne': {'extrapolator': 'exponential'}}, 'num_randomizations': 300})], metadata={'dynamical_decoupling': {'enable': False, 'sequence_type': 'XX', 'extra_slack_distribution': 'middle', 'scheduling_method': 'alap'}, 'twirling': {'enable_gates': True, 'enable_measure': True, 'num_randomizations': 300, 'shots_per_randomization': 100, 'interleave_randomizations': True, 'strategy': 'active'}, 'resilience': {'measure_mitigation': True, 'zne_mitigation': True, 'pec_mitigation': False, 'zne': {'noise_factors': [1, 2, 3], 'extrapolator': ['exponential', 'linear', 'fallback'], 'extrapolated_noise_factors': [0, 0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6000000000000001, 0.7000000000000001, 0.8, 0.9, 1, 1.1, 1.2000000000000002, 1.3, 1.4000000000000001, 1.5, 1.6, 1.7000000000000002, 1.8, 1.9000000000000001, 2, 2.1, 2.2, 2.3000000000000003, 2.4000000000000004, 2.5, 2.6, 2.7, 2.8000000000000003, 2.9000000000000004, 3]}}, 'version': 2})
 </pre></div>
 </div>
 </div>
@@ -1514,7 +1514,7 @@ Circuit depth: 158
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_comparison</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">isa_comparison_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job Comparison ID:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Job Comparison ID:"</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
 <span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1523,7 +1523,7 @@ Circuit depth: 158
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Job Comparison ID: cwss0vv5v39g008hd7m0
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;)), metadata={&#39;shots&#39;: 30000, &#39;target_precision&#39;: 0.005773502691896258, &#39;circuit_metadata&#39;: {}, &#39;resilience&#39;: {&#39;zne&#39;: {&#39;extrapolator&#39;: &#39;exponential&#39;}}, &#39;num_randomizations&#39;: 300})], metadata={&#39;dynamical_decoupling&#39;: {&#39;enable&#39;: False, &#39;sequence_type&#39;: &#39;XX&#39;, &#39;extra_slack_distribution&#39;: &#39;middle&#39;, &#39;scheduling_method&#39;: &#39;alap&#39;}, &#39;twirling&#39;: {&#39;enable_gates&#39;: True, &#39;enable_measure&#39;: True, &#39;num_randomizations&#39;: 300, &#39;shots_per_randomization&#39;: 100, &#39;interleave_randomizations&#39;: True, &#39;strategy&#39;: &#39;active&#39;}, &#39;resilience&#39;: {&#39;measure_mitigation&#39;: True, &#39;zne_mitigation&#39;: True, &#39;pec_mitigation&#39;: False, &#39;zne&#39;: {&#39;noise_factors&#39;: [1, 2, 3], &#39;extrapolator&#39;: [&#39;exponential&#39;, &#39;linear&#39;, &#39;fallback&#39;], &#39;extrapolated_noise_factors&#39;: [0, 0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6000000000000001, 0.7000000000000001, 0.8, 0.9, 1, 1.1, 1.2000000000000002, 1.3, 1.4000000000000001, 1.5, 1.6, 1.7000000000000002, 1.8, 1.9000000000000001, 2, 2.1, 2.2, 2.3000000000000003, 2.4000000000000004, 2.5, 2.6, 2.7, 2.8000000000000003, 2.9000000000000004, 3]}}, &#39;version&#39;: 2})
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(&lt;shape=(), dtype=float64&gt;), stds=np.ndarray(&lt;shape=(), dtype=float64&gt;), evs_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), ensemble_stds_noise_factors=np.ndarray(&lt;shape=(3,), dtype=float64&gt;), evs_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;), stds_extrapolated=np.ndarray(&lt;shape=(3, 31), dtype=float64&gt;)), metadata={'shots': 30000, 'target_precision': 0.005773502691896258, 'circuit_metadata': {}, 'resilience': {'zne': {'extrapolator': 'exponential'}}, 'num_randomizations': 300})], metadata={'dynamical_decoupling': {'enable': False, 'sequence_type': 'XX', 'extra_slack_distribution': 'middle', 'scheduling_method': 'alap'}, 'twirling': {'enable_gates': True, 'enable_measure': True, 'num_randomizations': 300, 'shots_per_randomization': 100, 'interleave_randomizations': True, 'strategy': 'active'}, 'resilience': {'measure_mitigation': True, 'zne_mitigation': True, 'pec_mitigation': False, 'zne': {'noise_factors': [1, 2, 3], 'extrapolator': ['exponential', 'linear', 'fallback'], 'extrapolated_noise_factors': [0, 0.1, 0.2, 0.30000000000000004, 0.4, 0.5, 0.6000000000000001, 0.7000000000000001, 0.8, 0.9, 1, 1.1, 1.2000000000000002, 1.3, 1.4000000000000001, 1.5, 1.6, 1.7000000000000002, 1.8, 1.9000000000000001, 2, 2.1, 2.2, 2.3000000000000003, 2.4000000000000004, 2.5, 2.6, 2.7, 2.8000000000000003, 2.9000000000000004, 3]}}, 'version': 2})
 </pre></div>
 </div>
 </div>
@@ -1537,18 +1537,18 @@ Circuit depth: 158
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># AQC results</span>
 <span class="n">hw_results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">hw_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_results</span><span class="p">]</span>
-<span class="n">hw_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_results_dicts</span><span class="p">]</span>
+<span class="n">hw_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">"evs"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_results_dicts</span><span class="p">]</span>
 <span class="n">aqc_expval</span> <span class="o">=</span> <span class="n">hw_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># AQC comparison results</span>
 <span class="n">hw_comparison_results</span> <span class="o">=</span> <span class="n">job_comparison</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="n">hw_comparison_results_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">hw_comparison_results</span><span class="p">]</span>
-<span class="n">hw_comparison_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">&quot;evs&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_comparison_results_dicts</span><span class="p">]</span>
+<span class="n">hw_comparison_expvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">pub_result_data</span><span class="p">[</span><span class="s2">"evs"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">pub_result_data</span> <span class="ow">in</span> <span class="n">hw_comparison_results_dicts</span><span class="p">]</span>
 <span class="n">aqc_compare_expval</span> <span class="o">=</span> <span class="n">hw_comparison_expvals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exact:         </span><span class="se">\t</span><span class="si">{</span><span class="n">reference_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC:           </span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AQC Comparison:</span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_compare_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_compare_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Exact:         </span><span class="se">\t</span><span class="si">{</span><span class="n">reference_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AQC:           </span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"AQC Comparison:</span><span class="se">\t</span><span class="si">{</span><span class="n">aqc_compare_expval</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, |∆| = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="o">-</span><span class="w"> </span><span class="n">aqc_compare_expval</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1563,19 +1563,19 @@ AQC Comparison:	0.9790, |∆| = 1.5678
 <p>Plotting the results of the AQC, comparison, and exact circuits for the 50-site XXZ model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AQC Result&#39;</span><span class="p">,</span> <span class="s1">&#39;AQC Comparison Result&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'AQC Result'</span><span class="p">,</span> <span class="s1">'AQC Comparison Result'</span><span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">aqc_expval</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">aqc_compare_expval</span><span class="p">)]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="s1">&#39;tab:purple&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact Result&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Results&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Absolute Expected Value&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;AQC Result vs AQC Comparison Result (Absolute Values)&#39;</span><span class="p">)</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">'tab:blue'</span><span class="p">,</span> <span class="s1">'tab:purple'</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">reference_expval</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Exact Result'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Results'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Absolute Expected Value'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'AQC Result vs AQC Comparison Result (Absolute Values)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars</span><span class="p">:</span>
     <span class="n">yval</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">va</span><span class="o">=</span><span class="s1">'bottom'</span><span class="p">)</span>  
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

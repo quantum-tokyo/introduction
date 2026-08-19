@@ -511,7 +511,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.1.0'
 </pre></div>
 </div>
 </div>
@@ -553,7 +553,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># token = &quot;Sx2HlV3tqdCeLmE7HJd7TfMoDCWg3ybaR6srB7jYIOx5&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># token = "Sx2HlV3tqdCeLmE7HJd7TfMoDCWg3ybaR6srB7jYIOx5"</span>
 </pre></div>
 </div>
 </div>
@@ -564,9 +564,9 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
  
 <span class="c1"># QiskitRuntimeService.save_account(</span>
 <span class="c1">#  token=token,</span>
-<span class="c1">#  channel=&quot;ibm_quantum_platform&quot;, # `channel` distinguishes between different account types.</span>
-<span class="c1">#  instance=&quot;crn:v1:bluemix:public:quantum-computing:us-east:a/aa261b51b545de31d6dcf44505bc716a:ac6a1f88-6ae2-4e25-9afa-46d256e465b3::&quot;, # Optionally copy the instance CRN or name from the Instance section on the dashboard.</span>
-<span class="c1">#  name=&quot;upgraded IQP&quot;, # Optionally name this set of credentials.</span>
+<span class="c1">#  channel="ibm_quantum_platform", # `channel` distinguishes between different account types.</span>
+<span class="c1">#  instance="crn:v1:bluemix:public:quantum-computing:us-east:a/aa261b51b545de31d6dcf44505bc716a:ac6a1f88-6ae2-4e25-9afa-46d256e465b3::", # Optionally copy the instance CRN or name from the Instance section on the dashboard.</span>
+<span class="c1">#  name="upgraded IQP", # Optionally name this set of credentials.</span>
 <span class="c1">#  overwrite=True # Only needed if you already have Cloud credentials.</span>
 <span class="c1"># )</span>
 </pre></div>
@@ -584,10 +584,10 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">RZZGate</span>
 
-<span class="n">θ_h</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
+<span class="n">θ_h</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">theta_h$"</span><span class="p">)</span>
 <span class="n">qc1</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">qc1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RZZGate</span><span class="p">(</span><span class="n">θ_h</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">qc1</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc1</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -605,7 +605,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <span class="n">qc2</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">qc2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">YGate</span><span class="p">()</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">adjoint</span><span class="p">(),</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="n">qc2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -616,7 +616,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <p>あとでこの回路を使えるように、これをゲートとして定義しておきます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rzz</span> <span class="o">=</span> <span class="n">qc2</span><span class="o">.</span><span class="n">to_gate</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;RZZ&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rzz</span> <span class="o">=</span> <span class="n">qc2</span><span class="o">.</span><span class="n">to_gate</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"RZZ"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -627,8 +627,8 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">qc3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rzz</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">qc3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rzz</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">qc3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
-<span class="c1"># display(qc.decompose(reps=1).draw(&quot;mpl&quot;))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
+<span class="c1"># display(qc.decompose(reps=1).draw("mpl"))</span>
 </pre></div>
 </div>
 </div>
@@ -698,7 +698,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edge_color_map</span><span class="p">,</span> <span class="n">color_edges_map</span> <span class="o">=</span> <span class="n">color_coupling_map</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">-qubit device, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">color_edges_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> colors assigned.&quot;</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">-qubit device, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">color_edges_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2"> colors assigned."</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -713,16 +713,16 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <p>参考までに、得られた色分けで、この rustworkxの視覚化機能を使ってカップリング・マップを実際に色分けしてみましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_str_map</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color_str_map</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">"green"</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"blue"</span><span class="p">}</span>
 
 <span class="n">undirected_graph</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">(</span><span class="n">multigraph</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">undirected_graph</span><span class="o">.</span><span class="n">edge_indices</span><span class="p">():</span>
-    <span class="n">undirected_graph</span><span class="o">.</span><span class="n">get_edge_data_by_index</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="s2">&quot;color&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_str_map</span><span class="p">[</span>
+    <span class="n">undirected_graph</span><span class="o">.</span><span class="n">get_edge_data_by_index</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="s2">"color"</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_str_map</span><span class="p">[</span>
         <span class="n">edge_color_map</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="p">]</span>
 
 <span class="n">rx</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">graphviz_draw</span><span class="p">(</span>
-    <span class="n">undirected_graph</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;neato&quot;</span><span class="p">,</span> <span class="n">edge_attr_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">edge</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">edge</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">]}</span>
+    <span class="n">undirected_graph</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"neato"</span><span class="p">,</span> <span class="n">edge_attr_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">edge</span><span class="p">:</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">edge</span><span class="p">[</span><span class="s2">"color"</span><span class="p">]}</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -741,7 +741,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_utility_circuit</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">barrier</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
     <span class="n">num_qubits</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">color_edges_map</span> <span class="o">=</span> <span class="n">color_coupling_map</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
-    <span class="n">θ_h</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
+    <span class="n">θ_h</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">theta_h$"</span><span class="p">)</span>
     <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
@@ -765,9 +765,9 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">reps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
     <span class="n">qc0</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">reps</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits × </span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> layers (</span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">-depth)&quot;</span>
-        <span class="o">+</span> <span class="s2">&quot;,  &quot;</span>
-        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">qc0</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits × </span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> layers (</span><span class="si">{</span><span class="n">qc0</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span><span class="s2">-depth)"</span>
+        <span class="o">+</span> <span class="s2">",  "</span>
+        <span class="o">+</span> <span class="sa">f</span><span class="s2">"""Gate breakdown: </span><span class="si">{</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">qc0</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span><span class="s2">"""</span>
     <span class="p">)</span>
 </pre></div>
 </div>
@@ -780,14 +780,14 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <span class="n">num_steps</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">get_utility_circuit</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/ryuki/work/qenv202506/lib/python3.13/site-packages/qiskit/visualization/circuit/matplotlib.py:270: UserWarning: Style JSON file &#39;default.json&#39; not found in any of these locations: /Users/ryuki/work/qenv202506/lib/python3.13/site-packages/qiskit/visualization/circuit/styles/default.json, ~/default.json, ~/.qiskit/default.json, default.json. Will use default style.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/ryuki/work/qenv202506/lib/python3.13/site-packages/qiskit/visualization/circuit/matplotlib.py:270: UserWarning: Style JSON file 'default.json' not found in any of these locations: /Users/ryuki/work/qenv202506/lib/python3.13/site-packages/qiskit/visualization/circuit/styles/default.json, ~/default.json, ~/.qiskit/default.json, default.json. Will use default style.
   self._style, def_font_ratio = load_style(
 </pre></div>
 </div>
@@ -818,7 +818,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <span class="n">num_steps</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">get_utility_circuit</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
 <span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+        <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
     <span class="p">)</span>  <span class="c1"># Falcon</span>
 <span class="n">angles</span> <span class="o">=</span> <span class="p">[</span>
     <span class="mi">0</span><span class="p">,</span>
@@ -844,7 +844,7 @@ H = H_{ZZ} + H_X = - J \sum_{(i,j)} Z_i Z_j + h \sum_{i} X_i
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend_sim</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
 <span class="n">transpiled_qc_sim</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span>
-    <span class="n">qc</span><span class="p">,</span> <span class="n">backend_sim</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">&quot;trivial&quot;</span>
+    <span class="n">qc</span><span class="p">,</span> <span class="n">backend_sim</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">"trivial"</span>
 <span class="p">)</span>
 <span class="n">transpiled_obs_sim</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">transpiled_qc_sim</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
 
@@ -886,7 +886,7 @@ Wall time: 186 ms
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend_fake</span> <span class="o">=</span> <span class="n">fake_provider</span><span class="o">.</span><span class="n">FakeTorontoV2</span><span class="p">()</span>
 <span class="n">transpiled_qc_fake</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span>
-    <span class="n">qc</span><span class="p">,</span> <span class="n">backend_fake</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">&quot;trivial&quot;</span>
+    <span class="n">qc</span><span class="p">,</span> <span class="n">backend_fake</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">"trivial"</span>
 <span class="p">)</span>
 <span class="n">transpiled_obs_fake</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">transpiled_qc_fake</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
 
@@ -926,10 +926,10 @@ Wall time: 38.2 s
 <p>AerSimulatorから得られた、ノイズのない正確な結果と、ノイズの影響もシミュレートしたフェイク・デバイスから得られた結果をグラフにプロットして比較します。FakeToronto上でシミュレートされたノイズによる影響を見ることができます。実際の量子HWでの実験結果もおよそこのようなものになることが予想されます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_fake</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Fake Device&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AerSimulator&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{R_x}</span><span class="s2">$ angle $</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="si">{13}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_fake</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Fake Device"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"AerSimulator"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{R_x}</span><span class="s2">$ angle $</span><span class="se">\\</span><span class="s2">theta_h$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="si">{13}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -949,13 +949,13 @@ Wall time: 38.2 s
 <h3>5.1 ステップ 1: Map<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># backend_map = service.backend(&quot;ibm_kyiv&quot;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># backend_map = service.backend("ibm_kyiv")</span>
 <span class="n">backend_map</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">num_steps</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">get_utility_circuit</span><span class="p">(</span><span class="n">backend_map</span><span class="p">,</span> <span class="n">num_steps</span><span class="p">)</span>
 <span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-    <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">62</span><span class="p">],</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend_map</span><span class="o">.</span><span class="n">num_qubits</span>
+    <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="mi">62</span><span class="p">],</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend_map</span><span class="o">.</span><span class="n">num_qubits</span>
 <span class="p">)</span>  <span class="c1"># Eagle</span>
 <span class="n">angles</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
 </pre></div>
@@ -968,10 +968,10 @@ Wall time: 38.2 s
 <p>参考までに、Eagleプロセッサーのカップリング・マップには 144個のエッジがあります。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># backend = service.backend(&quot;ibm_kyiv&quot;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># backend = service.backend("ibm_kyiv")</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">backend_map</span>
 
-<span class="n">transpiled_qc</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">&quot;trivial&quot;</span><span class="p">)</span>
+<span class="n">transpiled_qc</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">layout_method</span><span class="o">=</span><span class="s2">"trivial"</span><span class="p">)</span>
 <span class="n">transpiled_obs</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">layout</span><span class="o">=</span><span class="n">transpiled_qc</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">get_circuit_info</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
@@ -988,7 +988,7 @@ Wall time: 38.2 s
 <span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
 
 <span class="n">job_id</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;job id=</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"job id=</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1016,10 +1016,10 @@ Wall time: 38.2 s
 <span class="c1"># REPLACE WITH YOUR OWN JOB ID</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">backend</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_paper</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Utility Paper&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{R_x}</span><span class="s2">$ angle $</span><span class="se">\\</span><span class="s2">theta_h$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="si">{62}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">backend</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">angles</span><span class="p">,</span> <span class="n">result_paper</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Utility Paper"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">mathrm</span><span class="si">{R_x}</span><span class="s2">$ angle $</span><span class="se">\\</span><span class="s2">theta_h$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="si">{62}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

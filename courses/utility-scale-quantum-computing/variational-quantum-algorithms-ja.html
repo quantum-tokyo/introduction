@@ -509,7 +509,7 @@
 <p>はじめに、目的の演算子を定義し、行列形式で表示します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">op</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">op</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">"Z"</span><span class="p">)</span>
 <span class="n">op</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -526,7 +526,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute eigenvalues with numpy</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalues:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Eigenvalues:"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -540,12 +540,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
-<span class="n">param</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">param</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">qc_estimator</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -573,7 +573,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 778, &#39;1&#39;: 246}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'0': 778, '1': 246}
 </pre></div>
 </div>
 </div>
@@ -582,7 +582,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of Z based on the counts</span>
-<span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"0"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -615,7 +615,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="n">x</span><span class="p">)])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
-    <span class="n">expval</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">expval</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"0"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     <span class="c1"># the following line shows the trajectory of the optimization</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">expval</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">expval</span>
@@ -626,50 +626,50 @@
 <p>SciPyの <code class="docutils literal notranslate"><span class="pre">minimize</span></code> 関数を適用して、Zの最小固有値を見つけましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
-<span class="n">min_result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;COBYLA&quot;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy's minimize</span>
+<span class="n">min_result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">"COBYLA"</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
 <span class="n">min_result</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0 {&#39;0&#39;: 1024}
-0.544921875 {&#39;0&#39;: 791, &#39;1&#39;: 233}
-0.5703125 {&#39;1&#39;: 220, &#39;0&#39;: 804}
-0.56640625 {&#39;0&#39;: 802, &#39;1&#39;: 222}
--0.439453125 {&#39;1&#39;: 737, &#39;0&#39;: 287}
--0.64453125 {&#39;1&#39;: 842, &#39;0&#39;: 182}
--0.607421875 {&#39;1&#39;: 823, &#39;0&#39;: 201}
-0.326171875 {&#39;0&#39;: 679, &#39;1&#39;: 345}
--0.65625 {&#39;1&#39;: 848, &#39;0&#39;: 176}
--0.9921875 {&#39;1&#39;: 1020, &#39;0&#39;: 4}
--0.3984375 {&#39;1&#39;: 716, &#39;0&#39;: 308}
--0.986328125 {&#39;1&#39;: 1017, &#39;0&#39;: 7}
--0.986328125 {&#39;1&#39;: 1017, &#39;0&#39;: 7}
--0.94921875 {&#39;0&#39;: 26, &#39;1&#39;: 998}
--0.9375 {&#39;1&#39;: 992, &#39;0&#39;: 32}
--0.9765625 {&#39;1&#39;: 1012, &#39;0&#39;: 12}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0 {'0': 1024}
+0.544921875 {'0': 791, '1': 233}
+0.5703125 {'1': 220, '0': 804}
+0.56640625 {'0': 802, '1': 222}
+-0.439453125 {'1': 737, '0': 287}
+-0.64453125 {'1': 842, '0': 182}
+-0.607421875 {'1': 823, '0': 201}
+0.326171875 {'0': 679, '1': 345}
+-0.65625 {'1': 848, '0': 176}
+-0.9921875 {'1': 1020, '0': 4}
+-0.3984375 {'1': 716, '0': 308}
+-0.986328125 {'1': 1017, '0': 7}
+-0.986328125 {'1': 1017, '0': 7}
+-0.94921875 {'0': 26, '1': 998}
+-0.9375 {'1': 992, '0': 32}
+-0.9765625 {'1': 1012, '0': 12}
+-0.998046875 {'1': 1023, '0': 1}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.0 {&#39;1&#39;: 1024}
--0.99609375 {&#39;1&#39;: 1022, &#39;0&#39;: 2}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--0.998046875 {&#39;1&#39;: 1023, &#39;0&#39;: 1}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
--1.0 {&#39;1&#39;: 1024}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.0 {'1': 1024}
+-0.99609375 {'1': 1022, '0': 2}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-0.998046875 {'1': 1023, '0': 1}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
+-1.0 {'1': 1024}
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Return from COBYLA because the trust region radius reaches its lower bound.
@@ -692,7 +692,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 1024}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'1': 1024}
 </pre></div>
 </div>
 </div>
@@ -702,14 +702,14 @@
 <p>VQE を使用して <span class="math notranslate nohighlight">\(Z \otimes Z\)</span> の最小固有値を計算します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">"ZZ"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;ZZ&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['ZZ'],
               coeffs=[1.+0.j])
 [[ 1.+0.j  0.+0.j  0.+0.j  0.+0.j]
  [ 0.+0.j -1.+0.j  0.+0.j  0.+0.j]
@@ -769,8 +769,8 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
-<span class="c1"># min_result = minimize(cost, [...], method=&quot;COBYLA&quot;, tol=1e-8)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy's minimize</span>
+<span class="c1"># min_result = minimize(cost, [...], method="COBYLA", tol=1e-8)</span>
 <span class="c1"># min_result</span>
 </pre></div>
 </div>
@@ -790,14 +790,14 @@
 <p>対象の演算子を定義し、行列形式で表示します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z2</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">"ZZ"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">z2</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;ZZ&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['ZZ'],
               coeffs=[1.+0.j])
 [[ 1.+0.j  0.+0.j  0.+0.j  0.+0.j]
  [ 0.+0.j -1.+0.j  0.+0.j  0.+0.j]
@@ -811,13 +811,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a variational form</span>
-<span class="n">param</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">param</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">param</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">qc_estimator</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -844,7 +844,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 212, &#39;10&#39;: 644, &#39;01&#39;: 33, &#39;00&#39;: 135}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'11': 212, '10': 644, '01': 33, '00': 135}
 </pre></div>
 </div>
 </div>
@@ -852,7 +852,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute the expectation value of ZZ based on the counts</span>
-<span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"00"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"01"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"10"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"11"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -884,7 +884,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">qc</span><span class="p">,</span> <span class="n">x</span><span class="p">)])</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
-    <span class="n">expval</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;11&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span>
+    <span class="n">expval</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"00"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"01"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"10"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"11"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span>
         <span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
     <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">expval</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
@@ -895,162 +895,162 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy&#39;s minimize</span>
-<span class="n">min_result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;COBYLA&quot;</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># minimize the cost function with scipy's minimize</span>
+<span class="n">min_result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">"COBYLA"</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
 <span class="n">min_result</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0 {&#39;00&#39;: 1024}
-0.515625 {&#39;01&#39;: 248, &#39;00&#39;: 776}
-0.568359375 {&#39;00&#39;: 803, &#39;01&#39;: 221}
-0.484375 {&#39;00&#39;: 760, &#39;01&#39;: 264}
-0.318359375 {&#39;00&#39;: 622, &#39;10&#39;: 174, &#39;01&#39;: 175, &#39;11&#39;: 53}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0 {'00': 1024}
+0.515625 {'01': 248, '00': 776}
+0.568359375 {'00': 803, '01': 221}
+0.484375 {'00': 760, '01': 264}
+0.318359375 {'00': 622, '10': 174, '01': 175, '11': 53}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.28515625 {&#39;00&#39;: 607, &#39;01&#39;: 180, &#39;10&#39;: 186, &#39;11&#39;: 51}
-0.294921875 {&#39;10&#39;: 191, &#39;00&#39;: 604, &#39;01&#39;: 170, &#39;11&#39;: 59}
--0.09375 {&#39;01&#39;: 440, &#39;00&#39;: 198, &#39;10&#39;: 120, &#39;11&#39;: 266}
-0.50390625 {&#39;01&#39;: 192, &#39;11&#39;: 745, &#39;00&#39;: 25, &#39;10&#39;: 62}
-0.009765625 {&#39;00&#39;: 313, &#39;11&#39;: 204, &#39;10&#39;: 247, &#39;01&#39;: 260}
--0.0703125 {&#39;01&#39;: 442, &#39;11&#39;: 266, &#39;00&#39;: 210, &#39;10&#39;: 106}
-0.146484375 {&#39;01&#39;: 425, &#39;11&#39;: 578, &#39;10&#39;: 12, &#39;00&#39;: 9}
--0.13671875 {&#39;00&#39;: 217, &#39;01&#39;: 467, &#39;11&#39;: 225, &#39;10&#39;: 115}
--0.642578125 {&#39;11&#39;: 15, &#39;01&#39;: 839, &#39;00&#39;: 168, &#39;10&#39;: 2}
--0.755859375 {&#39;01&#39;: 893, &#39;00&#39;: 99, &#39;11&#39;: 26, &#39;10&#39;: 6}
--0.7421875 {&#39;01&#39;: 892, &#39;11&#39;: 131, &#39;00&#39;: 1}
--0.810546875 {&#39;01&#39;: 927, &#39;00&#39;: 91, &#39;11&#39;: 6}
--0.822265625 {&#39;01&#39;: 933, &#39;00&#39;: 18, &#39;11&#39;: 73}
--0.314453125 {&#39;11&#39;: 278, &#39;01&#39;: 638, &#39;10&#39;: 35, &#39;00&#39;: 73}
--0.80078125 {&#39;01&#39;: 919, &#39;11&#39;: 62, &#39;00&#39;: 40, &#39;10&#39;: 3}
--0.861328125 {&#39;01&#39;: 952, &#39;11&#39;: 27, &#39;00&#39;: 44, &#39;10&#39;: 1}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.28515625 {'00': 607, '01': 180, '10': 186, '11': 51}
+0.294921875 {'10': 191, '00': 604, '01': 170, '11': 59}
+-0.09375 {'01': 440, '00': 198, '10': 120, '11': 266}
+0.50390625 {'01': 192, '11': 745, '00': 25, '10': 62}
+0.009765625 {'00': 313, '11': 204, '10': 247, '01': 260}
+-0.0703125 {'01': 442, '11': 266, '00': 210, '10': 106}
+0.146484375 {'01': 425, '11': 578, '10': 12, '00': 9}
+-0.13671875 {'00': 217, '01': 467, '11': 225, '10': 115}
+-0.642578125 {'11': 15, '01': 839, '00': 168, '10': 2}
+-0.755859375 {'01': 893, '00': 99, '11': 26, '10': 6}
+-0.7421875 {'01': 892, '11': 131, '00': 1}
+-0.810546875 {'01': 927, '00': 91, '11': 6}
+-0.822265625 {'01': 933, '00': 18, '11': 73}
+-0.314453125 {'11': 278, '01': 638, '10': 35, '00': 73}
+-0.80078125 {'01': 919, '11': 62, '00': 40, '10': 3}
+-0.861328125 {'01': 952, '11': 27, '00': 44, '10': 1}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.923828125 {&#39;01&#39;: 985, &#39;11&#39;: 39}
--0.537109375 {&#39;01&#39;: 780, &#39;11&#39;: 217, &#39;10&#39;: 7, &#39;00&#39;: 20}
--0.775390625 {&#39;11&#39;: 85, &#39;01&#39;: 905, &#39;00&#39;: 30, &#39;10&#39;: 4}
--0.880859375 {&#39;00&#39;: 58, &#39;01&#39;: 962, &#39;10&#39;: 1, &#39;11&#39;: 3}
--0.888671875 {&#39;01&#39;: 967, &#39;11&#39;: 57}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.923828125 {'01': 985, '11': 39}
+-0.537109375 {'01': 780, '11': 217, '10': 7, '00': 20}
+-0.775390625 {'11': 85, '01': 905, '00': 30, '10': 4}
+-0.880859375 {'00': 58, '01': 962, '10': 1, '11': 3}
+-0.888671875 {'01': 967, '11': 57}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.923828125 {&#39;01&#39;: 985, &#39;11&#39;: 39}
--0.896484375 {&#39;01&#39;: 971, &#39;11&#39;: 38, &#39;00&#39;: 15}
--0.90234375 {&#39;01&#39;: 974, &#39;11&#39;: 49, &#39;00&#39;: 1}
--0.9140625 {&#39;01&#39;: 980, &#39;11&#39;: 43, &#39;00&#39;: 1}
--0.880859375 {&#39;01&#39;: 963, &#39;11&#39;: 60, &#39;00&#39;: 1}
--0.9375 {&#39;01&#39;: 992, &#39;11&#39;: 32}
--0.97265625 {&#39;01&#39;: 1010, &#39;11&#39;: 14}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 1, &#39;11&#39;: 2}
--0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
--0.99609375 {&#39;01&#39;: 1022, &#39;11&#39;: 2}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--0.99609375 {&#39;01&#39;: 1022, &#39;11&#39;: 1, &#39;00&#39;: 1}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 1, &#39;11&#39;: 1}
--0.982421875 {&#39;01&#39;: 1015, &#39;00&#39;: 9}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 4, &#39;11&#39;: 1}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.923828125 {'01': 985, '11': 39}
+-0.896484375 {'01': 971, '11': 38, '00': 15}
+-0.90234375 {'01': 974, '11': 49, '00': 1}
+-0.9140625 {'01': 980, '11': 43, '00': 1}
+-0.880859375 {'01': 963, '11': 60, '00': 1}
+-0.9375 {'01': 992, '11': 32}
+-0.97265625 {'01': 1010, '11': 14}
+-0.994140625 {'01': 1021, '00': 1, '11': 2}
+-0.98828125 {'01': 1018, '00': 6}
+-0.99609375 {'01': 1022, '11': 2}
+-0.998046875 {'01': 1023, '00': 1}
+-0.998046875 {'01': 1023, '00': 1}
+-0.990234375 {'01': 1019, '00': 5}
+-0.99609375 {'01': 1022, '11': 1, '00': 1}
+-0.99609375 {'01': 1022, '00': 1, '11': 1}
+-0.982421875 {'01': 1015, '00': 9}
+-0.990234375 {'01': 1019, '00': 4, '11': 1}
+-0.9921875 {'01': 1020, '00': 4}
+-0.994140625 {'01': 1021, '00': 3}
+-0.98828125 {'01': 1018, '00': 6}
+-0.994140625 {'01': 1021, '00': 3}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.99609375 {'01': 1022, '00': 2}
+-0.994140625 {'01': 1021, '00': 3}
+-0.99609375 {'01': 1022, '00': 2}
+-0.9921875 {'01': 1020, '00': 4}
+-0.9921875 {'01': 1020, '00': 4}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--0.986328125 {&#39;01&#39;: 1017, &#39;00&#39;: 7}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {'01': 1021, '00': 3}
+-0.998046875 {'01': 1023, '00': 1}
+-0.990234375 {'01': 1019, '00': 5}
+-0.99609375 {'01': 1022, '00': 2}
+-0.99609375 {'01': 1022, '00': 2}
+-0.990234375 {'01': 1019, '00': 5}
+-0.994140625 {'01': 1021, '00': 3}
+-0.9921875 {'01': 1020, '00': 4}
+-0.998046875 {'01': 1023, '00': 1}
+-0.994140625 {'01': 1021, '00': 3}
+-0.99609375 {'01': 1022, '00': 2}
+-0.99609375 {'01': 1022, '00': 2}
+-0.990234375 {'01': 1019, '00': 5}
+-0.986328125 {'01': 1017, '00': 7}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.99609375 {'01': 1022, '00': 2}
+-0.99609375 {'01': 1022, '00': 2}
+-0.9921875 {'01': 1020, '00': 4}
+-0.998046875 {'01': 1023, '00': 1}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.990234375 {'01': 1019, '00': 5}
+-0.994140625 {'01': 1021, '00': 3}
+-0.998046875 {'01': 1023, '00': 1}
+-0.998046875 {'01': 1023, '00': 1}
+-0.98828125 {'01': 1018, '00': 6}
+-0.9921875 {'01': 1020, '00': 4}
+-0.998046875 {'01': 1023, '00': 1}
+-0.9921875 {'01': 1020, '00': 4}
+-0.98828125 {'01': 1018, '00': 6}
+-0.9921875 {'01': 1020, '00': 4}
+-0.990234375 {'01': 1019, '00': 5}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--1.0 {&#39;01&#39;: 1024}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {'01': 1023, '00': 1}
+-0.998046875 {'01': 1023, '00': 1}
+-0.990234375 {'01': 1019, '00': 5}
+-1.0 {'01': 1024}
+-0.998046875 {'01': 1023, '00': 1}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--1.0 {&#39;01&#39;: 1024}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.984375 {&#39;01&#39;: 1016, &#39;00&#39;: 8}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {'01': 1021, '00': 3}
+-0.99609375 {'01': 1022, '00': 2}
+-0.99609375 {'01': 1022, '00': 2}
+-0.998046875 {'01': 1023, '00': 1}
+-0.998046875 {'01': 1023, '00': 1}
+-0.998046875 {'01': 1023, '00': 1}
+-0.99609375 {'01': 1022, '00': 2}
+-1.0 {'01': 1024}
+-0.9921875 {'01': 1020, '00': 4}
+-0.99609375 {'01': 1022, '00': 2}
+-0.9921875 {'01': 1020, '00': 4}
+-0.998046875 {'01': 1023, '00': 1}
+-0.984375 {'01': 1016, '00': 8}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.986328125 {&#39;01&#39;: 1017, &#39;00&#39;: 7}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {'01': 1023, '00': 1}
+-0.986328125 {'01': 1017, '00': 7}
+-0.99609375 {'01': 1022, '00': 2}
+-0.99609375 {'01': 1022, '00': 2}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.998046875 {&#39;01&#39;: 1023, &#39;00&#39;: 1}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 3, &#39;11&#39;: 1}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--1.0 {&#39;01&#39;: 1024}
--0.982421875 {&#39;01&#39;: 1015, &#39;00&#39;: 9}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.998046875 {'01': 1023, '00': 1}
+-0.990234375 {'01': 1019, '00': 5}
+-0.998046875 {'01': 1023, '00': 1}
+-0.998046875 {'01': 1023, '00': 1}
+-0.990234375 {'01': 1019, '00': 5}
+-0.9921875 {'01': 1020, '00': 3, '11': 1}
+-0.99609375 {'01': 1022, '00': 2}
+-0.99609375 {'01': 1022, '00': 2}
+-1.0 {'01': 1024}
+-0.982421875 {'01': 1015, '00': 9}
+-0.99609375 {'01': 1022, '00': 2}
+-0.99609375 {'01': 1022, '00': 2}
+-0.9921875 {'01': 1020, '00': 4}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.9921875 {&#39;01&#39;: 1020, &#39;00&#39;: 4}
--0.99609375 {&#39;01&#39;: 1022, &#39;00&#39;: 2}
--0.994140625 {&#39;01&#39;: 1021, &#39;00&#39;: 3}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.994140625 {'01': 1021, '00': 3}
+-0.9921875 {'01': 1020, '00': 4}
+-0.9921875 {'01': 1020, '00': 4}
+-0.99609375 {'01': 1022, '00': 2}
+-0.994140625 {'01': 1021, '00': 3}
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.98828125 {&#39;01&#39;: 1018, &#39;00&#39;: 6}
--0.990234375 {&#39;01&#39;: 1019, &#39;00&#39;: 5}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.98828125 {'01': 1018, '00': 6}
+-0.990234375 {'01': 1019, '00': 5}
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Return from COBYLA because the trust region radius reaches its lower bound.
@@ -1075,7 +1075,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;01&#39;: 1020, &#39;00&#39;: 4}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'01': 1020, '00': 4}
 </pre></div>
 </div>
 </div>
@@ -1223,7 +1223,7 @@ H_C=\sum_{ij}Q_{ij}Z_i Z_j + \sum_i b_i Z_i.
     <span class="n">constant</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">edge_list</span><span class="p">():</span>
         <span class="n">w</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_edge_data</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-        <span class="n">sp_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">],</span> <span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">sp_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">],</span> <span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">constant</span> <span class="o">-=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span><span class="n">sp_list</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">graph</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">()),</span> <span class="n">constant</span>
 </pre></div>
@@ -1233,13 +1233,13 @@ H_C=\sum_{ij}Q_{ij}Z_i Z_j + \sum_i b_i Z_i.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">constant</span> <span class="o">=</span> <span class="n">build_max_cut_operator</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cost Function Hamiltonian:&quot;</span><span class="p">,</span> <span class="n">cost_hamiltonian</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Constant:&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Cost Function Hamiltonian:"</span><span class="p">,</span> <span class="n">cost_hamiltonian</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Constant:"</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cost Function Hamiltonian: SparsePauliOp([&#39;IIIZZ&#39;, &#39;IIZIZ&#39;, &#39;IIZZI&#39;, &#39;IZIZI&#39;, &#39;ZIZII&#39;, &#39;ZZIII&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cost Function Hamiltonian: SparsePauliOp(['IIIZZ', 'IIZIZ', 'IIZZI', 'IZIZI', 'ZIZII', 'ZZIII'],
               coeffs=[0.5+0.j, 0.5+0.j, 0.5+0.j, 0.5+0.j, 0.5+0.j, 0.5+0.j])
 Constant: -3.0
 </pre></div>
@@ -1266,7 +1266,7 @@ Constant: -3.0
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span> <span class="o">=</span> <span class="n">QAOAAnsatz</span><span class="p">(</span><span class="n">cost_operator</span><span class="o">=</span><span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">circuit</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
-<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1276,7 +1276,7 @@ Constant: -3.0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1332,12 +1332,12 @@ Constant: -3.0
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 
 <span class="n">candidate_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
-<span class="n">candidate_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">candidate_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_fez&#39;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_fez')&gt;
 </pre></div>
 </div>
 <img alt="../../_images/69d250fbec49a9e04486b62238a2f7d073ba07971a2939e4731a5b8a042a00c7.png" src="../../_images/69d250fbec49a9e04486b62238a2f7d073ba07971a2939e4731a5b8a042a00c7.png" />
@@ -1410,16 +1410,16 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 
     <span class="c1"># Set simple error suppression/mitigation options</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XY4&quot;</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">"XY4"</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">skip_reset_qubits</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">"auto"</span>
 
     <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
         <span class="n">cost_func_estimator</span><span class="p">,</span>
         <span class="n">init_params</span><span class="p">,</span>
         <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">candidate_circuit</span><span class="p">,</span> <span class="n">cost_hamiltonian</span><span class="p">,</span> <span class="n">estimator</span><span class="p">),</span>
-        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;COBYLA&quot;</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">"COBYLA"</span><span class="p">,</span>
         <span class="n">tol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
@@ -1443,8 +1443,8 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">objective_func_vals</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cost&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Iteration"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Cost"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1458,7 +1458,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimized_circuit</span> <span class="o">=</span> <span class="n">candidate_circuit</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-<span class="n">optimized_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">optimized_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1474,10 +1474,10 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 
 <span class="c1"># Set simple error suppression/mitigation options</span>
 <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XY4&quot;</span>
+<span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">"XY4"</span>
 <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">skip_reset_qubits</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+<span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">"auto"</span>
 
 <span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">optimized_circuit</span><span class="p">,)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">))</span>
@@ -1514,7 +1514,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <span class="n">most_likely_bitstring</span> <span class="o">=</span> <span class="n">to_bitstring</span><span class="p">(</span><span class="n">most_likely</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
 <span class="n">most_likely_bitstring</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Result bitstring:&quot;</span><span class="p">,</span> <span class="n">most_likely_bitstring</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Result bitstring:"</span><span class="p">,</span> <span class="n">most_likely_bitstring</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1528,7 +1528,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"font.size"</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
 <span class="n">final_bits</span> <span class="o">=</span> <span class="n">final_distribution_bin</span>
 <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">final_bits</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
 <span class="n">top_4_values</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">4</span><span class="p">]</span>
@@ -1538,12 +1538,12 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Result Distribution&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Bitstrings (reversed)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">final_bits</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">final_bits</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:grey&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Result Distribution"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Bitstrings (reversed)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Probability"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">final_bits</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">final_bits</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"tab:grey"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">get_children</span><span class="p">()[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;tab:purple&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">get_children</span><span class="p">()[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">"tab:purple"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1557,7 +1557,7 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 <p>最適なビット文字列から、このカットを元のグラフで視覚化できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tab:grey&quot;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;tab:purple&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">most_likely_bitstring</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"tab:grey"</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"tab:purple"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">most_likely_bitstring</span><span class="p">]</span>
 <span class="n">mpl_draw</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1573,12 +1573,12 @@ QAOAのワークフローは、このセッションの中で反復的に実行�
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_sample</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">graph</span><span class="p">:</span> <span class="n">rx</span><span class="o">.</span><span class="n">PyGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())),</span> <span class="s2">&quot;The length of x must coincide with the number of nodes in the graph.&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">())),</span> <span class="s2">"The length of x must coincide with the number of nodes in the graph."</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">u</span><span class="p">])</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">edge_list</span><span class="p">()))</span>
 
 
 <span class="n">cut_value</span> <span class="o">=</span> <span class="n">evaluate_sample</span><span class="p">(</span><span class="n">most_likely_bitstring</span><span class="p">,</span> <span class="n">graph</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value of the cut is:&quot;</span><span class="p">,</span> <span class="n">cut_value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The value of the cut is:"</span><span class="p">,</span> <span class="n">cut_value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1600,7 +1600,7 @@ QAOAをユーティリティスケールで適応させる方法は、<a class="
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.2&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.1.2'
 </pre></div>
 </div>
 </div>

@@ -452,12 +452,20 @@
 <p>はじめに以下の方法で、IBM Cloud アカウントを作成し、<a class="reference external" href="https://quantum.cloud.ibm.com/">IBM Quantum Platform</a> にサインインしてください。</p>
 <ul class="simple">
 <li><p>学生(高校生含む)・教育機関に所属する先生は、<a class="reference external" href="https://quantum-tokyo.github.io/introduction/get_started/feature_code.html">「IBM Quantum アカウント設定〜学生・先生バージョン」</a>に従ってクレジットカードなしで IBM Cloud アカウントの登録を行います。</p></li>
-<li><p>上記以外の方は、<a class="reference external" href="https://quantum.cloud.ibm.com/registration">こちら</a>から IBM Cloud アカウントを作成してください。その際、有効なメールアドレスとクレジットカード情報が必要となります。</p></li>
+<li><p>上記以外の方は、<a class="reference external" href="https://quantum.cloud.ibm.com/registration">こちら</a>から IBM Cloud アカウントを作成してください。その際、有効なメールアドレスが必要です。アカウント作成後、30日を超える前にクレジットカード情報の入力が必要となります。</p></li>
 </ul>
 </section>
 <section id="id3">
 <h2>2. 量子回路の作成<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>今回は、ベル状態を例に回路を作成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Google Colabを使っている場合は以下の # を外して、必要なライブラリーをインストールしてください。</span>
+<span class="c1"># %pip install 'qiskit[visualization]' qiskit-ibm-runtime qiskit-aer</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Qiskitライブラリーを導入</span>
@@ -478,12 +486,12 @@
 <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ae82829bc75e54dd56bda837ff1715950875f2d2f1fd8d355ec6bfe479622b97.png" src="../_images/ae82829bc75e54dd56bda837ff1715950875f2d2f1fd8d355ec6bfe479622b97.png" />
+<img alt="../_images/31fd1f1fc394687dfd88053e5a2926d9251d44de43708b6d572f7fb035999e8a.png" src="../_images/31fd1f1fc394687dfd88053e5a2926d9251d44de43708b6d572f7fb035999e8a.png" />
 </div>
 </div>
 </section>
@@ -508,10 +516,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 523, &#39;00&#39;: 501}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'00': 518, '11': 506}
 </pre></div>
 </div>
-<img alt="../_images/e0cb5798ea10cca3a23347e798ad7d367e1b7773d3ecd2a3fdaba55f06cec390.png" src="../_images/e0cb5798ea10cca3a23347e798ad7d367e1b7773d3ecd2a3fdaba55f06cec390.png" />
+<img alt="../_images/c4c8f7adaa481433a49408dfcd86a37039f0cf58bb934f08c92275175786d512.png" src="../_images/c4c8f7adaa481433a49408dfcd86a37039f0cf58bb934f08c92275175786d512.png" />
 </div>
 </div>
 </section>
@@ -526,12 +534,12 @@
 <span class="c1"># 擬似バックエンドでの実行に最適な回路にトランスパイルします</span>
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend_fake</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
-<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/777438f46ee793c2506918e2402d96726e003c488df3c81da91ca21243e37cb4.png" src="../_images/777438f46ee793c2506918e2402d96726e003c488df3c81da91ca21243e37cb4.png" />
+<img alt="../_images/46d9edc1ee63034daa24fa50bd3129972bad42fe741de9ab3496a73fbbeba017.png" src="../_images/46d9edc1ee63034daa24fa50bd3129972bad42fe741de9ab3496a73fbbeba017.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -546,7 +554,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d5fa0bb8bb19e1516c0fd5169f224317aeb01921db1dce63339c26143ae9cf0b.png" src="../_images/d5fa0bb8bb19e1516c0fd5169f224317aeb01921db1dce63339c26143ae9cf0b.png" />
+<img alt="../_images/bf78bccceef8f8476e83bfe4372ff87980f6e41794079407c60871c209681f2a.png" src="../_images/bf78bccceef8f8476e83bfe4372ff87980f6e41794079407c60871c209681f2a.png" />
 </div>
 </div>
 </section>
@@ -569,11 +577,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 
-<span class="n">your_api_key</span> <span class="o">=</span> <span class="s2">&quot;deleteThisAndPasteYourAPIKeyHere&quot;</span>
-<span class="n">your_crn</span> <span class="o">=</span> <span class="s2">&quot;deleteThisAndPasteYourCRNHere&quot;</span>
+<span class="n">your_api_key</span> <span class="o">=</span> <span class="s2">"deleteThisAndPasteYourAPIKeyHere"</span>
+<span class="n">your_crn</span> <span class="o">=</span> <span class="s2">"deleteThisAndPasteYourCRNHere"</span>
 
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="o">.</span><span class="n">save_account</span><span class="p">(</span>
-    <span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_cloud&quot;</span><span class="p">,</span>
+    <span class="n">channel</span><span class="o">=</span><span class="s2">"ibm_cloud"</span><span class="p">,</span>
     <span class="n">token</span><span class="o">=</span><span class="n">your_api_key</span><span class="p">,</span> 
     <span class="n">instance</span><span class="o">=</span><span class="n">your_crn</span><span class="p">,</span> 
     <span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
@@ -592,15 +600,18 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;, &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend('ibm_fez')&gt;,
+ &lt;IBMBackend('ibm_marrakesh')&gt;,
+ &lt;IBMBackend('ibm_kingston')&gt;]
 </pre></div>
 </div>
 </div>
 </div>
+<p>上記の使用可能なデバイス一覧から、デバイスを選んで、以下のように指定できます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 以下でデバイスを指定できます。</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s1">&#39;ibm_brisbane&#39;</span><span class="p">)</span> 
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s1">'ibm_fez'</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -609,12 +620,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#一番空いているバックエンドを自動的に選択することもできます</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;最も空いているバックエンドは: &quot;</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"最も空いているバックエンドは: "</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最も空いているバックエンドは:  &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最も空いているバックエンドは:  &lt;IBMBackend('ibm_kingston')&gt;
 </pre></div>
 </div>
 </div>
@@ -625,12 +636,12 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
-<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/52bb5b165f7628d5e35e87541df181add15b470401d2acceaa2654a205075ed8.png" src="../_images/52bb5b165f7628d5e35e87541df181add15b470401d2acceaa2654a205075ed8.png" />
+<img alt="../_images/08c6d5cbde1e8441abd1180e17f18577b5f7100422525332ba45ce54cd49ba4b.png" src="../_images/08c6d5cbde1e8441abd1180e17f18577b5f7100422525332ba45ce54cd49ba4b.png" />
 </div>
 </div>
 <p><strong>注意！！以下のセルを実行すると、実機の量子コンピューターで実行されます。QPU 時間を無駄に消費しないために、回路に問題がないかシミュレーターや擬似デバイスで確認してから実行しましょう。Open userの方の QPU 時間の上限は1ヶ月に10分です。</strong> QPU time は、<a class="reference external" href="https://quantum.cloud.ibm.com/">IBM Quantum Platform</a> のトップページで確認できます。</p>
@@ -641,12 +652,12 @@
 <span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">isa_circuit</span><span class="p">])</span> <span class="c1"># デフォルトのショット数は4096です</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> <span class="c1"># 実行に時間がかかるのでjob_idを表示します</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"job id:"</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> <span class="c1"># 実行に時間がかかるのでjob_idを表示します</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: d3tm08cv6o9s73ct2c1g
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>job id: da2g0rm1vhnc73fiksi0
 </pre></div>
 </div>
 </div>
@@ -655,13 +666,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> 
-<span class="c1">#job = service.job(&quot;d3tm08cv6o9s73ct2c1g&quot;) </span>
+<span class="c1">#job = service.job("da2g0rm1vhnc73fiksi0") </span>
 <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span> <span class="c1"># ジョブの実行状態を確認します</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;QUEUED&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'QUEUED'
 </pre></div>
 </div>
 </div>
@@ -671,13 +682,13 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 待ち時間が長い時に後から結果を確認する場合</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>  
-<span class="n">job</span><span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;d3tm08cv6o9s73ct2c1g&#39;</span><span class="p">)</span> <span class="c1"># 例です。上に出力された自分のjob_idを入れて実行してください。</span>
+<span class="n">job</span><span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">'da2g0rm1vhnc73fiksi0'</span><span class="p">)</span> <span class="c1"># 例です。上に出力された自分のjob_idを入れて実行してください。</span>
 <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span> <span class="c1"># ジョブの実行状態を確認します</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;QUEUED&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'DONE'
 </pre></div>
 </div>
 </div>
@@ -685,14 +696,14 @@
 <p>上記のセルを何回か実行して、’DONE’ が表示されたら、実機での実行が終わっているので、以下のセルを実行して結果を確認します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### &#39;DONE&#39;になってから実行します ###</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### 'DONE'になってから実行します ###</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;00&#39;: 2067, &#39;11&#39;: 1936, &#39;10&#39;: 44, &#39;01&#39;: 49}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'11': 1849, '00': 2179, '10': 42, '01': 26}
 </pre></div>
 </div>
 </div>
@@ -704,7 +715,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4a47bf515e3ff82355a3c2288ad82001bfbf5522c589fabce114fe10367478a7.png" src="../_images/4a47bf515e3ff82355a3c2288ad82001bfbf5522c589fabce114fe10367478a7.png" />
+<img alt="../_images/2fa9ce0e0cbc56ac77b85a798056f1ac7e1b3f577368992862c1c5ce51110a0b.png" src="../_images/2fa9ce0e0cbc56ac77b85a798056f1ac7e1b3f577368992862c1c5ce51110a0b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -716,7 +727,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.2&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.5.0'
 </pre></div>
 </div>
 </div>

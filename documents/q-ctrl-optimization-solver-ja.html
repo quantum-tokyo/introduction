@@ -655,16 +655,16 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="c1"># Credentials</span>
-<span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span>
-<span class="n">hub</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_HUB&gt;&quot;</span>
-<span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_GROUP&gt;&quot;</span>
-<span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_PROJECT&gt;&quot;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_API_TOKEN&gt;"</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_HUB&gt;"</span>
+<span class="n">group</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_GROUP&gt;"</span>
+<span class="n">project</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_PROJECT&gt;"</span>
 
 <span class="c1"># Authentication</span>
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
 
 <span class="c1"># Access Function</span>
-<span class="n">solver</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;q-ctrl/optimization-solver&#39;</span><span class="p">)</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'q-ctrl/optimization-solver'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -725,8 +725,8 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the problem</span>
 <span class="n">maxcut_job</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">problem_as_str</span><span class="p">,</span>
-    <span class="n">problem_type</span> <span class="o">=</span> <span class="s2">&quot;maxcut&quot;</span><span class="p">,</span>
-    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span>
+    <span class="n">problem_type</span> <span class="o">=</span> <span class="s2">"maxcut"</span><span class="p">,</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">project</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -754,10 +754,10 @@
 <span class="n">maxcut_result</span> <span class="o">=</span> <span class="n">maxcut_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 
 <span class="c1"># Take the absolute value of the solution since the cost function is minimized</span>
-<span class="n">qctrl_maxcut</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">maxcut_result</span><span class="p">[</span><span class="s2">&quot;solution_bitstring_cost&quot;</span><span class="p">])</span>
+<span class="n">qctrl_maxcut</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">maxcut_result</span><span class="p">[</span><span class="s2">"solution_bitstring_cost"</span><span class="p">])</span>
 
 <span class="c1"># Print the optimal cut value found by the Optimization Solver</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal cut value: </span><span class="si">{</span><span class="n">qctrl_maxcut</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Optimal cut value: </span><span class="si">{</span><span class="n">qctrl_maxcut</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -823,11 +823,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct the cost function.</span>
-<span class="n">variables</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;n[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">node_count</span><span class="p">)])</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">([</span><span class="sa">f</span><span class="s2">"n[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">node_count</span><span class="p">)])</span>
 <span class="n">cost_function</span> <span class="o">=</span> <span class="n">Poly</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">variables</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mvc_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">():</span>
-    <span class="n">weight</span> <span class="o">=</span> <span class="n">mvc_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">mvc_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"weight"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">cost_function</span> <span class="o">+=</span> <span class="n">variables</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">weight</span>
 </pre></div>
 </div>
@@ -857,7 +857,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the problem</span>
 <span class="n">mvc_job</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">srepr</span><span class="p">(</span><span class="n">cost_function</span><span class="p">),</span>
-    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">project</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -878,10 +878,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mvc_result</span> <span class="o">=</span> <span class="n">mvc_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-<span class="n">qctrl_cost</span> <span class="o">=</span> <span class="n">mvc_result</span><span class="p">[</span><span class="s2">&quot;solution_bitstring_cost&quot;</span><span class="p">]</span>
+<span class="n">qctrl_cost</span> <span class="o">=</span> <span class="n">mvc_result</span><span class="p">[</span><span class="s2">"solution_bitstring_cost"</span><span class="p">]</span>
 
 <span class="c1"># Print results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solution cost: </span><span class="si">{</span><span class="n">qctrl_cost</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Solution cost: </span><span class="si">{</span><span class="n">qctrl_cost</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

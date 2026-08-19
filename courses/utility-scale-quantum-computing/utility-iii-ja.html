@@ -482,7 +482,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.2.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.2.0'
 </pre></div>
 </div>
 </div>
@@ -496,7 +496,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.41.1&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'0.41.1'
 </pre></div>
 </div>
 </div>
@@ -543,7 +543,7 @@
 <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -553,7 +553,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">qc</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Depth:"</span><span class="p">,</span> <span class="n">qc</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -567,7 +567,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">"ibm_brisbane"</span><span class="p">)</span>
 <span class="c1">#backend = service.least_busy(operational=True, simulator=False)</span>
 <span class="n">backend</span><span class="o">.</span><span class="n">name</span>
 <span class="c1"># or</span>
@@ -577,7 +577,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ibm_brisbane&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'ibm_brisbane'
 </pre></div>
 </div>
 </div>
@@ -586,7 +586,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">qc_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
-<span class="n">qc_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -596,9 +596,9 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">qc_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Depth:"</span><span class="p">,</span> <span class="n">qc_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="s2">"Two-qubit Depth:"</span><span class="p">,</span>
     <span class="n">qc_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -635,7 +635,7 @@ Two-qubit Depth: 6
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'DONE'
 </pre></div>
 </div>
 </div>
@@ -666,7 +666,7 @@ Note:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">execute_ghz_fidelity</span><span class="p">(</span>
-    <span class="n">ghz_circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span>  <span class="c1"># Quantum circuit to create GHZ state (Circuit after Routing or without Routing), Classical register name is &quot;c&quot;</span>
+    <span class="n">ghz_circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span>  <span class="c1"># Quantum circuit to create GHZ state (Circuit after Routing or without Routing), Classical register name is "c"</span>
     <span class="n">physical_qubits</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>  <span class="c1"># Physical qubits to represent GHZ state</span>
     <span class="n">backend</span><span class="p">:</span> <span class="n">BackendV2</span><span class="p">,</span>
     <span class="n">sampler_options</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="n">SamplerOptions</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -685,7 +685,7 @@ Note:</p>
         <span class="n">mk_circuits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
 
     <span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="n">physical_qubits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
+        <span class="p">[(</span><span class="s2">"Z"</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="n">physical_qubits</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span>
     <span class="p">)</span>
     <span class="n">job_ids</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">pm1</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
@@ -696,14 +696,14 @@ Note:</p>
         <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">org_transpiled</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">N_SHOTS</span><span class="p">)</span>
         <span class="n">job_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sampler job id: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">, shots=</span><span class="si">{</span><span class="n">N_SHOTS</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sampler job id: </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">, shots=</span><span class="si">{</span><span class="n">N_SHOTS</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span>  <span class="c1"># TREX is applied as default</span>
         <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">execution</span><span class="o">.</span><span class="n">rep_delay</span> <span class="o">=</span> <span class="mf">0.0005</span>
         <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">job2</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([(</span><span class="n">circ</span><span class="p">,</span> <span class="n">obs</span><span class="p">)</span> <span class="k">for</span> <span class="n">circ</span> <span class="ow">in</span> <span class="n">mk_transpiled</span><span class="p">],</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
         <span class="n">job_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimator job id:&quot;</span><span class="p">,</span> <span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Estimator job id:"</span><span class="p">,</span> <span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">(),</span> <span class="n">job2</span><span class="o">.</span><span class="n">job_id</span><span class="p">()]</span>
 </pre></div>
 </div>
@@ -720,34 +720,34 @@ Note:</p>
     <span class="n">N</span> <span class="o">=</span> <span class="n">num_qubits</span>
     <span class="n">sampler_result</span> <span class="o">=</span> <span class="n">sampler_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="n">sampler_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
-    <span class="n">all_zero</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;0&quot;</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
-    <span class="n">all_one</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
+    <span class="n">all_zero</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"0"</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
+    <span class="n">all_one</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"1"</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
     <span class="n">top3</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">: |00..0&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, |11..1&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, |3rd&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">top3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">top3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="sa">f</span><span class="s2">"N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">: |00..0&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'0'</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, |11..1&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'1'</span><span class="o">*</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">, |3rd&gt;: </span><span class="si">{</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">top3</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">top3</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">)"</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P(|00..0&gt;)=</span><span class="si">{</span><span class="n">all_zero</span><span class="si">}</span><span class="s2">, P(|11..1&gt;)=</span><span class="si">{</span><span class="n">all_one</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"P(|00..0&gt;)=</span><span class="si">{</span><span class="n">all_zero</span><span class="si">}</span><span class="s2">, P(|11..1&gt;)=</span><span class="si">{</span><span class="n">all_one</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="n">estimator_result</span> <span class="o">=</span> <span class="n">estimator_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
     <span class="n">non_diagonal</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span>
         <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">k</span> <span class="o">*</span> <span class="n">estimator_result</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;REM: Coherence (non-diagonal): </span><span class="si">{</span><span class="n">non_diagonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"REM: Coherence (non-diagonal): </span><span class="si">{</span><span class="n">non_diagonal</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">fidelity</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">all_zero</span> <span class="o">+</span> <span class="n">all_one</span> <span class="o">+</span> <span class="n">non_diagonal</span><span class="p">)</span>
     <span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
         <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">all_zero</span> <span class="o">-</span> <span class="n">all_one</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">all_zero</span> <span class="o">+</span> <span class="n">all_one</span><span class="p">)</span> <span class="o">/</span> <span class="n">shots</span>
         <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">estimator_result</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="n">N</span><span class="p">)</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GHZ fidelity = </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GHZ fidelity = </span><span class="si">{</span><span class="n">fidelity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">fidelity</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GME (genuinely multipartite entangled) test: Passed&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"GME (genuinely multipartite entangled) test: Passed"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GME (genuinely multipartite entangled) test: Failed&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"GME (genuinely multipartite entangled) test: Failed"</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span>
-        <span class="s2">&quot;fidelity&quot;</span><span class="p">:</span> <span class="n">fidelity</span><span class="p">,</span>
-        <span class="s2">&quot;sigma&quot;</span><span class="p">:</span> <span class="n">sigma</span><span class="p">,</span>
-        <span class="s2">&quot;shots&quot;</span><span class="p">:</span> <span class="n">shots</span><span class="p">,</span>
-        <span class="s2">&quot;job_ids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">sampler_job</span><span class="o">.</span><span class="n">job_id</span><span class="p">(),</span> <span class="n">estimator_job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()],</span>
+        <span class="s2">"fidelity"</span><span class="p">:</span> <span class="n">fidelity</span><span class="p">,</span>
+        <span class="s2">"sigma"</span><span class="p">:</span> <span class="n">sigma</span><span class="p">,</span>
+        <span class="s2">"shots"</span><span class="p">:</span> <span class="n">shots</span><span class="p">,</span>
+        <span class="s2">"job_ids"</span><span class="p">:</span> <span class="p">[</span><span class="n">sampler_job</span><span class="o">.</span><span class="n">job_id</span><span class="p">(),</span> <span class="n">estimator_job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()],</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -761,10 +761,10 @@ Note:</p>
 <p>まず、バックエンドを指定します。特定のバックエンドのプロパティを広範囲に操作するため、 <code class="docutils literal notranslate"><span class="pre">least_busy</span></code> オプションを使用するのではなく、1つのバックエンドを指定することをお勧めします。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">)</span>  <span class="c1"># eagle</span>
-<span class="n">twoq_gate</span> <span class="o">=</span> <span class="s2">&quot;ecr&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> Loaded with </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two Qubit Gate: </span><span class="si">{</span><span class="n">twoq_gate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">"ibm_brisbane"</span><span class="p">)</span>  <span class="c1"># eagle</span>
+<span class="n">twoq_gate</span> <span class="o">=</span> <span class="s2">"ecr"</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Device </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> Loaded with </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Two Qubit Gate: </span><span class="si">{</span><span class="n">twoq_gate</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -800,13 +800,13 @@ Two Qubit Gate: ecr
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">path_fidelity</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">correct_by_duration</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">readout_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute an estimate of the total fidelity of 2-qubit gates on a path.</span>
+<span class="w">    </span><span class="sd">"""Compute an estimate of the total fidelity of 2-qubit gates on a path.</span>
 <span class="sd">    If `correct_by_duration` is true, each gate fidelity is worsen by</span>
 <span class="sd">    scale = max_duration / duration, that is, gate_fidelity^scale.</span>
 <span class="sd">    If `readout_scale` &gt; 0 is supplied, readout_fidelity^readout_scale</span>
 <span class="sd">    for each qubit on the path is multiplied to the total fielity.</span>
 <span class="sd">    The path is given in node indices form, for example, [0, 1, 2].</span>
-<span class="sd">    An external function `to_edges` is used to obtain edge list, for example, [(0, 1), (1, 2)].&quot;&quot;&quot;</span>
+<span class="sd">    An external function `to_edges` is used to obtain edge list, for example, [(0, 1), (1, 2)]."""</span>
     <span class="n">path_edges</span> <span class="o">=</span> <span class="n">to_edges</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
     <span class="n">max_duration</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">twoq_gate</span><span class="p">][</span><span class="n">qs</span><span class="p">]</span><span class="o">.</span><span class="n">duration</span> <span class="k">for</span> <span class="n">qs</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">)</span>
 
@@ -817,7 +817,7 @@ Two Qubit Gate: ecr
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.25</span> <span class="o">*</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="n">twoq_gate</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="p">))</span> <span class="o">**</span> <span class="n">scale</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">readout_fidelity</span><span class="p">(</span><span class="n">qubit</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][(</span><span class="n">qubit</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">"measure"</span><span class="p">][(</span><span class="n">qubit</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
 
     <span class="n">total_fidelity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span>
         <span class="p">[</span><span class="n">gate_fidelity</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="k">for</span> <span class="n">qs</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">]</span>
@@ -864,16 +864,16 @@ Two Qubit Gate: ecr
 <span class="n">paths</span> <span class="o">=</span> <span class="n">flatten</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>  <span class="c1"># If you have time, you could set a larger cutoff.</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">paths</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;No qubit chain with length=</span><span class="si">{</span><span class="n">num_qubits_in_chain</span><span class="si">}</span><span class="s2"> exists in </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. Try smaller num_qubits_in_chain.&quot;</span>
+        <span class="sa">f</span><span class="s2">"No qubit chain with length=</span><span class="si">{</span><span class="n">num_qubits_in_chain</span><span class="si">}</span><span class="s2"> exists in </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">. Try smaller num_qubits_in_chain."</span>
     <span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selecting the best from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> candidate paths&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Selecting the best from </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span><span class="si">}</span><span class="s2"> candidate paths"</span><span class="p">)</span>
 
 <span class="n">best_qubit_chain</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
     <span class="n">paths</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">path_fidelity</span><span class="p">,</span> <span class="n">correct_by_duration</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readout_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_qubits_in_chain</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicted (best possible) process fidelity: </span><span class="si">{</span><span class="n">path_fidelity</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Predicted (best possible) process fidelity: </span><span class="si">{</span><span class="n">path_fidelity</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -905,9 +905,9 @@ Wall time: 242 ms
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubit_chain</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>  <span class="c1"># pink</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ff00dd"</span><span class="p">)</span>  <span class="c1"># pink</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#8c00ff"</span><span class="p">)</span>  <span class="c1"># purple</span>
 <span class="n">plot_gate_map</span><span class="p">(</span>
     <span class="n">backend</span><span class="p">,</span> <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span> <span class="n">qubit_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="p">)</span>
@@ -931,7 +931,7 @@ Wall time: 242 ms
     <span class="n">ghz1</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">best_qubit_chain</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">ghz1</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
 <span class="n">ghz1</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubit_chain</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
-<span class="n">ghz1</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz1</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -955,7 +955,7 @@ Wall time: 242 ms
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">ghz1_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz1</span><span class="p">)</span>
-<span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -965,9 +965,9 @@ Wall time: 242 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Depth:"</span><span class="p">,</span> <span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="s2">"Two-qubit Depth:"</span><span class="p">,</span>
     <span class="n">ghz1_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -1060,15 +1060,15 @@ GME (genuinely multipartite entangled) test: Failed
 <span class="n">bad_readout_qubits</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">q</span>
     <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][(</span><span class="n">q</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_READOUT_ERROR_THRESHOLD</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">"measure"</span><span class="p">][(</span><span class="n">q</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_READOUT_ERROR_THRESHOLD</span>
 <span class="p">]</span>
 <span class="n">bad_ecrgate_edges</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">qpair</span>
-    <span class="k">for</span> <span class="n">qpair</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_ECRGATE_ERROR_THRESHOLD</span>
+    <span class="k">for</span> <span class="n">qpair</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">"ecr"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">"ecr"</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_ECRGATE_ERROR_THRESHOLD</span>
 <span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad readout qubits:&quot;</span><span class="p">,</span> <span class="n">bad_readout_qubits</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad ECR gates:&quot;</span><span class="p">,</span> <span class="n">bad_ecrgate_edges</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Bad readout qubits:"</span><span class="p">,</span> <span class="n">bad_readout_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Bad ECR gates:"</span><span class="p">,</span> <span class="n">bad_ecrgate_edges</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1096,15 +1096,15 @@ Bad ECR gates: [(24, 34), (85, 84)]
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>  <span class="c1"># black</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#000000"</span><span class="p">)</span>  <span class="c1"># black</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#8c00ff"</span><span class="p">)</span>  <span class="c1"># purple</span>
 <span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_ecrgate_edges</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>  <span class="c1"># white</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ffffff"</span><span class="p">)</span>  <span class="c1"># white</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>  <span class="c1"># gray</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#888888"</span><span class="p">)</span>  <span class="c1"># gray</span>
 <span class="n">plot_gate_map</span><span class="p">(</span>
     <span class="n">backend</span><span class="p">,</span>
     <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
@@ -1162,14 +1162,14 @@ Bad ECR gates: [(24, 34), (85, 84)]
 <span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
 <span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
-<span class="c1"># print(&#39;Tree edges:&#39;, vis.edges)</span>
+<span class="c1"># print('Tree edges:', vis.edges)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Qubits selected:"</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1185,11 +1185,11 @@ Bad ECR gates: [(24, 34), (85, 84)]
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>  <span class="c1"># black</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#000000"</span><span class="p">)</span>  <span class="c1"># black</span>
     <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>  <span class="c1"># pink</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ff00dd"</span><span class="p">)</span>  <span class="c1"># pink</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#8c00ff"</span><span class="p">)</span>  <span class="c1"># purple</span>
 <span class="n">plot_gate_map</span><span class="p">(</span>
     <span class="n">backend</span><span class="p">,</span>
     <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
@@ -1214,7 +1214,7 @@ Bad ECR gates: [(24, 34), (85, 84)]
 <span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 <span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
 
-<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"dot"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1232,7 +1232,7 @@ Bad ECR gates: [(24, 34), (85, 84)]
     <span class="n">ghz2</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">ghz2</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
 <span class="n">ghz2</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
-<span class="n">ghz2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ghz2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1256,7 +1256,7 @@ Bad ECR gates: [(24, 34), (85, 84)]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">ghz2_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz2</span><span class="p">)</span>
-<span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1266,9 +1266,9 @@ Bad ECR gates: [(24, 34), (85, 84)]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Depth:"</span><span class="p">,</span> <span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="s2">"Two-qubit Depth:"</span><span class="p">,</span>
     <span class="n">ghz2_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -1378,7 +1378,7 @@ GME (genuinely multipartite entangled) test: Failed
 <span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
 <span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Qubits selected:"</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1393,17 +1393,17 @@ GME (genuinely multipartite entangled) test: Failed
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">133</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#000000"</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ff00dd"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#8c00ff"</span><span class="p">)</span>
 <span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_ecrgate_edges</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ffffff"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#888888"</span><span class="p">)</span>
 <span class="n">plot_gate_map</span><span class="p">(</span>
     <span class="n">backend</span><span class="p">,</span>
     <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
@@ -1427,7 +1427,7 @@ GME (genuinely multipartite entangled) test: Failed
 <span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 <span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
 
-<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"dot"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1446,7 +1446,7 @@ GME (genuinely multipartite entangled) test: Failed
     <span class="n">ghz3</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">ghz3</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
 <span class="n">ghz3</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
-<span class="n">ghz3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1470,7 +1470,7 @@ GME (genuinely multipartite entangled) test: Failed
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">ghz3_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz3</span><span class="p">)</span>
-<span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1480,9 +1480,9 @@ GME (genuinely multipartite entangled) test: Failed
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Depth:"</span><span class="p">,</span> <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="s2">"Two-qubit Depth:"</span><span class="p">,</span>
     <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -1506,7 +1506,7 @@ Two-qubit Depth: 9
 <span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
 <span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Qubits selected:"</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1524,7 +1524,7 @@ Two-qubit Depth: 9
 <span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 <span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
 
-<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"dot"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1543,7 +1543,7 @@ Two-qubit Depth: 9
     <span class="n">ghz3</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">ghz3</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
 <span class="n">ghz3</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
-<span class="n">ghz3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1567,7 +1567,7 @@ Two-qubit Depth: 9
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">ghz3_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz3</span><span class="p">)</span>
-<span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1577,9 +1577,9 @@ Two-qubit Depth: 9
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Depth:"</span><span class="p">,</span> <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="s2">"Two-qubit Depth:"</span><span class="p">,</span>
     <span class="n">ghz3_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -1678,7 +1678,7 @@ GME (genuinely multipartite entangled) test: Failed
 <span class="n">opts</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">skip_reset_qubits</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XY4&quot;</span>
+<span class="n">opts</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">"XY4"</span>
 </pre></div>
 </div>
 </div>
@@ -1770,12 +1770,12 @@ Note:</p>
 <p><em>この次の実験を実行するためのおおよその QPU 時間は 4 分 40 秒です。</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;premium&quot;</span><span class="p">)</span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_kingston&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"premium"</span><span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">"ibm_kingston"</span><span class="p">)</span>
 
-<span class="n">twoq_gate</span> <span class="o">=</span> <span class="s2">&quot;cz&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> Loaded with </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Two Qubit Gate: </span><span class="si">{</span><span class="n">twoq_gate</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">twoq_gate</span> <span class="o">=</span> <span class="s2">"cz"</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Device </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> Loaded with </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Two Qubit Gate: </span><span class="si">{</span><span class="n">twoq_gate</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1793,15 +1793,15 @@ Two Qubit Gate: cz
 <span class="n">bad_readout_qubits</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">q</span>
     <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][(</span><span class="n">q</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_READOUT_ERROR_THRESHOLD</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">"measure"</span><span class="p">][(</span><span class="n">q</span><span class="p">,)]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_READOUT_ERROR_THRESHOLD</span>
 <span class="p">]</span>
 <span class="n">bad_czgate_edges</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">qpair</span>
-    <span class="k">for</span> <span class="n">qpair</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;cz&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;cz&quot;</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_CZGATE_ERROR_THRESHOLD</span>
+    <span class="k">for</span> <span class="n">qpair</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">"cz"</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="p">[</span><span class="s2">"cz"</span><span class="p">][</span><span class="n">qpair</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">BAD_CZGATE_ERROR_THRESHOLD</span>
 <span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad readout qubits:&quot;</span><span class="p">,</span> <span class="n">bad_readout_qubits</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bad CZ gates:&quot;</span><span class="p">,</span> <span class="n">bad_czgate_edges</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Bad readout qubits:"</span><span class="p">,</span> <span class="n">bad_readout_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Bad CZ gates:"</span><span class="p">,</span> <span class="n">bad_czgate_edges</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1828,15 +1828,15 @@ Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113,
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>  <span class="c1"># black</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#000000"</span><span class="p">)</span>  <span class="c1"># black</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>  <span class="c1"># purple</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#8c00ff"</span><span class="p">)</span>  <span class="c1"># purple</span>
 <span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_czgate_edges</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>  <span class="c1"># white</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ffffff"</span><span class="p">)</span>  <span class="c1"># white</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>  <span class="c1"># gray</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#888888"</span><span class="p">)</span>  <span class="c1"># gray</span>
 <span class="n">plot_gate_map</span><span class="p">(</span>
     <span class="n">backend</span><span class="p">,</span>
     <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
@@ -1879,7 +1879,7 @@ Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113,
 <span class="n">vis</span> <span class="o">=</span> <span class="n">TreeEdgesRecorder</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">rx</span><span class="o">.</span><span class="n">bfs_search</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="p">[</span><span class="n">central</span><span class="p">],</span> <span class="n">vis</span><span class="p">)</span>
 <span class="n">best_qubits</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">q</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">vis</span><span class="o">.</span><span class="n">edges</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]))))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubits selected:&quot;</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Qubits selected:"</span><span class="p">,</span> <span class="n">best_qubits</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1894,17 +1894,17 @@ Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113,
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bad_readout_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#000000"</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ff00dd&quot;</span><span class="p">)</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ff00dd"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#8c00ff&quot;</span><span class="p">)</span>
+        <span class="n">qubit_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#8c00ff"</span><span class="p">)</span>
 <span class="n">line_color</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">build_coupling_map</span><span class="p">()</span><span class="o">.</span><span class="n">get_edges</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bad_czgate_edges</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#ffffff&quot;</span><span class="p">)</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#ffffff"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;#888888&quot;</span><span class="p">)</span>
+        <span class="n">line_color</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"#888888"</span><span class="p">)</span>
 <span class="n">plot_gate_map</span><span class="p">(</span>
     <span class="n">backend</span><span class="p">,</span>
     <span class="n">qubit_color</span><span class="o">=</span><span class="n">qubit_color</span><span class="p">,</span>
@@ -1928,7 +1928,7 @@ Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113,
 <span class="n">tree</span><span class="o">.</span><span class="n">extend_from_weighted_edge_list</span><span class="p">(</span><span class="n">vis</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 <span class="n">tree</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">best_qubits</span><span class="p">])</span>
 
-<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"dot"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1946,7 +1946,7 @@ Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113,
     <span class="n">ghz_h</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">ghz_h</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>  <span class="c1"># for visualization</span>
 <span class="n">ghz_h</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">best_qubits</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)))</span>
-<span class="n">ghz_h</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz_h</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1970,7 +1970,7 @@ Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113,
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">ghz_h_transpiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ghz_h</span><span class="p">)</span>
-<span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1980,9 +1980,9 @@ Bad CZ gates: [(111, 112), (112, 111), (112, 113), (113, 112), (113, 114), (113,
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Depth:&quot;</span><span class="p">,</span> <span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Depth:"</span><span class="p">,</span> <span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="s2">&quot;Two-qubit Depth:&quot;</span><span class="p">,</span>
+    <span class="s2">"Two-qubit Depth:"</span><span class="p">,</span>
     <span class="n">ghz_h_transpiled</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="n">filter_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>

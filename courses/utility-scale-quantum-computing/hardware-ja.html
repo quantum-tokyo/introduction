@@ -485,7 +485,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend(&#39;ibm_brisbane&#39;)&gt;, &lt;IBMBackend(&#39;ibm_torino&#39;)&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;IBMBackend('ibm_brisbane')&gt;, &lt;IBMBackend('ibm_torino')&gt;]
 </pre></div>
 </div>
 </div>
@@ -493,7 +493,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
-<span class="c1"># backend = service.backend(&quot;ibm_kawasaki&quot;) # an Eagle, if you have access to ibm_kawasaki</span>
+<span class="c1"># backend = service.backend("ibm_kawasaki") # an Eagle, if you have access to ibm_kawasaki</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
     <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span>
 <span class="p">)</span>  <span class="c1"># Eagle</span>
@@ -502,7 +502,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ibm_torino&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'ibm_torino'
 </pre></div>
 </div>
 </div>
@@ -510,7 +510,7 @@
 <p>(訳註) 現在使える Eagle マシンを選択します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_brisbane&quot;</span><span class="p">)</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">"ibm_brisbane"</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -519,19 +519,19 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="sa">f</span><span class="s2">"""</span>
 <span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits</span>
 <span class="s2">processor type = </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">processor_type</span><span class="si">}</span>
 <span class="s2">basis gates = </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">basis_gates</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_brisbane, 127 qubits
-processor type = {&#39;family&#39;: &#39;Eagle&#39;, &#39;revision&#39;: 3}
-basis gates = [&#39;ecr&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#39;]
+processor type = {'family': 'Eagle', 'revision': 3}
+basis gates = ['ecr', 'id', 'rz', 'sx', 'x']
 </pre></div>
 </div>
 </div>
@@ -541,23 +541,23 @@ basis gates = [&#39;ecr&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#
 <p>Heron デバイスに関する基本情報 “ibm_torino” を取得してみてください。自分で確認できるようにコードが以下に追加されています。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_heron</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">&quot;ibm_torino&quot;</span><span class="p">)</span>  <span class="c1"># a Heron</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_heron</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">"ibm_torino"</span><span class="p">)</span>  <span class="c1"># a Heron</span>
 
 <span class="c1"># your code here</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="sa">f</span><span class="s2">"""</span>
 <span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">a_heron</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2"> qubits</span>
 <span class="s2">processor type = </span><span class="si">{</span><span class="n">a_heron</span><span class="o">.</span><span class="n">processor_type</span><span class="si">}</span>
 <span class="s2">basis gates = </span><span class="si">{</span><span class="n">a_heron</span><span class="o">.</span><span class="n">basis_gates</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_brisbane, 133 qubits
-processor type = {&#39;family&#39;: &#39;Heron&#39;, &#39;revision&#39;: &#39;1&#39;}
-basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#39;]
+processor type = {'family': 'Heron', 'revision': '1'}
+basis gates = ['cz', 'id', 'rz', 'sx', 'x']
 </pre></div>
 </div>
 </div>
@@ -592,7 +592,7 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">qn</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">qn</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
         <span class="k">break</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">qn</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">qubit_properties</span><span class="p">(</span><span class="n">qn</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">qn</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">qubit_properties</span><span class="p">(</span><span class="n">qn</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -610,12 +610,12 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1s</span> <span class="o">=</span> <span class="p">[</span><span class="n">backend</span><span class="o">.</span><span class="n">qubit_properties</span><span class="p">(</span><span class="n">qq</span><span class="p">)</span><span class="o">.</span><span class="n">t1</span> <span class="k">for</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)]</span>
-<span class="sa">f</span><span class="s2">&quot;Median T1: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">t1s</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\u03bc</span><span class="s2">s&quot;</span>
+<span class="sa">f</span><span class="s2">"Median T1: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">t1s</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\u03bc</span><span class="s2">s"</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median T1: 228.90 μs&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Median T1: 228.90 μs'
 </pre></div>
 </div>
 </div>
@@ -628,12 +628,12 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code here</span>
 
 <span class="n">t2s</span> <span class="o">=</span> <span class="p">[</span><span class="n">backend</span><span class="o">.</span><span class="n">qubit_properties</span><span class="p">(</span><span class="n">qq</span><span class="p">)</span><span class="o">.</span><span class="n">t2</span> <span class="k">for</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)]</span>
-<span class="sa">f</span><span class="s2">&quot;Median T2: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">t2s</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\u03bc</span><span class="s2">s&quot;</span>
+<span class="sa">f</span><span class="s2">"Median T2: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">t2s</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> </span><span class="se">\u03bc</span><span class="s2">s"</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median T2: 135.87 μs&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Median T2: 135.87 μs'
 </pre></div>
 </div>
 </div>
@@ -650,7 +650,7 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;ecr&#39;, &#39;x&#39;, &#39;id&#39;, &#39;measure&#39;, &#39;delay&#39;, &#39;rz&#39;, &#39;reset&#39;, &#39;sx&#39;])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys(['ecr', 'x', 'id', 'measure', 'delay', 'rz', 'reset', 'sx'])
 </pre></div>
 </div>
 </div>
@@ -658,10 +658,10 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 <p>その値も辞書です。’sx’　演算の値(辞書)の項目をいくつか見てみましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;sx&quot;</span><span class="p">]):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">"sx"</span><span class="p">]):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
         <span class="k">break</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">qq</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;sx&quot;</span><span class="p">][</span><span class="n">qq</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">qq</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">"sx"</span><span class="p">][</span><span class="n">qq</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -678,10 +678,10 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 <p>‘ecr’ と ‘measure’ 演算について同じことをしてみましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">]):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">"ecr"</span><span class="p">]):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
         <span class="k">break</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">][</span><span class="n">edge</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">"ecr"</span><span class="p">][</span><span class="n">edge</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -697,10 +697,10 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">]):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">qq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="s2">"measure"</span><span class="p">]):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
         <span class="k">break</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">qq</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;measure&quot;</span><span class="p">][</span><span class="n">qq</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">qq</span><span class="p">,</span> <span class="n">target</span><span class="p">[</span><span class="s2">"measure"</span><span class="p">][</span><span class="n">qq</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -718,26 +718,26 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 <p>データ構造を理解したので、’sx’ ゲートと ‘ecr’ ゲートのエラーの中央値を計算する準備ができました。もう一度、結果を <a class="reference external" href="https://quantum.cloud.ibm.com/computers">IBM Quantum Platform</a> 上のデバイスに対して示されている結果と比べてみてください。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sx_errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">inst_prop</span><span class="o">.</span><span class="n">error</span> <span class="k">for</span> <span class="n">inst_prop</span> <span class="ow">in</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;sx&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-<span class="sa">f</span><span class="s2">&quot;Median SX error: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">sx_errors</span><span class="p">))</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sx_errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">inst_prop</span><span class="o">.</span><span class="n">error</span> <span class="k">for</span> <span class="n">inst_prop</span> <span class="ow">in</span> <span class="n">target</span><span class="p">[</span><span class="s2">"sx"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="sa">f</span><span class="s2">"Median SX error: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">sx_errors</span><span class="p">))</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median SX error: 2.420e-04&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Median SX error: 2.420e-04'
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ecr_errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">inst_prop</span><span class="o">.</span><span class="n">error</span> <span class="k">for</span> <span class="n">inst_prop</span> <span class="ow">in</span> <span class="n">target</span><span class="p">[</span><span class="s2">&quot;ecr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-<span class="sa">f</span><span class="s2">&quot;Median ECR error: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ecr_errors</span><span class="p">))</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ecr_errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">inst_prop</span><span class="o">.</span><span class="n">error</span> <span class="k">for</span> <span class="n">inst_prop</span> <span class="ow">in</span> <span class="n">target</span><span class="p">[</span><span class="s2">"ecr"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="sa">f</span><span class="s2">"Median ECR error: </span><span class="si">{</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">ecr_errors</span><span class="p">))</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Median ECR error: 6.772e-03&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'Median ECR error: 6.772e-03'
 </pre></div>
 </div>
 </div>
@@ -781,7 +781,7 @@ basis gates = [&#39;cz&#39;, &#39;id&#39;, &#39;rz&#39;, &#39;sx&#39;, &#39;x&#3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.2&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.1.2'
 </pre></div>
 </div>
 </div>

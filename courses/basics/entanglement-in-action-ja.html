@@ -794,11 +794,11 @@
 <p>ここでは、テレポーテーションプロトコルの量子回路実装を紹介します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">)</span>
-<span class="n">ebit0</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
-<span class="n">ebit1</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubit</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Q"</span><span class="p">)</span>
+<span class="n">ebit0</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">)</span>
+<span class="n">ebit1</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"a"</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">)</span>
 
 <span class="n">protocol</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
@@ -807,7 +807,7 @@
 <span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">)</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="c1"># Alice&#39;s operations</span>
+<span class="c1"># Alice's operations</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">ebit0</span><span class="p">)</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
@@ -823,7 +823,7 @@
 <span class="k">with</span> <span class="n">protocol</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">b</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
     <span class="n">protocol</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="n">ebit1</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -876,11 +876,11 @@
 
 <span class="n">test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_gate</span><span class="o">.</span><span class="n">inverse</span><span class="p">(),</span> <span class="n">ebit1</span><span class="p">)</span>
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Result&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Result"</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">ebit1</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -983,8 +983,8 @@
 <p>これは、送信するビットに応じて回路自体を指定する、超高密度符号の簡単な実装です。まず、送信するビットを指定しましょう。 (ビットを変えて、正しく動作することを確認してください。)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-<span class="n">d</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="s2">"1"</span>
+<span class="n">d</span> <span class="o">=</span> <span class="s2">"0"</span>
 </pre></div>
 </div>
 </div>
@@ -999,19 +999,19 @@
 <span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="c1"># Alice&#39;s operations</span>
-<span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+<span class="c1"># Alice's operations</span>
+<span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="s2">"1"</span><span class="p">:</span>
     <span class="n">protocol</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s2">"1"</span><span class="p">:</span>
     <span class="n">protocol</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="c1"># Bob&#39;s actions</span>
+<span class="c1"># Bob's actions</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">protocol</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1027,7 +1027,7 @@
 <span class="n">statistics</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">quasi_dists</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">binary_probabilities</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">outcome</span><span class="p">,</span> <span class="n">frequency</span> <span class="ow">in</span> <span class="n">statistics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Measured </span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2"> with frequency </span><span class="si">{</span><span class="n">frequency</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Measured </span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2"> with frequency </span><span class="si">{</span><span class="n">frequency</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">display</span><span class="p">(</span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">statistics</span><span class="p">))</span>
 </pre></div>
@@ -1043,12 +1043,12 @@
 <p>これを楽しむために、ランダムなビット発生器を新たな量子ビットとして追加し、 <span class="math notranslate nohighlight">\(c\)</span> と <span class="math notranslate nohighlight">\(d\)</span> をランダムに選び、超密度符号プロトコルを実行して、ビットが正しく送信されることを確認してみましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rbg</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;randomizer&quot;</span><span class="p">)</span>
-<span class="n">ebit0</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
-<span class="n">ebit1</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rbg</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"randomizer"</span><span class="p">)</span>
+<span class="n">ebit0</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">)</span>
+<span class="n">ebit1</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">)</span>
 
-<span class="n">Alice_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Alice c&quot;</span><span class="p">)</span>
-<span class="n">Alice_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Alice d&quot;</span><span class="p">)</span>
+<span class="n">Alice_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Alice c"</span><span class="p">)</span>
+<span class="n">Alice_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Alice d"</span><span class="p">)</span>
 
 <span class="n">test</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">rbg</span><span class="p">,</span> <span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">,</span> <span class="n">Alice_d</span><span class="p">,</span> <span class="n">Alice_c</span><span class="p">)</span>
 
@@ -1057,34 +1057,34 @@
 <span class="n">test</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="c1"># Use the &#39;randomizer&#39; qubit twice to generate Alice&#39;s bits c and d.</span>
+<span class="c1"># Use the 'randomizer' qubit twice to generate Alice's bits c and d.</span>
 <span class="n">test</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">rbg</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">rbg</span><span class="p">,</span> <span class="n">Alice_c</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">rbg</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">rbg</span><span class="p">,</span> <span class="n">Alice_d</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="c1"># Now the protocol runs, starting with Alice&#39;s actions, which depend</span>
+<span class="c1"># Now the protocol runs, starting with Alice's actions, which depend</span>
 <span class="c1"># on her bits.</span>
-<span class="k">with</span> <span class="n">test</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">Alice_d</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Z&quot;</span><span class="p">):</span>
+<span class="k">with</span> <span class="n">test</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">Alice_d</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Z"</span><span class="p">):</span>
     <span class="n">test</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
-<span class="k">with</span> <span class="n">test</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">Alice_c</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">):</span>
+<span class="k">with</span> <span class="n">test</span><span class="o">.</span><span class="n">if_test</span><span class="p">((</span><span class="n">Alice_c</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"X"</span><span class="p">):</span>
     <span class="n">test</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="c1"># Bob&#39;s actions</span>
+<span class="c1"># Bob's actions</span>
 <span class="n">test</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">ebit1</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">ebit0</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="n">Bob_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Bob c&quot;</span><span class="p">)</span>
-<span class="n">Bob_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Bob d&quot;</span><span class="p">)</span>
+<span class="n">Bob_c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Bob c"</span><span class="p">)</span>
+<span class="n">Bob_d</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"Bob d"</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">Bob_d</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">Bob_c</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">ebit0</span><span class="p">,</span> <span class="n">Bob_d</span><span class="p">)</span>
 <span class="n">test</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">ebit1</span><span class="p">,</span> <span class="n">Bob_c</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1675,14 +1675,14 @@ R_y(\theta) = \begin{pmatrix}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">chsh_game</span><span class="p">(</span><span class="n">strategy</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Plays the CHSH game</span>
+<span class="w">    </span><span class="sd">"""Plays the CHSH game</span>
 <span class="sd">    Args:</span>
 <span class="sd">        strategy (callable): A function that takes two bits (as `int`s) and</span>
 <span class="sd">            returns two bits (also as `int`s). The strategy must follow the</span>
 <span class="sd">            rules of the CHSH game.</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        int: 1 for a win, 0 for a loss.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Referee chooses x and y randomly</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
@@ -1701,14 +1701,14 @@ R_y(\theta) = \begin{pmatrix}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">chsh_circuit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a `QuantumCircuit` that implements the best CHSH strategy.</span>
+<span class="w">    </span><span class="sd">"""Creates a `QuantumCircuit` that implements the best CHSH strategy.</span>
 <span class="sd">    Args:</span>
-<span class="sd">        x (int): Alice&#39;s bit (must be 0 or 1)</span>
-<span class="sd">        y (int): Bob&#39;s bit (must be 0 or 1)</span>
+<span class="sd">        x (int): Alice's bit (must be 0 or 1)</span>
+<span class="sd">        y (int): Bob's bit (must be 0 or 1)</span>
 <span class="sd">    Returns:</span>
-<span class="sd">        QuantumCircuit: Circuit that, when run, returns Alice and Bob&#39;s</span>
+<span class="sd">        QuantumCircuit: Circuit that, when run, returns Alice and Bob's</span>
 <span class="sd">            answer bits.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1738,17 +1738,17 @@ R_y(\theta) = \begin{pmatrix}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw the four possible circuits</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (0,0)&quot;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"(x,y) = (0,0)"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (0,1)&quot;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"(x,y) = (0,1)"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (1,0)&quot;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"(x,y) = (1,0)"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(x,y) = (1,1)&quot;</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"(x,y) = (1,1)"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1778,13 +1778,13 @@ R_y(\theta) = \begin{pmatrix}
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">quantum_strategy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carry out the best strategy for the CHSH game.</span>
+<span class="w">    </span><span class="sd">"""Carry out the best strategy for the CHSH game.</span>
 <span class="sd">    Args:</span>
-<span class="sd">        x (int): Alice&#39;s bit (must be 0 or 1)</span>
-<span class="sd">        y (int): Bob&#39;s bit (must be 0 or 1)</span>
+<span class="sd">        x (int): Alice's bit (must be 0 or 1)</span>
+<span class="sd">        y (int): Bob's bit (must be 0 or 1)</span>
 <span class="sd">    Returns:</span>
-<span class="sd">        (int, int): Alice and Bob&#39;s answer bits (respectively)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">        (int, int): Alice and Bob's answer bits (respectively)</span>
+<span class="sd">    """</span>
     <span class="c1"># `shots=1` runs the circuit once</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">chsh_circuit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
     <span class="n">statistics</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">quasi_dists</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">binary_probabilities</span><span class="p">()</span>
@@ -1804,7 +1804,7 @@ R_y(\theta) = \begin{pmatrix}
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_GAMES</span><span class="p">):</span>
     <span class="n">TOTAL_SCORE</span> <span class="o">+=</span> <span class="n">chsh_game</span><span class="p">(</span><span class="n">quantum_strategy</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fraction of games won:&quot;</span><span class="p">,</span> <span class="n">TOTAL_SCORE</span> <span class="o">/</span> <span class="n">NUM_GAMES</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fraction of games won:"</span><span class="p">,</span> <span class="n">TOTAL_SCORE</span> <span class="o">/</span> <span class="n">NUM_GAMES</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1818,20 +1818,20 @@ R_y(\theta) = \begin{pmatrix}
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">classical_strategy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An optimal classical strategy for the CHSH game</span>
+<span class="w">    </span><span class="sd">"""An optimal classical strategy for the CHSH game</span>
 <span class="sd">    Args:</span>
-<span class="sd">        x (int): Alice&#39;s bit (must be 0 or 1)</span>
-<span class="sd">        y (int): Bob&#39;s bit (must be 0 or 1)</span>
+<span class="sd">        x (int): Alice's bit (must be 0 or 1)</span>
+<span class="sd">        y (int): Bob's bit (must be 0 or 1)</span>
 <span class="sd">    Returns:</span>
-<span class="sd">        (int, int): Alice and Bob&#39;s answer bits (respectively)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Alice&#39;s answer</span>
+<span class="sd">        (int, int): Alice and Bob's answer bits (respectively)</span>
+<span class="sd">    """</span>
+    <span class="c1"># Alice's answer</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="c1"># Bob&#39;s answer</span>
+    <span class="c1"># Bob's answer</span>
     <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">elif</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -1851,7 +1851,7 @@ R_y(\theta) = \begin{pmatrix}
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NUM_GAMES</span><span class="p">):</span>
     <span class="n">TOTAL_SCORE</span> <span class="o">+=</span> <span class="n">chsh_game</span><span class="p">(</span><span class="n">classical_strategy</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fraction of games won:&quot;</span><span class="p">,</span> <span class="n">TOTAL_SCORE</span> <span class="o">/</span> <span class="n">NUM_GAMES</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fraction of games won:"</span><span class="p">,</span> <span class="n">TOTAL_SCORE</span> <span class="o">/</span> <span class="n">NUM_GAMES</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

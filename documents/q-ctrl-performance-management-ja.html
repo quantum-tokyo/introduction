@@ -734,16 +734,16 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitFunctionsCatalog</span>
 
 <span class="c1"># Credentials</span>
-<span class="n">token</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_API_TOKEN&gt;&quot;</span>
-<span class="n">hub</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_HUB&gt;&quot;</span>
-<span class="n">group</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_GROUP&gt;&quot;</span>
-<span class="n">project</span> <span class="o">=</span> <span class="s2">&quot;&lt;YOUR_IQP_PROJECT&gt;&quot;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_API_TOKEN&gt;"</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_HUB&gt;"</span>
+<span class="n">group</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_GROUP&gt;"</span>
+<span class="n">project</span> <span class="o">=</span> <span class="s2">"&lt;YOUR_IQP_PROJECT&gt;"</span>
 
 <span class="c1"># Authentication</span>
 <span class="n">catalog</span> <span class="o">=</span> <span class="n">QiskitFunctionsCatalog</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
 
 <span class="c1"># Access Function</span>
-<span class="n">perf_mgmt</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;q-ctrl/performance-management&quot;</span><span class="p">)</span>
+<span class="n">perf_mgmt</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"q-ctrl/performance-management"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -760,14 +760,14 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
 
 <span class="n">circuit_width</span> <span class="o">=</span> <span class="mi">35</span>
-<span class="n">hidden_bitstring</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="n">circuit_width</span>
+<span class="n">hidden_bitstring</span> <span class="o">=</span> <span class="s2">"1"</span> <span class="o">*</span> <span class="n">circuit_width</span>
 
 <span class="c1"># Create circuit, reserving one qubit for BV oracle</span>
 <span class="n">bv_circuit</span> <span class="o">=</span> <span class="n">qiskit</span><span class="o">.</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">circuit_width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">circuit_width</span><span class="p">)</span>
 <span class="n">bv_circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">circuit_width</span><span class="p">)</span>
 <span class="n">bv_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">circuit_width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">input_qubit</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">hidden_bitstring</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="s2">"1"</span><span class="p">:</span>
         <span class="n">bv_circuit</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">input_qubit</span><span class="p">,</span> <span class="n">circuit_width</span><span class="p">)</span>
 <span class="n">bv_circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 <span class="n">bv_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">circuit_width</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
@@ -783,7 +783,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bv_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bv_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -798,14 +798,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Choose a backend or remove this option to default to the least busy device</span>
-<span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;CHOOSE_A_BACKEND&gt;&quot;</span>
+<span class="n">backend_name</span> <span class="o">=</span> <span class="s2">"&lt;CHOOSE_A_BACKEND&gt;"</span>
 
 <span class="c1"># Run the circuit using the sampler</span>
 <span class="n">qctrl_sampler_job</span> <span class="o">=</span> <span class="n">perf_mgmt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-    <span class="n">runner_function</span> <span class="o">=</span><span class="s2">&quot;sampler&quot;</span><span class="p">,</span>
+    <span class="n">runner_function</span> <span class="o">=</span><span class="s2">"sampler"</span><span class="p">,</span>
     <span class="n">pubs</span> <span class="o">=</span> <span class="n">pubs</span><span class="p">,</span>
-    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span><span class="p">,</span>
-    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">},</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">project</span><span class="p">,</span>
+    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"backend_name"</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -877,7 +877,7 @@
 <span class="n">circuit</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
 
 <span class="c1"># Define observables as a string</span>
-<span class="n">observable</span> <span class="o">=</span> <span class="s2">&quot;Z&quot;</span> <span class="o">*</span> <span class="n">n_qubits</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="s2">"Z"</span> <span class="o">*</span> <span class="n">n_qubits</span>
 </pre></div>
 </div>
 </div>
@@ -897,13 +897,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Choose a backend or remove this option to default to the least busy device</span>
-<span class="n">backend_name</span> <span class="o">=</span> <span class="s2">&quot;&lt;CHOOSE_A_BACKEND&gt;&quot;</span>
+<span class="n">backend_name</span> <span class="o">=</span> <span class="s2">"&lt;CHOOSE_A_BACKEND&gt;"</span>
 
 <span class="n">qctrl_estimator_job</span> <span class="o">=</span> <span class="n">perf_mgmt</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-    <span class="n">runner_function</span> <span class="o">=</span> <span class="s2">&quot;estimator&quot;</span><span class="p">,</span>
+    <span class="n">runner_function</span> <span class="o">=</span> <span class="s2">"estimator"</span><span class="p">,</span>
     <span class="n">pubs</span> <span class="o">=</span> <span class="n">pubs</span><span class="p">,</span>
-    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">project</span><span class="p">,</span>
-    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;backend_name&quot;</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">},</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">hub</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">group</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="n">project</span><span class="p">,</span>
+    <span class="n">run_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"backend_name"</span><span class="p">:</span> <span class="n">backend_name</span><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -925,7 +925,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve the counts from the result list</span>
 <span class="n">expectation_value</span> <span class="o">=</span> <span class="n">qctrl_estimator_job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expectation value: </span><span class="si">{</span><span class="n">expectation_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Expectation value: </span><span class="si">{</span><span class="n">expectation_value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

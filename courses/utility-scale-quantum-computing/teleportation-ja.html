@@ -546,8 +546,8 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 <span class="c1"># rベクトルを得る．</span>
 <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">rz</span> <span class="o">=</span> <span class="n">get_r_vec</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;theta=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="s2">&quot;,varphi=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varphi</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(rx, ry, rz) = (&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ry</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rz</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"theta="</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="s2">",varphi="</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varphi</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"(rx, ry, rz) = ("</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">", "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ry</span><span class="p">)</span> <span class="o">+</span> <span class="s2">", "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rz</span><span class="p">)</span> <span class="o">+</span> <span class="s2">")"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -606,7 +606,7 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 <span class="c1">#計算基底を測定する</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -650,9 +650,9 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rz_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rz_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">'0'</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">'1'</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rz = &quot;</span><span class="p">,</span> <span class="n">rz</span><span class="p">,</span> <span class="s2">&quot; and approx of rz = &quot;</span><span class="p">,</span> <span class="n">rz_approx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"rz = "</span><span class="p">,</span> <span class="n">rz</span><span class="p">,</span> <span class="s2">" and approx of rz = "</span><span class="p">,</span> <span class="n">rz_approx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -673,7 +673,7 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -706,7 +706,7 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 5900, &#39;0&#39;: 4100}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'1': 5900, '0': 4100}
 </pre></div>
 </div>
 <img alt="../../_images/bdddef124a63bf47cb1be0ad0834c5e1ee04672da97089b93a066f5486e6fb2c.png" src="../../_images/bdddef124a63bf47cb1be0ad0834c5e1ee04672da97089b93a066f5486e6fb2c.png" />
@@ -714,9 +714,9 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rx_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rx_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">'0'</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">'1'</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rx = &quot;</span><span class="p">,</span> <span class="n">rx</span><span class="p">,</span> <span class="s2">&quot; and approx of rx = &quot;</span><span class="p">,</span> <span class="n">rx_approx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"rx = "</span><span class="p">,</span> <span class="n">rx</span><span class="p">,</span> <span class="s2">" and approx of rx = "</span><span class="p">,</span> <span class="n">rx_approx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -742,7 +742,7 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -775,7 +775,7 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;1&#39;: 9755, &#39;0&#39;: 245}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'1': 9755, '0': 245}
 </pre></div>
 </div>
 <img alt="../../_images/d0f73895c11a3219a488c65c08123bcb13d281942f05243ee471a3f09f132a5f.png" src="../../_images/d0f73895c11a3219a488c65c08123bcb13d281942f05243ee471a3f09f132a5f.png" />
@@ -783,9 +783,9 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ry_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ry_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">'0'</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">'1'</span><span class="p">])</span><span class="o">/</span><span class="n">nshots</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ry = &quot;</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="s2">&quot; and approx of ry = &quot;</span><span class="p">,</span> <span class="n">ry_approx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ry = "</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="s2">" and approx of ry = "</span><span class="p">,</span> <span class="n">ry_approx</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -798,8 +798,8 @@ e^{-i\varphi}\sin\theta &amp; 1-\cos\theta
 <p><span class="math notranslate nohighlight">\(\vec{r}\)</span>の全成分を推定したので，全ベクトルを書き出すことができます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimated vector is (&quot;</span><span class="p">,</span> <span class="n">rx_approx</span><span class="p">,</span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="n">ry_approx</span><span class="p">,</span><span class="s2">&quot;,&quot;</span><span class="p">,</span><span class="n">rz_approx</span><span class="p">,</span><span class="s2">&quot;).&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original random vector was (&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ry</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rz</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;).&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Estimated vector is ("</span><span class="p">,</span> <span class="n">rx_approx</span><span class="p">,</span><span class="s2">","</span><span class="p">,</span><span class="n">ry_approx</span><span class="p">,</span><span class="s2">","</span><span class="p">,</span><span class="n">rz_approx</span><span class="p">,</span><span class="s2">")."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original random vector was ("</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rx</span><span class="p">)</span> <span class="o">+</span> <span class="s2">", "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ry</span><span class="p">)</span> <span class="o">+</span> <span class="s2">", "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rz</span><span class="p">)</span> <span class="o">+</span> <span class="s2">")."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -858,7 +858,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3-qubits 量子回路の作成</span>
 <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>    
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -873,7 +873,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>    <span class="c1"># for visual separation</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -906,7 +906,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>    <span class="c1"># for visual separation.</span>
 <span class="c1"># We can consider that Alice and Bob may move their qubits to different physical locations, now.</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -926,7 +926,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -944,7 +944,7 @@ Qiskitでインスタンス化することで明確にします．</p>
     <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -979,7 +979,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>    <span class="c1"># inverse of u(theta,varphi,0.0)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># add measurement gate</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1017,7 +1017,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;011&#39;: 2553, &#39;000&#39;: 2526, &#39;010&#39;: 2525, &#39;001&#39;: 2396}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'011': 2553, '000': 2526, '010': 2525, '001': 2396}
 </pre></div>
 </div>
 <img alt="../../_images/fea78505ad10296b7ad60747abb108d6dcdd658ad2f220f756ec4bb29fa20eab.png" src="../../_images/fea78505ad10296b7ad60747abb108d6dcdd658ad2f220f756ec4bb29fa20eab.png" />
@@ -1078,7 +1078,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">varphi</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>    
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1097,9 +1097,9 @@ Qiskitでインスタンス化することで明確にします．</p>
 
 <span class="c1"># If this is your first time running your circuit on a real device, </span>
 <span class="c1"># make sure you copy your API Token from [IBM Quantum Platform](https://quantum.ibm.com/) </span>
-<span class="c1"># QiskitRuntimeService.save_account(token=&#39;&lt;your_token&gt;&#39;, overwrite=True)</span>
+<span class="c1"># QiskitRuntimeService.save_account(token='&lt;your_token&gt;', overwrite=True)</span>
 
-<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">)</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">"ibm_quantum"</span><span class="p">)</span>
 <span class="n">service</span><span class="o">.</span><span class="n">backends</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1109,12 +1109,12 @@ Qiskitでインスタンス化することで明確にします．</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#You can also identify the least busy device</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The least busy device is &quot;</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The least busy device is "</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The least busy device is  &lt;IBMBackend(&#39;ibm_nazca&#39;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The least busy device is  &lt;IBMBackend('ibm_nazca')&gt;
 </pre></div>
 </div>
 </div>
@@ -1122,7 +1122,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can specifiy the device </span>
-<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s1">&#39;ibm_sherbrooke&#39;</span><span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s1">'ibm_sherbrooke'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1148,7 +1148,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">qc_compiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
 
-<span class="n">qc_compiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">qc_compiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1166,7 +1166,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc_compiled</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">"job id:"</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span> 
 </pre></div>
 </div>
 </div>
@@ -1184,7 +1184,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;RUNNING&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'RUNNING'
 </pre></div>
 </div>
 </div>
@@ -1195,13 +1195,13 @@ Qiskitでインスタンス化することで明確にします．</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the Notebook session got disconnected you can also check your job statuse by running the following code</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span> 
-<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;cvn758n82hx0008489jg&#39;</span><span class="p">)</span> <span class="c1"># Input your job-id between the quotations</span>
+<span class="n">job_real</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">'cvn758n82hx0008489jg'</span><span class="p">)</span> <span class="c1"># Input your job-id between the quotations</span>
 <span class="n">job_real</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'DONE'
 </pre></div>
 </div>
 </div>
@@ -1209,14 +1209,14 @@ Qiskitでインスタンス化することで明確にします．</p>
 <p><code class="docutils literal notranslate"><span class="pre">'DONE'</span></code>と表示されたら，以下のセルを実行すれば結果が得られます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute after &#39;DONE&#39; is displayed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute after 'DONE' is displayed</span>
 <span class="n">result_real</span> <span class="o">=</span> <span class="n">job_real</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;010&#39;: 769, &#39;001&#39;: 948, &#39;011&#39;: 773, &#39;000&#39;: 910, &#39;111&#39;: 232, &#39;100&#39;: 132, &#39;110&#39;: 219, &#39;101&#39;: 113}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'010': 769, '001': 948, '011': 773, '000': 910, '111': 232, '100': 132, '110': 219, '101': 113}
 </pre></div>
 </div>
 </div>
@@ -1239,7 +1239,7 @@ Qiskitでインスタンス化することで明確にします．</p>
 <p>上記の結果を直接解釈することができます．あるいは，<code class="docutils literal notranslate"><span class="pre">marginal_count</span></code>を用いればBobの量子ビットの結果をトレースすることができます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># trace out Bob&#39;s results on qubit 2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># trace out Bob's results on qubit 2</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.result</span><span class="w"> </span><span class="kn">import</span> <span class="n">marginal_counts</span>
 <span class="n">bobs_qubit</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">real_counts</span> <span class="o">=</span> <span class="n">result_real</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
@@ -1310,15 +1310,15 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 <span class="n">qc</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
 
 <span class="c1"># set message which Alice wants to transform to Bob</span>
-<span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;11&quot;</span>    <span class="c1"># You can change the message </span>
+<span class="n">msg</span> <span class="o">=</span> <span class="s2">"11"</span>    <span class="c1"># You can change the message </span>
 
-<span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;00&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">"00"</span><span class="p">:</span>
     <span class="k">pass</span>
-<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;10&quot;</span><span class="p">:</span>    
+<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">"10"</span><span class="p">:</span>    
     <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;01&quot;</span><span class="p">:</span>    
+<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">"01"</span><span class="p">:</span>    
     <span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;11&quot;</span><span class="p">:</span>    
+<span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">"11"</span><span class="p">:</span>    
     <span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     
@@ -1332,7 +1332,7 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1367,7 +1367,7 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 1000}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'11': 1000}
 </pre></div>
 </div>
 </div>
@@ -1389,14 +1389,14 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
-<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;ibm_quantum&quot;</span><span class="p">)</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">"ibm_quantum"</span><span class="p">)</span>
 <span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The least busy device is &quot;</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The least busy device is "</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The least busy device is  &lt;IBMBackend(&#39;ibm_nazca&#39;)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The least busy device is  &lt;IBMBackend('ibm_nazca')&gt;
 </pre></div>
 </div>
 </div>
@@ -1409,7 +1409,7 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">qc_compiled</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
 
-<span class="n">qc_compiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">qc_compiled</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1422,7 +1422,7 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3:Execute the target circuit</span>
 <span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">qc_compiled</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"job id:"</span><span class="p">,</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1440,7 +1440,7 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;RUNNING&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'RUNNING'
 </pre></div>
 </div>
 </div>
@@ -1450,13 +1450,13 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the Notebook session got disconnected you can also check your job statuse by running the following code</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
 <span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>  
-<span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">&#39;cvn75rzqy6cg0089a7m0&#39;</span><span class="p">)</span> <span class="c1"># Input your job-id between the quotations</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">job</span><span class="p">(</span><span class="s1">'cvn75rzqy6cg0089a7m0'</span><span class="p">)</span> <span class="c1"># Input your job-id between the quotations</span>
 <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;DONE&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'DONE'
 </pre></div>
 </div>
 </div>
@@ -1470,7 +1470,7 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;11&#39;: 3984, &#39;01&#39;: 72, &#39;00&#39;: 10, &#39;10&#39;: 30}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'11': 3984, '01': 72, '00': 10, '10': 30}
 </pre></div>
 </div>
 </div>
@@ -1506,7 +1506,7 @@ $<span class="math notranslate nohighlight">\( \frac {|00\rangle + |11\rangle}{\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.3.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'1.3.0'
 </pre></div>
 </div>
 </div>

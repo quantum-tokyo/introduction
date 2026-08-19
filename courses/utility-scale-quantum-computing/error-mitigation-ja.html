@@ -489,7 +489,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.2&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.1.2'
 </pre></div>
 </div>
 </div>
@@ -503,7 +503,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.17.1&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'0.17.1'
 </pre></div>
 </div>
 </div>
@@ -517,7 +517,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.41.1&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'0.41.1'
 </pre></div>
 </div>
 </div>
@@ -533,7 +533,7 @@
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">noise_model</span> <span class="o">=</span> <span class="n">NoiseModel</span><span class="p">()</span>
 <span class="o">...</span>
-<span class="n">noisy_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;backend_options&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;noise_model&quot;</span><span class="p">:</span> <span class="n">noise_model</span><span class="p">}})</span>
+<span class="n">noisy_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"backend_options"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"noise_model"</span><span class="p">:</span> <span class="n">noise_model</span><span class="p">}})</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">noisy_sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">circuit</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -554,7 +554,7 @@
     <span class="n">circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
     <span class="n">circuits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">circuits</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">circuits</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -566,13 +566,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
 
-<span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_list</span><span class="p">([(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)])</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_list</span><span class="p">([(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)])</span>
 <span class="n">obs</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;Z&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['Z'],
               coeffs=[1.+0.j])
 </pre></div>
 </div>
@@ -618,7 +618,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer.noise</span><span class="w"> </span><span class="kn">import</span> <span class="n">NoiseModel</span>
 
 <span class="n">noise_model</span> <span class="o">=</span> <span class="n">NoiseModel</span><span class="p">()</span>
-<span class="n">noise_model</span><span class="o">.</span><span class="n">add_quantum_error</span><span class="p">(</span><span class="n">coherent_error</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">incoherent_error</span><span class="p">),</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+<span class="n">noise_model</span><span class="o">.</span><span class="n">add_quantum_error</span><span class="p">(</span><span class="n">coherent_error</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">incoherent_error</span><span class="p">),</span> <span class="s2">"x"</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
 <span class="n">noise_model</span><span class="o">.</span><span class="n">add_readout_error</span><span class="p">(</span><span class="n">readout_error</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
 </pre></div>
 </div>
@@ -631,7 +631,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
 
-<span class="n">noisy_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;backend_options&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;noise_model&quot;</span><span class="p">:</span> <span class="n">noise_model</span><span class="p">}})</span>
+<span class="n">noisy_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"backend_options"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"noise_model"</span><span class="p">:</span> <span class="n">noise_model</span><span class="p">}})</span>
 </pre></div>
 </div>
 </div>
@@ -660,7 +660,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 386, &#39;1&#39;: 14}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'0': 386, '1': 14}
 </pre></div>
 </div>
 </div>
@@ -672,19 +672,19 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Noisy simulation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Noisy simulation"</span><span class="p">)</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">MAX_DEPTH</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">&quot;Z&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">"Z"</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">&quot;Z&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">"Z"</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Circuit depth&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Measured &lt;Z&gt;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Circuit depth"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Measured &lt;Z&gt;"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -701,20 +701,20 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ideal_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">()</span>
 <span class="n">job_ideal</span> <span class="o">=</span> <span class="n">ideal_sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuits</span><span class="p">)</span>
 <span class="n">result_ideal</span> <span class="o">=</span> <span class="n">job_ideal</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Ideal simulation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Ideal simulation"</span><span class="p">)</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">MAX_DEPTH</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">result_ideal</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">&quot;Z&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">result_ideal</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">"Z"</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-    <span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="n">result_ideal</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">&quot;Z&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span>
+    <span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="n">result_ideal</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">"Z"</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Circuit depth&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Measured &lt;Z&gt;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Circuit depth"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Measured &lt;Z&gt;"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -743,26 +743,26 @@
     <span class="p">[[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">PREP0_MEAS1</span><span class="p">,</span> <span class="n">PREP0_MEAS1</span><span class="p">],</span> <span class="p">[</span><span class="n">PREP1_MEAS0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">PREP1_MEAS0</span><span class="p">]]</span>
 <span class="p">)</span>
 <span class="n">noise_model</span> <span class="o">=</span> <span class="n">NoiseModel</span><span class="p">()</span>
-<span class="n">noise_model</span><span class="o">.</span><span class="n">add_quantum_error</span><span class="p">(</span><span class="n">coherent_error</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">incoherent_error</span><span class="p">),</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+<span class="n">noise_model</span><span class="o">.</span><span class="n">add_quantum_error</span><span class="p">(</span><span class="n">coherent_error</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">incoherent_error</span><span class="p">),</span> <span class="s2">"x"</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
 <span class="n">noise_model</span><span class="o">.</span><span class="n">add_readout_error</span><span class="p">(</span><span class="n">readout_error</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
 <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;backend_options&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;noise_model&quot;</span><span class="p">:</span> <span class="n">noise_model</span><span class="p">},</span>
+    <span class="s2">"backend_options"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"noise_model"</span><span class="p">:</span> <span class="n">noise_model</span><span class="p">},</span>
 <span class="p">}</span>
 <span class="n">noisy_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">noisy_sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuits</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Noisy simulation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Noisy simulation"</span><span class="p">)</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">MAX_DEPTH</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">&quot;Z&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">"Z"</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Depth&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Measured &lt;Z&gt;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Depth"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Measured &lt;Z&gt;"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -794,7 +794,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_fez&#39;)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_fez')&gt;
 </pre></div>
 </div>
 </div>
@@ -805,18 +805,18 @@
 <span class="n">noisy_sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">aer</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">noisy_sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuits</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Noisy simulation with noise model from real backend&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Noisy simulation with noise model from real backend"</span><span class="p">)</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">MAX_DEPTH</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">ds</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">&quot;Z&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">expectation_values</span><span class="p">([</span><span class="s2">"Z"</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ds</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">MAX_DEPTH</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Depth&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Measured &lt;Z&gt;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Depth"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Measured &lt;Z&gt;"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -841,7 +841,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend(&#39;ibm_fez&#39;)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_fez')&gt;
 </pre></div>
 </div>
 </div>
@@ -893,7 +893,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># タイムステップ2の回路を表示</span>
-<span class="n">circuits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">circuits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -904,13 +904,13 @@
 <p>注: 上のように、<span class="math notranslate nohighlight">\(k\)</span> の時間ステップを持つ回路には、<span class="math notranslate nohighlight">\(4k\)</span> 個のの 2 量子ビット・ゲート・レイヤーがあります。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">([(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">NUM_QUBITS</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">([(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">NUM_QUBITS</span><span class="p">)</span>
 <span class="n">obs</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;IIIIIZ&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['IIIIIZ'],
               coeffs=[1.+0.j])
 </pre></div>
 </div>
@@ -926,7 +926,7 @@
 
 <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">isa_circuits</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuits</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">isa_circuits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">isa_circuits</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -976,7 +976,7 @@
             <span class="p">[(</span><span class="n">circ</span><span class="p">,</span> <span class="n">obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">circ</span><span class="o">.</span><span class="n">layout</span><span class="p">))</span> <span class="k">for</span> <span class="n">circ</span> <span class="ow">in</span> <span class="n">isa_circuits</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="n">job_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">())</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Job ID (rl=</span><span class="si">{</span><span class="n">resilience_level</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Job ID (rl=</span><span class="si">{</span><span class="n">resilience_level</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1026,24 +1026,24 @@ DONE
 <h3>3.4 結果のプロット<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Error mitigation with different resilience levels&quot;</span><span class="p">)</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;0 (No mitigation)&quot;</span><span class="p">,</span> <span class="s2">&quot;1 (TREX)&quot;</span><span class="p">,</span> <span class="s2">&quot;2 (ZNE + Gate twirling)&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Error mitigation with different resilience levels"</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0 (No mitigation)"</span><span class="p">,</span> <span class="s2">"1 (TREX)"</span><span class="p">,</span> <span class="s2">"2 (ZNE + Gate twirling)"</span><span class="p">]</span>
 <span class="n">steps</span> <span class="o">=</span> <span class="n">NUM_TIME_STEPS</span>
 <span class="k">for</span> <span class="n">result</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
         <span class="n">x</span><span class="o">=</span><span class="n">steps</span><span class="p">,</span>
         <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">],</span>
         <span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">],</span>
-        <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
-        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
         <span class="n">capsize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
         <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
     <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span>
-    <span class="mf">1.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">steps</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">steps</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ideal&quot;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span>
+    <span class="mf">1.0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">steps</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">steps</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"dashed"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Ideal"</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">"black"</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time steps&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mitigated &lt;IIIIIZ&gt;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Time steps"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Mitigated &lt;IIIIIZ&gt;"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1062,8 +1062,8 @@ DONE
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TREX</span>
 <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
-<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">shots_per_randomization</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">"auto"</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">shots_per_randomization</span> <span class="o">=</span> <span class="s2">"auto"</span>
 
 <span class="c1"># Gate twirling</span>
 <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1071,11 +1071,11 @@ DONE
 <span class="c1"># ZNE</span>
 <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">noise_factors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;exponential&quot;</span><span class="p">,</span> <span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"exponential"</span><span class="p">,</span> <span class="s2">"linear"</span><span class="p">)</span>
 
 <span class="c1"># Dynamical decoupling</span>
 <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Default: False</span>
-<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">&quot;XX&quot;</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">"XX"</span>
 
 <span class="c1"># Other options</span>
 <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">default_shots</span> <span class="o">=</span> <span class="mi">10_000</span>

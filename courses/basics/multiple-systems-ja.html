@@ -2104,8 +2104,8 @@ CU =
 <p>たとえば、以下では、 <span class="math notranslate nohighlight">\(|0\rangle\)</span> と <span class="math notranslate nohighlight">\(|1\rangle\)</span> を表す 2 つの状態ベクトルを作成し、 <code class="docutils literal notranslate"><span class="pre">tensor</span></code>メソッドを使用して新しいベクトル <span class="math notranslate nohighlight">\(|0\rangle \otimes |1\rangle\)</span> を作成します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zero</span><span class="p">,</span> <span class="n">one</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">),</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
-<span class="n">zero</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">one</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;latex&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zero</span><span class="p">,</span> <span class="n">one</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s2">"0"</span><span class="p">),</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span>
+<span class="n">zero</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">one</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"latex"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2117,11 +2117,11 @@ CU =
 <p>以下の別の例では、 <span class="math notranslate nohighlight">\(|{+}\rangle\)</span> および <span class="math notranslate nohighlight">\(\tfrac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)\)</span> 状態を表す状態ベクトルを作成し、合成して、新しい状態ベクトルを作成します。この新しいベクトルを変数<code class="docutils literal notranslate"><span class="pre">psi</span></code>に割り当てます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plus</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plus</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_label</span><span class="p">(</span><span class="s2">"+"</span><span class="p">)</span>
 <span class="n">i_state</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="n">j</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
 <span class="n">psi</span> <span class="o">=</span> <span class="n">plus</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">i_state</span><span class="p">)</span>
 
-<span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;latex&quot;</span><span class="p">)</span>
+<span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"latex"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2154,7 +2154,7 @@ CU =
 <p>注: <code class="docutils literal notranslate"><span class="pre">^</span></code>演算子を使用して、2 つの演算子を一緒にテンソル積することもできます。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">I</span> <span class="o">^</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;latex&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">I</span> <span class="o">^</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"latex"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2175,7 +2175,7 @@ CU =
     <span class="p">]</span>
 <span class="p">)</span>
 
-<span class="n">psi</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">CX</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;latex&quot;</span><span class="p">)</span>
+<span class="n">psi</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">CX</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"latex"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2193,7 +2193,7 @@ CU =
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">W</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;latex&quot;</span><span class="p">)</span>
+<span class="n">W</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"latex"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2206,8 +2206,8 @@ CU =
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="p">,</span> <span class="n">new_sv</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">measure</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># measure qubit 0</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Measured: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="se">\n</span><span class="s2">State after measurement:&quot;</span><span class="p">)</span>
-<span class="n">new_sv</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;latex&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Measured: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="se">\n</span><span class="s2">State after measurement:"</span><span class="p">)</span>
+<span class="n">new_sv</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"latex"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

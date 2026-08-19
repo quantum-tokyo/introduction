@@ -575,7 +575,7 @@ H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.1.0'
 </pre></div>
 </div>
 </div>
@@ -599,7 +599,7 @@ H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\a
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span><span class="p">,</span> <span class="n">SamplerV2</span>
 
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -619,9 +619,9 @@ H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\a
     <span class="c1"># (1) the Pauli string,</span>
     <span class="c1"># (2) the qubit indices corresponding to the Pauli string,</span>
     <span class="c1"># (3) the coefficient.</span>
-    <span class="n">ZZ_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">J</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
-    <span class="n">Z_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]</span>
-    <span class="n">X_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]</span>
+    <span class="n">ZZ_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">J</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">Z_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]</span>
+    <span class="n">X_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">"X"</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)]</span>
 
     <span class="c1"># We create the Hamiltonian as a SparsePauliOp, via the method</span>
     <span class="c1"># `from_sparse_list`, and multiply by the interaction term.</span>
@@ -646,7 +646,7 @@ H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp([&#39;IIIIZZ&#39;, &#39;IIIZZI&#39;, &#39;IIZZII&#39;, &#39;IZZIII&#39;, &#39;ZZIIII&#39;, &#39;IIIIIZ&#39;, &#39;IIIIZI&#39;, &#39;IIIZII&#39;, &#39;IIZIII&#39;, &#39;IZIIII&#39;, &#39;ZIIIII&#39;, &#39;IIIIIX&#39;, &#39;IIIIXI&#39;, &#39;IIIXII&#39;, &#39;IIXIII&#39;, &#39;IXIIII&#39;, &#39;XIIIII&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['IIIIZZ', 'IIIZZI', 'IIZZII', 'IZZIII', 'ZZIIII', 'IIIIIZ', 'IIIIZI', 'IIIZII', 'IIZIII', 'IZIIII', 'ZIIIII', 'IIIIIX', 'IIIIXI', 'IIIXII', 'IIXIII', 'IXIIII', 'XIIIII'],
               coeffs=[-0.2       +0.j, -0.2       +0.j, -0.2       +0.j, -0.2       +0.j,
  -0.2       +0.j, -0.45922012+0.j, -0.45922012+0.j, -0.45922012+0.j,
  -0.45922012+0.j, -0.45922012+0.j, -0.45922012+0.j, -1.10865544+0.j,
@@ -686,9 +686,9 @@ H = -J \sum_{i=0}^{N-2} Z_i Z_{i+1} -h \sum_{i=0}^{N-1} (\sin\alpha Z_i + \cos\a
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
-<span class="n">initial_circuit</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span><span class="s2">&quot;001100&quot;</span><span class="p">)</span>
+<span class="n">initial_circuit</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span><span class="s2">"001100"</span><span class="p">)</span>
 <span class="c1"># Change reps and see the difference when you decompose the circuit</span>
-<span class="n">initial_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">initial_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -717,16 +717,16 @@ e^{H_1+H_2} \approx e^{H_1} e^{H_2}
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Trotter step with Lie-Trotter</span>
 <span class="s2">-----------------------------</span>
 <span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
 <span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
 <span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
-<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">"""</span>
 <span class="p">)</span>
-<span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">single_step_evolution_lt</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -750,23 +750,23 @@ Gate breakdown: U: 12, CX: 10, P: 5
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">magnetization</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-        <span class="p">[(</span><span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
+        <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
     <span class="p">)</span>
     <span class="o">/</span> <span class="n">n_qubits</span>
 <span class="p">)</span>
 <span class="n">correlation</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
-    <span class="p">[(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
+    <span class="p">[(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_qubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
 <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_qubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnetization : &quot;</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;correlation : &quot;</span><span class="p">,</span> <span class="n">correlation</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"magnetization : "</span><span class="p">,</span> <span class="n">magnetization</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"correlation : "</span><span class="p">,</span> <span class="n">correlation</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnetization :  SparsePauliOp([&#39;IIIIIZ&#39;, &#39;IIIIZI&#39;, &#39;IIIZII&#39;, &#39;IIZIII&#39;, &#39;IZIIII&#39;, &#39;ZIIIII&#39;],
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>magnetization :  SparsePauliOp(['IIIIIZ', 'IIIIZI', 'IIIZII', 'IIZIII', 'IZIIII', 'ZIIIII'],
               coeffs=[0.16666667+0.j, 0.16666667+0.j, 0.16666667+0.j, 0.16666667+0.j,
  0.16666667+0.j, 0.16666667+0.j])
-correlation :  SparsePauliOp([&#39;IIIIZZ&#39;, &#39;IIIZZI&#39;, &#39;IIZZII&#39;, &#39;IZZIII&#39;, &#39;ZZIIII&#39;],
+correlation :  SparsePauliOp(['IIIIZZ', 'IIIZZI', 'IIZZII', 'IZZIII', 'ZZIIII'],
               coeffs=[0.2+0.j, 0.2+0.j, 0.2+0.j, 0.2+0.j, 0.2+0.j])
 </pre></div>
 </div>
@@ -834,28 +834,28 @@ correlation :  SparsePauliOp([&#39;IIIIZZ&#39;, &#39;IIIZZI&#39;, &#39;IIZZII&#3
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">times</span><span class="p">,</span>
     <span class="n">energy_array</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;First order&quot;</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span>
-    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"First order"</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">"darkmagenta"</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
     <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">times</span><span class="p">,</span> <span class="n">mag_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;First order&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">mag_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"First order"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"darkmagenta"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
 <span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">times</span><span class="p">,</span> <span class="n">corr_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;First order&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;darkmagenta&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">corr_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"First order"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"darkmagenta"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span>
 <span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Magnetization&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean spin correlation&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Observable evolution&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Energy"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Magnetization"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Mean spin correlation"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Time"</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Observable evolution"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Observable evolution&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, 'Observable evolution')
 </pre></div>
 </div>
 <img alt="../../_images/9cda43267c405a1e030c53a7a0c13a59cb26361a7d107d2adaeac0af76575013.png" src="../../_images/9cda43267c405a1e030c53a7a0c13a59cb26361a7d107d2adaeac0af76575013.png" />
@@ -886,16 +886,16 @@ e^{H_1+H_2} \approx e^{H_1/2}e^{H_2}e^{H_1/2}
 <span class="p">)</span>
 <span class="c1"># Let us print some stats</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Trotter step with second-order Suzuki-Trotter</span>
 <span class="s2">-----------------------------</span>
 <span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
 <span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
 <span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
-<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">"""</span>
 <span class="p">)</span>
-<span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">single_step_evolution_st2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -969,28 +969,28 @@ Gate breakdown: U: 23, CX: 20, P: 10
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">times</span><span class="p">,</span>
     <span class="n">energy_array_st2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Second Order&quot;</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span>
-    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Second Order"</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">"limegreen"</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
     <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">times</span><span class="p">,</span>
     <span class="n">mag_array_st2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Second Order&quot;</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span>
-    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Second Order"</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">"limegreen"</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
     <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">times</span><span class="p">,</span>
     <span class="n">corr_array_st2</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Second Order&quot;</span><span class="p">,</span>
-    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="n">c</span><span class="o">=</span><span class="s2">&quot;limegreen&quot;</span><span class="p">,</span>
-    <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Second Order"</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">"limegreen"</span><span class="p">,</span>
+    <span class="n">ls</span><span class="o">=</span><span class="s2">"-"</span><span class="p">,</span>
     <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -999,7 +999,7 @@ Gate breakdown: U: 23, CX: 20, P: 10
 <span class="n">legend</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
     <span class="o">*</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">(),</span>
     <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
-    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s2">"center left"</span><span class="p">,</span>
     <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">fig</span>
@@ -1442,16 +1442,16 @@ Gate breakdown: U: 23, CX: 20, P: 10
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_energy</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_magnetization</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact&quot;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_correlation</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_energy</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Exact"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_magnetization</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Exact"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">exact_times</span><span class="p">,</span> <span class="n">exact_correlation</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">":"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Exact"</span><span class="p">)</span>
 <span class="c1"># Replace the legend</span>
 <span class="n">legend</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
 <span class="c1"># Select the labels of only the first axis</span>
 <span class="n">legend</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
     <span class="o">*</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">(),</span>
     <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
-    <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s2">"center left"</span><span class="p">,</span>
     <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1487,9 +1487,9 @@ Gate breakdown: U: 23, CX: 20, P: 10
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We prepare an initial state ↓↑ (10).</span>
 <span class="c1"># Note that Statevector and SparsePauliOp interpret the qubits from right to left</span>
 <span class="n">initial_circuit_2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n_qubits_2</span><span class="p">)</span>
-<span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span><span class="s2">&quot;10&quot;</span><span class="p">)</span>
+<span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">prepare_state</span><span class="p">(</span><span class="s2">"10"</span><span class="p">)</span>
 <span class="c1"># Change reps and see the difference when you decompose the circuit</span>
-<span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">initial_circuit_2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1501,7 +1501,7 @@ Gate breakdown: U: 23, CX: 20, P: 10
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bar_width</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="c1"># initial_state = Statevector.from_label(&quot;10&quot;)</span>
+<span class="c1"># initial_state = Statevector.from_label("10")</span>
 <span class="n">final_time</span> <span class="o">=</span> <span class="mf">1.6</span>
 <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-5</span>
 
@@ -1523,15 +1523,15 @@ Gate breakdown: U: 23, CX: 20, P: 10
     <span class="n">labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">amplitudes_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">amplitudes_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     <span class="c1"># Convert angle to degrees</span>
-    <span class="n">alpha_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">alpha=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="si">}</span><span class="s2">^</span><span class="se">\\</span><span class="s2">circ$&quot;</span>
+    <span class="n">alpha_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">alpha=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="si">}</span><span class="s2">^</span><span class="se">\\</span><span class="s2">circ$"</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">alpha_str</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Measurement&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Measurement"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Probability"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Measurement probabilities at $t=</span><span class="si">{</span><span class="n">final_time</span><span class="si">}</span><span class="s2">$, for various field angles $</span><span class="se">\\</span><span class="s2">alpha$</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;Initial state: 10, Linear lattice of size $L=2$&quot;</span>
+    <span class="sa">f</span><span class="s2">"Measurement probabilities at $t=</span><span class="si">{</span><span class="n">final_time</span><span class="si">}</span><span class="s2">$, for various field angles $</span><span class="se">\\</span><span class="s2">alpha$</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="sa">f</span><span class="s2">"Initial state: 10, Linear lattice of size $L=2$"</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
@@ -1578,7 +1578,7 @@ Gate breakdown: U: 23, CX: 20, P: 10
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ibm_torino&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'ibm_torino'
 </pre></div>
 </div>
 </div>
@@ -1595,7 +1595,7 @@ Gate breakdown: U: 23, CX: 20, P: 10
 <p>回路を確認します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_isa</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_isa</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1612,7 +1612,7 @@ Gate breakdown: U: 23, CX: 20, P: 10
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sampler</span> <span class="o">=</span> <span class="n">SamplerV2</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit_isa</span><span class="p">)</span>
 <span class="n">job_id</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">job_id</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;job id:&quot;</span><span class="p">,</span> <span class="n">job_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"job id:"</span><span class="p">,</span> <span class="n">job_id</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1636,7 +1636,7 @@ Gate breakdown: U: 23, CX: 20, P: 10
 <p>ビット列のヒストグラムを構築します。これは波動関数の解析に由来します。そして、これらを上で確認した理想の解と比較しましょう。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_temp</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;00&quot;</span><span class="p">,</span> <span class="s2">&quot;01&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;11&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_temp</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"00"</span><span class="p">,</span> <span class="s2">"01"</span><span class="p">,</span> <span class="s2">"10"</span><span class="p">,</span> <span class="s2">"11"</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphas</span><span class="p">):</span>
     <span class="c1"># Dictionary of probabilities</span>
@@ -1647,15 +1647,15 @@ Gate breakdown: U: 23, CX: 20, P: 10
             <span class="n">amplitudes_dict</span><span class="p">[</span><span class="n">str_temp</span><span class="p">]</span> <span class="o">/</span> <span class="mf">4096.0</span>
         <span class="p">)</span>  <span class="c1"># divided by default number of shots</span>
     <span class="c1"># Convert angle to degrees</span>
-    <span class="n">alpha_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">alpha=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="si">}</span><span class="s2">^</span><span class="se">\\</span><span class="s2">circ$&quot;</span>
+    <span class="n">alpha_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">alpha=</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">180</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="si">}</span><span class="s2">^</span><span class="se">\\</span><span class="s2">circ$"</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">alpha_str</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Measurement&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probabilities&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Measurement"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Probabilities"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Measurement probabilities at $t=</span><span class="si">{</span><span class="n">final_time</span><span class="si">}</span><span class="s2">$, for various field angles $</span><span class="se">\\</span><span class="s2">alpha$</span><span class="se">\n</span><span class="s2">&quot;</span>
-    <span class="sa">f</span><span class="s2">&quot;Initial state: 10, Linear lattice of size $L=2$&quot;</span>
+    <span class="sa">f</span><span class="s2">"Measurement probabilities at $t=</span><span class="si">{</span><span class="n">final_time</span><span class="si">}</span><span class="s2">$, for various field angles $</span><span class="se">\\</span><span class="s2">alpha$</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="sa">f</span><span class="s2">"Initial state: 10, Linear lattice of size $L=2$"</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
@@ -1694,16 +1694,16 @@ p_k = 1 / \left(4-4^{\frac{1}{2k-1}}\right)
 <span class="p">)</span>
 <span class="c1"># Let us print some stats</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+    <span class="sa">f</span><span class="s2">"""</span>
 <span class="s2">Trotter step with second-order Suzuki-Trotter</span>
 <span class="s2">-----------------------------</span>
 <span class="s2">Depth: </span><span class="si">{</span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">()</span><span class="si">}</span>
 <span class="s2">Gate count: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span><span class="si">}</span>
 <span class="s2">Nonlocal gate count: </span><span class="si">{</span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">num_nonlocal_gates</span><span class="p">()</span><span class="si">}</span>
-<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Gate breakdown: </span><span class="si">{</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="si">}</span>
+<span class="s2">"""</span>
 <span class="p">)</span>
-<span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">single_step_evolution_st4</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1729,7 +1729,7 @@ Gate breakdown: U: 115, CX: 100, P: 50
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.1.0&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'2.1.0'
 </pre></div>
 </div>
 </div>

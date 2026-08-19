@@ -1,0 +1,1098 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>測定の数学的形式 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/general-measurements/formulations-of-measurements-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/general-measurements/formulations-of-measurements-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/general-measurements/formulations-of-measurements-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>測定の数学的形式</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">行列の集合としての測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一般の測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">例1：任意の射影測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">例2：非射影的な量子ビット測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">例3：正四面体測定</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">チャネルとしての測定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">記述の等価性</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">チャネルから行列へ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">行列からチャネルへ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">部分測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">結果の確率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">測定結果に条件づけられた状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">一般化</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>測定の数学的形式<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>このレッスンは、測定に関する2つの等価な数学的記述から始まります。</p>
+<ol class="arabic simple">
+<li><p>一般の測定は、それぞれの測定結果に対応する<em>行列の集合</em>によって記述することができ、これは射影測定の記述を一般化したものです。</p></li>
+<li><p>一般の測定は、出力が常に古典状態（対角な密度行列で表される）となる<em>チャネル</em>として記述することができます。</p></li>
+</ol>
+<p>このレッスンでは、可能な結果の数が<em>有限</em>である測定に注目します。
+測定結果が無限個ある測定を定義することも可能ですが、計算や情報処理の文脈ではあまり登場せず、それを適切に形式化するには追加の数学（すなわち測度論）が必要になります。</p>
+<p>まず最初に注目するのは、いわゆる<em>破壊的</em>測定です。これは、測定の出力が古典的な測定結果のみであり、測定されたシステムの測定後の量子状態については何も指定されない測定です。
+直感的には、このような測定は量子システム自体を破壊してしまう、あるいは測定が行われた直後にそのシステムが捨てられてしまうと考えることができます。
+このレッスンの後半では視野を広げ、古典的な測定結果と測定後の量子状態の両方が存在する<em>非破壊的</em>測定について考察します。</p>
+<section id="id2">
+<h2>行列の集合としての測定<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を測定対象のシステムとし、簡単のため、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典状態集合は、ある正の整数 <span class="math notranslate nohighlight">\(n\)</span> について <span class="math notranslate nohighlight">\(\{0,\ldots, n-1\}\)</span> であるとします。したがって、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の量子状態を表す密度行列は <span class="math notranslate nohighlight">\(n\times n\)</span> 行列となります。
+実際には <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典状態そのものを参照する必要はほとんどありませんが、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典状態の数である <span class="math notranslate nohighlight">\(n\)</span> を参照するのは便利です。
+また、測定の可能な結果は、ある正の整数 <span class="math notranslate nohighlight">\(m\)</span> について整数 <span class="math notranslate nohighlight">\(0,\ldots,m-1\)</span> であるとします。</p>
+<p>これらの名前は単に話を簡単にするために使っているだけであることに注意してください。
+以下で述べることはすべて、他の有限個の古典状態集合や測定結果の集合に対しても、必要に応じて名前を付け替えれば容易に一般化できます。</p>
+<section id="id3">
+<h3>射影測定<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p><em>射影測定</em>は、合計すると単位行列になる<em>射影行列</em>の集合によって記述されることを思い出してください。
+記号で書くと、</p>
+<div class="math notranslate nohighlight">
+\[
+\{\Pi_0,\ldots,\Pi_{m-1}\}
+\]</div>
+<p>は、各 <span class="math notranslate nohighlight">\(\Pi_a\)</span> が <span class="math notranslate nohighlight">\(n\times n\)</span> の射影行列であり、次の条件が満たされるとき、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の射影測定を記述します。</p>
+<div class="math notranslate nohighlight">
+\[
+\Pi_0 + \cdots + \Pi_{m-1} = \mathbb{I}_{\mathsf{X}}
+\]</div>
+<p>このような測定を、量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> によって記述される状態にあるシステム <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対して行うと、各結果 <span class="math notranslate nohighlight">\(a\)</span> は <span class="math notranslate nohighlight">\(\|\Pi_a\vert\psi\rangle\|^2\)</span> に等しい確率で得られます。
+また、測定後の <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態は、ベクトル <span class="math notranslate nohighlight">\(\Pi_a\vert\psi\rangle\)</span> を正規化することで得られますが、ここでは測定後の状態については考えないことにします。</p>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態が量子状態ベクトル <span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span> ではなく密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> によって記述される場合、結果 <span class="math notranslate nohighlight">\(a\)</span> を得る確率は <span class="math notranslate nohighlight">\(\operatorname{Tr}(\Pi_a \rho)\)</span> とも表せます。</p>
+<p><span class="math notranslate nohighlight">\(\rho = \vert \psi\rangle\langle\psi\vert\)</span> が純粋状態であれば、この2つの表現は等しくなります。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}(\Pi_a \rho)
+= \operatorname{Tr}(\Pi_a \vert \psi\rangle\langle\psi \vert)
+= \langle \psi \vert \Pi_a \vert \psi \rangle
+= \langle \psi \vert \Pi_a \Pi_a \vert \psi \rangle
+= \|\Pi_a\vert\psi\rangle\|^2.
+\]</div>
+<p>ここで、2番目の等式にはトレースの巡回性を用いており、3番目の等式には、各 <span class="math notranslate nohighlight">\(\Pi_a\)</span> が射影行列であり、それゆえ <span class="math notranslate nohighlight">\(\Pi_a^2 = \Pi_a\)</span> を満たすという事実を用いています。</p>
+<p>一般に、<span class="math notranslate nohighlight">\(\rho\)</span> が純粋状態の凸結合</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{k = 0}^{N-1} p_k \vert \psi_k\rangle\langle \psi_k \vert
+\]</div>
+<p>である場合、この式が <span class="math notranslate nohighlight">\(\rho\)</span> に関して線形であることから、<span class="math notranslate nohighlight">\(\operatorname{Tr}(\Pi_a \rho)\)</span> という式は結果 <span class="math notranslate nohighlight">\(a\)</span> の平均確率に一致します。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}(\Pi_a \rho)
+= \sum_{k = 0}^{N-1} p_k \operatorname{Tr}(\Pi_a \vert \psi_k\rangle\langle\psi_k\vert)
+= \sum_{k = 0}^{N-1} p_k \|\Pi_a\vert\psi_k\rangle\|^2
+\]</div>
+</section>
+<section id="id4">
+<h3>一般の測定<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>一般の測定に対する数学的記述は、射影測定の定義を緩めることで得られます。
+具体的には、測定を記述する集合内の行列を、射影行列ではなく任意の<em>半正定値</em>行列とすることを許します。
+（射影行列は常に半正定値です。射影行列は、固有値がすべて0または1のいずれかである半正定値行列として定義することもできます。）</p>
+<p>具体的には、結果が <span class="math notranslate nohighlight">\(0,\ldots,m-1\)</span> であるシステム <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の一般の測定は、行と列が <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典状態に対応し、次の条件を満たす半正定値行列の集合 <span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span> によって指定されます。</p>
+<div class="math notranslate nohighlight">
+\[
+P_0 + \cdots + P_{m-1} = \mathbb{I}_{\mathsf{X}}.
+\]</div>
+<p>システム <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> によって記述される状態にあるときに測定を行うと、各結果
+<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span> は確率 <span class="math notranslate nohighlight">\(\operatorname{Tr}(P_a \rho)\)</span> で得られます。</p>
+<p>当然求められることですが、一般の測定における結果の確率のベクトル</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl(\operatorname{Tr}(P_0 \rho),\ldots,\operatorname{Tr}(P_{m-1} \rho)\bigr)
+\]</div>
+<p>は、密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> をどのように選んでも、常に確率ベクトルとなります。
+このことは、以下の2つの観察によって確認できます。</p>
+<ol class="arabic">
+<li><p>2つの半正定値行列の積のトレースは常に非負であるという事実により、各値 <span class="math notranslate nohighlight">\(\operatorname{Tr}(P_a \rho)\)</span> は非負でなければなりません。</p>
+<div class="math notranslate nohighlight">
+\[
+   Q, R \geq 0 \; \Rightarrow \: \operatorname{Tr}(QR) \geq 0.
+   \]</div>
+<p>この事実を示す一つの方法は、<span class="math notranslate nohighlight">\(Q\)</span> と <span class="math notranslate nohighlight">\(R\)</span> のスペクトル分解とトレースの巡回性を用いて、積 <span class="math notranslate nohighlight">\(QR\)</span> のトレースを非負の実数の和として表すことです。これは必然的に非負になります。</p>
+</li>
+<li><p>条件 <span class="math notranslate nohighlight">\(P_0 + \cdots + P_{m-1} = \mathbb{I}_{\mathsf{X}}\)</span> とトレースの線形性により、確率の合計が <span class="math notranslate nohighlight">\(1\)</span> になることが保証されます。</p>
+<div class="math notranslate nohighlight">
+\[
+   \sum_{a = 0}^{m-1} \operatorname{Tr}(P_a \rho)
+   = \operatorname{Tr}\Biggl(\sum_{a = 0}^{m-1} P_a \rho\Biggr)
+   = \operatorname{Tr}(\mathbb{I}\rho) = \operatorname{Tr}(\rho) = 1
+   \]</div>
+</li>
+</ol>
+</section>
+<section id="id5">
+<h3>例1：任意の射影測定<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>射影行列は常に半正定値であるため、すべての射影測定は一般の測定の一例です。</p>
+<p>例えば、量子ビットの標準基底測定は、次のような <span class="math notranslate nohighlight">\(\{P_0,P_1\}\)</span> で表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P_0 = \vert 0\rangle\langle 0\vert =
+\begin{pmatrix}
+  1 &amp; 0 \\ 0 &amp; 0
+\end{pmatrix}
+\quad\text{and}\quad
+P_1 = \vert 1\rangle\langle 1\vert =
+\begin{pmatrix}
+  0 &amp; 0 \\ 0 &amp; 1
+\end{pmatrix}.
+\end{split}\]</div>
+<p>状態 <span class="math notranslate nohighlight">\(\rho\)</span> にある量子ビットを測定すると、次のような結果の確率が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Prob}(\text{outcome} = 0)
+&amp; = \operatorname{Tr}(P_0 \rho) =
+\operatorname{Tr}\bigl(\vert 0\rangle\langle 0\vert \rho\bigr) =
+\langle 0\vert \rho \vert 0 \rangle \\[1mm]
+\operatorname{Prob}(\text{outcome} = 1)
+&amp; = \operatorname{Tr}(P_1 \rho) =
+\operatorname{Tr}\bigl(\vert 1\rangle\langle 1\vert\rho\bigr) =
+\langle 1 \vert \rho \vert 1 \rangle
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id6">
+<h3>例2：非射影的な量子ビット測定<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を量子ビットとし、次のように2つの行列を定義します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P_0 =
+\begin{pmatrix}
+\frac{2}{3} &amp; \frac{1}{3}\\[2mm]
+\frac{1}{3} &amp; \frac{1}{3}
+\end{pmatrix}
+\qquad
+P_1 =
+\begin{pmatrix}
+\frac{1}{3} &amp; -\frac{1}{3}\\[2mm]
+-\frac{1}{3} &amp; \frac{2}{3}
+\end{pmatrix}
+\end{split}\]</div>
+<p>これらはどちらも半正定値行列です。エルミート行列であり、いずれの場合も固有値は <span class="math notranslate nohighlight">\(1/2 \pm \sqrt{5}/6\)</span> となり、いずれも正の値です。
+また <span class="math notranslate nohighlight">\(P_0 + P_1 = \mathbb{I}\)</span> が成り立つため、<span class="math notranslate nohighlight">\(\{P_0,P_1\}\)</span> は測定を記述します。</p>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態が密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> によって記述されているときにこの測定を行うと、結果 <span class="math notranslate nohighlight">\(0\)</span> を得る確率は <span class="math notranslate nohighlight">\(\operatorname{Tr}(P_0 \rho)\)</span> であり、結果 <span class="math notranslate nohighlight">\(1\)</span> を得る確率は
+<span class="math notranslate nohighlight">\(\operatorname{Tr}(P_1 \rho)\)</span> です。
+例えば、<span class="math notranslate nohighlight">\(\rho = \vert + \rangle \langle + \vert\)</span> の場合、結果 <span class="math notranslate nohighlight">\(0\)</span> と <span class="math notranslate nohighlight">\(1\)</span> の確率は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}(P_0 \rho)
+&amp; = \operatorname{Tr}\left(
+\begin{pmatrix}
+\frac{2}{3} &amp; \frac{1}{3}\\[2mm]
+\frac{1}{3} &amp; \frac{1}{3}
+\end{pmatrix}
+\begin{pmatrix}
+\frac{1}{2} &amp; \frac{1}{2}\\[2mm]
+\frac{1}{2} &amp; \frac{1}{2}
+\end{pmatrix}
+\right)\\[4mm]
+&amp; = \biggl(\frac{2}{3} \cdot \frac{1}{2} + \frac{1}{3} \cdot \frac{1}{2}\biggr)
++ \biggl(\frac{1}{3}\cdot\frac{1}{2}  + \frac{1}{3}\cdot\frac{1}{2}\biggr)\\
+&amp; = \frac{1}{2} + \frac{1}{3} = \frac{5}{6}\\[4mm]
+\operatorname{Tr}(P_1 \rho)
+&amp; = \operatorname{Tr}\left(
+\begin{pmatrix}
+\frac{1}{3} &amp; -\frac{1}{3}\\[2mm]
+-\frac{1}{3} &amp; \frac{2}{3}
+\end{pmatrix}
+\begin{pmatrix}
+\frac{1}{2} &amp; \frac{1}{2}\\[2mm]
+\frac{1}{2} &amp; \frac{1}{2}
+\end{pmatrix}
+\right)\\[4mm]
+&amp; = \biggl(\frac{1}{3} \cdot \frac{1}{2} - \frac{1}{3} \cdot \frac{1}{2}\biggr)
++ \biggl(-\frac{1}{3}\cdot\frac{1}{2}  + \frac{2}{3}\cdot\frac{1}{2}\biggr)\\
+&amp; = 0 + \frac{1}{6} = \frac{1}{6}
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id7">
+<h3>例3：正四面体測定<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>次のように、単一量子ビットの量子状態ベクトルを4つ定義します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\phi_0\rangle &amp; = \vert 0 \rangle\\
+\vert\phi_1\rangle &amp; = \frac{1}{\sqrt{3}}\vert 0 \rangle + \sqrt{\frac{2}{3}} \vert 1\rangle \\
+\vert\phi_2\rangle &amp; = \frac{1}{\sqrt{3}}\vert 0 \rangle + \sqrt{\frac{2}{3}} e^{2\pi i/3} \vert 1\rangle \\
+\vert\phi_3\rangle &amp; = \frac{1}{\sqrt{3}}\vert 0 \rangle + \sqrt{\frac{2}{3}} e^{-2\pi i/3} \vert 1\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>これら4つの状態は、ブロッホ球に内接する<em>正四面体</em>の頂点となっているため、<em>正四面体</em>状態と呼ばれることがあります。</p>
+<p><img alt="Illustration of a tetrahedron inscribed in the Bloch sphere" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/general-measurements/tetrahedral-states.avif" /></p>
+<p>これら4つの状態のブロッホ球上でのデカルト座標は、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(0,0,1),\\[2mm]
+\left( \frac{2\sqrt{2}}{3} , 0 , -\frac{1}{3} \right),\\[1mm]
+\left( -\frac{\sqrt{2}}{3} , \sqrt{\frac{2}{3}} , -\frac{1}{3} \right),\\[1mm]
+\left( -\frac{\sqrt{2}}{3} , -\sqrt{\frac{2}{3}} , -\frac{1}{3} \right),
+\end{split}\]</div>
+<p>であり、これらの状態の密度行列表現をパウリ行列の線形結合として表すことで確認できます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \phi_0 \rangle\langle \phi_0 \vert =
+\begin{pmatrix}
+1 &amp; 0\\[1mm] 0 &amp; 0
+\end{pmatrix}
+= \frac{\mathbb{I} + \sigma_z}{2}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \phi_1 \rangle\langle \phi_1 \vert =
+\begin{pmatrix}
+\frac{1}{3} &amp; \frac{\sqrt{2}}{3} \\[2mm]
+\frac{\sqrt{2}}{3} &amp; \frac{2}{3}
+\end{pmatrix}
+= \frac{\mathbb{I} + \frac{2\sqrt{2}}{3} \sigma_x - \frac{1}{3}\sigma_z}{2}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \phi_2 \rangle\langle \phi_2 \vert =
+\begin{pmatrix}
+\frac{1}{3} &amp; -\frac{1}{3\sqrt{2}} - \frac{i}{\sqrt{6}} \\[2mm]
+-\frac{1}{3\sqrt{2}} + \frac{i}{\sqrt{6}} &amp; \frac{2}{3}
+\end{pmatrix}
+= \frac{\mathbb{I} - \frac{\sqrt{2}}{3} \sigma_x + \sqrt{\frac{2}{3}} \sigma_y - \frac{1}{3}\sigma_z}{2}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vert \phi_3 \rangle\langle \phi_3 \vert =
+\begin{pmatrix}
+\frac{1}{3} &amp; -\frac{1}{3\sqrt{2}} + \frac{i}{\sqrt{6}} \\[2mm]
+-\frac{1}{3\sqrt{2}} - \frac{i}{\sqrt{6}} &amp; \frac{2}{3}
+\end{pmatrix}
+= \frac{\mathbb{I} - \frac{\sqrt{2}}{3} \sigma_x - \sqrt{\frac{2}{3}} \sigma_y - \frac{1}{3}\sigma_z}{2}
+\end{split}\]</div>
+<p>これら4つの状態はブロッホ球上に完全に広がって配置されており、それぞれが他の3つから等距離にあり、どの2つの間の角度も常に同じになっています。</p>
+<p>では、各 <span class="math notranslate nohighlight">\(a=0,\ldots,3\)</span> について <span class="math notranslate nohighlight">\(P_a\)</span> を次のように設定することで、量子ビットの測定 <span class="math notranslate nohighlight">\(\{P_0,P_1,P_2,P_3\}\)</span> を定義しましょう。</p>
+<div class="math notranslate nohighlight">
+\[
+P_a = \frac{\vert\phi_a\rangle\langle\phi_a\vert}{2}
+\]</div>
+<p>これが妥当な測定であることは、次のように確認できます。</p>
+<ol class="arabic simple">
+<li><p>各 <span class="math notranslate nohighlight">\(P_a\)</span> は純粋状態を2分の1で割ったものであるため、明らかに半正定値です。
+すなわち、それぞれはエルミート行列であり、固有値の1つが <span class="math notranslate nohighlight">\(1/2\)</span> に等しく、他の固有値はすべて0です。</p></li>
+<li><p>これらの行列の合計は単位行列になります：<span class="math notranslate nohighlight">\(P_0 + P_1 + P_2 + P_3 = \mathbb{I}.\)</span>
+これらの行列をパウリ行列の線形結合として表現すれば、このことは容易に確認できます。</p></li>
+</ol>
+</section>
+</section>
+<section id="id8">
+<h2>チャネルとしての測定<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>測定を数学的に記述する2番目の方法は、チャネルとして記述することです。</p>
+<p>確率的状態を対角な密度行列と同一視できることから、古典情報は量子情報の特殊な場合とみなすことができます。
+そのため、操作的な観点では、測定を、入力が測定対象のシステムの状態を記述する行列であり、出力が測定結果の分布を記述する<em>対角な</em>密度行列であるチャネルとして考えることができます。</p>
+<p>この性質を持つチャネルは常に、半正定値行列の集合として測定を記述する方法に直接結びつく、単純な標準形で書けることをすぐに見ていきます。
+逆に、行列の集合として任意の測定が与えられたとき、前の段落で示唆したように、その測定を記述する、出力が対角になるという性質を持つ妥当なチャネルが常に存在します。
+これらの観察を組み合わせると、一般の測定に関する2つの記述は等価であることがわかります。</p>
+<p>さらに先に進む前に、測定について、それをチャネルとしてどのように見るか、そしてどのような仮定を置くのかを、より正確に述べておきましょう。</p>
+<p>これまでと同様に、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を測定対象のシステムとし、測定の可能な結果は、ある正の整数 <span class="math notranslate nohighlight">\(m\)</span> について整数 <span class="math notranslate nohighlight">\(0,\ldots,m-1\)</span> であるとします。
+測定結果を保持するシステムを <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> とします。したがってその古典状態集合は <span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span> であり、測定を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> への <span class="math notranslate nohighlight">\(\Phi\)</span> という名前のチャネルとして表します。
+ここでの仮定は、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が<em>古典的</em>であるということです。つまり、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の初期状態が何であっても、得られる <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> の状態は対角な密度行列で表されるということです。</p>
+<p><span class="math notranslate nohighlight">\(\Phi\)</span> の出力が常に対角であることは、次のようにして数学的に表現できます。
+まず、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> 上の完全デフェージングチャネル <span class="math notranslate nohighlight">\(\Delta_m\)</span> を定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta_m(\sigma) = \sum_{a = 0}^{m-1} \langle a \vert \sigma \vert a\rangle \,\vert a\rangle\langle a\vert
+\]</div>
+<p>このチャネルは、前のレッスンで登場した完全デフェージング量子ビットチャネル <span class="math notranslate nohighlight">\(\Delta\)</span> に相当するものです。
+線形写像として、入力行列の非対角成分をすべてゼロにし、対角成分にはそのまま手を付けません。</p>
+<p>そして、与えられた密度行列 <span class="math notranslate nohighlight">\(\sigma\)</span> が対角であることを表す簡単な方法は、方程式
+<span class="math notranslate nohighlight">\(\sigma = \Delta_m(\sigma)\)</span> です。
+言葉で言えば、密度行列の非対角成分をすべてゼロにしても何も変化しないのは、非対角成分がもともとすべてゼロであった場合に限られる、ということです。
+したがって、チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> が私たちの仮定（<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が古典的であること）を満たすのは、</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \Delta_m(\Phi(\rho))
+\]</div>
+<p>が、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の状態を表すすべての密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> について成り立つとき、かつそのときに限られます。</p>
+</section>
+<section id="id9">
+<h2>記述の等価性<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h3>チャネルから行列へ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> へのチャネルであって、</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \Delta_m(\Phi(\rho))
+\]</div>
+<p>という性質をすべての密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> について満たすものがあるとします。
+これは、次のように表すこともできます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) =
+\sum_{a = 0}^{m-1} \langle a \vert \Phi(\rho) \vert a\rangle\, \vert a\rangle\langle a \vert
+\tag{1}
+\]</div>
+<p>すべてのチャネルと同様に、クラウス行列 <span class="math notranslate nohighlight">\(A_0,\ldots,A_{N-1}\)</span> のある選び方に対して、<span class="math notranslate nohighlight">\(\Phi\)</span> をクラウス形式で表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \sum_{k = 0}^{N-1} A_k \rho A_k^{\dagger}
+\]</div>
+<p>これにより、<span class="math notranslate nohighlight">\(\Phi(\rho)\)</span> の対角成分に対する別の表現が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\langle a \vert \Phi(\rho) \vert a\rangle
+&amp; = \sum_{k = 0}^{N-1} \langle a \vert A_k \rho A_k^{\dagger} \vert a\rangle \\
+&amp; = \sum_{k = 0}^{N-1} \operatorname{Tr}\bigl( A_k^{\dagger} \vert a\rangle\langle a \vert A_k \rho\bigr)\\
+&amp; = \operatorname{Tr}\bigl(P_a\rho\bigr)
+\end{aligned}
+\end{split}\]</div>
+<p>ここで</p>
+<div class="math notranslate nohighlight">
+\[
+P_a = \sum_{k = 0}^{N-1} A_k^{\dagger} \vert a\rangle\langle a \vert A_k.
+\]</div>
+<p>したがって、この同じ行列 <span class="math notranslate nohighlight">\(P_0,\ldots,P_{m-1}\)</span> を用いて、チャネル <span class="math notranslate nohighlight">\(\Phi\)</span> を次のように表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \sum_{a = 0}^{m-1} \operatorname{Tr}(P_a \rho) \vert a\rangle\langle a\vert
+\]</div>
+<p>この式は、各測定結果が確率 <span class="math notranslate nohighlight">\(\operatorname{Tr}(P_a \rho)\)</span> で現れるという、行列による一般の測定の記述と一致しています。</p>
+<p>では、集合 <span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span> が一般の測定を記述するために必要な2つの性質を、実際に満たしていることを確認しましょう。
+1つ目の性質は、それらがすべて半正定値行列であるということです。
+これを確認する一つの方法は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典状態に対応する成分を持つすべてのベクトル <span class="math notranslate nohighlight">\(\vert \psi\rangle\)</span> について、</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \psi \vert P_a \vert \psi\rangle
+= \sum_{k = 0}^{N-1} \langle \psi \vert A_k^{\dagger} \vert a\rangle\langle a \vert A_k\vert \psi\rangle
+=  \sum_{k = 0}^{N-1} \bigl\vert\langle a \vert A_k\vert \psi\rangle\bigr\vert^2 \geq 0.
+\]</div>
+<p>であることを観察することです。</p>
+<p>2つ目の性質は、これらの行列を合計すると単位行列になるということです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sum_{a = 0}^{m-1} P_a
+&amp; = \sum_{a = 0}^{m-1} \sum_{k = 0}^{N-1} A_k^{\dagger} \vert a\rangle\langle a \vert A_k \\
+&amp; = \sum_{k = 0}^{N-1} A_k^{\dagger} \Biggl(\sum_{a = 0}^{m-1} \vert a\rangle\langle a \vert\Biggr) A_k \\
+&amp; = \sum_{k = 0}^{N-1} A_k^{\dagger} A_k \\
+&amp; = \mathbb{I}_{\mathsf{X}}
+\end{aligned}
+\end{split}\]</div>
+<p>最後の等式は、<span class="math notranslate nohighlight">\(\Phi\)</span> がチャネルであることから、そのクラウス行列がこの条件を満たさなければならないという事実に基づいています。</p>
+</section>
+<section id="id11">
+<h3>行列からチャネルへ<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>次に、<span class="math notranslate nohighlight">\(P_0 + \cdots + P_{m-1} = \mathbb{I}_{\mathsf{X}}\)</span> を満たす半正定値行列の任意の集合 <span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span> に対して、</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\rho) = \sum_{a = 0}^{m-1} \operatorname{Tr}(P_a \rho) \vert a \rangle\langle a\vert
+\]</div>
+<p>によって定義される写像が、実際に <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> への妥当なチャネルであることを確認しましょう。</p>
+<p>そのための一つの方法は、この写像のチョイ表現を計算することです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+J(\Phi) &amp; = \sum_{b,c = 0}^{n-1} \vert b \rangle \langle c \vert \otimes \Phi(\vert b \rangle \langle c \vert)\\[1mm]
+&amp; = \sum_{b,c = 0}^{n-1} \sum_{a = 0}^{m-1} \vert b \rangle \langle c \vert \otimes
+\operatorname{Tr}(P_a \vert b \rangle \langle c \vert) \vert a \rangle\langle a\vert\\[1mm]
+&amp; = \sum_{b,c = 0}^{n-1} \sum_{a = 0}^{m-1} \vert b \rangle \langle b \vert P_a^T \vert c \rangle \langle c \vert \otimes
+\vert a \rangle\langle a\vert\\[1mm]
+&amp; = \sum_{a = 0}^{m-1}  P_a^T \otimes \vert a \rangle\langle a\vert
+\end{aligned}
+\end{split}\]</div>
+<p>3番目の等式では、各 <span class="math notranslate nohighlight">\(P_a\)</span> の転置が導入されていますが、これは</p>
+<div class="math notranslate nohighlight">
+\[
+\langle c \vert P_a \vert b\rangle = \langle b \vert P_a^T \vert c\rangle.
+\]</div>
+<p>が成り立つためです。
+これにより、<span class="math notranslate nohighlight">\(\vert b \rangle \langle b \vert\)</span> と <span class="math notranslate nohighlight">\(\vert c \rangle \langle c \vert\)</span> という表現が現れ、それぞれ <span class="math notranslate nohighlight">\(b\)</span> と <span class="math notranslate nohighlight">\(c\)</span> について合計すると単位行列に簡約されます。</p>
+<p><span class="math notranslate nohighlight">\(P_0,\ldots,P_{m-1}\)</span> が半正定値であるという仮定により、<span class="math notranslate nohighlight">\(P_0^{T},\ldots,P_{m-1}^{T}\)</span> もまた半正定値です。
+具体的には、エルミート行列を転置すると別のエルミート行列になり、任意の正方行列とその転置の固有値は常に一致します。
+したがって、<span class="math notranslate nohighlight">\(J(\Phi)\)</span> は半正定値であることがわかります。
+出力システム <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>（右側のシステム）を部分トレースすると、</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{Y}} (J(\Phi)) = \sum_{a = 0}^{m-1}  P_a^T = \mathbb{I}_{\mathsf{X}}^T = \mathbb{I}_{\mathsf{X}},
+\]</div>
+<p>が得られます。よって、<span class="math notranslate nohighlight">\(\Phi\)</span> はチャネルであると結論できます。</p>
+</section>
+</section>
+<section id="id12">
+<h2>部分測定<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>複数のシステムが全体として1つの量子状態にあり、そのうちの1つのシステムに対して一般の測定が行われる場合を考えます。
+これにより、測定と測定前のシステムの状態によって決まる確率に従って、ランダムに選ばれた測定結果のうちの1つが得られます。
+残りのシステムの結果として得られる状態は、一般に、どの測定結果が得られたかに依存します。</p>
+<p>これがどのように機能するかを、システム <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> が測定される2つのシステム <span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Z})\)</span> の組について見てみましょう。
+（右側のシステムを <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> と名付けているのは、チャネルとして見るときに測定の古典的な出力を表すシステムとして <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> を使うためです。）
+これにより、システムの順序が入れ替わる状況や、3つ以上のシステムがある状況にも簡単に一般化できます。</p>
+<p>測定前の <span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Z})\)</span> の状態が密度行列 <span class="math notranslate nohighlight">\(\rho\)</span> によって記述されているとし、これを次のように書けるとします。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{b,c = 0}^{n-1} \vert b\rangle\langle c\vert \otimes \rho_{b,c}
+\]</div>
+<p>この式では、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の古典状態が <span class="math notranslate nohighlight">\(0,\ldots,n-1\)</span> であると仮定しています。</p>
+<p>測定自体は、行列の集合
+<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span> によって記述されるとします。
+この測定は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> へのチャネル <span class="math notranslate nohighlight">\(\Phi\)</span> として記述することもできます。ここで <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> は古典状態集合 <span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span> を持つ新しいシステムです。
+具体的には、このチャネルの作用は次のように表せます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi(\xi) = \sum_{a = 0}^{m-1} \operatorname{Tr}(P_a \xi)\, \vert a \rangle \langle a \vert
+\]</div>
+<section id="id13">
+<h3>結果の確率<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>システム <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の測定を考えているので、異なる測定結果が得られる確率は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の縮約状態である <span class="math notranslate nohighlight">\(\rho_{\mathsf{X}}\)</span> にのみ依存します。
+具体的には、各結果 <span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span> が現れる確率は、3つの等価な方法で表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}\bigl( P_a \rho_{\mathsf{X}}\bigr) =
+\operatorname{Tr}\bigl( P_a \operatorname{Tr}_{\mathsf{Z}}(\rho)\bigr) =
+\operatorname{Tr}\bigl( (P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho \bigr)
+\]</div>
+<p>1番目の式は、単一のシステムの測定について私たちがすでに知っていることに基づいて、結果 <span class="math notranslate nohighlight">\(a\)</span> を得る確率を自然に表しています。
+2番目の式は、単に定義 <span class="math notranslate nohighlight">\(\rho_{\mathsf{X}} = \operatorname{Tr}_{\mathsf{Z}}(\rho)\)</span> を使って得られます。</p>
+<p>3番目の式を得るにはもう少し考える必要があります。学習者はこれが正しいことを自分で確かめてみることをお勧めします。
+ヒント：2番目と3番目の式の等価性は、<span class="math notranslate nohighlight">\(\rho\)</span> が密度行列であることや、各 <span class="math notranslate nohighlight">\(P_a\)</span> が半正定値であることには依存しません。まず <span class="math notranslate nohighlight">\(\rho = M\otimes N\)</span> という形のテンソル積に対してこれを示し、線形性によって一般の場合にも成り立つと結論づけてみてください。</p>
+<p>前の式における1番目と3番目の表現の等価性はすぐには明らかでないかもしれませんが、意味は理解できます。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対する測定から始めて、実質的には <span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Z})\)</span> に対する測定を定義していることになります。ここでは単に <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> を捨てて <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> を測定しています。
+すべての測定と同様に、この新しい測定も行列の集合によって記述することができ、この測定が次の集合によって記述されることは驚くことではありません。</p>
+<div class="math notranslate nohighlight">
+\[
+\{P_0\otimes\mathbb{I}_{\mathsf{Z}}, \ldots, P_{m-1}\otimes\mathbb{I}_{\mathsf{Z}}\}.
+\]</div>
+</section>
+<section id="id14">
+<h3>測定結果に条件づけられた状態<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>異なる結果の確率だけでなく、各測定結果に条件づけられた結果としての <span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> の状態も求めたい場合は、測定のチャネルによる記述に注目することができます。
+具体的には、<span class="math notranslate nohighlight">\(\Phi\)</span> を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に適用し、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> には何もしない場合に得られる状態を見てみましょう。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+  (\Phi\otimes\operatorname{Id}_{\mathsf{Z}})(\rho)
+  &amp; = \sum_{b,c = 0}^{n-1} \Phi(\vert b\rangle\langle c\vert) \otimes \rho_{b,c}\\
+  &amp; = \sum_{a = 0}^{m-1} \sum_{b,c = 0}^{n-1} \operatorname{Tr}(P_a \vert b\rangle\langle c\vert)
+    \,\vert a\rangle \langle a \vert \otimes \rho_{b,c}\\
+  &amp; = \sum_{a = 0}^{m-1}  \vert a\rangle \langle a \vert \otimes \sum_{b,c = 0}^{n-1}
+    \operatorname{Tr}(P_a \vert b\rangle\langle c\vert) \rho_{b,c}\\
+  &amp; = \sum_{a = 0}^{m-1}  \vert a\rangle \langle a \vert \otimes
+    \sum_{b,c = 0}^{n-1} \operatorname{Tr}_{\mathsf{X}}\bigl((P_a\otimes\mathbb{I}_{\mathsf{Z}})
+    (\vert b\rangle\langle  c\vert\otimes\rho_{b,c})\bigr)\\
+  &amp; = \sum_{a = 0}^{m-1} \vert a\rangle \langle a \vert \otimes
+    \operatorname{Tr}_{\mathsf{X}}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho\bigr)
+\end{aligned}
+\end{split}\]</div>
+<p>これは <span class="math notranslate nohighlight">\(\Phi\)</span> がチャネルであることにより密度行列となっており、そのため各行列
+<span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{X}}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)\)</span> は必然的に半正定値であることに注意してください。</p>
+<p>最後に一段階の変形を行うことで、この式は求めているものを明らかにする形に変わります。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{a = 0}^{m-1} \operatorname{Tr}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)\,
+\vert a\rangle \langle a \vert \otimes \frac{\operatorname{Tr}_{\mathsf{X}}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)}{\operatorname{Tr}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)}
+\]</div>
+<p>これは<em>古典・量子状態</em>の一例であり、</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{a = 0}^{m-1} p(a)\, \vert a\rangle\langle a\vert \otimes \sigma_a,
+\]</div>
+<p><em>密度行列</em>のレッスンで見たものと同じです。
+各測定結果 <span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span> について、確率</p>
+<div class="math notranslate nohighlight">
+\[
+p(a) = \operatorname{Tr}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)
+\]</div>
+<p>で、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> は古典状態 <span class="math notranslate nohighlight">\(\vert a \rangle \langle a \vert\)</span> にあり、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> は状態</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_a = \frac{\operatorname{Tr}_{\mathsf{X}}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)}{\operatorname{Tr}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)}.
+\tag{2}
+\]</div>
+<p>にあります。
+つまり、これは</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{X}}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)
+\]</div>
+<p>をそのトレースで割って正規化することで得られる密度行列です。
+（形式的に言えば、状態 <span class="math notranslate nohighlight">\(\sigma_a\)</span> は確率 <span class="math notranslate nohighlight">\(p(a)\)</span> が非ゼロである場合にのみ定義されます。<span class="math notranslate nohighlight">\(p(a) = 0\)</span> の場合、この状態は無関係です。これは確率ゼロで発生する離散事象を指しているためです。）</p>
+<p>当然ながら、結果の確率は私たちが以前に観察した内容と一致しています。</p>
+<p>まとめると、<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Z})\)</span> が状態 <span class="math notranslate nohighlight">\(\rho\)</span> にあるときに測定 <span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span> を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> に対して行うと、次のことが起こります。</p>
+<ol class="arabic simple">
+<li><p>各結果 <span class="math notranslate nohighlight">\(a\)</span> は確率 <span class="math notranslate nohighlight">\(p(a) = \operatorname{Tr}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)\)</span> で現れます。</p></li>
+<li><p>結果 <span class="math notranslate nohighlight">\(a\)</span> が得られたことを条件として、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span> の状態は方程式 <span class="math notranslate nohighlight">\((2)\)</span> に示される密度行列 <span class="math notranslate nohighlight">\(\sigma_a\)</span> によって表されます。これは <span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{X}}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)\)</span> を正規化することで得られます。</p></li>
+</ol>
+</section>
+<section id="id15">
+<h3>一般化<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>この記述は、システムの順序が逆になる場合や、3つ以上のシステムがある場合など、他の状況にも適応させることができます。
+概念的には単純ですが、式を書き下すのは煩雑になることがあります。</p>
+<p>一般に、<span class="math notranslate nohighlight">\(r\)</span> 個のシステム <span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_r\)</span> があり、複合システム <span class="math notranslate nohighlight">\((\mathsf{X}_1,\ldots,\mathsf{X}_r)\)</span> の状態が <span class="math notranslate nohighlight">\(\rho\)</span> であり、測定 <span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span> が <span class="math notranslate nohighlight">\(\mathsf{X}_k\)</span> に対して行われる場合、次のことが起こります。</p>
+<ol class="arabic simple">
+<li><p>各結果 <span class="math notranslate nohighlight">\(a\)</span> は次の確率で現れます。
+$<span class="math notranslate nohighlight">\(
+p(a) = \operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr).
+\)</span>$</p></li>
+<li><p>結果 <span class="math notranslate nohighlight">\(a\)</span> が得られたことを条件として、<span class="math notranslate nohighlight">\((\mathsf{X}_1,\ldots,\mathsf{X}_{k-1},\mathsf{X}_{k+1},\ldots,\mathsf{X}_r)\)</span> の状態は次の密度行列によって表されます。
+$<span class="math notranslate nohighlight">\(
+\frac{\operatorname{Tr}_{\mathsf{X}_k}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}{\operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}
+\)</span>$</p></li>
+</ol>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/general-measurements"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">行列の集合としての測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一般の測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">例1：任意の射影測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">例2：非射影的な量子ビット測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">例3：正四面体測定</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">チャネルとしての測定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">記述の等価性</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">チャネルから行列へ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">行列からチャネルへ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">部分測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">結果の確率</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">測定結果に条件づけられた状態</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">一般化</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

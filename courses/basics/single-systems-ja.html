@@ -1499,7 +1499,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <span class="n">v</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([(</span><span class="mi">1</span><span class="o">+</span><span class="mf">2.</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State vectors u, v, and w have been defined.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"State vectors u, v, and w have been defined."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1513,8 +1513,8 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <p><code class="docutils literal notranslate"><span class="pre">Statevector</span></code> クラスは、次のコード セルが示すように、さまざまな視覚化のための <code class="docutils literal notranslate"><span class="pre">latex</span></code> および <code class="docutils literal notranslate"><span class="pre">text</span></code> オプションを含む、状態ベクトルを表示するための <code class="docutils literal notranslate"><span class="pre">draw</span></code> メソッドを提供します。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">))</span>
-<span class="n">display</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">'latex'</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">'text'</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1551,7 +1551,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([(</span><span class="mi">1</span><span class="o">+</span><span class="mf">2.</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
-<span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">'latex'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1569,7 +1569,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.str_(&#39;1&#39;),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.str_('1'),
  Statevector([ 0.+0.j, -1.+0.j],
              dims=(2,)))
 </pre></div>
@@ -1601,7 +1601,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_(&#39;0&#39;): np.int64(551), np.str_(&#39;1&#39;): np.int64(449)}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{np.str_('0'): np.int64(551), np.str_('1'): np.int64(449)}
 </pre></div>
 </div>
 <img alt="../../_images/637ef0269d19305f5eeed025a203b275b818dffc3349e6f5c0ca64635ec81bc0.png" src="../../_images/637ef0269d19305f5eeed025a203b275b818dffc3349e6f5c0ca64635ec81bc0.png" />
@@ -1631,7 +1631,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
 
-<span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">'text'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1657,7 +1657,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <span class="n">circuit</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">circuit</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">&quot;mpl&quot;</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1670,7 +1670,7 @@ H\,  \biggl(\frac{1}{\sqrt{2}} \vert 0\rangle + \frac{1+i}{2} \vert 1\rangle\big
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ket0</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">ket0</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">'latex'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
