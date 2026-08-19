@@ -429,6 +429,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">測定の数学的形式</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">行列の集合としての測定</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一般の測定</a></li>
@@ -450,6 +451,10 @@
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-corp-2017-2026">© IBM Corp., 2017-2026</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -728,12 +733,12 @@ P_a = \frac{\vert\phi_a\rangle\langle\phi_a\vert}{2}
 測定結果を保持するシステムを <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> とします。したがってその古典状態集合は <span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span> であり、測定を <span class="math notranslate nohighlight">\(\mathsf{X}\)</span> から <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> への <span class="math notranslate nohighlight">\(\Phi\)</span> という名前のチャネルとして表します。
 ここでの仮定は、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> が<em>古典的</em>であるということです。つまり、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span> の初期状態が何であっても、得られる <span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> の状態は対角な密度行列で表されるということです。</p>
 <p><span class="math notranslate nohighlight">\(\Phi\)</span> の出力が常に対角であることは、次のようにして数学的に表現できます。
-まず、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> 上の完全デフェージングチャネル <span class="math notranslate nohighlight">\(\Delta_m\)</span> を定義します。</p>
+まず、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span> 上の完全位相緩和チャネル <span class="math notranslate nohighlight">\(\Delta_m\)</span> を定義します。</p>
 <div class="math notranslate nohighlight">
 \[
 \Delta_m(\sigma) = \sum_{a = 0}^{m-1} \langle a \vert \sigma \vert a\rangle \,\vert a\rangle\langle a\vert
 \]</div>
-<p>このチャネルは、前のレッスンで登場した完全デフェージング量子ビットチャネル <span class="math notranslate nohighlight">\(\Delta\)</span> に相当するものです。
+<p>このチャネルは、前のレッスンで登場した完全位相緩和量子ビットチャネル <span class="math notranslate nohighlight">\(\Delta\)</span> に相当するものです。
 線形写像として、入力行列の非対角成分をすべてゼロにし、対角成分にはそのまま手を付けません。</p>
 <p>そして、与えられた密度行列 <span class="math notranslate nohighlight">\(\sigma\)</span> が対角であることを表す簡単な方法は、方程式
 <span class="math notranslate nohighlight">\(\sigma = \Delta_m(\sigma)\)</span> です。
@@ -968,9 +973,11 @@ $<span class="math notranslate nohighlight">\(
 \frac{\operatorname{Tr}_{\mathsf{X}_k}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}{\operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}
 \)</span>$</p></li>
 </ol>
-<p>© IBM Corp., 2017-2026</p>
 </section>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ibm-corp-2017-2026">
+<h1>© IBM Corp., 2017-2026<a class="headerlink" href="#ibm-corp-2017-2026" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1021,6 +1028,7 @@ $<span class="math notranslate nohighlight">\(
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">測定の数学的形式</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">行列の集合としての測定</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一般の測定</a></li>
@@ -1042,6 +1050,10 @@ $<span class="math notranslate nohighlight">\(
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-corp-2017-2026">© IBM Corp., 2017-2026</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
