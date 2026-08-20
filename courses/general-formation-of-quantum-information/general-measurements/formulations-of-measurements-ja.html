@@ -429,7 +429,6 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">測定の数学的形式</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">行列の集合としての測定</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一般の測定</a></li>
@@ -451,10 +450,6 @@
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-corp-2017-2026">© IBM Corp., 2017-2026</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -963,21 +958,23 @@ p(a) = \operatorname{Tr}\bigl((P_a \otimes \mathbb{I}_{\mathsf{Z}}) \rho)
 <p>この記述は、システムの順序が逆になる場合や、3つ以上のシステムがある場合など、他の状況にも適応させることができます。
 概念的には単純ですが、式を書き下すのは煩雑になることがあります。</p>
 <p>一般に、<span class="math notranslate nohighlight">\(r\)</span> 個のシステム <span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_r\)</span> があり、複合システム <span class="math notranslate nohighlight">\((\mathsf{X}_1,\ldots,\mathsf{X}_r)\)</span> の状態が <span class="math notranslate nohighlight">\(\rho\)</span> であり、測定 <span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span> が <span class="math notranslate nohighlight">\(\mathsf{X}_k\)</span> に対して行われる場合、次のことが起こります。</p>
-<ol class="arabic simple">
-<li><p>各結果 <span class="math notranslate nohighlight">\(a\)</span> は次の確率で現れます。
-$<span class="math notranslate nohighlight">\(
-p(a) = \operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr).
-\)</span>$</p></li>
-<li><p>結果 <span class="math notranslate nohighlight">\(a\)</span> が得られたことを条件として、<span class="math notranslate nohighlight">\((\mathsf{X}_1,\ldots,\mathsf{X}_{k-1},\mathsf{X}_{k+1},\ldots,\mathsf{X}_r)\)</span> の状態は次の密度行列によって表されます。
-$<span class="math notranslate nohighlight">\(
-\frac{\operatorname{Tr}_{\mathsf{X}_k}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}{\operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}
-\)</span>$</p></li>
+<ol class="arabic">
+<li><p>各結果 <span class="math notranslate nohighlight">\(a\)</span> は次の確率で現れます。</p>
+<div class="math notranslate nohighlight">
+\[
+   p(a) = \operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr).
+   \]</div>
+</li>
+<li><p>結果 <span class="math notranslate nohighlight">\(a\)</span> が得られたことを条件として、<span class="math notranslate nohighlight">\((\mathsf{X}_1,\ldots,\mathsf{X}_{k-1},\mathsf{X}_{k+1},\ldots,\mathsf{X}_r)\)</span> の状態は次の密度行列によって表されます。</p>
+<div class="math notranslate nohighlight">
+\[
+   \frac{\operatorname{Tr}_{\mathsf{X}_k}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}{\operatorname{Tr}\bigl((\mathbb{I}_{\mathsf{X}_1}\otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_{k-1}} \otimes P_a \otimes \mathbb{I}_{\mathsf{X}_{k+1}} \otimes \cdots \otimes\mathbb{I}_{\mathsf{X}_r}) \rho\bigr)}
+   \]</div>
+</li>
 </ol>
+<p>© IBM Corp., 2017-2026</p>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="ibm-corp-2017-2026">
-<h1>© IBM Corp., 2017-2026<a class="headerlink" href="#ibm-corp-2017-2026" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1028,7 +1025,6 @@ $<span class="math notranslate nohighlight">\(
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">測定の数学的形式</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">行列の集合としての測定</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">一般の測定</a></li>
@@ -1050,10 +1046,6 @@ $<span class="math notranslate nohighlight">\(
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-corp-2017-2026">© IBM Corp., 2017-2026</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
