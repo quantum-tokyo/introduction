@@ -1,0 +1,790 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ナイマークの定理 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/general-measurements/naimark-theorem-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/general-measurements/naimark-theorem-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/general-measurements/naimark-theorem-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ナイマークの定理</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定理の主張と証明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">非破壊測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ナイマークの定理から</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">クラウス表現から</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">一般化</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>ナイマークの定理<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><em>ナイマークの定理</em>は、測定に関する基本的な事実です。
+この定理は、任意の一般測定が、チャネルのスタインスプリング表現を思わせるようなシンプルな方法で実装できることを示しています。</p>
+<ol class="arabic simple">
+<li><p>まず、測定対象の系を初期化された作業用の系と組み合わせて、複合系を作ります。</p></li>
+<li><p>次に、その複合系に対してユニタリー演算を行います。</p></li>
+<li><p>最後に、作業用の系を<em>標準基底測定</em>によって<em>測定</em>し、元の一般測定の結果を得ます。</p></li>
+</ol>
+<section id="id2">
+<h2>定理の主張と証明<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span>をある系とし、<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>を次の条件を満たす半正定値行列の集まりとします。</p>
+<div class="math notranslate nohighlight">
+\[
+P_0 + \cdots + P_{m-1} = \mathbb{I}_{\mathsf{X}},
+\]</div>
+<p>これは、これらの行列が<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の測定を記述していることを意味します。
+さらに、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>を、古典状態集合が<span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span>である系とします。これは、この測定で得られる可能性のある結果の集合です。</p>
+<p>ナイマークの定理は、複合系<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>に対するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が存在して、次の図で示される実装が、与えられた測定<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>と一致する測定結果を与えることを述べています。つまり、それぞれの測定結果が得られる確率が、元の測定と厳密に一致するということです。</p>
+<p><img alt="ナイマークの定理における一般測定の実装" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/general-measurements/Naimark.svg" /></p>
+<p>念のため説明すると、系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>は何らかの任意の状態<span class="math notranslate nohighlight">\(\rho\)</span>から始まり、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>は<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span>状態に初期化されます。
+ユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>に対して適用され、その後、系<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>が標準基底測定によって測定され、何らかの結果<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>が得られます。</p>
+<p>系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>は回路の出力の一部として図示されていますが、ここでは、<span class="math notranslate nohighlight">\(U\)</span>が実行された後の<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態については特に考えず、トレースアウトされていると考えることにします。
+ただし、<span class="math notranslate nohighlight">\(U\)</span>が実行された後の<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態については、このレッスンの後半で取り上げます。</p>
+<p>このような方法による測定の実装は、チャネルのスタインスプリング表現を明らかに思わせるものであり、その数学的な基礎も同様です。
+ここでの違いは、作業用の系がスタインスプリング表現の場合のようにトレースアウトされるのではなく、測定されるという点です。</p>
+<p>すべての測定がこの方法で実装できるという事実は、証明するのはかなり簡単ですが、そのためにはまず、半正定値行列に関する事実が必要になります。</p>
+<Figure title="事実">
+  $P$を$n \times n$の半正定値行列とします。$Q^2 = P$を満たす$n\times n$の半正定値行列$Q$が一意に存在します。この一意な半正定値行列は$P$の*平方根*と呼ばれ、$\sqrt{P}$と表記されます。
+</Figure>
+<p>半正定値行列の平方根を求める1つの方法は、まずスペクトル分解を計算することです。</p>
+<div class="math notranslate nohighlight">
+\[
+P = \sum_{k=0}^{n-1} \lambda_k \vert \psi_k \rangle \langle \psi_k \vert
+\]</div>
+<p><span class="math notranslate nohighlight">\(P\)</span>が半正定値であるため、その固有値は非負の実数でなければならず、それらを平方根に置き換えることで、<span class="math notranslate nohighlight">\(P\)</span>の平方根の表現を得ることができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{P} = \sum_{k=0}^{n-1} \sqrt{\lambda_k} \vert \psi_k \rangle \langle \psi_k \vert
+\]</div>
+<p>この概念を手にしたので、ナイマークの定理を証明する準備が整いました。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>が<span class="math notranslate nohighlight">\(n\)</span>個の古典状態を持つと仮定すると、対<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>に対するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>は、<span class="math notranslate nohighlight">\(nm\times nm\)</span>の行列として表すことができ、これを、ブロックが<span class="math notranslate nohighlight">\(n\times n\)</span>である<span class="math notranslate nohighlight">\(m\times m\)</span>のブロック行列として見ることができます。
+証明の要点は、<span class="math notranslate nohighlight">\(U\)</span>として、次のパターンに一致する任意のユニタリー行列を取ることです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U =
+\begin{pmatrix}
+\sqrt{P_0} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+\sqrt{P_1} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+\sqrt{P_{m-1}} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?}
+\end{pmatrix}
+\end{split}\]</div>
+<p>疑問符が付いたブロックに何らかの値を埋め込んで<span class="math notranslate nohighlight">\(U\)</span>をユニタリーにすることが可能であるためには、ブロック<span class="math notranslate nohighlight">\(\sqrt{P_0},\ldots,\sqrt{P_{m-1}}\)</span>で構成される最初の<span class="math notranslate nohighlight">\(n\)</span>列が正規直交していることが必要十分です。
+そうすれば、前のレッスンで扱ったのと同様に、グラム・シュミットの直交化法を使って残りの列を埋めることができます。</p>
+<p><span class="math notranslate nohighlight">\(U\)</span>の最初の<span class="math notranslate nohighlight">\(n\)</span>列は、次のようにベクトルとして表すことができます。ここで、<span class="math notranslate nohighlight">\(c = 0,\ldots,n-1\)</span>は、0から数えた列番号を表します。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\gamma_c\rangle = \sum_{a = 0}^{m-1} \vert a \rangle \otimes \sqrt{P_a} \vert c\rangle
+\]</div>
+<p>これらのうち任意の2つの間の内積は、次のように計算できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \gamma_c \vert \gamma_d \rangle =
+\sum_{a,b = 0}^{m-1} \langle a \vert b \rangle \cdot \langle c \vert \sqrt{P_a}\sqrt{P_b}\, \vert d\rangle
+= \langle c \vert \Biggl(\sum_{a = 0}^{m-1}  P_a \Biggr) \vert d\rangle
+= \langle c \vert d\rangle
+\]</div>
+<p>これにより、これらの列が実際に正規直交していることが示されるので、行列全体がユニタリーになることを保証する形で、<span class="math notranslate nohighlight">\(U\)</span>の残りの列を埋めることができます。</p>
+<p>残っているのは、シミュレーションの測定結果の確率が元の測定と一致することを確認することです。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の初期状態<span class="math notranslate nohighlight">\(\rho\)</span>が与えられたとき、集まり<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>によって記述される測定は、それぞれの結果<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>を確率<span class="math notranslate nohighlight">\(\operatorname{Tr}(P_a \rho)\)</span>で生じさせます。</p>
+<p>シミュレーションの結果の確率を求めるために、まず、<span class="math notranslate nohighlight">\(U\)</span>が実行された後の<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>の状態に<span class="math notranslate nohighlight">\(\sigma\)</span>という名前を付けることにします。
+この状態は、次のように表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma =
+U \bigl(\vert 0\rangle \langle 0 \vert \otimes \rho\bigr) U^{\dagger}
+= \sum_{a,b=0}^{m-1} \vert a\rangle \langle b \vert \otimes \sqrt{P_a} \rho \sqrt{P_b}
+\]</div>
+<p>同じことをブロック行列の形式で表すと、次の式が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sigma &amp; =
+\begin{pmatrix}
+\sqrt{P_0} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+\sqrt{P_1} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+\sqrt{P_{m-1}} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?}
+\end{pmatrix}
+\begin{pmatrix}
+\rho &amp; 0 &amp; \cdots &amp; 0 \\[1mm]
+0 &amp; 0 &amp; \cdots &amp; 0 \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+0 &amp; 0 &amp; \cdots &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+\sqrt{P_0} &amp; \sqrt{P_1} &amp; \cdots &amp; \sqrt{P_{m-1}} \\[1mm]
+\fbox{?} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+\fbox{?} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?}
+\end{pmatrix}\\[5mm]
+&amp; = \begin{pmatrix}
+\sqrt{P_0}\rho\sqrt{P_0} &amp; \cdots &amp; \sqrt{P_0}\rho\sqrt{P_{m-1}} \\[1mm]
+\vdots &amp; \ddots &amp; \vdots\\[1mm]
+\sqrt{P_{m-1}}\rho\sqrt{P_0} &amp; \cdots &amp; \sqrt{P_{m-1}}\rho\sqrt{P_{m-1}}
+\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>疑問符が付いたブロックに属する<span class="math notranslate nohighlight">\(U\)</span>の成分は、結果には何の影響も与えないことに注意してください。これは、<span class="math notranslate nohighlight">\(\vert 0 \rangle \langle 0 \vert \otimes \rho\)</span>という形の行列を共役変換していることによるものです。
+つまり、行列の積を計算する際、疑問符が付いた成分は常に<span class="math notranslate nohighlight">\(\vert 0 \rangle \langle 0 \vert \otimes \rho\)</span>のゼロの成分と掛け合わされることになります。</p>
+<p>それでは、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>に対して標準基底測定を行った場合に何が起こるかを分析してみましょう。
+得られる可能性のある結果の確率は、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の縮約状態<span class="math notranslate nohighlight">\(\sigma_{\mathsf{Y}}\)</span>の対角成分によって与えられます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_{\mathsf{Y}} = \sum_{a,b=0}^{m-1} \operatorname{Tr}\Bigl(\sqrt{P_a} \rho \sqrt{P_b}\Bigr) \vert a\rangle \langle b \vert
+\]</div>
+<p>特に、トレースの巡回性を使うと、ある結果<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>が得られる確率が次のように求まることが分かります。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle a \vert \sigma_{\mathsf{Y}} \vert a \rangle
+= \operatorname{Tr}\Bigl(\sqrt{P_a} \rho \sqrt{P_a}\Bigr)
+= \operatorname{Tr}(P_a \rho)
+\]</div>
+<p>これは元の測定と一致しており、シミュレーションの正しさが確認されました。</p>
+</section>
+<section id="id3">
+<h2>非破壊測定<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>このレッスンではこれまで、出力が古典的な測定結果のみで構成され、測定された系の測定後の量子状態については特に指定されない<em>破壊的</em>測定を扱ってきました。</p>
+<p>一方、<em>非破壊</em>測定は、まさにこれを行うものです。
+具体的には、非破壊測定は、古典的な測定結果の確率だけでなく、それぞれの測定結果が得られたという条件のもとでの、測定された系の状態も記述します。
+<em>非破壊</em>という用語は、測定される<em>系</em>に対して使われるものであり、必ずしもその<em>状態</em>が非破壊であることを意味するわけではないことに注意してください。状態は、測定の結果として大きく変化する可能性があります。</p>
+<p>一般に、ある破壊的測定が与えられたとき、その破壊的測定と<em>互換性のある</em>非破壊測定、つまり、古典的な測定結果の確率が破壊的測定と厳密に一致する非破壊測定は、複数(実際には無限に多数)存在します。
+したがって、与えられた測定に対して、系の測定後の量子状態を定義する一意な方法は存在しません。</p>
+<p>実際には、非破壊測定をさらに一般化することも可能で、古典的な測定結果に加えて、必ずしも入力系と同じではない系の量子状態出力を生成するようにできます。</p>
+<p>非破壊測定という概念は、興味深く有用な抽象化です。
+しかし、非破壊測定は常にチャネルと破壊的測定の合成として記述できるということは認識しておくべきです。つまり、ある意味では、破壊的測定という概念のほうがより基本的であると言えます。</p>
+<section id="id4">
+<h3>ナイマークの定理から<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>ナイマークの定理にあるような、一般測定のシミュレーションを考えてみましょう。
+このシミュレーションから非破壊測定を得る簡単な方法は、先ほどの図で示されています。そこでは、系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>はトレースアウトされず、出力の一部となっています。
+これにより、古典的な測定結果<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>と、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の測定後の量子状態の両方が得られます。</p>
+<p>これらの状態を数学的な言葉で記述してみましょう。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の初期状態は<span class="math notranslate nohighlight">\(\rho\)</span>であると仮定しているので、初期化された系<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>が導入されて<span class="math notranslate nohighlight">\(U\)</span>が実行された後、<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>は次の状態になります。</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma =
+U \bigl(\vert 0\rangle \langle 0 \vert \otimes \rho\bigr) U^{\dagger}
+= \sum_{a,b=0}^{m-1} \vert a\rangle \langle b \vert \otimes \sqrt{P_a} \rho \sqrt{P_b}.
+\]</div>
+<p>それぞれの古典的な結果が現れる確率は、先ほどと同じです。それらは、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>を無視するかどうかを私たちが決めることによって変わることはありません。
+つまり、それぞれの<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>が確率<span class="math notranslate nohighlight">\(\operatorname{Tr}(P_a \rho)\)</span>で得られます。</p>
+<p>特定の測定結果<span class="math notranslate nohighlight">\(a\)</span>が得られたという条件のもとで、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の結果として得られる状態は、次の式で与えられます。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\sqrt{P_a} \rho \sqrt{P_a}}{\operatorname{Tr}(P_a \rho)}
+\]</div>
+<p>これを理解する1つの方法は、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の標準基底測定を、完全脱位相化チャネル<span class="math notranslate nohighlight">\(\Delta_m\)</span>によって表すことです。ここで、チャネルの出力は、古典的な測定結果を(対角)密度行列として記述します。
+得られる状態の表現は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{a,b=0}^{m-1} \Delta_m(\vert a\rangle \langle b \vert) \otimes \sqrt{P_a} \rho \sqrt{P_b}
+= \sum_{a=0}^{m-1} \vert a\rangle \langle a \vert \otimes \sqrt{P_a} \rho \sqrt{P_a}.
+\]</div>
+<p>この状態は、次のように積状態の凸結合として表すことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{a=0}^{m-1} \operatorname{Tr}(P_a \rho)\, \vert a\rangle \langle a \vert \otimes \frac{\sqrt{P_a} \rho \sqrt{P_a}}{\operatorname{Tr}(P_a \rho)},
+\]</div>
+<p>これは、それぞれの測定結果が得られたという条件のもとでの<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態について、私たちが得た表現と一致しています。</p>
+</section>
+<section id="id5">
+<h3>クラウス表現から<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>ナイマークの定理の文脈における<span class="math notranslate nohighlight">\(U\)</span>の選び方には、同じ測定結果の確率を生じさせながらも、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の出力状態が全く異なるものになる、別の選択肢があります。</p>
+<p>例えば、1つの選択肢は、<span class="math notranslate nohighlight">\(U\)</span>を<span class="math notranslate nohighlight">\((\mathbb{I}_{\mathsf{Y}} \otimes V) U\)</span>に置き換えることです。ここで、<span class="math notranslate nohighlight">\(V\)</span>は<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対する任意のユニタリー演算です。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対する<span class="math notranslate nohighlight">\(V\)</span>の適用は<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の測定と交換可能なので、古典的な結果の確率は変わりませんが、結果<span class="math notranslate nohighlight">\(a\)</span>が得られたという条件のもとでの<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態は、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{V \sqrt{P_a} \rho \sqrt{P_a}V^{\dagger}}{\operatorname{Tr}(P_a \rho)}.
+\]</div>
+<p>さらに一般的には、<span class="math notranslate nohighlight">\(U\)</span>を次のユニタリー行列に置き換えることもできます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Biggl(\sum_{a=0}^{m-1} \vert a\rangle\langle a \vert \otimes V_a\Biggr) U
+\]</div>
+<p>これは、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対する任意のユニタリー演算<span class="math notranslate nohighlight">\(V_0,\ldots,V_{m-1}\)</span>の選び方に対して成り立ちます。
+この場合も、古典的な結果の確率は変わりませんが、結果<span class="math notranslate nohighlight">\(a\)</span>が得られたという条件のもとでの<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態は、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{V_a \sqrt{P_a} \rho \sqrt{P_a}V_a^{\dagger}}{\operatorname{Tr}(P_a \rho)}.
+\]</div>
+<p>この自由度を表現する同等の方法は、クラウス表現と結び付けられます。
+つまり、<span class="math notranslate nohighlight">\(n\)</span>個の古典状態を持つ系の<span class="math notranslate nohighlight">\(m\)</span>個の結果を持つ非破壊測定は、クラウス行列に対する典型的な条件を満たす<span class="math notranslate nohighlight">\(n\times n\)</span>のクラウス行列<span class="math notranslate nohighlight">\(A_0,\ldots,A_{m-1}\)</span>の選び方によって記述できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{a = 0}^{m-1} A_a^{\dagger} A_a = \mathbb{I}_{\mathsf{X}}
+\tag{1}
+\]</div>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の初期状態が<span class="math notranslate nohighlight">\(\rho\)</span>であると仮定すると、古典的な測定結果が<span class="math notranslate nohighlight">\(a\)</span>になる確率は</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}\bigl(A_a \rho A_a^{\dagger}\bigr)
+= \operatorname{Tr}\bigl(A_a^{\dagger} A_a \rho \bigr)
+\]</div>
+<p>であり、結果が<span class="math notranslate nohighlight">\(a\)</span>であるという条件のもとで、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{A_a \rho A_a^{\dagger}}{\operatorname{Tr}(A_a^{\dagger}A_a \rho)}.
+\]</div>
+<p>これは、ナイマークの定理におけるユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>を次のように選ぶことと同等であることに注意してください。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U =
+\begin{pmatrix}
+A_{0} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+A_{1} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?} \\[1mm]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\[1mm]
+A_{m-1} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?}
+\end{pmatrix}
+\end{split}\]</div>
+<p>前のレッスンで、ブロック<span class="math notranslate nohighlight">\(A_0,\ldots,A_{m-1}\)</span>で構成される列が、条件<span class="math notranslate nohighlight">\((1)\)</span>によって必然的に直交していることを確認しました。</p>
+</section>
+<section id="id6">
+<h3>一般化<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>非破壊測定を定式化する方法には、これまでに説明したものよりもさらに一般的な方法があります。
+<em>量子インストルメント</em>(ここでは説明しません)という概念は、そのための1つの方法です。</p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "qiskit_252"
+        },
+        kernelOptions: {
+            name: "qiskit_252",
+            path: "./courses/general-formation-of-quantum-information/general-measurements"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'qiskit_252'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定理の主張と証明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">非破壊測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ナイマークの定理から</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">クラウス表現から</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">一般化</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
