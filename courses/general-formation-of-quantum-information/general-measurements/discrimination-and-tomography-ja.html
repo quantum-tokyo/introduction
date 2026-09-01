@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子状態の識別とトモグラフィー &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/general-measurements/discrimination-and-tomography-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/general-measurements/discrimination-and-tomography-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/general-measurements/discrimination-and-tomography-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子状態の識別とトモグラフィー</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2つの状態の識別</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">最適な測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正しさの確率</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3つ以上の状態の識別</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子状態トモグラフィー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">パウリ測定を用いた量子ビットトモグラフィー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">正四面体測定を用いた量子ビットトモグラフィー</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子状態の識別とトモグラフィー<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>このレッスンの最後の部分では、測定に関連する2つの課題、<em>量子状態識別</em>と<em>量子状態トモグラフィー</em>について簡単に考えてみます。</p>
+<ol class="arabic">
+<li><p><em>量子状態識別</em></p>
+<p>量子状態識別では、既知の量子状態の集まり<span class="math notranslate nohighlight">\(\rho_0,\ldots,\rho_{m-1}\)</span>と、これらの状態に対応する確率<span class="math notranslate nohighlight">\(p_0,\ldots,p_{m-1}\)</span>が与えられます。
+これを簡潔に表現すると、量子状態の<em>アンサンブル</em></p>
+<div class="math notranslate nohighlight">
+\[
+   \{(p_0,\rho_0),\ldots,(p_{m-1},\rho_{m-1})\}
+   \]</div>
+<p>が与えられているということになります。</p>
+<p>数<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>が確率<span class="math notranslate nohighlight">\((p_0,\ldots,p_{m-1})\)</span>に従ってランダムに選ばれ、系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>が状態<span class="math notranslate nohighlight">\(\rho_a\)</span>に準備されます。
+目標は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>のみを測定することによって、選ばれた<span class="math notranslate nohighlight">\(a\)</span>の値を決定することです。</p>
+<p>つまり、私たちには有限個の選択肢と、それぞれの<span class="math notranslate nohighlight">\(a\)</span>が選ばれる確率についての知識である<em>事前情報</em>があり、目標は実際にどの選択肢が起こったのかを決定することです。
+状態や確率の選び方によっては、これは簡単な場合もありますが、そうでない場合には、いくらかの誤りの可能性を伴わなければ決定できないこともあります。</p>
+</li>
+<li><p><em>量子状態トモグラフィー</em></p>
+<p>量子状態トモグラフィーでは、系の<em>未知</em>の量子状態が与えられます。つまり、量子状態識別とは異なり、通常は事前情報や、起こりうる選択肢についての情報はありません。</p>
+<p>しかし今回は、状態のコピーが1つだけ与えられるのではなく、多数の<em>独立な</em>コピーが与えられます。
+つまり、何らかの(場合によっては大きな)数<span class="math notranslate nohighlight">\(N\)</span>について、<span class="math notranslate nohighlight">\(N\)</span>個の同一の系<span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_N\)</span>がそれぞれ独立に状態<span class="math notranslate nohighlight">\(\rho\)</span>に準備されます。
+目標は、これらの系を測定することによって、未知の状態の近似を密度行列として求めることです。</p>
+</li>
+</ol>
+<section id="id2">
+<h2>2つの状態の識別<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>量子状態識別の最も単純な場合は、識別すべき状態が2つ、<span class="math notranslate nohighlight">\(\rho_0\)</span>と<span class="math notranslate nohighlight">\(\rho_1\)</span>である場合です。</p>
+<p>ビット<span class="math notranslate nohighlight">\(a\)</span>がランダムに選ばれる状況を想像してみましょう。<span class="math notranslate nohighlight">\(a = 0\)</span>である確率が<span class="math notranslate nohighlight">\(p,\)</span> <span class="math notranslate nohighlight">\(a = 1\)</span>である確率が<span class="math notranslate nohighlight">\(1 - p\)</span>です。
+系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>は、<span class="math notranslate nohighlight">\(a\)</span>の値に応じて<span class="math notranslate nohighlight">\(\rho_0\)</span>または<span class="math notranslate nohighlight">\(\rho_1\)</span>である状態<span class="math notranslate nohighlight">\(\rho_a\)</span>に準備され、私たちに渡されます。
+私たちの目標は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の測定によって<span class="math notranslate nohighlight">\(a\)</span>の値を正しく推測することです。
+より正確に言えば、私たちの推測が正しい確率を最大化することを目指します。</p>
+<section id="id3">
+<h3>最適な測定<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>この問題を解く最適な方法は、<span class="math notranslate nohighlight">\(\rho_0\)</span>と<span class="math notranslate nohighlight">\(\rho_1\)</span>の重み付き差(重みは対応する確率)のスペクトル分解から始まります。</p>
+<div class="math notranslate nohighlight">
+\[
+p \rho_0 - (1-p) \rho_1 = \sum_{k = 0}^{n-1} \lambda_k \vert \psi_k \rangle \langle \psi_k \vert
+\]</div>
+<p>この式では、プラス記号ではなくマイナス記号が使われていることに注意してください。これは重み付きの<em>和</em>ではなく、重み付きの<em>差</em>だからです。</p>
+<p>次のようにして射影測定<span class="math notranslate nohighlight">\(\{\Pi_0,\Pi_1\}\)</span>を選ぶことで、正しく推測できる確率を最大化することができます。
+まず、<span class="math notranslate nohighlight">\(\{0,\ldots,n-1\}\)</span>の要素を、重み付き差の対応する固有値が非負であるか負であるかに応じて、2つの互いに素な集合<span class="math notranslate nohighlight">\(S_0\)</span>と<span class="math notranslate nohighlight">\(S_1\)</span>に分割します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+S_0 = \{k\in\{0,\ldots,n-1\} : \lambda_k \geq 0 \}\\[2mm]
+S_1 = \{k\in\{0,\ldots,n-1\} : \lambda_k &lt; 0 \}
+\end{gathered}
+\end{split}\]</div>
+<p>これにより、次のように<em>射影</em>測定を選ぶことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\Pi_0 = \sum_{k \in S_0} \vert \psi_k \rangle \langle \psi_k \vert
+\quad\text{および}\quad
+\Pi_1 = \sum_{k \in S_1} \vert \psi_k \rangle \langle \psi_k \vert
+\]</div>
+<p>(<span class="math notranslate nohighlight">\(\lambda_k = 0\)</span>となる<span class="math notranslate nohighlight">\(k\)</span>の値を、集合<span class="math notranslate nohighlight">\(S_0\)</span>と<span class="math notranslate nohighlight">\(S_1\)</span>のどちらに含めるかは実際には関係ありません。
+ここでは任意に、これらの値を<span class="math notranslate nohighlight">\(S_0\)</span>に含めることにしています。)</p>
+<p>これは、今考えている状況において、選ばれた状態の判定を誤る確率を最小化する最適な測定です。</p>
+</section>
+<section id="id4">
+<h3>正しさの確率<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>それでは、測定<span class="math notranslate nohighlight">\(\{\Pi_0,\Pi_1\}\)</span>が正しい結果を与える確率を求めてみましょう。</p>
+<p>まず、<span class="math notranslate nohighlight">\(\Pi_0\)</span>と<span class="math notranslate nohighlight">\(\Pi_1\)</span>について私たちが行った具体的な選択について特に気にする必要はありませんが、それを念頭に置いておくと役立つかもしれません。
+<em>任意の</em>測定<span class="math notranslate nohighlight">\(\{P_0,P_1\}\)</span>(必ずしも射影的でなくてもよい)について、正しさの確率は次のように書くことができます。</p>
+<div class="math notranslate nohighlight">
+\[
+p \operatorname{Tr}(P_0 \rho_0) + (1 - p) \operatorname{Tr}(P_1 \rho_1)
+\]</div>
+<p><span class="math notranslate nohighlight">\(\{P_0,P_1\}\)</span>が測定であること、つまり<span class="math notranslate nohighlight">\(P_1 = \mathbb{I} - P_0\)</span>であることを使うと、この式は次のように書き換えられます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+p \operatorname{Tr}(P_0 \rho_0) + (1 - p) \operatorname{Tr}((\mathbb{I} - P_0) \rho_1)\hspace*{3cm}\\[1mm]
+\begin{aligned}
+&amp; = p \operatorname{Tr}(P_0 \rho_0) - (1 - p) \operatorname{Tr}(P_0 \rho_1) + (1-p) \operatorname{Tr}(\rho_1)\\[1mm]
+&amp; = \operatorname{Tr}\bigl( P_0 (p \rho_0 - (1-p)\rho_1) \bigr) + 1 - p
+\end{aligned}
+\end{split}\]</div>
+<p>一方、代わりに<span class="math notranslate nohighlight">\(P_0 = \mathbb{I} - P_1\)</span>という置き換えを行うこともできます。
+これによって値は変わりませんが、別の表現が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+p \operatorname{Tr}((\mathbb{I} - P_1) \rho_0) + (1 - p) \operatorname{Tr}(P_1 \rho_1)\hspace*{3cm}\\[1mm]
+\begin{aligned}
+&amp; = p \operatorname{Tr}(\rho_0) - p \operatorname{Tr}(P_1 \rho_0) + (1 - p) \operatorname{Tr}(P_1 \rho_1)\\[1mm]
+&amp; = p - \operatorname{Tr}\bigl( P_1 (p \rho_0 - (1-p)\rho_1) \bigr)
+\end{aligned}
+\end{split}\]</div>
+<p>この2つの式は同じ値を持つので、これらを平均することで、この値についてさらに別の表現を得ることができます。
+(2つの式を平均するのは、結果として得られる式を簡単にするための工夫にすぎません。)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\frac{1}{2} \bigl(\operatorname{Tr}\bigl( P_0 (p \rho_0 - (1-p)\rho_1) \bigr) + 1-p\bigr)
++ \frac{1}{2} \bigl(p - \operatorname{Tr}\bigl( P_1 (p \rho_0 - (1-p)\rho_1) \bigr)\bigr)\\
+= \frac{1}{2} \operatorname{Tr}\bigl( (P_0-P_1) (p \rho_0 - (1-p)\rho_1)\bigr)  + \frac{1}{2}
+\end{split}\]</div>
+<p>ここで、なぜ<span class="math notranslate nohighlight">\(P_0\)</span>と<span class="math notranslate nohighlight">\(P_1\)</span>としてそれぞれ(上で指定した)射影<span class="math notranslate nohighlight">\(\Pi_0\)</span>と<span class="math notranslate nohighlight">\(\Pi_1\)</span>を選ぶことが理にかなっているのかが分かります。というのも、そうすることで、最終的な式のトレースをできるだけ大きくすることができるからです。
+具体的には、</p>
+<div class="math notranslate nohighlight">
+\[
+(\Pi_0-\Pi_1) (p \rho_0 - (1-p)\rho_1) = \sum_{k = 0}^{n-1} \vert\lambda_k\vert \cdot \vert \psi_k \rangle \langle \psi_k \vert.
+\]</div>
+<p>したがって、トレースを取ると、固有値の<em>絶対値</em>の和が得られます。これは、重み付き差の<em>トレースノルム</em>として知られているものに等しくなります。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}\bigl( (\Pi_0-\Pi_1) (p \rho_0 - (1-p)\rho_1)\bigr)
+= \sum_{k = 0}^{n-1} \vert\lambda_k\vert = \bigl\| p \rho_0 - (1-p)\rho_1 \bigr\|_1
+\]</div>
+<p>したがって、それぞれ確率<span class="math notranslate nohighlight">\(p\)</span>と<span class="math notranslate nohighlight">\(1-p\)</span>で与えられる<span class="math notranslate nohighlight">\(\rho_0\)</span>と<span class="math notranslate nohighlight">\(\rho_1\)</span>を、測定<span class="math notranslate nohighlight">\(\{\Pi_0,\Pi_1\}\)</span>によって正しく識別できる確率は、次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2} + \frac{1}{2} \bigl\| p \rho_0 - (1-p)\rho_1 \bigr\|_1
+\]</div>
+<p>これが、それぞれ確率<span class="math notranslate nohighlight">\(p\)</span>と<span class="math notranslate nohighlight">\(1-p\)</span>で与えられる<span class="math notranslate nohighlight">\(\rho_0\)</span>と<span class="math notranslate nohighlight">\(\rho_1\)</span>を正しく識別するための最適な確率であるという事実は、一般に<em>ヘルストロム・ホレボの定理</em>(あるいは単に<em>ヘルストロムの定理</em>)と呼ばれています。</p>
+</section>
+</section>
+<section id="id5">
+<h2>3つ以上の状態の識別<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>3つ以上の状態がある場合の量子状態識別については、最適な測定に関する既知の閉じた形の解はありませんが、この問題を半正定値計画法として定式化することは可能であり、これにより、コンピューターを使って最適な測定を効率的に数値的に近似することができます。</p>
+<p>また、<em>ホレボ・ユエン・ケネディ・ラックス</em>条件として知られる条件によって、状態識別課題における与えられた測定の最適性を<em>検証</em>(あるいは<em>反証</em>)することも可能です。
+具体的には、アンサンブル</p>
+<div class="math notranslate nohighlight">
+\[
+\{(p_0,\rho_0),\ldots,(p_{m-1},\rho_{m-1})\},
+\]</div>
+<p>によって定義される状態識別課題について、測定<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>が最適であるためには、次の行列</p>
+<div class="math notranslate nohighlight">
+\[
+Q_a = \sum_{b = 0}^{m-1} p_b \rho_b P_b - p_a \rho_a
+\]</div>
+<p>が、すべての<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>について半正定値であることが必要十分です。</p>
+<p>例えば、4つの正四面体状態<span class="math notranslate nohighlight">\(\vert\phi_0\rangle,\ldots,\vert\phi_3\rangle\)</span>のうちの1つが一様ランダムに選ばれる量子状態識別課題を考えてみましょう。
+正四面体測定<span class="math notranslate nohighlight">\(\{P_0,P_1,P_2,P_3\}\)</span>は、次の確率で成功します。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{4} \operatorname{Tr}(P_0 \vert\phi_0\rangle\langle \phi_0 \vert) +
+\frac{1}{4} \operatorname{Tr}(P_1 \vert\phi_1\rangle\langle \phi_1 \vert) +
+\frac{1}{4} \operatorname{Tr}(P_2 \vert\phi_2\rangle\langle \phi_2 \vert) +
+\frac{1}{4} \operatorname{Tr}(P_3 \vert\phi_3\rangle\langle \phi_3 \vert)
+= \frac{1}{2}.
+\]</div>
+<p>計算により</p>
+<div class="math notranslate nohighlight">
+\[
+Q_a = \frac{1}{4}(\mathbb{I} - \vert\phi_a\rangle\langle\phi_a\vert) \geq 0
+\]</div>
+<p>が<span class="math notranslate nohighlight">\(a = 0,1,2,3\)</span>について成り立つことが分かるので、ホレボ・ユエン・ケネディ・ラックス条件により、これは最適です。</p>
+</section>
+<section id="id6">
+<h2>量子状態トモグラフィー<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>最後に、<em>量子状態トモグラフィー</em>の問題について簡単に説明します。
+この問題では、未知の量子状態<span class="math notranslate nohighlight">\(\rho\)</span>の独立なコピーが多数<span class="math notranslate nohighlight">\(N\)</span>個与えられ、目標は<span class="math notranslate nohighlight">\(\rho\)</span>の近似<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>を再構成することです。
+念のため説明すると、これは、<span class="math notranslate nohighlight">\(\rho\)</span>にできるだけ近い密度行列<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>の古典的な記述を見つけたいということを意味します。</p>
+<p>この設定は、次のような別の方法で説明することもできます。
+未知の密度行列<span class="math notranslate nohighlight">\(\rho\)</span>が選ばれ、私たちには<span class="math notranslate nohighlight">\(N\)</span>個の量子系<span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_N\)</span>へのアクセスが与えられます。これらはそれぞれ<em>独立に</em>状態<span class="math notranslate nohighlight">\(\rho\)</span>に準備されています。
+したがって、複合系<span class="math notranslate nohighlight">\((\mathsf{X}_1,\ldots,\mathsf{X}_N)\)</span>の状態は、</p>
+<div class="math notranslate nohighlight">
+\[
+\rho^{\otimes N} = \rho \otimes \rho \otimes \cdots \otimes \rho \quad \text{($N$回)}
+\]</div>
+<p>となります。
+目標は、系<span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_N\)</span>に対して測定を行い、それらの測定結果に基づいて、<span class="math notranslate nohighlight">\(\rho\)</span>を精度良く近似する密度行列<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>を計算することです。
+これは非常に興味深い問題であることが分かっており、現在も研究が続けられています。</p>
+<p>この問題に取り組むための戦略にはさまざまな種類が考えられます。
+例えば、系<span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_N\)</span>のそれぞれを順番に個別に測定し、測定結果の列を生成するという戦略を想像できます。
+どの測定を行うかについては、<em>適応的</em>な選択と<em>非適応的</em>な選択を含め、さまざまな具体的な選び方が考えられます。
+つまり、特定の系に対してどの測定を行うかという選択が、それ以前の測定結果に依存する場合と依存しない場合があります。
+測定結果の列に基づいて、状態<span class="math notranslate nohighlight">\(\rho\)</span>に対する推測<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>が導かれますが、これを行うための方法もさまざまです。</p>
+<p>別の方法として、集まり全体に対して単一の<em>同時測定</em>を行うというアプローチもあります。この場合、<span class="math notranslate nohighlight">\((\mathsf{X}_1,\ldots,\mathsf{X}_N)\)</span>を単一の系として考え、その出力が状態<span class="math notranslate nohighlight">\(\rho\)</span>に対する推測<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>となる単一の測定を選びます。
+これにより、個々の系を個別に測定する場合よりも良い推定が得られる可能性がありますが、すべての系に対する同時測定は、実装がはるかに難しくなる可能性が高いです。</p>
+<section id="id7">
+<h3>パウリ測定を用いた量子ビットトモグラフィー<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>ここでは、<span class="math notranslate nohighlight">\(\rho\)</span>が量子ビットの密度行列であるという単純な場合の量子状態トモグラフィーについて考えてみます。
+それぞれ独立に状態<span class="math notranslate nohighlight">\(\rho\)</span>にある量子ビット<span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_N\)</span>が与えられていると仮定し、目標は<span class="math notranslate nohighlight">\(\rho\)</span>に近い近似<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>を計算することです。</p>
+<p>私たちの戦略は、<span class="math notranslate nohighlight">\(N\)</span>個の量子ビット<span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_N\)</span>を、3つのパウリ行列<span class="math notranslate nohighlight">\(\sigma_x,\)</span> <span class="math notranslate nohighlight">\(\sigma_y,\)</span> <span class="math notranslate nohighlight">\(\sigma_z\)</span>それぞれに対応する、おおよそ同じ大きさの3つの集まりに分けることです。
+その後、それぞれの量子ビットを次のように独立に測定します。</p>
+<ol class="arabic">
+<li><p><span class="math notranslate nohighlight">\(\sigma_x\)</span>に対応する集まりに含まれる量子ビットそれぞれについて、<span class="math notranslate nohighlight">\(\sigma_x\)</span>測定を行います。これは、量子ビットが基底<span class="math notranslate nohighlight">\(\{\vert + \rangle, \vert -\rangle\}\)</span>、つまり<span class="math notranslate nohighlight">\(\sigma_x\)</span>の固有ベクトルからなる正規直交基底に関して測定されることを意味し、対応する測定結果は、2つの固有ベクトルに対応する固有値です。状態<span class="math notranslate nohighlight">\(\vert + \rangle\)</span>には<span class="math notranslate nohighlight">\(+1,\)</span> 状態<span class="math notranslate nohighlight">\(\vert -\rangle\)</span>には<span class="math notranslate nohighlight">\(-1\)</span>です。<span class="math notranslate nohighlight">\(\sigma_x\)</span>に対応する集まりのすべての状態について結果を平均することで、期待値</p>
+<div class="math notranslate nohighlight">
+\[
+   \langle + \vert \rho \vert + \rangle - \langle - \vert \rho \vert - \rangle = \operatorname{Tr}(\sigma_x \rho).
+   \]</div>
+<p>の近似が得られます。</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_y\)</span>に対応する集まりに含まれる量子ビットそれぞれについて、<span class="math notranslate nohighlight">\(\sigma_y\)</span>測定を行います。この測定は<span class="math notranslate nohighlight">\(\sigma_x\)</span>測定と似ていますが、測定基底が<span class="math notranslate nohighlight">\(\sigma_y\)</span>の固有ベクトルである<span class="math notranslate nohighlight">\(\{\vert\! +\!i \rangle, \vert\! -\!i \rangle\}\)</span>である点が異なります。<span class="math notranslate nohighlight">\(\sigma_y\)</span>に対応する集まりのすべての状態について結果を平均することで、期待値</p>
+<div class="math notranslate nohighlight">
+\[
+   \langle +i \vert \rho \vert \!+\!i \rangle - \langle -i \vert \rho \vert \!-\!i \rangle = \operatorname{Tr}(\sigma_y \rho).
+   \]</div>
+<p>の近似が得られます。</p>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_z\)</span>に対応する集まりに含まれる量子ビットそれぞれについて、<span class="math notranslate nohighlight">\(\sigma_z\)</span>測定を行います。今回の測定基底は、<span class="math notranslate nohighlight">\(\sigma_z\)</span>の固有ベクトルである標準基底<span class="math notranslate nohighlight">\(\{\vert 0\rangle, \vert 1 \rangle\}\)</span>です。<span class="math notranslate nohighlight">\(\sigma_z\)</span>に対応する集まりのすべての状態について結果を平均することで、期待値</p>
+<div class="math notranslate nohighlight">
+\[
+   \langle 0 \vert \rho \vert 0 \rangle - \langle 1 \vert \rho \vert 1 \rangle = \operatorname{Tr}(\sigma_z \rho).
+   \]</div>
+<p>の近似が得られます。</p>
+</li>
+</ol>
+<p>それぞれの集まりについて測定結果を平均することで、近似</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha_x \approx \operatorname{Tr}(\sigma_x \rho),\;
+\alpha_y \approx \operatorname{Tr}(\sigma_y \rho),\;
+\alpha_z \approx \operatorname{Tr}(\sigma_z \rho)
+\]</div>
+<p>が得られたら、<span class="math notranslate nohighlight">\(\rho\)</span>を次のように近似できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\rho} = \frac{\mathbb{I} + \alpha_x \sigma_x + \alpha_y \sigma_y + \alpha_z \sigma_z}{2} \approx
+\frac{\mathbb{I} + \operatorname{Tr}(\sigma_x \rho) \sigma_x + \operatorname{Tr}(\sigma_y \rho) \sigma_y + \operatorname{Tr}(\sigma_z \rho) \sigma_z}{2}
+= \rho.
+\]</div>
+<p><span class="math notranslate nohighlight">\(N\)</span>が無限大に近づく極限では、<em>大数の法則</em>により、この近似は真の密度行列<span class="math notranslate nohighlight">\(\rho\)</span>に確率収束します。また、(<em>ヘフディングの不等式</em>のような)よく知られた統計的な限界を使って、近似<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>が<span class="math notranslate nohighlight">\(\rho\)</span>からどの程度ずれる可能性があるかの確率を限界付けることができます。</p>
+<p>ただし、重要なこととして認識しておくべきなのは、この方法で得られる行列<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>は密度行列にならない場合があるということです。
+具体的には、トレースは常に<span class="math notranslate nohighlight">\(1\)</span>に等しくなりますが、半正定値にならない場合があります。
+このような近似<span class="math notranslate nohighlight">\(\tilde{\rho}\)</span>を密度行列に「丸める」ための既知の戦略にはいくつかの種類があり、その1つは、スペクトル分解を計算し、負の固有値を<span class="math notranslate nohighlight">\(0\)</span>に置き換えて、(得られた行列をそのトレースで割ることで)再正規化するという方法です。</p>
+</section>
+<section id="id8">
+<h3>正四面体測定を用いた量子ビットトモグラフィー<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>量子ビットトモグラフィーを行うための別の選択肢は、すべての量子ビット<span class="math notranslate nohighlight">\(\mathsf{X}_1,\ldots,\mathsf{X}_N\)</span>を、先に説明した正四面体測定<span class="math notranslate nohighlight">\(\{P_0,P_1,P_2,P_3\}\)</span>を使って測定することです。
+つまり、</p>
+<div class="math notranslate nohighlight">
+\[
+P_0 = \frac{\vert \phi_0 \rangle \langle \phi_0 \vert}{2}, \quad
+P_1 = \frac{\vert \phi_1 \rangle \langle \phi_1 \vert}{2}, \quad
+P_2 = \frac{\vert \phi_2 \rangle \langle \phi_2 \vert}{2}, \quad
+P_3 = \frac{\vert \phi_3 \rangle \langle \phi_3 \vert}{2}
+\]</div>
+<p>であり、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert \phi_0 \rangle &amp; = \vert 0 \rangle\\
+\vert \phi_1 \rangle &amp; = \frac{1}{\sqrt{3}} \vert 0 \rangle + \sqrt{\frac{2}{3}} \vert 1 \rangle\\
+\vert \phi_2 \rangle &amp; = \frac{1}{\sqrt{3}} \vert 0 \rangle + \sqrt{\frac{2}{3}} e^{2\pi i/3} \vert 1 \rangle\\
+\vert \phi_3 \rangle &amp; = \frac{1}{\sqrt{3}} \vert 0 \rangle + \sqrt{\frac{2}{3}} e^{-2\pi i/3} \vert 1 \rangle.
+\end{aligned}
+\end{split}\]</div>
+<p>です。
+それぞれの結果が得られる回数を、<span class="math notranslate nohighlight">\(a\in\{0,1,2,3\}\)</span>ごとに<span class="math notranslate nohighlight">\(n_a\)</span>と表すことにすると、<span class="math notranslate nohighlight">\(n_0 + n_1 + n_2 + n_3 = N\)</span>となります。
+これらの数と<span class="math notranslate nohighlight">\(N\)</span>の比は、それぞれの結果の確率の推定値を与えます。</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{n_a}{N} \approx \operatorname{Tr}(P_a \rho).
+\]</div>
+<p>最後に、次の注目すべき式を利用します。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{a=0}^3 \Bigl( 3 \operatorname{Tr}(P_a \rho) - \frac{1}{2}\Bigr) \vert \phi_a \rangle \langle \phi_a \vert.
+\]</div>
+<p>この式を証明するために、正四面体状態の内積の絶対値の2乗に関する次の等式を使うことができます。これは直接計算によって確認できます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\bigl\vert \langle \phi_a \vert \phi_b \rangle \bigr\vert^2 =
+\begin{cases}
+1 &amp; a=b\\
+\frac{1}{3} &amp; a\neq b.
+\end{cases}
+\end{split}\]</div>
+<p>4つの行列</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\phi_0\rangle \langle \phi_0 \vert &amp; = \begin{pmatrix} 1 &amp; 0\\[2mm] 0 &amp; 0\end{pmatrix}\\[3mm]
+\vert\phi_1\rangle \langle \phi_1 \vert &amp; = \begin{pmatrix} \frac{1}{3} &amp; \frac{\sqrt{2}}{3}\\[2mm]
+\frac{\sqrt{2}}{3} &amp; \frac{2}{3}\end{pmatrix}\\[3mm]
+\vert\phi_2\rangle \langle \phi_2 \vert &amp; = \begin{pmatrix} \frac{1}{3} &amp; \frac{\sqrt{2}}{3}e^{-2\pi i/3}\\[2mm]
+\frac{\sqrt{2}}{3}e^{2\pi i/3} &amp; \frac{2}{3}\end{pmatrix}\\[3mm]
+\vert\phi_3\rangle \langle \phi_3 \vert &amp; = \begin{pmatrix} \frac{1}{3} &amp; \frac{\sqrt{2}}{3}e^{2\pi i/3}\\[2mm]
+\frac{\sqrt{2}}{3}e^{-2\pi i/3} &amp; \frac{2}{3}\end{pmatrix}
+\end{aligned}
+\end{split}\]</div>
+<p>は線形独立なので、<span class="math notranslate nohighlight">\(b = 0,1,2,3\)</span>について<span class="math notranslate nohighlight">\(\rho = \vert\phi_b\rangle\langle\phi_b\vert\)</span>の場合にこの式が成り立つことを示せば十分です。
+具体的には、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+3 \operatorname{Tr}(P_a \vert\phi_b\rangle\langle\phi_b\vert) - \frac{1}{2}
+= \frac{3}{2} \vert \langle \phi_a \vert \phi_b \rangle \vert^2 - \frac{1}{2}
+= \begin{cases}
+1 &amp; a=b\\
+0 &amp; a\neq b
+\end{cases}
+\end{split}\]</div>
+<p>であり、したがって</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{a=0}^3 \biggl( 3 \operatorname{Tr}(P_a \vert\phi_b\rangle\langle\phi_b\vert) - \frac{\operatorname{Tr}(\vert\phi_b\rangle\langle\phi_b\vert)}{2}\biggr) \vert \phi_a \rangle \langle \phi_a \vert = \vert \phi_b\rangle\langle \phi_b \vert.
+\]</div>
+<p>となります。</p>
+<p>これにより、<span class="math notranslate nohighlight">\(\rho\)</span>の近似が次のように得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\rho} = \sum_{a=0}^3 \Bigl( \frac{3 n_a}{N} - \frac{1}{2}\Bigr) \vert \phi_a \rangle \langle \phi_a \vert.
+\]</div>
+<p>この近似は常にトレースが1に等しいエルミート行列になりますが、半正定値にならない場合があります。
+この場合、パウリ測定を用いる戦略と同様に、この近似を密度行列に「丸める」必要があります。</p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "qiskit_252"
+        },
+        kernelOptions: {
+            name: "qiskit_252",
+            path: "./courses/general-formation-of-quantum-information/general-measurements"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'qiskit_252'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2つの状態の識別</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">最適な測定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正しさの確率</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">3つ以上の状態の識別</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">量子状態トモグラフィー</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">パウリ測定を用いた量子ビットトモグラフィー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">正四面体測定を用いた量子ビットトモグラフィー</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
