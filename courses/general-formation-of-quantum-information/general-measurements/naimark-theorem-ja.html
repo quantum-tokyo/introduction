@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ナイマークの定理 &#8212; Quantum Tokyo</title>
+    <title>ナイマルクの定理 &#8212; Quantum Tokyo</title>
   
   
   
@@ -419,7 +419,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ナイマークの定理</h1>
+    <h1>ナイマルクの定理</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -431,7 +431,7 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定理の主張と証明</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">非破壊測定</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ナイマークの定理から</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ナイマルクの定理から</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">クラウス表現から</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">一般化</a></li>
 </ul>
@@ -448,8 +448,8 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>ナイマークの定理<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p><em>ナイマークの定理</em>は、測定に関する基本的な事実です。
+<h1>ナイマルクの定理<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><em>ナイマルクの定理</em>は、測定に関する基本的な事実です。
 この定理は、任意の一般測定が、チャネルのスタインスプリング表現を思わせるようなシンプルな方法で実装できることを示しています。</p>
 <ol class="arabic simple">
 <li><p>まず、測定対象の系を初期化された作業用の系と組み合わせて、複合系を作ります。</p></li>
@@ -465,8 +465,8 @@ P_0 + \cdots + P_{m-1} = \mathbb{I}_{\mathsf{X}},
 \]</div>
 <p>これは、これらの行列が<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の測定を記述していることを意味します。
 さらに、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>を、古典状態集合が<span class="math notranslate nohighlight">\(\{0,\ldots,m-1\}\)</span>である系とします。これは、この測定で得られる可能性のある結果の集合です。</p>
-<p>ナイマークの定理は、複合系<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>に対するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が存在して、次の図で示される実装が、与えられた測定<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>と一致する測定結果を与えることを述べています。つまり、それぞれの測定結果が得られる確率が、元の測定と厳密に一致するということです。</p>
-<p><img alt="ナイマークの定理における一般測定の実装" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/general-measurements/Naimark.svg" /></p>
+<p>ナイマルクの定理は、複合系<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>に対するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が存在して、次の図で示される実装が、与えられた測定<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>と一致する測定結果を与えることを述べています。つまり、それぞれの測定結果が得られる確率が、元の測定と厳密に一致するということです。</p>
+<p><img alt="ナイマルクの定理における一般測定の実装" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/general-measurements/Naimark.svg" /></p>
 <p>念のため説明すると、系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>は何らかの任意の状態<span class="math notranslate nohighlight">\(\rho\)</span>から始まり、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>は<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span>状態に初期化されます。
 ユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>に対して適用され、その後、系<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>が標準基底測定によって測定され、何らかの結果<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>が得られます。</p>
 <p>系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>は回路の出力の一部として図示されていますが、ここでは、<span class="math notranslate nohighlight">\(U\)</span>が実行された後の<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態については特に考えず、トレースアウトされていると考えることにします。
@@ -474,9 +474,8 @@ P_0 + \cdots + P_{m-1} = \mathbb{I}_{\mathsf{X}},
 <p>このような方法による測定の実装は、チャネルのスタインスプリング表現を明らかに思わせるものであり、その数学的な基礎も同様です。
 ここでの違いは、作業用の系がスタインスプリング表現の場合のようにトレースアウトされるのではなく、測定されるという点です。</p>
 <p>すべての測定がこの方法で実装できるという事実は、証明するのはかなり簡単ですが、そのためにはまず、半正定値行列に関する事実が必要になります。</p>
-<Figure title="事実">
-  $P$を$n \times n$の半正定値行列とします。$Q^2 = P$を満たす$n\times n$の半正定値行列$Q$が一意に存在します。この一意な半正定値行列は$P$の*平方根*と呼ばれ、$\sqrt{P}$と表記されます。
-</Figure>
+<p><strong>“事実”</strong></p>
+<p><span class="math notranslate nohighlight">\(P\)</span>を<span class="math notranslate nohighlight">\(n \times n\)</span>の半正定値行列とします。<span class="math notranslate nohighlight">\(Q^2 = P\)</span>を満たす<span class="math notranslate nohighlight">\(n\times n\)</span>の半正定値行列<span class="math notranslate nohighlight">\(Q\)</span>が一意に存在します。この一意な半正定値行列は<span class="math notranslate nohighlight">\(P\)</span>の<em>平方根</em>と呼ばれ、<span class="math notranslate nohighlight">\(\sqrt{P}\)</span>と表記されます。</p>
 <p>半正定値行列の平方根を求める1つの方法は、まずスペクトル分解を計算することです。</p>
 <div class="math notranslate nohighlight">
 \[
@@ -487,7 +486,7 @@ P = \sum_{k=0}^{n-1} \lambda_k \vert \psi_k \rangle \langle \psi_k \vert
 \[
 \sqrt{P} = \sum_{k=0}^{n-1} \sqrt{\lambda_k} \vert \psi_k \rangle \langle \psi_k \vert
 \]</div>
-<p>この概念を手にしたので、ナイマークの定理を証明する準備が整いました。
+<p>この概念を手にしたので、ナイマルクの定理を証明する準備が整いました。
 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>が<span class="math notranslate nohighlight">\(n\)</span>個の古典状態を持つと仮定すると、対<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{X})\)</span>に対するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>は、<span class="math notranslate nohighlight">\(nm\times nm\)</span>の行列として表すことができ、これを、ブロックが<span class="math notranslate nohighlight">\(n\times n\)</span>である<span class="math notranslate nohighlight">\(m\times m\)</span>のブロック行列として見ることができます。
 証明の要点は、<span class="math notranslate nohighlight">\(U\)</span>として、次のパターンに一致する任意のユニタリー行列を取ることです。</p>
 <div class="math notranslate nohighlight">
@@ -585,8 +584,8 @@ U \bigl(\vert 0\rangle \langle 0 \vert \otimes \rho\bigr) U^{\dagger}
 <p>非破壊測定という概念は、興味深く有用な抽象化です。
 しかし、非破壊測定は常にチャネルと破壊的測定の合成として記述できるということは認識しておくべきです。つまり、ある意味では、破壊的測定という概念のほうがより基本的であると言えます。</p>
 <section id="id4">
-<h3>ナイマークの定理から<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>ナイマークの定理にあるような、一般測定のシミュレーションを考えてみましょう。
+<h3>ナイマルクの定理から<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>ナイマルクの定理にあるような、一般測定のシミュレーションを考えてみましょう。
 このシミュレーションから非破壊測定を得る簡単な方法は、先ほどの図で示されています。そこでは、系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>はトレースアウトされず、出力の一部となっています。
 これにより、古典的な測定結果<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>と、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の測定後の量子状態の両方が得られます。</p>
 <p>これらの状態を数学的な言葉で記述してみましょう。
@@ -620,7 +619,7 @@ U \bigl(\vert 0\rangle \langle 0 \vert \otimes \rho\bigr) U^{\dagger}
 </section>
 <section id="id5">
 <h3>クラウス表現から<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<p>ナイマークの定理の文脈における<span class="math notranslate nohighlight">\(U\)</span>の選び方には、同じ測定結果の確率を生じさせながらも、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の出力状態が全く異なるものになる、別の選択肢があります。</p>
+<p>ナイマルクの定理の文脈における<span class="math notranslate nohighlight">\(U\)</span>の選び方には、同じ測定結果の確率を生じさせながらも、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の出力状態が全く異なるものになる、別の選択肢があります。</p>
 <p>例えば、1つの選択肢は、<span class="math notranslate nohighlight">\(U\)</span>を<span class="math notranslate nohighlight">\((\mathbb{I}_{\mathsf{Y}} \otimes V) U\)</span>に置き換えることです。ここで、<span class="math notranslate nohighlight">\(V\)</span>は<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対する任意のユニタリー演算です。
 <span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対する<span class="math notranslate nohighlight">\(V\)</span>の適用は<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の測定と交換可能なので、古典的な結果の確率は変わりませんが、結果<span class="math notranslate nohighlight">\(a\)</span>が得られたという条件のもとでの<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態は、次のようになります。</p>
 <div class="math notranslate nohighlight">
@@ -656,7 +655,7 @@ U \bigl(\vert 0\rangle \langle 0 \vert \otimes \rho\bigr) U^{\dagger}
 \[
 \frac{A_a \rho A_a^{\dagger}}{\operatorname{Tr}(A_a^{\dagger}A_a \rho)}.
 \]</div>
-<p>これは、ナイマークの定理におけるユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>を次のように選ぶことと同等であることに注意してください。</p>
+<p>これは、ナイマルクの定理におけるユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>を次のように選ぶことと同等であることに注意してください。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 U =
@@ -728,7 +727,7 @@ A_{m-1} &amp; \fbox{?} &amp; \cdots &amp; \fbox{?}
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定理の主張と証明</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">非破壊測定</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ナイマークの定理から</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ナイマルクの定理から</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">クラウス表現から</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">一般化</a></li>
 </ul>
