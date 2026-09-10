@@ -1,0 +1,1119 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>期待値推定のための演算子逆伝播（OBP） &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/operator-back-propagation-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Ftutorial/operator-back-propagation-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/operator-back-propagation-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>期待値推定のための演算子逆伝播（OBP）</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">背景</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小規模なシミュレーターでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ステップ 1: 古典的な入力を量子問題へマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子ハイゼンベルクモデルの時間発展を量子実験へマッピングする</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ 2: 量子ハードウェア実行に向けて問題を最適化する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">逆伝播する回路スライスを作成する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">逆伝播中に演算子が大きくなり得る範囲を制限する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">回路からスライスを逆伝播する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">回路を基底ゲート集合へトランスパイルする</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ 4: 後処理を行い、望ましい古典的形式で結果を返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">大規模なハードウェアでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">次のステップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="obp">
+<h1>期待値推定のための演算子逆伝播（OBP）<a class="headerlink" href="#obp" title="Link to this heading">#</a></h1>
+<p>このチュートリアルでは、qiskit-addon-obp を使ってハイゼンベルクスピン鎖の量子ダイナミクスをシミュレートする Qiskit パターンを実装します</p>
+<p><em>使用量の目安: Heron r3 プロセッサで 4 分（注意: これはあくまで目安です。実際の実行時間は異なる場合があります。）</em></p>
+<section id="id1">
+<h2>学習成果<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを終えると、次の内容が理解できるようになります。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Qiskit/qiskit-addon-obp"><code class="docutils literal notranslate"><span class="pre">qiskit-addon-obp</span></code></a> を使って、回路実行回数の増加と引き換えに量子回路の深さを削減する方法</p></li>
+<li><p><a class="reference external" href="https://github.com/Qiskit/qiskit-addon-utils"><code class="docutils literal notranslate"><span class="pre">qiskit-addon-utils</span></code></a> を使って XYZ ハミルトニアンとその時間発展回路を構成する方法</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>前提知識<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>このチュートリアルに進む前に、次のトピックについて理解しておくことをお勧めします。</p>
+<ul class="simple">
+<li><p>観測量の期待値を計算するための <a class="reference internal" href="#/docs/api/qiskit-ibm-runtime/estimator-v2"><span class="xref myst">Estimator</span></a> プリミティブの使い方</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>背景<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>演算子逆伝播（operator backpropagation）は、量子回路の末尾にある演算を測定対象の観測量へ吸収させる手法であり、観測量の項数が増える代わりに回路の深さを一般に削減します。目標は、観測量が大きくなりすぎない範囲で、回路をできるだけ多く逆伝播させることです。Qiskit ベースの実装は OBP Qiskit アドオンとして提供されています。詳しくは対応する <a class="reference external" href="https://qiskit.github.io/qiskit-addon-obp/">ドキュメント</a> を参照してください。</p>
+<p>観測量 <span class="math notranslate nohighlight">\(O = \sum_P c_P P\)</span>（ここで <span class="math notranslate nohighlight">\(P\)</span> はパウリ演算子、<span class="math notranslate nohighlight">\(c_P\)</span> は係数）を測定したい例題の回路を考えます。この回路を 1 つのユニタリー <span class="math notranslate nohighlight">\(U\)</span> として表すと、下図のように <span class="math notranslate nohighlight">\(U = U_C U_Q\)</span> と論理的に分割できます。</p>
+<p><img alt="Uq の後に Uc が続く回路図" src="https://quantum.cloud.ibm.com/docs/images/tutorials/improving-estimation-of-expectation-values-with-operator-backpropagation/logical-partitioning.avif" /></p>
+<p>演算子逆伝播は、<span class="math notranslate nohighlight">\(O' = U_C^{\dagger}OU_C = \sum_P c_P U_C^{\dagger}PU_C\)</span> として観測量を発展させることで、ユニタリー <span class="math notranslate nohighlight">\(U_C\)</span> を観測量へ吸収します。言い換えると、計算の一部が、観測量を <span class="math notranslate nohighlight">\(O\)</span> から <span class="math notranslate nohighlight">\(O'\)</span> へ発展させることによって古典的に実行されます。これにより元の問題は、ユニタリーが <span class="math notranslate nohighlight">\(U_Q\)</span> である、より深さの小さい新しい回路について観測量 <span class="math notranslate nohighlight">\(O'\)</span> を測定する問題として再定式化できます。</p>
+<p>ユニタリー <span class="math notranslate nohighlight">\(U_C\)</span> は複数のスライスとして <span class="math notranslate nohighlight">\(U_C = U_S U_{S-1}...U_2U_1\)</span> と表されます。スライスの定義方法は複数あります。たとえば上の例題回路では、<span class="math notranslate nohighlight">\(R_{zz}\)</span> の各層と <span class="math notranslate nohighlight">\(R_x\)</span> ゲートの各層をそれぞれ個別のスライスと見なせます。逆伝播では <span class="math notranslate nohighlight">\(O' = \Pi_{s=1}^S \sum_P c_P U_s^{\dagger} P U_s\)</span> を古典的に計算します。各スライス <span class="math notranslate nohighlight">\(U_s\)</span> は <span class="math notranslate nohighlight">\(U_s = exp(\frac{-i\theta_s P_s}{2})\)</span> と表せます。ここで <span class="math notranslate nohighlight">\(P_s\)</span> は <span class="math notranslate nohighlight">\(n\)</span> 量子ビットのパウリ演算子、<span class="math notranslate nohighlight">\(\theta_s\)</span> はスカラーです。次のことは容易に確認できます。</p>
+<div class="math notranslate nohighlight">
+\[
+U_s^{\dagger} P U_s = P \qquad \text{if} ~[P,P_s] = 0,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+U_s^{\dagger} P U_s = \qquad cos(\theta_s)P + i sin(\theta_s)P_sP \qquad \text{if} ~\{P,P_s\} = 0
+\]</div>
+<p>上の例で <span class="math notranslate nohighlight">\(\{P,P_s\} = 0\)</span> の場合、期待値を計算するには 1 つではなく 2 つの量子回路を実行する必要があります。したがって逆伝播は観測量の項数を増やす可能性があり、その結果として回路の実行回数も増えます。演算子が大きくなりすぎるのを防ぎながら回路のより深くまで逆伝播させる方法の 1 つは、係数の小さい項を演算子に追加せずに切り捨てることです。たとえば上の例では、<span class="math notranslate nohighlight">\(\theta_s\)</span> が十分小さければ <span class="math notranslate nohighlight">\(P_sP\)</span> を含む項を切り捨てるという選択ができます。項を切り捨てると実行すべき量子回路の数は減りますが、その代わり、切り捨てた項の係数の大きさに比例した誤差が最終的な期待値の計算に生じます。</p>
+</section>
+<section id="id4">
+<h2>要件<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを始める前に、次のものがインストールされていることを確認してください。</p>
+<ul class="simple">
+<li><p>Qiskit SDK v2.0 以降（<a class="reference internal" href="#/docs/api/qiskit/visualization"><span class="xref myst">可視化</span></a> サポート付き）</p></li>
+<li><p>Qiskit Runtime v0.22 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code>）</p></li>
+<li><p>OBP Qiskit アドオン 0.3 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-addon-obp</span></code>）</p></li>
+<li><p>Qiskit アドオンユーティリティ 0.3 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-addon-utils</span></code>）</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>セットアップ<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorEstimator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">CouplingMap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.synthesis</span><span class="w"> </span><span class="kn">import</span> <span class="n">LieTrotter</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.problem_generators</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_xyz_hamiltonian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.problem_generators</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.slicing</span><span class="w"> </span><span class="kn">import</span> <span class="n">slice_by_depth</span><span class="p">,</span> <span class="n">combine_slices</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_obp.utils.simplify</span><span class="w"> </span><span class="kn">import</span> <span class="n">OperatorBudget</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_obp</span><span class="w"> </span><span class="kn">import</span> <span class="n">backpropagate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_obp.utils.truncating</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_budget</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">rustworkx.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">graphviz_draw</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">EstimatorV2</span><span class="p">,</span> <span class="n">EstimatorOptions</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>小規模なシミュレーターでの例<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>このチュートリアルでは、<a class="reference external" href="https://github.com/Qiskit/qiskit-addon-obp">OBP Qiskit アドオン</a> を使ってハイゼンベルクスピン鎖の量子ダイナミクスをシミュレートする <a class="reference internal" href="#/docs/guides/intro-to-patterns"><span class="xref myst">Qiskit パターン</span></a> を実装します。なお、ノイズのないシミュレーターでは、逆伝播を行った場合と行わない場合で得られる期待値は同じになります。</p>
+<section id="id7">
+<h3>ステップ 1: 古典的な入力を量子問題へマッピングする<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h4>量子ハイゼンベルクモデルの時間発展を量子実験へマッピングする<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p>まず、<code class="docutils literal notranslate"><span class="pre">qiskit-addon-utils</span></code> の <a class="reference internal" href="#/docs/api/qiskit-addon-utils/problem-generators#generate_xyz_hamiltonian"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">generate_xyz_hamiltonian</span></code></span></a> 関数を使い、与えられた接続グラフ上でハイゼンベルク型のハミルトニアンを生成します。このグラフは <a class="reference external" href="https://www.rustworkx.org/apiref/rustworkx.PyGraph.html">rustworkx.PyGraph</a> または <a class="reference internal" href="#/docs/api/qiskit/qiskit.transpiler.CouplingMap"><span class="xref myst">CouplingMap</span></a> のいずれでもかまいません。以下では、10 量子ビットの直線鎖の <code class="docutils literal notranslate"><span class="pre">CouplingMap</span></code> を使います。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">)]</span>
+
+<span class="c1"># CouplingMap オブジェクトを生成する</span>
+<span class="n">coupling_map</span> <span class="o">=</span> <span class="n">CouplingMap</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">graphviz_draw</span><span class="p">(</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"circo"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/a3debf65-06df-4277-933e-14b6f6170756-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、ハイゼンベルク XYZ ハミルトニアンを表すパウリ演算子を生成します。</p>
+<div class="math notranslate nohighlight">
+\[
+{\hat{\mathcal{H}}_{XYZ} = \sum_{(j,k)\in E} (J_{x} \sigma_j^{x} \sigma_{k}^{x} + J_{y} \sigma_j^{y} \sigma_{k}^{y} + J_{z} \sigma_j^{z} \sigma_{k}^{z}) + \sum_{j\in V} (h_{x} \sigma_j^{x} + h_{y} \sigma_j^{y} + h_{z} \sigma_j^{z}),}
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(G(V,E)\)</span> はカップリングマップのグラフです。このチュートリアルでは <span class="math notranslate nohighlight">\(J_x, J_y, J_z\)</span> をそれぞれ <span class="math notranslate nohighlight">\(\frac{\pi}{8}, \frac{\pi}{4}, \frac{\pi}{2}\)</span>、<span class="math notranslate nohighlight">\(h_x, h_y, h_z\)</span> をそれぞれ <span class="math notranslate nohighlight">\(\frac{\pi}{3}, \frac{\pi}{6}, \frac{\pi}{9}\)</span> としています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ハイゼンベルク XYZ モデルを表す量子ビット演算子を取得する</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">generate_xyz_hamiltonian</span><span class="p">(</span>
+    <span class="n">coupling_map</span><span class="p">,</span>
+    <span class="n">coupling_constants</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">ext_magnetic_field</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">9</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['IIIIIIIXXI', 'IIIIIIIYYI', 'IIIIIIIZZI', 'IIIIIXXIII', 'IIIIIYYIII', 'IIIIIZZIII', 'IIIXXIIIII', 'IIIYYIIIII', 'IIIZZIIIII', 'IXXIIIIIII', 'IYYIIIIIII', 'IZZIIIIIII', 'IIIIIIIIXX', 'IIIIIIIIYY', 'IIIIIIIIZZ', 'IIIIIIXXII', 'IIIIIIYYII', 'IIIIIIZZII', 'IIIIXXIIII', 'IIIIYYIIII', 'IIIIZZIIII', 'IIXXIIIIII', 'IIYYIIIIII', 'IIZZIIIIII', 'XXIIIIIIII', 'YYIIIIIIII', 'ZZIIIIIIII', 'IIIIIIIIIX', 'IIIIIIIIIY', 'IIIIIIIIIZ', 'IIIIIIIIXI', 'IIIIIIIIYI', 'IIIIIIIIZI', 'IIIIIIIXII', 'IIIIIIIYII', 'IIIIIIIZII', 'IIIIIIXIII', 'IIIIIIYIII', 'IIIIIIZIII', 'IIIIIXIIII', 'IIIIIYIIII', 'IIIIIZIIII', 'IIIIXIIIII', 'IIIIYIIIII', 'IIIIZIIIII', 'IIIXIIIIII', 'IIIYIIIIII', 'IIIZIIIIII', 'IIXIIIIIII', 'IIYIIIIIII', 'IIZIIIIIII', 'IXIIIIIIII', 'IYIIIIIIII', 'IZIIIIIIII', 'XIIIIIIIII', 'YIIIIIIIII', 'ZIIIIIIIII'],
+              coeffs=[0.39269908+0.j, 0.78539816+0.j, 1.57079633+0.j, 0.39269908+0.j,
+ 0.78539816+0.j, 1.57079633+0.j, 0.39269908+0.j, 0.78539816+0.j,
+ 1.57079633+0.j, 0.39269908+0.j, 0.78539816+0.j, 1.57079633+0.j,
+ 0.39269908+0.j, 0.78539816+0.j, 1.57079633+0.j, 0.39269908+0.j,
+ 0.78539816+0.j, 1.57079633+0.j, 0.39269908+0.j, 0.78539816+0.j,
+ 1.57079633+0.j, 0.39269908+0.j, 0.78539816+0.j, 1.57079633+0.j,
+ 0.39269908+0.j, 0.78539816+0.j, 1.57079633+0.j, 1.04719755+0.j,
+ 0.52359878+0.j, 0.34906585+0.j, 1.04719755+0.j, 0.52359878+0.j,
+ 0.34906585+0.j, 1.04719755+0.j, 0.52359878+0.j, 0.34906585+0.j,
+ 1.04719755+0.j, 0.52359878+0.j, 0.34906585+0.j, 1.04719755+0.j,
+ 0.52359878+0.j, 0.34906585+0.j, 1.04719755+0.j, 0.52359878+0.j,
+ 0.34906585+0.j, 1.04719755+0.j, 0.52359878+0.j, 0.34906585+0.j,
+ 1.04719755+0.j, 0.52359878+0.j, 0.34906585+0.j, 1.04719755+0.j,
+ 0.52359878+0.j, 0.34906585+0.j, 1.04719755+0.j, 0.52359878+0.j,
+ 0.34906585+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+<p>この量子ビット演算子から、その時間発展を表す量子回路を生成できます。ここでは <a class="reference internal" href="#/docs/api/qiskit-addon-utils/problem-generators#generate_time_evolution_circuit"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">generate_time_evolution_circuit</span></code></span></a> を Lie-Trotter 分解とともに使い、時間発展回路を構成しています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">synthesis</span><span class="o">=</span><span class="n">LieTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">"iqp"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/5208e0a8-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h3>ステップ 2: 量子ハードウェア実行に向けて問題を最適化する<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h4>逆伝播する回路スライスを作成する<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">backpropagate</span></code> 関数は、一度に回路スライス全体を逆伝播します。したがってスライスの分け方の選択は、与えられた問題に対して逆伝播がどれだけうまく機能するかに影響し得ます。ここでは <a class="reference internal" href="#/docs/api/qiskit-addon-utils/slicing#slice_by_depth"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">slice_by_depth</span></code></span></a> 関数を使い、同じ種類のゲートをスライスにまとめます。</p>
+<p>回路のスライス分割についてより詳しくは、<a class="reference external" href="https://github.com/Qiskit/qiskit-addon-utils"><code class="docutils literal notranslate"><span class="pre">qiskit-addon-utils</span></code></a> パッケージの <a class="reference external" href="https://qiskit.github.io/qiskit-addon-utils/how_tos/create_circuit_slices.html">ハウツーガイド</a> をご覧ください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slices</span> <span class="o">=</span> <span class="n">slice_by_depth</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">max_slice_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"回路を </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">slices</span><span class="p">)</span><span class="si">}</span><span class="s2"> 個のスライスに分割しました。"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Separated the circuit into 18 slices.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h4>逆伝播中に演算子が大きくなり得る範囲を制限する<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<p>逆伝播の途中で、演算子の項数は一般に急速に <span class="math notranslate nohighlight">\(2^L\)</span> に近づきます（<span class="math notranslate nohighlight">\(L\)</span> はスライス数）。演算子の 2 つの項が量子ビットごとに可換でない場合、それらに対応する期待値を得るには別々の回路が必要になります。たとえば 2 量子ビットの観測量 <span class="math notranslate nohighlight">\(O = 0.1 XX + 0.3 IZ - 0.5 IX\)</span> を考えると、<span class="math notranslate nohighlight">\([XX,IX] = 0\)</span> なので、これら 2 つの項の期待値は単一の基底での測定で計算できます。しかし <span class="math notranslate nohighlight">\(IZ\)</span> は他の 2 つの項と反可換なので、<span class="math notranslate nohighlight">\(IZ\)</span> の期待値を計算するには別の基底での測定が必要です。言い換えると、<span class="math notranslate nohighlight">\(\langle O \rangle\)</span> を計算するには 1 つではなく 2 つの回路が必要になります。演算子の項数が増えるにつれて、必要な回路実行回数も増える可能性があります。</p>
+<p>演算子のサイズは、<code class="docutils literal notranslate"><span class="pre">backpropagate</span></code> 関数の <code class="docutils literal notranslate"><span class="pre">operator_budget</span></code> キーワード引数を指定することで制限できます。この引数は <a class="reference internal" href="#/docs/api/qiskit-addon-obp/utils-simplify#operatorbudget"><span class="xref myst">OperatorBudget</span></a> のインスタンスを受け取ります。</p>
+<p>割り当てる追加リソースの量（回路実行回数、ひいては必要となる QPU 時間）を制御するため、逆伝播後の観測量が持てる、量子ビットごとに可換なパウリ群の最大数を制限します。ここでは、演算子内の量子ビットごとに可換なパウリ群の数が 8 を超えた時点で逆伝播を停止するよう指定します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">op_budget</span> <span class="o">=</span> <span class="n">OperatorBudget</span><span class="p">(</span><span class="n">max_qwc_groups</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id12">
+<h4>回路からスライスを逆伝播する<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>まず観測量を <span class="math notranslate nohighlight">\(M_Z = \frac{1}{N} \sum_{i=1}^N \langle Z_i \rangle\)</span>（<span class="math notranslate nohighlight">\(N\)</span> は量子ビット数）と指定します。観測量の項を、量子ビットごとに可換な 8 個以下のパウリ群にまとめられなくなるまで、時間発展回路からスライスを逆伝播します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num_qubits</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)],</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="n">num_qubits</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">observable</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['IIIIIIIIIZ', 'IIIIIIIIZI', 'IIIIIIIZII', 'IIIIIIZIII', 'IIIIIZIIII', 'IIIIZIIIII', 'IIIZIIIIII', 'IIZIIIIIII', 'IZIIIIIIII', 'ZIIIIIIIII'],
+              coeffs=[0.1+0.j, 0.1+0.j, 0.1+0.j, 0.1+0.j, 0.1+0.j, 0.1+0.j, 0.1+0.j, 0.1+0.j,
+ 0.1+0.j, 0.1+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+<p>以下では 6 つのスライスを逆伝播し、項が 8 ではなく 6 個の群にまとめられたことがわかります。これは、もう 1 つスライスを逆伝播するとパウリ群の数が 8 を超えてしまうことを意味します。返されたメタデータを調べれば、実際にそうであることを確認できます。また、この部分の回路変換は厳密であることにも注意してください。つまり、新しい観測量 <span class="math notranslate nohighlight">\(O'\)</span> の項は 1 つも切り捨てられていません。逆伝播後の回路と逆伝播後の演算子は、元の回路と演算子とまったく同じ結果を与えます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># スライスを観測量へ逆伝播する</span>
+<span class="n">bp_obs</span><span class="p">,</span> <span class="n">remaining_slices</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">backpropagate</span><span class="p">(</span>
+    <span class="n">observable</span><span class="p">,</span> <span class="n">slices</span><span class="p">,</span> <span class="n">operator_budget</span><span class="o">=</span><span class="n">op_budget</span>
+<span class="p">)</span>
+<span class="c1"># 逆伝播後に残ったスライスを再結合する</span>
+<span class="n">bp_circuit</span> <span class="o">=</span> <span class="n">combine_slices</span><span class="p">(</span><span class="n">remaining_slices</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">num_backpropagated_slices</span><span class="si">}</span><span class="s2"> 個のスライスを逆伝播しました。"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"新しい観測量は </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bp_obs</span><span class="o">.</span><span class="n">paulis</span><span class="p">)</span><span class="si">}</span><span class="s2"> 個の項を持ち、"</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bp_obs</span><span class="o">.</span><span class="n">group_commuting</span><span class="p">(</span><span class="n">qubit_wise</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span><span class="si">}</span><span class="s2"> 個の群にまとめられます。"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"なお、もう 1 つスライスを逆伝播すると "</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">backpropagation_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">num_paulis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> 個の項が "</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metadata</span><span class="o">.</span><span class="n">backpropagation_history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">num_qwc_groups</span><span class="si">}</span><span class="s2"> 個の群にわたって生じます。"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"逆伝播後に残った回路は次のようになります:"</span><span class="p">)</span>
+<span class="n">bp_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backpropagated 6 slices.
+New observable has 60 terms, which can be combined into 6 groups.
+Note that backpropagating one more slice would result in 114 terms across 12 groups.
+The remaining circuit after backpropagation looks as follows:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/ee8fd385-1.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>シミュレーター上の小規模な例では、切り捨てを使いません。これは、ノイズがない場合には逆伝播の有無にかかわらず同じ結果になり、切り捨ては近似が加わることで結果を悪化させるだけだからです。</p>
+</section>
+<section id="id13">
+<h4>回路を基底ゲート集合へトランスパイルする<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<p>ここでは、元の回路と逆伝播後の回路の両方を、バックエンドの基底ゲートへトランスパイルします。小規模なインスタンスではシミュレーター上で実行するため、実際のバックエンドに合わせてトランスパイルする必要はありません。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
+    <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">133</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_kingston')&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm_basis</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span>
+    <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">basis_gates</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">basis_gates</span>
+<span class="p">)</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pm_basis</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+<span class="n">isa_bp_circuit</span> <span class="o">=</span> <span class="n">pm_basis</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">bp_circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="qiskit">
+<h3>ステップ 3: Qiskit プリミティブを使って実行する<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h3>
+<p>まず、元の回路と逆伝播後の回路に対応する 2 つの <a class="reference internal" href="#/docs/api/qiskit/primitives"><span class="xref myst">Primitive Unified Bloc</span></a>（PUB）を作成します。次に、期待値を得るために理想的な Estimator でこれらの PUB を実行します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pubs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">observable</span><span class="p">),</span> <span class="p">(</span><span class="n">isa_bp_circuit</span><span class="p">,</span> <span class="n">bp_obs</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">StatevectorEstimator</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">rng</span><span class="p">)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pubs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id14">
+<h3>ステップ 4: 後処理を行い、望ましい古典的形式で結果を返す<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>ここでは、元の回路と逆伝播後の回路の期待値を取得します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">primitive_result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">circuit_expval</span> <span class="o">=</span> <span class="n">primitive_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">bp_circuit_expval</span> <span class="o">=</span> <span class="n">primitive_result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"逆伝播なし"</span><span class="p">,</span>
+    <span class="s2">"逆伝播あり"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">circuit_expval</span><span class="p">,</span> <span class="n">bp_circuit_expval</span><span class="p">]</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">methods</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#a56eff"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#8a3ffc"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.92</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$M_Z$"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, '$M_Z$')
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/fb5f955a-1.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>予想どおり、2 つの期待値は一致します。ノイズのない状態ベクトルシミュレーター上で実行しているため、逆伝播は回路と観測量の組に対する厳密な変換であり、元のワークフローと逆伝播後のワークフローは同じ <span class="math notranslate nohighlight">\(M_Z\)</span> の値を返すはずです。逆伝播の利点が現れるのはノイズのあるハードウェア上だけです。そこでは、より短い逆伝播後の回路の方が蓄積する誤差が小さくなります。これを以下の大規模なハードウェアの例で示します。</p>
+</section>
+</section>
+<section id="id15">
+<h2>大規模なハードウェアでの例<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<p>実験を開発する際には、可視化やシミュレーションを容易にするために小さな回路から始めるのが有用です。ここでは、<span class="math notranslate nohighlight">\(J\)</span> と <span class="math notranslate nohighlight">\(h\)</span> のパラメーターを同じ値、観測量も同じ <span class="math notranslate nohighlight">\(M_Z\)</span> としたまま、50 量子ビットのハイゼンベルクハミルトニアンについて、4 トロッターステップでの演算子逆伝播を見ていきます。この規模では理想的な期待値を力任せの方法で計算することはできないため、テンソルネットワークを使い、理想的な期待値が <span class="math notranslate nohighlight">\(\simeq 0.89\)</span> であることを求めています。</p>
+<p>この大規模な例では、逆伝播に加えて、切り捨てを伴う逆伝播も導入します。実効的な回路の深さを減らすためには、理想的にはできるだけ多く逆伝播したいところです。しかしそうすると、更新後の観測量に非可換な項が多数生じ、量子側のオーバーヘッドが増えることがよくあります。そこで、切り捨てと呼ばれる手法を用いて、係数の小さい観測量の項を除去できます。切り捨ては更新後の観測量の項数を減らすことでより多くの逆伝播を可能にしますが、その一方で近似も持ち込みます。したがって、近似誤差が、より深い逆伝播によって得られるノイズ低減を上回ってしまわないよう、切り捨てを一定の範囲に制限する必要があります。</p>
+<p>切り捨ての量を制限するため、<a class="reference internal" href="#/docs/api/qiskit-addon-obp/utils-truncating#setup_budget"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">setup_budget</span></code></span></a> 関数を使って、スライスごとの誤差バジェットと、逆伝播した回路全体にわたる総誤差バジェットの両方を割り当てます。これにより、スライスごとにも回路全体としても切り捨てが制御されます。バジェットの割り当て方法については、<a class="reference external" href="https://qiskit.github.io/qiskit-addon-obp/how_tos/truncate_operator_terms.html">こちらのガイド</a> も参照してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">)]</span>
+
+<span class="c1"># CouplingMap オブジェクトを生成する</span>
+<span class="n">coupling_map</span> <span class="o">=</span> <span class="n">CouplingMap</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">generate_xyz_hamiltonian</span><span class="p">(</span>
+    <span class="n">coupling_map</span><span class="p">,</span>
+    <span class="n">coupling_constants</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">ext_magnetic_field</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">9</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># ハミルトニアンの時間発展回路を生成する</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">time</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">synthesis</span><span class="o">=</span><span class="n">LieTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># 測定する観測量を定義する</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">num_qubits</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)],</span>
+    <span class="n">num_qubits</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">slices</span> <span class="o">=</span> <span class="n">slice_by_depth</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">max_slice_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 逆伝播後の観測量に許容する量子ビットごとに可換な（qwc）群の最大数と、</span>
+<span class="c1"># 切り捨て誤差のバジェットを定義する</span>
+<span class="n">op_budget</span> <span class="o">=</span> <span class="n">OperatorBudget</span><span class="p">(</span><span class="n">max_qwc_groups</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">truncation_error_budget</span> <span class="o">=</span> <span class="n">setup_budget</span><span class="p">(</span>
+    <span class="n">max_error_total</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">max_error_per_slice</span><span class="o">=</span><span class="mf">0.005</span>
+<span class="p">)</span>
+
+<span class="c1"># まず切り捨てなしで逆伝播する</span>
+<span class="n">bp_obs</span><span class="p">,</span> <span class="n">remaining_slices</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">backpropagate</span><span class="p">(</span>
+    <span class="n">observable</span><span class="p">,</span> <span class="n">slices</span><span class="p">,</span> <span class="n">operator_budget</span><span class="o">=</span><span class="n">op_budget</span>
+<span class="p">)</span>
+<span class="n">bp_circuit</span> <span class="o">=</span> <span class="n">combine_slices</span><span class="p">(</span><span class="n">remaining_slices</span><span class="p">)</span>
+
+<span class="c1"># 次に、同じ演算子バジェットと定義した切り捨て誤差バジェットを使い、</span>
+<span class="c1"># 切り捨てを伴う逆伝播を行う</span>
+<span class="n">bp_obs_trunc</span><span class="p">,</span> <span class="n">remaining_slices_trunc</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">backpropagate</span><span class="p">(</span>
+    <span class="n">observable</span><span class="p">,</span>
+    <span class="n">slices</span><span class="p">,</span>
+    <span class="n">operator_budget</span><span class="o">=</span><span class="n">op_budget</span><span class="p">,</span>
+    <span class="n">truncation_error_budget</span><span class="o">=</span><span class="n">truncation_error_budget</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">bp_circuit_trunc</span> <span class="o">=</span> <span class="n">combine_slices</span><span class="p">(</span>
+    <span class="n">remaining_slices_trunc</span><span class="p">,</span> <span class="n">include_barriers</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># 続いて、元の回路と 2 つの逆伝播後の回路をトランスパイルし、</span>
+<span class="c1"># 対応する観測量にレイアウトを適用する</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+<span class="n">isa_bp_circuit</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">bp_circuit</span><span class="p">)</span>
+<span class="n">isa_bp_circuit_trunc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">bp_circuit_trunc</span><span class="p">)</span>
+
+<span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">isa_bp_observable</span> <span class="o">=</span> <span class="n">bp_obs</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_bp_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="n">isa_bp_observable_trunc</span> <span class="o">=</span> <span class="n">bp_obs_trunc</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span>
+    <span class="n">isa_bp_circuit_trunc</span><span class="o">.</span><span class="n">layout</span>
+<span class="p">)</span>
+
+<span class="c1"># 逆伝播によってどれだけ深さが削減されたかを見るため、</span>
+<span class="c1"># トランスパイル後の各回路の 2 量子ビット深さを比較する</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"逆伝播なしの 2 量子ビット深さ: "</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"逆伝播ありの 2 量子ビット深さ: "</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">isa_bp_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"逆伝播および切り捨てありの 2 量子ビット深さ: "</span>
+    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">isa_bp_circuit_trunc</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">x</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+
+<span class="n">pubs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">isa_bp_circuit</span><span class="p">,</span> <span class="n">isa_bp_observable</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">isa_bp_circuit_trunc</span><span class="p">,</span> <span class="n">isa_bp_observable_trunc</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># 次に、ZNE と測定誤差の低減を有効にしたハードウェア用の Estimator</span>
+<span class="c1"># プリミティブを生成し、3 つの回路と観測量について計算する</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">EstimatorOptions</span><span class="p">()</span>
+<span class="n">options</span><span class="o">.</span><span class="n">default_precision</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">noise_factors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">]</span>
+<span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"linear"</span><span class="p">]</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">EstimatorV2</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">job_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"TUT_OBP"</span><span class="p">]</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pubs</span><span class="p">)</span>
+
+<span class="c1"># 結果と標準偏差を取得する</span>
+<span class="n">result_no_bp</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">result_bp</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">result_bp_trunc</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="n">std_no_bp</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">std_bp</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<span class="n">std_bp_trunc</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-qubit depth without backpropagation: 24
+2-qubit depth with backpropagation: 20
+2-qubit depth with backpropagation and truncation: 18
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"逆伝播なしの期待値: </span><span class="si">{</span><span class="n">result_no_bp</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"逆伝播後の期待値: </span><span class="si">{</span><span class="n">result_bp</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"切り捨てを伴う逆伝播後の期待値: </span><span class="si">{</span><span class="n">result_bp_trunc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Expectation value without backpropagation: 0.9543907942381811
+Backpropagated expectation value: 0.9445337385406468
+Backpropagated expectation value with truncation: 0.934050286970965
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 結果をプロットする</span>
+<span class="n">methods</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">"逆伝播なし"</span><span class="p">,</span>
+    <span class="s2">"逆伝播あり"</span><span class="p">,</span>
+    <span class="s2">"逆伝播あり（切り捨て付き）"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">result_no_bp</span><span class="p">,</span> <span class="n">result_bp</span><span class="p">,</span> <span class="n">result_bp_trunc</span><span class="p">]</span>
+<span class="n">error_bars</span> <span class="o">=</span> <span class="p">[</span><span class="n">std_no_bp</span><span class="p">,</span> <span class="n">std_bp</span><span class="p">,</span> <span class="n">std_bp_trunc</span><span class="p">]</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">methods</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#a56eff"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">"#8a3ffc"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">methods</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">error_bars</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"r"</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.89</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.895</span><span class="p">,</span> <span class="s2">"厳密な結果"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$M_Z$"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, '$M_Z$')
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/37834c72-1.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id16">
+<h2>次のステップ<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<p>この内容に興味を持たれた方には、次の資料もお勧めします。</p>
+<Admonition type="tip" title="おすすめ">
+  * [時間発展回路の近似量子コンパイル](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)
+  * [マルチプロダクト公式によるトロッター誤差の低減](/docs/tutorials/multi-product-formula)
+  * [`pauli-prop`](https://github.com/Qiskit/pauli-prop) — Rust で高速化されたパウリ伝播のパッケージ。OBP、古典的な期待値推定、ノイズを含むシミュレーションを扱うチュートリアルが付属しています
+</Admonition><p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">背景</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小規模なシミュレーターでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ステップ 1: 古典的な入力を量子問題へマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子ハイゼンベルクモデルの時間発展を量子実験へマッピングする</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ 2: 量子ハードウェア実行に向けて問題を最適化する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">逆伝播する回路スライスを作成する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">逆伝播中に演算子が大きくなり得る範囲を制限する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">回路からスライスを逆伝播する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">回路を基底ゲート集合へトランスパイルする</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ 4: 後処理を行い、望ましい古典的形式で結果を返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">大規模なハードウェアでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">次のステップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

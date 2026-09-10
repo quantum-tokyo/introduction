@@ -1,0 +1,1789 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>マルチプロダクト公式によるトロッター誤差の低減 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/multi-product-formula-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Ftutorial/multi-product-formula-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/multi-product-formula-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>マルチプロダクト公式によるトロッター誤差の低減</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">マルチプロダクト公式とは</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">係数はどのように決まるのか</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mpf">MPF を使うべき場面</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">MPF が役に立たない可能性がある場面</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">このチュートリアルの内容</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小規模なシミュレーターでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">ステップ 1: 古典的な入力を量子問題へマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">トロッター回路を構築する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ 2: 量子ハードウェア実行に向けて問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">ステップ 4: 後処理を行い、望ましい古典的形式で結果を返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">静的 MPF 係数</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#lse">LSE を設定する</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#x">厳密モデルを使って <span class="math notranslate nohighlight">\(x\)</span> を最適化する</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">近似モデルを使って <span class="math notranslate nohighlight">\(x\)</span> を最適化する</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">動的 MPF 係数</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">トロッターの期待値を MPF 係数と組み合わせる</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">大規模なハードウェアでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">次のステップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">参考文献</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>マルチプロダクト公式によるトロッター誤差の低減<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>観測量推定においてマルチプロダクト公式を用いてトロッター誤差を低減する、あるいは一定のトロッター誤差のもとでより浅い深さの時間発展を実装します。</p>
+<p><em>使用量の目安: Heron r2 プロセッサで 4 分（注意: これはあくまで目安です。実際の実行時間は異なる場合があります。）</em></p>
+<section id="id2">
+<h2>学習成果<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを完了すると、次の内容が理解できるようになります。</p>
+<ul class="simple">
+<li><p>マルチプロダクト公式（MPF）が、複数の浅い回路から得た期待値を組み合わせることで、ハミルトニアンシミュレーションにおけるトロッター誤差をどのように低減するか</p></li>
+<li><p>標準的なプロダクト公式に対して MPF が有利な場面と、MPF が適切な手法ではない場面</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qiskit_addon_mpf</span></code> パッケージを使って静的および動的な MPF 係数を計算する方法</p></li>
+<li><p>トランスパイル、誤差低減、後処理を含めて、MPF のワークフローを IBM Quantum® ハードウェア上でエンドツーエンドに実行する方法</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>前提知識<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>このチュートリアルに進む前に、次のトピックについて理解しておくことをお勧めします。</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#/docs/tutorials/compilation-methods-for-hamiltonian-simulation-circuits"><span class="xref myst">ハミルトニアンシミュレーション回路のコンパイル手法</span></a> — Qiskit におけるトロッター（プロダクト公式）回路を紹介しています。</p></li>
+<li><p>Qiskit におけるプロダクト公式、特に <a class="reference internal" href="#/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">SuzukiTrotter</span></code></span></a> と <a class="reference internal" href="#/docs/api/qiskit/qiskit.synthesis.LieTrotter"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">LieTrotter</span></code></span></a> の合成クラス。</p></li>
+<li><p><a class="reference internal" href="#/docs/guides/primitives"><span class="xref myst">Qiskit プリミティブと Estimator インターフェース</span></a>。</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>背景<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>マルチプロダクト公式とは<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>量子コンピューター上で量子系をシミュレートする際の中心的な課題は、ハミルトニアン <span class="math notranslate nohighlight">\(H\)</span> に対する時間発展演算子 <span class="math notranslate nohighlight">\(e^{-iHt}\)</span> を近似することです。標準的なアプローチでは、<em>プロダクト公式</em>（PF、トロッター・鈴木分解とも呼ばれます）を使います。これは <span class="math notranslate nohighlight">\(H = \sum_{a=1}^d F_a\)</span> と分解し、個々のユニタリー <span class="math notranslate nohighlight">\(e^{-iF_a t}\)</span> が効率的に実装できる項に分けたうえで、全体の時間発展をこれら単純なユニタリーの順序付き積として近似するものです。</p>
+<p>1 次のプロダクト公式（Lie-Trotter）は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+S_1(t) := \prod_{a=1}^d e^{-i F_a t},
+\]</div>
+<p>これは 2 次の誤差を生じます。すなわち <span class="math notranslate nohighlight">\(S_1(t) = e^{-iHt} + \mathcal{O}(t^2)\)</span> です。より高次の対称公式 <span class="math notranslate nohighlight">\(S_{2\chi}(t)\)</span>（<span class="math notranslate nohighlight">\(\chi\)</span> は対称プロダクト公式の次数を表します。文献 <a class="reference internal" href="#references"><span class="xref myst">[1]</span></a> を参照）は <span class="math notranslate nohighlight">\(e^{-iHt} + \mathcal{O}(t^{2\chi+1})\)</span> としてより速く収束しますが、その代わり 1 ステップあたりの回路が深くなります。</p>
+<p><em>一定の</em>次数 <span class="math notranslate nohighlight">\(\chi\)</span> のもとで誤差を減らすには、通常、全発展時間 <span class="math notranslate nohighlight">\(t\)</span> を <span class="math notranslate nohighlight">\(k\)</span> 個の小さなトロッターステップに分割します。各ステップは <span class="math notranslate nohighlight">\(e^{-iHt/k}\)</span> をプロダクト公式で近似し、それらを連結します。</p>
+<div class="math notranslate nohighlight">
+\[
+e^{-iHt} \approx \left[S_{2\chi}(t/k)\right]^k.
+\]</div>
+<p><span class="math notranslate nohighlight">\(2\chi\)</span> 次の対称公式の場合、残るトロッター誤差は <span class="math notranslate nohighlight">\(\mathcal{O}\!\left(t^{2\chi+1} / k^{2\chi}\right)\)</span> のようにスケールします。したがって <span class="math notranslate nohighlight">\(k\)</span> を増やせばトロッター誤差は急速に抑えられますが、同時に回路は線形に深くなり、ノイズのあるハードウェアでは蓄積するゲートノイズが増えることを意味します。この <strong>トロッター誤差（<span class="math notranslate nohighlight">\(k\)</span> を大きくしたい）</strong> と <strong>ハードウェアノイズ（<span class="math notranslate nohighlight">\(k\)</span> を小さくしたい）</strong> の間の緊張関係こそ、マルチプロダクト公式が解決しようとするものです。なお MPF は、一定の次数 <span class="math notranslate nohighlight">\(\chi\)</span> のもとで <em>異なる <span class="math notranslate nohighlight">\(k\)</span> の選択</em> から得られる結果を組み合わせる手法であり、基礎となるプロダクト公式の次数自体を変えるものではありません。</p>
+<p><strong>マルチプロダクト公式（MPF）</strong> <a class="reference internal" href="#references"><span class="xref myst">[1]</span></a> は、それぞれ異なるトロッターステップ数 <span class="math notranslate nohighlight">\(k_1, k_2, \ldots, k_r\)</span>（<span class="math notranslate nohighlight">\(r\)</span> 個のステップ数の集合）を用いた複数の浅いトロッター回路から得られる期待値の <em>重み付き線形結合</em> を構成します。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle A \rangle_{\text{MPF}}(t) = \sum_{j=1}^r x_j \, \langle A \rangle_{k_j}(t),
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(\langle A \rangle_{k_j}(t)\)</span> は <span class="math notranslate nohighlight">\(k_j\)</span> ステップのトロッター回路から推定した、時刻 <span class="math notranslate nohighlight">\(t\)</span> における観測量 <span class="math notranslate nohighlight">\(A\)</span> の期待値であり、係数 <span class="math notranslate nohighlight">\(\{x_j\}_{j=1}^r\)</span> は、この結合において主要なトロッター誤差項が打ち消されるように選ばれます。この式には <a class="reference internal" href="#small-scale-step-4"><span class="xref myst">ステップ 4</span></a> で改めて立ち返り、実際に評価してトロッターの結果を組み合わせます。実用上の要点は、MPF の中で最も深い回路でも <span class="math notranslate nohighlight">\(k_{\max}\)</span> ステップしか必要としないことです。これは、同じ実効的トロッター誤差に直接到達するために必要となる単一の <span class="math notranslate nohighlight">\(k\)</span> よりもはるかに小さい値です。回路が浅くなることで、MPF のアプローチはノイズのあるハードウェアに適したものになります。</p>
+</section>
+<section id="id6">
+<h3>係数はどのように決まるのか<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>MPF の係数には 2 つの系統があります。</p>
+<p><strong>静的係数</strong> は、ハミルトニアン、初期状態、発展時間に依存しません。主要なトロッター誤差項の打ち消しを課す線形方程式系 <span class="math notranslate nohighlight">\(Ax = b\)</span> を解くことで得られます。<span class="math notranslate nohighlight">\(2\chi\)</span> 次の対称プロダクト公式とともに用いるトロッターステップの集合 <span class="math notranslate nohighlight">\(\{k_j\}_{j=1}^r\)</span> に対して、トロッター誤差を <span class="math notranslate nohighlight">\(k_j\)</span> の逆べきで展開すると、次の形の制約方程式が導かれます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=1}^r x_j = 1, \quad \sum_{j=1}^r \frac{x_j}{k_j^{\eta_n}} = 0 \quad (n = 0, \ldots, r-2),
+\]</div>
+<p>ここで整数の指数 <span class="math notranslate nohighlight">\(\{\eta_n\}\)</span> は、選んだプロダクト公式における各トロッター誤差項の次数です。<em>対称</em> な <span class="math notranslate nohighlight">\(2\chi\)</span> 次 PF の場合、<span class="math notranslate nohighlight">\(\left[S_{2\chi}(t/k)\right]^k\)</span> の主要誤差は <span class="math notranslate nohighlight">\(1/k^{2\chi}\)</span> としてスケールし、続く補正項は <span class="math notranslate nohighlight">\(1/k^{2\chi+2}, 1/k^{2\chi+4}, \ldots\)</span> となるため、指数は <span class="math notranslate nohighlight">\(\eta_n = 2\chi + 2n\)</span> です。非対称の PF では奇数べきと偶数べきの両方が寄与し、<span class="math notranslate nohighlight">\(\eta_n = 2\chi + n\)</span> となります。完全な導出は文献 <a class="reference internal" href="#references"><span class="xref myst">[1]</span></a> を参照してください。上記の方程式系の 1 番目の式は不偏性（<span class="math notranslate nohighlight">\(k_j \to \infty\)</span> の極限で MPF が厳密な期待値を再現すること）を保証し、残りの <span class="math notranslate nohighlight">\(r-1\)</span> 個の式が最初の <span class="math notranslate nohighlight">\(r-1\)</span> 個のトロッター誤差項を順に打ち消します。得られる <span class="math notranslate nohighlight">\(L_1\)</span> ノルム <span class="math notranslate nohighlight">\(\|x\|_1\)</span> が大きすぎる場合（サンプリングノイズが増幅されます）、代わりに <span class="math notranslate nohighlight">\(\|x\|_1\)</span> に上限を課しつつ <span class="math notranslate nohighlight">\(\|Ax - b\|\)</span> を最小化する近似的な最適化を解くこともできます。</p>
+<p><strong>動的係数</strong> <a class="reference internal" href="#references"><span class="xref myst">[2]</span></a>, <a class="reference internal" href="#references"><span class="xref myst">[3]</span></a> は、さらにハミルトニアン、初期状態、発展時間 <span class="math notranslate nohighlight">\(t\)</span> に依存します。これは、真の時間発展状態と MPF による近似との間のフロベニウスノルム距離を最小化します。</p>
+<div class="math notranslate nohighlight">
+\[
+\|\rho(t) - \mu^D(t)\|_F^2 = 1 + \sum_{i,j} M_{ij}(t)\, x_i(t)\, x_j(t) - 2\sum_i L_i(t)\, x_i(t),
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(M_{ij}(t) = \mathrm{Tr}[\rho_{k_i}(t)\,\rho_{k_j}(t)]\)</span> は異なるステップ数 <span class="math notranslate nohighlight">\(k_i, k_j\)</span> のトロッター発展状態間の重なりのグラム行列であり、<span class="math notranslate nohighlight">\(L_i(t) = \mathrm{Tr}[\rho(t)\,\rho_{k_i}(t)]\)</span> は（近似的な）厳密状態との重なりを表します。このチュートリアルでは、これらの量をテンソルネットワーク法、具体的には <code class="docutils literal notranslate"><span class="pre">qiskit_addon_mpf</span></code> の TeNPy ベースのバックエンドを使って効率的に計算します。</p>
+</section>
+<section id="mpf">
+<h3>MPF を使うべき場面<a class="headerlink" href="#mpf" title="Link to this heading">#</a></h3>
+<p>MPF が最も有効なのは、次のような場合です。</p>
+<ul class="simple">
+<li><p><strong>回路の深さがボトルネックになっている場合。</strong> ハードウェアノイズによって実行できる深さが制限されるとき、MPF を使えばより浅い回路からより高い実効的トロッター精度を得られます。</p></li>
+<li><p><strong>必要なのが正確な期待値であり、状態の完全な準備ではない場合。</strong> MPF は期待値のレベルで働きます。組み合わせるのは古典的な数値であり、量子状態ではありません。したがって Estimator プリミティブを使う観測量推定に最適です。</p></li>
+<li><p><strong>組み合わせるトロッターステップ数が適度な個数である場合。</strong> 通常、<span class="math notranslate nohighlight">\(r = 3\)</span>〜<span class="math notranslate nohighlight">\(5\)</span> 個の異なるステップ数 <span class="math notranslate nohighlight">\(k_j\)</span> を組み合わせれば、<span class="math notranslate nohighlight">\(\|x\|_1\)</span> を扱いやすく保ちながら主要なトロッター誤差項をいくつか打ち消すのに十分です。</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>MPF が役に立たない可能性がある場面<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>発展時間が非常に短い場合。</strong> <span class="math notranslate nohighlight">\(t\)</span> が十分小さく、低次のプロダクト公式 1 つでも既に十分な精度が得られるときは、複数の回路を実行するオーバーヘッドは不要です。</p></li>
+<li><p><strong>状態準備が目的の場合。</strong> MPF が生み出すのは補正された <em>期待値</em> であり、補正された量子状態ではありません。実際に時間発展した状態が必要な場合（たとえば別の量子サブルーチンへの入力として）、MPF は適用できません。</p></li>
+<li><p><strong>トロッターステップ数が収束領域から外れている場合。</strong> 静的係数の導出では、個々の <span class="math notranslate nohighlight">\(\left[S_{2\chi}(t/k_j)\right]^{k_j}\)</span> を <span class="math notranslate nohighlight">\(t/k_j\)</span> の級数として展開します。この展開がよく収束するのは <span class="math notranslate nohighlight">\(t/k_{\min} \lesssim 1\)</span> のときだけです。与えられた <span class="math notranslate nohighlight">\(t\)</span> に対して <span class="math notranslate nohighlight">\(k_{\min}\)</span> を小さすぎる値に選ぶと、最も浅い回路は摂動領域から大きく外れ、MPF が打ち消さずに残す高次の誤差項が大きくなり、打ち消しのために大きな係数が必要になることがあります。実用的な診断指標は <span class="math notranslate nohighlight">\(L_1\)</span> ノルム <span class="math notranslate nohighlight">\(\|x\|_1\)</span> です。<span class="math notranslate nohighlight">\(\|x\|_1 \gg 1\)</span> のとき、<span class="math notranslate nohighlight">\(\|x\|_1^2\)</span> に比例するサンプリングのオーバーヘッドがトロッター誤差の低減分を上回ってしまう可能性があります。詳しくは <a class="reference external" href="https://qiskit.github.io/qiskit-addon-mpf/how_tos/choose_trotter_steps.html">トロッターステップの選び方のガイド</a> を参照してください。</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>このチュートリアルの内容<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>このチュートリアルでは、MPF のエンドツーエンドのワークフローを 2 段階に分けて見ていきます。まず、<strong>小規模なシミュレーターでの例</strong>（10 量子ビットのハイゼンベルク鎖）で、問題の設定方法、静的および動的な MPF 係数の計算方法、そして得られた期待値を厳密対角化と比較する方法を示します。次に、<strong>大規模なハードウェアでの例</strong>（50 量子ビットの XXZ 鎖）で、トランスパイル、誤差低減を用いた IBM Quantum ハードウェア上での実行、そして MPF 係数を使った結果の後処理の方法を示します。全体を通じて、標準的な Qiskit のツールとあわせて <code class="docutils literal notranslate"><span class="pre">qiskit_addon_mpf</span></code> パッケージを使用します。</p>
+</section>
+</section>
+<section id="id9">
+<h2>要件<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを始める前に、次のものがインストールされていることを確認してください。</p>
+<ul class="simple">
+<li><p>Qiskit SDK v2.0 以降（<a class="reference internal" href="#/docs/api/qiskit/visualization"><span class="xref myst">可視化</span></a> サポート付き）</p></li>
+<li><p>Qiskit Runtime v0.22 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code>）</p></li>
+<li><p>Qiskit Aer シミュレーター（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-aer</span></code>）</p></li>
+<li><p>TeNPy バックエンド付きの MPF Qiskit アドオン（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;qiskit-addon-mpf[tenpy]&quot;</span></code>）</p></li>
+<li><p>Qiskit アドオンユーティリティ（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-addon-utils</span></code>）</p></li>
+<li><p>SciPy（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scipy</span></code>）</p></li>
+</ul>
+</section>
+<section id="id10">
+<h2>セットアップ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>以下では、このチュートリアル全体で使用するパッケージの import を <em>すべて</em> 1 つのセルにまとめています。また、隣接する <code class="docutils literal notranslate"><span class="pre">rxx</span></code> と <code class="docutils literal notranslate"><span class="pre">ryy</span></code> の回転を 1 つの <code class="docutils literal notranslate"><span class="pre">XXPlusYYGate</span></code> に融合する <code class="docutils literal notranslate"><span class="pre">CollectAndCollapse</span></code> トランスパイラーパスも定義します。このパスは、ステップ 1 の回路構成時（ゲート数を少なく保つため）と、ステップ 4 で動的 MPF のために層構造を取り出す際に間接的に（TeNPy は融合されていない回転の対ではなく 2 量子ビットゲートを期待するため）適用されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pauli</span><span class="p">,</span> <span class="n">SparsePauliOp</span><span class="p">,</span> <span class="n">Statevector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.synthesis</span><span class="w"> </span><span class="kn">import</span> <span class="n">SuzukiTrotter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">CouplingMap</span><span class="p">,</span> <span class="n">PassManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">XXPlusYYGate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.passes.optimization.collect_and_collapse</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CollectAndCollapse</span><span class="p">,</span>
+    <span class="n">collect_using_filter_function</span><span class="p">,</span>
+    <span class="n">collapse_to_operation</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span><span class="p">,</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.problem_generators</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">generate_xyz_hamiltonian</span><span class="p">,</span>
+    <span class="n">generate_time_evolution_circuit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.slicing</span><span class="w"> </span><span class="kn">import</span> <span class="n">slice_by_depth</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_mpf.static</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_static_lse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_mpf.dynamic</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup_dynamic_lse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_mpf.costs</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">setup_exact_problem</span><span class="p">,</span>
+    <span class="n">setup_sum_of_squares_problem</span><span class="p">,</span>
+    <span class="n">setup_frobenius_problem</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_mpf.backends.tenpy_layers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">LayerModel</span><span class="p">,</span>
+    <span class="n">LayerwiseEvolver</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_mpf.backends.tenpy_tebd</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPOState</span><span class="p">,</span> <span class="n">MPS_neel_state</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">expm</span>
+
+<span class="c1"># TeNPy の `unit_cell_width` に関する将来 API の警告を抑制する。デフォルト値</span>
+<span class="c1"># (`unit_cell_width=len(sites)`) は Chain 格子に対して正しく、ここで</span>
+<span class="c1"># `CouplingMap.from_line(...)` が生成するのはまさにそれなので、この警告は情報提供にすぎない。</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+    <span class="s2">"ignore"</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="sa">r</span><span class="s2">".*unit_cell_width.*"</span><span class="p">,</span>
+    <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># --- 補助: XX と YY の回転を 1 つのゲートにまとめる ---</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_function</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"rxx"</span><span class="p">,</span> <span class="s2">"ryy"</span><span class="p">}</span>
+
+
+<span class="n">collect_function</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">collect_using_filter_function</span><span class="p">,</span>
+    <span class="n">filter_function</span><span class="o">=</span><span class="n">filter_function</span><span class="p">,</span>
+    <span class="n">split_blocks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">min_block_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">collapse_to_xx_plus_yy</span><span class="p">(</span><span class="n">block</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">block</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">+=</span> <span class="n">node</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">XXPlusYYGate</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+
+<span class="n">collapse_function</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">collapse_to_operation</span><span class="p">,</span>
+    <span class="n">collapse_function</span><span class="o">=</span><span class="n">collapse_to_xx_plus_yy</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">PassManager</span><span class="p">()</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CollectAndCollapse</span><span class="p">(</span><span class="n">collect_function</span><span class="p">,</span> <span class="n">collapse_function</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h2>小規模なシミュレーターでの例<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h3>ステップ 1: 古典的な入力を量子問題へマッピングする<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>まず、直線上の 10 量子ビットのハイゼンベルクモデルから始めます。初期状態にはネール状態 <span class="math notranslate nohighlight">\(\vert 0101\ldots01 \rangle\)</span> を使います。ハミルトニアンは次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\mathcal{H}}_{\text{Heis}} = J \sum_{i=1}^{L-1} \left(X_i X_{i+1} + Y_i Y_{i+1} + Z_i Z_{i+1}\right),
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(J\)</span> は最近接結合の強さです。鎖の中央にある 1 対の量子ビットについて ZZ 相関 <span class="math notranslate nohighlight">\(Z_{L/2-1} Z_{L/2}\)</span> を測定し、2 次のプロダクト公式とともにトロッターステップ <span class="math notranslate nohighlight">\(k_j = [1, 2, 4]\)</span> を使用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># カップリングマップとハミルトニアンを生成する</span>
+<span class="n">coupling_map</span> <span class="o">=</span> <span class="n">CouplingMap</span><span class="o">.</span><span class="n">from_line</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">generate_xyz_hamiltonian</span><span class="p">(</span>
+    <span class="n">coupling_map</span><span class="p">,</span>
+    <span class="n">coupling_constants</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">ext_magnetic_field</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['IIIIIIIXXI', 'IIIIIIIYYI', 'IIIIIIIZZI', 'IIIIIXXIII', 'IIIIIYYIII', 'IIIIIZZIII', 'IIIXXIIIII', 'IIIYYIIIII', 'IIIZZIIIII', 'IXXIIIIIII', 'IYYIIIIIII', 'IZZIIIIIII', 'IIIIIIIIXX', 'IIIIIIIIYY', 'IIIIIIIIZZ', 'IIIIIIXXII', 'IIIIIIYYII', 'IIIIIIZZII', 'IIIIXXIIII', 'IIIIYYIIII', 'IIIIZZIIII', 'IIXXIIIIII', 'IIYYIIIIII', 'IIZZIIIIII', 'XXIIIIIIII', 'YYIIIIIIII', 'ZZIIIIIIII'],
+              coeffs=[1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j,
+ 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j,
+ 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j, 1.+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 観測量: 中央の 2 量子ビットに対する ZZ</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">observable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SparsePauliOp(['IIIIZZIIII'],
+              coeffs=[1.+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MPF のパラメーター</span>
+<span class="n">mpf_trotter_steps</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">order</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">symmetric</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">trotter_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.55</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">exact_evolution_times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">trotter_times</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">1.55</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id13">
+<h4>トロッター回路を構築する<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<p>各時刻および各トロッターステップ数について、近似的なトロッター時間発展を実装する回路を作成します。セットアップのセクションで定義した <code class="docutils literal notranslate"><span class="pre">CollectAndCollapse</span></code> パスは XX と YY の回転をまとめて 1 つの XX+YY ゲートにし、後段でのテンソルネットワークシミュレーションをより効率的に行えるように準備します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初期状態としてネール状態を準備する</span>
+<span class="n">initial_state_circ</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">initial_state_circ</span><span class="o">.</span><span class="n">x</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span>
+
+
+<span class="n">all_circs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">total_time</span> <span class="ow">in</span> <span class="n">trotter_times</span><span class="p">:</span>
+    <span class="n">mpf_trotter_circs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+            <span class="n">hamiltonian</span><span class="p">,</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">total_time</span><span class="p">,</span>
+            <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">num_steps</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">num_steps</span> <span class="ow">in</span> <span class="n">mpf_trotter_steps</span>
+    <span class="p">]</span>
+
+    <span class="n">mpf_trotter_circs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">mpf_trotter_circs</span>
+    <span class="p">)</span>  <span class="c1"># Collect XX and YY into XX + YY</span>
+
+    <span class="n">mpf_circuits</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">initial_state_circ</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span> <span class="k">for</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="n">mpf_trotter_circs</span>
+    <span class="p">]</span>
+    <span class="n">all_circs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mpf_circuits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpf_circuits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/multi-product-formula/extracted-outputs/c7ee61e7-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h3>ステップ 2: 量子ハードウェア実行に向けて問題を最適化する<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>小規模な例では Aer シミュレーターを対象にします。回路が実行可能になるまでに、2 つの変換が行われます。</p>
+<ol class="arabic simple">
+<li><p><strong>ハミルトニアンシミュレーションのレベルでのゲート収集。</strong> セットアップのセルでは、隣接する <code class="docutils literal notranslate"><span class="pre">rxx</span></code> と <code class="docutils literal notranslate"><span class="pre">ryy</span></code> の回転を 1 つの <code class="docutils literal notranslate"><span class="pre">XXPlusYYGate</span></code> に融合する <code class="docutils literal notranslate"><span class="pre">CollectAndCollapse</span></code> パスを構築しました。このパスは、ステップ 1 でトロッター回路を構築した際（<code class="docutils literal notranslate"><span class="pre">pm.run(...)</span></code> の呼び出し）に既に適用済みです。これにより 2 量子ビットゲートの数が減るだけでなく、後の動的係数の計算においてテンソルネットワークシミュレーションに適した構造が得られます。</p></li>
+<li><p><strong>シミュレーターの ISA への変換。</strong> 以下では Qiskit のプリセットパスマネージャーを <code class="docutils literal notranslate"><span class="pre">optimization_level=3</span></code> で実行し、各トロッター回路をシミュレーターの命令セットアーキテクチャ（ISA）へ変換します。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aer_sim</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="n">pm_sim</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">aer_sim</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">isa_circs_all_times</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">pm_sim</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">mpf_circuits</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">mpf_circuits</span> <span class="ow">in</span> <span class="n">all_circs</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="qiskit">
+<h3>ステップ 3: Qiskit プリミティブを使って実行する<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h3>
+<p>小規模な例では、ISA へ変換したトロッター回路を Aer をバックエンドとする <code class="docutils literal notranslate"><span class="pre">EstimatorV2</span></code> プリミティブで実行します。これにより <span class="math notranslate nohighlight">\((k_j, t)\)</span> の各組について <em>ノイズのない</em> 参照値が得られます。これらが、ステップ 4 で MPF が組み合わせる <span class="math notranslate nohighlight">\(\langle A \rangle_{k_j}(t)\)</span> の値です。後で個々のプロダクト公式および MPF について時系列曲線の全体をプロットできるように、発展時間を掃引します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">aer_sim</span><span class="p">)</span>
+
+<span class="n">mpf_expvals_all_times</span><span class="p">,</span> <span class="n">mpf_stds_all_times</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">isa_circuits</span> <span class="ow">in</span> <span class="n">isa_circs_all_times</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span> <span class="k">for</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="n">isa_circuits</span><span class="p">],</span> <span class="n">precision</span><span class="o">=</span><span class="mf">0.005</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="n">mpf_expvals_all_times</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">res</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result</span><span class="p">])</span>
+    <span class="n">mpf_stds_all_times</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">res</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<span id="small-scale-step-4" />
+</section>
+<section id="id15">
+<h3>ステップ 4: 後処理を行い、望ましい古典的形式で結果を返す<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>ステップ 4 が、実際に MPF を構成する箇所です。係数 <span class="math notranslate nohighlight">\(x_j\)</span> が <em>計算される</em> のはここですが（動的な場合、この計算は負荷が大きくなることがあります）、概念的にはこれらは、ステップ 3 の量子測定結果を 1 つの補正された期待値へ組み合わせるための古典的な手順書です。そのため、係数の計算と組み合わせのワークフロー全体を後処理として扱います。</p>
+<p>MPF が真のダイナミクスをどれだけよく追跡できているかを評価するため、まずハミルトニアンを直接指数化して厳密な時間発展期待値を計算します。これが可能なのは <span class="math notranslate nohighlight">\(L = 10\)</span> だからであり、以下の大規模なハードウェアの例では、代わりにテンソルネットワークによる推定に頼ることになります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact_expvals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">exact_evolution_times</span><span class="p">:</span>
+    <span class="n">exp_H</span> <span class="o">=</span> <span class="n">expm</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">hamiltonian</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">())</span>
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">(</span><span class="n">initial_state_circ</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">time_evolved_state</span> <span class="o">=</span> <span class="n">exp_H</span> <span class="o">@</span> <span class="n">initial_state</span>
+
+    <span class="n">exact_obs</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">time_evolved_state</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span>
+        <span class="o">@</span> <span class="n">observable</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
+        <span class="o">@</span> <span class="n">time_evolved_state</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">real</span>
+    <span class="n">exact_expvals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exact_obs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id16">
+<h4>静的 MPF 係数<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<p>静的 MPF では、発展時間、ハミルトニアン、初期状態に依存しない係数 <span class="math notranslate nohighlight">\(x_j\)</span> を使います。背景で説明した線形方程式系 <span class="math notranslate nohighlight">\(Ax = b\)</span> を設定し、係数について解きます。行列 <span class="math notranslate nohighlight">\(A\)</span> は、トロッターステップ数 <span class="math notranslate nohighlight">\(k_j\)</span>、プロダクト公式の次数 <span class="math notranslate nohighlight">\(\chi\)</span>、および公式が対称かどうか（これが指数 <span class="math notranslate nohighlight">\(\eta_n\)</span> を決めます）によって定まります。</p>
+<p>今回の小規模な例では、非対称な <span class="math notranslate nohighlight">\(2\chi=2\)</span> 次の鈴木・トロッター公式とともに <span class="math notranslate nohighlight">\(k_j = [1, 2, 4]\)</span> を使います（したがって <span class="math notranslate nohighlight">\(\chi=1\)</span>、<span class="math notranslate nohighlight">\(\eta_n = 2 + n\)</span> であり、<span class="math notranslate nohighlight">\(\eta_0 = 2,\, \eta_1 = 3\)</span> となります）。方程式系は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A =
+\begin{bmatrix}
+1 &amp; 1 &amp; 1\\
+1 &amp; \frac{1}{2^2} &amp; \frac{1}{4^2}  \\
+1 &amp; \frac{1}{2^3} &amp; \frac{1}{4^3}  \\
+\end{bmatrix}, \quad
+b =
+\begin{bmatrix}
+1 \\
+0 \\
+0
+\end{bmatrix}.
+\end{split}\]</div>
+<p>1 行目は不偏性（<span class="math notranslate nohighlight">\(\sum_j x_j = 1\)</span>）を課し、2 行目と 3 行目はそれぞれ主要な <span class="math notranslate nohighlight">\(1/k^2\)</span> の項と次の次数の <span class="math notranslate nohighlight">\(1/k^3\)</span> のトロッター誤差項を打ち消します。</p>
+<section id="lse">
+<h5>LSE を設定する<a class="headerlink" href="#lse" title="Link to this heading">#</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">qiskit_addon_mpf.static</span></code> の <code class="docutils literal notranslate"><span class="pre">setup_static_lse</span></code> を使い、上で述べた行列 <span class="math notranslate nohighlight">\(A\)</span> と右辺ベクトル <span class="math notranslate nohighlight">\(b\)</span> を組み立てます。行列 <span class="math notranslate nohighlight">\(A\)</span> は <span class="math notranslate nohighlight">\(k_j\)</span> だけでなく、選んだプロダクト公式、特にその <em>次数</em> <span class="math notranslate nohighlight">\(\chi\)</span> と <em>対称</em> かどうかにも依存します。<code class="docutils literal notranslate"><span class="pre">symmetric</span></code> フラグは指数のパターン <span class="math notranslate nohighlight">\(\eta_n\)</span> を制御します（対称な公式は偶数べきのトロッター誤差項のみを生じます。文献 <a class="reference internal" href="#references"><span class="xref myst">[1]</span></a> を参照）。なお文献 <a class="reference internal" href="#references"><span class="xref myst">[2]</span></a> に示されているように、基礎となる PF が対称であっても <code class="docutils literal notranslate"><span class="pre">symmetric=True</span></code> を設定することは厳密には必要ではありません。非対称の LSE も有効なままです（不要な制約を追加で課すことになります）。</p>
+<p>今回の例では、ステップ 1 で既に <code class="docutils literal notranslate"><span class="pre">order</span> <span class="pre">=</span> <span class="pre">2</span></code> と <code class="docutils literal notranslate"><span class="pre">symmetric</span> <span class="pre">=</span> <span class="pre">False</span></code> を設定しています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lse</span> <span class="o">=</span> <span class="n">setup_static_lse</span><span class="p">(</span><span class="n">mpf_trotter_steps</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">symmetric</span><span class="o">=</span><span class="n">symmetric</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>構成された行列 <span class="math notranslate nohighlight">\(A\)</span> とベクトル <span class="math notranslate nohighlight">\(b\)</span> を確認し、上で書いた方程式系と一致していることを確かめます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lse</span><span class="o">.</span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.      , 1.      , 1.      ],
+       [1.      , 0.25    , 0.0625  ],
+       [1.      , 0.125   , 0.015625]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lse</span><span class="o">.</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>LSE が得られたので、<code class="docutils literal notranslate"><span class="pre">lse.solve()</span></code> によって静的係数 <span class="math notranslate nohighlight">\(x_j\)</span> を求めます（これは直接的な <span class="math notranslate nohighlight">\(x = A^{-1}b\)</span> の解です）。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpf_coeffs</span> <span class="o">=</span> <span class="n">lse</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"The static coefficients associated with the ansatze are: </span><span class="si">{</span><span class="n">mpf_coeffs</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The static coefficients associated with the ansatze are: [ 0.04761905 -0.57142857  1.52380952]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="x">
+<h5>厳密モデルを使って <span class="math notranslate nohighlight">\(x\)</span> を最適化する<a class="headerlink" href="#x" title="Link to this heading">#</a></h5>
+<p><span class="math notranslate nohighlight">\(x = A^{-1}b\)</span> を計算する代わりに、<a class="reference external" href="https://qiskit.github.io/qiskit-addon-mpf/stubs/qiskit_addon_mpf.static.setup_exact_model.html">setup_exact_model</a> を使って、LSE を制約として用いる <a class="reference external" href="https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem">cvxpy.Problem</a> のインスタンスを構成し、その最適解として <span class="math notranslate nohighlight">\(x\)</span> を得ることもできます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_exact</span><span class="p">,</span> <span class="n">coeffs_exact</span> <span class="o">=</span> <span class="n">setup_exact_problem</span><span class="p">(</span><span class="n">lse</span><span class="p">)</span>
+<span class="n">model_exact</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coeffs_exact</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.04761905 -0.57142857  1.52380952]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"L1 norm of the exact coefficients:"</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coeffs_exact</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L1 norm of the exact coefficients: 2.1428571428556378
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id17">
+<h5>近似モデルを使って <span class="math notranslate nohighlight">\(x\)</span> を最適化する<a class="headerlink" href="#id17" title="Link to this heading">#</a></h5>
+<p>選んだ <span class="math notranslate nohighlight">\(k_j\)</span> の集合に対する <span class="math notranslate nohighlight">\(L_1\)</span> ノルムが高すぎると判断される場合もあります。その場合で、かつ別の <span class="math notranslate nohighlight">\(k_j\)</span> の集合を選べないときは、<span class="math notranslate nohighlight">\(L_1\)</span> ノルムを指定した閾値に制約しつつ <span class="math notranslate nohighlight">\(\|Ax - b\|\)</span> を最小化する近似解を使えます。<a class="reference external" href="https://qiskit.github.io/qiskit-addon-mpf/how_tos/using_approximate_model.html">近似モデルの使い方</a> のガイドをご覧ください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_approx</span><span class="p">,</span> <span class="n">coeffs_approx</span> <span class="o">=</span> <span class="n">setup_sum_of_squares_problem</span><span class="p">(</span>
+    <span class="n">lse</span><span class="p">,</span> <span class="n">max_l1_norm</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="p">)</span>
+<span class="n">model_approx</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"L1 norm of the approximate coefficients:"</span><span class="p">,</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.10294118e-03 -2.48897059e-01  1.25000000e+00]
+L1 norm of the approximate coefficients: 1.5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id18">
+<h4>動的 MPF 係数<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<p>静的 MPF はハミルトニアンや状態に依存しない形でトロッター誤差項を打ち消すため、与えられたハミルトニアンと初期状態に対して必ずしも最小の近似誤差をもたらすわけではありません。動的 MPF（文献 <a class="reference internal" href="#references"><span class="xref myst">[2]</span></a>, <a class="reference internal" href="#references"><span class="xref myst">[3]</span></a>）は代わりに、各時刻 <span class="math notranslate nohighlight">\(t\)</span> においてフロベニウスノルム距離 <span class="math notranslate nohighlight">\(\|\rho(t) - \mu^D(t)\|_F^2\)</span> を最小化する、時間依存の係数 <span class="math notranslate nohighlight">\(x_i(t)\)</span> を求めます。背景で示したように、これにはトロッター発展状態間の重なり行列 <span class="math notranslate nohighlight">\(M_{ij}(t)\)</span> と厳密状態との重なり <span class="math notranslate nohighlight">\(L_i(t)\)</span> が必要であり、いずれも <code class="docutils literal notranslate"><span class="pre">qiskit_addon_mpf</span></code> のテンソルネットワーク（TeNPy）バックエンドを使って推定します。</p>
+<p>動的 LSE を設定するには、次の 3 つの要素が必要です。</p>
+<ol class="arabic simple">
+<li><p>各 <span class="math notranslate nohighlight">\(k_j\)</span> について <span class="math notranslate nohighlight">\(\rho_{k_j}(t)\)</span> を MPS/MPO として生成するために、アドオンが実行する <strong>近似発展演算子のファクトリー</strong>。これは 2 次のトロッター回路の層構造（<code class="docutils literal notranslate"><span class="pre">slice_by_depth</span></code> により 1 層ずつ）から構築し、TeNPy の打ち切りパラメーターとともに <code class="docutils literal notranslate"><span class="pre">LayerwiseEvolver</span></code> としてラップします。</p></li>
+<li><p>高精度な参照 <span class="math notranslate nohighlight">\(\rho(t)\)</span> を生成する <strong>厳密発展演算子のファクトリー</strong>。厳密な時間発展の代用として、小さな時間刻みの 4 次鈴木・トロッター回路（<code class="docutils literal notranslate"><span class="pre">dt=0.1</span></code>、<code class="docutils literal notranslate"><span class="pre">order=4</span></code>）を使います。</p></li>
+<li><p>TeNPy のシミュレーションを開始するための <strong>恒等演算子のファクトリー</strong> と <strong>初期状態の MPS</strong>。</p></li>
+</ol>
+<p>下のセルでは、近似発展演算子のファクトリーを構成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 近似的な時間発展回路を作成する</span>
+<span class="n">single_2nd_order_circ</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">single_2nd_order_circ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">single_2nd_order_circ</span><span class="p">)</span>  <span class="c1"># collect XX and YY</span>
+
+<span class="c1"># 回路内の層を見つける</span>
+<span class="n">layers</span> <span class="o">=</span> <span class="n">slice_by_depth</span><span class="p">(</span><span class="n">single_2nd_order_circ</span><span class="p">,</span> <span class="n">max_slice_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># テンソルネットワークのモデルを作成する</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">LayerModel</span><span class="o">.</span><span class="n">from_quantum_circuit</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">conserve</span><span class="o">=</span><span class="s2">"Sz"</span><span class="p">)</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span>
+<span class="p">]</span>
+
+<span class="c1"># 時間発展オブジェクトを作成する</span>
+<span class="n">approx_factory</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">LayerwiseEvolver</span><span class="p">,</span>
+    <span class="n">layers</span><span class="o">=</span><span class="n">models</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"preserve_norm"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"trunc_params"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"chi_max"</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+            <span class="s2">"svd_min"</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span>
+            <span class="s2">"trunc_cut"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">"max_delta_t"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<Admonition type="warning">
+  テンソルネットワークシミュレーションの詳細を決める `LayerwiseEvolver` のオプションは、不適切な最適化問題を設定してしまわないよう慎重に選ぶ必要があります。
+</Admonition><p>厳密な時間発展状態は、小さな時間刻み <code class="docutils literal notranslate"><span class="pre">dt=0.1</span></code> を用いた 4 次の鈴木・トロッター公式で近似します。TeNPy の打ち切りパラメーターは精度に影響し得るため、さまざまな値を試してみることが重要です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">single_4th_order_circ</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">single_4th_order_circ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">single_4th_order_circ</span><span class="p">)</span>
+<span class="n">exact_model_layers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">LayerModel</span><span class="o">.</span><span class="n">from_quantum_circuit</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">conserve</span><span class="o">=</span><span class="s2">"Sz"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">slice_by_depth</span><span class="p">(</span><span class="n">single_4th_order_circ</span><span class="p">,</span> <span class="n">max_slice_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">exact_factory</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">LayerwiseEvolver</span><span class="p">,</span>
+    <span class="n">layers</span><span class="o">=</span><span class="n">exact_model_layers</span><span class="p">,</span>
+    <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"preserve_norm"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"trunc_params"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"chi_max"</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+            <span class="s2">"svd_min"</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span>
+            <span class="s2">"trunc_cut"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">"max_delta_t"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>最後に、初期状態の MPO を生成する <code class="docutils literal notranslate"><span class="pre">identity_factory</span></code> を定義し、層構造のトロッターモデルで使う格子に整合する MPS としてネール初期状態を準備します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">identity_factory</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">MPOState</span><span class="o">.</span><span class="n">initialize_from_lattice</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">conserve</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">mps_initial_state</span> <span class="o">=</span> <span class="n">MPS_neel_state</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ファクトリーが揃ったので、各発展時間における動的係数を計算します。各 <span class="math notranslate nohighlight">\(t\)</span> について <code class="docutils literal notranslate"><span class="pre">setup_dynamic_lse</span></code> が TeNPy を用いて必要な重なり行列を構築し、<code class="docutils literal notranslate"><span class="pre">setup_frobenius_problem</span></code> がフロベニウスノルムのコストを最小化する <code class="docutils literal notranslate"><span class="pre">cvxpy.Problem</span></code> を返します。ソルバーはその時刻に合わせた係数 <span class="math notranslate nohighlight">\(x_j(t)\)</span> を返し、これを <code class="docutils literal notranslate"><span class="pre">mpf_dynamic_coeffs_list</span></code> に集めます。ある <span class="math notranslate nohighlight">\(t\)</span> でソルバーが失敗した場合は、ループを続けられるように係数をゼロにフォールバックします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mpf_dynamic_coeffs_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">trotter_times</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Computing dynamic coefficients for time=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">lse</span> <span class="o">=</span> <span class="n">setup_dynamic_lse</span><span class="p">(</span>
+        <span class="n">mpf_trotter_steps</span><span class="p">,</span>
+        <span class="n">t</span><span class="p">,</span>
+        <span class="n">identity_factory</span><span class="p">,</span>
+        <span class="n">exact_factory</span><span class="p">,</span>
+        <span class="n">approx_factory</span><span class="p">,</span>
+        <span class="n">mps_initial_state</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">problem</span><span class="p">,</span> <span class="n">coeffs</span> <span class="o">=</span> <span class="n">setup_frobenius_problem</span><span class="p">(</span><span class="n">lse</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+        <span class="n">mpf_dynamic_coeffs_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coeffs</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+        <span class="n">mpf_dynamic_coeffs_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mpf_trotter_steps</span><span class="p">)))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">"Calculation Failed for time"</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing dynamic coefficients for time=0.5
+
+Computing dynamic coefficients for time=0.6
+
+Computing dynamic coefficients for time=0.7
+
+Computing dynamic coefficients for time=0.7999999999999999
+
+Computing dynamic coefficients for time=0.8999999999999999
+
+Computing dynamic coefficients for time=0.9999999999999999
+
+Computing dynamic coefficients for time=1.0999999999999999
+
+Computing dynamic coefficients for time=1.1999999999999997
+
+Computing dynamic coefficients for time=1.2999999999999998
+
+Computing dynamic coefficients for time=1.4
+
+Computing dynamic coefficients for time=1.4999999999999998
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id19">
+<h4>トロッターの期待値を MPF 係数と組み合わせる<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<p>ここでは、各係数の組（静的・厳密、静的・近似、動的）について <span class="math notranslate nohighlight">\(\langle A \rangle_{\text{MPF}}(t) = \sum_j x_j \, \langle A \rangle_{k_j}(t)\)</span> を評価し、回路ごとの標準誤差を伝播させ、得られた時系列を厳密対角化の曲線と比較してプロットします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">"^"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"s"</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">"p"</span><span class="p">}</span>
+<span class="c1"># 各トロッターステップについて、全時刻の期待値を取得する</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mpf_trotter_steps</span><span class="p">):</span>
+    <span class="n">trotter_curve</span><span class="p">,</span> <span class="n">trotter_curve_error</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">trotter_expvals</span><span class="p">,</span> <span class="n">trotter_stds</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">mpf_expvals_all_times</span><span class="p">,</span> <span class="n">mpf_stds_all_times</span>
+    <span class="p">):</span>
+        <span class="n">trotter_curve</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trotter_expvals</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">trotter_curve_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trotter_stds</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+        <span class="n">trotter_times</span><span class="p">,</span>
+        <span class="n">trotter_curve</span><span class="p">,</span>
+        <span class="n">yerr</span><span class="o">=</span><span class="n">trotter_curve_error</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="n">sym</span><span class="p">[</span><span class="n">step</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">mpf_trotter_steps</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2"> Trotter steps"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="c1"># 厳密係数による静的 MPF について、全時刻の期待値を取得する</span>
+<span class="n">exact_mpf_curve</span><span class="p">,</span> <span class="n">exact_mpf_curve_error</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">trotter_expvals</span><span class="p">,</span> <span class="n">trotter_stds</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="n">mpf_expvals_all_times</span><span class="p">,</span> <span class="n">mpf_stds_all_times</span>
+<span class="p">):</span>
+    <span class="n">mpf_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="n">coeff</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">std</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">std</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">coeffs_exact</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">trotter_stds</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">exact_mpf_curve_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mpf_std</span><span class="p">)</span>
+    <span class="n">exact_mpf_curve</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trotter_expvals</span> <span class="o">@</span> <span class="n">coeffs_exact</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">trotter_times</span><span class="p">,</span>
+    <span class="n">exact_mpf_curve</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">exact_mpf_curve_error</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Static MPF - Exact"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"purple"</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># 近似係数による静的 MPF について、全時刻の期待値を取得する</span>
+<span class="n">approx_mpf_curve</span><span class="p">,</span> <span class="n">approx_mpf_curve_error</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">trotter_expvals</span><span class="p">,</span> <span class="n">trotter_stds</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="n">mpf_expvals_all_times</span><span class="p">,</span> <span class="n">mpf_stds_all_times</span>
+<span class="p">):</span>
+    <span class="n">mpf_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="n">coeff</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">std</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">std</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">trotter_stds</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">approx_mpf_curve_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mpf_std</span><span class="p">)</span>
+    <span class="n">approx_mpf_curve</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trotter_expvals</span> <span class="o">@</span> <span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">trotter_times</span><span class="p">,</span>
+    <span class="n">approx_mpf_curve</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">approx_mpf_curve_error</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Static MPF - Approx"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"orange"</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># 動的 MPF について、全時刻の期待値を取得する</span>
+<span class="n">dynamic_mpf_curve</span><span class="p">,</span> <span class="n">dynamic_mpf_curve_error</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">trotter_expvals</span><span class="p">,</span> <span class="n">trotter_stds</span><span class="p">,</span> <span class="n">dynamic_coeffs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="n">mpf_expvals_all_times</span><span class="p">,</span> <span class="n">mpf_stds_all_times</span><span class="p">,</span> <span class="n">mpf_dynamic_coeffs_list</span>
+<span class="p">):</span>
+    <span class="n">mpf_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="n">coeff</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">std</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">std</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dynamic_coeffs</span><span class="p">,</span> <span class="n">trotter_stds</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">dynamic_mpf_curve_error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mpf_std</span><span class="p">)</span>
+    <span class="n">dynamic_mpf_curve</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trotter_expvals</span> <span class="o">@</span> <span class="n">dynamic_coeffs</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="n">trotter_times</span><span class="p">,</span>
+    <span class="n">dynamic_mpf_curve</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">dynamic_mpf_curve_error</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Dynamic MPF"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"pink"</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># 厳密な期待値</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">exact_evolution_times</span><span class="p">,</span>
+    <span class="n">exact_expvals</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Exact time-evolution"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="se">{{</span><span class="si">{</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="se">}}</span><span class="s2"> Z_</span><span class="se">{{</span><span class="si">{</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="si">}</span><span class="se">}}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$ vs time"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Time"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Expectation Value"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper center"</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/multi-product-formula/extracted-outputs/35042576-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>上のプロットは、トロッター誤差とサンプリング誤差の相互作用を示しています。</p>
+<ul class="simple">
+<li><p><strong>トロッター誤差。</strong> 個々のプロダクト公式（灰色のマーカー）は、時間が経つにつれて厳密な曲線からますます外れていきます。<span class="math notranslate nohighlight">\(k=1\)</span> の回路は最もずれが大きく、また最も浅い回路ですが、既に <span class="math notranslate nohighlight">\(t/k \gtrsim 1\)</span> の領域に入っているため、主要な <span class="math notranslate nohighlight">\(1/k^{2}\)</span> の誤差項が大きくなっています。MPF による組み合わせ（色付きのマーカー）はこれら主要なトロッター誤差項のいくつかを打ち消すため、どの単一の <span class="math notranslate nohighlight">\(k_j\)</span> の回路よりも厳密な曲線をはるかに近く追跡します。残っているずれは、MPF が打ち消さ <em>ない</em> 高次のトロッター項を反映しています。<span class="math notranslate nohighlight">\(2\)</span> 次・<span class="math notranslate nohighlight">\(r=3\)</span> の静的 MPF は最初の 2 つの誤差次数のみを消すため、<span class="math notranslate nohighlight">\(t/k_{\min}\)</span> が大きくなると打ち消されずに残った項が最終的に支配的になります。つまり MPF は、非常に浅い回路が任意の時刻で正確であり続けることを保証するものではありません。</p></li>
+<li><p><strong>サンプリング誤差。</strong> MPF の曲線でエラーバーが広くなっているのは、線形結合による直接的な帰結です。回路ごとの独立な標準誤差 <span class="math notranslate nohighlight">\(\sigma_{k_j}\)</span> を伝播させると、全体の分散は <span class="math notranslate nohighlight">\(\sigma_{\text{MPF}}^2 = \sum_j x_j^2 \, \sigma_{k_j}^2\)</span> となります。したがって <span class="math notranslate nohighlight">\(\|x\|_2\)</span>（実務上は、私たちが制御する <span class="math notranslate nohighlight">\(\|x\|_1\)</span>）が大きいほど、目標の不確かさに到達するために必要なショット数が増えます。これが背景で述べた近似ソルバーのオプションの背後にあるトレードオフです。<span class="math notranslate nohighlight">\(\|x\|_1\)</span> に上限を課すことで、このオーバーヘッドを扱いやすく保ちます。重要な点として、トロッター誤差とは異なり、サンプリング誤差は <span class="math notranslate nohighlight">\(1/\sqrt{N_{\text{shots}}}\)</span> で小さくなるため、ショット数を増やせば常に減らせます。</p></li>
+</ul>
+<p>以下の大規模なハードウェアの例では、各 <span class="math notranslate nohighlight">\(\langle A \rangle_{k_j}\)</span> にハードウェアノイズという追加の誤差要因が加わり、これも同様に MPF 係数によって増幅されます。そのセクションでは、誤差低減が MPF とどのように相互作用するかを見ていきます。</p>
+</section>
+</section>
+</section>
+<section id="id20">
+<h2>大規模なハードウェアでの例<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
+<p>このセクションでは、厳密にシミュレートできる範囲を超えて問題を大きくします。文献 <a class="reference internal" href="#references"><span class="xref myst">[3]</span></a> に示された結果の一部を、時刻 <span class="math notranslate nohighlight">\(t = 3\)</span> における 50 量子ビットの XXZ 鎖を用いて再現します。小規模な例と同じ 4 ステップのワークフローに従いますが、今回は誤差低減を用いて実際の量子ハードウェアを対象とします。テンプレートと同様、各ステップはコード内にインラインで示され、中間出力を確認する価値がある場合には 1 つのステップが複数のセルにまたがることがあります。</p>
+<p>マッピングの流れは小規模な例と同じです。ハミルトニアンを定義し、トロッターのパラメーターを選び、MPF 係数（静的・動的）を計算し、回路を構築します。主な違いは次の点です。</p>
+<ul class="simple">
+<li><p>50 サイト上の <strong>XXZ ハミルトニアン</strong>。結合は <span class="math notranslate nohighlight">\(\mathcal{U}(0.5, 1.5)\)</span> からランダムに引きます（文献 <a class="reference internal" href="#references"><span class="xref myst">[3]</span></a>）。</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_j = [3, 4, 6]\)</span> を用いた <strong>対称</strong> な 2 次トロッター公式（したがって <span class="math notranslate nohighlight">\(\chi=1\)</span>、<code class="docutils literal notranslate"><span class="pre">symmetric=True</span></code>）。</p></li>
+<li><p>単一の固定された発展時間 <span class="math notranslate nohighlight">\(t = 3\)</span>。<span class="math notranslate nohighlight">\(k_{\min}=3\)</span> なので <span class="math notranslate nohighlight">\(t/k_{\min}=1\)</span> となり、浅い構成要素が、MPF の依拠する主要誤差のモデルが有効なトロッター収束領域の内側に収まります。</p></li>
+<li><p>追加の <strong><span class="math notranslate nohighlight">\(k = 10\)</span> トロッターステップによる単一回路の比較実行</strong>。これをベースラインとして使います。<span class="math notranslate nohighlight">\(k = 10\)</span> を選んだ理由は、ハードウェア上での 2 量子ビット深さが、MPF の最も深い構成要素（<span class="math notranslate nohighlight">\(k_{\max}=6\)</span>）に複数回路を実行するオーバーヘッドを加えたものよりも深くなるためです。つまり、MPF の組み合わせが単一回路のベースラインを上回ると期待される、ノイズ律速の領域に入るだけの深さがあります。これは MPF の組み合わせに対する「単一の深い回路」との比較であり、MPF の実効的なトロッター誤差を狙った回路ではありません（それにはもっと多くのステップが必要になります）。</p></li>
+</ul>
+<p>なお、ここはまだステップ 1（マッピングと回路の構成）ですが、このセルでは静的係数とあわせて動的係数も事前に計算しています。動的係数は <span class="math notranslate nohighlight">\(H\)</span> と <span class="math notranslate nohighlight">\(t\)</span> に依存しますが量子測定には依存しないため、ステップ 4 より前の任意の時点で計算できます。MPF 固有の設定を 1 か所にまとめるため、ここで計算しておきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -------------------------ステップ 1-------------------------</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">coupling_map</span> <span class="o">=</span> <span class="n">CouplingMap</span><span class="o">.</span><span class="n">from_line</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">bidirectional</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># ランダムな結合をもつ XXZ ハミルトニアン（文献 [3]）</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">even_edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">get_edges</span><span class="p">())[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">odd_edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">coupling_map</span><span class="o">.</span><span class="n">get_edges</span><span class="p">())[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">Js</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">L</span><span class="p">)</span>
+<span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">"I"</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">even_edges</span> <span class="o">+</span> <span class="n">odd_edges</span><span class="p">):</span>
+    <span class="n">hamiltonian</span> <span class="o">+=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">"XX"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+            <span class="p">(</span><span class="s2">"YY"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+            <span class="p">(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">(</span><span class="n">edge</span><span class="p">),</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">Js</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+        <span class="p">],</span>
+        <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">"ZZ"</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">L</span>
+<span class="p">)</span>
+
+<span class="n">total_time</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">mpf_trotter_steps</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">order</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">symmetric</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># 静的係数</span>
+<span class="n">lse</span> <span class="o">=</span> <span class="n">setup_static_lse</span><span class="p">(</span><span class="n">mpf_trotter_steps</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">symmetric</span><span class="o">=</span><span class="n">symmetric</span><span class="p">)</span>
+<span class="n">mpf_coeffs</span> <span class="o">=</span> <span class="n">lse</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Static coefficients: </span><span class="si">{</span><span class="n">mpf_coeffs</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"L1 norm: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">mpf_coeffs</span><span class="p">,</span><span class="w"> </span><span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">model_approx</span><span class="p">,</span> <span class="n">coeffs_approx</span> <span class="o">=</span> <span class="n">setup_sum_of_squares_problem</span><span class="p">(</span>
+    <span class="n">lse</span><span class="p">,</span> <span class="n">max_l1_norm</span><span class="o">=</span><span class="mf">2.0</span>
+<span class="p">)</span>
+<span class="n">model_approx</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Approximate coefficients: </span><span class="si">{</span><span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"L1 norm (approx): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># -------------------------動的係数-------------------------</span>
+<span class="n">single_2nd_order_circ</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">single_2nd_order_circ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">single_2nd_order_circ</span><span class="p">)</span>
+
+<span class="n">layers</span> <span class="o">=</span> <span class="n">slice_by_depth</span><span class="p">(</span><span class="n">single_2nd_order_circ</span><span class="p">,</span> <span class="n">max_slice_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">LayerModel</span><span class="o">.</span><span class="n">from_quantum_circuit</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">conserve</span><span class="o">=</span><span class="s2">"Sz"</span><span class="p">)</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span>
+<span class="p">]</span>
+
+<span class="n">approx_factory</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">LayerwiseEvolver</span><span class="p">,</span>
+    <span class="n">layers</span><span class="o">=</span><span class="n">models</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"preserve_norm"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"trunc_params"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"chi_max"</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span> <span class="s2">"svd_min"</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span> <span class="s2">"trunc_cut"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+        <span class="s2">"max_delta_t"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">single_4th_order_circ</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">single_4th_order_circ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">single_4th_order_circ</span><span class="p">)</span>
+<span class="n">exact_model_layers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">LayerModel</span><span class="o">.</span><span class="n">from_quantum_circuit</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">conserve</span><span class="o">=</span><span class="s2">"Sz"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">slice_by_depth</span><span class="p">(</span><span class="n">single_4th_order_circ</span><span class="p">,</span> <span class="n">max_slice_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">exact_factory</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span>
+    <span class="n">LayerwiseEvolver</span><span class="p">,</span>
+    <span class="n">layers</span><span class="o">=</span><span class="n">exact_model_layers</span><span class="p">,</span>
+    <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">"preserve_norm"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"trunc_params"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"chi_max"</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span> <span class="s2">"svd_min"</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span> <span class="s2">"trunc_cut"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+        <span class="s2">"max_delta_t"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">identity_factory</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">MPOState</span><span class="o">.</span><span class="n">initialize_from_lattice</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">conserve</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">mps_initial_state</span> <span class="o">=</span> <span class="n">MPS_neel_state</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Computing dynamic coefficients for time=</span><span class="si">{</span><span class="n">total_time</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">lse_dyn</span> <span class="o">=</span> <span class="n">setup_dynamic_lse</span><span class="p">(</span>
+    <span class="n">mpf_trotter_steps</span><span class="p">,</span>
+    <span class="n">total_time</span><span class="p">,</span>
+    <span class="n">identity_factory</span><span class="p">,</span>
+    <span class="n">exact_factory</span><span class="p">,</span>
+    <span class="n">approx_factory</span><span class="p">,</span>
+    <span class="n">mps_initial_state</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">problem</span><span class="p">,</span> <span class="n">coeffs_dyn</span> <span class="o">=</span> <span class="n">setup_frobenius_problem</span><span class="p">(</span><span class="n">lse_dyn</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">mpf_dynamic_coeffs</span> <span class="o">=</span> <span class="n">coeffs_dyn</span><span class="o">.</span><span class="n">value</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="n">mpf_dynamic_coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mpf_trotter_steps</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">"Calculation Failed"</span><span class="p">)</span>
+
+<span class="c1"># -------------------------ステップ 1（続き）: 回路を構築する-------------------------</span>
+<span class="n">mpf_circuits</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">mpf_trotter_steps</span><span class="p">:</span>
+    <span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">trotter_circ</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+        <span class="n">hamiltonian</span><span class="p">,</span>
+        <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">),</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">total_time</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">trotter_circ</span><span class="p">,</span> <span class="n">qubits</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mpf_circuits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+
+<span class="c1"># k=10 トロッターステップによる「単一の深い回路」とのベースライン比較実行。</span>
+<span class="c1"># その 2 量子ビット深さは、MPF の最も深い構成要素（k_max=6）に複数回路を実行する</span>
+<span class="c1"># オーバーヘッドを加えたものより深く、MPF が上回ると期待されるノイズ律速の領域に</span>
+<span class="c1"># 入る。これは MPF の実効的なトロッター誤差を狙ったものではない</span>
+<span class="c1"># （それにはもっと多くのステップが必要になる）。</span>
+<span class="n">comp_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">comp_circuit</span><span class="o">.</span><span class="n">x</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">trotter_circ</span> <span class="o">=</span> <span class="n">generate_time_evolution_circuit</span><span class="p">(</span>
+    <span class="n">hamiltonian</span><span class="p">,</span>
+    <span class="n">synthesis</span><span class="o">=</span><span class="n">SuzukiTrotter</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">),</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">total_time</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">comp_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">trotter_circ</span><span class="p">,</span> <span class="n">qubits</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mpf_circuits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comp_circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Static coefficients: [ 0.42857143 -1.82857143  2.4       ]
+L1 norm: 4.65714285714286
+Approximate coefficients: [-0.4942491   0.40206845  1.09218065]
+L1 norm (approx): 1.9884981979026675
+Computing dynamic coefficients for time=3
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、選んだバックエンドに向けて回路を最適化します。Qiskit のプリセットパスマネージャーを <code class="docutils literal notranslate"><span class="pre">optimization_level=3</span></code> で使用します。これにより、適切な物理量子ビットの集合が自動的に選ばれ、各回路がデバイスのトポロジー上にルーティングされます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -------------------------ステップ 2-------------------------</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="c1"># backend = service.least_busy(operational=True, simulator=False, min_num_qubits=L)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="s2">"ibm_fez"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+
+<span class="n">transpiler</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span>
+    <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span>
+<span class="p">)</span>
+<span class="n">transpiled_circuits</span> <span class="o">=</span> <span class="p">[</span><span class="n">transpiler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circ</span><span class="p">)</span> <span class="k">for</span> <span class="n">circ</span> <span class="ow">in</span> <span class="n">mpf_circuits</span><span class="p">]</span>
+
+<span class="n">isa_observables</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">circ</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span> <span class="k">for</span> <span class="n">circ</span> <span class="ow">in</span> <span class="n">transpiled_circuits</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_fez')&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>より深い回路を実機で実行するには、積極的な誤差低減が必要です。ここでは動的デカップリング、ゲートおよび測定のトワリング、測定誤差の低減、そしてゼロノイズ外挿（ZNE）を有効にします。ここで使う ZNE のノイズ倍率（<code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">1.2,</span> <span class="pre">1.4</span></code>）が浅い回路の場合より小さいのは、MPF のより深い構成要素が既にノイズの閾値に近く、大きなノイズ増幅を行うと ZNE の外挿が信頼できる範囲を超えてしまうためです。</p>
+<p>4 つの回路すべて（<span class="math notranslate nohighlight">\(k_j = [3, 4, 6]\)</span> の MPF 構成要素 3 つと <span class="math notranslate nohighlight">\(k = 10\)</span> のベースライン）を、1 つの Estimator ジョブとして投入します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -------------------------ステップ 3-------------------------</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">default_shots</span> <span class="o">=</span> <span class="mi">30000</span>
+
+<span class="c1"># 誤差抑制・誤差低減</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_measure</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">"auto"</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="s2">"active-accum"</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">measure_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">execution_path</span> <span class="o">=</span> <span class="s2">"gen3-turbo"</span>
+
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">noise_factors</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">)</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="s2">"linear"</span>
+
+<span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">job_tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"TUT_MPF"</span><span class="p">]</span>
+
+<span class="n">job_50</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="n">circ</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">circ</span><span class="p">,</span> <span class="n">observable</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">transpiled_circuits</span><span class="p">,</span> <span class="n">isa_observables</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ジョブの結果から回路ごとの期待値と標準偏差を取り出し、小規模な例とまったく同じように各 MPF 係数の組と組み合わせます。すなわち <span class="math notranslate nohighlight">\(\langle A \rangle_{\text{MPF}} = \sum_j x_j \, \langle A \rangle_{k_j}\)</span> とし、分散は <span class="math notranslate nohighlight">\(\sigma^2 = \sum_j x_j^2 \sigma_{k_j}^2\)</span> として伝播させます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -------------------------ステップ 4-------------------------</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job_50</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">evs</span> <span class="o">=</span> <span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
+<span class="n">std</span> <span class="o">=</span> <span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span> <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">evs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">std</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array(-0.07916195), array(-0.04479681), array(-0.2560756), array(-0.06045848)]
+[array(0.04605538), array(0.10056336), array(0.14426151), array(0.04059092)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact_mpf_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+    <span class="nb">sum</span><span class="p">([(</span><span class="n">coeff</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">std</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">std</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mpf_coeffs</span><span class="p">,</span> <span class="n">std</span><span class="p">[:</span><span class="mi">3</span><span class="p">])])</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Exact static MPF expectation value: "</span><span class="p">,</span>
+    <span class="n">evs</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">@</span> <span class="n">mpf_coeffs</span><span class="p">,</span>
+    <span class="s2">"+-"</span><span class="p">,</span>
+    <span class="n">exact_mpf_std</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">approx_mpf_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+    <span class="nb">sum</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">coeff</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">std</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">std</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">std</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Approximate static MPF expectation value: "</span><span class="p">,</span>
+    <span class="n">evs</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">@</span> <span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="s2">"+-"</span><span class="p">,</span>
+    <span class="n">approx_mpf_std</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">dynamic_mpf_std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+    <span class="nb">sum</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="n">coeff</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">std</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">coeff</span><span class="p">,</span> <span class="n">std</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mpf_dynamic_coeffs</span><span class="p">,</span> <span class="n">std</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"Dynamic MPF expectation value: "</span><span class="p">,</span>
+    <span class="n">evs</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">@</span> <span class="n">mpf_dynamic_coeffs</span><span class="p">,</span>
+    <span class="s2">"+-"</span><span class="p">,</span>
+    <span class="n">dynamic_mpf_std</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exact static MPF expectation value:  -0.5665938395816946 +- 0.3925273058119915
+Approximate static MPF expectation value:  -0.25856647611537903 +- 0.164249927266166
+Dynamic MPF expectation value:  -0.12667812062949296 +- 0.06059471006973169
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sym</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">:</span> <span class="s2">"^"</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">"s"</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s2">"p"</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mpf_trotter_steps</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+        <span class="n">k</span><span class="p">,</span>
+        <span class="n">evs</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+        <span class="n">yerr</span><span class="o">=</span><span class="n">std</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="n">sym</span><span class="p">[</span><span class="n">step</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">mpf_trotter_steps</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2"> Trotter steps"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="n">evs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">std</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"10 Trotter steps"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="mi">4</span><span class="p">,</span>
+    <span class="n">evs</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">@</span> <span class="n">mpf_coeffs</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">exact_mpf_std</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"purple"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Static MPF"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="n">evs</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">@</span> <span class="n">coeffs_approx</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">approx_mpf_std</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"orange"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Approximate static MPF"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+    <span class="mi">6</span><span class="p">,</span>
+    <span class="n">evs</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">@</span> <span class="n">mpf_dynamic_coeffs</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">dynamic_mpf_std</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">"pink"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"Dynamic MPF"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">exact_obs</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.24384471447172074</span>  <span class="c1"># Calculated via Tensor Network calculation</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">exact_obs</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Exact time-evolution"</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"$</span><span class="se">\\</span><span class="s2">langle Z_</span><span class="se">{{</span><span class="si">{</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="se">}}</span><span class="s2"> Z_</span><span class="se">{{</span><span class="si">{</span><span class="n">L</span><span class="o">//</span><span class="mi">2</span><span class="si">}</span><span class="se">}}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">rangle$ at time </span><span class="si">{</span><span class="n">total_time</span><span class="si">}</span><span class="s2"> for the different methods"</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Method"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Expectation Value"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper center"</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/multi-product-formula/extracted-outputs/64360d85-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>上のハードウェア結果について、いくつか観察できることがあります。</p>
+<ul class="simple">
+<li><p><strong>ハードウェアでは深くすることに代償が伴う。</strong> 単一回路のベースラインがそれを直接物語っています。<span class="math notranslate nohighlight">\(k = 6\)</span> の回路はほぼ厳密（参照値 <span class="math notranslate nohighlight">\(-0.244\)</span> に対して <span class="math notranslate nohighlight">\(-0.256\)</span>）ですが、より深い <span class="math notranslate nohighlight">\(k = 10\)</span> のベースラインは良くなるどころか <em>悪化</em> しています（<span class="math notranslate nohighlight">\(-0.061\)</span>、約 <span class="math notranslate nohighlight">\(0.18\)</span> のずれ）。トロッター誤差が既に小さくなっている状況では、ステップを増やすことは主に回路を深くし、ゲートノイズとデコヒーレンスをさらに蓄積させるだけです。まさにこれが MPF が想定する領域であり、浅い構成要素だけを使って深い回路の精度に到達することが目的です。</p></li>
+<li><p><strong>ノルムの小さい MPF は深い単一回路に勝る。</strong> 近似的な静的 MPF（<span class="math notranslate nohighlight">\(\|x\|_1 \approx 2\)</span> に制限）は <span class="math notranslate nohighlight">\(-0.259\)</span> となり、参照値から約 <span class="math notranslate nohighlight">\(0.015\)</span> の範囲に収まり、<span class="math notranslate nohighlight">\(k = 10\)</span> のベースラインよりはるかに近い値です。動的 MPF（<span class="math notranslate nohighlight">\(-0.127\)</span>）もそのベースラインを余裕で上回ります。どちらも浅い <span class="math notranslate nohighlight">\(k_j = [3, 4, 6]\)</span> の回路だけを組み合わせているにもかかわらず、深い単一回路では得られなかった答えを取り戻しています。</p></li>
+<li><p><strong>係数のノルムは数学的な最適性よりも重要。</strong> 厳密な静的 MPF は <span class="math notranslate nohighlight">\(\|x\|_1 = 4.66\)</span> であり、すべての中で <em>最悪</em> の推定量です（<span class="math notranslate nohighlight">\(-0.567\)</span>、<span class="math notranslate nohighlight">\(0.3\)</span> を超えるずれ）。係数ノルムが大きいため、各 <span class="math notranslate nohighlight">\(\langle A \rangle_{k_j}\)</span> に残るゲートノイズ、デコヒーレンス、ZNE の誤差がほぼ同じ倍率で増幅され、得られるトロッター誤差の打ち消し効果を圧倒してしまいます。ノルムに上限を課すと（近似的な静的ソルバー、<span class="math notranslate nohighlight">\(\|x\|_1 \approx 2\)</span>）この圧倒が解消され、最良の推定値が得られます。たとえその係数が主要なトロッター誤差を厳密には打ち消さなくなっていても、です。</p></li>
+<li><p><strong>個々の浅い回路も依然として競争力を持ち得る。</strong> 単独の <span class="math notranslate nohighlight">\(k = 6\)</span> の構成要素（<span class="math notranslate nohighlight">\(-0.256\)</span>）は、ここではそれ自体がほぼ厳密であり、この実行では近似的な静的 MPF よりわずかに近い値にさえなっています。問題は、「収束していて、かつまだノイズ律速になっていない」という絶妙な領域に <em>どの</em> 単一の <span class="math notranslate nohighlight">\(k\)</span> が入るのかを事前には知り得ないことです。そして、トロッター収束を確実にするために単純に深くする（<span class="math notranslate nohighlight">\(k = 10\)</span>）という一見安全そうな選択が、まさに失敗する選択なのです。MPF は、正しい深さを推測する必要のない、浅い回路の原理的な組み合わせ方を与えてくれます。</p></li>
+</ul>
+<p>実用的な要点は次のとおりです。ハードウェア上では、MPF は個々の <span class="math notranslate nohighlight">\(\langle A \rangle_{k_j}\)</span> に対する強力な誤差低減と組み合わせるべきであり、係数の <span class="math notranslate nohighlight">\(L_1\)</span> ノルムは適度に抑えるべきで（近似ソルバーまたは動的 MPF を使う）、トロッターステップ <span class="math notranslate nohighlight">\(k_j\)</span> は <span class="math notranslate nohighlight">\(t/k_{\min} \lesssim 1\)</span> となるように選ぶべきです。ここでは <span class="math notranslate nohighlight">\(t = 3\)</span> で <span class="math notranslate nohighlight">\(k_{\min} = 3\)</span> なので <span class="math notranslate nohighlight">\(t/k_{\min} = 1\)</span> となり、静的 MPF が依拠する主要誤差のモデルが有効な収束領域の内側に構成要素が収まっています。これらの選択のもとで、ここでのノルムの小さい MPF は収束した単一回路に匹敵する一方、素朴に「とにかく深くする」ベースラインはそうならず、文献 <a class="reference internal" href="#references"><span class="xref myst">[3]</span></a> に示された深さと精度のトレードオフにおける優位性を取り戻しています。なお、個々の実行にはばらつきがあることにも注意してください。同じジョブを別途投入した場合（あるいは別のバックエンドを使った場合）、厳密な順位は変わり得ます。頑健な傾向は、<span class="math notranslate nohighlight">\(\|x\|_1\)</span> の小さい MPF が良い結果を出すこと、<span class="math notranslate nohighlight">\(\|x\|_1\)</span> の大きい厳密な静的 MPF がハードウェアノイズによって増幅されること、そして深すぎる単一回路がノイズ律速になることです。</p>
+</section>
+<section id="id21">
+<h2>次のステップ<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<Admonition type="tip" title="おすすめ">
+  この内容に興味を持たれた方には、次の資料もお勧めします。
+<ul class="simple">
+<li><p><a class="reference external" href="https://qiskit.github.io/qiskit-addon-mpf/how_tos/choose_trotter_steps.html">MPF のためのトロッターステップの選び方</a> — 不安定性を避けるための <span class="math notranslate nohighlight">\(k_j\)</span> の値の選び方に関する実用的な指針</p></li>
+<li><p><a class="reference external" href="https://qiskit.github.io/qiskit-addon-mpf/how_tos/using_approximate_model.html">近似モデルの使い方</a> — 近似的な静的 MPF における <span class="math notranslate nohighlight">\(L_1\)</span> ノルム制約とソルバーオプションの調整</p></li>
+<li><p><a class="reference external" href="https://qiskit.github.io/qiskit-addon-mpf/"><code class="docutils literal notranslate"><span class="pre">qiskit-addon-mpf</span></code> API リファレンス</a> — 静的・動的モジュールおよびバックエンドモジュールの完全なドキュメント
+</Admonition></p></li>
+</ul>
+</section>
+<section id="id22">
+<h2>参考文献<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<p>[1] Vazquez, A. C., Egger, D. J., Ochsner, D., &amp; Woerner, S. Well-conditioned multi-product formulas for hardware-friendly Hamiltonian simulation. <a class="reference external" href="https://quantum-journal.org/papers/q-2023-07-25-1067/">Quantum, 7, 1067 (2023)</a></p>
+<p>[2] Zhuk, S., Robertson, N. F., &amp; Bravyi, S. Trotter error bounds and dynamic multi-product formulas for Hamiltonian simulation. <a class="reference external" href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033309">Physical Review Research, 6(3), 033309 (2024)</a></p>
+<p>[3] Robertson, N. F., et al. Tensor network enhanced dynamic multiproduct formulas. <a class="reference external" href="https://arxiv.org/abs/2407.17405">arXiv:2407.17405 (2024)</a></p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">マルチプロダクト公式とは</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">係数はどのように決まるのか</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mpf">MPF を使うべき場面</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">MPF が役に立たない可能性がある場面</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">このチュートリアルの内容</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">小規模なシミュレーターでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">ステップ 1: 古典的な入力を量子問題へマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">トロッター回路を構築する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ 2: 量子ハードウェア実行に向けて問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">ステップ 4: 後処理を行い、望ましい古典的形式で結果を返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">静的 MPF 係数</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#lse">LSE を設定する</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#x">厳密モデルを使って <span class="math notranslate nohighlight">\(x\)</span> を最適化する</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">近似モデルを使って <span class="math notranslate nohighlight">\(x\)</span> を最適化する</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">動的 MPF 係数</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">トロッターの期待値を MPF 係数と組み合わせる</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">大規模なハードウェアでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">次のステップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">参考文献</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
