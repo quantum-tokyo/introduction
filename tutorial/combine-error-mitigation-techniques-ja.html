@@ -1,0 +1,1015 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estimator プリミティブでのエラー緩和オプションの組み合わせ &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/combine-error-mitigation-techniques-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Ftutorial/combine-error-mitigation-techniques-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/combine-error-mitigation-techniques-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Estimator プリミティブでのエラー緩和オプションの組み合わせ</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">背景</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小規模なシミュレーターでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ハードウェアでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ 1: 古典的な入力を量子問題へマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ミラー回路</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ 2: 量子ハードウェアでの実行に向けて問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 4: 後処理を行い、目的の古典形式で結果を返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">大規模なハードウェアでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">次のステップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="estimator">
+<h1>Estimator プリミティブでのエラー緩和オプションの組み合わせ<a class="headerlink" href="#estimator" title="Link to this heading">#</a></h1>
+<p><em>使用量の目安: Heron r2 プロセッサで 7 分（注意: これはあくまで目安です。実際の実行時間は異なる場合があります。）</em></p>
+<section id="id1">
+<h2>学習成果<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>動的デカップリング、測定エラー緩和、ゲート・ツワーリング、ゼロノイズ外挿をハードウェア上で個別に適用する方法</p></li>
+<li><p>それぞれの手法がハードウェアのノイズをどの程度緩和できるかの比較</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>前提知識<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>こちらの <a class="reference internal" href="#/docs/guides/error-mitigation-and-suppression-techniques"><span class="xref myst">ガイド</span></a> で説明されている、動的デカップリング、測定エラー緩和、ゲート・ツワーリング、ゼロノイズ外挿の基礎</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>背景<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>このチュートリアルでは、IBM Quantum Estimator プリミティブで利用できるエラー抑制およびエラー緩和のオプションについて学びます。次の各手法を個別に適用する方法を示します。</p>
+<ul class="simple">
+<li><p>動的デカップリング</p></li>
+<li><p>測定エラー緩和</p></li>
+<li><p>ゲート・ツワーリング</p></li>
+<li><p>ゼロノイズ外挿（ZNE）</p></li>
+</ul>
+<p>なお、これらの手法を個別に適用する代わりに、<a class="reference internal" href="#/docs/guides/estimator-noise-management"><span class="xref myst">レジリエンス・レベル</span></a> を使って適用することもできます。<code class="docutils literal notranslate"><span class="pre">resilience_level</span></code> には 0、1、2 の値を指定できます。</p>
+<ul class="simple">
+<li><p>0 : 緩和は一切適用されません。</p></li>
+<li><p>1 : 測定エラー緩和が適用されます。</p></li>
+<li><p>2 : ゲート・ツワーリング、測定エラー緩和、ZNE が適用されます。</p></li>
+</ul>
+<p>このチュートリアルでは、回路と観測量を構成し、さまざまなエラー緩和設定の組み合わせで Estimator プリミティブにジョブを投入します。その後、結果をプロットして各設定の効果を確認します。可視化しやすいように、チュートリアルの大部分では 10 量子ビットの回路を使い、最後にワークフローを 50 量子ビットへ拡張します。</p>
+</section>
+<section id="id4">
+<h2>要件<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを始める前に、次のものがインストールされていることを確認してください。</p>
+<ul class="simple">
+<li><p>Qiskit SDK v2.1 以降（<a class="reference internal" href="#/docs/api/qiskit/visualization"><span class="xref myst">可視化</span></a> サポート付き）</p></li>
+<li><p>Qiskit Runtime v0.40 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code>）</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>セットアップ<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">efficient_su2</span><span class="p">,</span> <span class="n">unitary_overlap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Batch</span><span class="p">,</span> <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>小規模なシミュレーターでの例<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>Runtime のエラー緩和はシミュレーターではサポートされていないため、このステップは省略します。</p>
+</section>
+<section id="id7">
+<h2>ハードウェアでの例<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>ステップ 1: 古典的な入力を量子問題へマッピングする<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>このチュートリアルでは、古典的な問題がすでに量子問題へマッピングされていることを前提とします。まず、測定する回路と観測量を構成します。ここで使う手法はさまざまな種類の回路に適用できますが、簡単のため、Qiskit の回路ライブラリーに含まれる <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.efficient_su2"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code></span></a> 回路を使います。</p>
+<p><code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code> は、量子ビットの接続性が限られた量子ハードウェア上で効率よく実行できるよう設計されたパラメーター化量子回路であり、最適化や化学といった応用分野の問題を解くのに十分な表現力も備えています。この回路は、パラメーター化された 1 量子ビット・ゲートの層と、固定パターンの 2 量子ビット・ゲートからなる層を、指定した繰り返し回数だけ交互に並べて構成されます。2 量子ビット・ゲートのパターンはユーザーが指定できます。ここでは組み込みの <code class="docutils literal notranslate"><span class="pre">pairwise</span></code> パターンを使います。このパターンは 2 量子ビット・ゲートをできるだけ密に詰めることで回路の深さを最小化し、線形な量子ビット接続性だけで実行できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">reps</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">efficient_su2</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">entanglement</span><span class="o">=</span><span class="s2">"pairwise"</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="n">reps</span><span class="p">)</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e3469943fe94395cc2c9b867cec62d69f53f14624884cf57d6a2fb0f7d23deec.png" src="../_images/e3469943fe94395cc2c9b867cec62d69f53f14624884cf57d6a2fb0f7d23deec.png" />
+</div>
+</div>
+<p>観測量としては、最後の量子ビットに作用するパウリ <span class="math notranslate nohighlight">\(Z\)</span> 演算子 <span class="math notranslate nohighlight">\(Z I \cdots I\)</span> を使います。
+最後の量子ビットがこの文字列の最初の要素に対応しているのは、Qiskit がリトルエンディアン表記を採用しているためです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 最後の量子ビット（インデックス -1）に係数 1.0 の Z を作用させる</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>この時点で回路を実行して観測量を測定することもできますが、量子デバイスの出力を正しい答え、つまりエラーなしで回路を実行した場合の観測量の理論値と比較したいところです。小さな量子回路であれば古典コンピューターで回路をシミュレートしてこの値を計算できますが、より大規模なユーティリティー・スケールの回路ではそれができません。この問題は「ミラー回路」手法（「compute-uncompute」とも呼ばれます）で回避できます。この手法は量子デバイスの性能のベンチマークに役立ちます。</p>
+<section id="id9">
+<h4>ミラー回路<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>ミラー回路の手法では、元の回路に、その逆回路を連結します。逆回路は、回路の各ゲートを逆順に並べてそれぞれの逆演算をとることで作られます。得られる回路は恒等演算子を実装するため、簡単にシミュレートできます。ミラー回路には元の回路の構造が保たれているので、ミラー回路を実行すれば、量子デバイスが元の回路に対してどの程度の性能を発揮するかの目安が得られます。</p>
+<p>次のコードセルでは、回路にランダムなパラメーターを割り当ててから、<a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.unitary_overlap"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">unitary_overlap</span></code></span></a> クラスを使ってミラー回路を構成します。回路をミラーリングする前に <a class="reference internal" href="#/docs/api/qiskit/circuit#qiskit.circuit.Barrier"><span class="xref myst">バリア</span></a> 命令を追加しておきます。これにより、トランスパイラーがバリアの両側にある回路の 2 つの部分をまとめてしまい、ゲートがまったくないトランスパイル済み回路になってしまうのを防ぎます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ランダムなパラメーターを生成する</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">circuit</span><span class="o">.</span><span class="n">num_parameters</span><span class="p">)</span>
+
+<span class="c1"># パラメーターを回路に割り当てる</span>
+<span class="n">assigned_circuit</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># ミラーリングした演算子が回路最適化で打ち消されないようにバリアを追加する</span>
+<span class="n">assigned_circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># ミラー回路を構成する</span>
+<span class="n">mirror_circuit</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">assigned_circuit</span><span class="p">,</span> <span class="n">assigned_circuit</span><span class="p">)</span>
+
+<span class="n">mirror_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/74ed75bf320f1729b8ad9ff48972b17e00d6b62cfba061883dfdff660a3051b5.png" src="../_images/74ed75bf320f1729b8ad9ff48972b17e00d6b62cfba061883dfdff660a3051b5.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id10">
+<h3>ステップ 2: 量子ハードウェアでの実行に向けて問題を最適化する<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>ハードウェアで実行する前に、回路を最適化する必要があります。このプロセスには、次のステップが含まれます。</p>
+<ul class="simple">
+<li><p>回路の仮想量子ビットをハードウェアの物理量子ビットに対応付ける量子ビット・レイアウトを選ぶ。</p></li>
+<li><p>接続されていない量子ビット間の相互作用をルーティングするために、必要に応じて SWAP ゲートを挿入する。</p></li>
+<li><p>回路内のゲートを、ハードウェアで直接実行できる <a class="reference internal" href="#/docs/guides/transpile#instruction-set-architecture"><span class="xref myst">命令セット・アーキテクチャー（ISA）</span></a> の命令に変換する。</p></li>
+<li><p>回路の深さとゲート数を最小化するために回路最適化を行う。</p></li>
+</ul>
+<p>Qiskit に組み込まれているトランスパイラーは、これらのステップをすべて実行できます。この例ではハードウェア効率の良い回路を使っているため、トランスパイラーは相互作用のルーティングのために SWAP ゲートを挿入する必要のない量子ビット・レイアウトを選べるはずです。</p>
+<p>回路を最適化する前に、使用するハードウェア・デバイスを選ぶ必要があります。次のコードセルでは、127 量子ビット以上を持つデバイスのうち、最も混雑していないものを要求します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
+    <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">127</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_kingston')&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>パス・マネージャーを作成し、それを回路に対して実行することで、選んだバックエンド向けに回路をトランスパイルできます。パス・マネージャーを作成する簡単な方法は、<a class="reference internal" href="#/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">generate_preset_pass_manager</span></code></span></a> 関数を使うことです。パス・マネージャーを使ったトランスパイルの詳しい説明は、<a class="reference internal" href="#/docs/guides/transpile-with-pass-managers"><span class="xref myst">パス・マネージャーを使ったトランスパイル</span></a> を参照してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pass_manager</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span>
+    <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">seed_transpiler</span><span class="o">=</span><span class="mi">1234</span>
+<span class="p">)</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">mirror_circuit</span><span class="p">)</span>
+
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/83a6a20feea606511d429b9a2816e1afa3e9cfa7ced21ddddefc463bf23022e4.png" src="../_images/83a6a20feea606511d429b9a2816e1afa3e9cfa7ced21ddddefc463bf23022e4.png" />
+</div>
+</div>
+<p>トランスパイル後の回路には ISA 命令だけが含まれています。すべてのゲートは <span class="math notranslate nohighlight">\(\sqrt{X}\)</span> ゲート、<span class="math notranslate nohighlight">\(R_z\)</span> 回転、<a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.CZGate"><span class="xref myst">CZ ゲート</span></a> に分解されています。</p>
+<p>トランスパイルのプロセスでは、回路の仮想量子ビットがハードウェアの物理量子ビットに対応付けられています。量子ビット・レイアウトの情報は、トランスパイル済み回路の <code class="docutils literal notranslate"><span class="pre">layout</span></code> 属性に格納されています。観測量も仮想量子ビットに基づいて定義されているため、このレイアウトを観測量にも適用する必要があります。これは <code class="docutils literal notranslate"><span class="pre">SparsePauliOp</span></code> の <a class="reference internal" href="#/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#apply_layout"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">apply_layout</span></code></span></a> メソッドで行えます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"元の観測量:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">observable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"レイアウトを適用した観測量:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">isa_observable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>元の観測量:
+SparsePauliOp(['ZIIIIIIIII'],
+              coeffs=[1.+0.j])
+
+レイアウトを適用した観測量:
+SparsePauliOp(['IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIZIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII'],
+              coeffs=[1.+0.j])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="qiskit">
+<h3>ステップ 3: Qiskit プリミティブを使って実行する<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h3>
+<p>これで、Estimator プリミティブを使って回路を実行する準備が整いました。</p>
+<p>ここでは 5 つの個別のジョブを投入します。最初はエラー抑制やエラー緩和を一切行わず、その後 IBM Quantum Compute Service で利用できるさまざまなエラー抑制・緩和のオプションを順に有効にしていきます。オプションについては、次のページを参照してください。</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#/docs/api/qiskit-ibm-runtime/options"><span class="xref myst">すべてのオプションの概要</span></a></p></li>
+<li><p><a class="reference internal" href="#/docs/api/qiskit-ibm-runtime/options-models-dynamical-decoupling-options"><span class="xref myst">動的デカップリング</span></a></p></li>
+<li><p><a class="reference internal" href="#/docs/api/qiskit-ibm-runtime/options-models-resilience-options"><span class="xref myst">レジリエンス（測定エラー緩和とゼロノイズ外挿（ZNE）を含む）</span></a></p></li>
+<li><p><a class="reference internal" href="#/docs/api/qiskit-ibm-runtime/options-models-twirling-options"><span class="xref myst">ツワーリング</span></a></p></li>
+</ul>
+<p>これらのジョブは互いに独立して実行できるため、<a class="reference internal" href="#/docs/guides/run-jobs-batch"><span class="xref myst">バッチ・モード</span></a> を使うことで、Quantum Compute がジョブの実行タイミングを最適化できるようになります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
+
+<span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">Batch</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span> <span class="k">as</span> <span class="n">batch</span><span class="p">:</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">batch</span><span class="p">)</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">job_tags</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">"TUT_CEM_SS"</span>
+    <span class="p">]</span>  <span class="c1"># この小規模ジョブ用のタグを追加する</span>
+    <span class="c1"># ショット数を設定する</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">default_shots</span> <span class="o">=</span> <span class="mi">100_000</span>
+    <span class="c1"># Runtime によるコンパイルとエラー緩和を無効にする</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># エラー緩和なしでジョブを実行する</span>
+    <span class="n">job0</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job0</span><span class="p">)</span>
+
+    <span class="c1"># 動的デカップリング（DD）を追加する</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">"XpXm"</span>
+    <span class="n">job1</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job1</span><span class="p">)</span>
+
+    <span class="c1"># 読み出しエラー緩和を追加する（DD + TREX）</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">measure_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">job2</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job2</span><span class="p">)</span>
+
+    <span class="c1"># ゲート・ツワーリングを追加する（DD + TREX + ゲート・ツワーリング）</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">"auto"</span>
+    <span class="n">job3</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job3</span><span class="p">)</span>
+
+    <span class="c1"># ゼロノイズ外挿を追加する（DD + TREX + ゲート・ツワーリング + ZNE）</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">noise_factors</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"exponential"</span><span class="p">,</span> <span class="s2">"linear"</span><span class="p">)</span>
+    <span class="n">job4</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>ステップ 4: 後処理を行い、目的の古典形式で結果を返す<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>最後に、データを分析します。ここでは、ジョブの結果を取得し、そこから測定された期待値を取り出して、1 標準偏差のエラーバー付きでプロットします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ジョブの結果を取得する</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">]</span>
+
+<span class="c1"># PUB の結果を取り出す（各ジョブの結果には PUB の結果が 1 つだけ含まれる）</span>
+<span class="n">pub_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+
+<span class="c1"># 期待値と標準誤差を取り出す</span>
+<span class="n">expectation_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">)</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">pub_results</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">standard_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span><span class="p">)</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">pub_results</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># 期待値をプロットする</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"No mitigation"</span><span class="p">,</span> <span class="s2">"+ DD"</span><span class="p">,</span> <span class="s2">"+ TREX"</span><span class="p">,</span> <span class="s2">"+ Twirling"</span><span class="p">,</span> <span class="s2">"+ ZNE"</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)),</span>
+    <span class="n">expectation_vals</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">standard_errors</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"experiment"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"ideal"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Expectation value"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c2af3a40555491f88425fbbd5308a7837865afeed8a967b7a7e515e4ccef5e90.png" src="../_images/c2af3a40555491f88425fbbd5308a7837865afeed8a967b7a7e515e4ccef5e90.png" />
+</div>
+</div>
+<p>この小規模な例では、ほとんどのエラー緩和手法の効果を確認するのは困難ですが、ゼロノイズ外挿では目に見える改善が得られています。ただし、ZNE の結果はエラーバーも大きくなっていることから分かるように、この改善にはコストが伴う点に注意してください。</p>
+</section>
+</section>
+<section id="id12">
+<h2>大規模なハードウェアでの例<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>実験を開発する際は、可視化やシミュレーションを容易にするために小さな回路から始めると便利です。10 量子ビットの回路でワークフローを開発・検証できたので、これを 50 量子ビットへ拡張します。次のコードセルでは、このチュートリアルのすべてのステップを繰り返し、今度は 50 量子ビットの回路に適用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">reps</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># 回路と観測量を構成する</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">efficient_su2</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">entanglement</span><span class="o">=</span><span class="s2">"pairwise"</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="n">reps</span><span class="p">)</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">"Z"</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)],</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">n_qubits</span>
+<span class="p">)</span>
+
+<span class="c1"># パラメーターを回路に割り当てる</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">circuit</span><span class="o">.</span><span class="n">num_parameters</span><span class="p">)</span>
+<span class="n">assigned_circuit</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">assigned_circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># ミラー回路を構成する</span>
+<span class="n">mirror_circuit</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">assigned_circuit</span><span class="p">,</span> <span class="n">assigned_circuit</span><span class="p">)</span>
+
+<span class="c1"># 回路と観測量をトランスパイルする</span>
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">mirror_circuit</span><span class="p">)</span>
+<span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+
+<span class="c1"># ジョブを実行する</span>
+<span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">isa_observable</span><span class="p">)</span>
+
+<span class="n">jobs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="n">Batch</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span> <span class="k">as</span> <span class="n">batch</span><span class="p">:</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">batch</span><span class="p">)</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">job_tags</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">"TUT_CEM_LS"</span>
+    <span class="p">]</span>  <span class="c1"># この大規模ジョブ用のタグを追加する</span>
+    <span class="c1"># ショット数を設定する</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">default_shots</span> <span class="o">=</span> <span class="mi">100_000</span>
+    <span class="c1"># Runtime によるコンパイルとエラー緩和を無効にする</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience_level</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># エラー緩和なしでジョブを実行する</span>
+    <span class="n">job0</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job0</span><span class="p">)</span>
+
+    <span class="c1"># 動的デカップリング（DD）を追加する</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">sequence_type</span> <span class="o">=</span> <span class="s2">"XpXm"</span>
+    <span class="n">job1</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job1</span><span class="p">)</span>
+
+    <span class="c1"># 読み出しエラー緩和を追加する（DD + TREX）</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">measure_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">job2</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job2</span><span class="p">)</span>
+
+    <span class="c1"># ゲート・ツワーリングを追加する（DD + TREX + ゲート・ツワーリング）</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="s2">"auto"</span>
+    <span class="n">job3</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job3</span><span class="p">)</span>
+
+    <span class="c1"># ゼロノイズ外挿を追加する（DD + TREX + ゲート・ツワーリング + ZNE）</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne_mitigation</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">noise_factors</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">estimator</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">resilience</span><span class="o">.</span><span class="n">zne</span><span class="o">.</span><span class="n">extrapolator</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"exponential"</span><span class="p">,</span> <span class="s2">"linear"</span><span class="p">)</span>
+    <span class="n">job4</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">jobs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">job4</span><span class="p">)</span>
+
+<span class="c1"># ジョブの結果を取得する</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">]</span>
+
+<span class="c1"># PUB の結果を取り出す（各ジョブの結果には PUB の結果が 1 つだけ含まれる）</span>
+<span class="n">pub_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+
+<span class="c1"># 期待値と標準誤差を取り出す</span>
+<span class="n">expectation_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span><span class="p">)</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">pub_results</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">standard_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stds</span><span class="p">)</span> <span class="k">for</span> <span class="n">pub_result</span> <span class="ow">in</span> <span class="n">pub_results</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># 期待値をプロットする</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"No mitigation"</span><span class="p">,</span> <span class="s2">"+ DD"</span><span class="p">,</span> <span class="s2">"+ TREX"</span><span class="p">,</span> <span class="s2">"+ Twirling"</span><span class="p">,</span> <span class="s2">"+ ZNE"</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)),</span>
+    <span class="n">expectation_vals</span><span class="p">,</span>
+    <span class="n">yerr</span><span class="o">=</span><span class="n">standard_errors</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"experiment"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"ideal"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Expectation value"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1affe1e1f081eb8414d010935816ec4f1fbe0b49c365198c4b6d7bc1d21127ed.png" src="../_images/1affe1e1f081eb8414d010935816ec4f1fbe0b49c365198c4b6d7bc1d21127ed.png" />
+</div>
+</div>
+<p>50 量子ビットの結果を先ほどの 10 量子ビットの結果と比較すると、次のことに気付くかもしれません（結果は実行ごとに異なる場合があります）。</p>
+<ul class="simple">
+<li><p>すべての実験で結果が理想値に近づき、エラーバーもすべて小さくなっている。</p></li>
+<li><p>動的デカップリングを追加すると、緩和なしの場合と比べて性能が悪化している可能性がある。これは回路が非常に密であることを考えると驚くことではありません。動的デカップリングが主に役立つのは、量子ビットにゲートが適用されずにアイドル状態となる大きな空き時間が回路内にある場合です。このような空き時間がない場合、動的デカップリングは効果がなく、動的デカップリングのパルス自体のエラーによって、かえって性能が悪化することもあります。10 量子ビットの回路では、この効果を観察するには小さすぎたのかもしれません。</p></li>
+<li><p>ゼロノイズ外挿を使うと、結果は理想値に非常に近くなる。これは ZNE の威力を示しています。</p></li>
+</ul>
+</section>
+<section id="id13">
+<h2>次のステップ<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<Admonition type="tip" title="おすすめ">
+  この内容に興味を持たれた方は、このチュートリアルでは取り上げなかった、その他のエラー緩和およびエラー抑制の手法に関する次の資料もご覧ください。
+<ul class="simple">
+<li><p><a class="reference internal" href="#/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec"><span class="xref myst">確率的エラー・キャンセレーション（PEC）</span></a></p></li>
+<li><p><a class="reference external" href="https://qiskit.github.io/qiskit-addon-mthree/">行列フリー測定緩和（M3）</a>（<a class="reference internal" href="#/docs/tutorials/readout-error-mitigation-sampler/"><span class="xref myst">M3 を使った Sampler プリミティブの読み出しエラー緩和</span></a> のチュートリアルも参照してください）</p></li>
+<li><p><a class="reference external" href="https://qiskit.github.io/qiskit-addon-slc/">Shaded lightcones</a></p></li>
+<li><p><a class="reference external" href="https://qiskit.github.io/qiskit-addon-pna/">Propagated Noise Absorption（PNA）</a>
+</Admonition></p></li>
+</ul>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">背景</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">小規模なシミュレーターでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ハードウェアでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ 1: 古典的な入力を量子問題へマッピングする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ミラー回路</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ 2: 量子ハードウェアでの実行に向けて問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 4: 後処理を行い、目的の古典形式で結果を返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">大規模なハードウェアでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">次のステップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

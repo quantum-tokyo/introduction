@@ -465,7 +465,6 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="obp">
 <h1>期待値推定のための演算子逆伝播（OBP）<a class="headerlink" href="#obp" title="Link to this heading">#</a></h1>
-<p>このチュートリアルでは、qiskit-addon-obp を使ってハイゼンベルクスピン鎖の量子ダイナミクスをシミュレートする Qiskit パターンを実装します</p>
 <p><em>使用量の目安: Heron r3 プロセッサで 4 分（注意: これはあくまで目安です。実際の実行時間は異なる場合があります。）</em></p>
 <section id="id1">
 <h2>学習成果<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -560,9 +559,7 @@ U_s^{\dagger} P U_s = \qquad cos(\theta_s)P + i sin(\theta_s)P_sP \qquad \text{i
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/a3debf65-06df-4277-933e-14b6f6170756-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../_images/97997723b58160d884b9a06a5b87ad529b56b1cea4d82d142ca8d2edf7058d26.png" src="../_images/97997723b58160d884b9a06a5b87ad529b56b1cea4d82d142ca8d2edf7058d26.png" />
 </div>
 </div>
 <p>次に、ハイゼンベルク XYZ ハミルトニアンを表すパウリ演算子を生成します。</p>
@@ -617,9 +614,7 @@ U_s^{\dagger} P U_s = \qquad cos(\theta_s)P + i sin(\theta_s)P_sP \qquad \text{i
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/5208e0a8-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../_images/2f5860be3d3d73581e71a1694933de4b63f0cb99618bde2e1e33fc743d744baf.png" src="../_images/2f5860be3d3d73581e71a1694933de4b63f0cb99618bde2e1e33fc743d744baf.png" />
 </div>
 </div>
 </section>
@@ -638,7 +633,7 @@ U_s^{\dagger} P U_s = \qquad cos(\theta_s)P + i sin(\theta_s)P_sP \qquad \text{i
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Separated the circuit into 18 slices.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>回路を 18 個のスライスに分割しました。
 </pre></div>
 </div>
 </div>
@@ -704,15 +699,13 @@ U_s^{\dagger} P U_s = \qquad cos(\theta_s)P + i sin(\theta_s)P_sP \qquad \text{i
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Backpropagated 6 slices.
-New observable has 60 terms, which can be combined into 6 groups.
-Note that backpropagating one more slice would result in 114 terms across 12 groups.
-The remaining circuit after backpropagation looks as follows:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6 個のスライスを逆伝播しました。
+新しい観測量は 60 個の項を持ち、6 個の群にまとめられます。
+なお、もう 1 つスライスを逆伝播すると 114 個の項が 12 個の群にわたって生じます。
+逆伝播後に残った回路は次のようになります:
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/ee8fd385-1.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../_images/b9ae3fa1ba1fbf947d1cb2fce3d18f9e10912e05e915263f96eb2a56db1a3952.png" src="../_images/b9ae3fa1ba1fbf947d1cb2fce3d18f9e10912e05e915263f96eb2a56db1a3952.png" />
 </div>
 </div>
 <p>シミュレーター上の小規模な例では、切り捨てを使いません。これは、ノイズがない場合には逆伝播の有無にかかわらず同じ結果になり、切り捨ては近似が加わることで結果を悪化させるだけだからです。</p>
@@ -739,7 +732,7 @@ The remaining circuit after backpropagation looks as follows:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pm_basis</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span>
-    <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">basis_gates</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">configuration</span><span class="p">()</span><span class="o">.</span><span class="n">basis_gates</span>
+    <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span>
 <span class="p">)</span>
 <span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pm_basis</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
 <span class="n">isa_bp_circuit</span> <span class="o">=</span> <span class="n">pm_basis</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">bp_circuit</span><span class="p">)</span>
@@ -784,8 +777,8 @@ The remaining circuit after backpropagation looks as follows:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">methods</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"逆伝播なし"</span><span class="p">,</span>
-    <span class="s2">"逆伝播あり"</span><span class="p">,</span>
+    <span class="s2">"No backpropagation"</span><span class="p">,</span>
+    <span class="s2">"Backpropagation"</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">circuit_expval</span><span class="p">,</span> <span class="n">bp_circuit_expval</span><span class="p">]</span>
 
@@ -800,9 +793,7 @@ The remaining circuit after backpropagation looks as follows:
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, '$M_Z$')
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/fb5f955a-1.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../_images/5c028ba13856049d7e609cbb36073525ab6fca82f79983a2a0a616b8e251de2e.png" src="../_images/5c028ba13856049d7e609cbb36073525ab6fca82f79983a2a0a616b8e251de2e.png" />
 </div>
 </div>
 <p>予想どおり、2 つの期待値は一致します。ノイズのない状態ベクトルシミュレーター上で実行しているため、逆伝播は回路と観測量の組に対する厳密な変換であり、元のワークフローと逆伝播後のワークフローは同じ <span class="math notranslate nohighlight">\(M_Z\)</span> の値を返すはずです。逆伝播の利点が現れるのはノイズのあるハードウェア上だけです。そこでは、より短い逆伝播後の回路の方が蓄積する誤差が小さくなります。これを以下の大規模なハードウェアの例で示します。</p>
@@ -926,9 +917,9 @@ The remaining circuit after backpropagation looks as follows:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2-qubit depth without backpropagation: 24
-2-qubit depth with backpropagation: 20
-2-qubit depth with backpropagation and truncation: 18
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>逆伝播なしの 2 量子ビット深さ: 24
+逆伝播ありの 2 量子ビット深さ: 20
+逆伝播および切り捨てありの 2 量子ビット深さ: 18
 </pre></div>
 </div>
 </div>
@@ -942,9 +933,9 @@ The remaining circuit after backpropagation looks as follows:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Expectation value without backpropagation: 0.9543907942381811
-Backpropagated expectation value: 0.9445337385406468
-Backpropagated expectation value with truncation: 0.934050286970965
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>逆伝播なしの期待値: 0.9337875596354408
+逆伝播後の期待値: 0.9107280913377572
+切り捨てを伴う逆伝播後の期待値: 0.9198644768080684
 </pre></div>
 </div>
 </div>
@@ -953,9 +944,9 @@ Backpropagated expectation value with truncation: 0.934050286970965
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 結果をプロットする</span>
 <span class="n">methods</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"逆伝播なし"</span><span class="p">,</span>
-    <span class="s2">"逆伝播あり"</span><span class="p">,</span>
-    <span class="s2">"逆伝播あり（切り捨て付き）"</span><span class="p">,</span>
+    <span class="s2">"No backpropagation"</span><span class="p">,</span>
+    <span class="s2">"Backpropagation"</span><span class="p">,</span>
+    <span class="s2">"Backpropagation w/ truncation"</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">result_no_bp</span><span class="p">,</span> <span class="n">result_bp</span><span class="p">,</span> <span class="n">result_bp_trunc</span><span class="p">]</span>
 <span class="n">error_bars</span> <span class="o">=</span> <span class="p">[</span><span class="n">std_no_bp</span><span class="p">,</span> <span class="n">std_bp</span><span class="p">,</span> <span class="n">std_bp_trunc</span><span class="p">]</span>
@@ -965,7 +956,7 @@ Backpropagated expectation value with truncation: 0.934050286970965
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">methods</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">error_bars</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"r"</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">0.89</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.895</span><span class="p">,</span> <span class="s2">"厳密な結果"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.895</span><span class="p">,</span> <span class="s2">"Exact result"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$M_Z$"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -974,20 +965,20 @@ Backpropagated expectation value with truncation: 0.934050286970965
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, '$M_Z$')
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/docs/images/tutorials/operator-back-propagation/extracted-outputs/37834c72-1.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../_images/091b03f5d5d9fcada491590b09dd6e06984d976e89fd62d87ac750b15dacac61.png" src="../_images/091b03f5d5d9fcada491590b09dd6e06984d976e89fd62d87ac750b15dacac61.png" />
 </div>
 </div>
 </section>
 <section id="id16">
 <h2>次のステップ<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
 <p>この内容に興味を持たれた方には、次の資料もお勧めします。</p>
-<Admonition type="tip" title="おすすめ">
-  * [時間発展回路の近似量子コンパイル](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)
-  * [マルチプロダクト公式によるトロッター誤差の低減](/docs/tutorials/multi-product-formula)
-  * [`pauli-prop`](https://github.com/Qiskit/pauli-prop) — Rust で高速化されたパウリ伝播のパッケージ。OBP、古典的な期待値推定、ノイズを含むシミュレーションを扱うチュートリアルが付属しています
-</Admonition><p>© IBM Corp., 2017-2026</p>
+<p><strong>おすすめ</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#/docs/tutorials/approximate-quantum-compilation-for-time-evolution"><span class="xref myst">時間発展回路の近似量子コンパイル</span></a></p></li>
+<li><p><a class="reference internal" href="#/docs/tutorials/multi-product-formula"><span class="xref myst">マルチプロダクト公式によるトロッター誤差の低減</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/Qiskit/pauli-prop"><code class="docutils literal notranslate"><span class="pre">pauli-prop</span></code></a> — Rust で高速化されたパウリ伝播のパッケージ。OBP、古典的な期待値推定、ノイズを含むシミュレーションを扱うチュートリアルが付属しています</p></li>
+</ul>
+<p>© IBM Corp., 2017-2026</p>
 </section>
 </section>
 

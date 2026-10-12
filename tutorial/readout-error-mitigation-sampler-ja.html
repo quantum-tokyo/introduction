@@ -1,0 +1,1587 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M3 を使った Sampler プリミティブの読み出しエラー緩和 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/readout-error-mitigation-sampler-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Ftutorial/readout-error-mitigation-sampler-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/readout-error-mitigation-sampler-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M3 を使った Sampler プリミティブの読み出しエラー緩和</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">読み出しエラーとは</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">理論的背景</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-m3">Qiskit M3 アドオン: より長いビット列へのスケーリング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m3">量子アルゴリズムへの M3 の適用</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">アダマール演算子とフーリエ変換</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">隠れシフト問題</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-g"><span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> の量子回路</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">隠れシフトアルゴリズム</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ 1: 古典的な入力を量子問題へマッピングする</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ 2: 量子ハードウェアでの実行に向けて回路を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って回路を実行する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 4: 後処理を行い、古典的な形式で結果を返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">M3 による補正の適用前と適用後で、隠れシフトの文字列の特定結果を比較する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m3-cpu">M3 に必要な CPU 時間がショット数に応じてどう増えるかをプロットする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">プロットの解釈</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">スケールアップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m3-sampler">
+<h1>M3 を使った Sampler プリミティブの読み出しエラー緩和<a class="headerlink" href="#m3-sampler" title="Link to this heading">#</a></h1>
+<p><em>使用量の目安: Heron r2 プロセッサで 1 分未満（注意: これはあくまで目安です。実際の実行時間は異なる場合があります。）</em></p>
+<section id="id1">
+<h2>背景<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Estimator プリミティブとは異なり、Sampler プリミティブにはエラー緩和の機能が組み込まれていません。
+Estimator がサポートする手法のいくつかは期待値のために特化して設計されているため、Sampler プリミティブには適用できません。例外は読み出しエラー緩和です。これは非常に効果的な手法であり、Sampler プリミティブにも適用できます。</p>
+<p><a class="reference external" href="https://qiskit.github.io/qiskit-addon-mthree/">M3 Qiskit アドオン</a> は、読み出しエラー緩和の効率的な手法を実装しています。このチュートリアルでは、M3 Qiskit アドオンを使って Sampler プリミティブの読み出しエラーを緩和する方法を説明します。</p>
+<section id="id2">
+<h3>読み出しエラーとは<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>測定の直前、量子ビットレジスターの状態は、計算基底状態の重ね合わせ、または密度行列で記述されます。
+量子ビットレジスターを古典ビットレジスターへ測定する過程は、2 つのステップで進みます。
+まず、本来の意味での量子測定が行われます。
+これは、量子ビットレジスターの状態が、<span class="math notranslate nohighlight">\(1\)</span> と <span class="math notranslate nohighlight">\(0\)</span> の列で特徴付けられる 1 つの基底状態へ射影されることを意味します。
+2 つ目のステップでは、この基底状態を特徴付けるビット列を読み取り、古典コンピューターのメモリーへ書き込みます。
+このステップを<em>読み出し</em>と呼びます。
+実は、2 つ目のステップ（読み出し）の方が、1 つ目のステップ（基底状態への射影）よりも大きなエラーを生じます。
+これは、読み出しでは微視的な量子状態を検出し、それを巨視的な領域まで増幅する必要があることを思い出せば、納得がいくでしょう。読み出し共振器は（トランズモン）量子ビットと結合しており、そのためにごくわずかな周波数シフトを受けます。次にマイクロ波パルスを共振器に当てて反射させると、今度はパルスの特性にわずかな変化が生じます。反射したパルスは増幅され、解析されます。これは繊細な過程であり、さまざまなエラーの影響を受けます。</p>
+<p>重要な点は、量子測定と読み出しはどちらもエラーの影響を受けるものの、支配的なエラーを生じるのは後者だということです。これを読み出しエラーと呼び、このチュートリアルではこれに焦点を当てます。</p>
+</section>
+<section id="id3">
+<h3>理論的背景<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>サンプリングされたビット列（古典メモリーに格納されたもの）が、射影された量子状態を特徴付けるビット列と異なる場合、読み出しエラーが起きたといいます。
+これらのエラーはランダムで、サンプルごとに相関がないことが観測されています。
+読み出しエラーは<em>ノイズのある古典チャネル</em>としてモデル化すると有用であることがわかっています。
+つまり、ビット列 <span class="math notranslate nohighlight">\(i\)</span> と <span class="math notranslate nohighlight">\(j\)</span> のすべての組について、真の値 <span class="math notranslate nohighlight">\(j\)</span> が誤って <span class="math notranslate nohighlight">\(i\)</span> と読み取られる確率が一定の値で存在するということです。</p>
+<p>より正確には、ビット列のすべての組 <span class="math notranslate nohighlight">\((i, j)\)</span> について、真の値が <span class="math notranslate nohighlight">\(j\)</span> であるときに <span class="math notranslate nohighlight">\(i\)</span> が読み取られる（条件付き）確率 <span class="math notranslate nohighlight">\({M}_{i,j}\)</span> が存在します。
+すなわち、</p>
+<div class="math notranslate nohighlight">
+\[
+    {M}_{i,j} =  \Pr(\text{readout value is } i | \text{true value is } j)
+    \text{ for } i,j \in (0,...,2^n - 1), \tag{1}
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(n\)</span> は読み出しレジスターのビット数です。
+具体的にするため、<span class="math notranslate nohighlight">\(i\)</span> は 10 進数の整数であり、その 2 進表現が計算基底状態のラベルとなるビット列であるとします。
+<span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> 行列 <span class="math notranslate nohighlight">\({M}\)</span> を<em>割り当て行列</em>（assignment matrix）と呼びます。
+真の値 <span class="math notranslate nohighlight">\(j\)</span> を固定すると、ノイズを含むすべての結果 <span class="math notranslate nohighlight">\(i\)</span> について確率を足し合わせた値は <span class="math notranslate nohighlight">\(1\)</span> になるはずです。つまり、</p>
+<div class="math notranslate nohighlight">
+\[
+    \sum_{i=0}^{2^n - 1} {M}_{i,j} = 1 \text{ for all } j
+\]</div>
+<p>負の成分を持たず、(1) を満たす行列を<em>左確率行列</em>（left-stochastic matrix）と呼びます。
+左確率行列は、各列の和が <span class="math notranslate nohighlight">\(1\)</span> になることから、<em>列確率行列</em>（column-stochastic matrix）とも呼ばれます。
+各要素 <span class="math notranslate nohighlight">\({M}_{i,j}\)</span> の近似値は、各基底状態 <span class="math notranslate nohighlight">\(|j \rangle\)</span> の準備を繰り返し、サンプリングされたビット列の出現頻度を計算することで実験的に決定します。</p>
+<p>出力ビット列の確率分布を繰り返しサンプリングによって推定する実験であれば、<span class="math notranslate nohighlight">\({M}\)</span> を使って分布のレベルで読み出しエラーを緩和できます。
+最初のステップは、対象とする固定の回路を何度も繰り返し実行し、サンプリングされたビット列のヒストグラムを作ることです。
+正規化したヒストグラムは、<span class="math notranslate nohighlight">\(2^n\)</span> 通りのビット列についての測定された確率分布であり、これを <span class="math notranslate nohighlight">\({\tilde{p}} \in \mathbb{R}^{2^n}\)</span> と表します。
+ビット列 <span class="math notranslate nohighlight">\(i\)</span> がサンプリングされる（推定）確率 <span class="math notranslate nohighlight">\({{\tilde{p}}}_i\)</span> は、すべての真のビット列 <span class="math notranslate nohighlight">\(j\)</span> について、それが <span class="math notranslate nohighlight">\(i\)</span> と取り違えられる確率で重み付けした和に等しくなります。
+これを行列の形で書くと、</p>
+<div class="math notranslate nohighlight">
+\[
+    {\tilde{p}} = {M} {\vec{p}}, \tag{2},
+\]</div>
+<p>となります。ここで <span class="math notranslate nohighlight">\({\vec{p}}\)</span> は真の分布です。言い換えると、読み出しエラーは、ビット列の理想的な分布 <span class="math notranslate nohighlight">\({\vec{p}}\)</span> に割り当て行列 <span class="math notranslate nohighlight">\({M}\)</span> を掛けて、観測される分布 <span class="math notranslate nohighlight">\({\tilde{p}}\)</span> を生み出す効果を持ちます。
+<span class="math notranslate nohighlight">\({\tilde{p}}\)</span> と <span class="math notranslate nohighlight">\({M}\)</span> は測定済みですが、<span class="math notranslate nohighlight">\({\vec{p}}\)</span> には直接アクセスできません。原理的には、式 (2) を <span class="math notranslate nohighlight">\({\vec{p}}\)</span> について数値的に解くことで、回路のビット列の真の分布が得られます。</p>
+<p>先に進む前に、この素朴な手法のいくつかの重要な特徴に触れておきます。</p>
+<ul class="simple">
+<li><p>実際には、式 (2) は <span class="math notranslate nohighlight">\({M}\)</span> の逆行列を求めて解くわけではありません。ソフトウェアライブラリーの線形代数ルーチンは、より安定で、正確で、効率的な手法を用います。</p></li>
+<li><p><span class="math notranslate nohighlight">\({M}\)</span> を推定するときには、読み出しエラーだけが起きると仮定しました。特に、状態準備のエラーや量子測定のエラーはない、あるいは少なくとも別の方法で緩和されていると仮定しています。
+この仮定がよく成り立つ範囲で、<span class="math notranslate nohighlight">\({M}\)</span> は本当に読み出しエラーだけを表します。しかし、測定されたビット列の分布を補正するために <span class="math notranslate nohighlight">\({M}\)</span> を<em>使う</em>ときには、そのような仮定は置きません。実際、興味のある回路はノイズ（たとえばゲートエラー）を持ち込むと予想されます。「真の」分布には、別の方法で緩和されていないあらゆるエラーの影響が依然として含まれます。</p></li>
+</ul>
+<p>この手法は状況によっては有用ですが、いくつかの制約があります。</p>
+<p><span class="math notranslate nohighlight">\({M}\)</span> を推定するのに必要な空間と時間のリソースは、<span class="math notranslate nohighlight">\(n\)</span> について指数関数的に増大します。</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({M}\)</span> と <span class="math notranslate nohighlight">\({\tilde{p}}\)</span> の推定は、有限回のサンプリングによる統計誤差を伴います。
+このノイズは、ショット数を増やすことで望むだけ小さくできます（ただし、<span class="math notranslate nohighlight">\({M}\)</span> に系統誤差をもたらすハードウェアパラメーターのドリフトの時間スケールまでです）。
+しかし、緩和を行う際に観測されるビット列について何も仮定しない場合、<span class="math notranslate nohighlight">\({M}\)</span> の推定に必要なショット数は、少なくとも <span class="math notranslate nohighlight">\(n\)</span> について指数関数的に増大します。</p></li>
+<li><p><span class="math notranslate nohighlight">\({M}\)</span> は <span class="math notranslate nohighlight">\(2^n \times 2^n\)</span> 行列です。
+<span class="math notranslate nohighlight">\(n&gt;10\)</span> になると、<span class="math notranslate nohighlight">\({M}\)</span> を格納するのに必要なメモリー量は、高性能なノートパソコンで利用できるメモリー量を超えます。</p></li>
+</ul>
+<p>さらに、次のような制約もあります。</p>
+<ul class="simple">
+<li><p>復元された分布 <span class="math notranslate nohighlight">\({\vec{p}}\)</span> には、1 つ以上の負の確率が含まれることがあります（ただし、合計は 1 のままです）。解決策の 1 つは、<span class="math notranslate nohighlight">\({\vec{p}}\)</span> の各成分が非負であるという制約のもとで <span class="math notranslate nohighlight">\(||{M} {\vec{p}} - {\tilde{p}}||^2\)</span> を最小化することです。しかし、このような手法の実行時間は、式 (2) を直接解く場合よりも桁違いに長くなります。</p></li>
+<li><p>この緩和の手順は、ビット列の確率分布のレベルで機能します。特に、観測された個々のビット列のエラーを補正することはできません。</p></li>
+</ul>
+</section>
+<section id="qiskit-m3">
+<h3>Qiskit M3 アドオン: より長いビット列へのスケーリング<a class="headerlink" href="#qiskit-m3" title="Link to this heading">#</a></h3>
+<p>標準的な数値線形代数ルーチンを使って式 (2) を解く方法は、およそ 10 ビット以下のビット列に限られます。一方、M3 ははるかに長いビット列を扱えます。これを可能にしている M3 の 2 つの重要な性質は次のとおりです。</p>
+<ul class="simple">
+<li><p>ビットの集まりの間にある 3 次以上の読み出しエラーの相関は無視できると仮定し、考慮しません。原理的には、ショット数を増やせば、より高次の相関も推定できます。</p></li>
+<li><p><span class="math notranslate nohighlight">\({M}\)</span> を明示的に構築する代わりに、<span class="math notranslate nohighlight">\({\tilde{p}}\)</span> を構築するときに収集されたビット列についてだけ確率を記録する、はるかに小さな実効的な行列を使います。</p></li>
+</ul>
+<p>大まかには、手順は次のように進みます。</p>
+<p>まず、<span class="math notranslate nohighlight">\({M}\)</span> の簡略化された実効的な記述を組み立てるための構成要素を作ります。
+次に、対象の回路を繰り返し実行してビット列を収集し、それを使って <span class="math notranslate nohighlight">\({\tilde{p}}\)</span> と、構成要素を用いた実効的な <span class="math notranslate nohighlight">\({M}\)</span> の両方を構築します。</p>
+<p>より正確には、次のとおりです。</p>
+<ul>
+<li><p>量子ビットごとに 1 量子ビットの割り当て行列を推定します。そのために、量子ビットレジスターをすべて 0 の状態 <span class="math notranslate nohighlight">\(|0 ... 0 \rangle\)</span> に、続いてすべて 1 の状態 <span class="math notranslate nohighlight">\(|1 ... 1 \rangle\)</span> に準備することを繰り返し、各量子ビットが誤って読み取られる確率を記録します。</p></li>
+<li><p>3 次以上の相関は無視できると仮定し、考慮しません。</p>
+<p>代わりに、<span class="math notranslate nohighlight">\(2 \times 2\)</span> の 1 量子ビット割り当て行列を <span class="math notranslate nohighlight">\(n\)</span> 個と、<span class="math notranslate nohighlight">\(4 \times 4\)</span> の 2 量子ビット割り当て行列を <span class="math notranslate nohighlight">\(n(n-1)/2\)</span> 個構築します。これらの 1 量子ビットと 2 量子ビットの割り当て行列は、後で使うために保存しておきます。</p>
+</li>
+<li><p>回路を繰り返しサンプリングして <span class="math notranslate nohighlight">\({\tilde{p}}\)</span> を構築した後、<span class="math notranslate nohighlight">\({\tilde{p}}\)</span> の構築時にサンプリングされたビット列だけを使って、<span class="math notranslate nohighlight">\({M}\)</span> の実効的な近似を構築します。この実効的な行列は、前の項目で説明した 1 量子ビットと 2 量子ビットの行列を使って組み立てます。
+この行列の線形次元は、多くても <span class="math notranslate nohighlight">\({\tilde{p}}\)</span> の構築に使ったショット数の程度であり、完全な割り当て行列 <span class="math notranslate nohighlight">\({M}\)</span> の次元 <span class="math notranslate nohighlight">\(2^n\)</span> よりもはるかに小さくなります。</p></li>
+</ul>
+<p>M3 の技術的な詳細については、<a class="reference external" href="https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.040326"><em>Scalable Mitigation of Measurement Errors on Quantum Computers</em></a> を参照してください。</p>
+</section>
+<section id="m3">
+<h3>量子アルゴリズムへの M3 の適用<a class="headerlink" href="#m3" title="Link to this heading">#</a></h3>
+<p>M3 の読み出しエラー緩和を、隠れシフト問題に適用します。隠れシフト問題や、<a class="reference external" href="https://en.wikipedia.org/wiki/Hidden_subgroup_problem">隠れ部分群問題</a> のような密接に関連する問題は、もともとフォールトトレラントな設定で考案されました（より正確には、フォールトトレラントな QPU が実現可能であることが証明される前に！）。しかし、現在利用可能なプロセッサーでも研究されています。127 量子ビットの IBM® QPU 上で、隠れシフト問題の変種について得られたアルゴリズム上の指数関数的な高速化の例は、<a class="reference external" href="https://journals.aps.org/prx/accepted/a9074K06A8e1590147da9c69f8c4b64c28247be5a">こちらの論文</a>（<a class="reference external" href="https://arxiv.org/abs/2401.07934">arXiv 版</a>）で見ることができます。</p>
+<p>以下では、すべての演算はブール演算です。
+つまり、<span class="math notranslate nohighlight">\(a, b \in \mathbb{Z}_2 = \{0, 1\}\)</span> について、加算 <span class="math notranslate nohighlight">\(a + b\)</span> は論理 XOR 関数です。
+さらに、乗算 <span class="math notranslate nohighlight">\(a \times b\)</span>（または <span class="math notranslate nohighlight">\(a b\)</span>）は論理 AND 関数です。<span class="math notranslate nohighlight">\(x, y \in \{0, 1\}^n\)</span> については、<span class="math notranslate nohighlight">\(x + y\)</span> をビットごとの XOR の適用で定義します。
+内積 <span class="math notranslate nohighlight">\(\cdot: {\mathbb{Z}_2^n} \rightarrow \mathbb{Z}_2\)</span> は <span class="math notranslate nohighlight">\(x \cdot y = \sum_i x_i y_i\)</span> で定義します。</p>
+<section id="id4">
+<h4>アダマール演算子とフーリエ変換<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>量子アルゴリズムを実装する際には、アダマール演算子をフーリエ変換として使うことがよくあります。
+計算基底状態は<em>古典状態</em>と呼ばれることもあります。これらは古典的なビット列と 1 対 1 に対応しています。
+古典状態に作用する <span class="math notranslate nohighlight">\(n\)</span> 量子ビットのアダマール演算子は、ブール超立方体上のフーリエ変換と見なせます。</p>
+<div class="math notranslate nohighlight">
+\[
+H^{\otimes n} =  \frac{1}{\sqrt{2^n}} \sum_{x,y \in {\mathbb{Z}_2^n}} (-1)^{x \cdot y} {|{y}\rangle}{\langle{x}|}.
+\]</div>
+<p>固定したビット列 <span class="math notranslate nohighlight">\(s\)</span> に対応する状態 <span class="math notranslate nohighlight">\({|{s}\rangle}\)</span> を考えます。
+<span class="math notranslate nohighlight">\(H^{\otimes n}\)</span> を作用させ、<span class="math notranslate nohighlight">\({\langle {x}|{s}\rangle} = \delta_{x,s}\)</span> を使うと、<span class="math notranslate nohighlight">\({|{s}\rangle}\)</span> のフーリエ変換は次のように書けることがわかります。</p>
+<div class="math notranslate nohighlight">
+\[
+   H^{\otimes n} {|{s}\rangle} =  \frac{1}{\sqrt{2^n}} \sum_{y \in {\mathbb{Z}_2^n}} (-1)^{s \cdot y} {|{y}\rangle}.
+\]</div>
+<p>アダマールはそれ自身が逆演算子です。つまり、<span class="math notranslate nohighlight">\(H^{\otimes n} H^{\otimes n} = (H H)^{\otimes n} = I^{\otimes n}\)</span> です。
+したがって、逆フーリエ変換は同じ演算子 <span class="math notranslate nohighlight">\(H^{\otimes n}\)</span> です。
+具体的に書くと、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+  {|{s}\rangle} =  H^{\otimes n} H^{\otimes n} {|{s}\rangle}  =  H^{\otimes n} \frac{1}{\sqrt{2^n}} \sum_{y \in {\mathbb{Z}_2^n}} (-1)^{s \cdot y} {|{y}\rangle}.
+\]</div>
+</section>
+<section id="id5">
+<h4>隠れシフト問題<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p><em>隠れシフト問題</em>の簡単な例を考えます。
+この問題は、関数への入力に加えられた一定のシフトを特定するものです。
+ここで考える関数は内積です。これは、以下で示すものと同様の手法によって隠れシフト問題で量子的な高速化が得られる、大きな関数のクラスのうち最も単純なものです。</p>
+<p><span class="math notranslate nohighlight">\(x,y \in {\mathbb{Z}_2^m}\)</span> を長さ <span class="math notranslate nohighlight">\(m\)</span> のビット列とします。
+<span class="math notranslate nohighlight">\({f}: {\mathbb{Z}_2^m} \times {\mathbb{Z}_2^m} \rightarrow \{-1,1\}\)</span> を次のように定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+  {f}(x, y) = (-1)^{x \cdot y}.
+\]</div>
+<p><span class="math notranslate nohighlight">\(a,b \in {\mathbb{Z}_2^m}\)</span> を長さ <span class="math notranslate nohighlight">\(m\)</span> の固定したビット列とします。
+さらに、<span class="math notranslate nohighlight">\(g: {\mathbb{Z}_2^m} \times {\mathbb{Z}_2^m} \rightarrow \{-1,1\}\)</span> を次のように定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+  g(x, y) = {f}(x+a, y+b) = (-1)^{(x+a) \cdot (y+b)},
+\]</div>
+<p>ここで <span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> は（隠れた）パラメーターです。
+ブラックボックスが 2 つ与えられており、一方は <span class="math notranslate nohighlight">\(f\)</span> を、もう一方は <span class="math notranslate nohighlight">\(g\)</span> を実装しています。
+これらが上で定義した関数を計算することはわかっているものの、<span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> はどちらもわからないとします。このゲームの目的は、<span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> に問い合わせ（クエリー）を行って、隠れたビット列（シフト）<span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> を決定することです。古典的にこのゲームを行う場合、<span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> を決定するには <span class="math notranslate nohighlight">\(O(2m)\)</span> 回のクエリーが必要なことは明らかです。たとえば、組の一方の要素がすべて 0 で、もう一方の要素がちょうど 1 つの成分だけ <span class="math notranslate nohighlight">\(1\)</span> であるような文字列の組すべてについて、<span class="math notranslate nohighlight">\(g\)</span> に問い合わせればよいでしょう。
+各クエリーで、<span class="math notranslate nohighlight">\(a\)</span> または <span class="math notranslate nohighlight">\(b\)</span> のどちらかの成分が 1 つわかります。
+しかし、ブラックボックスが量子回路として実装されている場合には、<span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> にそれぞれ 1 回ずつ問い合わせるだけで <span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> を決定できることを見ていきます。</p>
+<p>アルゴリズムの計算量の文脈では、ブラックボックスを<em>オラクル</em>と呼びます。
+オラクルは中身が見えないことに加えて、入力を受け取って瞬時に出力を生成し、それが組み込まれたアルゴリズムの計算量には何も加えないという性質を持ちます。実際、今回の場合、<span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> を実装するオラクルは効率的であることがわかります。</p>
+</section>
+<section id="f-g">
+<h4><span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> の量子回路<a class="headerlink" href="#f-g" title="Link to this heading">#</a></h4>
+<p><span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> を量子回路として実装するには、次の材料が必要です。</p>
+<p><span class="math notranslate nohighlight">\(x_1,y_1 \in \mathbb{Z}_2\)</span> である 1 量子ビットの古典状態 <span class="math notranslate nohighlight">\({|{x_1}\rangle}, {|{y_1}\rangle}\)</span> について、制御 <span class="math notranslate nohighlight">\(Z\)</span> ゲート <span class="math notranslate nohighlight">\({CZ}\)</span> は次のように書けます。</p>
+<div class="math notranslate nohighlight">
+\[
+{CZ} {|{x_1}\rangle}{|{y_1}\rangle}{x_1} = (-1)^{x_1 y_1} {|{x_1}\rangle}{x_1}{|{y_1}\rangle}.
+\]</div>
+<p><span class="math notranslate nohighlight">\(m\)</span> 個の CZ ゲートを、<span class="math notranslate nohighlight">\((x_1, y_1)\)</span> に 1 つ、<span class="math notranslate nohighlight">\((x_2, y_2)\)</span> に 1 つというように、<span class="math notranslate nohighlight">\((x_m, y_m)\)</span> まで作用させます。
+この演算子を <span class="math notranslate nohighlight">\({CZ}_{x,y}\)</span> と呼びます。</p>
+<p><span class="math notranslate nohighlight">\(U_f = {CZ}_{x,y}\)</span> は <span class="math notranslate nohighlight">\({f} = {f}(x,y)\)</span> の量子版です。</p>
+<div class="math notranslate nohighlight">
+\[
+%\CZ_{x,y} {|#1\rangle}{z} =
+U_f {|{x}\rangle}{|{y}\rangle} = {CZ}_{x,y} {|{x}\rangle}{|{y}\rangle} = (-1)^{x \cdot y}  {|{x}\rangle}{|{y}\rangle}.
+\]</div>
+<p>ビット列のシフトも実装する必要があります。
+<span class="math notranslate nohighlight">\(x\)</span> レジスター上の演算子 <span class="math notranslate nohighlight">\(X^{a_1}\cdots X^{a_m}\)</span> を <span class="math notranslate nohighlight">\(X_a\)</span> と表し、同様に <span class="math notranslate nohighlight">\(y\)</span> レジスター上では <span class="math notranslate nohighlight">\(X_b =  X^{b_1}\cdots X^{b_m}\)</span> と表します。
+これらの演算子は、ビットが <span class="math notranslate nohighlight">\(1\)</span> のところには <span class="math notranslate nohighlight">\(X\)</span> を、<span class="math notranslate nohighlight">\(0\)</span> のところには恒等演算子 <span class="math notranslate nohighlight">\(I\)</span> を作用させます。
+すると、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+ X_a X_b  {|{x}\rangle}{|{y}\rangle} = {|{x+a}\rangle}{|{y+b}\rangle}.
+\]</div>
+<p>2 つ目のブラックボックス <span class="math notranslate nohighlight">\(g\)</span> は、次のユニタリー <span class="math notranslate nohighlight">\(U_g\)</span> で実装されます。</p>
+<div class="math notranslate nohighlight">
+\[
+%U_g {|{x}\rangle}{|{y}\rangle} = X_aX_b \CZ_{x,y} X_aX_b {|{x}\rangle}{|{y}\rangle}.
+U_g = X_aX_b {CZ}_{x,y} X_aX_b.
+\]</div>
+<p>これを確かめるため、演算子を右から左へ順に状態 <span class="math notranslate nohighlight">\({|{x}\rangle}{|{y}\rangle}\)</span> に作用させます。
+まず、</p>
+<div class="math notranslate nohighlight">
+\[
+ X_a X_b  {|{x}\rangle}{|{y}\rangle} = {|{x+a}\rangle}{|{y+b}\rangle}.
+\]</div>
+<p>次に、</p>
+<div class="math notranslate nohighlight">
+\[
+  {CZ}_{x,y}  {|{x+a}\rangle}{|{y+b}\rangle} = (-1)^{(x+a)\cdot (y+b)} {|{x+a}\rangle}{|{y+b}\rangle}.
+\]</div>
+<p>最後に、</p>
+<div class="math notranslate nohighlight">
+\[
+  X^a X^b (-1)^{(x+a)\cdot (y+b)} {|{x+a}\rangle}{|{y+b}\rangle} = (-1)^{(x+a)\cdot (y+b)} {|{x}\rangle}{|{y}\rangle},
+\]</div>
+<p>となり、これは確かに <span class="math notranslate nohighlight">\(f(x+a, y+b)\)</span> の量子版です。</p>
+</section>
+<section id="id6">
+<h4>隠れシフトアルゴリズム<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>ここまでの部品を組み合わせて、隠れシフト問題を解きます。
+まず、すべて 0 の状態に初期化されたレジスターにアダマールを作用させます。</p>
+<div class="math notranslate nohighlight">
+\[
+H^{\otimes 2m} = H^{\otimes m} \otimes H^{\otimes m} {{|{0}\rangle}^{\otimes m}}{{|{0}\rangle}^{\otimes m}} = \frac{1}{\sqrt{2^{2m}}} \sum_{x, y \in {\mathbb{Z}_2^m}} (-1)^{x \cdot y} {|{x}\rangle}{|{y}\rangle}.
+\]</div>
+<p>次に、オラクル <span class="math notranslate nohighlight">\(g\)</span> に問い合わせると、次の状態が得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+U_g H^{\otimes 2m} {{|{0}\rangle}^{\otimes m}}{{|{0}\rangle}^{\otimes m}}
+= \frac{1}{\sqrt{2^{2m}}} \sum_{x, y \in {\mathbb{Z}_2^m}} (-1)^{(x+a) \cdot (y+b)} {|{x}\rangle}{|{y}\rangle}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\approx \frac{1}{\sqrt{2^{2m}}} \sum_{x, y \in {\mathbb{Z}_2^m}} (-1)^{x \cdot y + x \cdot b + y \cdot a} {|{x}\rangle}{|{y}\rangle}.
+\]</div>
+<p>最後の行では、定数のグローバル位相因子 <span class="math notranslate nohighlight">\((-1)^{a \cdot b}\)</span> を省略し、位相を除いた等号を <span class="math notranslate nohighlight">\(\approx\)</span> で表しています。
+次に、オラクル <span class="math notranslate nohighlight">\(f\)</span> を作用させると、もう 1 つの因子 <span class="math notranslate nohighlight">\((-1)^{x \cdot y}\)</span> が加わり、すでにある因子と打ち消し合います。すると、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+U_f U_g H^{\otimes 2m} {{|{0}\rangle}^{\otimes m}}{{|{0}\rangle}^{\otimes m}}
+\approx \frac{1}{\sqrt{2^{2m}}} \sum_{x, y \in {\mathbb{Z}_2^m}} (-1)^{x \cdot b + y \cdot a} {|{x}\rangle}{|{y}\rangle}.
+\]</div>
+<p>最後のステップは、逆フーリエ変換 <span class="math notranslate nohighlight">\(H^{\otimes 2m} = H^{\otimes m} \otimes H^{\otimes m}\)</span> を作用させることで、その結果は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+H^{\otimes 2m} U_f U_g  H^{\otimes 2m} {{|{0}\rangle}^{\otimes m}}{{|{0}\rangle}^{\otimes m}}
+\approx {|{b}\rangle}{|{a}\rangle}.
+\]</div>
+<p>これで回路は完成です。ノイズがない場合、量子レジスターをサンプリングすると、確率 <span class="math notranslate nohighlight">\(1\)</span> でビット列 <span class="math notranslate nohighlight">\(b, a\)</span> が返されます。</p>
+<p>ブール内積は、いわゆるベント関数（bent function）の一例です。
+ここではベント関数を定義せず、ベント関数が「入力のある線形部分空間への出力の依存性を利用しようとする攻撃に対して最大限の耐性を持つ」ことだけを述べておきます。
+この引用は論文 <a class="reference external" href="https://arxiv.org/abs/0811.3208"><em>Quantum algorithms for highly non-linear Boolean functions</em></a> からのもので、この論文ではいくつかのクラスのベント関数について効率的な隠れシフトアルゴリズムが示されています。
+このチュートリアルのアルゴリズムは、この論文の 3.1 節に登場します。</p>
+<p>より一般的な場合、隠れシフト <span class="math notranslate nohighlight">\(s \in \mathbb{Z}^n\)</span> を求める回路は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+ H^{\otimes n} U_{\tilde{f}}  H^{\otimes n} U_g  H^{\otimes n} {|{0}\rangle}^{\otimes n} = {|{s}\rangle}.
+\]</div>
+<p>一般的な場合、<span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> は 1 変数の関数です。
+今回の内積の例は、<span class="math notranslate nohighlight">\(f(x, y) \to f(z)\)</span> とし、<span class="math notranslate nohighlight">\(z\)</span> を <span class="math notranslate nohighlight">\(x\)</span> と <span class="math notranslate nohighlight">\(y\)</span> を連結したもの、<span class="math notranslate nohighlight">\(s\)</span> を <span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> を連結したものとすれば、この形になります。
+一般的な場合には、ちょうど 2 つのオラクルが必要です。1 つは <span class="math notranslate nohighlight">\(g\)</span> のオラクル、もう 1 つは <span class="math notranslate nohighlight">\(\tilde{f}\)</span> のオラクルで、後者はベント関数 <span class="math notranslate nohighlight">\(f\)</span> の<em>双対</em>（dual）と呼ばれる関数です。
+内積関数は、<span class="math notranslate nohighlight">\(\tilde{f}=f\)</span> という自己双対の性質を持ちます。</p>
+<p>内積の隠れシフトを求める今回の回路では、一般的な場合の回路に現れる中央のアダマールの層を省略しました。一般的な場合にはこの層が必要ですが、省略することで回路の深さを少し節約しました。その代わり、出力が望ましい <span class="math notranslate nohighlight">\({|{a}\rangle}{|{b}\rangle}\)</span> ではなく <span class="math notranslate nohighlight">\({|{b}\rangle}{|{a}\rangle}\)</span> になるため、少しの後処理が必要になります。</p>
+</section>
+</section>
+</section>
+<section id="id7">
+<h2>要件<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを始める前に、次のものがインストールされていることを確認してください。</p>
+<ul class="simple">
+<li><p>Qiskit SDK v2.1 以降（<a class="reference internal" href="#/docs/api/qiskit/visualization"><span class="xref myst">可視化</span></a> サポート付き）</p></li>
+<li><p>Qiskit Runtime v0.41 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code>）</p></li>
+<li><p>M3 Qiskit アドオン v3.0（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">mthree</span></code>）</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>セットアップ<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">Random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CircuitInstruction</span><span class="p">,</span>
+    <span class="n">QuantumCircuit</span><span class="p">,</span>
+    <span class="n">QuantumRegister</span><span class="p">,</span>
+    <span class="n">Qubit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">CZGate</span><span class="p">,</span> <span class="n">HGate</span><span class="p">,</span> <span class="n">XGate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">timeit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mthree</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h2>ステップ 1: 古典的な入力を量子問題へマッピングする<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>まず、隠れシフト問題を <code class="docutils literal notranslate"><span class="pre">QuantumCircuit</span></code> として実装する関数を書きます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">apply_hadamards</span><span class="p">(</span><span class="n">qubits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Qubit</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">CircuitInstruction</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""すべての量子ビットにアダマールゲートを作用させる"""</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">qubits</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">CircuitInstruction</span><span class="p">(</span><span class="n">HGate</span><span class="p">(),</span> <span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="p">[])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_shift</span><span class="p">(</span>
+    <span class="n">qubits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Qubit</span><span class="p">],</span> <span class="n">shift</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">CircuitInstruction</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""シフトのビットが 1 のところに X ゲートを作用させる"""</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">shift</span><span class="o">.</span><span class="n">bit_length</span><span class="p">()),</span> <span class="n">qubits</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shift</span> <span class="o">&gt;&gt;</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">CircuitInstruction</span><span class="p">(</span><span class="n">XGate</span><span class="p">(),</span> <span class="p">[</span><span class="n">q</span><span class="p">],</span> <span class="p">[])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">oracle_f</span><span class="p">(</span><span class="n">qubits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Qubit</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">CircuitInstruction</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""f オラクルを作用させる"""</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="n">CircuitInstruction</span><span class="p">(</span><span class="n">CZGate</span><span class="p">(),</span> <span class="p">[</span><span class="n">qubits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">qubits</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">oracle_g</span><span class="p">(</span>
+    <span class="n">qubits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Qubit</span><span class="p">],</span> <span class="n">shift</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">CircuitInstruction</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""g オラクルを作用させる"""</span>
+    <span class="k">yield from</span> <span class="n">apply_shift</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">oracle_f</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">apply_shift</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">determine_hidden_shift</span><span class="p">(</span>
+    <span class="n">qubits</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Qubit</span><span class="p">],</span> <span class="n">shift</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">CircuitInstruction</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""隠れシフトを決定する"""</span>
+    <span class="k">yield from</span> <span class="n">apply_hadamards</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">oracle_g</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+    <span class="c1"># 後処理と引き換えに、この層を省略する</span>
+    <span class="c1"># yield from apply_hadamards(qubits)</span>
+    <span class="k">yield from</span> <span class="n">oracle_f</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">apply_hadamards</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_hidden_shift_circuit</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">rng</span><span class="p">):</span>
+    <span class="n">hidden_shift</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">)</span>
+
+    <span class="n">qubits</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">n_qubits</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"q"</span><span class="p">)</span>
+    <span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="o">.</span><span class="n">from_instructions</span><span class="p">(</span>
+        <span class="n">determine_hidden_shift</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">hidden_shift</span><span class="p">),</span> <span class="n">qubits</span><span class="o">=</span><span class="n">qubits</span>
+    <span class="p">)</span>
+    <span class="n">circuit</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+    <span class="c1"># 隠れシフトを文字列に整形する</span>
+    <span class="n">hidden_shift_string</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">hidden_shift</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"0</span><span class="si">{</span><span class="n">n_qubits</span><span class="si">}</span><span class="s2">b"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">hidden_shift</span><span class="p">,</span> <span class="n">hidden_shift_string</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">display_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">circuit</span><span class="o">.</span><span class="n">remove_final_measurements</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+        <span class="s2">"mpl"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>まずは小さな例から始めます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">random_seed</span> <span class="o">=</span> <span class="mi">12345</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">Random</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+<span class="n">circuit</span><span class="p">,</span> <span class="n">hidden_shift</span><span class="p">,</span> <span class="n">hidden_shift_string</span> <span class="o">=</span> <span class="n">run_hidden_shift_circuit</span><span class="p">(</span>
+    <span class="n">n_qubits</span><span class="p">,</span> <span class="n">rng</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"隠れシフトの文字列 </span><span class="si">{</span><span class="n">hidden_shift_string</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">display_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>隠れシフトの文字列 011010
+</pre></div>
+</div>
+<img alt="../_images/f219bc4312dc24060ebbae2900db6b1aa2f35a71cdf433fc1d5f99767f11f61c.png" src="../_images/f219bc4312dc24060ebbae2900db6b1aa2f35a71cdf433fc1d5f99767f11f61c.png" />
+</div>
+</div>
+</section>
+<section id="id10">
+<h2>ステップ 2: 量子ハードウェアでの実行に向けて回路を最適化する<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_tags</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s2">"shift </span><span class="si">{</span><span class="n">hidden_shift_string</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">"n_qubits </span><span class="si">{</span><span class="n">n_qubits</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">"seed = </span><span class="si">{</span><span class="n">random_seed</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">job_tags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['shift 011010', 'n_qubits 6', 'seed = 12345']
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># IBM Cloud 上の量子コンピューターで回路を実行するには、ここのコメントを外す</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
+    <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
+
+<span class="c1"># from qiskit_ibm_runtime.fake_provider import FakeMelbourneV2</span>
+<span class="c1"># backend = FakeMelbourneV2()</span>
+<span class="c1"># backend.refresh(service)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"使用するバックエンド: </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_isa_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+    <span class="n">pass_manager</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span>
+        <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">seed_transpiler</span><span class="o">=</span><span class="mi">1234</span>
+    <span class="p">)</span>
+    <span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">pass_manager</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">isa_circuit</span>
+
+
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">get_isa_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+<span class="n">display_circuit</span><span class="p">(</span><span class="n">isa_circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>使用するバックエンド: ibm_fez
+</pre></div>
+</div>
+<img alt="../_images/8f7340a3203a974db040d5901faf0f0fa00bcd5f96fcf47444ac095d8110e905.png" src="../_images/8f7340a3203a974db040d5901faf0f0fa00bcd5f96fcf47444ac095d8110e905.png" />
+</div>
+</div>
+</section>
+<section id="qiskit">
+<h2>ステップ 3: Qiskit プリミティブを使って回路を実行する<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sampler プリミティブを使って隠れシフト問題を解くジョブを送信する</span>
+<span class="n">NUM_SHOTS</span> <span class="o">=</span> <span class="mi">50_000</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="p">,</span> <span class="n">num_shots</span><span class="p">):</span>
+    <span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+    <span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">job_tags</span>
+    <span class="n">pubs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">NUM_SHOTS</span><span class="p">)]</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pubs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">job</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_mthree_mitigation</span><span class="p">(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+    <span class="c1"># mthree がどの量子ビットをキャリブレーションすればよいかわかるように、最終的な量子ビットのマッピングを取得する</span>
+    <span class="n">qubit_mapping</span> <span class="o">=</span> <span class="n">mthree</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">final_measurement_mapping</span><span class="p">(</span><span class="n">isa_circuit</span><span class="p">)</span>
+
+    <span class="c1"># 読み出しエラーのキャリブレーション用のジョブを送信する</span>
+    <span class="n">mit</span> <span class="o">=</span> <span class="n">mthree</span><span class="o">.</span><span class="n">M3Mitigation</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+    <span class="n">mit</span><span class="o">.</span><span class="n">cals_from_system</span><span class="p">(</span><span class="n">qubit_mapping</span><span class="p">,</span> <span class="n">rep_delay</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mit</span><span class="p">,</span> <span class="n">qubit_mapping</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">run_sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="p">,</span> <span class="n">NUM_SHOTS</span><span class="p">)</span>
+<span class="n">mit</span><span class="p">,</span> <span class="n">qubit_mapping</span> <span class="o">=</span> <span class="n">setup_mthree_mitigation</span><span class="p">(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h2>ステップ 4: 後処理を行い、古典的な形式で結果を返す<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>上の理論的な議論では、入力 <span class="math notranslate nohighlight">\(ab\)</span> に対して出力 <span class="math notranslate nohighlight">\(ba\)</span> が得られることを確かめました。
+さらに 1 つ複雑な点があります。（トランスパイル前の）回路を単純にするため、必要な CZ ゲートを隣り合う量子ビットの組の間に挿入しました。これは、ビット列 <span class="math notranslate nohighlight">\(a\)</span> と <span class="math notranslate nohighlight">\(b\)</span> を <span class="math notranslate nohighlight">\(a1 b1 a2 b2 \ldots\)</span> のように交互に並べることに相当します。
+出力文字列 <span class="math notranslate nohighlight">\(ba\)</span> も同様に <span class="math notranslate nohighlight">\(b1 a1 b2 a2 \ldots\)</span> と交互に並びます。下の関数 <code class="docutils literal notranslate"><span class="pre">unscramble</span></code> は、入力と出力の文字列を直接比較できるように、出力文字列を <span class="math notranslate nohighlight">\(b1 a1 b2 a2 \ldots\)</span> から <span class="math notranslate nohighlight">\(a1 b1 a2 b2 \ldots\)</span> へ変換します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ビット列のカウントを取得する</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_bitstring_counts</span><span class="p">(</span><span class="n">job</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="n">pub_result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">counts</span><span class="p">,</span> <span class="n">pub_result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="p">,</span> <span class="n">pub_result</span> <span class="o">=</span> <span class="n">get_bitstring_counts</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>2 つのビット列の間のハミング距離とは、ビットが異なる位置の数のことです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">hamming_distance</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">c1</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">c2</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">c1</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">c2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">c1</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">c2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">weight</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">weight</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a1b1a2b2... という形の文字列を b1a1b2a1... に置き換える</span>
+<span class="c1"># つまり、連続するビットの組それぞれの順番を逆にする</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">unscramble</span><span class="p">(</span><span class="n">bitstring</span><span class="p">):</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="p">[</span><span class="n">bitstring</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">bitstring</span><span class="p">),</span> <span class="mi">2</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_hidden_shift_bitstring</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">hidden_shift_string</span><span class="p">):</span>
+    <span class="c1"># カウントを確率に変換する</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">unscramble</span><span class="p">(</span><span class="n">bitstring</span><span class="p">):</span> <span class="n">count</span> <span class="o">/</span> <span class="n">NUM_SHOTS</span>
+        <span class="k">for</span> <span class="n">bitstring</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1"># 最も確率の高いビット列を取得する</span>
+    <span class="n">most_probable</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">probs</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"期待される隠れシフトの文字列: </span><span class="si">{</span><span class="n">hidden_shift_string</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">most_probable</span> <span class="o">==</span> <span class="n">hidden_shift_string</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"最も確率の高いビット列が隠れシフトと一致しました 😊。"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"最も確率の高いビット列は隠れシフトと一致しませんでした ☹️。"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"上位 10 個のビット列とその確率:"</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">hamming_distance</span><span class="p">(</span><span class="n">hidden_shift_string</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span>
+                <span class="n">probs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">probs</span><span class="p">,</span> <span class="n">most_probable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probs</span><span class="p">,</span> <span class="n">most_probable</span> <span class="o">=</span> <span class="n">find_hidden_shift_bitstring</span><span class="p">(</span>
+    <span class="n">counts</span><span class="p">,</span> <span class="n">hidden_shift_string</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>期待される隠れシフトの文字列: 011010
+最も確率の高いビット列が隠れシフトと一致しました 😊。
+上位 10 個のビット列とその確率:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'011010': (0.9709, 6),
+ '011000': (0.0103, 5),
+ '010010': (0.0079, 5),
+ '001010': (0.0065, 5),
+ '011011': (0.00306, 5),
+ '111010': (0.0006, 5),
+ '011110': (0.0004, 5),
+ '010000': (0.0001, 4),
+ '000010': (8e-05, 4),
+ '001011': (4e-05, 4)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>M3 による読み出しエラー緩和を適用する前に、最も確率の高いビット列の確率を記録しておきましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_probability_before_M3</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[</span><span class="n">most_probable</span><span class="p">]</span>
+<span class="n">max_probability_before_M3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9709
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、M3 が学習した読み出しの補正をカウントに適用します。
+関数 <code class="docutils literal notranslate"><span class="pre">apply_corrections</span></code> は準確率分布を返します。これは合計が <span class="math notranslate nohighlight">\(1\)</span> になる <code class="docutils literal notranslate"><span class="pre">float</span></code> オブジェクトのリストです。ただし、一部の値は負になることがあります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">perform_mitigation</span><span class="p">(</span><span class="n">mit</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">qubit_mapping</span><span class="p">):</span>
+    <span class="c1"># 読み出しエラーを緩和する</span>
+    <span class="n">quasis</span> <span class="o">=</span> <span class="n">mit</span><span class="o">.</span><span class="n">apply_correction</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">qubit_mapping</span><span class="p">)</span>
+
+    <span class="c1"># 結果を表示する</span>
+    <span class="n">most_probable_after_m3</span> <span class="o">=</span> <span class="n">unscramble</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">quasis</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">quasis</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+
+    <span class="n">is_hidden_shift_identified</span> <span class="o">=</span> <span class="n">most_probable_after_m3</span> <span class="o">==</span> <span class="n">hidden_shift_string</span>
+    <span class="k">if</span> <span class="n">is_hidden_shift_identified</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"最も確率の高いビット列が隠れシフトと一致しました 😊。"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"最も確率の高いビット列は隠れシフトと一致しませんでした ☹️。"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"上位 10 個のビット列とその準確率:"</span><span class="p">)</span>
+    <span class="n">topten</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">unscramble</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">quasis</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span>
+            <span class="p">:</span><span class="mi">10</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="n">max_probability_after_M3</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">topten</span><span class="p">[</span><span class="n">most_probable_after_m3</span><span class="p">])</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">topten</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">max_probability_after_M3</span><span class="p">,</span> <span class="n">is_hidden_shift_identified</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"期待される隠れシフトの文字列: </span><span class="si">{</span><span class="n">hidden_shift_string</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">max_probability_after_M3</span><span class="p">,</span> <span class="n">is_hidden_shift_identified</span> <span class="o">=</span> <span class="n">perform_mitigation</span><span class="p">(</span>
+    <span class="n">mit</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">qubit_mapping</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>期待される隠れシフトの文字列: 011010
+最も確率の高いビット列が隠れシフトと一致しました 😊。
+上位 10 個のビット列とその準確率:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'011010': '1.00e+00',
+ '011000': '3.03e-04',
+ '111010': '1.16e-04',
+ '000010': '3.06e-05',
+ '001011': '1.98e-05',
+ '010000': '1.55e-05',
+ '110010': '1.49e-05',
+ '011001': '7.61e-06',
+ '010011': '-4.79e-06',
+ '001000': '-2.95e-05'}
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id12">
+<h3>M3 による補正の適用前と適用後で、隠れシフトの文字列の特定結果を比較する<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compare_before_and_after_M3</span><span class="p">(</span>
+    <span class="n">max_probability_before_M3</span><span class="p">,</span>
+    <span class="n">max_probability_after_M3</span><span class="p">,</span>
+    <span class="n">is_hidden_shift_identified</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">is_probability_improved</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">max_probability_after_M3</span> <span class="o">&gt;</span> <span class="n">max_probability_before_M3</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"M3 適用前の最大確率: </span><span class="si">{</span><span class="n">max_probability_before_M3</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"M3 適用後の最大確率: </span><span class="si">{</span><span class="n">max_probability_after_M3</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_hidden_shift_identified</span> <span class="ow">and</span> <span class="n">is_probability_improved</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"読み出しエラー緩和は効果がありました！ 😊"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"読み出しエラー緩和は効果がありませんでした。 ☹️"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_before_and_after_M3</span><span class="p">(</span>
+    <span class="n">max_probability_before_M3</span><span class="p">,</span>
+    <span class="n">max_probability_after_M3</span><span class="p">,</span>
+    <span class="n">is_hidden_shift_identified</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M3 適用前の最大確率: 0.9709
+M3 適用後の最大確率: 1.0
+読み出しエラー緩和は効果がありました！ 😊
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="m3-cpu">
+<h3>M3 に必要な CPU 時間がショット数に応じてどう増えるかをプロットする<a class="headerlink" href="#m3-cpu" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ショット数を 5000 から 25000 まで変えてサンプルを集める</span>
+<span class="n">shots_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">NUM_SHOTS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2500</span><span class="p">)</span>
+<span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">shots</span> <span class="ow">in</span> <span class="n">shots_range</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">shots</span><span class="si">}</span><span class="s2"> ショットに M3 の補正を適用しています..."</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">mit</span><span class="o">.</span><span class="n">apply_correction</span><span class="p">(</span>
+        <span class="n">pub_result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">slice_shots</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">shots</span><span class="p">))</span><span class="o">.</span><span class="n">get_counts</span><span class="p">(),</span>
+        <span class="n">qubit_mapping</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="si">{</span><span class="n">t1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t0</span><span class="si">}</span><span class="s2"> 秒で完了しました。"</span><span class="p">)</span>
+    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">shots_range</span><span class="p">,</span> <span class="n">times</span><span class="p">,</span> <span class="s2">"o--"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"ショット数"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"時間（秒）"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"M3 の補正の適用にかかる時間"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5000 ショットに M3 の補正を適用しています...
+	0.01089445801335387 秒で完了しました。
+7500 ショットに M3 の補正を適用しています...
+	0.009875584015389904 秒で完了しました。
+10000 ショットに M3 の補正を適用しています...
+	0.00679754200973548 秒で完了しました。
+12500 ショットに M3 の補正を適用しています...
+	0.007828083995264024 秒で完了しました。
+15000 ショットに M3 の補正を適用しています...
+	0.008791750005912036 秒で完了しました。
+17500 ショットに M3 の補正を適用しています...
+	0.011779624997870997 秒で完了しました。
+20000 ショットに M3 の補正を適用しています...
+	0.01177445802022703 秒で完了しました。
+22500 ショットに M3 の補正を適用しています...
+	0.01290366699686274 秒で完了しました。
+25000 ショットに M3 の補正を適用しています...
+	0.013930084009189159 秒で完了しました。
+27500 ショットに M3 の補正を適用しています...
+	0.01609062499483116 秒で完了しました。
+30000 ショットに M3 の補正を適用しています...
+	0.016732042015064508 秒で完了しました。
+32500 ショットに M3 の補正を適用しています...
+	0.018017000023974106 秒で完了しました。
+35000 ショットに M3 の補正を適用しています...
+	0.01928845900692977 秒で完了しました。
+37500 ショットに M3 の補正を適用しています...
+	0.021354999975301325 秒で完了しました。
+40000 ショットに M3 の補正を適用しています...
+	0.022252333990763873 秒で完了しました。
+42500 ショットに M3 の補正を適用しています...
+	0.023340749990893528 秒で完了しました。
+45000 ショットに M3 の補正を適用しています...
+	0.025401666993275285 秒で完了しました。
+47500 ショットに M3 の補正を適用しています...
+	0.02572666699416004 秒で完了しました。
+50000 ショットに M3 の補正を適用しています...
+	0.027770666987635195 秒で完了しました。
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, 'M3 の補正の適用にかかる時間')
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 26178 (\N{CJK UNIFIED IDEOGRAPH-6642}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 38291 (\N{CJK UNIFIED IDEOGRAPH-9593}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 65288 (\N{FULLWIDTH LEFT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 31186 (\N{CJK UNIFIED IDEOGRAPH-79D2}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 65289 (\N{FULLWIDTH RIGHT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12398 (\N{HIRAGANA LETTER NO}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 35036 (\N{CJK UNIFIED IDEOGRAPH-88DC}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 27491 (\N{CJK UNIFIED IDEOGRAPH-6B63}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 36969 (\N{CJK UNIFIED IDEOGRAPH-9069}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 29992 (\N{CJK UNIFIED IDEOGRAPH-7528}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12395 (\N{HIRAGANA LETTER NI}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12363 (\N{HIRAGANA LETTER KA}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12427 (\N{HIRAGANA LETTER RU}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12471 (\N{KATAKANA LETTER SI}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12519 (\N{KATAKANA LETTER SMALL YO}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12483 (\N{KATAKANA LETTER SMALL TU}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 12488 (\N{KATAKANA LETTER TO}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/events.py:101: UserWarning: Glyph 25968 (\N{CJK UNIFIED IDEOGRAPH-6570}) missing from font(s) DejaVu Sans.
+  func(*args, **kwargs)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 26178 (\N{CJK UNIFIED IDEOGRAPH-6642}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 38291 (\N{CJK UNIFIED IDEOGRAPH-9593}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 65288 (\N{FULLWIDTH LEFT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 31186 (\N{CJK UNIFIED IDEOGRAPH-79D2}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 65289 (\N{FULLWIDTH RIGHT PARENTHESIS}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12398 (\N{HIRAGANA LETTER NO}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 35036 (\N{CJK UNIFIED IDEOGRAPH-88DC}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 27491 (\N{CJK UNIFIED IDEOGRAPH-6B63}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 36969 (\N{CJK UNIFIED IDEOGRAPH-9069}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 29992 (\N{CJK UNIFIED IDEOGRAPH-7528}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12395 (\N{HIRAGANA LETTER NI}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12363 (\N{HIRAGANA LETTER KA}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12427 (\N{HIRAGANA LETTER RU}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12471 (\N{KATAKANA LETTER SI}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12519 (\N{KATAKANA LETTER SMALL YO}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12483 (\N{KATAKANA LETTER SMALL TU}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 12488 (\N{KATAKANA LETTER TO}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+/Users/kifumi/uv/qiskit_252/.venv/lib/python3.12/site-packages/IPython/core/pylabtools.py:158: UserWarning: Glyph 25968 (\N{CJK UNIFIED IDEOGRAPH-6570}) missing from font(s) DejaVu Sans.
+  fig.canvas.print_figure(bytes_io, **kw)
+</pre></div>
+</div>
+<img alt="../_images/faf22e778a8836197f0cb4993ed346fb761c4a32c7802f370d46bb3d71166f10.png" src="../_images/faf22e778a8836197f0cb4993ed346fb761c4a32c7802f370d46bb3d71166f10.png" />
+</div>
+</div>
+<section id="id13">
+<h4>プロットの解釈<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<p>上のプロットから、M3 の補正の適用に必要な時間は、ショット数に対して線形に増えることがわかります。</p>
+</section>
+</section>
+</section>
+<section id="id14">
+<h2>スケールアップ<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_qubits</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">Random</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">circuit</span><span class="p">,</span> <span class="n">hidden_shift</span><span class="p">,</span> <span class="n">hidden_shift_string</span> <span class="o">=</span> <span class="n">run_hidden_shift_circuit</span><span class="p">(</span>
+    <span class="n">n_qubits</span><span class="p">,</span> <span class="n">rng</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"隠れシフトの文字列 </span><span class="si">{</span><span class="n">hidden_shift_string</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>隠れシフトの文字列 00000010100110101011101110010001010000110011101001101010101001111001100110000111
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">get_isa_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">run_sampler</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">isa_circuit</span><span class="p">,</span> <span class="n">NUM_SHOTS</span><span class="p">)</span>
+<span class="n">mit</span><span class="p">,</span> <span class="n">qubit_mapping</span> <span class="o">=</span> <span class="n">setup_mthree_mitigation</span><span class="p">(</span><span class="n">isa_circuit</span><span class="p">,</span> <span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="p">,</span> <span class="n">pub_result</span> <span class="o">=</span> <span class="n">get_bitstring_counts</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probs</span><span class="p">,</span> <span class="n">most_probable</span> <span class="o">=</span> <span class="n">find_hidden_shift_bitstring</span><span class="p">(</span>
+    <span class="n">counts</span><span class="p">,</span> <span class="n">hidden_shift_string</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>期待される隠れシフトの文字列: 00000010100110101011101110010001010000110011101001101010101001111001100110000111
+最も確率の高いビット列が隠れシフトと一致しました 😊。
+上位 10 個のビット列とその確率:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'00000010100110101011101110010001010000110011101001101010101001111001100110000111': (0.2863,
+  80),
+ '00000010100110101011111110010001010000110011101001101010101001111001100110000111': (0.0217,
+  79),
+ '00000010100110101011101110010001010000110011101001111010101001111001100110000111': (0.01974,
+  79),
+ '00000010100110101011101110010001010000100011101001101010101001111001100110000111': (0.0196,
+  79),
+ '00000010100110101011101010010001010000110011101001101010101001111001100110000111': (0.018,
+  79),
+ '00000010100110101011101110010001010000110011101001101010100001111001100110000111': (0.01684,
+  79),
+ '00000010100110101011101110010001010000110011101001101010101001111001101110000111': (0.01612,
+  79),
+ '00000010100110101011101110010001010000110011101001101010101101111001100110000111': (0.01416,
+  79),
+ '00000010100110101011101110010001000000110011101001101010101001111001100110000111': (0.01196,
+  79),
+ '00000010100110111011101110010001010000110011101001101010101001111001100110000111': (0.01042,
+  79)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>正しい隠れシフトの文字列が見つかったことがわかります。さらに、次に確率の高い 9 個のビット列は、1 か所だけが間違っています。</p>
+<p>最も高い確率を記録します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_probability_before_M3</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[</span><span class="n">most_probable</span><span class="p">]</span>
+<span class="n">max_probability_before_M3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2863
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"期待される隠れシフトの文字列: </span><span class="si">{</span><span class="n">hidden_shift_string</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">max_probability_after_M3</span><span class="p">,</span> <span class="n">is_hidden_shift_identified</span> <span class="o">=</span> <span class="n">perform_mitigation</span><span class="p">(</span>
+    <span class="n">mit</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">qubit_mapping</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>期待される隠れシフトの文字列: 00000010100110101011101110010001010000110011101001101010101001111001100110000111
+最も確率の高いビット列が隠れシフトと一致しました 😊。
+上位 10 個のビット列とその準確率:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'00000010100110101011101110010001010000110011101001101010101001111001100110000111': '9.06e-01',
+ '00000010100110101011101110000001010000110011101001101010101001111001100110000111': '3.84e-03',
+ '00000010100110101011101110010001010000110011101001101010101001111001100010000111': '2.73e-03',
+ '10000010100110101011101110010001010000110011101001101010101001111001100110000111': '2.34e-03',
+ '00000010100110001011101110010001010000110011101001101010101001111001100110000111': '2.29e-03',
+ '00000010100110101011101110010001110000110011101001101010101001111001100110000111': '1.58e-03',
+ '00000010100110101010101110010001010000110011101001101010101001111001100110000111': '1.43e-03',
+ '00000010100110101011101110010001010000110011001001101010101001111001100110000111': '1.22e-03',
+ '00000010100110101011101110010001010000110011101001101010101001111001100110000011': '1.10e-03',
+ '00000010100110101011101110010001010000110010101001101010101001111001100110000111': '1.07e-03'}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compare_before_and_after_M3</span><span class="p">(</span>
+    <span class="n">max_probability_before_M3</span><span class="p">,</span>
+    <span class="n">max_probability_after_M3</span><span class="p">,</span>
+    <span class="n">is_hidden_shift_identified</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>M3 適用前の最大確率: 0.2863
+M3 適用後の最大確率: 0.906
+読み出しエラー緩和は効果がありました！ 😊
+</pre></div>
+</div>
+</div>
+</div>
+<p>結果から、読み出しエラーが支配的なエラー源であり、M3 による緩和が効果的だったことがわかります。</p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">読み出しエラーとは</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">理論的背景</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-m3">Qiskit M3 アドオン: より長いビット列へのスケーリング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m3">量子アルゴリズムへの M3 の適用</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">アダマール演算子とフーリエ変換</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">隠れシフト問題</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#f-g"><span class="math notranslate nohighlight">\(f\)</span> と <span class="math notranslate nohighlight">\(g\)</span> の量子回路</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">隠れシフトアルゴリズム</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ 1: 古典的な入力を量子問題へマッピングする</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ 2: 量子ハードウェアでの実行に向けて回路を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">ステップ 3: Qiskit プリミティブを使って回路を実行する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 4: 後処理を行い、古典的な形式で結果を返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">M3 による補正の適用前と適用後で、隠れシフトの文字列の特定結果を比較する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m3-cpu">M3 に必要な CPU 時間がショット数に応じてどう増えるかをプロットする</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">プロットの解釈</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">スケールアップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

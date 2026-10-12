@@ -1,0 +1,1903 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>シェーデッド・ライトコーンを用いた確率的エラー・キャンセレーション &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/pec-with-shaded-lightcones-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Ftutorial/pec-with-shaded-lightcones-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/pec-with-shaded-lightcones-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>シェーデッド・ライトコーンを用いた確率的エラー・キャンセレーション</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slc">SLC によるエラー緩和ワークフローの概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ノイズ学習の概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">後処理の概要</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">小規模なシミュレーターでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">大規模なハードウェアでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 1: 問題をマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">ステップ 2: 最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">回路をボックス化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">正準基底の測定を準備する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">ライトコーン・シェーディング、ノイズ学習、アンチノイズ注入のワークフロー</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">学習対象のノイズモデルのパウリ項を予測する</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a. 順方向の上限を計算する</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">上限の計算パラメーターを設定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b. 量子速度限界を使って順方向の上限を厳しくする</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c. 逆方向の上限を計算する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">学習したノイズ・レートを使わずに統合した上限をプレビューする</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">ステップ 3: 実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">a. ノイズ・レートを学習する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-i">b.i. 実際に学習したノイズ・レートで統合した上限を更新する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-ii-local-scales">b.ii. ハードウェア実行のための <code class="docutils literal notranslate"><span class="pre">local_scales</span></code> を計算する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">サンプリング・オーバーヘッドと残留バイアスのトレードオフ</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">c. アンチノイズを加えて対象の回路を実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-i-samplex">c.i. <code class="docutils literal notranslate"><span class="pre">samplex</span></code> を使ってテンプレート回路を準備する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-ii-quantumprogram">c.ii. <code class="docutils literal notranslate"><span class="pre">QuantumProgram</span></code> を設定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-iii-executor">c.iii. <code class="docutils literal notranslate"><span class="pre">Executor</span></code> プリミティブでプログラムを実行する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">ステップ 4: 後処理を行う</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">次のステップ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>シェーデッド・ライトコーンを用いた確率的エラー・キャンセレーション<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><em>使用量の目安: Heron プロセッサで 10 分（注意: これはあくまで目安です。実際の実行時間は異なる場合があります。）</em></p>
+<section id="id2">
+<h2>学習成果<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>確率的エラー・キャンセレーション（PEC）とは何か、また、そのサンプリング・オーバーヘッド <span class="math notranslate nohighlight">\(\gamma^2\)</span> が回路に作用するノイズの総量に対して指数関数的に増加する理由</p></li>
+<li><p>シェーデッド・ライトコーン（SLC）が、各ノイズ項の対象観測量への寄与をどのように上から抑え、緩和の予算を重要な箇所に割り当てられるようにするのか。さらに、純粋に幾何学的なライトコーンによって得られるバイアスなしのオーバーヘッド削減に加えて、シェーディングによって、有界な残留バイアスと引き換えにサンプリング・オーバーヘッドをさらに下げられる仕組み</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NoiseLearnerV3</span></code> で層のノイズを学習し、<code class="docutils literal notranslate"><span class="pre">samplomatic</span></code> と <code class="docutils literal notranslate"><span class="pre">Executor</span></code> プリミティブを通じてアンチノイズを注入する方法</p></li>
+<li><p>PEC および PEC+SLC を TREX とポストセレクションと組み合わせて、ハードウェア上で期待値を推定する方法</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>前提知識<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#/docs/guides/intro-to-patterns"><span class="xref myst">Qiskit パターン</span></a> のワークフロー</p></li>
+<li><p>観測量の期待値を計算するための <a class="reference internal" href="#/docs/guides/get-started-with-estimator"><span class="xref myst">Estimator</span></a> プリミティブの使い方</p></li>
+<li><p><a class="reference internal" href="#/docs/tutorials/combine-error-mitigation-techniques"><span class="xref myst">Estimator プリミティブでのエラー緩和オプションの組み合わせ</span></a> で扱っている、パウリ・ツワーリングや TREX などのエラー緩和手法</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>背景<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>このチュートリアルでは、シェーデッド・ライトコーン（SLC）アドオンを使ってエラーを緩和する方法を示します。このアドオンは <a class="reference internal" href="#/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec"><span class="xref myst">確率的エラー・キャンセレーション（PEC）の手法</span></a> を発展させたものです。PEC では、回路内の固有の層のノイズを学習し、1 量子ビット・ゲートの適用と後処理の手法によってそのノイズを打ち消します。他の手法と比べて、PEC は緩和した結果のバイアスに対してより堅牢な上限を与えますが、QPU 時間の観点でオーバーヘッドが大きくなりがちです。PEC では、ノイズによる期待値の減衰を補償するために、平均結果を係数 <span class="math notranslate nohighlight">\(\gamma = \exp(\sum_{l,\sigma} 2\lambda_{l,\sigma})\)</span> でリスケーリングします。ここで <span class="math notranslate nohighlight">\(\lambda_{l,\sigma}\)</span> は、回路の層 <span class="math notranslate nohighlight">\(l\)</span> におけるエラー・パウリ <span class="math notranslate nohighlight">\(\sigma\)</span> の学習済みノイズ・レートです。このリスケーリングにより分散は <span class="math notranslate nohighlight">\(\gamma^2\)</span> 倍になり、その結果 QPU 上で必要な回路の実行回数も <span class="math notranslate nohighlight">\(\gamma^2\)</span> 倍になります。これをサンプリング・コストまたはサンプリング・オーバーヘッドと呼びます。<span class="math notranslate nohighlight">\(\gamma\)</span> は指数関数的に増加するため、PEC は浅い回路や量子ビット数の少ない回路に限られることがよくあります。PEC について詳しくは、<a class="reference external" href="https://arxiv.org/abs/2201.09866">Probabilistic error cancellation with sparse Pauli-Lindblad models on noisy quantum processors</a> を参照してください。</p>
+<p>緩和する必要のないエラーを特定できれば、このサンプリング・コストを指数関数的に削減できます。この方向への第一歩は、局所性を考慮したエラー緩和を実装することです。この方法では、高速に計算できる従来の「ライトコーン」を使って、回路全体のエラーに対する観測量の感度を上から抑えることで PEC のオーバーヘッドを削減し、一部の問題では PEC をより大きな規模でも実行可能にします。このライトコーンの外側にあるエラーは測定結果に影響を与えないため、エラー・キャンセレーションの手順から除外できます。この除外によって、追加のバイアスを生じさせることなく、サンプリング・オーバーヘッドが（場合によっては大幅に）削減されます。特に、深さが一定の回路で局所観測量 <span class="math notranslate nohighlight">\(O\)</span> を測定する場合、回路の量子ビット数を増やしていくと、必要なサンプリング・オーバーヘッドはやがて頭打ちになります（<a class="reference external" href="https://arxiv.org/abs/2303.06496">Locality and error mitigation of quantum circuits</a> の図 2b を参照してください）。</p>
+<p>シェーデッド・ライトコーン（SLC）はさらに一歩進んで、古典シミュレーションを使い、回路全体のエラーに対する感度をより厳密に上から抑えます。これにより、QPU 時間の一部を CPU 時間と引き換えにし、バイアスの再正規化に必要なサンプリング・オーバーヘッドを削減します。ハードなカットオフの代わりに、回路内の潜在的な各エラーに段階的な「シェード（濃淡）」が割り当てられます。シェードは、そのエラーに対する観測量の期待値の感受性の上限を表します（以下で紹介する逆伝播による上限では、この感受性は回路の初期状態にも依存します。典型的なワークフローでも、このチュートリアルでも、初期状態は全ゼロ状態です）。この精緻な特性評価により、分散を抑えつつ、より効率的で的を絞った PEC の適用が可能になると同時に、観測量の推定におけるバイアスを制御しながら調整できるようになります。詳しくは、<a class="reference external" href="https://arxiv.org/abs/2409.04401">Lightcone shading for classically accelerated quantum error mitigation</a> を参照してください。</p>
+<p>SLC アドオンのワークフローでは、<a class="reference internal" href="#/docs/addons/samplomatic/index"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">samplomatic</span></code></span></a> ライブラリーと、<code class="docutils literal notranslate"><span class="pre">qiskit-ibm-runtime</span></code> v0.47.0 で Qiskit Runtime に追加された <code class="docutils literal notranslate"><span class="pre">QuantumProgram</span></code> クラスおよび <code class="docutils literal notranslate"><span class="pre">Executor</span></code> クラスを活用します。これにより、使いやすさを保ちながら、エラー抑制とエラー緩和の実行設定をよりモジュール的に制御できます。詳しくは、<a class="reference internal" href="#/docs/guides/directed-execution-model"><span class="xref myst">ダイレクテッド実行モデル</span></a> のガイドを参照してください。</p>
+<section id="slc">
+<h3>SLC によるエラー緩和ワークフローの概要<a class="headerlink" href="#slc" title="Link to this heading">#</a></h3>
+<p>QPU のノイズのモデル化には、デバイスの各量子ビットと各エッジ上で局所的に生成される、1 量子ビットおよび 2 量子ビットのパウリ・エラー・レートを持つスパース・パウリ・リンドブラッド・ノイズモデルを使います。この選択のもとで、このチュートリアルで示す SLC によるエラー緩和ワークフローは次のとおりです。</p>
+<p>a. CPU — 1 量子ビットおよび 2 量子ビットのパウリ・エラーについて、エラーごとの影響の上限を求める</p>
+<ol class="arabic simple">
+<li><p>順伝播（観測量への影響の上限）。各エラーを回路の末尾まで伝播させ、観測量との交換子を計算します。</p>
+<ul class="simple">
+<li><p>計算を扱える範囲に保つため、発展の過程で演算子の項を打ち切ります。</p></li>
+<li><p>量子速度限界に基づく観測量の緩い逆伝播によって、これらの上限をさらに厳しくします。</p></li>
+</ul>
+</li>
+<li><p>逆伝播（初期状態への影響の上限）。各エラーを回路の先頭まで伝播させ、初期状態との交換子を計算します。</p></li>
+</ol>
+<p>b. QPU — ノイズ・レートを学習する。<code class="docutils literal notranslate"><span class="pre">NoiseLearnerV3</span></code> を使って、パウリ・リンドブラッド・ノイズモデルのレートを推定します。</p>
+<p>c. CPU — 緩和の優先順位を決める</p>
+<ol class="arabic simple">
+<li><p>学習したノイズ・レートで、統合した上限を更新する。事前に計算した順方向と逆方向の上限を組み合わせ、学習したノイズ・レートで更新します。</p></li>
+<li><p>計算した上限と学習したレートを使って、緩和するノイズ成分をランク付けする。考えられる各ノイズ・エラーについて、バイアスへの推定影響と、それを補正するためのコストに基づいて優先順位を付けます。</p></li>
+</ol>
+<p>d. QPU — アンチノイズを挿入して実行する。<code class="docutils literal notranslate"><span class="pre">Box</span></code> アノテーションを使って指定したアンチノイズ（逆ノイズ）を加えて、対象の回路を実行します。</p>
+<p>e. CPU — 観測量を推定する。期待値を計算します。その際、非マルコフ的ノイズの影響を減らすために、測定に基づくポストセレクションを適用します。</p>
+</section>
+<section id="id5">
+<h3>ノイズ学習の概要<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>ノイズ学習は、いくつかのエラー緩和手法に共通するステップであり、<a class="reference internal" href="#/docs/guides/noise-learning"><span class="xref myst">ノイズ・ラーナー</span></a> によって実行されます。これは <a class="reference internal" href="#/docs/tutorials/probabilistic-error-amplification"><span class="xref myst">確率的エラー増幅のチュートリアル</span></a> にも登場します。<code class="docutils literal notranslate"><span class="pre">NoiseLearnerV3</span></code> では、学習対象のノイズ層を <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.CircuitInstruction"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">CircuitInstruction</span></code></span></a> オブジェクトとして明示的に指定できるため、上で説明した方法で各層について目的の SLC ノイズ上限を計算できます。学習したパウリ・リンドブラッド・モデルは、PEC+SLC の優先順位付けに使う係数を提供します。ゲートをどのように層にまとめるかは、便利な関数 <code class="docutils literal notranslate"><span class="pre">generate_boxing_pass_manager</span></code> と <code class="docutils literal notranslate"><span class="pre">find_unique_box_instructions</span></code> を使って決定し、以下のステップ 2 で説明するように、SLC のユーティリティー関数 <code class="docutils literal notranslate"><span class="pre">generate_noise_model_paulis</span></code> に渡します。</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>パート 1</strong></p></th>
+<th class="head"><p><strong>パート 2</strong></p></th>
+<th class="head"><p><strong>パート 3</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2 量子ビット・ゲートの層をパウリ・ツワーリングする</p></td>
+<td><p>恒等となる層のペアを繰り返してノイズを学習する</p></td>
+<td><p>忠実度（各ノイズチャネルのエラー）を導出する</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="パウリ・ツワーリング" src="https://quantum.cloud.ibm.com/docs/images/tutorials/pec-with-shaded-lightcones/paulitwirl.avif" /></p></td>
+<td><p><img alt="層の学習" src="https://quantum.cloud.ibm.com/docs/images/tutorials/pec-with-shaded-lightcones/learnlayer.avif" /></p></td>
+<td><p><img alt="曲線のフィット" src="https://quantum.cloud.ibm.com/docs/images/tutorials/pec-with-shaded-lightcones/curvefit.avif" /></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id6">
+<h3>後処理の概要<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">samplomatic</span></code> と <code class="docutils literal notranslate"><span class="pre">Executor</span></code> のフレームワークを使って量子ハードウェアで実行した後、ビット列の測定結果を目的の観測量の値に変換します。このチュートリアルでは、ミラー化したイジング回路（以下のステップ 1 で構成）でワークフローを示します。この回路では、後半が前半を元に戻すため、測定する観測量の理想的な期待値は 1 になります。<code class="docutils literal notranslate"><span class="pre">executor_expectation_values</span></code> 関数で観測量の値を計算する際には、ノイズの影響を減らすためにいくつかの後処理の手法を適用します。これには、非マルコフ的ノイズの影響を受けたショットの除去、読み出しエラー緩和、そして PEC の実装の詳細への対応が含まれます。詳細は以下のステップ 4 で説明します。</p>
+</section>
+</section>
+<section id="id7">
+<h2>要件<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>このチュートリアルを始める前に、次のものがインストールされていることを確認してください。</p>
+<ul class="simple">
+<li><p>Qiskit SDK v2.2 以降（<a class="reference internal" href="#/docs/api/qiskit/visualization"><span class="xref myst">可視化</span></a> サポート付き）</p></li>
+<li><p>Qiskit Runtime v0.47 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-ibm-runtime</span></code>）</p></li>
+<li><p>シェーデッド・ライトコーン Qiskit アドオン v0.1 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-addon-slc</span></code>）</p></li>
+<li><p>Qiskit アドオンユーティリティ v0.3 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">qiskit-addon-utils</span></code>）</p></li>
+<li><p>Samplomatic v0.13 以降（<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">samplomatic</span></code>）</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>セットアップ<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>まず、このノートブックの実行に必要なパッケージと関数をインポートします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_start_method</span>
+
+<span class="c1"># この値を設定すると、UNIX 系システムで itertools.starmap のデッドロックを防げる</span>
+<span class="n">set_start_method</span><span class="p">(</span><span class="s2">"spawn"</span><span class="p">)</span>
+
+<span class="c1"># PySCF が内部で並列化するのを防ぐために必要（SLC のみ）</span>
+<span class="o">%</span><span class="k">set_env</span> OMP_NUM_THREADS=1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>env: OMP_NUM_THREADS=1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span><span class="p">,</span> <span class="n">PassManager</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QiskitRuntimeService</span><span class="p">,</span>
+    <span class="n">QuantumProgram</span><span class="p">,</span>
+    <span class="n">Executor</span><span class="p">,</span>
+    <span class="n">NoiseLearnerV3</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">samplomatic</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">samplomatic.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_unique_box_instructions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">samplomatic.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_boxing_pass_manager</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.exp_vals.measurement_bases</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_measurement_bases</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.exp_vals.expectation_values</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">executor_expectation_values</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.noise_management</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">gamma_from_noisy_boxes</span><span class="p">,</span>
+    <span class="n">trex_factors</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.noise_management.post_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostSelector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_utils.noise_management.post_selection.transpiler.passes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AddPostSelectionMeasures</span><span class="p">,</span>
+    <span class="n">AddSpectatorMeasures</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_slc.bounds</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">compute_backward_bounds</span><span class="p">,</span>
+    <span class="n">compute_forward_bounds</span><span class="p">,</span>
+    <span class="n">compute_local_scales</span><span class="p">,</span>
+    <span class="n">merge_bounds</span><span class="p">,</span>
+    <span class="n">tighten_with_speed_limit</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_slc.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">generate_noise_model_paulis</span><span class="p">,</span>
+    <span class="n">map_modifier_ref_to_ref</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_addon_slc.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_shaded_lightcone</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h2>小規模なシミュレーターでの例<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>他の学習ベースのエラー緩和手法と同様に、シェーデッド・ライトコーンを用いた PEC は特定の量子プロセッサーの <em>物理的な</em> ノイズを緩和するものであり、理想的なシミュレーター上では意味のある対応物がないハードウェアのサービスに依存しています。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NoiseLearnerV3</span></code> は、固有の 2 量子ビット層のそれぞれについて、スパース・パウリ・リンドブラッド・ノイズチャネルを実験的に特性評価します。ノイズのないシミュレーターでは、打ち消すべきノイズがありません。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Executor</span></code> プリミティブは、<code class="docutils literal notranslate"><span class="pre">samplomatic</span></code> が生成した、ツワーリングとアンチノイズの注入を施した回路をバックエンド上でサンプリングします。</p></li>
+</ul>
+<p>シェーデッド・ライトコーンの上限の計算は古典的なものですが、緩和の予算とサンプリング・オーバーヘッドを決める、学習済みのハードウェアのノイズ・レートと組み合わせて初めて意味を持ちます。こうした理由から、小規模なシミュレーターでの例は省略し、PEC+SLC のワークフロー全体をハードウェア上で直接示します。Qiskit パターンの各ステップは以下で個別に説明します。</p>
+</section>
+<section id="id10">
+<h2>大規模なハードウェアでの例<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>IBM Quantum® のハードウェアで実行する 20 量子ビットのミラー化したイジング回路に対して、Qiskit パターンの 4 つのステップに従い、PEC+SLC のワークフロー全体を実行します。</p>
+<section id="id11">
+<h3>ステップ 1: 問題をマッピングする<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>このデモンストレーションの設定は次のとおりです。</p>
+<ol class="arabic simple">
+<li><p>1 次元イジング鎖ハミルトニアンのもとでの時間発展を行います。1 次元イジング鎖は密な回路構造になるため、PEC の実装を示すのに便利です。</p></li>
+<li><p>観測量 <span class="math notranslate nohighlight">\(\langle X_6 Z_{13}\rangle\)</span> を測定します。この観測量には <span class="math notranslate nohighlight">\(X\)</span> 成分と <span class="math notranslate nohighlight">\(Z\)</span> 成分が 1 つずつ含まれます。これは、SLC の上限が異なる種類のエラーをどのように異なって扱うかを強調するのに便利です。</p></li>
+<li><p>緩和した推定値の品質を判断しやすいように、この観測量の理想的な期待値がちょうど 1 になるようにしたいと考えます。回路をミラー化すると、ほぼこれが実現できます。回路の後半にあるすべてのゲートに対して前半に逆ゲートがあるため、理想的な回路は恒等演算として作用します。</p></li>
+<li><p>最後に、理想的な期待値 1 を得るには、回路が観測量の +1 固有状態から始まる（したがって、ミラー化のおかげで理想的には +1 固有状態で終わる）必要があります。観測量には <span class="math notranslate nohighlight">\(Z\)</span> 以外の成分が含まれており、<code class="docutils literal notranslate"><span class="pre">Executor</span></code> プリミティブは回路の末尾で目的の測定基底を考慮するため、<code class="docutils literal notranslate"><span class="pre">prepare_basis</span></code> 関数を使って、対応する基底準備ゲートをミラー回路の先頭に追加します。どのゲートが必要で、どこに配置するかを特定するには <code class="docutils literal notranslate"><span class="pre">get_measurement_bases</span></code> 関数を使います。その際、正準基底の測定の準備に関するセクションで説明するように、<code class="docutils literal notranslate"><span class="pre">box</span></code> アノテーションの規約に起因する量子ビット・インデックスの細かな点にも注意します。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># イジング鎖の幅（このデモンストレーションの自由パラメーター）</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># 測定する観測量: 上記の「ステップ 1: 問題をマッピングする」で説明したとおり、</span>
+<span class="c1"># X 成分（量子ビット 6）と Z 成分（量子ビット 13）を 1 つずつ含む</span>
+<span class="n">target_obs_sparse</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">"XZ"</span><span class="p">,</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span> <span class="mf">1.0</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_sparse_list</span><span class="p">(</span>
+    <span class="n">target_obs_sparse</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">num_qubits</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># この観測量に対して、各量子ビットに必要な測定基底を決定する。</span>
+<span class="c1"># reverser はステップ 4 の後処理で使う。</span>
+<span class="n">bases_virt</span><span class="p">,</span> <span class="n">reverser_virt</span> <span class="o">=</span> <span class="n">get_measurement_bases</span><span class="p">(</span><span class="n">observable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># デモンストレーション回路の自由パラメーター: トロッター・ステップ数で回路の深さが決まり、</span>
+<span class="c1"># rx_angle は各ステップで適用する横磁場の回転角</span>
+<span class="c1"># （pi/4 にするとダイナミクスが非クリフォードになる）</span>
+<span class="n">num_trotter_steps</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">rx_angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">construct_ising_circuit</span><span class="p">(</span>
+    <span class="n">num_qubits</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">num_trotter_steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">rx_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
+    <span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_trotter_steps</span><span class="p">):</span>
+        <span class="n">circuit</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">rx_angle</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">first_qubit</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">first_qubit</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="c1"># Rzz(-pi/2) と等価:</span>
+                <span class="n">circuit</span><span class="o">.</span><span class="n">sdg</span><span class="p">([</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx</span><span class="p">])</span>
+                <span class="n">circuit</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">circuit</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_basis</span><span class="p">(</span>
+    <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">basis</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
+    <span class="c1"># basis は 0 から 3 の整数値のリスト。各値は次のように基底測定に対応する:</span>
+    <span class="c1"># 0 = I; 1 = Z; 2 = X; 3 = Y</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">basis</span><span class="p">)</span> <span class="o">==</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span>
+
+    <span class="n">out_circ</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy_empty_like</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">qb</span><span class="p">,</span> <span class="n">bas</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">basis</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">bas</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">out_circ</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qb</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">bas</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">out_circ</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">qb</span><span class="p">)</span>
+
+    <span class="n">out_circ</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+    <span class="n">out_circ</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out_circ</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">mirror_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QuantumCircuit</span><span class="p">:</span>
+    <span class="n">mirror_circ</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">copy_empty_like</span><span class="p">()</span>
+    <span class="n">mirror_circ</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">inverse</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mirror_circ</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+    <span class="n">mirror_circ</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">mirror_circ</span><span class="o">.</span><span class="n">measure_active</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">mirror_circ</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ミラー化した回路をインスタンス化し、先頭に基底準備ゲートを追加する</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">construct_ising_circuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">num_trotter_steps</span><span class="p">,</span> <span class="n">rx_angle</span><span class="p">)</span>
+<span class="n">mirrored_circuit</span> <span class="o">=</span> <span class="n">mirror_circuit</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+<span class="n">mirrored_circuit</span> <span class="o">=</span> <span class="n">prepare_basis</span><span class="p">(</span><span class="n">mirrored_circuit</span><span class="p">,</span> <span class="n">bases_virt</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mirrored_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="s2">"mpl"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">measure_arrows</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8bd5a00ed692d3528e84c2e0633daf0790ba793746c42c60e8f4922609f731a2.png" src="../_images/8bd5a00ed692d3528e84c2e0633daf0790ba793746c42c60e8f4922609f731a2.png" />
+</div>
+</div>
+</section>
+<section id="id12">
+<h3>ステップ 2: 最適化する<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>実行する回路、測定する観測量、ノイズ学習のパラメーターに関する詳細を最適化します。まず、最も混雑していない Heron プロセッサーを選び、フラクショナル・ゲートを有効にしてインスタンス化します。フラクショナル・ゲートを使うと、ポストセレクションによるフィルタリングの一部で感度を高められます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 保存済みの認証情報を使って IBM Quantum Compute Service を初期化する</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+
+<span class="c1"># 最も混雑していない Heron デバイスを選ぶ。このチュートリアルは Heron プロセッサーを対象としている。</span>
+<span class="c1"># 使用量の目安と、ステップ 4 で説明する非マルコフ的ノイズのポストセレクションは、</span>
+<span class="c1"># このプロセッサー・ファミリーに固有のものである。</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
+    <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">filters</span><span class="o">=</span><span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span><span class="o">.</span><span class="n">processor_type</span><span class="p">[</span><span class="s2">"family"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Heron"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># フラクショナル・ゲートを有効にして再取得する（least_busy はこの設定を引き継がない）</span>
+<span class="c1"># フラクショナル・ゲートを有効にすると、非クリフォードの Rx 回転がネイティブにサポートされる。</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">backend</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">use_fractional_gates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"選択したバックエンド: </span><span class="si">{</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>選択したバックエンド: ibm_fez
+</pre></div>
+</div>
+</div>
+</div>
+<p>まず、<a class="reference internal" href="#/docs/guides/transpile#instruction-set-architecture"><span class="xref myst">QPU での実行に必要なとおり</span></a>、回路を ISA 命令にトランスパイルします。コヒーレンス時間やゲート忠実度はデバイス内でばらつきがあり、時間とともにドリフトするため、実行に使う物理量子ビットの選択は結果の品質に大きな影響を与えます。慎重な実験では、簡単なベンチマーク実験の結果をもとに量子ビットの鎖を手動で選ぶと効果がある場合があります（たとえば、<a class="reference internal" href="#/docs/tutorials/real-time-benchmarking-for-qubit-selection"><span class="xref myst">量子ビット選択のためのリアルタイム・ベンチマーク</span></a> のチュートリアルを参照してください）。このチュートリアルでは、Qiskit のトランスパイラーに任せて、バックエンドのカップリング・マップと最新のキャリブレーション・データに基づいてレイアウトを選択します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">isa_pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">isa_circuit</span> <span class="o">=</span> <span class="n">isa_pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">mirrored_circuit</span><span class="p">)</span>
+
+<span class="c1"># トランスパイラーが選択した物理量子ビットの鎖</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">final_index_layout</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"選択したレイアウト: </span><span class="si">{</span><span class="n">layout</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">isa_observable</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span>
+    <span class="n">layout</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">num_qubits</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>選択したレイアウト: [88, 89, 78, 69, 70, 71, 58, 51, 50, 49, 48, 47, 46, 45, 37, 25, 24, 23, 22, 21]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wire_order</span> <span class="o">=</span> <span class="n">layout</span> <span class="o">+</span> <span class="p">[</span>
+    <span class="n">q</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">isa_circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span> <span class="k">if</span> <span class="n">q</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">layout</span>
+<span class="p">]</span>
+<span class="n">isa_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="s2">"mpl"</span><span class="p">,</span>
+    <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">wire_order</span><span class="o">=</span><span class="n">wire_order</span><span class="p">,</span>
+    <span class="n">measure_arrows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/de0900ca2101662ad706644911ce42873d6fca5eb3cddd3ce7b8998b86cb3394.png" src="../_images/de0900ca2101662ad706644911ce42873d6fca5eb3cddd3ce7b8998b86cb3394.png" />
+</div>
+</div>
+</section>
+<section id="id13">
+<h3>回路をボックス化する<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>実装を容易にするために、<code class="docutils literal notranslate"><span class="pre">generate_boxing_pass_manager</span></code> のトランスパイル・パスを利用します。このパスは、回路の命令をアノテーション付きのボックスに配置します。これらのボックスは、PEC の場合にアンチノイズを回路のどこに注入すべきかを明確に示します。設定の詳細については、<a class="reference internal" href="#/docs/addons/samplomatic/"><span class="xref myst">Samplomatic のドキュメント</span></a> を参照してください。</p>
+<p>なお、SLC のワークフローでは、後の工程で <code class="docutils literal notranslate"><span class="pre">inject_noise_strategy=&quot;individual_modification&quot;</span></code> を使う必要があります。これにより、回路内の <code class="docutils literal notranslate"><span class="pre">BoxOp</span></code> 命令の <code class="docutils literal notranslate"><span class="pre">InjectNoise</span></code> アノテーションを一意に識別できるようになるためです（<code class="docutils literal notranslate"><span class="pre">InjectNoise</span></code> アノテーションのないボックスは、この方法では識別できません）。</p>
+<Admonition type="caution">
+  SLC の上限の計算では現在、`InjectNoise` アノテーションが `site="after"` で配置されていることを前提としています（[qiskit-addon-slc#33](https://github.com/Qiskit/qiskit-addon-slc/issues/33) を参照してください）。最近のバージョンの `samplomatic` でこの設定のデフォルト値が変更されたため（[samplomatic#372](https://github.com/Qiskit/samplomatic/pull/372) を参照してください）、以下では `inject_noise_site="after"` を明示的に設定しています。
+</Admonition>
+<p><code class="docutils literal notranslate"><span class="pre">find_unique_box_instructions</span></code> 関数は、与えられたボックス化済みの回路を走査し、ノイズ学習とノイズ注入のために、固有の 2 量子ビット（2Q）層または測定を持つものを特定します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Twirl と InjectNoise のアノテーションを付けて回路をボックス化する</span>
+<span class="n">boxes_pm</span> <span class="o">=</span> <span class="n">generate_boxing_pass_manager</span><span class="p">(</span>
+    <span class="n">twirling_strategy</span><span class="o">=</span><span class="s2">"active"</span><span class="p">,</span>
+    <span class="n">inject_noise_strategy</span><span class="o">=</span><span class="s2">"individual_modification"</span><span class="p">,</span>
+    <span class="n">inject_noise_site</span><span class="o">=</span><span class="s2">"after"</span><span class="p">,</span>
+    <span class="n">inject_noise_targets</span><span class="o">=</span><span class="s2">"gates"</span><span class="p">,</span>
+    <span class="n">measure_annotations</span><span class="o">=</span><span class="s2">"all"</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">boxed_circuit</span> <span class="o">=</span> <span class="n">boxes_pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">isa_circuit</span><span class="p">)</span>
+
+<span class="c1"># ボックス化した回路から固有の命令（層）を見つける</span>
+<span class="n">unique_2q_instructions</span> <span class="o">=</span> <span class="n">find_unique_box_instructions</span><span class="p">(</span>
+    <span class="n">boxed_circuit</span><span class="p">,</span> <span class="n">normalize_annotations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">undress_boxes</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">boxed_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="s2">"mpl"</span><span class="p">,</span>
+    <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">wire_order</span><span class="o">=</span><span class="n">wire_order</span><span class="p">,</span>
+    <span class="n">measure_arrows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d3d77f1f650f296686d05e82bb03516a7d9a9c4c7c72f62fe170906409311b70.png" src="../_images/d3d77f1f650f296686d05e82bb03516a7d9a9c4c7c72f62fe170906409311b70.png" />
+</div>
+</div>
+</section>
+<section id="id14">
+<h3>正準基底の測定を準備する<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>量子ビットの順序を追跡することには、特に注意が必要です。回路のボックス化と固有の命令の検出において量子ビットの順序がどのように扱われるかを踏まえ、以下では、Executor に渡す際に量子ビットの順序を適切に更新する手段として <code class="docutils literal notranslate"><span class="pre">canonical_qubits</span></code> という概念を導入します。詳しくは、<a class="reference internal" href="#/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention"><span class="xref myst">量子ビットの順序の規約</span></a> のドキュメントを参照してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 正準量子ビットの順序を決定する</span>
+<span class="n">meas_box</span> <span class="o">=</span> <span class="n">boxed_circuit</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">canonical_qubits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">idx</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">boxed_circuit</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="n">meas_box</span><span class="o">.</span><span class="n">qubits</span>
+<span class="p">]</span>
+
+<span class="c1"># 正準量子ビットを物理（ISA）量子ビットに対応付ける</span>
+<span class="n">c_2_p</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">p</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">canonical_qubits</span><span class="p">)}</span>
+<span class="c1"># 物理（ISA）量子ビットを仮想量子ビット（元の回路でのインデックス）に対応付ける</span>
+<span class="n">p_2_v</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layout</span><span class="p">)}</span>
+<span class="c1"># 仮想量子ビットと正準量子ビットのインデックス間の対応を計算する。</span>
+<span class="n">c_2_v</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">p_2_v</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c_2_p</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">c_2_v</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_qubits</span>
+
+<span class="n">bases_canon</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">base_i</span><span class="p">[</span><span class="n">c_2_v</span><span class="p">[</span><span class="n">c</span><span class="p">]]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">base_i</span> <span class="ow">in</span> <span class="n">bases_virt</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id15">
+<h3>ライトコーン・シェーディング、ノイズ学習、アンチノイズ注入のワークフロー<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<Admonition type="note">
+  このチュートリアルでは、緩和対象の回路をできるだけ学習済みのノイズモデルに近いタイミングで実行できるように、ノイズ学習が完了する前に SLC の上限の計算を実行します。原理的には、このワークフローはさらに並列化できます。ノイズ上限を推定している間に、並行してノイズ学習のジョブを実行できます。任意の量子回路では、ノイズ上限の計算量は弱い指数関数的な依存性でスケールすることがあるため、上限の計算を（たとえば多数の CPU コアにわたって）並列化すると、一定の計算時間の予算でより厳しい上限が得られます。さらに、QPU での実行と上限の計算自体を並列化することで、最も効率的なワークフローを実現できます。
+</Admonition><section id="id16">
+<h4>学習対象のノイズモデルのパウリ項を予測する<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<p>ハードウェアでノイズ学習を実行する前に、まずノイズモデルにどのパウリ・エラー項が含まれるかを列挙します。各固有層のノイズは、アクティブな各量子ビット上の重み 1 のパウリ（<span class="math notranslate nohighlight">\(X\)</span>、<span class="math notranslate nohighlight">\(Y\)</span>、<span class="math notranslate nohighlight">\(Z\)</span>）ごとに 1 つ、接続されたアクティブな量子ビットの各ペア上の重み 2 のパウリごとに 1 つのエラー・レートを持つ、スパース・パウリ・リンドブラッド・モデルとしてモデル化することを思い出してください。<code class="docutils literal notranslate"><span class="pre">generate_noise_model_paulis</span></code> 関数は、与えられた回路のボックス化された各固有層を走査し、回路の量子ビット接続性を考慮して、まさにこのパウリ項のリストを生成します。</p>
+<p>言い換えると、このステップでは、<code class="docutils literal notranslate"><span class="pre">NoiseLearnerV3</span></code> が後で学習したレートで埋めることになるノイズモデルの <em>構造</em> を予測します。この構造を事前に知っておくことで、ノイズ学習を実行する前に、すべての潜在的なエラーについて順方向と逆方向の上限を計算できるようになります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_model_paulis</span> <span class="o">=</span> <span class="n">generate_noise_model_paulis</span><span class="p">(</span>
+    <span class="n">unique_2q_instructions</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="p">,</span> <span class="n">boxed_circuit</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_model_rates</span> <span class="o">=</span> <span class="p">{</span><span class="n">ref</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">noise_model_paulis</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="a">
+<h5>a. 順方向の上限を計算する<a class="headerlink" href="#a" title="Link to this heading">#</a></h5>
+<p><code class="docutils literal notranslate"><span class="pre">compute_forward_bounds</span></code> 関数は、順伝播したエラーが目的の観測量 <span class="math notranslate nohighlight">\(A\)</span> にどのように影響するかという観点から、各層のゲートと上で生成したパウリ項との交換関係を評価します。パウリ項と交換するゲートについては、何もしません。クリフォード・ゲートは、回路の先頭に向かって押し出されます。非クリフォード・ゲートについては、（すべての上限を統合した後で）ノイズ・キャンセレーションの優先順位付けに使うために、対象の観測量への影響を近似します。この上限は、まず L2 ノルム（すなわち、関連するパウリ項の係数の二乗和の平方根）を適用することで得られます。関係する量子ビットの項が多すぎる場合は、三角不等式を使ったより緩い上限に切り替えます。</p>
+</section>
+</section>
+<section id="id17">
+<h4>上限の計算パラメーターを設定する<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<p>次の設定で、古典的な上限の計算を制御します。</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">slc_atol</span></code>: 計算の絶対許容誤差。係数がこのしきい値を下回る演算子の項は無視できるものとして破棄されます。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slc_eigval_max_qubits</span></code>: より厳しい固有値ベース（L2 ノルム）の上限を評価する最大の量子ビット数。これより多くの量子ビットにまたがる演算子では、上で説明したより緩い三角不等式による上限に切り替わります。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slc_evolution_max_terms</span></code>: 演算子を回路に沿って伝播させる間に保持するパウリ項の最大数。最も小さい項を打ち切ることで、上限がわずかに緩くなる代わりに、計算を扱える範囲に保てます。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slc_num_processes</span></code>: 上限の計算を並列化する CPU プロセスの数。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slc_timeout</span></code>: 上限の計算の時間予算（秒）。この予算内に到達しなかった層には、自明な上限 2 が割り当てられます。</p></li>
+</ul>
+<Admonition type="note">
+  このチュートリアルでは、*意図的に* タイムアウトに達するようにしています。ノートブックを素早く実行できるように `slc_timeout` をあえて小さくしており、またタイムアウトに達しても安全であることを示すためです。計算されるシェードはどの段階でも上限であるため、タイムアウトに達しても、到達しなかった層の上限が緩く（自明に）なるだけで、エラーの影響を過小評価することは決してありません。これは以下の可視化で、左端の層が自明な上限で完全に塗りつぶされる形で現れます。タイムアウト（またはプロセス数）を増やすと、上限が厳しくなり、サンプリング・オーバーヘッドをさらに削減できます。
+</Admonition><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slc_atol</span> <span class="o">=</span> <span class="mf">1e-8</span>
+<span class="n">slc_eigval_max_qubits</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">slc_evolution_max_terms</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">slc_num_processes</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">slc_timeout</span> <span class="o">=</span> <span class="mi">60</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forward_bounds</span> <span class="o">=</span> <span class="n">compute_forward_bounds</span><span class="p">(</span>
+    <span class="n">boxed_circuit</span><span class="p">,</span>
+    <span class="n">noise_model_paulis</span><span class="p">,</span>
+    <span class="n">isa_observable</span><span class="p">,</span>
+    <span class="n">evolution_max_terms</span><span class="o">=</span><span class="n">slc_evolution_max_terms</span><span class="p">,</span>
+    <span class="n">eigval_max_qubits</span><span class="o">=</span><span class="n">slc_eigval_max_qubits</span><span class="p">,</span>
+    <span class="n">atol</span><span class="o">=</span><span class="n">slc_atol</span><span class="p">,</span>
+    <span class="n">num_processes</span><span class="o">=</span><span class="n">slc_num_processes</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="n">slc_timeout</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bounds computation timed out.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id18">
+<h4>目視確認のために SLC を可視化する<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<p>測定とパウリ項が局所的なエラーとどのように相互作用するかを調べることで、シェード付きの上限の振る舞いを解釈できます。これらのパターンは、このキックド・イジング・ハミルトニアンの時間発展問題に特有のものであり、論文 <a class="reference external" href="https://arxiv.org/abs/2409.04401">Lightcone Shading for Classically Accelerated Quantum Error Mitigation</a> にも現れます。特徴的な点がいくつかあります。</p>
+<ul class="simple">
+<li><p>観測量に含まれる 2 つの非恒等パウリから生じる 2 つのコーンをはっきりと区別できます。</p></li>
+<li><p>量子ビット 6 の X 測定は、右端の層の X エラーと交換することが分かります。</p></li>
+<li><p>量子ビット 13 の Z パウリは、右端の層の Z エラーと交換することが分かります。</p></li>
+<li><p>上で指定したタイムアウトに達すると、左側の残りの層は自明な上限 2 で完全に塗りつぶされます。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="s2">"XYZ"</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span>
+        <span class="n">draw_shaded_lightcone</span><span class="p">(</span>
+            <span class="n">boxed_circuit</span><span class="p">,</span>
+            <span class="n">forward_bounds</span><span class="p">,</span>
+            <span class="n">noise_model_paulis</span><span class="p">,</span>
+            <span class="n">pauli_filter</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
+            <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">wire_order</span><span class="o">=</span><span class="n">wire_order</span><span class="p">,</span>
+            <span class="n">measure_arrows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a8bb476dc6543f5a4b82966fe717bbe8b604302485ad4cdee3de411ed64ec33b.png" src="../_images/a8bb476dc6543f5a4b82966fe717bbe8b604302485ad4cdee3de411ed64ec33b.png" />
+<img alt="../_images/368433c3675e25fc2a01652c6a35b193efdc0fa9576d013324311a6c74c53137.png" src="../_images/368433c3675e25fc2a01652c6a35b193efdc0fa9576d013324311a6c74c53137.png" />
+<img alt="../_images/325f523327dfcc47c76f58f8873535657be5719e5234836dada73ab70449e65c.png" src="../_images/325f523327dfcc47c76f58f8873535657be5719e5234836dada73ab70449e65c.png" />
+</div>
+</div>
+</section>
+<section id="b">
+<h4>b. 量子速度限界を使って順方向の上限を厳しくする<a class="headerlink" href="#b" title="Link to this heading">#</a></h4>
+<p>次に、<code class="docutils literal notranslate"><span class="pre">tighten_with_speed_limit</span></code> 関数を使って上限を厳しくします。観測量のライトコーンの幾何学的な広がりは、上で計算した順方向の上限ですでに完全に考慮されています。この関数が追加するのは、情報が回路内を伝わる速さが限られている（ライトコーンは 2 量子ビット・ゲートの層ごとに最大 1 量子ビットずつしか広がらない）ことを活用して、先に計算した上限を互いに照らし合わせて厳しくする、自己無撞着化のパスです。情報は双方向に流れます。</p>
+<ol class="arabic simple">
+<li><p>交換子の上限から、逆伝播した観測量の上限へ: 観測量がある量子ビット上の <span class="math notranslate nohighlight">\(Z\)</span> エラーと交換するなら、その量子ビット上で <span class="math notranslate nohighlight">\(X\)</span> や <span class="math notranslate nohighlight">\(Y\)</span> の成分を多く持つことはできません。</p></li>
+<li><p>逆伝播した観測量の上限から、交換子の上限へ: 観測量がある量子ビット上で <span class="math notranslate nohighlight">\(X\)</span> と <span class="math notranslate nohighlight">\(Y\)</span> の成分をほとんど持たないなら、その量子ビット上で <span class="math notranslate nohighlight">\(Z\)</span> とほぼ交換するはずです。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forward_bounds_tighter</span> <span class="o">=</span> <span class="n">tighten_with_speed_limit</span><span class="p">(</span>
+    <span class="n">forward_bounds</span><span class="p">,</span> <span class="n">boxed_circuit</span><span class="p">,</span> <span class="n">noise_model_paulis</span><span class="p">,</span> <span class="n">isa_observable</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id19">
+<h4>目視確認のために SLC を可視化する<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<p>原理的には、この厳密化によって、計算された上限と、タイムアウト以降の層に割り当てられた自明な上限との間の移り変わりがより滑らかになります。この例では、タイムアウトに達する時点でライトコーンがすでに回路の端まで広がっているため、効果はほとんど見えません。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="s2">"XYZ"</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span>
+        <span class="n">draw_shaded_lightcone</span><span class="p">(</span>
+            <span class="n">boxed_circuit</span><span class="p">,</span>
+            <span class="n">forward_bounds_tighter</span><span class="p">,</span>
+            <span class="n">noise_model_paulis</span><span class="p">,</span>
+            <span class="n">pauli_filter</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
+            <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">wire_order</span><span class="o">=</span><span class="n">wire_order</span><span class="p">,</span>
+            <span class="n">measure_arrows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a8bb476dc6543f5a4b82966fe717bbe8b604302485ad4cdee3de411ed64ec33b.png" src="../_images/a8bb476dc6543f5a4b82966fe717bbe8b604302485ad4cdee3de411ed64ec33b.png" />
+<img alt="../_images/368433c3675e25fc2a01652c6a35b193efdc0fa9576d013324311a6c74c53137.png" src="../_images/368433c3675e25fc2a01652c6a35b193efdc0fa9576d013324311a6c74c53137.png" />
+<img alt="../_images/325f523327dfcc47c76f58f8873535657be5719e5234836dada73ab70449e65c.png" src="../_images/325f523327dfcc47c76f58f8873535657be5719e5234836dada73ab70449e65c.png" />
+</div>
+</div>
+</section>
+<section id="c">
+<h4>c. 逆方向の上限を計算する<a class="headerlink" href="#c" title="Link to this heading">#</a></h4>
+<p>ノイズ予測のこの部分では、特定の層でのエラーが入力状態 <span class="math notranslate nohighlight">\(\rho\)</span> にどのように影響しうるかを評価します。<code class="docutils literal notranslate"><span class="pre">compute_backward_bounds</span></code> 関数は、まず回路を反転して測定ゲートを取り除き、その後、順方向の上限の計算と同様の解析を行います。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backward_bounds</span> <span class="o">=</span> <span class="n">compute_backward_bounds</span><span class="p">(</span>
+    <span class="n">boxed_circuit</span><span class="p">,</span>
+    <span class="n">noise_model_paulis</span><span class="p">,</span>
+    <span class="n">evolution_max_terms</span><span class="o">=</span><span class="n">slc_evolution_max_terms</span><span class="p">,</span>
+    <span class="n">num_processes</span><span class="o">=</span><span class="n">slc_num_processes</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="n">slc_timeout</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id20">
+<h4>目視確認のために SLC を可視化する<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<p>逆方向の上限を計算すると、初期状態の構造がエラー伝播の初期の振る舞いをどのように支配しているかが分かります。</p>
+<ul class="simple">
+<li><p>Z エラーが最初は |0⟩ の初期状態と交換していることがはっきりと分かります。</p></li>
+<li><p>X 基底の +1 固有状態で初期化した量子ビット 6 でのみ、Z エラーは交換せず、X エラーは交換します。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="s2">"XYZ"</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span>
+        <span class="n">draw_shaded_lightcone</span><span class="p">(</span>
+            <span class="n">boxed_circuit</span><span class="p">,</span>
+            <span class="n">backward_bounds</span><span class="p">,</span>
+            <span class="n">noise_model_paulis</span><span class="p">,</span>
+            <span class="n">pauli_filter</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
+            <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">wire_order</span><span class="o">=</span><span class="n">wire_order</span><span class="p">,</span>
+            <span class="n">measure_arrows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bbbcec0be6c7027bdeb934bba0d7193efdb99594207f892cc7434545eba5826b.png" src="../_images/bbbcec0be6c7027bdeb934bba0d7193efdb99594207f892cc7434545eba5826b.png" />
+<img alt="../_images/22292dd492c5743311d6c8a8d65e92b2a0ac0e63a9898475c36c9e30177e0815.png" src="../_images/22292dd492c5743311d6c8a8d65e92b2a0ac0e63a9898475c36c9e30177e0815.png" />
+<img alt="../_images/1d40c5c19ebd82593d371652d038d85905395479b804a1efc2b5e8a204e4a0f3.png" src="../_images/1d40c5c19ebd82593d371652d038d85905395479b804a1efc2b5e8a204e4a0f3.png" />
+</div>
+</div>
+</section>
+<section id="id21">
+<h4>学習したノイズ・レートを使わずに統合した上限をプレビューする<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">merged_bounds</span></code> 関数は、目的の観測量に対する推定バイアスの合計が最小になるように、回路内で逆方向の上限から順方向の上限に切り替える位置を決定します。このバイアスは、その位置より前のすべてのノイズ位置における逆方向の上限の寄与と、その位置より後のすべてのノイズ位置における順方向の上限の寄与の和として計算されます。現時点では、これはすべての量子ビットに対して一様に行われます。</p>
+<Admonition type="note" title="重要な注意">
+  逆方向の上限から順方向の上限に切り替える最適な位置は、学習したノイズ・レートに依存します。この段階ではまだレートを学習していません。`noise_model_rates` はすべての層で `None` に初期化されており、`merge_bounds` はこれを一様なノイズ・レートとして扱います。したがって、ここに示す統合した上限はプレビューにすぎません。ステップ 3 で、実際に学習したレートを使って再計算します。
+</Admonition><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_bounds</span> <span class="o">=</span> <span class="n">merge_bounds</span><span class="p">(</span>
+    <span class="n">boxed_circuit</span><span class="p">,</span>
+    <span class="n">forward_bounds_tighter</span><span class="p">,</span>
+    <span class="n">backward_bounds</span><span class="p">,</span>
+    <span class="n">noise_model_rates</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Missing noise rates. Partitioning backward/forward commutator bounds by assuming uniform error rates.
+Optimal spacetime partitioning not implemented!Just partitioning list of noisy boxes.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id22">
+<h3>目視確認のために SLC を可視化する<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<p>逆方向の上限と厳しくした順方向の上限を統合すると、組み合わせた SLC の振る舞いが明確になります。</p>
+<ul class="simple">
+<li><p>上の関数から、逆方向の上限から厳しくした順方向の上限への切り替えが行われる区切りが選ばれていることが分かります。</p></li>
+<li><p>以下を見ると、SLC が一部は逆方向の上限、一部は厳しくした順方向の上限で構成されていることが分かります。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="s2">"XYZ"</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span>
+        <span class="n">draw_shaded_lightcone</span><span class="p">(</span>
+            <span class="n">boxed_circuit</span><span class="p">,</span>
+            <span class="n">merged_bounds</span><span class="p">,</span>
+            <span class="n">noise_model_paulis</span><span class="p">,</span>
+            <span class="n">pauli_filter</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
+            <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">wire_order</span><span class="o">=</span><span class="n">wire_order</span><span class="p">,</span>
+            <span class="n">measure_arrows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3c08a1ed089d83d890cb038b677655be91bea883b3d59937dc0b333eff111d18.png" src="../_images/3c08a1ed089d83d890cb038b677655be91bea883b3d59937dc0b333eff111d18.png" />
+<img alt="../_images/c9e9a5518973b273ddcc6bec2713edbf8d484029ead2277e33ac41bf1b1402d5.png" src="../_images/c9e9a5518973b273ddcc6bec2713edbf8d484029ead2277e33ac41bf1b1402d5.png" />
+<img alt="../_images/809500dd13150bfa6c14d2babb64c550dd305a048a5a0a93e712f18c5e999dbe.png" src="../_images/809500dd13150bfa6c14d2babb64c550dd305a048a5a0a93e712f18c5e999dbe.png" />
+</div>
+</div>
+</section>
+<section id="id23">
+<h3>ステップ 3: 実行する<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>このセクションから、実際の量子デバイスを使うワークフローの部分に入ります。この学習ベースのエラー緩和手法には、2 つのステップがあります。</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NoiseLearnerV3</span></code> を使ってノイズを学習する。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">samplomatic</span></code> と <code class="docutils literal notranslate"><span class="pre">Executor</span></code> のフレームワークを使って、エラー緩和回路を実行する。</p></li>
+</ol>
+<p>量子回路のエラーの上限が得られたので、関連するノイズ・レートを学習してエラーの予算の優先順位を決め、サンプリング・オーバーヘッドを決定し、QPU で実行します。</p>
+</section>
+<section id="id24">
+<h3>a. ノイズ・レートを学習する<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<p>ノイズ・ラーナーは、スパースな <a class="reference external" href="https://arxiv.org/abs/2201.09866">パウリ・リンドブラッド・ノイズモデル</a> に基づいて、対象となる 1 つ以上の回路のゲートに影響するノイズ過程を特性評価します。<code class="docutils literal notranslate"><span class="pre">run()</span></code> メソッドは、ノイズ・ラーナーの設定で指定したオプションを使って、与えられた固有の 2 量子ビット層に対するノイズ学習のジョブを開始します。これらのオプションでは、パウリ・ツワーリングの戦略、ランダム化の数とショット数、学習の深さ、ポストセレクションを制御します。</p>
+<p>学習の深さも意図的に選びます。<code class="docutils literal notranslate"><span class="pre">samplomatic</span></code> を使った学習ベースの緩和における実践的な知見として、最も深い学習の深さを、緩和したい回路の深さに合わせることが非常に有益です。NLv3 の <code class="docutils literal notranslate"><span class="pre">layer_pair_depths</span></code> は層の <em>ペア</em>（層とその逆）の単位で数えるため、最も深い値を回路の 2 量子ビット層の深さの半分に設定します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post_selection_enabled</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 最も深いノイズ学習の深さを、緩和する回路の深さに合わせる。</span>
+<span class="c1"># NLv3 の ``layer_pair_depths`` は層のペア（層とその逆）の単位で数えるため、</span>
+<span class="c1"># 最も深い値は回路の 2 量子ビット層の深さの半分になる。</span>
+<span class="c1"># この深さまで学習すると、緩和の品質が大きく向上する。</span>
+<span class="c1">#</span>
+<span class="c1"># 2 量子ビット層の深さは、ボックス化する前の ISA 回路で測定する。ボックス化すると、</span>
+<span class="c1"># すべての 2 量子ビット・ゲートが全幅の ``BoxOp`` の中に隠れるため、</span>
+<span class="c1"># ``boxed_circuit`` に ``num_qubits == 2`` のフィルターを適用しても何も一致しない</span>
+<span class="c1"># （また、``QuantumCircuit.depth`` はボックスの中まで再帰的に調べない）。</span>
+<span class="n">depth_2q</span> <span class="o">=</span> <span class="n">isa_circuit</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span> <span class="n">instr</span><span class="p">:</span> <span class="n">instr</span><span class="o">.</span><span class="n">operation</span><span class="o">.</span><span class="n">num_qubits</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">max_layer_pair_depth</span> <span class="o">=</span> <span class="n">depth_2q</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># ペアの数が必要なので 2 で割る</span>
+
+<span class="c1"># 学習の深さは固定のスケジュールを使うが、回路の深さを超えるものは除外し、</span>
+<span class="c1"># 最も深い値は常に ``max_layer_pair_depth`` を上限とする。</span>
+<span class="c1"># これにより、緩和する回路より深く学習することはない。</span>
+<span class="n">candidate_depths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">48</span><span class="p">]</span>
+<span class="n">layer_pair_depths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+    <span class="p">{</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">candidate_depths</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">max_layer_pair_depth</span><span class="p">}</span>
+    <span class="o">|</span> <span class="p">{</span><span class="n">max_layer_pair_depth</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">noise_learner_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"num_randomizations"</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="s2">"shots_per_randomization"</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+    <span class="s2">"layer_pair_depths"</span><span class="p">:</span> <span class="n">layer_pair_depths</span><span class="p">,</span>
+    <span class="s2">"post_selection"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"enable"</span><span class="p">:</span> <span class="n">post_selection_enabled</span><span class="p">,</span>
+        <span class="s2">"strategy"</span><span class="p">:</span> <span class="s2">"edge"</span><span class="p">,</span>
+        <span class="s2">"x_pulse_type"</span><span class="p">:</span> <span class="s2">"rx"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">"environment"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"job_tags"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"TUT_SLC"</span><span class="p">]},</span>
+<span class="p">}</span>
+
+<span class="n">noise_learner</span> <span class="o">=</span> <span class="n">NoiseLearnerV3</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">noise_learner_options</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_learner_job</span> <span class="o">=</span> <span class="n">noise_learner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">unique_2q_instructions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">noise_learner_result</span> <span class="o">=</span> <span class="n">noise_learner_job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">post_selection_enabled</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">"ノイズ学習実験で保持されたショットの割合の最小値: "</span><span class="p">,</span>
+        <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">min</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">[</span><span class="n">nlr</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">'post_selection'</span><span class="p">][</span><span class="s1">'fraction_kept'</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">nlr</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">noise_learner_result</span><span class="p">[:</span><span class="mi">2</span><span class="p">]]])</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ノイズ学習実験で保持されたショットの割合の最小値: 0.61
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 各 InjectNoise.ref を学習済みの PauliLindbladMap に対応付ける辞書を取得する</span>
+<span class="n">refs_2_plm</span> <span class="o">=</span> <span class="n">noise_learner_result</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span>
+    <span class="n">unique_2q_instructions</span><span class="p">,</span> <span class="n">require_refs</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b-i">
+<h3>b.i. 実際に学習したノイズ・レートで統合した上限を更新する<a class="headerlink" href="#b-i" title="Link to this heading">#</a></h3>
+<p>具体的なノイズモデルを学習できたので、学習したノイズ・レートを予測したノイズ上限に適用し、バイアスを最小化するうえでどの上限が最も影響が大きいかを最終的に決定できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged_bounds</span> <span class="o">=</span> <span class="n">merge_bounds</span><span class="p">(</span>
+    <span class="n">boxed_circuit</span><span class="p">,</span>
+    <span class="n">forward_bounds_tighter</span><span class="p">,</span>
+    <span class="n">backward_bounds</span><span class="p">,</span>
+    <span class="n">refs_2_plm</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal spacetime partitioning not implemented!Just partitioning list of noisy boxes.
+</pre></div>
+</div>
+</div>
+</div>
+<section id="b-ii-local-scales">
+<h4>b.ii. ハードウェア実行のための <code class="docutils literal notranslate"><span class="pre">local_scales</span></code> を計算する<a class="headerlink" href="#b-ii-local-scales" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">compute_local_scales</span></code> は、回路内で考えられる各ノイズ・エラーを調べ、そのエラーが最終的な測定にどの程度のバイアスを与えうるか、また、それを補正するのにどの程度のコストがかかるかを推定します。そして、緩和する価値の高い順にエラーをランク付けし、許容されたサンプリング・コストの予算内に収まる（または目的の精度を達成する）範囲で、バイアスをできるだけ減らすサブセットを選びます。その結果として、どのエラーを積極的に緩和し、どのエラーを緩和せずに残すかを示すスケーリング係数の集合（<code class="docutils literal notranslate"><span class="pre">local_scales</span></code>）と、予測されるサンプリング・コストのオーバーヘッドの合計（<code class="docutils literal notranslate"><span class="pre">sampling_costs</span></code>）、および残りのバイアス（<code class="docutils literal notranslate"><span class="pre">residual_bias_bound</span></code>）が得られます。</p>
+<p>残りのバイアスを目的の値に制御できることは、PEC の SLC 実装の重要な特徴です。<a class="reference external" href="https://arxiv.org/abs/2201.09866">元の実装</a> ではサンプリング・オーバーヘッドが常にバイアスゼロを目標としていたのに対し、SLC では、予想される残りのバイアスとのトレードオフで、必要なサンプリング・オーバーヘッドを調整できます。これにより、固定のサンプリング予算の範囲内に収めやすくなります。これは特に、ワークフローの初期のプロトタイピングの段階で役立ちます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">id_map</span> <span class="o">=</span> <span class="n">map_modifier_ref_to_ref</span><span class="p">(</span><span class="n">boxed_circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summed_rates</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">box_id</span><span class="p">,</span> <span class="n">noise_id</span> <span class="ow">in</span> <span class="n">id_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">learned_plm</span> <span class="o">=</span> <span class="n">refs_2_plm</span><span class="p">[</span><span class="n">noise_id</span><span class="p">]</span>
+    <span class="n">summed_rates</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">learned_plm</span><span class="o">.</span><span class="n">rates</span><span class="p">)</span>
+    <span class="c1"># print(f"{box_id}:\tgamma = {np.exp(2 * summed_rates):1.6e}\tsampling cost = {np.exp(4 * summed_rates):1.6e}")</span>
+<span class="n">total_gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">summed_rates</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"完全な PEC の gamma=</span><span class="si">{</span><span class="n">total_gamma</span><span class="si">}</span><span class="s2">、サンプリング・コスト (gamma^2) = </span><span class="si">{</span><span class="n">total_gamma</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>完全な PEC の gamma=35.23359391269886、サンプリング・コスト (gamma^2) = 1241.40614000497
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biases</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">bias</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.102</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">cost_</span><span class="p">,</span> <span class="n">bias_</span> <span class="o">=</span> <span class="n">compute_local_scales</span><span class="p">(</span>
+        <span class="n">boxed_circuit</span><span class="p">,</span>
+        <span class="n">merged_bounds</span><span class="p">,</span>
+        <span class="n">refs_2_plm</span><span class="p">,</span>
+        <span class="n">sampling_cost_budget</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+        <span class="n">bias_tolerance</span><span class="o">=</span><span class="n">bias</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">biases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bias_</span><span class="p">)</span>
+    <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id25">
+<h4>サンプリング・オーバーヘッドと残留バイアスのトレードオフ<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">total_gamma</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"D"</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"tab:orange"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"full PEC"</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">biases</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">costs</span><span class="p">),</span>
+    <span class="s2">"o-"</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="s2">"tab:blue"</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">"PEC+SLC"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s2">"log"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xticks</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Remaining bias [%]"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"Sampling overhead, $\gamma^2$"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"PEC sampling overhead reduction due to SLC"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, 'PEC sampling overhead reduction due to SLC')
+</pre></div>
+</div>
+<img alt="../_images/28aa0e8823509562b45d9df1125a0ce50c87321c2c6ef3d010093341d2faafd9.png" src="../_images/28aa0e8823509562b45d9df1125a0ce50c87321c2c6ef3d010093341d2faafd9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chosen_bias_thres</span> <span class="o">=</span> <span class="mf">0.1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_scales</span><span class="p">,</span> <span class="n">sampling_cost</span><span class="p">,</span> <span class="n">residual_bias_bound</span> <span class="o">=</span> <span class="n">compute_local_scales</span><span class="p">(</span>
+    <span class="n">boxed_circuit</span><span class="p">,</span>
+    <span class="n">merged_bounds</span><span class="p">,</span>
+    <span class="n">refs_2_plm</span><span class="p">,</span>
+    <span class="n">sampling_cost_budget</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span>
+    <span class="n">bias_tolerance</span><span class="o">=</span><span class="n">chosen_bias_thres</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"PEC+SLC のサンプリング・コスト (gamma^2) = </span><span class="si">{</span><span class="n">sampling_cost</span><span class="si">}</span><span class="s2">、"</span>
+    <span class="sa">f</span><span class="s2">"残りのバイアス = </span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">residual_bias_bound</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PEC+SLC のサンプリング・コスト (gamma^2) = 199.48120073799495、残りのバイアス = 10.0%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id26">
+<h3>c. アンチノイズを加えて対象の回路を実行する<a class="headerlink" href="#id26" title="Link to this heading">#</a></h3>
+<section id="c-i-samplex">
+<h4>c.i. <code class="docutils literal notranslate"><span class="pre">samplex</span></code> を使ってテンプレート回路を準備する<a class="headerlink" href="#c-i-samplex" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">samplex</span></code> は Samplomatic の <code class="docutils literal notranslate"><span class="pre">build</span></code> メソッドの出力であり、<code class="docutils literal notranslate"><span class="pre">template_circuit</span></code> のランダム化されたパラメーターを生成するのに必要なすべての情報をエンコードしています。これらは <code class="docutils literal notranslate"><span class="pre">QuantumProgram</span></code> オブジェクトの設定に使われ、そのオブジェクトが <code class="docutils literal notranslate"><span class="pre">Executor</span></code> プリミティブによって QPU 上で実行されます。各 <code class="docutils literal notranslate"><span class="pre">QuantumProgram</span></code> には複数のアイテムを含めることができ、それぞれのアイテムは <code class="docutils literal notranslate"><span class="pre">template</span></code> と <code class="docutils literal notranslate"><span class="pre">samplex</span></code> のペアと考えることができます。</p>
+<p>詳しくは、<a class="reference external" href="https://github.com/qiskit-community/qdc-challenges-2025/blob/main/day3_tutorials/Track_A/hello_samplomatic/Samplomatic%20-%20Hello%20World.ipynb">Hello samplomatic</a> のチュートリアルを参照してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 後で "Executor" で使うために、テンプレート回路と samplex をビルドする</span>
+<span class="n">template_circuit</span><span class="p">,</span> <span class="n">samplex</span> <span class="o">=</span> <span class="n">samplomatic</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">boxed_circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ポストセレクションが有効な場合は設定する</span>
+<span class="k">if</span> <span class="n">post_selection_enabled</span><span class="p">:</span>
+    <span class="c1"># ポストセレクション用の PM を設定する（PS の命令を追加するため）</span>
+    <span class="n">post_selection_pm</span> <span class="o">=</span> <span class="n">PassManager</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">AddSpectatorMeasures</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span><span class="p">),</span>
+            <span class="n">AddPostSelectionMeasures</span><span class="p">(</span><span class="n">x_pulse_type</span><span class="o">=</span><span class="s2">"rx"</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">final_template_circuit</span> <span class="o">=</span> <span class="n">post_selection_pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">template_circuit</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">final_template_circuit</span> <span class="o">=</span> <span class="n">template_circuit</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-ii-quantumprogram">
+<h4>c.ii. <code class="docutils literal notranslate"><span class="pre">QuantumProgram</span></code> を設定する<a class="headerlink" href="#c-ii-quantumprogram" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_randomizations</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="n">shots_per_randomization</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">256</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QuantumProgram を設定する</span>
+<span class="n">program</span> <span class="o">=</span> <span class="n">QuantumProgram</span><span class="p">(</span><span class="n">shots</span><span class="o">=</span><span class="n">shots_per_randomization</span><span class="p">,</span> <span class="n">noise_maps</span><span class="o">=</span><span class="n">refs_2_plm</span><span class="p">)</span>
+
+<span class="c1"># エラー緩和なし</span>
+
+<span class="c1"># samplex_inputs にバインドする必要があるその他の引数を辞書にまとめる</span>
+<span class="n">samplex_inputs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa">f</span><span class="s2">"noise_scales.</span><span class="si">{</span><span class="n">ref</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">local_scales</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="n">samplex_inputs</span> <span class="o">|=</span> <span class="p">{</span><span class="s2">"basis_changes"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"basis0"</span><span class="p">:</span> <span class="n">bases_canon</span><span class="p">[</span><span class="mi">0</span><span class="p">]}}</span>
+
+<span class="c1"># QuantumProgram に渡すために samplex_inputs を辞書に変換する</span>
+<span class="n">samplex_arguments</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">samplex</span><span class="o">.</span><span class="n">inputs</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">samplex_inputs</span><span class="p">)</span><span class="o">.</span><span class="n">make_broadcastable</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">program</span><span class="o">.</span><span class="n">append_samplex_item</span><span class="p">(</span>
+    <span class="n">circuit</span><span class="o">=</span><span class="n">final_template_circuit</span><span class="p">,</span>
+    <span class="n">samplex</span><span class="o">=</span><span class="n">samplex</span><span class="p">,</span>
+    <span class="n">samplex_arguments</span><span class="o">=</span><span class="n">samplex_arguments</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_randomizations</span><span class="p">,),</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 通常の PEC</span>
+
+<span class="c1"># samplex_inputs にバインドする必要があるその他の引数を辞書にまとめる</span>
+<span class="n">samplex_inputs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa">f</span><span class="s2">"noise_scales.</span><span class="si">{</span><span class="n">ref</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">local_scales</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="n">samplex_inputs</span> <span class="o">|=</span> <span class="p">{</span><span class="s2">"basis_changes"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"basis0"</span><span class="p">:</span> <span class="n">bases_canon</span><span class="p">[</span><span class="mi">0</span><span class="p">]}}</span>
+
+<span class="c1"># QuantumProgram に渡すために samplex_inputs を辞書に変換する</span>
+<span class="n">samplex_arguments</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">samplex</span><span class="o">.</span><span class="n">inputs</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">samplex_inputs</span><span class="p">)</span><span class="o">.</span><span class="n">make_broadcastable</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">program</span><span class="o">.</span><span class="n">append_samplex_item</span><span class="p">(</span>
+    <span class="n">circuit</span><span class="o">=</span><span class="n">final_template_circuit</span><span class="p">,</span>
+    <span class="n">samplex</span><span class="o">=</span><span class="n">samplex</span><span class="p">,</span>
+    <span class="n">samplex_arguments</span><span class="o">=</span><span class="n">samplex_arguments</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_randomizations</span><span class="p">,),</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># PEC+SLC</span>
+
+<span class="c1"># samplex_inputs にバインドする必要があるその他の引数を辞書にまとめる</span>
+<span class="n">samplex_inputs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa">f</span><span class="s2">"noise_scales.</span><span class="si">{</span><span class="n">ref</span><span class="si">}</span><span class="s2">"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">local_scales</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="n">samplex_inputs</span> <span class="o">|=</span> <span class="p">{</span><span class="s2">"basis_changes"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"basis0"</span><span class="p">:</span> <span class="n">bases_canon</span><span class="p">[</span><span class="mi">0</span><span class="p">]}}</span>
+<span class="n">samplex_inputs</span> <span class="o">|=</span> <span class="p">{</span><span class="s2">"local_scales"</span><span class="p">:</span> <span class="n">local_scales</span><span class="p">}</span>
+
+<span class="c1"># QuantumProgram に渡すために samplex_inputs を辞書に変換する</span>
+<span class="n">samplex_arguments</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">samplex</span><span class="o">.</span><span class="n">inputs</span><span class="p">()</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="o">**</span><span class="n">samplex_inputs</span><span class="p">)</span><span class="o">.</span><span class="n">make_broadcastable</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">program</span><span class="o">.</span><span class="n">append_samplex_item</span><span class="p">(</span>
+    <span class="n">circuit</span><span class="o">=</span><span class="n">final_template_circuit</span><span class="p">,</span>
+    <span class="n">samplex</span><span class="o">=</span><span class="n">samplex</span><span class="p">,</span>
+    <span class="n">samplex_arguments</span><span class="o">=</span><span class="n">samplex_arguments</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_randomizations</span><span class="p">,),</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="n">chunk_size</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c-iii-executor">
+<h4>c.iii. <code class="docutils literal notranslate"><span class="pre">Executor</span></code> プリミティブでプログラムを実行する<a class="headerlink" href="#c-iii-executor" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">executor</span> <span class="o">=</span> <span class="n">Executor</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job_exec</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">program</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_exec</span> <span class="o">=</span> <span class="n">job_exec</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id27">
+<h3>ステップ 4: 後処理を行う<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">executor_expectation_values</span></code> を使って最終的な目的の期待値を計算する際に、できるだけ高品質な結果が得られるよう、いくつかの後処理の手法を実装します。まず、読み出しの過程で生じるエラーに対処する <a class="reference internal" href="#/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex"><span class="xref myst">Twirled Readout Error eXtinction（TREX）</span></a> を適用します。次に、ポストセレクションの手法を使って、Heron バックエンドの非マルコフ的ノイズによるエラーを修正します。この手法では、アクティブな量子ビットとスペクテーター量子ビットを測定し、各量子ビットにゆっくりとした回転を適用してから、再度測定します。2 回の測定で、量子ビットが期待どおりに反転したことが確認できなかった場合、<code class="docutils literal notranslate"><span class="pre">PostSelector</span></code> の <code class="docutils literal notranslate"><span class="pre">mask</span></code> を適用してそのショットを破棄します。マスクの計算では、1 量子ビットのノード単位、または隣接するスペクテーターのエッジ単位でフィルタリングする特定の戦略を設定できます。これは、除外されるショットの数と結果の品質の両方に影響します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurement_noise_map</span> <span class="o">=</span> <span class="n">noise_learner_result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">to_pauli_lindblad_map</span><span class="p">()</span>
+<span class="n">trex_scale_factors</span> <span class="o">=</span> <span class="n">trex_factors</span><span class="p">(</span><span class="n">measurement_noise_map</span><span class="p">,</span> <span class="n">reverser_virt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">post_selection_strategy</span> <span class="o">=</span> <span class="s2">"node"</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">post_process_conv</span><span class="p">(</span><span class="n">datum</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ps</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">trex</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">meas</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="s2">"meas"</span><span class="p">]</span>
+    <span class="n">flips</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="s2">"measurement_flips.meas"</span><span class="p">]</span>
+    <span class="n">signs</span> <span class="o">=</span> <span class="n">datum</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"pauli_signs"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">meas_basis_axis</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">avg_axis</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">ps</span> <span class="ow">and</span> <span class="n">post_selection_enabled</span><span class="p">:</span>
+        <span class="c1"># 結果をポストセレクションする</span>
+        <span class="n">post_selector</span> <span class="o">=</span> <span class="n">PostSelector</span><span class="o">.</span><span class="n">from_circuit</span><span class="p">(</span>
+            <span class="n">circuit</span><span class="o">=</span><span class="n">final_template_circuit</span><span class="p">,</span> <span class="n">coupling_map</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">coupling_map</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 結果をフィルタリングするための PS マスクを計算する</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">post_selector</span><span class="o">.</span><span class="n">compute_mask</span><span class="p">(</span>
+            <span class="n">datum</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="n">post_selection_strategy</span>
+        <span class="p">)</span>
+
+        <span class="c1"># ポストセレクションで保持されたショットの割合を計算する</span>
+        <span class="n">total_num_shots</span> <span class="o">=</span> <span class="n">num_randomizations</span> <span class="o">*</span> <span class="n">shots_per_randomization</span>
+        <span class="n">ps_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">total_num_shots</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bases_canon</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">post_selection_strategy</span><span class="si">}</span><span class="s2"> ベースのポストセレクションを適用（ショットの </span><span class="si">{</span><span class="n">ps_ratio</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% を保持）:"</span>
+        <span class="p">)</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">num_randomizations</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
+        <span class="c1"># ポストセレクションの有無に応じて、緩和した期待値を計算する</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">executor_expectation_values</span><span class="p">(</span>
+            <span class="n">meas</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">reverser_virt</span><span class="p">,</span>
+            <span class="n">meas_basis_axis</span><span class="p">,</span>
+            <span class="n">avg_axis</span><span class="o">=</span><span class="n">avg_axis</span><span class="p">,</span>
+            <span class="n">measurement_flips</span><span class="o">=</span><span class="n">flips</span><span class="p">[:</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">pauli_signs</span><span class="o">=</span><span class="n">signs</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">signs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">postselect_mask</span><span class="o">=</span><span class="n">mask</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">rescale_factors</span><span class="o">=</span><span class="n">trex_scale_factors</span> <span class="k">if</span> <span class="n">trex</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">gamma_factor</span><span class="o">=</span><span class="n">gamma</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma_pec</span> <span class="o">=</span> <span class="n">gamma_from_noisy_boxes</span><span class="p">(</span><span class="n">refs_2_plm</span><span class="p">,</span> <span class="n">id_map</span><span class="p">)</span>
+<span class="n">gamma_slc</span> <span class="o">=</span> <span class="n">gamma_from_noisy_boxes</span><span class="p">(</span><span class="n">refs_2_plm</span><span class="p">,</span> <span class="n">id_map</span><span class="p">,</span> <span class="n">local_scales</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">steps</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">result_idx</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">use_ps</span><span class="p">,</span> <span class="n">use_trex</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">"PEC"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gamma_pec</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"PEC+SLC"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">gamma_slc</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"Unmitigated"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="p">]:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">post_process_conv</span><span class="p">(</span>
+        <span class="n">results_exec</span><span class="p">[</span><span class="n">result_idx</span><span class="p">],</span>
+        <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">,</span>
+        <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">,</span>
+        <span class="n">ps</span><span class="o">=</span><span class="n">use_ps</span><span class="p">,</span>
+        <span class="n">trex</span><span class="o">=</span><span class="n">use_trex</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>実験結果を調べると、PEC、PEC と SLC の組み合わせ、緩和なしのベースラインという異なる手法の振る舞いを直接比較できます。特に注目すべき点は次のとおりです。</p>
+<ul class="simple">
+<li><p>緩和なしの結果は 10% のバイアス帯から大きく外れており（0.35 付近）、ランダム化の数の影響を受けません。</p></li>
+<li><p>このデバイスでは、完全な PEC のサンプリング・オーバーヘッドは <span class="math notranslate nohighlight">\(\gamma^2 \approx 1.6\times10^2\)</span> です。初期の大きな揺れの後、通常の PEC の推定値は信号を回復し、1.1 付近に落ち着いて、厳密な値をわずかに上回ります。10% のバイアス帯は PEC+SLC の推定量にのみ適用されることに注意してください。通常の PEC は原理的にバイアスがないため、この残留偏差はバイアスの保証の対象外であり、統計的な揺らぎと学習したノイズモデルの不完全性を反映しています。この問題の規模では妥当なものです。</p></li>
+<li><p>SLC によってオーバーヘッドはさらに約 3.4 分の 1 に削減されます（残留バイアスの上限が約 10% で、<span class="math notranslate nohighlight">\(\gamma^2 \approx 48\)</span>）。PEC+SLC もランダム化の数が少ないうちは大きく揺らぎ、最初は非物理的な領域に入ることさえありますが、推定値は着実に厳密な値へ収束し、帯の内側に十分収まる 1.0 付近に落ち着きます。サンプリング・コストが約 3 分の 1 であるにもかかわらず、通常の PEC と同等以上の精度が得られており、ライトコーン・シェーディングの利点を示しています。</p></li>
+<li><p>ランダム化が蓄積するにつれて、緩和した両方の推定値の誤差棒は小さくなります。ランダム化の数が同じ場合、PEC+SLC の推定量のほうが統計的な分散が小さく、これは <span class="math notranslate nohighlight">\(\gamma^2\)</span> が小さいことと整合しています。</p></li>
+</ul>
+<p>学習したノイズ・レート（したがって、オーバーヘッドと緩和した推定値）は、バックエンドとその実行時点でのキャリブレーションに依存するため、このノートブックを再実行すると、定量的に異なる値が得られることがあります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Exact"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4100</span><span class="p">],</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Unphysical"</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4100</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4100</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"10% bias"</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+        <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">num_randomizations</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">steps</span><span class="p">)),</span>
+        <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="p">],</span>
+        <span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">res</span><span class="p">],</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
+        <span class="n">markerfacecolor</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">"$\langle X_</span><span class="si">{6}</span><span class="s2">Z_</span><span class="si">{13}</span><span class="s2">\rangle$"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"# randomizations"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4100</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-50.0, 4100.0)
+</pre></div>
+</div>
+<img alt="../_images/e6c851e51e59a827801eb05006f199e1786e450ad19533997f7629fccd7f5867.png" src="../_images/e6c851e51e59a827801eb05006f199e1786e450ad19533997f7629fccd7f5867.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id28">
+<h2>次のステップ<a class="headerlink" href="#id28" title="Link to this heading">#</a></h2>
+<p>この内容に興味を持たれた方には、次の資料もお勧めします。</p>
+<p><strong>おすすめ</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#/docs/tutorials/combine-error-mitigation-techniques"><span class="xref myst">Estimator プリミティブでのエラー緩和オプションの組み合わせ</span></a></p></li>
+<li><p><a class="reference internal" href="#/docs/tutorials/probabilistic-error-amplification"><span class="xref myst">確率的エラー増幅によるユーティリティー・スケールのエラー緩和</span></a></p></li>
+<li><p><a class="reference external" href="https://github.com/Qiskit/qiskit-addon-slc"><code class="docutils literal notranslate"><span class="pre">qiskit-addon-slc</span></code></a> と <a class="reference external" href="https://github.com/Qiskit/samplomatic"><code class="docutils literal notranslate"><span class="pre">samplomatic</span></code></a> のドキュメント</p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2409.04401">Lightcone shading for classically accelerated quantum error mitigation</a></p></li>
+</ul>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">学習成果</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">前提知識</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">背景</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slc">SLC によるエラー緩和ワークフローの概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ノイズ学習の概要</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">後処理の概要</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">要件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">セットアップ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">小規模なシミュレーターでの例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">大規模なハードウェアでの例</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 1: 問題をマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">ステップ 2: 最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">回路をボックス化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">正準基底の測定を準備する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">ライトコーン・シェーディング、ノイズ学習、アンチノイズ注入のワークフロー</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">学習対象のノイズモデルのパウリ項を予測する</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a. 順方向の上限を計算する</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">上限の計算パラメーターを設定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b">b. 量子速度限界を使って順方向の上限を厳しくする</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c">c. 逆方向の上限を計算する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">学習したノイズ・レートを使わずに統合した上限をプレビューする</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">目視確認のために SLC を可視化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">ステップ 3: 実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">a. ノイズ・レートを学習する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-i">b.i. 実際に学習したノイズ・レートで統合した上限を更新する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-ii-local-scales">b.ii. ハードウェア実行のための <code class="docutils literal notranslate"><span class="pre">local_scales</span></code> を計算する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">サンプリング・オーバーヘッドと残留バイアスのトレードオフ</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">c. アンチノイズを加えて対象の回路を実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-i-samplex">c.i. <code class="docutils literal notranslate"><span class="pre">samplex</span></code> を使ってテンプレート回路を準備する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-ii-quantumprogram">c.ii. <code class="docutils literal notranslate"><span class="pre">QuantumProgram</span></code> を設定する</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-iii-executor">c.iii. <code class="docutils literal notranslate"><span class="pre">Executor</span></code> プリミティブでプログラムを実行する</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">ステップ 4: 後処理を行う</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">次のステップ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
