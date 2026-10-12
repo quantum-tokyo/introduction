@@ -1,0 +1,842 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>忠実度 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/purifications-and-fidelity/fidelity-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/purifications-and-fidelity/fidelity-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/purifications-and-fidelity/fidelity-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>忠実度</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">忠実度の定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">トレースノルムによる忠実度の表現</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">純粋状態の忠実度</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">忠実度の基本的な性質</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">穏やかな測定の補題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ウルマンの定理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">コース修了後のアンケート</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>忠実度<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>このパートでは、量子状態の間の<em>忠実度</em>について議論します。忠実度は量子状態の類似度、つまり量子状態がどれだけ「重なっている」かを表す尺度です。</p>
+<p>2つの量子状態ベクトルが与えられたとき、それらに対応する純粋状態の間の忠実度は、量子状態ベクトルの内積の絶対値に等しくなります。
+これは類似度を測る基本的な方法を与えます。結果は<span class="math notranslate nohighlight">\(0\)</span>から<span class="math notranslate nohighlight">\(1\)</span>の間の値になり、値が大きいほど類似度が高いことを表します。
+特に、この値は直交する状態では（定義により）0になり、グローバル位相を除いて等しい状態では<span class="math notranslate nohighlight">\(1\)</span>になります。</p>
+<p>直感的に言えば、忠実度は、この基本的な類似度の尺度を量子状態ベクトルから密度行列へと拡張したものと見なせます。</p>
+<section id="id2">
+<h2>忠実度の定義<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>まず忠実度の定義から始めるのが適切でしょう。
+一見すると、次の定義は奇妙で不可解に見え、扱いにくそうに思えるかもしれません。
+しかし、この定義によって定まる関数は、多くの興味深い性質と、いくつもの別の定式化を持つことがわかります。そのため、最初の印象よりもずっと扱いやすいものです。</p>
+<p><strong>定義</strong></p>
+<p><span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>を、同じ系の量子状態を表す密度行列とします。
+<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>の間の<em>忠実度</em>は、トレース（Tr）を使って次のように定義されます。</p>
+<div class="math notranslate nohighlight">
+\[
+  \operatorname{F}(\rho,\sigma) = \operatorname{Tr}\sqrt{\sqrt{\rho} \sigma \sqrt{\rho}}.
+  \]</div>
+<p><strong>注意</strong></p>
+<p>これは一般的な定義ですが、ここで定義した量の<em>2乗</em>を忠実度と定義し、ここで定義した量を<em>ルート忠実度</em>（root-fidelity）と呼ぶことも一般的です。
+どちらの定義が正しいとか間違っているということはなく、本質的には好みの問題です。
+とはいえ、どちらの定義が使われているのかを常に注意して理解するか、明確にする必要があります。</p>
+<p>定義の式の意味を理解するために、まず<span class="math notranslate nohighlight">\(\sqrt{\rho} \sigma \sqrt{\rho}\)</span>が半正定値行列であることに注意しましょう。<span class="math notranslate nohighlight">\(M = \sqrt{\sigma}\sqrt{\rho}\)</span>とすると、</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\rho} \sigma \sqrt{\rho} = M^{\dagger} M
+\]</div>
+<p>となるからです。
+すべての半正定値行列と同様に、この半正定値行列は一意な半正定値の平方根を持ち、そのトレースが忠実度です。</p>
+<p>任意の正方行列<span class="math notranslate nohighlight">\(M\)</span>について、2つの半正定値行列<span class="math notranslate nohighlight">\(M^{\dagger} M\)</span>と<span class="math notranslate nohighlight">\(M M^{\dagger}\)</span>の固有値は常に同じであり、したがってこれらの行列の平方根についても同じことが成り立ちます。
+<span class="math notranslate nohighlight">\(M = \sqrt{\sigma}\sqrt{\rho}\)</span>を選び、正方行列のトレースはその固有値の和であるという事実を使うと、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{F}(\rho,\sigma)
+&amp; = \operatorname{Tr}\sqrt{\sqrt{\rho} \sigma \sqrt{\rho}}\\
+&amp; = \operatorname{Tr}\sqrt{M^{\dagger} M} = \operatorname{Tr}\sqrt{M M^{\dagger}}\\
+&amp; = \operatorname{Tr}\sqrt{\sqrt{\sigma} \rho \sqrt{\sigma}}\\
+&amp; = \operatorname{F}(\sigma,\rho).
+\end{aligned}
+\end{split}\]</div>
+<p>したがって、定義からはすぐにはわかりませんが、忠実度は2つの引数について対称です。</p>
+<section id="id3">
+<h3>トレースノルムによる忠実度の表現<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>忠実度を表す同等な方法として、次の式があります。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{F}(\rho,\sigma) = \bigl\|\sqrt{\sigma}\sqrt{\rho}\bigr\|_1.
+\]</div>
+<p>ここで現れているのは<em>トレースノルム</em>です。トレースノルムには、前のレッスンで状態識別の文脈ですでに出会いました。
+（正方とは限らない）行列<span class="math notranslate nohighlight">\(M\)</span>のトレースノルムは、</p>
+<div class="math notranslate nohighlight">
+\[
+\| M \|_1 = \operatorname{Tr}\sqrt{M^{\dagger} M},
+\]</div>
+<p>と定義でき、この定義を行列<span class="math notranslate nohighlight">\(\sqrt{\sigma}\sqrt{\rho}\)</span>に適用すると、定義の式が得られます。</p>
+<p>（正方）行列<span class="math notranslate nohighlight">\(M\)</span>のトレースノルムを表す別の方法として、次の式があります。</p>
+<div class="math notranslate nohighlight">
+\[
+\| M \|_1 = \max_{U\:\text{unitary}} \bigl\vert \operatorname{Tr}(M U) \bigr\vert.
+\]</div>
+<p>ここで最大値は、<span class="math notranslate nohighlight">\(M\)</span>と同じ行数と列数を持つすべての<em>ユニタリー</em>行列<span class="math notranslate nohighlight">\(U\)</span>にわたって取ります。
+この式をいまの状況に適用すると、忠実度の別の表現が得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{F}(\rho,\sigma)
+= \max_{U\:\text{unitary}} \bigl\vert\operatorname{Tr}\bigl( \sqrt{\sigma}\sqrt{\rho}\, U\bigr) \bigr\vert
+\]</div>
+</section>
+<section id="id4">
+<h3>純粋状態の忠実度<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>忠実度の定義について最後に述べておくことは、すべての純粋状態は（密度行列として）それ自身の平方根に等しいということです。そのため、一方または両方の状態が純粋であるときには、忠実度の式をかなり簡単にできます。
+特に、2つの状態のうち一方が純粋であれば、次の式が得られます。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{F}\bigl( \vert\phi\rangle\langle\phi\vert, \sigma \bigr)
+= \sqrt{\langle \phi\vert \sigma \vert \phi \rangle}
+\]</div>
+<p>両方の状態が純粋であれば、このセクションの最初で述べたように、式は対応する量子状態ベクトルの内積の絶対値に簡単になります。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{F}\bigl( \vert\phi\rangle\langle\phi\vert, \vert\psi\rangle\langle\psi\vert \bigr)
+= \bigl\vert \langle \phi\vert \psi \rangle \bigr\vert
+\]</div>
+</section>
+</section>
+<section id="id5">
+<h2>忠実度の基本的な性質<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>忠実度には、多くの注目すべき性質といくつかの別の定式化があります。
+ここでは、基本的な性質をいくつか、証明なしで挙げます。</p>
+<ol class="arabic simple">
+<li><p>同じサイズの任意の2つの密度行列<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>について、忠実度<span class="math notranslate nohighlight">\(\operatorname{F}(\rho,\sigma)\)</span>は0と1の間にあります。つまり、<span class="math notranslate nohighlight">\(0\leq \operatorname{F}(\rho,\sigma) \leq 1\)</span>です。<span class="math notranslate nohighlight">\(\operatorname{F}(\rho,\sigma)=0\)</span>となるのは<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>の像が直交する（したがって誤りなく識別できる）場合に限り、<span class="math notranslate nohighlight">\(\operatorname{F}(\rho,\sigma)=1\)</span>となるのは<span class="math notranslate nohighlight">\(\rho = \sigma\)</span>の場合に限ります。</p></li>
+<li><p>忠実度は<em>乗法的</em>です。つまり、2つの積状態の間の忠実度は、個々の忠実度の積に等しくなります。
+$<span class="math notranslate nohighlight">\(
+\operatorname{F}(\rho_1\otimes\cdots\otimes\rho_m,\sigma_1\otimes\cdots\otimes\sigma_m)
+= \operatorname{F}(\rho_1,\sigma_1)\cdots \operatorname{F}(\rho_m,\sigma_m).
+\)</span>$</p></li>
+<li><p>状態の間の忠実度は、任意のチャネルの作用のもとで減少しません。つまり、<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>が密度行列で、<span class="math notranslate nohighlight">\(\Phi\)</span>がこれら2つの状態を入力として受け取れるチャネルであるなら、必ず次の式が成り立ちます。
+$<span class="math notranslate nohighlight">\(
+\operatorname{F}(\rho,\sigma) \leq \operatorname{F}(\Phi(\rho),\Phi(\sigma)).
+\)</span>$</p></li>
+<li><p><em>フックス・ファン・デ・グラーフの不等式</em>は、忠実度とトレース距離の間の密接な（ただし厳密ではない）関係を与えます。任意の2つの状態<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>について、次の式が成り立ちます。
+$<span class="math notranslate nohighlight">\(
+1 - \frac{1}{2}\|\rho - \sigma\|_1 \leq \operatorname{F}(\rho,\sigma)
+\leq \sqrt{1 - \frac{1}{4}\|\rho - \sigma\|_1^2}.
+\)</span>$</p></li>
+</ol>
+<p>最後の性質は、図の形で表すことができます。</p>
+<p><img alt="トレース距離と忠実度の関係を表すプロット" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/purifications-and-fidelity/FvdG-plot.svg" /></p>
+<p>具体的には、同じ系の状態<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>をどのように選んでも、<span class="math notranslate nohighlight">\(y\)</span>軸と<span class="math notranslate nohighlight">\(\operatorname{F}(\rho,\sigma)\)</span>で交わる水平線と、<span class="math notranslate nohighlight">\(x\)</span>軸と<span class="math notranslate nohighlight">\(\frac{1}{2}\|\rho-\sigma\|_1\)</span>で交わる垂直線は、下を直線<span class="math notranslate nohighlight">\(y = 1-x\)</span>、上を単位円で囲まれた灰色の領域の中で交わらなければなりません。
+実用的な観点から最も興味深いのは、この図の灰色の領域の左上の隅です。
+2つの状態の間の忠実度が1に近ければ、それらのトレース距離は0に近く、<em>その逆も</em>成り立ちます。</p>
+</section>
+<section id="id6">
+<h2>穏やかな測定の補題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>次に、<em>穏やかな測定の補題</em>（gentle measurement lemma）として知られる、単純ですが重要な事実を見ていきます。この補題は、忠実度を非破壊測定と結びつけるものです。
+これはときどき登場する非常に有用な補題です。また、一見ぎこちない忠実度の定義のおかげで、実はこの補題の証明がとても簡単になるという点でも注目に値します。</p>
+<p>設定は次のとおりです。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>を状態<span class="math notranslate nohighlight">\(\rho\)</span>にある系とし、<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>を<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の一般測定を表す半正定値行列の集まりとします。
+さらに、系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>が状態<span class="math notranslate nohighlight">\(\rho\)</span>にあるときにこの測定を行うと、測定結果のうちの1つが非常に高い確率で得られるとします。
+具体的に、高い確率で得られる測定結果を<span class="math notranslate nohighlight">\(0\)</span>とし、特に、小さな正の実数<span class="math notranslate nohighlight">\(\varepsilon &gt; 0\)</span>について</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}(P_0 \rho) &gt; 1 - \varepsilon
+\]</div>
+<p>であると仮定しましょう。</p>
+<p>穏やかな測定の補題が述べているのは、これらの仮定のもとでは、ナイマークの定理によって<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{m-1}\}\)</span>から得られる非破壊測定は、高い確率で得られる測定結果<span class="math notranslate nohighlight">\(0\)</span>が観測された場合に、<span class="math notranslate nohighlight">\(\rho\)</span>にわずかな乱れしか引き起こさないということです。</p>
+<p>より具体的には、この補題は、<span class="math notranslate nohighlight">\(\rho\)</span>と、測定結果が<span class="math notranslate nohighlight">\(0\)</span>であるという条件のもとで非破壊測定から得られる状態との間の忠実度の2乗が、<span class="math notranslate nohighlight">\(1-\varepsilon\)</span>より大きいことを述べています。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{F}\Biggl(\rho,\frac{\sqrt{P_0}\rho\sqrt{P_0}}{\operatorname{Tr}(P_0\rho)}\Biggr)^2 &gt; 1-\varepsilon.
+\]</div>
+<p>これを証明するには、測定に関する基本的な事実が必要です。
+測定行列<span class="math notranslate nohighlight">\(P_0, \ldots, P_{m-1}\)</span>は半正定値で、その和は単位行列になります。このことから、<span class="math notranslate nohighlight">\(P_0\)</span>の固有値はすべて<span class="math notranslate nohighlight">\(0\)</span>から<span class="math notranslate nohighlight">\(1\)</span>の間の実数であると結論できます。
+これは、任意の単位ベクトル<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>について、各<span class="math notranslate nohighlight">\(a\in\{0,\ldots,m-1\}\)</span>に対して値<span class="math notranslate nohighlight">\(\langle \psi \vert P_a \vert \psi \rangle\)</span>が非負の実数であること（各<span class="math notranslate nohighlight">\(P_a\)</span>が半正定値だから）と、これらの数の和が1になることから導かれます。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{a = 0}^{m-1} \langle \psi \vert P_a \vert \psi \rangle
+= \langle \psi \vert \Biggl(\sum_{a = 0}^{m-1}  P_a \Biggr) \vert \psi \rangle
+= \langle \psi \vert \mathbb{I} \vert \psi \rangle = 1.
+\]</div>
+<p>したがって、<span class="math notranslate nohighlight">\(\langle \psi \vert P_0 \vert \psi \rangle\)</span>は常に<span class="math notranslate nohighlight">\(0\)</span>から<span class="math notranslate nohighlight">\(1\)</span>の間の実数です。<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>は、関心のある固有値に対応する単位固有ベクトルとして特に選べるので、このことから<span class="math notranslate nohighlight">\(P_0\)</span>のすべての固有値は<span class="math notranslate nohighlight">\(0\)</span>から<span class="math notranslate nohighlight">\(1\)</span>の間の実数であることがわかります。</p>
+<p>この観察から、すべての密度行列<span class="math notranslate nohighlight">\(\rho\)</span>について次の不等式が成り立つと結論できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}\bigl( \sqrt{P_0} \rho\bigr) \geq \operatorname{Tr}\bigl( P_0 \rho\bigr)
+\]</div>
+<p>より詳しく述べると、スペクトル分解</p>
+<div class="math notranslate nohighlight">
+\[
+P_0 = \sum_{k=0}^{n-1} \lambda_k \vert\psi_k\rangle\langle\psi_k\vert
+\]</div>
+<p>から出発して、各<span class="math notranslate nohighlight">\(k = 0,\ldots,n-1\)</span>について<span class="math notranslate nohighlight">\(\langle \psi_k \vert \rho \vert \psi_k \rangle\)</span>が非負の実数であり、<span class="math notranslate nohighlight">\(\sqrt{\lambda_k} \geq \lambda_k\)</span>であるという事実から、</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}\bigl( \sqrt{P_0} \rho\bigr)
+= \sum_{k = 0}^{n-1} \sqrt{\lambda_k} \langle \psi_k \vert \rho \vert \psi_k \rangle
+\geq \sum_{k = 0}^{n-1} \lambda_k \langle \psi_k \vert \rho \vert \psi_k \rangle
+= \operatorname{Tr}\bigl( P_0 \rho\bigr)
+\]</div>
+<p>が結論できます。（<span class="math notranslate nohighlight">\(0\)</span>から<span class="math notranslate nohighlight">\(1\)</span>の間の数は、2乗しても大きくなることはありません。）</p>
+<p>では、忠実度を計算し、先ほどの不等式を使って、穏やかな測定の補題を証明しましょう。
+まず、関心のある式を簡単にします。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{F}\Biggl(\rho,\frac{\sqrt{P_0}\rho\sqrt{P_0}}{\operatorname{Tr}(P_0\rho)}\Biggr)
+&amp; = \operatorname{Tr}\sqrt{\frac{\sqrt{\rho}\sqrt{P_0}\rho\sqrt{P_0}\sqrt{\rho}}{
+\operatorname{Tr}(P_0\rho)}}\\
+&amp; = \operatorname{Tr}\sqrt{\Biggl(\frac{\sqrt{\rho}\sqrt{P_0}\sqrt{\rho}}{
+\sqrt{\operatorname{Tr}(P_0\rho)}}\Biggr)^2}\\
+&amp; = \operatorname{Tr}\Biggl(\frac{\sqrt{\rho}\sqrt{P_0}\sqrt{\rho}}{
+\sqrt{\operatorname{Tr}(P_0\rho)}}\Biggr)\\
+&amp; = \frac{\operatorname{Tr}\bigl(\sqrt{P_0}\rho\bigr)}{\sqrt{\operatorname{Tr}(P_0\rho)}}
+\end{aligned}
+\end{split}\]</div>
+<p>これらはすべて等式であることに注意してください。この時点では、先ほどの不等式（やほかのどの不等式）も使っていないので、忠実度の厳密な表現が得られています。
+ここで先ほどの不等式を使うと、</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{F}\Biggl(\rho,\frac{\sqrt{P_0}\rho\sqrt{P_0}}{\operatorname{Tr}(P_0\rho)}\Biggr)
+= \frac{\operatorname{Tr}\bigl(\sqrt{P_0}\rho\bigr)}{\sqrt{\operatorname{Tr}(P_0\rho)}}
+\geq \frac{\operatorname{Tr}\bigl(P_0\rho\bigr)}{\sqrt{\operatorname{Tr}(P_0\rho)}}
+= \sqrt{\operatorname{Tr}\bigl(P_0\rho\bigr)}
+\]</div>
+<p>が結論でき、したがって両辺を2乗すると、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{F}\Biggl(\rho,\frac{\sqrt{P_0}\rho\sqrt{P_0}}{\operatorname{Tr}(P_0\rho)}\Biggr)^2
+\geq \operatorname{Tr}\bigl(P_0\rho\bigr) &gt; 1-\varepsilon.
+\]</div>
+</section>
+<section id="id7">
+<h2>ウルマンの定理<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>このレッスンの締めくくりとして、<em>ウルマンの定理</em>を見ていきます。これは忠実度に関する基本的な事実であり、忠実度を純粋化の概念と結びつけるものです。
+この定理が述べているのは、簡単に言えば、任意の2つの量子状態の間の忠実度は、それらの状態の2つの純粋化の間の内積（の絶対値）の<em>最大値</em>に等しいということです。</p>
+<Figure title="定理">
+  定理
+<p>ウルマンの定理: <span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>を系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態を表す密度行列とし、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>を、少なくとも<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>と同じ数の古典状態を持つ系とします。<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>の間の忠実度は、次の式で与えられます。</p>
+<div class="math notranslate nohighlight">
+\[
+   \operatorname{F}(\rho,\sigma) = \max\bigl\{ \vert \langle \phi \vert \psi \rangle \vert \,:\, \operatorname{Tr}_{\mathsf{Y}}\bigl(\vert\phi\rangle\langle\phi\vert\bigr) = \rho,\; \operatorname{Tr}_{\mathsf{Y}}\bigl(\vert\psi\rangle\langle\psi\vert\bigr) = \sigma\bigr\},
+  \]</div>
+<p>ここで最大値は、<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>のすべての量子状態ベクトル<span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>にわたって取ります。</p>
+</Figure>
+<p>この定理は純粋化のユニタリー同値性を使って証明できますが、完全に単純というわけではなく、途中で1つ工夫を使います。</p>
+<p>まず、2つの密度行列<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>のスペクトル分解を考えます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\rho &amp; = \sum_{a = 0}^{n-1} p_a \vert u_a\rangle\langle u_a\vert \\[2mm]
+\sigma &amp; = \sum_{b = 0}^{n-1} q_b \vert v_b\rangle\langle v_b\vert
+\end{aligned}
+\end{split}\]</div>
+<p>2つの集まり<span class="math notranslate nohighlight">\(\{\vert u_0 \rangle,\ldots,\vert u_{n-1}\rangle\}\)</span>と<span class="math notranslate nohighlight">\(\{\vert v_0 \rangle,\ldots,\vert v_{n-1}\rangle\}\)</span>は、それぞれ<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>の固有ベクトルからなる正規直交基底であり、<span class="math notranslate nohighlight">\(p_0,\ldots,p_{n-1}\)</span>と<span class="math notranslate nohighlight">\(q_0,\ldots,q_{n-1}\)</span>は対応する固有値です。</p>
+<p>また、<span class="math notranslate nohighlight">\(\vert u_0 \rangle,\ldots,\vert u_{n-1}\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert v_0 \rangle,\ldots,\vert v_{n-1}\rangle\)</span>の各成分の複素共役を取って得られるベクトルを、<span class="math notranslate nohighlight">\(\vert \overline{u_0} \rangle,\ldots,\vert \overline{u_{n-1}}\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert \overline{v_0} \rangle,\ldots,\vert \overline{v_{n-1}}\rangle\)</span>と定義します。
+つまり、任意のベクトル<span class="math notranslate nohighlight">\(\vert w\rangle\)</span>について、各<span class="math notranslate nohighlight">\(c\in\{0,\ldots,n-1\}\)</span>に対する次の等式によって<span class="math notranslate nohighlight">\(\vert\overline{w}\rangle\)</span>を定義します。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle c \vert \overline{w}\rangle = \overline{\langle c \vert w\rangle}
+\]</div>
+<p>任意の2つのベクトル<span class="math notranslate nohighlight">\(\vert u\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert v\rangle\)</span>について<span class="math notranslate nohighlight">\(\langle \overline{u} \vert \overline{v}\rangle = \langle v\vert u\rangle\)</span>が成り立つことに注意してください。
+より一般に、任意の正方行列<span class="math notranslate nohighlight">\(M\)</span>について次の式が成り立ちます。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \overline{u} \vert M \vert \overline{v}\rangle = \langle v\vert M^T \vert u\rangle
+\]</div>
+<p>このことから、<span class="math notranslate nohighlight">\(\vert u\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert v\rangle\)</span>が直交するのは<span class="math notranslate nohighlight">\(\vert \overline{u}\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert \overline{v}\rangle\)</span>が直交する場合に限ることがわかります。したがって、<span class="math notranslate nohighlight">\(\{\vert \overline{u_0} \rangle,\ldots,\vert \overline{u_{n-1}}\rangle\}\)</span>と<span class="math notranslate nohighlight">\(\{\vert \overline{v_0} \rangle,\ldots,\vert \overline{v_{n-1}}\rangle\}\)</span>はどちらも正規直交基底です。</p>
+<p>ここで、次の2つのベクトル<span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>を考えます。これらはそれぞれ<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>の純粋化です。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\phi\rangle &amp; = \sum_{a = 0}^{n-1} \sqrt{p_a}\, \vert u_a\rangle \otimes \vert \overline{u_a}\rangle \\[2mm]
+\vert\psi\rangle &amp; = \sum_{b = 0}^{n-1} \sqrt{q_b}\, \vert v_b\rangle \otimes \vert
+\overline{v_b}\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>これが先ほど述べた工夫です。
+この時点では、<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>の純粋化としてこれらを選ぶのがよい考えだと明示的に示すものは何もありません。しかし、これらは正しい純粋化であり、複素共役によって、必要なとおりに計算がうまく進むようになります。</p>
+<p>純粋化のユニタリー同値性により、系の組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>に対する<span class="math notranslate nohighlight">\(\rho\)</span>のすべての純粋化は、あるユニタリー行列<span class="math notranslate nohighlight">\(U\)</span>を使って<span class="math notranslate nohighlight">\((\mathbb{I}_{\mathsf{X}}\otimes U)\vert\phi\rangle\)</span>の形で表されなければならないことがわかります。同様に、組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>に対する<span class="math notranslate nohighlight">\(\sigma\)</span>のすべての純粋化は、あるユニタリー行列<span class="math notranslate nohighlight">\(V\)</span>を使って<span class="math notranslate nohighlight">\((\mathbb{I}_{\mathsf{X}}\otimes V)\vert\psi\rangle\)</span>の形で表されなければなりません。
+このような2つの純粋化の内積は、次のように簡単にできます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\langle \phi \vert (\mathbb{I}\otimes U^{\dagger}) (\mathbb{I}\otimes V) \vert \psi \rangle
+\hspace{-2.5cm}\\
+&amp; = \sum_{a,b = 0}^{n-1} \sqrt{p_a} \sqrt{q_b}\, \langle u_a \vert v_b \rangle
+\langle \overline{u_a} \vert U^{\dagger} V \vert \overline{v_b} \rangle \\
+&amp; = \sum_{a,b = 0}^{n-1} \sqrt{p_a} \sqrt{q_b}\, \langle u_a \vert v_b \rangle
+\langle v_b \vert (U^{\dagger} V)^T \vert u_a \rangle \\
+&amp; = \operatorname{Tr}\Biggl(
+\sum_{a,b = 0}^{n-1} \sqrt{p_a} \sqrt{q_b}\, \vert u_a \rangle\langle u_a \vert v_b \rangle
+\langle v_b \vert (U^{\dagger} V)^T\Biggr)\\
+&amp; = \operatorname{Tr}\Bigl(
+\sqrt{\rho}\sqrt{\sigma}\, (U^{\dagger} V)^T\Bigr)
+\end{aligned}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(U\)</span>と<span class="math notranslate nohighlight">\(V\)</span>がすべてのユニタリー行列にわたって動くとき、行列<span class="math notranslate nohighlight">\((U^{\dagger} V)^T\)</span>もすべてのユニタリー行列にわたって動きます。
+したがって、<span class="math notranslate nohighlight">\(\rho\)</span>と<span class="math notranslate nohighlight">\(\sigma\)</span>の2つの純粋化の内積の絶対値を最大化すると、次の等式が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\max_{U,V\:\text{unitary}} \biggl\vert \operatorname{Tr}\Bigl(
+\sqrt{\rho}\sqrt{\sigma}\, (U^{\dagger} V)^T\Bigr)\biggr\vert
+&amp; = \max_{W\:\text{unitary}} \biggl\vert \operatorname{Tr}\Bigl(
+\sqrt{\rho}\sqrt{\sigma}\, W\Bigr)\biggr\vert\\[2mm]
+&amp; = \bigl\| \sqrt{\rho}\sqrt{\sigma} \bigr\|_1\\[2mm]
+&amp; = \operatorname{F}(\rho,\sigma)
+\end{aligned}
+\end{split}\]</div>
+</section>
+<section id="id8">
+<h2>コース修了後のアンケート<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>このコースの修了おめでとうございます！ コースの改善のため、少しお時間をいただき、次の<a class="reference external" href="https://your.feedback.ibm.com/jfe/form/SV_bNoS9Adav7L8z9s">簡単なアンケート</a>にご回答ください。いただいたフィードバックは、コンテンツとユーザー体験の向上に役立てられます。ありがとうございました！</p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/purifications-and-fidelity"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">忠実度の定義</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">トレースノルムによる忠実度の表現</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">純粋状態の忠実度</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">忠実度の基本的な性質</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">穏やかな測定の補題</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">ウルマンの定理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">コース修了後のアンケート</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

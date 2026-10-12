@@ -1,0 +1,1016 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>純粋化 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/purifications-and-fidelity/purifications-ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/purifications-and-fidelity/purifications-ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/purifications-and-fidelity/purifications-ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>純粋化</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">純粋化の定義</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">純粋化の存在</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">例</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">シュミット分解</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">純粋化のユニタリー同値性</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">超高密度符号化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">暗号への影響</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ヒューストン・ジョザ・ウッターズの定理</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>純粋化<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>純粋化の定義<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>まず、純粋化の正確な数学的定義から始めましょう。</p>
+<Figure title="定義">
+  定義
+<p>系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>が密度行列<span class="math notranslate nohighlight">\(\rho\)</span>で表される状態にあり、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>は組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>の量子状態ベクトルで、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>をトレースアウトすると<span class="math notranslate nohighlight">\(\rho\)</span>が残るものとします。</p>
+<div class="math notranslate nohighlight">
+\[
+  \rho = \operatorname{Tr}_{\mathsf{Y}} \bigl( \vert \psi\rangle\langle\psi\vert\bigr).
+  \]</div>
+<p>このとき、状態ベクトル<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>を<span class="math notranslate nohighlight">\(\rho\)</span>の<em>純粋化</em>といいます。</p>
+</Figure>
+<p>定義の等式が成り立つとき、量子状態ベクトルではなく密度行列として表した純粋状態<span class="math notranslate nohighlight">\(\vert\psi\rangle\langle\psi\vert\)</span>も、一般に<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化と呼ばれます。ただし、このレッスンでは、通常この用語を量子状態ベクトルを指すものとして使います。</p>
+<p><em>純粋化</em>という用語は、より一般に、系の順番が逆の場合や、（当然ながら）系や状態の名前が異なる場合、さらに系が3つ以上ある場合にも使われます。
+たとえば、<span class="math notranslate nohighlight">\(\vert \psi \rangle\)</span>が複合系<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B},\mathsf{C})\)</span>の純粋状態を表す量子状態ベクトルで、系<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{C})\)</span>の状態を表す密度行列<span class="math notranslate nohighlight">\(\rho\)</span>について等式</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \operatorname{Tr}_{\mathsf{B}} \bigl(\vert\psi\rangle\langle\psi\vert\bigr)
+\]</div>
+<p>が成り立つなら、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>はやはり<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化と呼ばれます。</p>
+<p>しかし、このレッスンでは、定義で述べた特定の形に焦点を当てます。
+この定義に基づく純粋化の性質や事実は、通常、系を並べ替えて2つの複合系に分け、一方に<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の役割を、もう一方に<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の役割を担わせることで、3つ以上の系の場合に一般化できます。</p>
+</section>
+<section id="id3">
+<h2>純粋化の存在<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span>と<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>を任意の2つの系とし、<span class="math notranslate nohighlight">\(\rho\)</span>を<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の与えられた状態とします。
+系<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>が十分に大きければ、<span class="math notranslate nohighlight">\(\rho\)</span>を<em>純粋化する</em>（これは<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>が<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化であることの別の言い方です）<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>の量子状態ベクトル<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>が存在することを証明します。
+特に、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>が少なくとも<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>と同じ数の古典状態を持つなら、この形の純粋化はすべての状態<span class="math notranslate nohighlight">\(\rho\)</span>について必ず存在します。
+状態<span class="math notranslate nohighlight">\(\rho\)</span>によっては、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の古典状態はもっと少なくて済みます。
+一般に、<span class="math notranslate nohighlight">\(\rho\)</span>を純粋化する<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>の量子状態ベクトルが存在するためには、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の古典状態が<span class="math notranslate nohighlight">\(\operatorname{rank}(\rho)\)</span>個あることが必要十分です。</p>
+<p>まず、任意の正の整数<span class="math notranslate nohighlight">\(n\)</span>について、<span class="math notranslate nohighlight">\(\rho\)</span>を<span class="math notranslate nohighlight">\(n\)</span>個の純粋状態の凸結合として表した任意の式を考えます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{a = 0}^{n-1} p_a \vert\phi_a\rangle\langle\phi_a\vert
+\]</div>
+<p>この式で、<span class="math notranslate nohighlight">\((p_0,\ldots,p_{n-1})\)</span>は確率ベクトルであり、<span class="math notranslate nohighlight">\(\vert\phi_0\rangle,\ldots,\vert\phi_{n-1}\rangle\)</span>は<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の量子状態ベクトルです。</p>
+<p>このような式を得る方法の1つはスペクトル定理を使うことです。その場合、<span class="math notranslate nohighlight">\(n\)</span>は<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の古典状態の数、<span class="math notranslate nohighlight">\(p_0,\ldots,p_{n-1}\)</span>は<span class="math notranslate nohighlight">\(\rho\)</span>の固有値、<span class="math notranslate nohighlight">\(\vert\phi_0\rangle,\ldots,\vert\phi_{n-1}\rangle\)</span>はこれらの固有値に対応する正規直交な固有ベクトルです。</p>
+<p>実は、和の中に<span class="math notranslate nohighlight">\(\rho\)</span>の固有値0に対応する項を含める必要はありません。そのため、代わりに<span class="math notranslate nohighlight">\(n = \operatorname{rank}(\rho)\)</span>とし、<span class="math notranslate nohighlight">\(p_0,\ldots,p_{n-1}\)</span>を<span class="math notranslate nohighlight">\(\rho\)</span>の0でない固有値とすることもできます。
+これは、上の形の<span class="math notranslate nohighlight">\(\rho\)</span>の式が存在する<span class="math notranslate nohighlight">\(n\)</span>の最小値です。</p>
+<p>念のため述べておくと、純粋状態の凸結合として選ぶ<span class="math notranslate nohighlight">\(\rho\)</span>の式が、スペクトル定理から得られたものである<em>必要はありません</em>。スペクトル定理は、このような式を得る方法の1つにすぎません。
+特に、<span class="math notranslate nohighlight">\(n\)</span>は任意の正の整数でよく、単位ベクトル<span class="math notranslate nohighlight">\(\vert\phi_0\rangle,\ldots,\vert\phi_{n-1}\rangle\)</span>は直交している必要がなく、確率<span class="math notranslate nohighlight">\(p_0,\ldots,p_{n-1}\)</span>は<span class="math notranslate nohighlight">\(\rho\)</span>の固有値である必要もありません。</p>
+<p>これで、<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化を次のように与えることができます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi\rangle = \sum_{a = 0}^{n-1} \sqrt{p_a} \, \vert\phi_a\rangle \otimes \vert a \rangle
+\]</div>
+<p>ここでは、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の古典状態に<span class="math notranslate nohighlight">\(0,\ldots,n-1\)</span>が含まれると仮定しています。
+含まれない場合は、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の互いに異なる<span class="math notranslate nohighlight">\(n\)</span>個の古典状態を任意に選んで、<span class="math notranslate nohighlight">\(0,\ldots,n-1\)</span>の代わりに使えます。
+これが確かに<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化であることは、部分トレースを計算するだけで簡単に確かめられます。部分トレースは、次の2つの同等な方法で計算できます。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{Y}} \bigl(\vert\psi\rangle\langle\psi\vert\bigr) =
+\sum_{a = 0}^{n-1} (\mathbb{I}_{\mathsf{X}} \otimes \langle a\vert) \vert\psi\rangle\langle\psi\vert
+(\mathbb{I}_{\mathsf{X}} \otimes \vert a\rangle) = \sum_{a = 0}^{n-1} p_a \vert\phi_a\rangle\langle\phi_a\vert = \rho
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{Y}} \bigl(\vert\psi\rangle\langle\psi\vert\bigr) =
+\sum_{a,b = 0}^{n-1} \sqrt{p_a} \sqrt{p_b} \, \vert\phi_a\rangle\langle \phi_b\vert
+\, \operatorname{Tr}(\vert a \rangle \langle b \vert)
+= \sum_{a = 0}^{n-1} p_a \, \vert\phi_a\rangle\langle \phi_a\vert = \rho
+\]</div>
+<p>より一般に、任意の正規直交なベクトルの集合<span class="math notranslate nohighlight">\(\{\vert\gamma_0\rangle,\ldots,\vert\gamma_{n-1}\rangle\}\)</span>について、量子状態ベクトル</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi\rangle = \sum_{a = 0}^{n-1} \sqrt{p_a} \, \vert\phi_a\rangle \otimes \vert \gamma_a \rangle
+\]</div>
+<p>は<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化です。</p>
+<section id="id4">
+<h3>例<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span>と<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>がどちらも量子ビットであり、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\rho = \begin{pmatrix}
+\frac{3}{4} &amp; \frac{1}{4}\\[2mm]
+\frac{1}{4} &amp; \frac{1}{4}
+\end{pmatrix}
+\end{split}\]</div>
+<p>が<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態を表す密度行列であるとします。</p>
+<p>スペクトル定理を使うと、<span class="math notranslate nohighlight">\(\rho\)</span>は次のように表せます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho =
+\cos^2(\pi/8) \vert \psi_{\pi/8}\rangle\langle\psi_{\pi/8}\vert +
+\sin^2(\pi/8) \vert \psi_{5\pi/8}\rangle\langle\psi_{5\pi/8}\vert,
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(\vert \psi_{\theta} \rangle = \cos(\theta) \vert 0\rangle + \sin(\theta)\vert 1\rangle\)</span>です。
+したがって、組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>の純粋状態を表す量子状態ベクトル</p>
+<div class="math notranslate nohighlight">
+\[
+\cos(\pi/8) \vert \psi_{\pi/8}\rangle \otimes \vert 0\rangle +
+\sin(\pi/8) \vert \psi_{5\pi/8}\rangle \otimes \vert 1\rangle
+\]</div>
+<p>は、<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化です。</p>
+<p>あるいは、次のように書くこともできます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \frac{1}{2} \vert 0\rangle\langle 0\vert + \frac{1}{2} \vert +\rangle\langle +\vert.
+\]</div>
+<p>これは純粋状態の凸結合ですが、スペクトル分解ではありません。<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert +\rangle\)</span>は直交しておらず、<span class="math notranslate nohighlight">\(1/2\)</span>は<span class="math notranslate nohighlight">\(\rho\)</span>の固有値ではないからです。
+それでも、量子状態ベクトル</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{\sqrt{2}} \vert 0 \rangle \otimes \vert 0\rangle +
+\frac{1}{\sqrt{2}} \vert + \rangle \otimes \vert 1\rangle
+\]</div>
+<p>は<span class="math notranslate nohighlight">\(\rho\)</span>の純粋化です。</p>
+</section>
+</section>
+<section id="id5">
+<h2>シュミット分解<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>次に、<em>シュミット分解</em>について議論します。シュミット分解とは、系の<em>組</em>の量子状態ベクトルをある特定の形で表したものです。
+シュミット分解は純粋化と密接に関係しており、それ自体としても非常に有用です。
+実際、系の組の量子状態ベクトル<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>について推論するとき、最初のステップはその状態のシュミット分解を求めるか考えることである場合が多いです。</p>
+<Figure title="定義">
+  $\vert \psi\rangle$を系の組$(\mathsf{X},\mathsf{Y})$の量子状態ベクトルとします。$\vert\psi\rangle$の*シュミット分解*とは、次の形の式のことです。
+<div class="math notranslate nohighlight">
+\[
+  \vert \psi\rangle = \sum_{a = 0}^{r-1} \sqrt{p_a}\, \vert x_a\rangle \otimes \vert y_a \rangle,
+  \]</div>
+<p>ここで<span class="math notranslate nohighlight">\(p_0,\ldots,p_{r-1}\)</span>は和が<span class="math notranslate nohighlight">\(1\)</span>になる正の実数であり、集合<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{r-1}\rangle\}\)</span>と<span class="math notranslate nohighlight">\(\{\vert y_0\rangle,\ldots,\vert y_{r-1}\rangle\}\)</span>は<em>どちらも</em>正規直交です。</p>
+</Figure>
+<p><span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>のシュミット分解に現れる値</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{p_0},\ldots,\sqrt{p_{r-1}}
+\]</div>
+<p>はその<em>シュミット係数</em>と呼ばれ、（並び順を除いて）一意に決まります。つまり、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>をこのような形で表したときに現れうる正の実数は、これらだけです。
+一方、集合</p>
+<div class="math notranslate nohighlight">
+\[
+\{\vert x_0\rangle,\ldots,\vert x_{r-1}\rangle\} \quad\text{and}\quad
+\{\vert y_0\rangle,\ldots,\vert y_{r-1}\rangle\},
+\]</div>
+<p>は一意には決まりません。これらのベクトルの集合をどの程度自由に選べるかは、この後の説明で明らかになります。</p>
+<p>では、与えられた量子状態ベクトル<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>が確かにシュミット分解を持つことを確かめ、その過程でシュミット分解の求め方を学びましょう。</p>
+<p>まず、系<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対応するベクトル空間の任意の（直交とは限らない）基底<span class="math notranslate nohighlight">\(\{\vert x_0\rangle, \ldots, \vert x_{n-1}\rangle\}\)</span>を考えます。
+これは基底なので、次の等式が成り立つようなベクトル<span class="math notranslate nohighlight">\(\vert z_0\rangle,\ldots,\vert z_{n-1}\rangle\)</span>の選び方が、常にただ1通り存在します。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi\rangle = \sum_{a = 0}^{n-1} \vert x_a\rangle \otimes \vert z_a \rangle
+\tag{1}
+\]</div>
+<p>たとえば、<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{n-1}\rangle\}\)</span>が<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対応する標準基底であるとします。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の古典状態集合を<span class="math notranslate nohighlight">\(\{0,\ldots,n-1\}\)</span>とすると、これは各<span class="math notranslate nohighlight">\(a\in\{0,\ldots,n-1\}\)</span>について<span class="math notranslate nohighlight">\(\vert x_a\rangle = \vert a\rangle\)</span>であることを意味します。このとき、</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi\rangle = \sum_{a = 0}^{n-1} \vert a\rangle \otimes \vert z_a\rangle
+\]</div>
+<p>が成り立ちます。ここで、各<span class="math notranslate nohighlight">\(a\in\{0,\ldots,n-1\}\)</span>について</p>
+<div class="math notranslate nohighlight">
+\[
+\vert z_a \rangle = ( \langle a \vert \otimes \mathbb{I}_{\mathsf{Y}}) \vert \psi\rangle
+\]</div>
+<p>です。
+<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の標準基底測定を考えるときには、このような式をよく扱います。</p>
+<p>次の点に注意することが重要です。この例でベクトル<span class="math notranslate nohighlight">\(\vert z_0\rangle,\ldots,\vert z_{n-1}\rangle\)</span>を与える式</p>
+<div class="math notranslate nohighlight">
+\[
+\vert z_a \rangle = ( \langle a \vert \otimes \mathbb{I}_{\mathsf{Y}}) \vert \psi\rangle
+\]</div>
+<p>が成り立つのは、<span class="math notranslate nohighlight">\(\{\vert 0\rangle,\ldots,\vert n-1\rangle\}\)</span>が<em>正規直交</em>基底だからにすぎません。
+一般に、<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{n-1}\rangle\}\)</span>が正規直交とは限らない基底の場合でも、ベクトル<span class="math notranslate nohighlight">\(\vert z_0\rangle,\ldots,\vert z_{n-1}\rangle\)</span>は等式<span class="math notranslate nohighlight">\((1)\)</span>によって一意に決まりますが、別の式が必要になります。
+それらを求める方法の1つは、まずすべての<span class="math notranslate nohighlight">\(a,b\in\{0,\ldots,n-1\}\)</span>について等式</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\langle w_a \vert x_b \rangle = \begin{cases} 1 &amp; a=b\\ 0 &amp; a\neq b \end{cases}
+\end{split}\]</div>
+<p>を満たすベクトル<span class="math notranslate nohighlight">\(\vert w_0\rangle,\ldots,\vert w_{n-1}\rangle\)</span>を求めることです。すると、</p>
+<div class="math notranslate nohighlight">
+\[
+\vert z_a \rangle = (\langle w_a \vert \otimes \mathbb{I}_{\mathsf{Y}}) \vert \psi\rangle.
+\]</div>
+<p>となります。</p>
+<p><span class="math notranslate nohighlight">\(\mathsf{X}\)</span>に対応するベクトル空間の基底<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{n-1}\rangle\}\)</span>が与えられたとき、等式<span class="math notranslate nohighlight">\((1)\)</span>を満たす一意に決まるベクトル<span class="math notranslate nohighlight">\(\vert z_0\rangle,\ldots,\vert z_{n-1}\rangle\)</span>は、<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{n-1}\rangle\}\)</span>がたまたま正規直交基底であったとしても、特別な性質を満たすとは限りません。
+しかし、<span class="math notranslate nohighlight">\(\{\vert x_0\rangle, \ldots, \vert x_{n-1}\rangle\}\)</span>を縮約状態</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \operatorname{Tr}_{\mathsf{Y}} \bigl( \vert \psi\rangle \langle \psi \vert \bigr),
+\]</div>
+<p>の<em>固有ベクトル</em>からなる正規直交基底に選ぶと、興味深いことが起こります。
+具体的には、等式<span class="math notranslate nohighlight">\((1)\)</span>を成り立たせる一意に決まる集まり<span class="math notranslate nohighlight">\(\{\vert z_0\rangle,\ldots,\vert z_{n-1}\rangle\}\)</span>は、必ず<em>直交</em>します。</p>
+<p>より詳しく、<span class="math notranslate nohighlight">\(\rho\)</span>のスペクトル分解を考えます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{a = 0}^{n-1} p_a \vert x_a \rangle \langle x_a \vert
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(\rho\)</span>が密度行列である（したがって固有値のベクトル<span class="math notranslate nohighlight">\((p_0,\ldots,p_{n-1})\)</span>は確率ベクトルになる）ことを踏まえて、<span class="math notranslate nohighlight">\(\rho\)</span>の固有値を<span class="math notranslate nohighlight">\(p_0,\ldots,p_{n-1}\)</span>で表しています。また、<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{n-1}\rangle\}\)</span>はこれらの固有値に対応する固有ベクトルからなる正規直交基底です。
+等式<span class="math notranslate nohighlight">\((1)\)</span>を成り立たせる一意な集まり<span class="math notranslate nohighlight">\(\{\vert z_0\rangle,\ldots,\vert z_{n-1}\rangle\}\)</span>が必ず直交することを確かめるには、まず部分トレースを計算します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{Y}} (\vert\psi\rangle\langle\psi\vert)
+&amp; = \sum_{a,b = 0}^{n-1} \vert x_a\rangle\langle x_b\vert \operatorname{Tr}(\vert z_a\rangle\langle z_b\vert)\\
+&amp; = \sum_{a,b = 0}^{n-1} \langle z_b\vert z_a\rangle \, \vert x_a\rangle\langle x_b\vert.
+\end{aligned}
+\end{split}\]</div>
+<p>この式は、<span class="math notranslate nohighlight">\(\rho\)</span>のスペクトル分解と一致しなければなりません。
+<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{n-1}\rangle\}\)</span>は基底なので、行列の集合</p>
+<div class="math notranslate nohighlight">
+\[
+\bigl\{ \vert x_a\rangle\langle x_b\vert \,:\, a,b\in\{0,\ldots,n-1\} \bigr\}
+\]</div>
+<p>は線形独立であり、したがって</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\langle z_b \vert z_a\rangle =
+\begin{cases}
+  p_a &amp; a=b\\[1mm]
+  0 &amp; a\neq b,
+\end{cases}
+\end{split}\]</div>
+<p>が成り立ちます。これで、<span class="math notranslate nohighlight">\(\{\vert z_0\rangle,\ldots,\vert z_{n-1}\rangle\}\)</span>が直交することが示されました。</p>
+<p>これで<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>のシュミット分解がほぼ得られました。
+残りは、<span class="math notranslate nohighlight">\((1)\)</span>のうち<span class="math notranslate nohighlight">\(p_a = 0\)</span>となる項を取り除き、残りの各項について、単位ベクトル<span class="math notranslate nohighlight">\(\vert y_a\rangle\)</span>を使って<span class="math notranslate nohighlight">\(\vert z_a\rangle = \sqrt{p_a}\vert y_a\rangle\)</span>と書くことです。</p>
+<p>これを行う便利な方法は、縮約状態<span class="math notranslate nohighlight">\(\rho\)</span>のスペクトル分解における固有値と固有ベクトルの組には好きなように番号を付けてよい、という点に注目することから始まります。そこで、固有値は降順に並んでいると仮定できます。</p>
+<div class="math notranslate nohighlight">
+\[
+p_0 \geq p_1 \geq \cdots \geq p_{n-1}.
+\]</div>
+<p><span class="math notranslate nohighlight">\(r = \operatorname{rank}(\rho)\)</span>とすると、<span class="math notranslate nohighlight">\(p_0,\ldots,p_{r-1} &gt; 0\)</span>かつ<span class="math notranslate nohighlight">\(p_r = \cdots = p_{n-1} = 0\)</span>となります。
+したがって、</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{a = 0}^{r-1} p_a \vert x_a \rangle \langle x_a \vert,
+\]</div>
+<p>であり、量子状態ベクトル<span class="math notranslate nohighlight">\(\vert \psi \rangle\)</span>は次のように書けます。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert\psi\rangle = \sum_{a = 0}^{r-1} \vert x_a\rangle \otimes \vert z_a\rangle.
+\]</div>
+<p><span class="math notranslate nohighlight">\(a=0,\ldots,r-1\)</span>について</p>
+<div class="math notranslate nohighlight">
+\[
+\| \vert z_a \rangle \|^2 = \langle z_a \vert z_a \rangle = p_a &gt; 0
+\]</div>
+<p>であることから、単位ベクトル<span class="math notranslate nohighlight">\(\vert y_0 \rangle,\ldots,\vert y_{r-1}\rangle\)</span>を</p>
+<div class="math notranslate nohighlight">
+\[
+\vert y_a\rangle = \frac{\vert z_a\rangle}{\|\vert z_a\rangle\|} = \frac{\vert z_a\rangle}{\sqrt{p_a}},
+\]</div>
+<p>と定義できます。すると、各<span class="math notranslate nohighlight">\(a\in\{0,\ldots,r-1\}\)</span>について<span class="math notranslate nohighlight">\(\vert z_a\rangle = \sqrt{p_a}\vert y_a\rangle\)</span>となります。
+ベクトル<span class="math notranslate nohighlight">\(\{\vert z_0\rangle, \ldots, \vert z_{r-1}\rangle\}\)</span>は直交していて0でないので、<span class="math notranslate nohighlight">\(\{\vert y_0\rangle, \ldots, \vert y_{r-1}\rangle\}\)</span>は<em>正規直交</em>集合になります。こうして、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>のシュミット分解が得られました。</p>
+<div class="math notranslate nohighlight">
+\[
+\vert \psi\rangle = \sum_{a = 0}^{r-1} \sqrt{p_a}\, \vert x_a\rangle \otimes \vert y_a \rangle
+\]</div>
+<p>ベクトル<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{r-1}\rangle\}\)</span>と<span class="math notranslate nohighlight">\(\{\vert y_0\rangle,\ldots,\vert y_{r-1}\rangle\}\)</span>の選び方については、（上で行ったように）<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{r-1}\rangle\}\)</span>を、縮約状態<span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{Y}}(\vert\psi\rangle\langle\psi\vert)\)</span>の0でない固有値に対応する固有ベクトルからなる任意の正規直交集合に選べます。その場合、ベクトル<span class="math notranslate nohighlight">\(\{\vert y_0\rangle,\ldots,\vert y_{r-1}\rangle\}\)</span>は一意に決まります。</p>
+<p>状況は2つの系の間で対称なので、代わりに<span class="math notranslate nohighlight">\(\{\vert y_0\rangle,\ldots,\vert y_{r-1}\rangle\}\)</span>を、縮約状態<span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{X}}(\vert\psi\rangle\langle\psi\vert)\)</span>の0でない固有値に対応する固有ベクトルからなる任意の正規直交集合に選ぶこともできます。その場合は、ベクトル<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{r-1}\rangle\}\)</span>が一意に決まります。</p>
+<p>ただし、いま述べたように一方の集合を対応する縮約状態の固有ベクトルの集合として選ぶと、もう一方は決まってしまうことに注意してください。つまり、2つを独立に選ぶことはできません。</p>
+<p>このシリーズでは再び登場しませんが、系の組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>の任意の純粋状態<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>について、縮約状態<span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{X}}(\vert\psi\rangle\langle\psi\vert)\)</span>の0でない固有値<span class="math notranslate nohighlight">\(p_0,\ldots,p_{r-1}\)</span>は、縮約状態<span class="math notranslate nohighlight">\(\operatorname{Tr}_{\mathsf{Y}}(\vert\psi\rangle\langle\psi\vert)\)</span>の0でない固有値と常に一致するという点は注目に値します。</p>
+<p>直感的に言えば、組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>が純粋状態にあるとき、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>と<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の縮約状態には、まったく同じ量のランダムさが含まれています。
+この事実はシュミット分解から明らかになります。どちらの場合も、縮約状態の固有値は純粋状態のシュミット係数の2乗と一致しなければなりません。</p>
+</section>
+<section id="id6">
+<h2>純粋化のユニタリー同値性<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>シュミット分解を使うと、<em>純粋化のユニタリー同値性</em>として知られる、純粋化に関する根本的に重要な事実を示すことができます。</p>
+<Figure title="定理">
+  純粋化のユニタリー同値性: $\mathsf{X}$と$\mathsf{Y}$を系とし、$\vert\psi\rangle$と$\vert\phi\rangle$を、$\mathsf{X}$の同じ状態をどちらも純粋化する$(\mathsf{X},\mathsf{Y})$の量子状態ベクトルとします。記号で書けば、$\mathsf{X}$の状態を表すある密度行列$\rho$について
+<div class="math notranslate nohighlight">
+\[
+  \operatorname{Tr}_{\mathsf{Y}} (\vert\psi\rangle\langle\psi\vert) = \rho = \operatorname{Tr}_{\mathsf{Y}} (\vert\phi\rangle\langle\phi\vert)
+  \]</div>
+<p>が成り立つということです。
+このとき、1つ目の純粋化を2つ目の純粋化に変換する、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>だけに作用するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が存在しなければなりません。</p>
+<div class="math notranslate nohighlight">
+\[
+  (\mathbb{I}_{\mathsf{X}} \otimes U) \vert\psi\rangle = \vert\phi\rangle.
+  \]</div>
+</Figure>
+<p>この定理のいくつかの帰結についてはレッスンの中で議論しますが、まずは、先ほどのシュミット分解の議論からこの定理がどのように導かれるかを見てみましょう。</p>
+<p>仮定は、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>が、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態を表すある密度行列<span class="math notranslate nohighlight">\(\rho\)</span>について等式</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{Y}} (\vert\psi\rangle\langle\psi\vert) = \rho =
+\operatorname{Tr}_{\mathsf{Y}} (\vert\phi\rangle\langle\phi\vert)
+\]</div>
+<p>を満たす、系の組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>の量子状態ベクトルであるということです。</p>
+<p><span class="math notranslate nohighlight">\(\rho\)</span>のスペクトル分解を考えます。</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{a = 0}^{n-1} p_a \vert x_a\rangle\langle x_a\vert
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(\{\vert x_0\rangle,\ldots,\vert x_{n-1}\rangle\}\)</span>は<span class="math notranslate nohighlight">\(\rho\)</span>の固有ベクトルからなる正規直交基底です。
+先ほど説明した手順に従うと、<span class="math notranslate nohighlight">\(\vert\psi\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>の両方について、次の形のシュミット分解が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\psi\rangle &amp; = \sum_{a = 0}^{r-1} \sqrt{p_a} \, \vert x_a\rangle \otimes \vert u_a\rangle\\[1mm]
+\vert\phi\rangle &amp; = \sum_{a = 0}^{r-1} \sqrt{p_a} \, \vert x_a\rangle \otimes \vert v_a\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>これらの式で、<span class="math notranslate nohighlight">\(r\)</span>は<span class="math notranslate nohighlight">\(\rho\)</span>の階数であり、<span class="math notranslate nohighlight">\(\{\vert u_0\rangle,\ldots,\vert u_{r-1}\rangle\}\)</span>と<span class="math notranslate nohighlight">\(\{\vert v_0\rangle,\ldots,\vert v_{r-1}\rangle\}\)</span>は、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>に対応する空間の正規直交なベクトルの集合です。</p>
+<p>同じ空間にある要素数の等しい2つの正規直交集合については、1つ目の集合を2つ目の集合に変換するユニタリー行列が常に存在します。そこで、<span class="math notranslate nohighlight">\(a = 0,\ldots,r-1\)</span>について<span class="math notranslate nohighlight">\(U \vert u_a\rangle = \vert v_a\rangle\)</span>となるようにユニタリー行列<span class="math notranslate nohighlight">\(U\)</span>を選べます。
+具体的には、このような行列<span class="math notranslate nohighlight">\(U\)</span>を求めるには、まずグラム・シュミットの直交化法を使って、正規直交集合を正規直交基底<span class="math notranslate nohighlight">\(\{\vert u_0\rangle,\ldots,\vert u_{m-1}\rangle\}\)</span>と<span class="math notranslate nohighlight">\(\{\vert v_0\rangle,\ldots,\vert v_{m-1}\rangle\}\)</span>に拡張します。ここで<span class="math notranslate nohighlight">\(m\)</span>は<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>に対応する空間の次元です。そして、次のようにします。</p>
+<div class="math notranslate nohighlight">
+\[
+U = \sum_{a = 0}^{m-1} \vert v_a\rangle\langle u_a\vert.
+\]</div>
+<p>すると、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+(\mathbb{I}_{\mathsf{X}} \otimes U) \vert\psi\rangle
+&amp; = \sum_{a = 0}^{r-1} \sqrt{p_a} \, \vert x_a\rangle \otimes U \vert u_a\rangle\\
+&amp; = \sum_{a = 0}^{r-1} \sqrt{p_a} \, \vert x_a\rangle \otimes \vert v_a\rangle\\
+&amp; = \vert\phi\rangle,
+\end{aligned}
+\end{split}\]</div>
+<p>となり、証明が完了します。</p>
+<p>以下に、純粋化のユニタリー同値性に関係する多くの興味深い例や帰結のうち、いくつかを紹介します。
+レッスンの後半では、忠実度の文脈で、<em>ウルマンの定理</em>として知られる、もう1つのきわめて重要な帰結を見ます。</p>
+<section id="id7">
+<h3>超高密度符号化<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>超高密度符号化のプロトコルでは、アリスとボブがe-bitを共有しています。つまり、アリスが量子ビット<span class="math notranslate nohighlight">\(\mathsf{A}\)</span>を、ボブが量子ビット<span class="math notranslate nohighlight">\(\mathsf{B}\)</span>を持ち、組<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span>全体がベル状態<span class="math notranslate nohighlight">\(\vert\phi^{+}\rangle\)</span>にあります。
+このプロトコルは、アリスが自分の量子ビット<span class="math notranslate nohighlight">\(\mathsf{A}\)</span>にユニタリー演算を施すことで、この共有状態を4つのベル状態<span class="math notranslate nohighlight">\(\vert\phi^+\rangle\)</span>、<span class="math notranslate nohighlight">\(\vert\phi^-\rangle\)</span>、<span class="math notranslate nohighlight">\(\vert\psi^+\rangle\)</span>、<span class="math notranslate nohighlight">\(\vert\psi^-\rangle\)</span>のいずれにでも変換できる方法を記述しています。
+アリスはこれを行った後、<span class="math notranslate nohighlight">\(\mathsf{A}\)</span>をボブに送ります。そしてボブは組<span class="math notranslate nohighlight">\((\mathsf{A},\mathsf{B})\)</span>を測定して、自分がどのベル状態を持っているかを確かめます。</p>
+<p>4つのベル状態のどれについても、ボブの量子ビット<span class="math notranslate nohighlight">\(\mathsf{B}\)</span>の縮約状態は完全混合状態です。</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{A}}(\vert\phi^+\rangle\langle\phi^+\vert) =
+\operatorname{Tr}_{\mathsf{A}}(\vert\phi^-\rangle\langle\phi^-\vert) =
+\operatorname{Tr}_{\mathsf{A}}(\vert\psi^+\rangle\langle\psi^+\vert) =
+\operatorname{Tr}_{\mathsf{A}}(\vert\psi^-\rangle\langle\psi^-\vert) =
+\frac{\mathbb{I}}{2}
+\]</div>
+<p>純粋化のユニタリー同値性により、各ベル状態について、<span class="math notranslate nohighlight">\(\vert\phi^+\rangle\)</span>をそのベル状態に変換する、アリスの量子ビット<span class="math notranslate nohighlight">\(\mathsf{A}\)</span>だけに作用するユニタリー演算が存在しなければならないことがすぐにわかります。
+これによってプロトコルの正確な詳細がわかるわけではありませんが、純粋化のユニタリー同値性から、超高密度符号化が可能であることがただちに導かれます。</p>
+<p>また、ベル状態を完全混合状態の純粋化からなる任意の正規直交基底に置き換えれば、より大きな系への超高密度符号化の一般化も常に可能であることがわかります。</p>
+</section>
+<section id="id8">
+<h3>暗号への影響<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>純粋化のユニタリー同値性は、量子情報を使った暗号プリミティブの実装に関して影響を持ちます。
+たとえば、純粋化のユニタリー同値性から、量子情報を使って理想的な形の<em>ビットコミットメント</em>を実装することは不可能であることがわかります。</p>
+<p>ビットコミットメントのプリミティブには、（互いを信用していない）2人の参加者アリスとボブが関わり、2つのフェーズがあります。</p>
+<ul class="simple">
+<li><p>1つ目のフェーズは<em>コミット</em>フェーズで、これを通じてアリスは2値の値<span class="math notranslate nohighlight">\(b\in\{0,1\}\)</span>にコミットします。
+このコミットメントは、<em>拘束的</em>（binding）、つまりアリスが考えを変えられないものでなければならず、また<em>秘匿的</em>（concealing）、つまりアリスがどちらの値にコミットしたかをボブが見分けられないものでなければなりません。</p></li>
+<li><p>2つ目のフェーズは<em>公開</em>フェーズで、アリスがコミットしたビットがボブに知らされます。ボブは、公開された値が本当にコミットされた値であると確信できなければなりません。</p></li>
+</ul>
+<p>直感的で操作的な言い方をすると、ビットコミットメントの1つ目のフェーズは、アリスが紙に2値の値を書き、その紙を金庫の中にしまって鍵をかけ、鍵は自分で持ったまま金庫をボブに渡すかのように機能すべきです。
+金庫はボブの手元にあるので、アリスは紙に書いた2値の値にコミットしたことになります（したがって拘束的です）。しかし、ボブは金庫を開けられないので、アリスがどちらの値にコミットしたかはわかりません（したがって秘匿的です）。
+2つ目のフェーズは、アリスが金庫の鍵をボブに渡し、ボブが金庫を開けてアリスがコミットした値を明らかにできるかのように機能すべきです。</p>
+<p>実は、量子情報だけを使って完全なビットコミットメントのプロトコルを実装することは不可能です。それは純粋化のユニタリー同値性に矛盾するからです。
+以下は、このことを示す議論の大まかな要約です。</p>
+<p>まず、プロトコルの実行中、アリスとボブはユニタリー演算を行うか、新たに初期化された系を導入するかのどちらかしか行わないと仮定できます。
+すべてのチャネルがスタインスプリング表現を持つという事実により、この仮定を置くことができます。</p>
+<p>プロトコルのコミットフェーズの終わりには、ボブはある複合系を手元に持っており、それは2つの量子状態のどちらかにあるはずです。アリスが値<span class="math notranslate nohighlight">\(0\)</span>にコミットした場合は<span class="math notranslate nohighlight">\(\rho_0\)</span>、値<span class="math notranslate nohighlight">\(1\)</span>にコミットした場合は<span class="math notranslate nohighlight">\(\rho_1\)</span>です。
+プロトコルが完全に秘匿的であるためには、ボブはこの2つの状態を区別できてはならないので、<span class="math notranslate nohighlight">\(\rho_0 = \rho_1\)</span>でなければなりません。
+（そうでなければ、これらの状態を確率的に識別する測定が存在してしまいます。）</p>
+<p>しかし、アリスとボブはユニタリー演算しか使っていないので、コミットフェーズの後、プロトコルに関わるすべての系をまとめた状態は純粋状態でなければなりません。
+具体的には、アリスが<span class="math notranslate nohighlight">\(0\)</span>にコミットしたときのプロトコルに関わるすべての系の純粋状態を<span class="math notranslate nohighlight">\(\vert\psi_0\rangle\)</span>、アリスが<span class="math notranslate nohighlight">\(1\)</span>にコミットしたときのものを<span class="math notranslate nohighlight">\(\vert\psi_1\rangle\)</span>とします。
+アリスとボブの（複合系かもしれない）系を<span class="math notranslate nohighlight">\(\mathsf{A}\)</span>と<span class="math notranslate nohighlight">\(\mathsf{B}\)</span>で表すと、</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\rho_0 &amp; = \operatorname{Tr}_{\mathsf{A}}(\vert\psi_0\rangle\langle\psi_0\vert)\\[1mm]
+\rho_1 &amp; = \operatorname{Tr}_{\mathsf{A}}(\vert\psi_1\rangle\langle\psi_1\vert).
+\end{aligned}
+\end{split}\]</div>
+<p>となります。</p>
+<p>完全に秘匿的なプロトコルでは<span class="math notranslate nohighlight">\(\rho_0 = \rho_1\)</span>が要求されることから、<span class="math notranslate nohighlight">\(\vert\psi_0\rangle\)</span>と<span class="math notranslate nohighlight">\(\vert\psi_1\rangle\)</span>は同じ状態の純粋化であることがわかります。したがって、純粋化のユニタリー同値性により、</p>
+<div class="math notranslate nohighlight">
+\[
+(U\otimes\mathbb{I}_{\mathsf{B}})\vert\psi_0\rangle = \vert\psi_1\rangle.
+\]</div>
+<p>を満たす、<span class="math notranslate nohighlight">\(\mathsf{A}\)</span>だけに作用するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が存在しなければなりません。</p>
+<p>したがってアリスは、<span class="math notranslate nohighlight">\(\mathsf{A}\)</span>に<span class="math notranslate nohighlight">\(U\)</span>を施すことでコミットメントを<span class="math notranslate nohighlight">\(0\)</span>から<span class="math notranslate nohighlight">\(1\)</span>に、<span class="math notranslate nohighlight">\(U^{\dagger}\)</span>を施すことで<span class="math notranslate nohighlight">\(1\)</span>から<span class="math notranslate nohighlight">\(0\)</span>に、自由に変更できます。そのため、ここで考えている仮想的なプロトコルは、拘束的であるという条件をまったく満たしません。</p>
+</section>
+<section id="id9">
+<h3>ヒューストン・ジョザ・ウッターズの定理<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>このレッスンのこの部分で議論する純粋化のユニタリー同値性の最後の帰結は、ヒューストン・ジョザ・ウッターズの定理として知られる次の定理です。
+（実は、これはこの名前で知られる定理を少し簡略化した主張です。）</p>
+<Figure title="定理">
+  ヒューストン・ジョザ・ウッターズ: $\mathsf{X}$と$\mathsf{Y}$を系とし、$\vert\phi\rangle$を組$(\mathsf{X},\mathsf{Y})$の量子状態ベクトルとします。
+  また、$N$を任意の正の整数、$(p_0,\ldots,p_{N-1})$を確率ベクトルとし、$\vert\psi_0\rangle,\ldots,\vert\psi_{N-1}\rangle$を、次の式を満たす$\mathsf{X}$の状態を表す量子状態ベクトルとします。
+<div class="math notranslate nohighlight">
+\[
+  \operatorname{Tr}_{\mathsf{Y}}\bigl(\vert\phi\rangle\langle\phi\vert\bigr) = \sum_{a = 0}^{N-1} p_a \vert\psi_a\rangle\langle\psi_a\vert.
+  \]</div>
+<p>このとき、<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y})\)</span>が状態<span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>にあるときにこの測定を<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>に対して行うと次の2つの主張が成り立つような、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>に対する（一般の）測定<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{N-1}\}\)</span>が存在します。</p>
+<ol class="arabic simple">
+<li><p>各測定結果<span class="math notranslate nohighlight">\(a\in\{0,\ldots,N-1\}\)</span>は確率<span class="math notranslate nohighlight">\(p_a\)</span>で現れる。</p></li>
+<li><p>測定結果<span class="math notranslate nohighlight">\(a\)</span>が得られたという条件のもとで、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態は<span class="math notranslate nohighlight">\(\vert\psi_a\rangle\)</span>になる。</p></li>
+</ol>
+</Figure>
+<p>直感的に言えば、この定理は次のことを述べています。2つの系の純粋状態がありさえすれば、1つ目の系の縮約状態を純粋状態の凸結合として捉える<em>どのような</em>見方についても、2つ目の系に対する測定によって、1つ目の系についてのその見方を実質的に現実のものにできる、ということです。
+数<span class="math notranslate nohighlight">\(N\)</span>は、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>や<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>の古典状態の数によって制限されるとは限らないことに注意してください。
+たとえば、<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>と<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>が量子ビットである一方で、<span class="math notranslate nohighlight">\(N = 1,000,000\)</span>ということもありえます。</p>
+<p>この定理を、純粋化のユニタリー同値性を使って証明します。まず、古典状態集合が<span class="math notranslate nohighlight">\(\{0,\ldots,N-1\}\)</span>である新しい系<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>を導入します。
+3つの系の組<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y},\mathsf{Z})\)</span>の、次の2つの量子状態ベクトルを考えます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\vert\gamma_0\rangle &amp; = \vert\phi\rangle_{\mathsf{XY}}\otimes\vert 0\rangle_{\mathsf{Z}}\\[1mm]
+\vert\gamma_1\rangle &amp; = \sum_{a = 0}^{N-1} \sqrt{p_a}\, \vert\psi_a\rangle_{\mathsf{X}} \otimes \vert 0\rangle_{\mathsf{Y}} \otimes \vert a\rangle_{\mathsf{Z}}
+\end{aligned}
+\end{split}\]</div>
+<p>1つ目のベクトル<span class="math notranslate nohighlight">\(\vert\gamma_0\rangle\)</span>は、与えられた量子状態ベクトル<span class="math notranslate nohighlight">\(\vert\phi\rangle\)</span>と、新しい系<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>の<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span>とのテンソル積にすぎません。
+2つ目のベクトル<span class="math notranslate nohighlight">\(\vert\gamma_1\rangle\)</span>は、本質的には、定理を自明にしてしまう量子状態ベクトルです（少なくとも、<span class="math notranslate nohighlight">\(\mathsf{Y}\)</span>を<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>に置き換えたとすれば）。<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>に対して標準基底測定を行うと、各結果<span class="math notranslate nohighlight">\(a\)</span>が確率<span class="math notranslate nohighlight">\(p_a\)</span>で得られ、その結果が得られたという条件のもとで<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>の状態が<span class="math notranslate nohighlight">\(\vert\psi_a\rangle\)</span>になることは明らかだからです。</p>
+<p>組<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{Z})\)</span>を、トレースアウトすると<span class="math notranslate nohighlight">\(\mathsf{X}\)</span>が残る1つの複合系と考えると、状態</p>
+<div class="math notranslate nohighlight">
+\[
+\rho = \sum_{a = 0}^{N-1} p_a \vert\psi_a\rangle\langle\psi_a\vert.
+\]</div>
+<p>の異なる2つの純粋化が得られたことがわかります。</p>
+<p>具体的には、1つ目については</p>
+<div class="math notranslate nohighlight">
+\[
+\operatorname{Tr}_{\mathsf{YZ}} (\vert\gamma_0\rangle\langle\gamma_0\vert)
+= \operatorname{Tr}_{\mathsf{Y}} (\vert\phi\rangle\langle\phi\vert) = \rho
+\]</div>
+<p>であり、2つ目については</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\operatorname{Tr}_{\mathsf{YZ}} (\vert\gamma_1\rangle\langle\gamma_1\vert)
+&amp; = \sum_{a,b = 0}^{N-1} \sqrt{p_a}\sqrt{p_b} \, \vert\psi_a\rangle\langle\psi_a\vert
+\operatorname{Tr}(\vert 0\rangle\langle 0\vert \otimes \vert a\rangle\langle b\vert)\\
+&amp; = \sum_{a = 0}^{N-1} p_a \, \vert\psi_a\rangle\langle\psi_a\vert\\
+&amp; = \rho.
+\end{aligned}
+\end{split}\]</div>
+<p>です。</p>
+<p>したがって、純粋化のユニタリー同値性により、</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathbb{I}_{\mathsf{X}} \otimes U) \vert \gamma_0 \rangle = \vert\gamma_1\rangle
+\]</div>
+<p>を満たす、<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{Z})\)</span>に対するユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>が存在しなければなりません。</p>
+<p>このユニタリー演算<span class="math notranslate nohighlight">\(U\)</span>を使うと、次の図に示すように、定理の要件を満たす測定を実装できます。
+言葉で説明すると、<span class="math notranslate nohighlight">\(\vert 0\rangle\)</span>状態に初期化された新しい系<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>を導入し、<span class="math notranslate nohighlight">\((\mathsf{Y},\mathsf{Z})\)</span>に<span class="math notranslate nohighlight">\(U\)</span>を施します。これによって<span class="math notranslate nohighlight">\((\mathsf{X},\mathsf{Y},\mathsf{Z})\)</span>の状態は<span class="math notranslate nohighlight">\(\vert\gamma_0\rangle\)</span>から<span class="math notranslate nohighlight">\(\vert\gamma_1\rangle\)</span>に変換されます。その後、<span class="math notranslate nohighlight">\(\mathsf{Z}\)</span>を標準基底測定で測定します。すでに見たように、これによって望みどおりの振る舞いが得られます。</p>
+<p><img alt="HSW定理のための測定の量子回路による実装" src="https://quantum.cloud.ibm.com/learning/images/courses/general-formulation-of-quantum-information/purifications-and-fidelity/HSW-measurement.svg" /></p>
+<p>図の点線の長方形は、この測定の実装を表しています。この測定は、半正定値行列の集まり<span class="math notranslate nohighlight">\(\{P_0,\ldots,P_{N-1}\}\)</span>を使って次のように記述できます。</p>
+<div class="math notranslate nohighlight">
+\[
+P_a = (\mathbb{I}_{\mathsf{Y}} \otimes \langle 0\vert) U^{\dagger}
+(\mathbb{I}_{\mathsf{Y}} \otimes \vert a\rangle\langle a \vert)U (\mathbb{I}_{\mathsf{Y}} \otimes
+\vert 0\rangle)
+\]</div>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/general-formation-of-quantum-information/purifications-and-fidelity"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">純粋化の定義</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">純粋化の存在</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">例</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">シュミット分解</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">純粋化のユニタリー同値性</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">超高密度符号化</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">暗号への影響</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ヒューストン・ジョザ・ウッターズの定理</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
