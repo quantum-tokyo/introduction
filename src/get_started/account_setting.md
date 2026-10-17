@@ -22,4 +22,24 @@ IBM Cloud のトライアルアカウントの作成を行います。トライ�
 
 以上で、IBM Cloud のアカウント設定は終了です。お疲れ様でした。
 
+
+## API key と CRN の取得
+
+実量子コンピューターで実験するため次の手順で、API keyとCRNを取得します。
+
+1) https://quantum.cloud.ibm.com/ にサインインし、左側 「API key」の横にある「Create +」をクリックします。
+![image.png](./images/apikey_1.png)
+
+2) API keyの名前（例：my API など）を自由に入力し、「Create」をクリックします。
+![image.png](./images/apikey_2.png)
+
+3) 「Download」をクリックして「apikey.json」ファイルを保存します。
+![image.png](./images/apikey_3.png)
+
+4) 先ほど保存した「apikey.json」ファイルから、apikeyをコピーできます。
+![image.png](./images/apikey_4.png)
+
+5) CRNはこちらからコピーできます。
+![image.png](./images/crn_image.png)
+
 次は、[量子コンピューターの使い方〜量子回路の作成から実機実行までの手順](https://quantum-tokyo.github.io/introduction/get_started/bell.html) を参考に実際に使ってみましょう。
