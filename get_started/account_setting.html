@@ -151,6 +151,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -400,7 +404,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -416,6 +422,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-key-crn">API key と CRN の取得</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -443,7 +457,23 @@
 <img alt="image.png" src="../_images/account_6.jpg" /></p></li>
 </ol>
 <p>以上で、IBM Cloud のアカウント設定は終了です。お疲れ様でした。</p>
+<section id="api-key-crn">
+<h2>API key と CRN の取得<a class="headerlink" href="#api-key-crn" title="Link to this heading">#</a></h2>
+<p>実量子コンピューターで実験するため次の手順で、API keyとCRNを取得します。</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://quantum.cloud.ibm.com/">https://quantum.cloud.ibm.com/</a> にサインインし、左側 「API key」の横にある「Create +」をクリックします。
+<img alt="image.png" src="../_images/apikey_1.png" /></p></li>
+<li><p>API keyの名前（例：my API など）を自由に入力し、「Create」をクリックします。
+<img alt="image.png" src="../_images/apikey_2.png" /></p></li>
+<li><p>「Download」をクリックして「apikey.json」ファイルを保存します。
+<img alt="image.png" src="../_images/apikey_3.png" /></p></li>
+<li><p>先ほど保存した「apikey.json」ファイルから、apikeyをコピーできます。
+<img alt="image.png" src="../_images/apikey_4.png" /></p></li>
+<li><p>CRNはこちらからコピーできます。
+<img alt="image.png" src="../_images/crn_image.png" /></p></li>
+</ol>
 <p>次は、<a class="reference external" href="https://quantum-tokyo.github.io/introduction/get_started/bell.html">量子コンピューターの使い方〜量子回路の作成から実機実行までの手順</a> を参考に実際に使ってみましょう。</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -482,6 +512,23 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-key-crn">API key と CRN の取得</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
