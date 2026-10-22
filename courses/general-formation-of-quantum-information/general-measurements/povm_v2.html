@@ -1,0 +1,1157 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Qiskitデモ：一般的な測定 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/general-formation-of-quantum-information/general-measurements/povm_v2';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/general-formation-of-quantum-information/general-measurements/povm_v2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/courses/general-formation-of-quantum-information/general-measurements/povm_v2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Qiskitデモ：一般的な測定</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0. 準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">射影測定と一般測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#povm">一般測定(POVM)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正四面体状態</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. 正四面体状態測定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2. 量子状態識別</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3. 量子状態トモグラフィー</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="qiskit">
+<h1>Qiskitデモ：一般的な測定<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h1>
+<p>Quantum Tokyoでは3回にわたって一般的な測定（「測定の数学的定式化」、「ナイマルクの定理」、「量子状態の識別とトモグラフィー」）の数学的側面を扱ってきました。</p>
+<p>今回は補講として、それらのテーマをQiskitで実装して振り返っていきます。測定とその対象として、正四面体状態を扱います。正四面体状態の一般測定、量子状態識別、量子状態トモグラフィーを実装します。</p>
+<section id="id1">
+<h2>0. 準備<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>今回はqiskit-communityのパッケージの<code class="docutils literal notranslate"><span class="pre">povm-toolbox</span></code>（<a class="reference external" href="https://qiskit-community.github.io/povm-toolbox/">ドキュメント</a>）を用います。名前の通りPOVM、すなわち一般測定に特化したパッケージになっています。まずはこのパッケージをインストールしてみましょう</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install povm-toolbox qiskit-aer
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3>射影測定と一般測定<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h4>射影測定<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>射影行列の集合で表され、各要素の和が恒等行列。
+$<span class="math notranslate nohighlight">\(
+\left\{\Pi_0, \dots ,\Pi_{m-1} \right\},\ such \ that \ \sum_{i=0}^{m-1} \Pi_i = \mathbb{I}
+\)</span>$</p>
+<p>Qiskitの<code class="docutils literal notranslate"><span class="pre">QuantumCircuit.measurement()</span></code>は射影測定に分類されます。測定結果<span class="math notranslate nohighlight">\(i\)</span>を得られる確率と測定後の応対を記述します。</p>
+</section>
+<section id="povm">
+<h4>一般測定(POVM)<a class="headerlink" href="#povm" title="Link to this heading">#</a></h4>
+<p>半正定値行列の集合で表され、各要素の和が恒等行列。
+$<span class="math notranslate nohighlight">\(
+\left\{E_0, \dots , E_{m-1} \right\},\ such \ that \ \sum_{i=0}^{m-1} E_i = \mathbb{I}
+\)</span>$</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>射影測定</p></th>
+<th class="head"><p>一般測定</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>行列</p></td>
+<td><p>射影行列</p></td>
+<td><p>半正定値行列</p></td>
+</tr>
+<tr class="row-odd"><td><p>測定確率 <span class="math notranslate nohighlight">\(P(i)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{Tr}(\Pi_i \rho)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\text{Tr}(E_i \rho)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>状態</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\Pi_i \rho \Pi_i}{\text{Tr}(\Pi_i \rho \Pi_i)}\)</span></p></td>
+<td><p>記述しない</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="id4">
+<h3>正四面体状態<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>今回の実装で取り扱う正四面体状態の復習です。正四面体状態は次の4つの状態ベクトル、
+$<span class="math notranslate nohighlight">\( \begin{aligned} |\psi_0\rangle &amp;= |0\rangle, \\[4pt] |\psi_1\rangle &amp;= \sqrt{\frac{1}{3}}\,|0\rangle + \sqrt{\frac{2}{3}}\,|1\rangle, \\[4pt] |\psi_2\rangle &amp;= \sqrt{\frac{1}{3}}\,|0\rangle + \sqrt{\frac{2}{3}}\,e^{2\pi i/3}|1\rangle, \\[4pt] |\psi_3\rangle &amp;= \sqrt{\frac{1}{3}}\,|0\rangle + \sqrt{\frac{2}{3}}\,e^{-2\pi i/3}|1\rangle. \end{aligned} \)</span>$</p>
+<p>からなり、1量子ビットのブロッホ球上で、それらのベクトルを結ぶと正四面体を形成することからそう呼ばれています。</p>
+<p>今回のデモに必要なパッケージをインストールします</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization.bloch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bloch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">povm_toolbox.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">DilationMeasurements</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">povm_toolbox.post_processor</span><span class="w"> </span><span class="kn">import</span> <span class="n">POVMPostProcessor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">povm_toolbox.sampler</span><span class="w"> </span><span class="kn">import</span> <span class="n">POVMSampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime.executor_sampler</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span> <span class="k">as</span> <span class="n">RuntimeSampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_aer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AerSimulator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span><span class="p">,</span> <span class="n">Operator</span><span class="p">,</span> <span class="n">DensityMatrix</span><span class="p">,</span> <span class="n">SparsePauliOp</span><span class="p">,</span> <span class="n">Pauli</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cvxpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>1. 正四面体状態測定<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>まずは正四面体状態を定義します。今回は<code class="docutils literal notranslate"><span class="pre">u</span></code>ゲートを使って状態準備します。<a class="reference external" href="https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.library.UGate"><code class="docutils literal notranslate"><span class="pre">u</span></code>ゲート</a> は
+$<span class="math notranslate nohighlight">\( U(\theta,\phi,\lambda) = \begin{pmatrix} \cos\left(\frac{\theta}{2}\right) &amp; -e^{i\lambda}\sin\left(\frac{\theta}{2}\right) \\[4pt] e^{i\phi}\sin\left(\frac{\theta}{2}\right) &amp; e^{i(\phi+\lambda)}\cos\left(\frac{\theta}{2}\right) \end{pmatrix} \)</span>$
+と表されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">))</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span>
+
+<span class="c1">#psi_0</span>
+<span class="n">psi_0</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#psi_1</span>
+<span class="n">psi_1</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">psi_1</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#psi_2</span>
+<span class="n">psi_2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">psi_2</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#psi_3</span>
+<span class="n">psi_3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">psi_3</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="o">-</span><span class="n">phi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">circuits</span> <span class="o">=</span> <span class="p">[</span><span class="n">psi_0</span><span class="p">,</span> <span class="n">psi_1</span><span class="p">,</span> <span class="n">psi_2</span><span class="p">,</span> <span class="n">psi_3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statevectors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="n">circuits</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">statevector_to_bloch</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">Statevector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">expectation_value</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">"X"</span><span class="p">))),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">expectation_value</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">"Y"</span><span class="p">))),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">expectation_value</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="s2">"Z"</span><span class="p">))),</span>
+        <span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="n">bloch_vectors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">statevector_to_bloch</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">statevectors</span>
+<span class="p">]</span>
+
+
+<span class="n">bloch</span> <span class="o">=</span> <span class="n">Bloch</span><span class="p">()</span>
+<span class="n">bloch</span><span class="o">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">bloch_vectors</span><span class="p">)</span>
+
+<span class="n">bloch</span><span class="o">.</span><span class="n">vector_color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span> <span class="s2">"blue"</span><span class="p">,</span> <span class="s2">"green"</span><span class="p">,</span> <span class="s2">"orange"</span><span class="p">]</span>
+<span class="n">bloch</span><span class="o">.</span><span class="n">vector_width</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">bloch</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">"Tetrahedral states"</span>
+
+<span class="n">bloch</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c7e7624dcc1e0b3846f186b4616a3ed8dca63b2456a8cf53c6c44e3628bd3d8d.png" src="../../../_images/c7e7624dcc1e0b3846f186b4616a3ed8dca63b2456a8cf53c6c44e3628bd3d8d.png" />
+</div>
+</div>
+<p>この4状態を普段私たちが使う量子回路で一般測定を実装することを考えます。正四面体状態は1量子ビットですが、状態が4つあるため、1量子ビットの射影測定では4つの状態を識別することができません。そこで<strong>ナイマルクの定理</strong>を使います。ナイマルクの定理とは、任意の一般測定は、より大きなヒルベルト空間では射影測定として扱うことができる、という定理です。</p>
+<p>なので次元が<span class="math notranslate nohighlight">\(2\)</span>のヒルベルト空間上にある正四面体状態を、次元が<span class="math notranslate nohighlight">\(2^2\)</span>のヒルベルト空間に拡張して、一般測定を実装します。<code class="docutils literal notranslate"><span class="pre">povm-toolbox</span></code>には<a class="reference external" href="https://qiskit-community.github.io/povm-toolbox/stubs/povm_toolbox.library.DilationMeasurements.html#povm_toolbox.library.DilationMeasurements"><code class="docutils literal notranslate"><span class="pre">DilationMeasurements</span></code></a>関数が、このことを実装しています</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sic_parameters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="mf">0.75</span><span class="p">,</span>
+        <span class="mf">0.30408673</span><span class="p">,</span>
+        <span class="mf">0.375</span><span class="p">,</span>
+        <span class="mf">0.40678524</span><span class="p">,</span>
+        <span class="mf">0.32509973</span><span class="p">,</span>
+        <span class="mf">0.25000035</span><span class="p">,</span>
+        <span class="mf">0.49999321</span><span class="p">,</span>
+        <span class="mf">0.83333313</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">measurement</span> <span class="o">=</span> <span class="n">DilationMeasurements</span><span class="p">(</span>
+    <span class="n">num_qubits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">parameters</span><span class="o">=</span><span class="n">sic_parameters</span><span class="p">,</span>
+    <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">sim</span> <span class="o">=</span> <span class="n">AerSimulator</span><span class="p">()</span>
+<span class="c1"># 実機で実行する場合は次の行のコメントアウトを解除してください</span>
+<span class="c1"># service = QiskitRuntimeService()</span>
+<span class="c1"># backend = service.least_busy(operational=True)</span>
+<span class="c1"># pm = generate_preset_pass_manager(target=backend.target, optimization_level=3)</span>
+<span class="c1"># isa_circs = [pm.run(circuit) for circuit in circuits]</span>
+
+<span class="c1"># はじめに標準的なサンプラーを呼び出します</span>
+<span class="n">runtime_sampler</span> <span class="o">=</span> <span class="n">RuntimeSampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">sim</span><span class="p">)</span>
+<span class="c1"># 実機で実行する場合は次の行のコメントアウトを解除してください</span>
+<span class="c1"># runtime_sampler = RuntimeSampler(mode=backend)</span>
+
+<span class="c1"># 次にPOVMサンプラーを呼び出します。これは標準的なサンプラーを引数に取りまzす</span>
+<span class="n">povm_sampler</span> <span class="o">=</span> <span class="n">POVMSampler</span><span class="p">(</span><span class="n">runtime_sampler</span><span class="p">)</span>
+
+<span class="c1"># 定義したPOVMを指定してジョブを提出します。どの回路を測定するか、何ショット実行するかもここで指定できます。</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">povm_sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuits</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">povm</span><span class="o">=</span><span class="n">measurement</span><span class="p">)</span>
+<span class="c1"># 実機で実行する場合は次の行のコメントアウトを解除してください</span>
+<span class="c1"># job = povm_sampler.run(circuits, shots=10000, povm=measurement, pass_manager=pm)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>実行した結果を理論的に得られる値と比較しましょう。理論的にはPOVM要素と入力状態が定められた時、得られる確率<span class="math notranslate nohighlight">\(p(j=\text{outcome}|i=\text{input state})\)</span>は</p>
+<div class="math notranslate nohighlight">
+\[ p({j|i}) = \operatorname{Tr}\!\left( E_j |\psi_i\rangle\langle\psi_i| \right) = \frac{1}{2} \left|\langle\psi_j|\psi_i\rangle\right|^2. 
+\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+p({j|i}) = \begin{cases} \frac{1}{2} &amp; j=i, \\[2pt] \frac{1}{6} &amp; j\neq i. \end{cases}
+\end{split}\]</div>
+<p>です。これを確かめましょう</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">theory_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">simulation_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">circuit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">circuits</span><span class="p">):</span>
+    <span class="n">pub_result</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># 状態の密度行列</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">conj</span><span class="p">()))</span>
+
+    <span class="n">povm</span> <span class="o">=</span> <span class="n">pub_result</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">povm_implementation</span><span class="o">.</span><span class="n">definition</span><span class="p">()</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">pub_result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+
+    <span class="n">shots</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">outcome</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="p">,)</span>  <span class="c1">#</span>
+
+        <span class="n">p_theory</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+            <span class="n">povm</span><span class="o">.</span><span class="n">analysis</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">frame_op_idx</span><span class="o">=</span><span class="n">outcome</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">outcome</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">p_sim</span> <span class="o">=</span> <span class="n">count</span> <span class="o">/</span> <span class="n">shots</span>
+
+        <span class="n">theory_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_theory</span>
+        <span class="n">simulation_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_sim</span>
+
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">"入力状態"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"psi_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="s2">"POVM要素"</span><span class="p">:</span> <span class="n">j</span><span class="p">,</span>
+                <span class="s2">"理論的確率"</span><span class="p">:</span> <span class="n">p_theory</span><span class="p">,</span>
+                <span class="s2">"実測確率"</span><span class="p">:</span> <span class="n">p_sim</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span>
+    <span class="n">comparison</span><span class="o">.</span><span class="n">style</span>
+    <span class="o">.</span><span class="n">format</span><span class="p">({</span>
+        <span class="s2">"理論的確率"</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:.6f}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s2">"実測確率"</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:.6f}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+        <span class="s2">"text-align"</span><span class="p">:</span> <span class="s2">"right"</span><span class="p">,</span>
+    <span class="p">})</span>
+    <span class="o">.</span><span class="n">set_table_styles</span><span class="p">([</span>
+        <span class="p">{</span>
+            <span class="s2">"selector"</span><span class="p">:</span> <span class="s2">"th"</span><span class="p">,</span>
+            <span class="s2">"props"</span><span class="p">:</span> <span class="p">[(</span><span class="s2">"text-align"</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">)],</span>
+        <span class="p">}</span>
+    <span class="p">])</span>
+    <span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"index"</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_d84c0 th {
+  text-align: right;
+}
+#T_d84c0_row0_col0, #T_d84c0_row0_col1, #T_d84c0_row0_col2, #T_d84c0_row0_col3, #T_d84c0_row1_col0, #T_d84c0_row1_col1, #T_d84c0_row1_col2, #T_d84c0_row1_col3, #T_d84c0_row2_col0, #T_d84c0_row2_col1, #T_d84c0_row2_col2, #T_d84c0_row2_col3, #T_d84c0_row3_col0, #T_d84c0_row3_col1, #T_d84c0_row3_col2, #T_d84c0_row3_col3, #T_d84c0_row4_col0, #T_d84c0_row4_col1, #T_d84c0_row4_col2, #T_d84c0_row4_col3, #T_d84c0_row5_col0, #T_d84c0_row5_col1, #T_d84c0_row5_col2, #T_d84c0_row5_col3, #T_d84c0_row6_col0, #T_d84c0_row6_col1, #T_d84c0_row6_col2, #T_d84c0_row6_col3, #T_d84c0_row7_col0, #T_d84c0_row7_col1, #T_d84c0_row7_col2, #T_d84c0_row7_col3, #T_d84c0_row8_col0, #T_d84c0_row8_col1, #T_d84c0_row8_col2, #T_d84c0_row8_col3, #T_d84c0_row9_col0, #T_d84c0_row9_col1, #T_d84c0_row9_col2, #T_d84c0_row9_col3, #T_d84c0_row10_col0, #T_d84c0_row10_col1, #T_d84c0_row10_col2, #T_d84c0_row10_col3, #T_d84c0_row11_col0, #T_d84c0_row11_col1, #T_d84c0_row11_col2, #T_d84c0_row11_col3, #T_d84c0_row12_col0, #T_d84c0_row12_col1, #T_d84c0_row12_col2, #T_d84c0_row12_col3, #T_d84c0_row13_col0, #T_d84c0_row13_col1, #T_d84c0_row13_col2, #T_d84c0_row13_col3, #T_d84c0_row14_col0, #T_d84c0_row14_col1, #T_d84c0_row14_col2, #T_d84c0_row14_col3, #T_d84c0_row15_col0, #T_d84c0_row15_col1, #T_d84c0_row15_col2, #T_d84c0_row15_col3 {
+  text-align: right;
+}
+</style>
+<table id="T_d84c0">
+  <thead>
+    <tr>
+      <th id="T_d84c0_level0_col0" class="col_heading level0 col0" >入力状態</th>
+      <th id="T_d84c0_level0_col1" class="col_heading level0 col1" >POVM要素</th>
+      <th id="T_d84c0_level0_col2" class="col_heading level0 col2" >理論的確率</th>
+      <th id="T_d84c0_level0_col3" class="col_heading level0 col3" >実測確率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_d84c0_row0_col0" class="data row0 col0" >psi_0</td>
+      <td id="T_d84c0_row0_col1" class="data row0 col1" >0</td>
+      <td id="T_d84c0_row0_col2" class="data row0 col2" >0.500000</td>
+      <td id="T_d84c0_row0_col3" class="data row0 col3" >0.500100</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row1_col0" class="data row1 col0" >psi_0</td>
+      <td id="T_d84c0_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_d84c0_row1_col2" class="data row1 col2" >0.166667</td>
+      <td id="T_d84c0_row1_col3" class="data row1 col3" >0.168000</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row2_col0" class="data row2 col0" >psi_0</td>
+      <td id="T_d84c0_row2_col1" class="data row2 col1" >2</td>
+      <td id="T_d84c0_row2_col2" class="data row2 col2" >0.166667</td>
+      <td id="T_d84c0_row2_col3" class="data row2 col3" >0.164000</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row3_col0" class="data row3 col0" >psi_0</td>
+      <td id="T_d84c0_row3_col1" class="data row3 col1" >3</td>
+      <td id="T_d84c0_row3_col2" class="data row3 col2" >0.166667</td>
+      <td id="T_d84c0_row3_col3" class="data row3 col3" >0.167900</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row4_col0" class="data row4 col0" >psi_1</td>
+      <td id="T_d84c0_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_d84c0_row4_col2" class="data row4 col2" >0.166667</td>
+      <td id="T_d84c0_row4_col3" class="data row4 col3" >0.168500</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row5_col0" class="data row5 col0" >psi_1</td>
+      <td id="T_d84c0_row5_col1" class="data row5 col1" >1</td>
+      <td id="T_d84c0_row5_col2" class="data row5 col2" >0.500000</td>
+      <td id="T_d84c0_row5_col3" class="data row5 col3" >0.494700</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row6_col0" class="data row6 col0" >psi_1</td>
+      <td id="T_d84c0_row6_col1" class="data row6 col1" >2</td>
+      <td id="T_d84c0_row6_col2" class="data row6 col2" >0.166667</td>
+      <td id="T_d84c0_row6_col3" class="data row6 col3" >0.170700</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row7_col0" class="data row7 col0" >psi_1</td>
+      <td id="T_d84c0_row7_col1" class="data row7 col1" >3</td>
+      <td id="T_d84c0_row7_col2" class="data row7 col2" >0.166667</td>
+      <td id="T_d84c0_row7_col3" class="data row7 col3" >0.166100</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row8_col0" class="data row8 col0" >psi_2</td>
+      <td id="T_d84c0_row8_col1" class="data row8 col1" >0</td>
+      <td id="T_d84c0_row8_col2" class="data row8 col2" >0.166667</td>
+      <td id="T_d84c0_row8_col3" class="data row8 col3" >0.161600</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row9_col0" class="data row9 col0" >psi_2</td>
+      <td id="T_d84c0_row9_col1" class="data row9 col1" >1</td>
+      <td id="T_d84c0_row9_col2" class="data row9 col2" >0.166667</td>
+      <td id="T_d84c0_row9_col3" class="data row9 col3" >0.173800</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row10_col0" class="data row10 col0" >psi_2</td>
+      <td id="T_d84c0_row10_col1" class="data row10 col1" >2</td>
+      <td id="T_d84c0_row10_col2" class="data row10 col2" >0.500000</td>
+      <td id="T_d84c0_row10_col3" class="data row10 col3" >0.499700</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row11_col0" class="data row11 col0" >psi_2</td>
+      <td id="T_d84c0_row11_col1" class="data row11 col1" >3</td>
+      <td id="T_d84c0_row11_col2" class="data row11 col2" >0.166667</td>
+      <td id="T_d84c0_row11_col3" class="data row11 col3" >0.164900</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row12_col0" class="data row12 col0" >psi_3</td>
+      <td id="T_d84c0_row12_col1" class="data row12 col1" >0</td>
+      <td id="T_d84c0_row12_col2" class="data row12 col2" >0.166667</td>
+      <td id="T_d84c0_row12_col3" class="data row12 col3" >0.161000</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row13_col0" class="data row13 col0" >psi_3</td>
+      <td id="T_d84c0_row13_col1" class="data row13 col1" >1</td>
+      <td id="T_d84c0_row13_col2" class="data row13 col2" >0.166667</td>
+      <td id="T_d84c0_row13_col3" class="data row13 col3" >0.175100</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row14_col0" class="data row14 col0" >psi_3</td>
+      <td id="T_d84c0_row14_col1" class="data row14 col1" >2</td>
+      <td id="T_d84c0_row14_col2" class="data row14 col2" >0.166667</td>
+      <td id="T_d84c0_row14_col3" class="data row14 col3" >0.165200</td>
+    </tr>
+    <tr>
+      <td id="T_d84c0_row15_col0" class="data row15 col0" >psi_3</td>
+      <td id="T_d84c0_row15_col1" class="data row15 col1" >3</td>
+      <td id="T_d84c0_row15_col2" class="data row15 col2" >0.500000</td>
+      <td id="T_d84c0_row15_col3" class="data row15 col3" >0.498700</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="id6">
+<h2>2. 量子状態識別<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>前章のデモでは正四面体測定のPOVM要素<span class="math notranslate nohighlight">\(E_i\)</span>が与えられた状態で測定を行いました。今度は最初にPOVM要素<span class="math notranslate nohighlight">\(E_i\)</span>が与えられていない状態で、正四面体状態を識別する成功確率を最大化するようなPOVM要素<span class="math notranslate nohighlight">\(E_i\)</span>を求める、量子状態識別を本章で取り扱います。量子状態識別は、次の制約条件を満たしながら、目的関数を最大化する最適化問題として扱うことができます</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{aligned} \underset{\{E_i\}}{\operatorname{maximize}} \quad &amp; \sum_i p_i\,\operatorname{Tr}(E_i\rho_i) \\[6pt] \operatorname{制約条件} \quad &amp; E_i \geq 0 \quad \text{for all } i, \\ &amp; \sum_i E_i = \mathbb{I}. \end{aligned} \end{split}\]</div>
+<p>今回は<code class="docutils literal notranslate"><span class="pre">cvxpy</span></code>という凸最適化ソルバーを使って最適化を行います。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">optimize_discrimination</span><span class="p">(</span><span class="n">rhos</span><span class="p">,</span> <span class="n">priors</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""既知の状態と事前確率から、最小誤り識別のPOVMを求める。"""</span>
+    <span class="n">rhos</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span> <span class="k">for</span> <span class="n">rho</span> <span class="ow">in</span> <span class="n">rhos</span><span class="p">]</span>
+    <span class="n">priors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">priors</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rhos</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">rhos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># 最適化変数：m個のd×dエルミート行列</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">cp</span><span class="o">.</span><span class="n">Variable</span><span class="p">((</span><span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">hermitian</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="c1"># 制約：E_i &gt;= 0（半正定値）、sum_i E_i = I</span>
+    <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">Ei</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">Ei</span> <span class="ow">in</span> <span class="n">E</span><span class="p">]</span>
+    <span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+
+    <span class="c1"># 目的関数：平均識別成功率</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+        <span class="n">priors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">cp</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">E</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">rhos</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">problem</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="n">success</span><span class="p">),</span> <span class="n">constraints</span><span class="p">)</span>
+    <span class="n">problem</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span>
+        <span class="n">solver</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">SCS</span><span class="p">,</span>
+        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+        <span class="n">max_iters</span><span class="o">=</span><span class="mi">100_000</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">problem</span><span class="o">.</span><span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"optimal"</span><span class="p">,</span> <span class="s2">"optimal_inaccurate"</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"最適化に失敗しました: </span><span class="si">{</span><span class="n">problem</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">Ei</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">Ei</span> <span class="ow">in</span> <span class="n">E</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">problem</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="n">problem</span><span class="o">.</span><span class="n">status</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#正四面体状態（ベクトル形式）</span>
+<span class="n">psis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)],</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)],</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)],</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+
+<span class="c1"># rho_i = |psi_i&gt;&lt;psi_i|</span>
+<span class="n">rhos</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">psi</span><span class="o">.</span><span class="n">conj</span><span class="p">())</span> <span class="k">for</span> <span class="n">psi</span> <span class="ow">in</span> <span class="n">psis</span><span class="p">]</span>
+
+<span class="c1"># 各状態が等確率で与えられる（確率の初期値）</span>
+<span class="n">priors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">E_opt</span><span class="p">,</span> <span class="n">p_success</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">optimize_discrimination</span><span class="p">(</span><span class="n">rhos</span><span class="p">,</span> <span class="n">priors</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"最適化ステータス:"</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"識別成功率:"</span><span class="p">,</span> <span class="n">p_success</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">Ei</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">E_opt</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">E_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> ="</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Ei</span><span class="p">)</span>
+
+<span class="c1"># conditional[i, j] = P(outcome i | state j)</span>
+<span class="n">conditional</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">Ei</span> <span class="o">@</span> <span class="n">rho</span><span class="p">)</span><span class="o">.</span><span class="n">real</span> <span class="k">for</span> <span class="n">rho</span> <span class="ow">in</span> <span class="n">rhos</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">Ei</span> <span class="ow">in</span> <span class="n">E_opt</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">条件付き確率 P(outcome i | state j):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conditional</span><span class="p">)</span>
+
+<span class="c1"># 数値解の検証</span>
+<span class="c1"># 完全性の検証</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">完全性の残差:"</span><span class="p">,</span>
+      <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">E_opt</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+<span class="c1"># 半正定値性の検証（非負の固有値）</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"全POVM要素の最小固有値:"</span><span class="p">,</span>
+      <span class="nb">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">Ei</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">Ei</span> <span class="ow">in</span> <span class="n">E_opt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>最適化ステータス: optimal
+識別成功率: 0.5000000000000002
+
+E_0 =
+[[ 0.5+0.j -0. +0.j]
+ [-0. -0.j  0. +0.j]]
+
+E_1 =
+[[0.166667+0.j 0.235702+0.j]
+ [0.235702-0.j 0.333333+0.j]]
+
+E_2 =
+[[ 0.166667+0.j       -0.117851-0.204124j]
+ [-0.117851+0.204124j  0.333333+0.j      ]]
+
+E_3 =
+[[ 0.166667+0.j       -0.117851+0.204124j]
+ [-0.117851-0.204124j  0.333333+0.j      ]]
+
+条件付き確率 P(outcome i | state j):
+[[0.5      0.166667 0.166667 0.166667]
+ [0.166667 0.5      0.166667 0.166667]
+ [0.166667 0.166667 0.5      0.166667]
+ [0.166667 0.166667 0.166667 0.5     ]]
+
+完全性の残差: 1.5045723833145274e-15
+全POVM要素の最小固有値: -8.619648205075867e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h2>3. 量子状態トモグラフィー<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>量子状態トモグラフィーは未知の量子状態<span class="math notranslate nohighlight">\(\rho\)</span>を知りたいときに用いる手法です。推定値<span class="math notranslate nohighlight">\(\hat{\rho}\)</span>は、同じヒルベルト次元数を持つ複数のグループに分け、そのそれぞれに対して物理量の測定を行います。量子ビット系の場合は、ブロッホ球上表示で
+$<span class="math notranslate nohighlight">\(
+\rho = \frac{1}{2}(\mathbb{I} + \sum_{i=x, y, z} s_i \sigma_i)
+\)</span>$</p>
+<p>とかけるので、ブロッホベクトル<span class="math notranslate nohighlight">\(s_i\)</span>がわかれば、<span class="math notranslate nohighlight">\(\rho\)</span>が求まります。ここで</p>
+<div class="math notranslate nohighlight">
+\[
+s_i = \langle \sigma_i \rangle　\ \text{for all} \ i
+\]</div>
+<p>であることを思いですと、推定値<span class="math notranslate nohighlight">\(\hat{\rho}\)</span>は、各パウリ演算子の期待値より導出できます。</p>
+<p>量子状態トモグラフィーは推定に用いるショット数<span class="math notranslate nohighlight">\(N\)</span>を、<span class="math notranslate nohighlight">\( N \rightarrow \infty \)</span>で <span class="math notranslate nohighlight">\(\hat{\rho} \rightarrow \rho\)</span>に収束することが知られています</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)):</span>
+    <span class="c1"># </span>
+    <span class="n">processor</span> <span class="o">=</span> <span class="n">POVMPostProcessor</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># X・Y・Z の期待値計算</span>
+    <span class="n">expectations</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">,</span> <span class="s2">"Z"</span><span class="p">):</span>
+        <span class="n">mean</span><span class="p">,</span> <span class="n">uncertainty</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">get_expectation_value</span><span class="p">(</span>
+            <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">expectations</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mean</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+    <span class="c1"># 密度演算子のブロッホ球表現</span>
+    <span class="n">rho_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">complex</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="s2">"Y"</span><span class="p">,</span> <span class="s2">"Z"</span><span class="p">):</span>
+        <span class="n">rho_matrix</span> <span class="o">+=</span> <span class="p">(</span>
+            <span class="n">expectations</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">*</span> <span class="n">SparsePauliOp</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="n">rho_matrix</span> <span class="o">/=</span> <span class="mi">2</span>
+
+    <span class="n">rho_est</span> <span class="o">=</span> <span class="n">DensityMatrix</span><span class="p">(</span><span class="n">rho_matrix</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"密度行列の推定値:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rho_est</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"固有値:"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">rho_est</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>密度行列の推定値:
+[[ 1.0002  +0.j        0.002899+0.004777j]
+ [ 0.002899-0.004777j -0.0002  +0.j      ]]
+固有値: [-0.000231  1.000231]
+密度行列の推定値:
+[[0.337   +0.j       0.461458-0.005634j]
+ [0.461458+0.005634j 0.663   +0.j      ]]
+固有値: [0.010567 0.989433]
+密度行列の推定値:
+[[ 0.323193+0.j       -0.224148-0.410045j]
+ [-0.224148+0.410045j  0.676807+0.j      ]]
+固有値: [0.000361 0.999639]
+密度行列の推定値:
+[[ 0.322007+0.j       -0.221825+0.408452j]
+ [-0.221825-0.408452j  0.677993+0.j      ]]
+固有値: [0.002284 0.997716]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: ".venv"
+        },
+        kernelOptions: {
+            name: ".venv",
+            path: "./courses/general-formation-of-quantum-information/general-measurements"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = '.venv'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">0. 準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">射影測定と一般測定</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">射影測定</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#povm">一般測定(POVM)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正四面体状態</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">1. 正四面体状態測定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2. 量子状態識別</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3. 量子状態トモグラフィー</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
