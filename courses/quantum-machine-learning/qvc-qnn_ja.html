@@ -1,0 +1,2122 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子変分回路と量子ニューラルネットワーク &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/quantum-machine-learning/qvc-qnn_ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/quantum-machine-learning/qvc-qnn_ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/quantum-machine-learning/qvc-qnn_ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子変分回路と量子ニューラルネットワーク</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">データの生成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">変分量子分類器: 最初の試み</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-1">Qiskit patterns ステップ 1: 問題を量子回路にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">損失関数</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-2">Qiskit Patterns ステップ 2: 量子実行のために問題を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-3-ibm-quantum">Qiskit Patterns ステップ 3: IBM Quantum のプリミティブを使って実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">バッチとエポックでデータセットをループする</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-4">Qiskit Patterns ステップ 4: 後処理を行い、古典的な形式で結果を返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">テストと精度</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">モデルの改善</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ 1 の再検討</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ 2 の再検討</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ 3 の再検討</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 4 の再検討</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">スケーリングと実際の量子コンピューターでの実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">データ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ 1: 問題を量子回路にマッピングする</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Qiskit Patterns ステップ 2: 量子実行のために問題を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Qiskit Patterns ステップ 3: IBM Quantum のプリミティブを使って実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">まとめ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">参考文献</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子変分回路と量子ニューラルネットワーク<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>このレッスンでは、データ分類タスクのためにいくつかの変分量子回路、いわゆる変分量子分類器 (VQC) を実装します。かつては、古典的なニューラルネットワークとの類推から、VQC の一部を量子ニューラルネットワーク (QNN) と呼ぶことが一般的でした。実際、畳み込み層のような古典的なニューラルネットワークから借用した構造が VQC で重要な役割を果たす場合もあります。このように類推が強く成り立つ場合には、QNN という呼び方は有用な表現になり得ます。しかし、パラメーター化量子回路は必ずしもニューラルネットワークの一般的な構造に従う必要はありません。たとえば、すべてのデータを最初の (入力) 層で読み込む必要はなく、最初の層で一部のデータを読み込み、いくつかのゲートを適用してから、追加のデータを読み込むこともできます (このプロセスはデータの「再アップロード」と呼ばれます)。したがって、QNN はパラメーター化量子回路の一部であると考えるべきであり、有用な量子回路を探求する際に、古典的なニューラルネットワークとの類推に縛られるべきではありません。</p>
+<p>このレッスンで扱うデータセットは、水平または垂直の縞を含む画像で構成されており、未知の画像を線の向きに応じて 2 つのカテゴリーのいずれかにラベル付けすることが目標です。これを VQC で実現します。その過程で、計算を改善し、スケールアップする方法についても取り上げます。ここでのデータセットは、古典的には非常に簡単に分類できるものです。このデータセットは単純さを理由に選ばれており、問題の量子的な部分に集中し、データセットの属性が量子回路のどの部分に対応しうるかを見ることができます。古典アルゴリズムが非常に効率的なこのような単純なケースで、量子による高速化を期待するのは妥当ではありません。</p>
+<p>このレッスンを終えると、次のことができるようになります。</p>
+<ul class="simple">
+<li><p>画像のデータを量子回路に読み込む</p></li>
+<li><p>VQC (または QNN) のアンザッツを構築し、問題に合わせて調整する</p></li>
+<li><p>VQC/QNN を訓練し、それを使ってテストデータに対して正確な予測を行う</p></li>
+<li><p>問題をスケールアップし、現在の量子コンピューターの限界を認識する</p></li>
+</ul>
+<section id="id2">
+<h2>データの生成<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>まずデータを構築します。Qiskit patterns のフレームワークでは、データセットを明示的に生成することはあまりありません。しかし、データの種類と準備は、量子コンピューティングを機械学習にうまく適用するうえで非常に重要です。以下のコードは、所定のピクセル寸法を持つ画像のデータセットを定義します。画像の 1 つの行または列全体に値 <span class="math notranslate nohighlight">\(\pi/2\)</span> が割り当てられ、残りのピクセルには区間 <span class="math notranslate nohighlight">\((0,\pi/4)\)</span> のランダムな値が割り当てられます。このランダムな値はデータ中のノイズです。コードにざっと目を通し、画像がどのように生成されるかを理解しておいてください。後ほど画像をスケールアップします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># このコードは分類対象の画像を定義します:</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 「ピクセル」/量子ビットの総数</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="c1"># 画像の一方の次元 (縦と呼びますが、どちらでも構いません)。`size` の約数である必要があります</span>
+<span class="n">vert_size</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c1"># 検出する線 (黄色) の長さ。画像の最小の次元以下である必要があります</span>
+<span class="c1"># (`&lt;=min(vert_size,size/vert_size)`</span>
+<span class="n">line_size</span> <span class="o">=</span> <span class="mi">2</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_dataset</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">hor_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span> <span class="o">-</span> <span class="p">(</span><span class="n">line_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">vert_size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+    <span class="n">ver_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">vert_size</span> <span class="o">-</span> <span class="n">line_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="p">))</span>
+
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">-</span> <span class="n">line_size</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">line_size</span><span class="p">):</span>
+                <span class="n">hor_array</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># 隣接する 2 つの要素を pi/2 にし、次の行へ移ります。このリストをグリッドに折りたたむため、</span>
+    <span class="c1"># size/vert_size - linesize にある「ピクセル」を避けるよう注意します。</span>
+
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">vert_size</span> <span class="o">-</span> <span class="n">line_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">line_size</span><span class="p">):</span>
+            <span class="n">ver_array</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="n">p</span> <span class="o">*</span> <span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># 長さ/行数の間隔で要素を pi/2 にします。こうすると折りたたんだときに、</span>
+    <span class="c1"># それらの要素が上下に並びます。</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rng</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">hor_array</span><span class="p">))</span>
+            <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hor_array</span><span class="p">[</span><span class="n">random_image</span><span class="p">]))</span>
+
+        <span class="k">elif</span> <span class="n">rng</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ver_array</span><span class="p">))</span>
+            <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ver_array</span><span class="p">[</span><span class="n">random_image</span><span class="p">]))</span>
+            <span class="c1"># 水平または垂直の配列として 0 または 1 をランダムに選び、対応するラベルを</span>
+            <span class="c1"># 割り当てます。</span>
+
+        <span class="c1"># ノイズを生成</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">images</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">images</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span>
+    <span class="k">return</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span>
+
+
+<span class="n">hor_size</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>上のコードでは、画像に垂直 (+1) または水平 (-1) の線が含まれているかを示すラベルも生成されていることに注意してください。次に、sklearn を使って 100 枚の画像からなるデータセットを訓練用とテスト用のセットに (対応するラベルとともに) 分割します。ここでは、データセットの <span class="math notranslate nohighlight">\(70%\)</span> を訓練に使用し、残りの <span class="math notranslate nohighlight">\(30%\)</span> をテスト用に取っておきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_dataset</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+
+<span class="n">train_images</span><span class="p">,</span> <span class="n">test_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">test_labels</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">246</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>データセットのいくつかの要素をプロットして、これらの線がどのように見えるかを確認しましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># カテゴリーを識別できるようにサブプロットのタイトルを作成</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">"category: "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">train_labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">titles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+<span class="c1"># サブプロットを使って画像を並べた図を生成します。</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">"xticks"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"yticks"</span><span class="p">:</span> <span class="p">[]})</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">train_images</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">vert_size</span><span class="p">,</span> <span class="n">hor_size</span><span class="p">),</span>
+        <span class="n">aspect</span><span class="o">=</span><span class="s2">"equal"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/ac9e4239-8c1a-4798-a8e7-80347c29150c-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>これらの画像はそれぞれ、<code class="docutils literal notranslate"><span class="pre">train_labels</span></code> 内の単純なリスト形式のラベルと引き続き対になっています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">train_labels</span><span class="p">[:</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 1, 1, 1, -1, 1, 1, 1]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>変分量子分類器: 最初の試み<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="qiskit-patterns-1">
+<h3>Qiskit patterns ステップ 1: 問題を量子回路にマッピングする<a class="headerlink" href="#qiskit-patterns-1" title="Link to this heading">#</a></h3>
+<p>目標は、データベクトル / 画像 <span class="math notranslate nohighlight">\(\vec{x}\)</span> を正しいカテゴリーにマッピングする、パラメーター <span class="math notranslate nohighlight">\(\theta\)</span> を持つ関数 <span class="math notranslate nohighlight">\(f\)</span> を見つけることです: <span class="math notranslate nohighlight">\(f_\theta(\vec{x}) \rightarrow \pm1\)</span>。これは、それぞれ異なる目的によって識別できる少数の層からなる VQC を使って実現します。</p>
+<div class="math notranslate nohighlight">
+\[
+f_\theta(\vec{x}) = \langle 0|U^{\dagger}(\vec{x})W^\dagger(\theta)OW(\theta)U(\vec{x})|0\rangle
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(U(\vec{x})\)</span> はエンコーディング回路であり、これまでのレッスンで見てきたように多くの選択肢があります。<span class="math notranslate nohighlight">\(W(\theta)\)</span> は変分回路ブロック (訓練可能な回路ブロック) であり、<span class="math notranslate nohighlight">\(\theta\)</span> は訓練するパラメーターの集合です。これらのパラメーターは古典的な最適化アルゴリズムによって変化させられ、量子回路による画像の分類が最も良くなるパラメーターの集合が探索されます。この変分回路は「アンザッツ」と呼ばれることもあります。最後に、<span class="math notranslate nohighlight">\(O\)</span> は Estimator プリミティブを使って推定するオブザーバブルです。層がこの順序で並ぶ必要はなく、完全に分離している必要さえありません。技術的な動機があれば、複数の変分層やエンコーディング層を任意の順序で配置できます。</p>
+<p>まず、データをエンコードするための特徴量マップを選びます。ここでは <code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> を使用します。これは、他のいくつかの特徴量マップと比べて回路の深さを浅く抑えられるためです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">z_feature_map</span>
+
+<span class="c1"># データの特徴量 1 つにつき 1 量子ビット</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># データのエンコーディング</span>
+<span class="c1"># Qiskit はパラメーターをアルファベット順に並べることに注意してください。データのエンコーディングが</span>
+<span class="c1"># 回路の最初の部分 (特徴量マップ) に確実に入るよう、パラメーターの接頭辞として "a" を割り当てます。</span>
+<span class="n">feature_map</span> <span class="o">=</span> <span class="n">z_feature_map</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">parameter_prefix</span><span class="o">=</span><span class="s2">"a"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、訓練するアンザッツを決める必要があります。アンザッツを選ぶ際には多くの考慮事項があります。完全な説明はこの入門の範囲を超えるため、ここではいくつかの考慮事項のカテゴリーを挙げるにとどめます。</p>
+<ol class="arabic simple">
+<li><p><strong>ハードウェア:</strong> 現代の量子コンピューターはすべて、古典コンピューターと比べてエラーが発生しやすく、ノイズの影響を受けやすいものです。過度に深いアンザッツ (特にトランスパイル後の 2 量子ビットの深さが深いもの) を使っても良い結果は得られません。関連する問題として、量子コンピューターには量子ビットのレイアウトがあり、量子コンピューター上で隣接している物理量子ビットもあれば、互いに非常に離れているものもあります。隣接する量子ビットをエンタングルさせても深さはそれほど増えませんが、非常に離れた量子ビットをエンタングルさせると深さが大幅に増える可能性があります。エンタングルさせるためには、SWAP ゲートを挿入して情報を隣接する量子ビットに移動させる必要があるためです。</p></li>
+<li><p><strong>問題:</strong> アンザッツの指針となりうる問題に関する情報があれば、それを活用してください。たとえば、このレッスンのデータは水平線と垂直線の画像で構成されています。隣接する色/値の間のどのような相関が、水平線や垂直線の画像を特徴付けるのかを考えることができます。アンザッツのどのような属性が、隣接ピクセル間のこの相関に対応するでしょうか。この点については、このレッスンの後半でより技術的に再検討します。しかし今のところは、隣接するピクセルに対応する量子ビット間にエンタングルメントと CNOT ゲートを含めるのが良さそうだ、とだけ言っておきましょう。より大局的には、その問題が本当に量子回路を使って解くのが最善なのか、それとも同じくらいうまく解ける古典アルゴリズムが存在しうるのかを検討してください。</p></li>
+<li><p><strong>パラメーターの数:</strong> 回路内の独立にパラメーター化された量子ゲートはそれぞれ、古典的に最適化すべき空間を広げ、その結果として収束が遅くなります。さらに、問題がスケールアップするにつれて、<em>バレンプラトー</em> に遭遇することがあります。この用語は、問題のサイズが大きくなるにつれて、変分量子アルゴリズムの最適化ランドスケープが指数関数的に平坦で特徴のないものになる現象を指します。これにより勾配消失が起こり、アルゴリズムを効果的に訓練することが難しくなります<a class="reference internal" href="#references"><span class="xref myst">[1]</span></a>。バレンプラトーは、VQC/QNN のような変分量子アルゴリズムに関係します。なお、バレンプラトーを回避するうえで考慮すべきなのはパラメーター数の増加だけではないことに注意してください。他の考慮事項として、大域的なコスト関数やパラメーターのランダムな初期化などがあります。</p></li>
+</ol>
+<p>このレッスンでは、アンザッツ構築における良い実践の簡単な例をいくつか見ていきます。まずは以下のアンザッツを試してみましょう。後でこれを修正するために戻ってきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要なパッケージをインポート</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterVector</span>
+
+<span class="c1"># 画像のピクセル数と同じ数の量子ビットで回路を初期化</span>
+<span class="n">qnn_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+
+<span class="c1"># 各量子ビットに 2 つの変分パラメーターを持たせることにします。</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"θ"</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span><span class="p">)</span>
+
+<span class="c1"># 1 つ目の変分層:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># CNOT ゲートを配置したい量子ビットのペアのリストです。</span>
+<span class="c1"># これらの選び方はまだ自明ではありません。</span>
+<span class="n">qnn_cnot_list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qnn_cnot_list</span><span class="p">)):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qnn_cnot_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">qnn_cnot_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># 2 つ目の変分層:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">size</span> <span class="o">+</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># 回路の深さと 2 量子ビットゲートの深さを確認</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qnn_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"2+ qubit depth: </span><span class="si">{</span><span class="n">qnn_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">instr</span><span class="p">:</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+
+<span class="c1"># 回路を描画</span>
+<span class="n">qnn_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+2+ qubit depth: 3
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ┌──────────┐             ┌──────────┐                         
+q_0: ┤ Ry(θ[0]) ├──────■──────┤ Rx(θ[8]) ├─────────────────────────
+     ├──────────┤    ┌─┴─┐    └──────────┘┌──────────┐             
+q_1: ┤ Ry(θ[1]) ├────┤ X ├─────────■──────┤ Rx(θ[9]) ├─────────────
+     ├──────────┤    └───┘       ┌─┴─┐    └──────────┘┌───────────┐
+q_2: ┤ Ry(θ[2]) ├────────────────┤ X ├─────────■──────┤ Rx(θ[10]) ├
+     ├──────────┤                └───┘       ┌─┴─┐    ├───────────┤
+q_3: ┤ Ry(θ[3]) ├────────────────────────────┤ X ├────┤ Rx(θ[11]) ├
+     ├──────────┤┌───────────┐               └───┘    └───────────┘
+q_4: ┤ Ry(θ[4]) ├┤ Rx(θ[12]) ├─────────────────────────────────────
+     ├──────────┤├───────────┤                                     
+q_5: ┤ Ry(θ[5]) ├┤ Rx(θ[13]) ├─────────────────────────────────────
+     ├──────────┤├───────────┤                                     
+q_6: ┤ Ry(θ[6]) ├┤ Rx(θ[14]) ├─────────────────────────────────────
+     ├──────────┤├───────────┤                                     
+q_7: ┤ Ry(θ[7]) ├┤ Rx(θ[15]) ├─────────────────────────────────────
+     └──────────┘└───────────┘                                     
+</pre></div>
+</div>
+</div>
+</div>
+<p>データエンコーディングと変分回路の準備ができたので、これらを組み合わせて完全なアンザッツを作成できます。この場合、量子回路の構成要素はニューラルネットワークの構成要素とよく似ており、<span class="math notranslate nohighlight">\(U(\vec{x})\)</span> は画像から入力値を読み込む層に最も近く、<span class="math notranslate nohighlight">\(W(\theta)\)</span> は可変の「重み」の層のようなものです。この場合にはこの類推が成り立つため、一部の命名規則で「qnn」を採用していますが、この類推が VQC の探求を制限するものであってはなりません。</p>
+<p><img alt="QMLCRbackgroundQNNcircuit-2.png" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/qvc-qnn/qml-cr-background-qnn-circuit.avif" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QNN アンザッツ</span>
+<span class="n">ansatz</span> <span class="o">=</span> <span class="n">qnn_circuit</span>
+
+<span class="c1"># 特徴量マップとアンザッツを結合</span>
+<span class="n">full_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">feature_map</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">ansatz</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 回路を表示</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">"clifford"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/e84e5ac1-d5fb-4ec0-8a23-5a2c417a4088-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、コスト関数で使用できるようにオブザーバブルを定義する必要があります。このオブザーバブルの期待値は Estimator を使って求めます。問題に基づいた良いアンザッツを選んでいれば、各量子ビットには分類に関係する情報が含まれているはずです。情報をより少ない量子ビットに集約する層 (<em>畳み込み層</em> と呼ばれます) を追加して、(畳み込みニューラルネットワークのように) 回路内の一部の量子ビットだけを測定すればよいようにすることもできます。あるいは、各量子ビットから何らかの属性を測定することもできます。ここでは後者を選ぶので、各量子ビットに <code class="docutils literal notranslate"><span class="pre">Z</span></code> 演算子を含めます。<span class="math notranslate nohighlight">\(Z\)</span> を選ぶことに特別な理由があるわけではありませんが、十分な動機があります。</p>
+<ul class="simple">
+<li><p>これは二値分類タスクであり、<span class="math notranslate nohighlight">\(Z\)</span> の測定では 2 つの結果が得られます。</p></li>
+<li><p><span class="math notranslate nohighlight">\(Z\)</span> の固有値 (<span class="math notranslate nohighlight">\(\pm 1\)</span>) は適度に離れており、Estimator の結果は区間 [-1, +1] に収まるため、単純に 0 をしきい値として使用できます。</p></li>
+<li><p>パウリ Z 基底での測定は、追加のゲートのオーバーヘッドなしに簡単に行えます。</p></li>
+</ul>
+<p>したがって、Z は非常に自然な選択です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_list</span><span class="p">([(</span><span class="s2">"Z"</span> <span class="o">*</span> <span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>量子回路と、推定したいオブザーバブルが揃いました。次に、この回路を実行して最適化するためにいくつか必要なものがあります。まず、順伝播を実行する関数が必要です。以下の関数は <code class="docutils literal notranslate"><span class="pre">input_params</span></code> と <code class="docutils literal notranslate"><span class="pre">weight_params</span></code> を別々に受け取ることに注意してください。前者は画像のデータを表す静的なパラメーターの集合であり、後者は最適化される可変のパラメーターの集合です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimatorV2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info.operators.base_operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseOperator</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
+    <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span>
+    <span class="n">input_params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">weight_params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">estimator</span><span class="p">:</span> <span class="n">BaseEstimatorV2</span><span class="p">,</span>
+    <span class="n">observable</span><span class="p">:</span> <span class="n">BaseOperator</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    ニューラルネットワークの順伝播。</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        circuit: データ読み込みゲートとニューラルネットワークのアンザッツからなる回路。</span>
+<span class="sd">        input_params: データエンコーディングのパラメーター。</span>
+<span class="sd">        weight_params: ニューラルネットワークのアンザッツのパラメーター。</span>
+<span class="sd">        estimator: EstimatorV2 プリミティブ。</span>
+<span class="sd">        observable: 期待値を計算する単一のオブザーバブル。</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        expectation_values: 期待値の配列 (オブザーバブルが 1 つの場合) または行列 (オブザーバブルが複数の場合)。</span>
+<span class="sd">        行がオブザーバブル、列がデータサンプルに対応します。</span>
+<span class="sd">    """</span>
+    <span class="n">num_samples</span> <span class="o">=</span> <span class="n">input_params</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">weight_params</span><span class="p">,</span> <span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">weight_params</span><span class="p">)))</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">input_params</span><span class="p">,</span> <span class="n">weights</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pub</span> <span class="o">=</span> <span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">observable</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+    <span class="n">job</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">pub</span><span class="p">])</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">expectation_values</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">evs</span>
+
+    <span class="k">return</span> <span class="n">expectation_values</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>損失関数<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>次に、ラベルの予測値と計算値の差を計算する損失関数が必要です。この関数は、アルゴリズムが予測したラベルと正しいラベルを受け取り、平均二乗誤差を返します。損失関数にはさまざまな種類があります。ここでは、例として MSE を選びました。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mse_loss</span><span class="p">(</span><span class="n">predict</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    平均二乗誤差 (MSE)。</span>
+
+<span class="sd">    prediction: ニューラルネットワークの順伝播による予測値。</span>
+<span class="sd">    target: 正解ラベル。</span>
+
+<span class="sd">    output: MSE 損失。</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">predict</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">((</span><span class="n">predict</span> <span class="o">-</span> <span class="n">target</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">"input should be 1d-array"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>古典的な最適化器で使用するために、可変パラメーター (重み) の関数である、少し異なる損失関数も定義しておきましょう。この関数はアンザッツのパラメーターのみを入力として受け取り、順伝播と損失のためのその他の変数はグローバルパラメーターとして設定します。最適化器は、さまざまな重みをサンプリングし、コスト/損失関数の出力を下げようとすることでモデルを訓練します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mse_loss_weights</span><span class="p">(</span><span class="n">weight_params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    最適化器がアンザッツのパラメーターを更新するためのコスト関数。</span>
+
+<span class="sd">    weight_params: 最適化器によって更新されるアンザッツのパラメーター。</span>
+
+<span class="sd">    output: MSE 損失。</span>
+<span class="sd">    """</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span>
+        <span class="n">circuit</span><span class="o">=</span><span class="n">circuit</span><span class="p">,</span>
+        <span class="n">input_params</span><span class="o">=</span><span class="n">input_params</span><span class="p">,</span>
+        <span class="n">weight_params</span><span class="o">=</span><span class="n">weight_params</span><span class="p">,</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
+        <span class="n">observable</span><span class="o">=</span><span class="n">observable</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">mse_loss</span><span class="p">(</span><span class="n">predict</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
+    <span class="n">objective_func_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+
+    <span class="k">global</span> <span class="nb">iter</span>
+    <span class="k">if</span> <span class="nb">iter</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Iter: </span><span class="si">{</span><span class="nb">iter</span><span class="si">}</span><span class="s2">, loss: </span><span class="si">{</span><span class="n">cost</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">iter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">cost</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>上で古典的な最適化器を使用すると述べました。コスト関数を最小化するために重みを探索する際には、最適化器 COBYLA を使用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>コスト関数のための初期グローバル変数をいくつか設定します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># グローバル変数</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">full_circuit</span>
+<span class="n">observables</span> <span class="o">=</span> <span class="n">observable</span>
+<span class="c1"># input_params = train_images_batch</span>
+<span class="c1"># target = train_labels_batch</span>
+<span class="n">objective_func_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="qiskit-patterns-2">
+<h2>Qiskit Patterns ステップ 2: 量子実行のために問題を最適化する<a class="headerlink" href="#qiskit-patterns-2" title="Link to this heading">#</a></h2>
+<p>まず、実行するバックエンドを選択します。ここでは、最も空いているバックエンドを使用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_brisbane
+</pre></div>
+</div>
+</div>
+</div>
+<p>ここでは、optimization_level を指定し、動的デカップリングを追加することで、実際のバックエンドで実行するために回路を最適化します。以下のコードは、qiskit.transpiler のプリセットパスマネージャーを使ってパスマネージャーを生成します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">XGate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">PassManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.passes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ALAPScheduleAnalysis</span><span class="p">,</span>
+    <span class="n">ConstrainedReschedule</span><span class="p">,</span>
+    <span class="n">PadDynamicalDecoupling</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">scheduling</span> <span class="o">=</span> <span class="n">PassManager</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">ALAPScheduleAnalysis</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">),</span>
+        <span class="n">ConstrainedReschedule</span><span class="p">(</span>
+            <span class="n">acquire_alignment</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">acquire_alignment</span><span class="p">,</span>
+            <span class="n">pulse_alignment</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">pulse_alignment</span><span class="p">,</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">PadDynamicalDecoupling</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+            <span class="n">dd_sequence</span><span class="o">=</span><span class="p">[</span><span class="n">XGate</span><span class="p">(),</span> <span class="n">XGate</span><span class="p">()],</span>
+            <span class="n">pulse_alignment</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">pulse_alignment</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、回路にパスマネージャーを適用します。その結果生じるレイアウトの変更は、オブザーバブルにも適用する必要があります。非常に大きな回路では、回路の最適化で使われるヒューリスティクスが、必ずしも最良かつ最も浅い回路を生成するとは限りません。そのような場合には、パスマネージャーを何度か実行して最良の回路を使用するのが理にかなっています。これについては、後で計算をスケールアップする際に見ていきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_ibm</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">full_circuit</span><span class="p">)</span>
+<span class="n">observable_ibm</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">circuit_ibm</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="qiskit-patterns-3-ibm-quantum">
+<h2>Qiskit Patterns ステップ 3: IBM Quantum のプリミティブを使って実行する<a class="headerlink" href="#qiskit-patterns-3-ibm-quantum" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>バッチとエポックでデータセットをループする<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>まず、簡単なデバッグと誤差の見積もりのために、シミュレーターを使ってアルゴリズム全体を実装します。これで、量子ニューラルネットワークを訓練するために、データセット全体をバッチに分けて、必要なエポック数だけ処理できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorEstimator</span> <span class="k">as</span> <span class="n">Estimator</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">140</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_images</span><span class="p">)</span>
+
+<span class="c1"># グローバル変数</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">full_circuit</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span>  <span class="c1"># デバッグ用のシミュレーター</span>
+<span class="n">observables</span> <span class="o">=</span> <span class="n">observable</span>
+<span class="n">objective_func_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># アンザッツのランダムな初期重み</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">weight_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ansatz</span><span class="o">.</span><span class="n">parameters</span><span class="p">))</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">num_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, batch: </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">start_i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span>
+        <span class="n">end_i</span> <span class="o">=</span> <span class="n">start_i</span> <span class="o">+</span> <span class="n">batch_size</span>
+        <span class="n">train_images_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">])</span>
+        <span class="n">train_labels_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_labels</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">])</span>
+        <span class="n">input_params</span> <span class="o">=</span> <span class="n">train_images_batch</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">train_labels_batch</span>
+        <span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+            <span class="n">mse_loss_weights</span><span class="p">,</span> <span class="n">weight_params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"COBYLA"</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"maxiter"</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">weight_params</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0, batch: 0
+Iter: 0, loss: 1.0002309063537163
+Iter: 50, loss: 0.9434121445008878
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="qiskit-patterns-4">
+<h2>Qiskit Patterns ステップ 4: 後処理を行い、古典的な形式で結果を返す<a class="headerlink" href="#qiskit-patterns-4" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h3>テストと精度<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>訓練の結果を解釈していきます。まず、訓練セットに対する訓練精度をテストします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorEstimator</span> <span class="k">as</span> <span class="n">Estimator</span>  <span class="c1"># シミュレーター</span>
+<span class="c1"># from qiskit_ibm_runtime import EstimatorV2 as Estimator  # 実際の量子コンピューター</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span>
+<span class="c1"># estimator = Estimator(backend=backend)</span>
+
+<span class="n">pred_train</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_images</span><span class="p">),</span> <span class="n">res</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+<span class="c1"># pred_train = forward(circuit_ibm, np.array(train_images), res['x'], estimator, observable_ibm)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_train</span><span class="p">)</span>
+
+<span class="n">pred_train_labels</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">pred_train</span><span class="p">)</span>
+<span class="n">pred_train_labels</span><span class="p">[</span><span class="n">pred_train_labels</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">pred_train_labels</span><span class="p">[</span><span class="n">pred_train_labels</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_train_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train_labels</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span> <span class="n">pred_train_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Train accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.27688499e-02 -1.46227204e-02 -1.73927452e-02  9.93331786e-02
+ -4.85553548e-01  1.43558565e-01  8.34567054e-02 -1.40133992e-02
+  1.52169596e-01 -1.95082515e-01  8.24373578e-03 -9.90696638e-02
+ -3.54268344e-02 -4.77017954e-01  1.38713848e-02 -2.99706215e-01
+ -5.78378029e-02  3.25528779e-02 -4.11354239e-02 -1.06483708e-01
+  1.53095800e-01  2.90110884e-02  1.25745450e-02  6.46323079e-02
+ -1.53538943e-01 -1.57694952e-02 -1.67800067e-02 -1.99820822e-01
+  1.70360075e-01  7.86148038e-03 -2.33373818e-02  6.64233020e-02
+ -1.14895445e-01 -1.11296215e-01  1.15120303e-01 -2.94096140e-01
+ -1.00531392e-03 -1.69209726e-01 -1.26120885e-01  3.26298176e-02
+ -1.33517383e-02 -5.86983444e-02 -4.32341361e-01 -4.36509551e-01
+ -4.17940102e-02  1.76935235e-03  8.14479984e-03  1.86985655e-01
+ -2.75525019e-01 -1.63229907e-03 -1.08571055e-01 -7.37452387e-04
+ -6.44440657e-02  6.72812834e-04  2.16785530e-03  1.41381850e-01
+ -9.82570410e-02  4.35973325e-01 -7.62261965e-02 -1.86193980e-01
+ -1.56971183e-02 -4.02757541e-01 -1.53869367e-01  2.29262129e-02
+ -7.02788246e-03  3.65719683e-02  4.68232163e-01  2.36434668e-02
+ -2.59520939e-02  3.70550137e-01 -1.19630110e-01 -5.79555318e-02
+  2.09554455e-01  5.04689780e-02  7.39494314e-02 -1.77647326e-02
+ -1.45407207e-01 -9.54908878e-02  7.56029640e-02 -2.74049696e-02
+  3.34885873e-01  1.58546171e-03  1.09339091e-01 -8.84693274e-02
+ -2.36450457e-02  1.41892239e-01 -2.34453218e-01 -7.50717757e-02
+ -1.13281310e-01 -1.66649414e-01 -3.17224197e-01 -6.38220597e-02
+  3.28916563e-02  3.04739203e-02  2.67720196e-02 -1.16485785e-01
+ -3.08115732e-02 -2.95372010e-02 -7.54669023e-02  6.20013872e-02
+ -3.85258710e-01 -1.16456443e-01 -7.38548075e-02 -3.20558243e-02
+ -4.22284741e-02  1.01285659e-01 -1.76949246e-01 -2.02767491e-01
+ -1.12407344e-01 -3.81408267e-02 -4.33345231e-01 -9.24507501e-02
+ -4.21765393e-02 -6.06533771e-02 -2.22257783e-01 -1.17312535e-01
+ -6.74132262e-02 -2.76206274e-01 -9.13971800e-02 -2.27653991e-01
+  1.66358563e-01  2.17230774e-04  5.76426304e-02 -2.82079169e-02
+ -1.15482051e-01 -3.46716009e-01 -3.21448755e-01 -5.20041405e-02
+ -2.16833625e-01 -1.06154654e-02 -7.74854811e-02 -3.28257935e-01
+ -7.83242410e-02  1.65547682e-01 -2.55294862e-01 -8.89085025e-02
+  4.47581491e-01  1.92351832e-02  2.74083885e-02 -3.61304571e-01]
+[-1. -1. -1.  1. -1.  1.  1. -1.  1. -1.  1. -1. -1. -1.  1. -1. -1.  1.
+ -1. -1.  1.  1.  1.  1. -1. -1. -1. -1.  1.  1. -1.  1. -1. -1.  1. -1.
+ -1. -1. -1.  1. -1. -1. -1. -1. -1.  1.  1.  1. -1. -1. -1. -1. -1.  1.
+  1.  1. -1.  1. -1. -1. -1. -1. -1.  1. -1.  1.  1.  1. -1.  1. -1. -1.
+  1.  1.  1. -1. -1. -1.  1. -1.  1.  1.  1. -1. -1.  1. -1. -1. -1. -1.
+ -1. -1.  1.  1.  1. -1. -1. -1. -1.  1. -1. -1. -1. -1. -1.  1. -1. -1.
+ -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.  1.  1.  1. -1. -1. -1.
+ -1. -1. -1. -1. -1. -1. -1.  1. -1. -1.  1.  1.  1. -1.]
+[1, 1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1]
+Train accuracy: 60.0%
+</pre></div>
+</div>
+</div>
+</div>
+<p>訓練精度はわずか <span class="math notranslate nohighlight">\(60%\)</span> であり、明らかに良くありません。テストセットに対するモデルの性能がこれより良くなるとは考えにくいでしょう。確認してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_test</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_images</span><span class="p">),</span> <span class="n">res</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+<span class="c1"># pred_test = forward(circuit_ibm, np.array(test_images), res['x'], estimator, observable_ibm)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_test</span><span class="p">)</span>
+
+<span class="n">pred_test_labels</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">pred_test</span><span class="p">)</span>
+<span class="n">pred_test_labels</span><span class="p">[</span><span class="n">pred_test_labels</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">pred_test_labels</span><span class="p">[</span><span class="n">pred_test_labels</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_test_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">pred_test_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.77978120e-01 -2.62194862e-01  4.59636095e-02 -8.09344165e-02
+ -2.97362966e-01  9.22947242e-02  2.06693174e-01  3.31629460e-02
+  1.10971762e-03 -2.14602152e-01 -1.62671993e-01 -6.07179155e-04
+ -1.59948633e-01 -8.55722523e-02 -1.13057027e-01 -3.00187433e-01
+ -2.92832827e-01  7.38580629e-02 -6.03706270e-02 -8.57643552e-02
+ -1.52402062e-02 -3.57505447e-01 -3.54890597e-02  1.36534749e-01
+ -1.54688180e-01 -2.93714726e-01  1.89548513e-02 -6.15715564e-02
+  1.11042670e-01 -2.22861100e-02 -3.84230105e-02  1.67351034e-01
+ -8.38766333e-02  2.56348613e-01 -1.10653111e-01 -1.18989476e-01
+ -6.75723266e-05 -6.88580547e-02  1.02431393e-02 -2.42125353e-01
+ -1.09142367e-01 -1.22540757e-01 -1.63735850e-01  3.93334838e-01
+  2.36705685e-01 -2.34259814e-02 -3.91877756e-02 -1.95106746e-01
+  1.86707523e-01  4.74775215e-02 -4.24907432e-02 -2.06453265e-01
+  4.09184710e-02 -3.54762080e-02 -9.47513112e-02  2.97270112e-01
+ -2.99708696e-02  9.93941064e-03 -1.26760302e-01 -1.36183355e-01]
+[-1. -1.  1. -1. -1.  1.  1.  1.  1. -1. -1. -1. -1. -1. -1. -1. -1.  1.
+ -1. -1. -1. -1. -1.  1. -1. -1.  1. -1.  1. -1. -1.  1. -1.  1. -1. -1.
+ -1. -1.  1. -1. -1. -1. -1.  1.  1. -1. -1. -1.  1.  1. -1. -1.  1. -1.
+ -1.  1. -1.  1. -1. -1.]
+[-1, -1, 1, 1, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, 1, -1, -1]
+Test accuracy: 60.0%
+</pre></div>
+</div>
+</div>
+</div>
+<p>このモデルはこれらのデータをうまく分類できていません。なぜそうなるのかを問う必要があり、特に次の点を確認すべきです。</p>
+<ul class="simple">
+<li><p>訓練を早く止めすぎたのではないか。より多くの最適化ステップが必要だったのではないか。</p></li>
+<li><p>悪いアンザッツを構築したのではないか。これにはさまざまな意味が考えられます。実際の量子コンピューターで作業する場合、回路の深さが大きな考慮事項になります。パラメーターの数も、量子ビット間のエンタングルメントと同様に、重要である可能性があります。</p></li>
+<li><p>上の 2 つを合わせて、訓練可能であるにはパラメーターが多すぎるアンザッツを構築したのではないか。</p></li>
+</ul>
+<p>まず、最適化が収束しているかを確認することから始めましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func_vals_first</span> <span class="o">=</span> <span class="n">objective_func_vals</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">obj_func_vals_first</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"first ansatz"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"iteration"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/6ecfddaa-7bd4-43d0-bfec-bd112854261e-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>最適化器がパラメーター空間内の局所的最小値にはまっただけではないことを確かめるために、最適化ステップを増やしてみることも考えられます。しかし、かなり収束しているように見えます。正しく分類 <em>されなかった</em> 画像を詳しく見て、何が起きているのかを理解できるか確かめてみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missed</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">pred_test_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">test_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="n">missed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_images</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">missed</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">"xticks"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"yticks"</span><span class="p">:</span> <span class="p">[]})</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">missed</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">missed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">vert_size</span><span class="p">,</span> <span class="n">hor_size</span><span class="p">),</span>
+        <span class="n">aspect</span><span class="o">=</span><span class="s2">"equal"</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/81ee504e-1c94-4600-8ab2-6406c473df73-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>誤って分類された画像の大部分は垂直線を持つものであることがわかります。モデルの何かが、それらの画像に関する情報を捉えられていません。最初の変分回路から、このことを予想していた方もいるかもしれません。詳しく見てみましょう。</p>
+</section>
+</section>
+<section id="id7">
+<h2>モデルの改善<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>ステップ 1 の再検討<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>問題を量子回路にマッピングする際、隣接するピクセルの情報がどのようにクラスを決定するのかを明示的に考えるべきでした。水平線を識別するためには、各行のすべてのピクセルについて「ピクセル <span class="math notranslate nohighlight">\(i\)</span> が黄色なら、ピクセル <span class="math notranslate nohighlight">\(i+1\)</span> も黄色か」を知りたいところです。垂直線についても知りたいところです。しかし、分類は二値なので、そのような水平線が検出 <em>されなければ</em> 垂直線である、と単純に言うことも考えられます。以前の変分回路には、量子ビット (したがってピクセル) 0 と 1、1 と 2、2 と 3 の間に CNOT ゲートが含まれていました。これは画像の上部を横切る水平線はカバーしますが、垂直線を直接検出するものではなく、下の行を無視しているため水平線を完全に検出するものでもありません。すべての水平線を完全に検出するには、量子ビット (ピクセル) 4 と 5、5 と 6、6 と 7 の間にも同様の CNOT ゲートの組が必要です。垂直線に対応する量子ビットの間 (0 と 4、2 と 6 など) に CNOT ゲートを追加することも有用かもしれないことは念頭に置いておきましょう。しかしまずは、水平線が <em>ある</em> か <em>ない</em> かを検出するだけで十分かどうかを確認します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 画像のピクセル数と同じ数の量子ビットで回路を初期化</span>
+<span class="n">qnn_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+
+<span class="c1"># 各量子ビットに 2 つの変分パラメーターを持たせることにします。</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"θ"</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span><span class="p">)</span>
+
+<span class="c1"># 1 つ目の変分層:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># CNOT ゲートを配置したい量子ビットのペアを拡張したリストです。これで水平な線でつながる</span>
+<span class="c1"># すべてのピクセルをカバーします。</span>
+<span class="n">qnn_cnot_list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qnn_cnot_list</span><span class="p">)):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qnn_cnot_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">qnn_cnot_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># 2 つ目の変分層:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">size</span> <span class="o">+</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># 回路の深さと 2 量子ビットゲートの深さを確認</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qnn_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"2+ qubit depth: </span><span class="si">{</span><span class="n">qnn_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">instr</span><span class="p">:</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+
+<span class="c1"># 特徴量マップと変分回路を結合</span>
+<span class="n">ansatz</span> <span class="o">=</span> <span class="n">qnn_circuit</span>
+
+<span class="c1"># 特徴量マップとアンザッツを結合</span>
+<span class="n">full_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">feature_map</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">ansatz</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 回路を表示</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">"clifford"</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+2+ qubit depth: 3
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/0f0a7fd1-803a-446e-a761-3c9b41c9e3c6-1.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>回路の深さは増えていません。画像をモデル化する能力が向上したかどうかを見てみましょう。</p>
+</section>
+<section id="id9">
+<h3>ステップ 2 の再検討<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>この新しい回路を実際の量子バックエンドで実行するには、トランスパイルする必要があります。変分回路の修正がシミュレーター上で期待どおりの効果をもたらしたかを確認するため、ここではこのステップをいったん省略します。トランスパイルについては、次のサブセクションでより深く掘り下げます。</p>
+</section>
+<section id="id10">
+<h3>ステップ 3 の再検討<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>更新したモデルを訓練データに適用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorEstimator</span> <span class="k">as</span> <span class="n">Estimator</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">140</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_images</span><span class="p">)</span>
+
+<span class="c1"># グローバル変数</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">full_circuit</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span>  <span class="c1"># デバッグ用のシミュレーター</span>
+<span class="n">observables</span> <span class="o">=</span> <span class="n">observable</span>
+<span class="n">objective_func_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># アンザッツのランダムな初期重み</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">weight_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ansatz</span><span class="o">.</span><span class="n">parameters</span><span class="p">))</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">num_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, batch: </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">start_i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span>
+        <span class="n">end_i</span> <span class="o">=</span> <span class="n">start_i</span> <span class="o">+</span> <span class="n">batch_size</span>
+        <span class="n">train_images_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">])</span>
+        <span class="n">train_labels_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_labels</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">])</span>
+        <span class="n">input_params</span> <span class="o">=</span> <span class="n">train_images_batch</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">train_labels_batch</span>
+        <span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+            <span class="n">mse_loss_weights</span><span class="p">,</span> <span class="n">weight_params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"COBYLA"</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"maxiter"</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">weight_params</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0, batch: 0
+Iter: 0, loss: 1.0049762969140237
+Iter: 50, loss: 0.8274276543780351
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>ステップ 4 の再検討<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>まず、最適化器が完全に収束したかどうかを確認しましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func_vals_revised</span> <span class="o">=</span> <span class="n">objective_func_vals</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">obj_func_vals_revised</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"revised ansatz"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"iteration"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/05c6f664-4043-446c-8fcc-11e77d6fe280-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>損失関数が十分に多くのステップにわたってほぼ横ばいになっていないため、完全には収束していないように見えます。しかし、損失関数はすでに以前の変分回路を使った場合よりも ~60% 低くなっています。これが研究プロジェクトであれば、完全な収束を確保したいところです。しかし、探求が目的であれば、これで十分です。訓練データとテストデータに対する精度を確認しましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorEstimator</span> <span class="k">as</span> <span class="n">Estimator</span>  <span class="c1"># シミュレーター</span>
+<span class="c1"># from qiskit_ibm_runtime import EstimatorV2 as Estimator  # 実際の量子コンピューター</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">()</span>
+<span class="c1"># estimator = Estimator(backend=backend)</span>
+
+<span class="n">pred_train</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_images</span><span class="p">),</span> <span class="n">res</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+<span class="c1"># pred_train = forward(circuit_ibm, np.array(train_images), res['x'], estimator, observable_ibm)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_train</span><span class="p">)</span>
+
+<span class="n">pred_train_labels</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">pred_train</span><span class="p">)</span>
+<span class="n">pred_train_labels</span><span class="p">[</span><span class="n">pred_train_labels</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">pred_train_labels</span><span class="p">[</span><span class="n">pred_train_labels</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_train_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train_labels</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span> <span class="n">pred_train_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Train accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.46144755  0.42579688  0.35255977  0.55207273 -0.48578418  0.50805845
+  0.44892649  0.6173847  -0.62428139  0.40405121  0.46862421  0.29503395
+ -0.5740469  -0.71794562 -0.45022095 -0.45330418 -0.19795258 -0.46821777
+ -0.5622049  -0.32114059  0.54947838 -0.4889812   0.28327445  0.58149728
+ -0.27026749  0.41328304  0.21119412  0.60108606  0.39204178 -0.24974605
+  0.38496469  0.39867586 -0.38946996  0.62616766  0.61212525 -0.49719567
+  0.30860002  0.68443904 -0.27505907 -0.41508947 -0.49666422  0.67716994
+ -0.54696613 -0.70058779  0.42711815 -0.5285338   0.37678572  0.43888249
+ -0.30844464  0.42347715 -0.4250844   0.67324132  0.59914067 -0.45184567
+  0.13604098  0.65336342  0.26099853  0.60316559 -0.38743183 -0.54784284
+ -0.29549031 -0.45592302  0.41613453 -0.38781528  0.56903087  0.54955451
+  0.55532336 -0.3931852  -0.57599675  0.61246236  0.42014135 -0.38171749
+  0.56760389  0.45383135 -0.50473943 -0.47551181  0.54221517 -0.64987023
+  0.28845851  0.54403865  0.53841148  0.64477078  0.71912049 -0.63178323
+ -0.50764757  0.50304637 -0.38099972 -0.27707127 -0.24353841 -0.52045267
+ -0.61500665  0.65443173  0.31902266 -0.64969037 -0.4814051   0.47980608
+ -0.649786   -0.43048551  0.34562588  0.308998   -0.32454238  0.29558168
+ -0.45410187  0.54600712  0.33204827  0.22627804  0.4283921   0.56191874
+ -0.25400294 -0.6493613  -0.47445293  0.42272138 -0.35472546 -0.52240474
+ -0.45207595  0.40292125 -0.3361856  -0.46620886  0.60202719 -0.56505744
+  0.47169796 -0.43577622  0.40689437  0.48869108 -0.39701189 -0.57698634
+ -0.39236332  0.31294648  0.41797597  0.63004836 -0.52884541 -0.43805812
+ -0.3193499   0.36860211 -0.49190995  0.65000193  0.50260077 -0.56737168
+ -0.29693083 -0.40956432]
+[ 1.  1.  1.  1. -1.  1.  1.  1. -1.  1.  1.  1. -1. -1. -1. -1. -1. -1.
+ -1. -1.  1. -1.  1.  1. -1.  1.  1.  1.  1. -1.  1.  1. -1.  1.  1. -1.
+  1.  1. -1. -1. -1.  1. -1. -1.  1. -1.  1.  1. -1.  1. -1.  1.  1. -1.
+  1.  1.  1.  1. -1. -1. -1. -1.  1. -1.  1.  1.  1. -1. -1.  1.  1. -1.
+  1.  1. -1. -1.  1. -1.  1.  1.  1.  1.  1. -1. -1.  1. -1. -1. -1. -1.
+ -1.  1.  1. -1. -1.  1. -1. -1.  1.  1. -1.  1. -1.  1.  1.  1.  1.  1.
+ -1. -1. -1.  1. -1. -1. -1.  1. -1. -1.  1. -1.  1. -1.  1.  1. -1. -1.
+ -1.  1.  1.  1. -1. -1. -1.  1. -1.  1.  1. -1. -1. -1.]
+[1, 1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, 1, 1, -1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1]
+Train accuracy: 100.0%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_test</span> <span class="o">=</span> <span class="n">forward</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_images</span><span class="p">),</span> <span class="n">res</span><span class="p">[</span><span class="s2">"x"</span><span class="p">],</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">observable</span><span class="p">)</span>
+<span class="c1"># pred_test = forward(circuit_ibm, np.array(test_images), res['x'], estimator, observable_ibm)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_test</span><span class="p">)</span>
+
+<span class="n">pred_test_labels</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">pred_test</span><span class="p">)</span>
+<span class="n">pred_test_labels</span><span class="p">[</span><span class="n">pred_test_labels</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">pred_test_labels</span><span class="p">[</span><span class="n">pred_test_labels</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pred_test_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">pred_test_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.48396136 -0.57123828  0.28373249  0.38983869 -0.45799092 -0.63643031
+  0.69164877 -0.47749808  0.16965244 -0.39669469  0.39366915  0.44206948
+  0.69733951  0.40445979 -0.33663432  0.54511581 -0.49397081  0.55934553
+  0.69269512  0.38875983  0.39724004 -0.49635863 -0.19131387  0.38813936
+  0.39537369 -0.46262489  0.5307315   0.21783317  0.31949453 -0.49772087
+  0.56409526 -0.66254365 -0.57507262  0.37363552  0.35154205  0.69295687
+ -0.31205475  0.37787066  0.67903997 -0.29984861 -0.46435535 -0.32610974
+  0.4327188   0.64626537  0.37592731 -0.14328906  0.59694745  0.71880638
+  0.32414334  0.42119333 -0.60745236 -0.42520033  0.28334222  0.21699081
+  0.34837252  0.31538989  0.30754545  0.5995197  -0.34678026 -0.46587602]
+[-1. -1.  1.  1. -1. -1.  1. -1.  1. -1.  1.  1.  1.  1. -1.  1. -1.  1.
+  1.  1.  1. -1. -1.  1.  1. -1.  1.  1.  1. -1.  1. -1. -1.  1.  1.  1.
+ -1.  1.  1. -1. -1. -1.  1.  1.  1. -1.  1.  1.  1.  1. -1. -1.  1.  1.
+  1.  1.  1.  1. -1. -1.]
+[-1, -1, 1, 1, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, 1, -1, -1]
+Test accuracy: 100.0%
+</pre></div>
+</div>
+</div>
+</div>
+<p>両方のセットで <span class="math notranslate nohighlight">\(100\%\)</span> の精度です！水平線を正確に検出できれば十分だろうという予想は正しかったのです！さらに、ピクセルについて必要な情報から量子回路内の CNOT ゲートへのマッピングも効果的でした。次に、実際の量子コンピューターで実行する際に、このプロセスがどのようにスケールするかを見ていきましょう。</p>
+</section>
+</section>
+<section id="id12">
+<h2>スケーリングと実際の量子コンピューターでの実行<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h3>データ<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>まず、画像のサイズを大きくすることから始めましょう。6x6 のグリッドを選んだことに特別な理由はありませんが、非クリフォードゲートを使う回路でシミュレーションできる量子ビット数 (32) を超えています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># このコードは分類対象の画像を定義します:</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 「ピクセル」/量子ビットの総数</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">36</span>
+<span class="c1"># 画像の一方の次元 (縦と呼びますが、どちらでも構いません)。`size` の約数である必要があります</span>
+<span class="n">vert_size</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="c1"># 検出する線 (黄色) の長さ。画像の最小の次元以下である必要があります</span>
+<span class="c1"># (`&lt;=min(vert_size,size/vert_size)`</span>
+<span class="n">line_size</span> <span class="o">=</span> <span class="mi">6</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_dataset</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">hor_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size</span> <span class="o">-</span> <span class="p">(</span><span class="n">line_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">vert_size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+    <span class="n">ver_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">vert_size</span> <span class="o">-</span> <span class="n">line_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="p">))</span>
+
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">-</span> <span class="n">line_size</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">line_size</span><span class="p">):</span>
+                <span class="n">hor_array</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># 隣接する 2 つの要素を pi/2 にし、次の行へ移ります。このリストをグリッドに折りたたむため、</span>
+    <span class="c1"># size/vert_size - linesize にある「ピクセル」を避けるよう注意します。</span>
+
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">vert_size</span> <span class="o">-</span> <span class="n">line_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">line_size</span><span class="p">):</span>
+            <span class="n">ver_array</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span> <span class="o">+</span> <span class="n">p</span> <span class="o">*</span> <span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># 長さ/行数の間隔で要素を pi/2 にします。こうすると折りたたんだときに、</span>
+    <span class="c1"># それらの要素が上下に並びます。</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rng</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">hor_array</span><span class="p">))</span>
+            <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hor_array</span><span class="p">[</span><span class="n">random_image</span><span class="p">]))</span>
+            <span class="c1"># 上で作成した複数の行のうち 1 つをランダムに選択します。</span>
+        <span class="k">elif</span> <span class="n">rng</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">random_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ver_array</span><span class="p">))</span>
+            <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ver_array</span><span class="p">[</span><span class="n">random_image</span><span class="p">]))</span>
+            <span class="c1"># 上で作成した複数の行のうち 1 つをランダムに選択します。</span>
+
+        <span class="c1"># ノイズを生成</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">images</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">images</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span>
+    <span class="k">return</span> <span class="n">images</span><span class="p">,</span> <span class="n">labels</span>
+
+
+<span class="n">hor_size</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="n">vert_size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>量子コンピューティングの時間は貴重なリソースなので、非常に小さな訓練セットとごく少数の最適化ステップを使用します。ワークフローを示すにはこれで十分です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># ここでは非常に小さなデータセットを指定します。より現実的にするには増やしてください。ただし、</span>
+<span class="c1"># 量子コンピューティング時間の使用量に注意してください。</span>
+<span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">generate_dataset</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">train_images</span><span class="p">,</span> <span class="n">test_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">test_labels</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">246</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># サブプロットを使って画像を並べた図を生成します。</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">"xticks"</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">"yticks"</span><span class="p">:</span> <span class="p">[]})</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">train_images</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">vert_size</span><span class="p">,</span> <span class="n">hor_size</span><span class="p">),</span>
+        <span class="n">aspect</span><span class="o">=</span><span class="s2">"equal"</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.025</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/b106d32c-cd1f-4463-97fe-2f41695402fb-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id14">
+<h3>ステップ 1: 問題を量子回路にマッピングする<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">z_feature_map</span>
+
+<span class="c1"># データの特徴量 1 つにつき 1 量子ビット</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># データのエンコーディング</span>
+<span class="c1"># Qiskit はパラメーターをアルファベット順に並べることに注意してください。データのエンコーディングが</span>
+<span class="c1"># 回路の最初の部分 (特徴量マップ) に確実に入るよう、パラメーターの接頭辞として "a" を割り当てます。</span>
+<span class="n">feature_map</span> <span class="o">=</span> <span class="n">z_feature_map</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">parameter_prefix</span><span class="o">=</span><span class="s2">"a"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cx を圧縮した順序で配置した回路を作成します。</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterVector</span>
+
+<span class="n">qnn_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"θ"</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># 水平方向に隣接する量子ビット間の CNOT ゲート。</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vert_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hor_size</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">hor_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">cx</span><span class="p">((</span><span class="n">i</span> <span class="o">*</span> <span class="n">hor_size</span><span class="p">)</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">hor_size</span><span class="p">)</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 垂直方向に隣接する量子ビット間の CNOT ゲート。予備的なシミュレーションの結果から、</span>
+<span class="c1"># おそらく不要です。</span>
+
+<span class="c1">#        if i&lt;vert_size-1:</span>
+<span class="c1">#            qnn_circuit.cx((i*hor_size)+j,(i*hor_size)+j+hor_size)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="n">qnn_circuit</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">size</span> <span class="o">+</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+<span class="n">qnn_circuit_large</span> <span class="o">=</span> <span class="n">qnn_circuit</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">qnn_circuit_large</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"2+ qubit depth: </span><span class="si">{</span><span class="n">qnn_circuit_large</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">instr</span><span class="p">:</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+<span class="c1"># qnn_circuit_large.draw()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+2+ qubit depth: 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>これは妥当な 2 量子ビットの深さです。実際の量子コンピューターから高品質な結果が得られるはずです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 特徴量マップと変分回路を結合</span>
+<span class="n">ansatz</span> <span class="o">=</span> <span class="n">qnn_circuit</span>
+
+<span class="c1"># 特徴量マップとアンザッツを結合</span>
+<span class="n">full_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">feature_map</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">full_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">ansatz</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 回路全体の深さを確認</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">full_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"2+ qubit depth: </span><span class="si">{</span><span class="n">full_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">instr</span><span class="p">:</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+2+ qubit depth: 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>CNOT ゲートを持たない <code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> を使用しているため、エンコーディング層を追加しても 2 量子ビットの深さは増えません。ここで回路全体を可視化できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">"clifford"</span><span class="p">,</span> <span class="n">idle_wires</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fold</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/b43806aa-7d41-40b8-9e43-a604f0e42c26-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>2 量子ビットの深さを最小化することが最も重要であれば、CNOT の順序を変更することで実際に深さを少し減らせることに気付いたかもしれません。たとえば、上の回路図で <span class="math notranslate nohighlight">\(q_{35}\)</span> と <span class="math notranslate nohighlight">\(q_{34}\)</span> の CNOT を左に移動させ、たとえば <span class="math notranslate nohighlight">\(q_{30}\)</span> と <span class="math notranslate nohighlight">\(q_{31}\)</span> の CNOT の真下に配置することができます。2 量子ビットゲートの深さが 5 の場合、トランスパイル後にこれで違いが出るかは明らかではありませんが、念頭に置いておくべきことです。CNOT ゲートの順序が目の前の問題と論理的に対応させるうえで重要であれば、ここでの深さで問題ありません。CNOT の順序が画像のデータ構造をモデル化するうえで重要でなければ、深さを最小化するようにこれらの CNOT ゲートを並べ替えるスクリプトを書くこともできます。</p>
+<p>また、より大きな画像に合わせてオブザーバブルを再定義する必要もあります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparsePauliOp</span>
+
+<span class="n">observable</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_list</span><span class="p">([(</span><span class="s2">"Z"</span> <span class="o">*</span> <span class="p">(</span><span class="n">num_qubits</span><span class="p">),</span> <span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id15">
+<h2>Qiskit Patterns ステップ 2: 量子実行のために問題を最適化する<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<p>まず、実行するバックエンドを選択します。ここでは、最も空いているバックエンドを使用します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="c1"># ハードウェアで実行するには、最も空いている量子コンピューターを選択するか、特定のものを指定します。</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span><span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># backend = service.backend("ibm_brisbaneane")</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ibm_brisbane
+</pre></div>
+</div>
+</div>
+</div>
+<p>ここでも、最適化レベルを 3 に設定したパスマネージャーを定義します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">XGate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler</span><span class="w"> </span><span class="kn">import</span> <span class="n">PassManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.passes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ALAPScheduleAnalysis</span><span class="p">,</span>
+    <span class="n">ConstrainedReschedule</span><span class="p">,</span>
+    <span class="n">PadDynamicalDecoupling</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">target</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">scheduling</span> <span class="o">=</span> <span class="n">PassManager</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">ALAPScheduleAnalysis</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">),</span>
+        <span class="n">ConstrainedReschedule</span><span class="p">(</span>
+            <span class="n">acquire_alignment</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">acquire_alignment</span><span class="p">,</span>
+            <span class="n">pulse_alignment</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">pulse_alignment</span><span class="p">,</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">PadDynamicalDecoupling</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
+            <span class="n">dd_sequence</span><span class="o">=</span><span class="p">[</span><span class="n">XGate</span><span class="p">(),</span> <span class="n">XGate</span><span class="p">()],</span>
+            <span class="n">pulse_alignment</span><span class="o">=</span><span class="n">target</span><span class="o">.</span><span class="n">pulse_alignment</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、パスマネージャーを何度か適用します。非常に幅の広い回路や非常に深い回路では、トランスパイル後の 2 量子ビットの深さに大きなばらつきが生じることがあります。そのような回路では、パスマネージャーを何度も試して、最良の (最も浅い) 結果を使用することが重要です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 大規模な回路ではヒューリスティクスによってさまざまなトランスパイル結果が得られる可能性があり、</span>
+<span class="c1"># 最も浅いものを使いたいので、パスマネージャーを何度か試します。</span>
+
+<span class="n">transpiled_qcs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">transpiled_depths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">transpiled_2q_depths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">circuit_ibm</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">full_circuit</span><span class="p">)</span>
+    <span class="n">transpiled_qcs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">circuit_ibm</span><span class="p">)</span>
+    <span class="n">transpiled_depths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">circuit_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+    <span class="n">transpiled_2q_depths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">circuit_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span> <span class="n">instr</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1"># print(i)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">transpiled_depths</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transpiled_2q_depths</span><span class="p">)</span>
+
+<span class="c1"># 最も浅いものを使用</span>
+
+<span class="n">minpos</span> <span class="o">=</span> <span class="n">transpiled_2q_depths</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">transpiled_2q_depths</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[85, 85, 81, 89, 81, 81, 89, 85, 85]
+[10, 10, 10, 10, 10, 10, 10, 10, 10]
+</pre></div>
+</div>
+</div>
+</div>
+<p>この場合、トランスパイル後の 2 量子ビットの深さは常に 10 であったことがわかります。1 量子ビットの深さにはわずかなばらつきがあったので、最も浅いものを使用します。ただし、この 36 量子ビットの回路では、これは決定的な改善ではありません。このトランスパイル後の回路を可視化することもできますが、この規模になると目で見て読み解くのはますます難しくなります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit_ibm</span> <span class="o">=</span> <span class="n">transpiled_qcs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">observable_ibm</span> <span class="o">=</span> <span class="n">observable</span><span class="o">.</span><span class="n">apply_layout</span><span class="p">(</span><span class="n">circuit_ibm</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circuit_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"2+ qubit depth: </span><span class="si">{</span><span class="n">circuit_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="n">instr</span><span class="p">:</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>81
+2+ qubit depth: 10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id16">
+<h2>Qiskit Patterns ステップ 3: IBM Quantum のプリミティブを使って実行する<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<p>実際の量子コンピューターの使用時間を抑えるため、ここではごく少数の最適化ステップのみを、非常に小さな訓練セットに対して実行します。しかし、これをより多くの最適化ステップやより大きなテストデータセットにスケールさせる方法は、レッスン全体の説明から明らかでしょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># これは 2024 年 10 月 4 日に Eagle r3 プロセッサーで実行され、7 分かかりました。</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">EstimatorV2</span> <span class="k">as</span> <span class="n">Estimator</span><span class="p">,</span> <span class="n">Session</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_images</span><span class="p">)</span>
+
+<span class="c1"># グローバル変数</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">circuit_ibm</span>
+<span class="n">observable</span> <span class="o">=</span> <span class="n">observable_ibm</span>
+<span class="n">objective_func_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># アンザッツのランダムな初期重み</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># weight_params = np.random.rand(len(ansatz.parameters)) * 2 * np.pi</span>
+<span class="c1"># または、以前の計算で得た重みを再読み込み</span>
+<span class="n">weight_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="mf">3.35330497</span><span class="p">,</span>
+        <span class="mf">5.97351416</span><span class="p">,</span>
+        <span class="mf">4.59925358</span><span class="p">,</span>
+        <span class="mf">3.76148219</span><span class="p">,</span>
+        <span class="mf">0.98029403</span><span class="p">,</span>
+        <span class="mf">0.98014248</span><span class="p">,</span>
+        <span class="mf">0.3649501</span><span class="p">,</span>
+        <span class="mf">6.44234523</span><span class="p">,</span>
+        <span class="mf">3.77691701</span><span class="p">,</span>
+        <span class="mf">4.44895122</span><span class="p">,</span>
+        <span class="mf">0.12933619</span><span class="p">,</span>
+        <span class="mf">6.09412333</span><span class="p">,</span>
+        <span class="mf">5.23039137</span><span class="p">,</span>
+        <span class="mf">1.33416598</span><span class="p">,</span>
+        <span class="mf">1.14243996</span><span class="p">,</span>
+        <span class="mf">1.15236452</span><span class="p">,</span>
+        <span class="mf">1.91161039</span><span class="p">,</span>
+        <span class="mf">3.2971419</span><span class="p">,</span>
+        <span class="mf">3.71399059</span><span class="p">,</span>
+        <span class="mf">1.82984665</span><span class="p">,</span>
+        <span class="mf">3.84438512</span><span class="p">,</span>
+        <span class="mf">0.87646578</span><span class="p">,</span>
+        <span class="mf">1.83559896</span><span class="p">,</span>
+        <span class="mf">2.30191935</span><span class="p">,</span>
+        <span class="mf">2.86557222</span><span class="p">,</span>
+        <span class="mf">4.93340606</span><span class="p">,</span>
+        <span class="mf">1.25458737</span><span class="p">,</span>
+        <span class="mf">3.23103027</span><span class="p">,</span>
+        <span class="mf">3.72225051</span><span class="p">,</span>
+        <span class="mf">0.29185655</span><span class="p">,</span>
+        <span class="mf">3.81731689</span><span class="p">,</span>
+        <span class="mf">1.07143467</span><span class="p">,</span>
+        <span class="mf">0.40873121</span><span class="p">,</span>
+        <span class="mf">5.96202367</span><span class="p">,</span>
+        <span class="mf">6.067245</span><span class="p">,</span>
+        <span class="mf">5.07931034</span><span class="p">,</span>
+        <span class="mf">1.91394476</span><span class="p">,</span>
+        <span class="mf">0.61369199</span><span class="p">,</span>
+        <span class="mf">4.2991629</span><span class="p">,</span>
+        <span class="mf">2.76555968</span><span class="p">,</span>
+        <span class="mf">0.76678884</span><span class="p">,</span>
+        <span class="mf">3.11128829</span><span class="p">,</span>
+        <span class="mf">0.21606945</span><span class="p">,</span>
+        <span class="mf">5.71342859</span><span class="p">,</span>
+        <span class="mf">1.62596258</span><span class="p">,</span>
+        <span class="mf">4.16275028</span><span class="p">,</span>
+        <span class="mf">1.95853845</span><span class="p">,</span>
+        <span class="mf">3.26768375</span><span class="p">,</span>
+        <span class="mf">3.43508199</span><span class="p">,</span>
+        <span class="mf">1.1614748</span><span class="p">,</span>
+        <span class="mf">6.09207989</span><span class="p">,</span>
+        <span class="mf">4.87030317</span><span class="p">,</span>
+        <span class="mf">5.90304595</span><span class="p">,</span>
+        <span class="mf">5.62236606</span><span class="p">,</span>
+        <span class="mf">3.75671636</span><span class="p">,</span>
+        <span class="mf">5.79230665</span><span class="p">,</span>
+        <span class="mf">0.55601479</span><span class="p">,</span>
+        <span class="mf">1.23139664</span><span class="p">,</span>
+        <span class="mf">0.28417144</span><span class="p">,</span>
+        <span class="mf">2.04411075</span><span class="p">,</span>
+        <span class="mf">2.44213144</span><span class="p">,</span>
+        <span class="mf">1.70493625</span><span class="p">,</span>
+        <span class="mf">5.20711134</span><span class="p">,</span>
+        <span class="mf">2.24154726</span><span class="p">,</span>
+        <span class="mf">1.76516358</span><span class="p">,</span>
+        <span class="mf">3.40986006</span><span class="p">,</span>
+        <span class="mf">0.88545302</span><span class="p">,</span>
+        <span class="mf">5.04035228</span><span class="p">,</span>
+        <span class="mf">0.46841551</span><span class="p">,</span>
+        <span class="mf">6.2007935</span><span class="p">,</span>
+        <span class="mf">4.85215699</span><span class="p">,</span>
+        <span class="mf">1.24856745</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># セッションで実行すると、繰り返しキューに入るのを避けられます。これは Premium Plan、Flex Plan、</span>
+<span class="c1"># On-Prem (IBM Quantum Platform API) Plan のユーザーが利用できます。</span>
+
+<span class="k">with</span> <span class="n">Session</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"resilience_level"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">num_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, batch: </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">start_i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">batch_size</span>
+            <span class="n">end_i</span> <span class="o">=</span> <span class="n">start_i</span> <span class="o">+</span> <span class="n">batch_size</span>
+            <span class="n">train_images_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">])</span>
+            <span class="n">train_labels_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train_labels</span><span class="p">[</span><span class="n">start_i</span><span class="p">:</span><span class="n">end_i</span><span class="p">])</span>
+            <span class="n">input_params</span> <span class="o">=</span> <span class="n">train_images_batch</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">train_labels_batch</span>
+            <span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># maxiter を増やせば完全な最適化を行えます。</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+                <span class="n">mse_loss_weights</span><span class="p">,</span>
+                <span class="n">weight_params</span><span class="p">,</span>
+                <span class="n">method</span><span class="o">=</span><span class="s2">"COBYLA"</span><span class="p">,</span>
+                <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">"maxiter"</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+            <span class="p">)</span>
+            <span class="n">weight_params</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span>
+<span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Open Plan のユーザーはバッチを使って同じ計算を行えますが、繰り返しキューに入る可能性があります。</span>
+<span class="c1"># from qiskit_ibm_runtime import Batch</span>
+
+<span class="c1"># with Batch(backend=backend) as batch:</span>
+<span class="c1">#    estimator = Estimator(</span>
+<span class="c1">#        mode=batch, options={"resilience_level": 1}</span>
+<span class="c1">#    )</span>
+<span class="c1">#</span>
+<span class="c1">#    for epoch in range(num_epochs):</span>
+<span class="c1">#        for i in range((num_samples - 1) // batch_size + 1):</span>
+<span class="c1">#            print(f"Epoch: {epoch}, batch: {i}")</span>
+<span class="c1">#            start_i = i * batch_size</span>
+<span class="c1">#            end_i = start_i + batch_size</span>
+<span class="c1">#            train_images_batch = np.array(train_images[start_i:end_i])</span>
+<span class="c1">#            train_labels_batch = np.array(train_labels[start_i:end_i])</span>
+<span class="c1">#            input_params = train_images_batch</span>
+<span class="c1">#            target = train_labels_batch</span>
+<span class="c1">#            iter = 0</span>
+<span class="c1">#            # maxiter を増やせば完全な最適化を行えます。</span>
+<span class="c1">#            res = minimize(</span>
+<span class="c1">#                mse_loss_weights,</span>
+<span class="c1">#                weight_params,</span>
+<span class="c1">#                method="COBYLA",</span>
+<span class="c1">#                options={"maxiter": 20},</span>
+<span class="c1">#            )</span>
+<span class="c1">#            weight_params = res["x"]</span>
+<span class="c1"># batch.close()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>さらに反復を行う場合に備えて、この計算で返された重みパラメーターを保存しておくことをお勧めします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weight_params</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.35330497, 6.97351416, 5.59925358, 3.76148219, 0.98029403,
+       0.98014248, 0.3649501 , 6.44234523, 3.77691701, 4.44895122,
+       1.12933619, 7.09412333, 5.23039137, 1.33416598, 1.14243996,
+       1.15236452, 1.91161039, 3.2971419 , 3.71399059, 1.82984665,
+       3.84438512, 0.87646578, 1.83559896, 2.30191935, 2.86557222,
+       4.93340606, 1.25458737, 3.23103027, 3.72225051, 0.29185655,
+       3.81731689, 1.07143467, 0.40873121, 5.96202367, 6.067245  ,
+       5.07931034, 1.91394476, 0.61369199, 4.2991629 , 2.76555968,
+       0.76678884, 3.11128829, 0.21606945, 5.71342859, 1.62596258,
+       4.16275028, 1.95853845, 3.26768375, 3.43508199, 1.1614748 ,
+       6.09207989, 4.87030317, 5.90304595, 5.62236606, 3.75671636,
+       5.79230665, 0.55601479, 1.23139664, 0.28417144, 2.04411075,
+       2.44213144, 1.70493625, 5.20711134, 2.24154726, 1.76516358,
+       3.40986006, 0.88545302, 5.04035228, 0.46841551, 6.2007935 ,
+       4.85215699, 1.24856745])
+</pre></div>
+</div>
+</div>
+</div>
+<p>最初のいくつかの最適化ステップをプロットできますが、わずか数ステップの最適化で収束が見られるとは期待できません。これらの曲線は、シミュレーターを使った場合でも、最初の数ステップでは比較的平坦でした。ただし、現在の最適化には 72 個の自由パラメーターがあることに注意すべきです。たとえば、行と列全体の一部に対応するデータで量子ビットをパラメーター化することで、結果を損なうことなく、これを少なくとも 2〜3 分の 1 に減らすことができます。実際、損失関数の最小化にさらに量子コンピューティングの時間を費やす前に、パラメーター空間を縮小すべきです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj_func_vals_qc</span> <span class="o">=</span> <span class="n">objective_func_vals</span>
+<span class="c1"># import matplotlib.pyplot as plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">obj_func_vals_qc</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"revised ansatz"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"iteration"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"loss"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/qvc-qnn/extracted-outputs/d8244ff1-a7c5-46e1-87b1-e20b506ef4d8-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id17">
+<h3>まとめ<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p>このレッスンでは、量子ニューラルネットワークを使った画像の二値分類のワークフローを学びました。各 Qiskit patterns ステップにおける主な考慮事項は次のとおりです。</p>
+<p><strong>ステップ 1:</strong> 問題を量子回路にマッピングする</p>
+<ul class="simple">
+<li><p>訓練データを読み込みます。これは「手作業」で行うことも、<code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> のような既製の特徴量マップを使って行うこともできます。</p></li>
+<li><p>問題に適した回転層とエンタングルメント層を含むアンザッツを構築します。</p></li>
+<li><p>量子コンピューターで質の高い結果を得るために、回路の深さを監視します。</p></li>
+</ul>
+<p><strong>ステップ 2:</strong> 量子実行のために問題を最適化する</p>
+<ul class="simple">
+<li><p>バックエンドを選択します。多くの場合、最も空いているものを選びます。</p></li>
+<li><p>パスマネージャーを使用して、回路とオブザーバブルの両方を、選択したバックエンドのアーキテクチャーに合わせてトランスパイルします。</p></li>
+<li><p>非常に深い回路や幅の広い回路では、複数回トランスパイルし、最も浅い回路を選択します。</p></li>
+</ul>
+<p><strong>ステップ 3:</strong> Qiskit (Runtime) のプリミティブを使って実行する</p>
+<ul class="simple">
+<li><p>シミュレーターで予備的な試行を行い、アンザッツをデバッグして最適化します。</p></li>
+<li><p>IBM® の量子コンピューターで実行します。</p></li>
+</ul>
+<p><strong>ステップ 4:</strong> 後処理を行い、古典的な形式で結果を返す</p>
+<ul class="simple">
+<li><p>訓練データとテストデータに対するモデルの精度を計算します。</p></li>
+<li><p>古典的な最適化の収束を監視します。</p></li>
+</ul>
+</section>
+</section>
+<section id="id18">
+<h2>参考文献<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<p>[1] <a class="reference external" href="https://arxiv.org/abs/2405.00781">https://arxiv.org/abs/2405.00781</a></p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/quantum-machine-learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">データの生成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">変分量子分類器: 最初の試み</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-1">Qiskit patterns ステップ 1: 問題を量子回路にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">損失関数</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-2">Qiskit Patterns ステップ 2: 量子実行のために問題を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-3-ibm-quantum">Qiskit Patterns ステップ 3: IBM Quantum のプリミティブを使って実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">バッチとエポックでデータセットをループする</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit-patterns-4">Qiskit Patterns ステップ 4: 後処理を行い、古典的な形式で結果を返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">テストと精度</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">モデルの改善</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ 1 の再検討</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ 2 の再検討</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ 3 の再検討</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ 4 の再検討</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">スケーリングと実際の量子コンピューターでの実行</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">データ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ 1: 問題を量子回路にマッピングする</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Qiskit Patterns ステップ 2: 量子実行のために問題を最適化する</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Qiskit Patterns ステップ 3: IBM Quantum のプリミティブを使って実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">まとめ</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">参考文献</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

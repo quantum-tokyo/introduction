@@ -1,0 +1,838 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子機械学習入門 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/quantum-machine-learning/introduction_ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/quantum-machine-learning/introduction_ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/quantum-machine-learning/introduction_ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子機械学習入門</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">概要と動機</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">期待値の調整</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">不十分な説明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">脱量子化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">存在証明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">理解度チェック</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">コースの学習目標</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">コースの構成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qml">最初の QML コードを実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">Qiskit パターン:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">理解度を確認しよう</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子機械学習入門<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>概要と動機<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>量子機械学習の世界へようこそ！</p>
+<p>以下の動画では簡単な導入を行い、その下のテキストで内容を補足します。</p>
+<IBMVideo id="134355930" title="この動画では、Chris Porter がサブスペース量子対角化の概要を説明します。その効率と有用性に影響を与える要因について述べ、他の手法よりも高速である理由を解説します。詳細は下のテキストで説明します。" />
+<p>動画の内容を簡単に振り返り、補足します。</p>
+<ul class="simple">
+<li><p>ある問題が量子コンピューターで初めて解かれた後、古典スーパーコンピューターでそれを解く方法が見つかる、という事例がこれまでに見られています。古典コンピューティングと量子コンピューティングが互いを限界まで押し上げるこのサイクルは、今後数年間続くと考えられます。</p></li>
+<li><p>エラーの低減や利用可能な量子ビット数などの分野での進展を前提とすれば、量子コンピューティングが古典コンピューティングに対して証明可能な優位性を持ち得る特定の問題が存在します。しかし、現在はまだ探索の段階であり、量子に適したデータセットや有用な量子特徴マップを探し求めているところです。</p></li>
+<li><p>量子機械学習 (QML) は、量子コンピューティングが既存の古典的なワークフローを拡張または補完できる、数多くの刺激的な分野の1つです。</p></li>
+</ul>
+<p>機械学習 (ML) はデータセットにアルゴリズムを適用するものです。したがって QML では、データ側とアルゴリズム側のいずれか、あるいは両方に量子力学が含まれると考えるのが妥当でしょう。これらの可能性はいずれも興味深いものです。しかし本コースでは、主に古典データに適用される量子アルゴリズムの議論に限定します。その理由の1つは、古典データを用いた ML の問題はすでに十分に研究されており、広く利用可能であることです。古典データから出発する問題を解くことには幅広い関心が寄せられています。もう1つの理由は、QRAM が存在しないことです。大量の量子データを比較的長い時間スケールで保存する能力がない以上、量子データから出発する手法が産業に応用されるまでには、まだかなりの距離があります。また、古典データに効率的な方法で「量子的にアクセス」する方法も明らかではありません。特に関心の高い ML の種類として、ラベル付きデータセットを用いてアルゴリズムを訓練する教師あり学習と、ラベルのないサンプルから分布について学習しようとする教師なし学習の2つがあります。教師なしアルゴリズムは、例えば同じ分布から新しいサンプルを生成する方法や、類似した特徴を持つグループにサンプルをクラスタリングする方法を学習します。</p>
+<p><img alt="QMLCRbackgroundSupUnsup.avif" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/introduction/qml-cr-background-sup-unsup.avif" /></p>
+<p>左の画像は、教師あり学習におけるような、2つのカテゴリーのラベル付きデータを示しています。この場合、カテゴリーは線形分離可能です。右の画像はデータのクラスターを示しています。教師なし学習のタスクでは、これらのデータは最初はラベル付けされておらず、アルゴリズムが分布を調べ、例えばクラスターを探します。アルゴリズムが識別し得るクラスターの例を可視化するために、ここではデータ点にラベルを付けています。両者の重要な違いは、たとえ最終的にデータにラベルが付けられるとしても、教師あり学習のプロセスはすでにラベル付けされたデータから出発し、教師なし学習のプロセスはラベルのないデータから出発するという点です。</p>
+<p>機械学習の素養がある方は、多くの解法がデータをより高次元の空間に写像することを含んでいることをすでにご存じでしょう。これは特にカーネルの文脈でよく研究されています。簡単に復習すると、データは、与えられたのと同じ次元数において、直線、平面、または超平面 (簡潔さのため、しばしば単に「超平面」と呼びます) によってカテゴリーに分離できる場合があります。これは上の1つ目の画像に示されています。一方、2つ目の画像に示すように、データがその次元では超平面によって分離できない場合もあります。しかしその場合でも、データには高次元への写像で活用できる構造が存在することがあり、写像後の高次元空間ではデータが分離可能になります。これは、円対称性を持つ2次元データを3次元空間に写像し、データ点が放物面上に並ぶ様子で示されています。</p>
+<p><img alt="QMLCRbackground2D-3D.avif" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/introduction/qml-cr-background-2d-3d.avif" /></p>
+<p>QML における一般的な目標は、低次元の特徴の集合からより高次元の空間への写像を見つけ、データ点を効果的に分離し、その写像を用いて新しいデータ点を分類できるようにすることです。
+しかしこれは容易なタスクではなく、機械学習における量子コンピューティングの潜在的な有用性を論じる際には、必ず適切な注意事項を伴わなければなりません。特に、データセットの選択における微妙な点と、ユーティリティー・スケールに到達する上での課題に取り組む必要があります。また、古典アルゴリズムによってすでに効率的かつ適切に扱われているデータで古典 ML アルゴリズムを上回ろうとすることから離れ、有用となり得る新しい特徴マップの探究へと議論の焦点を移す必要があります。</p>
+</section>
+<section id="id3">
+<h2>期待値の調整<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>文献で述べられている QML の応用に使われる多くのデータセットは「特徴量エンジニアリング」されたものです。つまり、量子コンピューティングが有用となる限定的なユースケースを示すために、特別に選択または生成されたデータセットです。これがずるいことのように思えるとしたら、それは取り組むべきタスクを誤解しています。ある量子特徴マップによって、すべての、あるいは多くの分類タスクを古典機械学習アルゴリズムよりも効率的に、またはスケーラブルに解けるようになるというわけでは<strong>ありません</strong>。そうではなく、一部の量子特徴マップ (すべてではありません) は古典的な特徴マップとは異なる振る舞いをするのです。したがって、取り組むべきタスクは、複雑なデータ構造の文脈で量子回路を探究することです。取り組むべき具体的な問いには、次のようなものがあります。</p>
+<ol class="arabic simple">
+<li><p>古典的な代替手段と比べて、新しい振る舞いをする可能性が最も高い量子回路はどれか？</p></li>
+<li><p>そのような新しい量子回路を用いて探究するのが最適な性質を持つデータを含む、現実世界の問題は存在するか？</p></li>
+<li><p>これらの量子回路は近い将来の量子コンピューター上でスケールするか？</p></li>
+</ol>
+<section id="id4">
+<h3>不十分な説明<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>量子コンピューティングがなぜ強力になり得るのかについて、単純化された説明をよく目にします。それは次のようなものです。</p>
+<p>古典コンピューターが情報のビットを使うように、量子コンピューターは量子ビットを使います。ビット数を例えば4とすると、古典コンピューターは <span class="math notranslate nohighlight">\(2^4 = 16\)</span> 通りの可能な状態のうちいずれか1つをとることができますが、量子コンピューターは16個すべての状態の重ね合わせとして同時に存在でき、この重ね合わせ全体に対して演算を実行できます。場合によっては、これにより、高次元空間への写像に基づく興味深い学習アルゴリズムを自然に設計できる可能性があります。</p>
+<p>これは正しい記述ですが、後で説明するように不十分であり、やや誤解を招くものです。また、次のように複素係数と実係数の違いが強調されることもあります。</p>
+<p>系が異なる状態にある確率をそれぞれ持つものとして記述できる確率的な古典系は、次のように記述できます。</p>
+<div class="math notranslate nohighlight">
+\[
+|s\rangle = a|0000\rangle+b|0001\rangle+c|0010\rangle+... a, b, c \in \reals
+\]</div>
+<p>このような系では、係数 <span class="math notranslate nohighlight">\(a\)</span>、<span class="math notranslate nohighlight">\(b\)</span>、<span class="math notranslate nohighlight">\(c\)</span> などは正の実数である場合にのみ意味を持ちます。量子コンピューターにおける状態は、複素数となり得る確率振幅によって記述されます。</p>
+<div class="math notranslate nohighlight">
+\[
+|\psi \rangle = A|0000\rangle+B|0001\rangle+C|0010\rangle+... A, B, C \in \mathbb{C}
+\]</div>
+<p>上記の記述は、正しくなるよう非常に注意深く述べられています (表面上は似ていても誤っている記述は多数あります)。しかし、これらの正しい記述は、機械学習における量子コンピューティングの力を説明するものではありません。1つには、機械学習への量子コンピューティングの応用には必ず測定が伴い、量子ビットを測定して同時に複数の状態にあるという結果を得ることはできないからです。量子ビットを <span class="math notranslate nohighlight">\(|\psi\rangle = \frac{1}{\sqrt{2}}\left(|0\rangle+|1\rangle\right)\)</span> のような重ね合わせ状態に準備することはできますが、測定すると <span class="math notranslate nohighlight">\(|0\rangle\)</span> または <span class="math notranslate nohighlight">\(|1\rangle\)</span> のいずれかが得られます。したがって、少なくとも、次元の増大に関するこの話は不完全です。さらに、カーネルの文脈では、ガウシアンカーネルは無限次元であるため、量子コンピューティングにおける次元の増大は、古典的な代替手段に対する計算能力の十分条件にはなり得ません。ここには微妙な点があり、ガウシアン特徴マップは、無限次元の写像ベクトルを計算する必要を回避する「カーネルトリック」と組み合わせてのみ使用されます。しかし、要点は変わりません。</p>
+<p><strong>エンタングルした量子状態の高次元性は指数的な並列性ではなく、機械学習における能力向上の十分条件でもありません。</strong></p>
+<p>以降のレッスンでは、量子回路を機械学習タスクに組み込むためのワークフローを紹介します。これは、量子コンピューティングの力の探究を促進するという明確な目的のために行うものです。本コースのどの特徴マップやアルゴリズムも、一般的な問題に対してより良い機械学習の結果を得るための近道として提示されるものではありません。なぜなら、そのような特徴マップやアルゴリズムは存在しないからです。そうではなく、有用な量子コンピューティングの探究に用いるための幅広い量子ツールを紹介します。</p>
+</section>
+<section id="id5">
+<h3>脱量子化<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>脱量子化 (dequantization) とは、ある量子アルゴリズムを、特定のタスク群に対して (通常はスケーリングも含めて) 量子アルゴリズムと同程度の性能を発揮する古典アルゴリズムで置き換えることを指します。定義によっては、古典アルゴリズムは量子アルゴリズムに比べて多項式的にしか遅くないことが求められます。</p>
+<p>当初は古典アルゴリズムに対して大幅な高速化をもたらすと考えられていたいくつかの量子機械学習 (QML) アルゴリズムが、近年、脱量子化されています。この脱量子化のプロセスは、機械学習に対する量子的アプローチの潜在的な利点と限界について、重要な知見をもたらしました。</p>
+<p>最も注目すべき脱量子化の成果の1つは、Ewin Tang による<a class="reference external" href="https://arxiv.org/abs/1807.04271">推薦システムに関する研究</a>から生まれました。Tang は、それまで量子コンピューターでしか達成できないと考えられていた速度で推薦タスクを実行できる古典アルゴリズムを発見しました。この発見は、この問題に対して量子アルゴリズムが指数的な優位性を持つという前提に疑問を投げかけました。<a class="reference external" href="https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.023218">Shin et al</a>. によるより最近の研究では、変分量子機械学習モデルの関数クラスが脱量子化可能となる条件を特定することに焦点が当てられています。</p>
+<p>脱量子化の一般的なアプローチの1つ (唯一の手法ではありません) は、データ読み込みのオーバーヘッドを考慮することです。つまり、古典データに適用される量子アルゴリズムには、必ず古典データを量子コンピューターにエンコードするステップがあります。量子アルゴリズムが、量子データがすでに利用可能な状態を出発点として仮定している場合、エンコードに必要な時間が事実上隠されてしまいます。量子データを仮定することが妥当な状況もありますが、関心のある多くの応用は古典データから出発します。いくつかの脱量子化の事例では、このエンコード時間を含め、かつ古典データの読み込みを効率的に行える場合には、量子アルゴリズムがもはや古典的な対応物を上回らないことが示されています。</p>
+<p>あるアルゴリズムが脱量子化できないとしても、それがすべての古典アルゴリズムよりも効率的またはスケーラブルであることを意味するわけではありません。極端で人為的な例として、サイズ k の集合から最大の j 個の要素を選択するアルゴリズムを考えてみましょう。Shor のアルゴリズムを用いて k 個の各要素を素因数分解し、その素因数を用いて最大の要素を決定する量子アルゴリズムを書くことができます。このようなアルゴリズムはおそらく脱量子化できませんが、同じ最大要素の選択 (不要な素因数分解の部分は除く) を行う古典アルゴリズムと比べて、著しく非効率です。</p>
+</section>
+</section>
+<section id="id6">
+<h2>存在証明<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>2021年、IBM Quantum® の研究者である Yunchao Liu、Srinivasan Arunachalam、Kristan Temme は、Nature に論文 <a class="reference external" href="https://www.nature.com/articles/s41567-021-01287-z">A rigorous and robust quantum speed-up in supervised machine learning</a> を発表しました。上記の注意事項と整合するように、この研究では、(1) 古典的に困難であることが知られており、かつ (2) 量子アルゴリズムが高速化を示すのに適した分類問題が慎重に選ばれました。</p>
+<p>この論文は、離散対数に基づくデータの分類を扱っています。論文を引用すると、「大きな素数 <span class="math notranslate nohighlight">\(p\)</span> と <span class="math notranslate nohighlight">\(\mathbb{Z}^*_p = {1, 2, . . . , p − 1}\)</span> の生成元 <span class="math notranslate nohighlight">\(g\)</span> に対して、入力 <span class="math notranslate nohighlight">\(x \in \mathbb{Z}^*_p \)</span> に対する <span class="math notranslate nohighlight">\(\text{log}_g(x)\)</span> を、<span class="math notranslate nohighlight">\(p\)</span> を表すのに必要なビット数 <span class="math notranslate nohighlight">\(n = \lceil{\text{log}_2(p)}\rceil\)</span> の多項式時間で計算できる古典アルゴリズムは存在しない、というのが広く信じられている予想です。」これに対して、<a class="reference external" href="https://epubs.siam.org/doi/10.1137/S0097539795293172">Shor のアルゴリズム</a>は離散対数問題を多項式時間で解けることが知られています。したがって、この問題の選択は、古典的な困難性 (脱量子化される可能性が低い) と、量子アルゴリズムに適していることが知られているという、上記の基準を同時に満たしています。</p>
+<p>このように分類問題を賢明に選択することで、著者らは量子カーネル法 (以下で簡単に概説し、後のレッスンで詳しく説明します) を用いて、エンドツーエンドかつロバストな指数的高速化を示すことができました。ここで「エンドツーエンド」とは、古典データから出発するという仮定を指します。この場合、著者らはデータのエンコードにかかる時間も含めています。また「ロバスト」とは、分類されるデータが量子アルゴリズムによって大きなマージンで分離されるため、分類の成功が有限サンプリング誤差のような現実世界の要因に対してロバストであることを指します。</p>
+<p>以上のことから、量子カーネルが指数的な高速化をもたらし得る問題は確かに存在すると言えます。しかし現在の科学の状況では、そのような問題は、量子アルゴリズムに適しているはずだという観察や理論的根拠に基づいて選ばれています。古典コンピューターがすでに十分にうまくこなしている機械学習タスクに対して、量子による高速化を期待するのは現実的ではありません。</p>
+<p>量子ユーティリティーの探究のためにこのような理想的なケースを特定することは、本コースの受講者にとって非常に大きな責務です。そしてそれは、このようなコースの中で達成できるタスクではありません。その探究は、皆さんのような研究者で構成される IBM Quantum Network 全体にとっての課題です。本コースでは QML のワークフローとエンコード戦略を紹介し、皆さんが自身の専門分野で量子ユーティリティーの探究を始められるようにします。</p>
+<p>この導入を通じて、量子機械学習についていくつかの点が明確になったことを願っています。</p>
+<ol class="arabic simple">
+<li><p>量子アルゴリズムは、古典的に困難で、かつ量子アルゴリズムに適した、非常に特定の問題に対して、古典アルゴリズムに比べて指数的な高速化をもたらし得ます。</p></li>
+<li><p>量子コンピューティングにおけるエンタングルした状態の高次元性は重要ですが、それだけでは古典アルゴリズムに対する優位性を得るのに十分ではありません。</p></li>
+<li><p>量子アルゴリズムに適した問題を見つけることは極めて困難なタスクであり、その多くは本コースの受講者の皆さんに委ねられることになります。</p></li>
+</ol>
+</section>
+<section id="id7">
+<h2>理解度チェック<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>量子状態は古典状態と何が異なるでしょうか？</p>
+<Accordion>
+  <AccordionItem title="解答">
+    多くの点で異なります。特に、複素係数と、単一のコピーでの重ね合わせが挙げられます。他にも多くの違いがあり、エンタングルメントや干渉などについては今後のレッスンで説明します。
+  </AccordionItem>
+</Accordion>
+<p>正しいでしょうか、誤りでしょうか？ 高度にエンタングルした量子状態を用いることで、ほとんどの機械学習の問題を量子コンピューター上でより効率的に解くことができる。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    誤りです。ほとんどの機械学習の問題は古典アルゴリズムによって非常に効率的に解かれており、量子アルゴリズムが大幅な高速化をもたらす可能性は低いです。QML の目標は、量子状態によってうまく記述される特徴を持つデータセットを見つけること、および/またはモデルの精度を最適化するデータ特徴の写像を見つけることです。
+  </AccordionItem>
+</Accordion>
+</section>
+<section id="id8">
+<h2>コースの学習目標<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>本コースを修了することで、以下の中核的なスキルと能力を身につけることが期待できます。受講者は次のことができるようになります。</p>
+<ol class="arabic simple">
+<li><p>QML とは何か、そして量子が古典機械学習とどこでつながるのかを説明する。</p></li>
+<li><p>量子の用語や重要な概念を ML のワークフローに適用する。</p></li>
+<li><p>QML ワークフロー (さまざまな種類) の主要な構成要素を特定する。</p></li>
+<li><p>さまざまな種類の QML を特定し、それらを区別する。</p></li>
+<li><p>IBM Quantum プリミティブを使用し、Qiskit パターンに従って、量子カーネル法と変分量子分類器を実装する。</p></li>
+<li><p>QML が最も有望な領域とそうでない領域を特定する。</p></li>
+<li><p>例題を自身のデータセットに合わせて調整する。</p></li>
+<li><p>訓練時間、ノイズ、複数状態の読み出しにおける誤差の累積など、QML における課題を認識する。</p></li>
+<li><p>QML が自身の組織にどこで役立つかについて提言を行う。</p></li>
+</ol>
+</section>
+<section id="id9">
+<h2>コースの構成<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>本コースはいくつかのレッスンで構成されています。各レッスンには本文中にいくつかの理解度チェックの問題があり、学習を進めながら新しいスキルを練習したり、理解度を確認したりできます。これらは必須ではありません。</p>
+<p>コースの最後には20問のクイズがあります。Credly を通じて Quantum Machine Learning バッジを取得するには、このクイズで70%以上のスコアを獲得する必要があります。70%以上のスコアを獲得すると、その後まもなくバッジが自動的にメールで送信されます。クイズの提出は2回までです。1回目の提出後、間違えた問題に再挑戦する機会があります。2回目の提出後、スコアが確定します。詳細はクイズを参照してください。</p>
+<p>コースの構成は以下のとおりです。</p>
+<ul class="simple">
+<li><p>レッスン 1: はじめにと概要</p></li>
+<li><p>レッスン 2: 機械学習の復習</p></li>
+<li><p>レッスン 3: データのエンコード</p></li>
+<li><p>レッスン 4: 量子カーネル法とサポートベクターマシン</p></li>
+<li><p>レッスン 5: 変分量子分類器 / ニューラルネットワーク</p></li>
+<li><p>バッジ取得のための試験</p></li>
+</ul>
+</section>
+<section id="qml">
+<h2>最初の QML コードを実行する<a class="headerlink" href="#qml" title="Link to this heading">#</a></h2>
+<p>細部に分解したり背景を掘り下げたりする前に、どこに向かっているのかを見ておくと役に立つことがよくあります。以下のコードセルでは、量子カーネル法の簡単な例を実行します。具体的には、カーネル行列の要素を1つ計算します。カーネル法や量子カーネルに初めて触れる方も、これに尻込みする必要はありません。本コースの複数のレッスンを使って、これらのセルで行われている内容を詳しく解説していきます。</p>
+<p>このコードと同時に、Qiskit パターンを紹介します。これは、ユーティリティー・スケールで量子コンピューティングに取り組むためのフレームワークです。このフレームワークは、非常に汎用的でほとんどの問題に適用できる4つのステップで構成されています (ただし、ワークストリームによっては、特定のステップが複数回繰り返される場合があります)。</p>
+<section id="qiskit">
+<h3>Qiskit パターン:<a class="headerlink" href="#qiskit" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>ステップ 1: 古典的な入力を量子問題にマッピングする</p></li>
+<li><p>ステップ 2: 量子実行のために問題を最適化する</p></li>
+<li><p>ステップ 3: IBM Quantum プリミティブを使用して実行する</p></li>
+<li><p>ステップ 4: 解析 / 後処理</p></li>
+</ul>
+<p>以下のセルでは、各ステップについてごく簡単な説明のみを示します。より詳しく学ぶために適切なレッスンを見つけられる程度の説明です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 量子回路のセットアップに必要な qiskit パッケージをインポートします。</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">ParameterVector</span><span class="p">,</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">unitary_overlap</span>
+
+<span class="c1"># サンプラーとして StatevectorSampler をインポートします。</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorSampler</span>
+
+<span class="c1"># ステップ 1: 古典的な入力を量子問題にマッピングする:</span>
+
+<span class="c1"># まず、適切なデータを取得します。</span>
+<span class="c1"># 以下でインポートするデータは、128 行 (128 個のデータ点) で構成されています。</span>
+<span class="c1"># 各行には、データの特徴に対応する 14 列と、ラベル (+/-1) を持つ 15 列目があります。</span>
+<span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/qiskit-community/prototype-quantum-kernel-training/main/data/dataset_graph7.csv
+
+<span class="c1"># 必要なパッケージをインポートし、上で取得した csv ファイルから</span>
+<span class="c1"># 訓練データを取り出す関数を作成します。</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_training_data</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""訓練データを読み込みます。"""</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"dataset_graph7.csv"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">training_data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">20</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">training_data</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">training_data</span><span class="p">[</span><span class="n">ind</span><span class="p">][:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">X_train</span>
+
+
+<span class="c1"># 訓練データを準備します</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">get_training_data</span><span class="p">()</span>
+
+<span class="c1"># 空のカーネル行列</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># 2 つのデータ点間の重なりを計算するための特徴マップを準備します。</span>
+<span class="c1"># ZZFeatureMap のような既成の特徴マップを使うことも、ここで示すように</span>
+<span class="c1"># カスタムの量子回路を使うこともできます。</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_features</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">entangler_map</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+<span class="n">fm</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">training_param</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">"θ"</span><span class="p">)</span>
+<span class="n">feature_params</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">num_qubits</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fm</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">training_param</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">cz</span> <span class="ow">in</span> <span class="n">entangler_map</span><span class="p">:</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">cz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">):</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">feature_params</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">feature_params</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># 2 つのデータ点 (ここでは 14 と 19) を選び、その特徴をパラメーターとして回路に割り当てます。</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="n">unitary1</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">x1</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">unitary2</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">x2</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># 重なりを計算する回路を作成します</span>
+<span class="n">overlap_circ</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">unitary1</span><span class="p">,</span> <span class="n">unitary2</span><span class="p">)</span>
+<span class="n">overlap_circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">overlap_circ</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">"iqp"</span><span class="p">)</span>
+
+<span class="c1"># ステップ 2: 量子実行のために問題を最適化する</span>
+
+<span class="c1"># 実際の量子コンピューターで実行するために、IBM Quantum Compute Service を使用して最も空いているバックエンドを取得します。</span>
+<span class="c1"># from qiskit_ibm_runtime import QiskitRuntimeService</span>
+
+<span class="c1"># service = QiskitRuntimeService(channel="ibm_quantum")</span>
+<span class="c1"># backend = service.least_busy(</span>
+<span class="c1">#    operational=True, simulator=False, min_num_qubits=overlap_circ.num_qubits</span>
+<span class="c1"># )</span>
+
+<span class="c1"># パスマネージャーを使用して、選択したバックエンド向けに回路を最適にトランスパイルします。</span>
+<span class="c1"># from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager</span>
+<span class="c1"># pm = generate_preset_pass_manager(optimization_level=3, backend=backend)</span>
+<span class="c1"># overlap_ibm = pm.run(overlap_circ)</span>
+
+<span class="c1"># ステップ 3: IBM Quantum プリミティブを使用して実行する</span>
+
+<span class="c1"># 使用するショット数を指定します。</span>
+<span class="n">num_shots</span> <span class="o">=</span> <span class="mi">10_000</span>
+
+<span class="c1">## Qiskit の状態ベクトルベースのプリミティブを使用して問題を評価します</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">StatevectorSampler</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">overlap_circ</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">num_shots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_int_counts</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># ステップ 4: 解析と後処理</span>
+
+<span class="c1"># 0 が得られる確率を求めます。</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_shots</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2025-05-09 10:04:28--  https://raw.githubusercontent.com/qiskit-community/prototype-quantum-kernel-training/main/data/dataset_graph7.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.109.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 49405 (48K) [text/plain]
+Saving to: ‘dataset_graph7.csv.2’
+
+dataset_graph7.csv. 100%[===================&gt;]  48.25K  --.-KB/s    in 0.03s   
+
+2025-05-09 10:04:29 (1.37 MB/s) - ‘dataset_graph7.csv.2’ saved [49405/49405]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8199
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記のすべてのステップを理解する必要はありませんが、なぜこれを行っているのかを知るために、出力については理解しておきましょう。機械学習における多くのプロセスでは、(他の用途の中でも) 二値分類の一部として内積が用いられます。量子力学はこれと明らかなつながりがあります。なぜなら、さまざまな状態 <span class="math notranslate nohighlight">\(|\phi_i\rangle\)</span> を測定する確率は、初期状態 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> との内積によって <span class="math notranslate nohighlight">\(P_i = |\langle\phi_i|\psi\rangle|^2\)</span> と与えられるからです。つまり、上で行ったのは、2つのデータ点の特徴を含み、それらを量子ベクトルの空間に写像する量子回路を作成し、測定を行うことでその空間における内積を推定することです。これは量子カーネル推定の一例です。このプロセスは2つのデータ点 (14番目と19番目) に対してのみ実行したことに注意してください。可能なすべてのペアに対してこれを行えば、出力 (この場合は数値 0.821…) を用いて、訓練データセット内のすべての点の間の重なりを記述する結果の行列を埋めることができます。これが「カーネル行列」です。</p>
+<section id="id10">
+<h4>理解度を確認しよう<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p>上記のプロセスでは、14番目と19番目のデータ点に対するカーネル行列の要素を計算しました。同じデータ点を2回使用した場合 (例えば14番目と再び14番目)、どのような値が得られるはずでしょうか？ 言い換えると、カーネル行列の対角要素はどうなるはずでしょうか？ ノイズがない場合についてこの問いに答えてください。ただし、ノイズが存在する場合には、答えからのずれが生じ得ることに注意してください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    対角要素は 1.0 になるはずです。このプロセスはベクトルとそれ自身との正規化された内積を計算しているはずであり、その値は常に1でなければなりません。
+  </AccordionItem>
+</Accordion>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/quantum-machine-learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">概要と動機</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">期待値の調整</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">不十分な説明</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">脱量子化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">存在証明</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">理解度チェック</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">コースの学習目標</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">コースの構成</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qml">最初の QML コードを実行する</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qiskit">Qiskit パターン:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">理解度を確認しよう</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

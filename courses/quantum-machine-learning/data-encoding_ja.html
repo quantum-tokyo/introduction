@@ -1,0 +1,1657 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>データエンコーディング &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/quantum-machine-learning/data-encoding_ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/quantum-machine-learning/data-encoding_ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/quantum-machine-learning/data-encoding_ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>データエンコーディング</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">はじめにと表記法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">表記法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正規化と情報の損失</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">エンコーディングの手法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">基底エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">振幅エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">角度エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">位相エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">密角度エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">理解度チェック</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">組み込みの特徴量マップによるエンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">任意の位置でのエンコーディング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-su2">Efficient SU2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z"><span class="math notranslate nohighlight">\(Z\)</span> 特徴量マップ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zz"><span class="math notranslate nohighlight">\(ZZ\)</span> 特徴量マップ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">パウリ特徴量マップ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">パウリ特徴量マップのギャラリー</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">組み込み特徴量マップのまとめ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">ハードウェア効率の良い特徴量マッピング</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">参考文献</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>データエンコーディング<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>はじめにと表記法<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>量子アルゴリズムを使用するには、古典データを何らかの方法で量子回路に取り込む必要があります。これは通常、データ<em>エンコーディング</em>と呼ばれますが、データ<em>ローディング</em>と呼ばれることもあります。これまでのレッスンで扱った特徴量マップ (データの特徴量をある空間から別の空間へ写す写像) の概念を思い出してください。古典データを量子コンピューターに転送するだけでも一種の写像であり、特徴量マップと呼ぶことができます。実際には、Qiskit に組み込まれている特徴量マップ (<code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> や <code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> など) には、通常、回転層とエンタングル層が含まれており、状態をヒルベルト空間内の多くの次元へと拡張します。このエンコーディング処理は量子機械学習アルゴリズムの重要な部分であり、その計算能力に直接影響します。</p>
+<p>以下で紹介するエンコーディング手法の中には、古典的に効率よくシミュレーションできるものもあります。これは特に、積状態を生成する (つまり量子ビットをエンタングルさせない) エンコーディング手法で顕著です。また、量子の有用性が得られる可能性が最も高いのは、データセットが持つ量子的な複雑さとエンコーディング手法がうまく適合している場合であることを忘れないでください。そのため、最終的には独自のエンコーディング回路を作成することになる可能性が非常に高いでしょう。ここでは、さまざまなエンコーディング戦略を比較・対照し、何が可能かを把握していただくために、多種多様なエンコーディング戦略を紹介します。エンコーディング手法の有用性については、非常に一般的な主張がいくつか可能です。たとえば、完全なエンタングルメント方式を用いた <code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code> (後述) は、積状態を生成する手法 (<code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> など) よりも、データの量子的な特徴を捉えられる可能性がはるかに高くなります。しかし、だからといって <code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code> が量子スピードアップを得るのに十分である、あるいはデータセットに十分適合しているというわけではありません。そのためには、モデル化や分類の対象となるデータの構造を慎重に検討する必要があります。また、回路の深さとのバランスも考慮しなければなりません。回路内の量子ビットを完全にエンタングルさせる特徴量マップの多くは非常に深い回路となり、現在の量子コンピューターで有用な結果を得るには深すぎるからです。</p>
+<section id="id3">
+<h3>表記法<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>データセットは <span class="math notranslate nohighlight">\(M\)</span> 個のデータベクトルの集合 <span class="math notranslate nohighlight">\(\text{X} = \{\vec{x}^{(j)}\,|\,j\in [M]\}\)</span> であり、各ベクトルは <span class="math notranslate nohighlight">\(N\)</span> 次元、つまり <span class="math notranslate nohighlight">\(\vec{x}^{(j)}=(\vec{x}^{(j)}_1,\ldots,\vec{x}^{(j)}_N)\in\mathbb{R}^N\)</span> です。文脈によっては、ベクトルの成分に <span class="math notranslate nohighlight">\(0\)</span> から <span class="math notranslate nohighlight">\(N-1\)</span> までの番号が振られている場合もあります。これは複素数のデータ特徴量にも拡張できます。このレッスンでは、集合全体 <span class="math notranslate nohighlight">\((\text{X})\)</span> や、<span class="math notranslate nohighlight">\(\vec{x}^{(j)}\)</span> のような特定の要素に対してこれらの表記を使うこともあります。しかし、ほとんどの場合はデータセットから一度に 1 つのベクトルをロードすることについて扱うため、<span class="math notranslate nohighlight">\(N\)</span> 個の特徴量を持つ 1 つのベクトルを単に <span class="math notranslate nohighlight">\(\vec{x}\)</span> と表記することがよくあります。</p>
+<p>さらに、データベクトル <span class="math notranslate nohighlight">\(\vec{x}\)</span> の特徴量マップ <span class="math notranslate nohighlight">\(\Phi\)</span> を表すのに記号 <span class="math notranslate nohighlight">\(\Phi(\vec{x})\)</span> を使うのが一般的です。特に量子コンピューティングでは、写像を <span class="math notranslate nohighlight">\(U(\vec{x})\)</span> で表すことが一般的であり、この表記はこれらの操作がユニタリーであることを強調しています。どちらも特徴量マップなので、両方に同じ記号を使っても誤りではありません。このコースでは、主に次のように使い分けます。</p>
+<ul class="simple">
+<li><p>機械学習における特徴量マップを一般的に論じる場合は <span class="math notranslate nohighlight">\(\Phi(\vec{x})\)</span></p></li>
+<li><p>特徴量マップの回路実装を論じる場合は <span class="math notranslate nohighlight">\(U(\vec{x})\)</span></p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>正規化と情報の損失<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>古典的な機械学習では、学習データの特徴量を「正規化」またはリスケールすることがよくあり、これによりモデルの性能が向上することが多くあります。一般的な方法の 1 つは、最小-最大正規化 (min-max normalization) や標準化を用いることです。最小-最大正規化では、データ行列 <span class="math notranslate nohighlight">\(\text{X}\)</span> の特徴量の列 (たとえば特徴量 <span class="math notranslate nohighlight">\(k\)</span>) を次のように正規化します。</p>
+<div class="math notranslate nohighlight">
+\[
+x^{'(i)}_k = \frac{x^{(i)}_k - \text{min}\{x^{(j)}_k\,|\,\vec{x}^{(j)}\in [\text{X}]\}}{\text{max}\{x^{(j)}_k\,|\,\vec{x}^{(j)}\in [\text{X}]\}-\text{min}\{x^{(j)}_k\,|\,\vec{x}^{(j)}\in [\text{X}]\}}
+\]</div>
+<p>ここで、min と max は、データセット <span class="math notranslate nohighlight">\(\text{X}\)</span> 内の <span class="math notranslate nohighlight">\(M\)</span> 個のデータベクトルにわたる特徴量 <span class="math notranslate nohighlight">\(k\)</span> の最小値と最大値を表します。これにより、すべての特徴量の値は単位区間に収まります。すなわち、すべての <span class="math notranslate nohighlight">\(i\in [M]\)</span>、<span class="math notranslate nohighlight">\(k\in[N]\)</span> に対して <span class="math notranslate nohighlight">\(x^{'(i)}_k \in [0,1]\)</span> となります。</p>
+<p>正規化は量子力学や量子コンピューティングにおいても基本的な概念ですが、最小-最大正規化とは少し異なります。量子力学における正規化では、状態ベクトル <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> の長さ (量子コンピューティングの文脈では 2-ノルム) が 1 に等しいこと、すなわち <span class="math notranslate nohighlight">\(\|\psi\|=\sqrt{\langle\psi|\psi\rangle} = 1\)</span> が要求され、これにより測定確率の総和が 1 になることが保証されます。状態は 2-ノルムで割ることによって、つまり次のようにリスケールすることによって正規化されます。</p>
+<div class="math notranslate nohighlight">
+\[
+|\psi\rangle\rightarrow\|\psi\|^{-1}|\psi\rangle
+\]</div>
+<p>量子コンピューティングや量子力学において、これは人がデータに課す正規化ではなく、量子状態の基本的な性質です。エンコーディング方式によっては、この制約がデータのリスケールの仕方に影響する場合があります。たとえば、振幅エンコーディング (後述) では、量子力学の要請によりデータベクトルが <span class="math notranslate nohighlight">\(\vert\vec{x}^{(j)}\vert = 1\)</span> と正規化され、これはエンコードされるデータのスケーリングに影響します。位相エンコーディングでは、量子ビットの位相角へのエンコーディングにおける <span class="math notranslate nohighlight">\(2\pi\)</span> を法とする効果によって情報が失われないように、特徴量の値を <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_i \in (0,2\pi]\)</span> となるようにリスケールすることが推奨されます<a class="reference internal" href="#references"><span class="xref myst">[1,2]</span></a>。</p>
+</section>
+</section>
+<section id="id5">
+<h2>エンコーディングの手法<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>以下のいくつかのセクションでは、<span class="math notranslate nohighlight">\(M=5\)</span> 個のデータベクトルからなり、各ベクトルが <span class="math notranslate nohighlight">\(N=3\)</span> 個の特徴量を持つ、小さな古典データセットの例 <span class="math notranslate nohighlight">\(\text{X}_\text{ex}\)</span> を参照します。</p>
+<div class="math notranslate nohighlight">
+\[
+\text{X}_{\text{ex}}=\{(4,8,5),(9,8,6),(2,9,2),(5,7,0),(3,7,5)\}
+\]</div>
+<p>上で導入した表記を用いると、たとえば集合 <span class="math notranslate nohighlight">\(\text{X}_{\text{ex}}\)</span> の <span class="math notranslate nohighlight">\(4^\text{th}\)</span> 番目のデータベクトルの <span class="math notranslate nohighlight">\(1^\text{st}\)</span> 番目の特徴量は <span class="math notranslate nohighlight">\(\vec{x}^{(4)}_1 = 5\)</span> であると言えます。</p>
+<section id="id6">
+<h3>基底エンコーディング<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>基底エンコーディングは、古典的な <span class="math notranslate nohighlight">\(P\)</span> ビットの文字列を <span class="math notranslate nohighlight">\(P\)</span> 量子ビット系の計算基底状態にエンコードします。たとえば <span class="math notranslate nohighlight">\(\vec{x}^{(1)}_3 = 5 = 0(2^3)+1(2^2)+0(2^1)+1(2^0)\)</span> を考えます。これは <span class="math notranslate nohighlight">\(4\)</span> ビットの文字列として <span class="math notranslate nohighlight">\((0101)\)</span> と表すことができ、<span class="math notranslate nohighlight">\(4\)</span> 量子ビット系では量子状態 <span class="math notranslate nohighlight">\(|0101\rangle\)</span> として表せます。より一般的には、<span class="math notranslate nohighlight">\(P\)</span> ビットの文字列 <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k = (b_1, b_2, ... , b_P)\)</span> に対応する <span class="math notranslate nohighlight">\(P\)</span> 量子ビットの状態は <span class="math notranslate nohighlight">\(|x^{(j)}_k\rangle = | b_1, b_2, ... , b_P \rangle\)</span> (ただし <span class="math notranslate nohighlight">\(n = 1 , \dots , P\)</span> に対して <span class="math notranslate nohighlight">\(b_n \in \{0,1\}\)</span>) となります。これは単一の特徴量に対するものであることに注意してください。</p>
+<p>量子コンピューティングにおける基底エンコーディングでは、古典ビットの 1 つ 1 つを別々の量子ビットで表し、データの 2 進表現を計算基底の量子状態に直接マッピングします。複数の特徴量をエンコードする必要がある場合は、まず各特徴量を 2 進形式に変換し、それぞれを別々の量子ビットのグループ (特徴量ごとに 1 グループ) に割り当てます。このとき、各量子ビットはその特徴量の 2 進表現の 1 ビットに対応します。</p>
+<p>例として、ベクトル (5, 7, 0) をエンコードしてみましょう。</p>
+<p>すべての特徴量が 4 ビットで格納されるとします (必要以上ですが、10 進数で 1 桁の任意の整数を表すには十分です)。</p>
+<p>5 → 2 進数 0101</p>
+<p>7 → 2 進数 0111</p>
+<p>0 → 2 進数 0000</p>
+<p>これらのビット列は 4 量子ビットずつの 3 つの組に割り当てられるため、全体の 12 量子ビットの基底状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+∣0101 0111 0000⟩
+\]</div>
+<p>ここで、最初の 4 量子ビットが 1 番目の特徴量を、次の 4 量子ビットが 2 番目の特徴量を、最後の 4 量子ビットが 3 番目の特徴量を表します。以下のコードは、データベクトル (5,7,0) を量子状態に変換するもので、他の 1 桁の特徴量にも対応できるように一般化されています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuantumCircuit</span>
+
+<span class="c1"># エンコードするデータ点</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># 2 進数: 0101</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">7</span>  <span class="c1"># 2 進数: 0111</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 2 進数: 0000</span>
+
+<span class="c1"># それぞれを 4 ビットの 2 進数リストに変換</span>
+<span class="n">x_bits</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">"04b"</span><span class="p">)]</span>  <span class="c1"># [0,1,0,1]</span>
+<span class="n">y_bits</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">format</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="s2">"04b"</span><span class="p">)]</span>  <span class="c1"># [0,1,1,1]</span>
+<span class="n">z_bits</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">format</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="s2">"04b"</span><span class="p">)]</span>  <span class="c1"># [0,0,0,0]</span>
+
+<span class="c1"># すべてのビットを結合</span>
+<span class="n">all_bits</span> <span class="o">=</span> <span class="n">x_bits</span> <span class="o">+</span> <span class="n">y_bits</span> <span class="o">+</span> <span class="n">z_bits</span>  <span class="c1"># [0,1,0,1,0,1,1,1,0,0,0,0]</span>
+
+<span class="c1"># 12 量子ビットの量子回路を初期化</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># ビットが 1 の位置に X ゲートを適用</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_bits</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/85ee995f-1e50-4860-a24c-16bbc8b5c8b0-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id7">
+<h4>理解度チェック<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>例のデータセット <span class="math notranslate nohighlight">\(\text{X}_{\text{ex}}\)</span> の最初のベクトル</p>
+<p><span class="math notranslate nohighlight">\(\vec{x}^{(1)}=(4,8,5)\)</span></p>
+<p>を、基底エンコーディングを使ってエンコードするコードを書いてください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    ```python
+    import math
+    from qiskit import QuantumCircuit
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># エンコードするデータ点
+x = 4  # 2 進数: 0100
+y = 8  # 2 進数: 1000
+z = 5  # 2 進数: 0101
+
+# それぞれを 4 ビットの 2 進数リストに変換
+x_bits = [int(b) for b in format(x, '04b')]  # [0,1,0,0]
+y_bits = [int(b) for b in format(y, '04b')]  # [1,0,0,0]
+z_bits = [int(b) for b in format(z, '04b')]  # [0,1,0,1]
+
+# すべてのビットを結合
+all_bits = x_bits + y_bits + z_bits  # [0,1,0,0,1,0,0,0,0,1,0,1]
+
+# 12 量子ビットの量子回路を初期化
+qc = QuantumCircuit(12)
+
+# ビットが 1 の位置に X ゲートを適用
+for idx, bit in enumerate(all_bits):
+    if bit == 1:
+        qc.x(idx)
+
+qc.draw('mpl')
+```
+</pre></div>
+</div>
+  </AccordionItem>
+</Accordion>
+</section>
+</section>
+<section id="id8">
+<h3>振幅エンコーディング<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>振幅エンコーディングは、データを量子状態の振幅にエンコードします。正規化された古典的な <span class="math notranslate nohighlight">\(N\)</span> 次元データベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(j)}\)</span> を、<span class="math notranslate nohighlight">\(n\)</span> 量子ビットの量子状態 <span class="math notranslate nohighlight">\(|\psi_x\rangle\)</span> の振幅として表現します。</p>
+<div class="math notranslate nohighlight">
+\[
+|\psi^{(j)}_x\rangle = \frac{1}{\alpha}\sum_{i=1}^N x^{(j)}_i |i\rangle
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(N\)</span> はこれまでと同じくデータベクトルの次元であり、<span class="math notranslate nohighlight">\(\vec{x}^{(j)}_i\)</span> は <span class="math notranslate nohighlight">\(\vec{x}^{(j)}\)</span> の <span class="math notranslate nohighlight">\(i^{th}\)</span> 番目の要素です。計算基底状態は固定された順序で並んでいるものとし、ここではその順序を <span class="math notranslate nohighlight">\(i\)</span> で参照しています。同等に、このエンコーディングを <span class="math notranslate nohighlight">\(\sum_{i=0}^{N-1} x_i |i\rangle\)</span> と書くこともできます。ここで <span class="math notranslate nohighlight">\(|i\rangle\)</span> は整数 <span class="math notranslate nohighlight">\(i\)</span> の 2 進表現でラベル付けされた基底状態を表します。一貫していればどちらでも構いません。ここで <span class="math notranslate nohighlight">\(\alpha\)</span> は、エンコードされるデータから決まる正規化定数です。これは量子力学によって課される次の正規化条件です。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^N \left|x^{(j)}_i\right|^2 = \left|\alpha\right|^2.
+\]</div>
+<p>一般に、これはすべてのデータベクトルにわたって各特徴量に用いる最小/最大正規化とは異なる条件です。これを具体的にどう扱うかは問題によって異なります。しかし、上記の量子力学的な正規化条件を回避する方法はありません。</p>
+<p>振幅エンコーディングでは、データベクトル内の各特徴量は、それぞれ異なる量子状態の振幅として格納されます。<span class="math notranslate nohighlight">\(n\)</span> 量子ビットの系は <span class="math notranslate nohighlight">\(2^n\)</span> 個の振幅を持つため、<span class="math notranslate nohighlight">\(N\)</span> 個の特徴量を振幅エンコーディングするには <span class="math notranslate nohighlight">\(n \ge \mathrm{log}_2(N)\)</span> 個の量子ビットが必要です。</p>
+<p>例として、例のデータセット <span class="math notranslate nohighlight">\(\text{X}_\text{ex}\)</span> の最初のベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(1)} = (4,8,5)\)</span> を振幅エンコーディングでエンコードしてみましょう。得られるベクトルを正規化すると、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{i=1}^N \left|x^{(1)}_i\right|^2 = 4^2+8^2+5^2 = 105 = \left|\alpha\right|^2 \rightarrow \alpha = \sqrt{105}
+\]</div>
+<p>そして、得られる 2 量子ビットの量子状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+|\psi(\vec{x}^{(1)})\rangle = \frac{1}{\sqrt{105}}(4|00\rangle+8|01\rangle+5|10\rangle+0|11\rangle)
+\]</div>
+<p>上の例では、ベクトルの特徴量の数 <span class="math notranslate nohighlight">\(N=3\)</span> は 2 のべき乗ではありません。<span class="math notranslate nohighlight">\(N\)</span> が 2 のべき乗でない場合は、<span class="math notranslate nohighlight">\(2^n\geq N\)</span> となるように量子ビット数 <span class="math notranslate nohighlight">\(n\)</span> の値を選び、振幅ベクトルを情報を持たない定数 (ここでは 0) で埋めます。</p>
+<p>基底エンコーディングと同様に、データセットをエンコードする状態を計算したら、Qiskit では <code class="docutils literal notranslate"><span class="pre">initialize</span></code> 関数を使ってその状態を準備できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="n">desired_state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">105</span><span class="p">)</span> <span class="o">*</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">desired_state</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/19810c6d-8d60-49ee-bd6f-6f6fbd5e7363-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>振幅エンコーディングの利点は、前述のとおり、エンコードに <span class="math notranslate nohighlight">\(\mathrm{log}_2(N)\)</span> 個の量子ビットしか必要としないことです。しかし、後続のアルゴリズムは量子状態の振幅に対して操作を行う必要があり、量子状態を準備・測定する方法は効率的でない傾向があります。</p>
+<section id="id9">
+<h4>理解度チェック<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>次のベクトル (例のデータセットの 2 つのベクトルからなる)</p>
+<p><span class="math notranslate nohighlight">\(\vec{x}=(9,8,6,2,9,2)\)</span></p>
+<p>を振幅エンコーディングでエンコードするための、正規化された状態を書いてください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    6 つの数値をエンコードするには、その振幅にエンコードできる状態が少なくとも 6 つ必要です。そのためには 3 量子ビットが必要になります。未知の正規化因子 $\alpha$ を用いると、次のように書けます。
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$
+|\psi\rangle = \frac{1}{\alpha}(9|000\rangle+8|001\rangle+6|010\rangle+2|011\rangle+9|100\rangle+2|101\rangle+0|110\rangle+0|111\rangle)
+$$
+
+ここで、
+
+$$
+\langle \psi|\psi\rangle = \frac{1}{|\alpha|^2}\times(9^2+8^2+6^2+2^2+9^2+2^2+0^2+0^2) = \frac{1}{|\alpha|^2}\times(270)=1 \rightarrow \alpha = \sqrt{270}
+$$
+
+となるので、最終的に次のようになります。
+
+$$
+|\psi\rangle = \frac{1}{\sqrt{270}}(9|000\rangle+8|001\rangle+6|010\rangle+2|011\rangle+9|100\rangle+2|101\rangle+0|110\rangle+0|111\rangle)
+$$
+</pre></div>
+</div>
+  </AccordionItem>
+</Accordion>
+<p>同じデータベクトル <span class="math notranslate nohighlight">\(\vec{x}=(9,8,6,2,9,2)\)</span> について、振幅エンコーディングを使ってこれらのデータ特徴量をロードする回路を作成するコードを書いてください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    ```python
+    desired_state = [
+        9 / math.sqrt(270),
+        8 / math.sqrt(270),
+        6 / math.sqrt(270),
+        2 / math.sqrt(270),
+        9 / math.sqrt(270),
+        2 / math.sqrt(270),
+        0,
+        0,
+    ]
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(desired_state)
+
+qc = QuantumCircuit(3)
+qc.initialize(desired_state, [0, 1, 2])
+qc.decompose(reps=8).draw(output="mpl")
+```
+
+\[0.5477225575051662, 0.48686449556014766, 0.36514837167011077, 0.12171612389003691, 0.5477225575051662, 0.12171612389003691, 0, 0]
+
+!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin2.avif)
+</pre></div>
+</div>
+  </AccordionItem>
+</Accordion>
+<p>非常に大きなデータベクトルを扱う必要がある場合もあります。次のベクトルを考えてください。</p>
+<p><span class="math notranslate nohighlight">\(\vec{x}=(4,8,5,9,8,6,2,9,2,5,7,0,3,7,5).\)</span></p>
+<p>正規化を自動化し、振幅エンコーディングのための量子回路を生成するコードを書いてください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    解答は多数考えられます。以下は、途中のいくつかのステップを出力するコードです。
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
+import numpy as np
+from math import sqrt
+
+init_list = [4, 8, 5, 9, 8, 6, 2, 9, 2, 5, 7, 0, 3, 7, 5]
+qubits = round(np.log(len(init_list)) / np.log(2) + 0.4999999999)
+need_length = 2**qubits
+pad = need_length - len(init_list)
+for i in range(0, pad):
+    init_list.append(0)
+
+init_array = np.array(init_list)  # 正規化前のデータベクトル
+length = sqrt(
+    sum(init_array[i] ** 2 for i in range(0, len(init_array)))
+)  # ベクトルの長さ
+norm_array = init_array / length  # 正規化された配列
+print("Normalized array:")
+print(norm_array)
+print()
+
+qubit_numbers = []
+for i in range(0, qubits):
+    qubit_numbers.append(i)
+print(qubit_numbers)
+
+qc = QuantumCircuit(qubits)
+qc.initialize(norm_array, qubit_numbers)
+qc.decompose(reps=7).draw(output="mpl")
+```
+
+Normalized array:
+\[0.17342199 0.34684399 0.21677749 0.39019949 0.34684399 0.26013299
+0.086711   0.39019949 0.086711   0.21677749 0.30348849 0.
+0.1300665  0.30348849 0.21677749 0.        ]
+
+\[0, 1, 2, 3]
+
+!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin3.avif)
+</pre></div>
+</div>
+  </AccordionItem>
+</Accordion>
+<p>振幅エンコーディングには、基底エンコーディングと比べて利点があると思いますか? もしあれば、説明してください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    いくつかの答えが考えられます。1 つの答えは、基底状態の順序が固定されているため、この振幅エンコーディングではエンコードされた数値の順序が保たれるということです。また、多くの場合、より高密度にエンコードされます。
+  </AccordionItem>
+</Accordion>
+<p>振幅エンコーディングの利点は、<span class="math notranslate nohighlight">\(N\)</span> 次元 (<span class="math notranslate nohighlight">\(N\)</span> 個の特徴量) のデータベクトル <span class="math notranslate nohighlight">\(\vec{x}\rightarrow|\vec{x}\rangle\)</span> に対して <span class="math notranslate nohighlight">\(\log_2(N)\)</span> 個の量子ビットしか必要としないことです。しかし、振幅エンコーディングは一般に、任意の状態準備を必要とする非効率な手順であり、CNOT ゲートの数が指数関数的になります。言い換えると、状態準備の実行時間の計算量は次元数に対して <span class="math notranslate nohighlight">\(\mathcal O(N)\)</span> の多項式オーダーとなります。ここで <span class="math notranslate nohighlight">\(N = 2^n\)</span> であり、<span class="math notranslate nohighlight">\(n\)</span> は量子ビット数です。振幅エンコーディングは「時間の指数関数的な増大を代償として、空間の指数関数的な節約をもたらす」<a class="reference internal" href="#references"><span class="xref myst">[3]</span></a> ものですが、特定のケースでは実行時間を <span class="math notranslate nohighlight">\(\mathcal O(\log N)\)</span> に抑えることが可能です<a class="reference internal" href="#references"><span class="xref myst">[4]</span></a>。エンドツーエンドで量子スピードアップを実現するには、データローディングの実行時間の計算量を考慮する必要があります。</p>
+</section>
+</section>
+<section id="id10">
+<h3>角度エンコーディング<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>角度エンコーディングは、量子サポートベクターマシン (QSVM) や変分量子回路 (VQC) など、パウリ特徴量マップを使用する多くの QML モデルで注目されています。角度エンコーディングは、後述する位相エンコーディングや密角度エンコーディングと密接に関連しています。ここでは「角度エンコーディング」を、<span class="math notranslate nohighlight">\(\theta\)</span> 方向の回転、つまり、たとえば <span class="math notranslate nohighlight">\(R_X\)</span> ゲートや <span class="math notranslate nohighlight">\(R_Y\)</span> ゲートによって実現される <span class="math notranslate nohighlight">\(z\)</span> 軸から離れる方向への回転を指すものとして使います<a class="reference internal" href="#references"><span class="xref myst">[1,3]</span></a>。実際には、データは<em>任意の</em>回転や回転の組み合わせにエンコードできます。しかし、文献では <span class="math notranslate nohighlight">\(R_Y\)</span> が一般的なので、ここではそれを重点的に扱います。</p>
+<p>単一の量子ビットに適用した場合、角度エンコーディングはデータの値に比例した Y 軸周りの回転を与えます。データセット内の <span class="math notranslate nohighlight">\(j^\text{th}\)</span> 番目のデータベクトルの単一の (<span class="math notranslate nohighlight">\(k^\text{th}\)</span> 番目の) 特徴量 <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k\)</span> のエンコーディングを考えます。</p>
+<div class="math notranslate nohighlight">
+\[
+|\vec{x}^{(j)}_k\rangle = R_Y(\theta=\vec{x}^{(j)}_k)|0\rangle = \textstyle\cos\left(\frac{\vec{x}^{(j)}_k}{2}\right)|0\rangle + \sin\left(\frac{\vec{x}^{(j)}_k}{2}\right)|1\rangle.
+\]</div>
+<p>あるいは、<span class="math notranslate nohighlight">\(R_X(\theta)\)</span> ゲートを使って角度エンコーディングを行うこともできますが、その場合、エンコードされた状態は <span class="math notranslate nohighlight">\(R_Y(\theta)\)</span> の場合と比べて複素数の相対位相を持つことになります。</p>
+<p>角度エンコーディングは、これまでに説明した 2 つの手法とはいくつかの点で異なります。角度エンコーディングでは、次のようになります。</p>
+<ul class="simple">
+<li><p>各特徴量の値は対応する量子ビットにマッピングされ (<span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k \rightarrow Q_k\)</span>)、量子ビットは積状態のままとなります。</p></li>
+<li><p>データ点の特徴量の集合全体ではなく、一度に 1 つの数値がエンコードされます。</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> 個のデータ特徴量に対して <span class="math notranslate nohighlight">\(n\)</span> 個の量子ビットが必要です (ただし <span class="math notranslate nohighlight">\(n\leq N\)</span>)。ここでは多くの場合、等号が成り立ちます。<span class="math notranslate nohighlight">\(n&lt;N\)</span> がどのようにして可能になるかは、以降のいくつかのセクションで説明します。</p></li>
+<li><p>得られる回路の深さは一定です (トランスパイル前の深さは通常 1 です)。</p></li>
+</ul>
+<p>回路の深さが一定であるため、現在の量子ハードウェアに特に適しています。データを <span class="math notranslate nohighlight">\(\theta\)</span> を用いてエンコードすること (特に、Y 軸角度エンコーディングを選択したこと) のもう 1 つの特徴は、特定の応用で役立つ実数値の量子状態が生成されることです。Y 軸回転の場合、データは実数値の角度 <span class="math notranslate nohighlight">\(\theta \in (0, 2\pi]\)</span> による Y 軸回転ゲート <span class="math notranslate nohighlight">\(R_Y(\theta)\)</span> でマッピングされます (<a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.RYGate"><span class="xref myst">Qiskit RYGate</span></a>)。位相エンコーディング (後述) と同様に、情報の損失やその他の望ましくない影響を防ぐため、<span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k \in (0,2\pi]\)</span> となるようにデータをリスケールすることをお勧めします。</p>
+<p>次の Qiskit コードは、単一の量子ビットを初期状態 <span class="math notranslate nohighlight">\(|0\rangle\)</span> から回転させて、データ値 <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k=\frac{1}{2}\pi\)</span> をエンコードします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.quantum_info</span><span class="w"> </span><span class="kn">import</span> <span class="n">Statevector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span>
+
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 位相ゲートが角度 pi/2 だけ回転させる</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">state1</span><span class="p">,</span> <span class="n">state2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>状態ベクトルに対する作用を可視化する関数を定義します。関数定義の詳細は重要ではありませんが、状態ベクトルとその変化を可視化できることは重要です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization.bloch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bloch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization.state_visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">_bloch_multivector_data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_Nstates</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">plot_trace_points</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""この関数は N 個の状態を 1 つのブロッホ球にプロットします"""</span>
+    <span class="n">bloch_vecs</span> <span class="o">=</span> <span class="p">[</span><span class="n">_bloch_multivector_data</span><span class="p">(</span><span class="n">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">states</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bloch_plot</span> <span class="o">=</span> <span class="n">Bloch</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">bloch_plot</span> <span class="o">=</span> <span class="n">Bloch</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+    <span class="n">bloch_plot</span><span class="o">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">bloch_vecs</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">states</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">rgba_map</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+            <span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.95</span> <span class="o">-</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mf">0.95</span> <span class="o">-</span> <span class="n">g</span> <span class="o">*</span> <span class="n">num</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">g</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="k">return</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+
+        <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+        <span class="n">bloch_plot</span><span class="o">.</span><span class="n">vector_color</span> <span class="o">=</span> <span class="p">[</span><span class="n">rgba_map</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+    <span class="n">bloch_plot</span><span class="o">.</span><span class="n">vector_width</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">bloch_plot</span><span class="o">.</span><span class="n">vector_style</span> <span class="o">=</span> <span class="s2">"simple"</span>
+
+    <span class="k">if</span> <span class="n">plot_trace_points</span><span class="p">:</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">trace_points</span><span class="p">(</span><span class="n">bloch_vec1</span><span class="p">,</span> <span class="n">bloch_vec2</span><span class="p">):</span>
+            <span class="c1"># bloch_vec = (x,y,z)</span>
+            <span class="n">n_points</span> <span class="o">=</span> <span class="mi">15</span>
+            <span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">([</span><span class="n">bloch_vec1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bloch_vec2</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+            <span class="n">phis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">bloch_vec1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bloch_vec2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">bloch_vec1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bloch_vec2</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">phis</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">phis</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">phis</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span>
+            <span class="n">angles0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">phis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">phis</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_points</span><span class="p">)</span>
+            <span class="n">angles1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">thetas</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">thetas</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_points</span><span class="p">)</span>
+
+            <span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles1</span><span class="p">)</span>
+            <span class="n">yp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles0</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles1</span><span class="p">)</span>
+            <span class="n">zp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles1</span><span class="p">)</span>
+            <span class="n">pnts</span> <span class="o">=</span> <span class="p">[</span><span class="n">xp</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zp</span><span class="p">]</span>
+            <span class="n">bloch_plot</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">pnts</span><span class="p">)</span>
+            <span class="n">bloch_plot</span><span class="o">.</span><span class="n">point_color</span> <span class="o">=</span> <span class="s2">"k"</span>
+            <span class="n">bloch_plot</span><span class="o">.</span><span class="n">point_size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bloch_plot</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+            <span class="n">bloch_plot</span><span class="o">.</span><span class="n">point_marker</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"o"</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bloch_vecs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">trace_points</span><span class="p">(</span><span class="n">bloch_vecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bloch_vecs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">bloch_plot</span><span class="o">.</span><span class="n">sphere_alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+    <span class="n">bloch_plot</span><span class="o">.</span><span class="n">frame_alpha</span> <span class="o">=</span> <span class="mf">0.15</span>
+    <span class="n">bloch_plot</span><span class="o">.</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+    <span class="n">bloch_plot</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
+
+<span class="n">plot_Nstates</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_trace_points</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/666700f7-7798-43ce-a8ca-d91e48adda4f-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>ここまでは、単一のデータベクトルの単一の特徴量だけでした。<span class="math notranslate nohighlight">\(N\)</span> 個の特徴量を <span class="math notranslate nohighlight">\(n\)</span> 個の量子ビットの回転角にエンコードする場合、たとえば <span class="math notranslate nohighlight">\(j^\text{th}\)</span> 番目のデータベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(j)} = (x_1,...,x_N)\)</span> について、エンコードされた積状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+|\vec{x}^{(j)}\rangle = \bigotimes^N_{k=1} \cos\left(\frac{\vec{x}^{(j)}_k}{2}\right)|0\rangle + \sin\left(\frac{\vec{x}^{(j)}_k}{2}\right)|1\rangle
+\]</div>
+<p>あるいは、同等に次のようにも書けます。</p>
+<div class="math notranslate nohighlight">
+\[
+|\vec{x}^{(j)}\rangle = \bigotimes^N_{k=1} R_Y(\vec{x}^{(j)}_k)|0\rangle.
+\]</div>
+<p>文献によっては、正弦/余弦関数の引数を <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k/2\)</span> ではなく <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k\)</span> とするようにエンコーディングを定義している場合があります。これは表記上の好みであり、<span class="math notranslate nohighlight">\(R_Y(2 \theta)\)</span> を使うことと同等です。特に、いずれにせよデータは <span class="math notranslate nohighlight">\((0,2\pi]\)</span> の区間にリスケールすべきなので、通常は重要な違いではありません。</p>
+<section id="id11">
+<h4>理解度チェック<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<p>上で説明した角度エンコーディングを使って、データベクトル <span class="math notranslate nohighlight">\(\vec{x} = (0, \pi/4, \pi/2)\)</span> をエンコードしてください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    ```python
+    qc = QuantumCircuit(3)
+    qc.ry(0, 0)
+    qc.ry(math.pi / 4, 1)
+    qc.ry(math.pi / 2, 2)
+    qc.draw(output="mpl")
+    ```
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin4.avif)
+</pre></div>
+</div>
+  </AccordionItem>
+</Accordion>
+<p>上で説明した角度エンコーディングを使う場合、5 つの特徴量をエンコードするには何個の量子ビットが必要ですか?</p>
+<Accordion>
+  <AccordionItem title="解答">
+    5
+  </AccordionItem>
+</Accordion>
+</section>
+</section>
+<section id="id12">
+<h3>位相エンコーディング<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>位相エンコーディングは、上で説明した角度エンコーディングとよく似ています。量子ビットの位相角とは、<span class="math notranslate nohighlight">\(z\)</span> 軸周りに +<span class="math notranslate nohighlight">\(x\)</span> 軸から測った実数値の角度 <span class="math notranslate nohighlight">\(\phi\)</span> のことです。データは位相回転 <span class="math notranslate nohighlight">\(P(\phi) = e^{i\phi/2}R_Z(\phi)\)</span> (ただし <span class="math notranslate nohighlight">\(\phi \in (0,2\pi]\)</span>) によってマッピングされます (詳しくは <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.PhaseGate"><span class="xref myst">Qiskit PhaseGate</span></a> を参照してください)。<span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k \in (0,2\pi]\)</span> となるようにデータをリスケールすることが推奨されます。これにより、情報の損失やその他の望ましくない可能性のある影響を防ぐことができます<a class="reference internal" href="#references"><span class="xref myst">[1,2]</span></a>。</p>
+<p>量子ビットは多くの場合、状態 <span class="math notranslate nohighlight">\(|0\rangle\)</span> に初期化されます。これは位相回転演算子の固有状態であるため、位相エンコーディングを実装するには、まず量子ビットの状態を回転させる必要があります。そのため、アダマールゲートで状態を初期化するのが理にかなっています: <span class="math notranslate nohighlight">\(H|0\rangle = |+\rangle = \textstyle\frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</span>。単一の量子ビットに対する位相エンコーディングとは、データの値に比例した相対位相を与えることを意味します。</p>
+<div class="math notranslate nohighlight">
+\[
+|\vec{x}^{(j)}_k\rangle = P(\phi=\vec{x}^{(j)}_k)|+\rangle = \textstyle\frac{1}{\sqrt{2}}\big(|0\rangle + e^{i\vec{x}^{(j)}_k}|1\rangle\big).
+\]</div>
+<p>位相エンコーディングの手順では、各特徴量の値を対応する量子ビットの位相にマッピングします (<span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k \rightarrow Q_k\)</span>)。全体として、位相エンコーディングの回路の深さはアダマール層を含めて 2 であり、効率的なエンコーディング方式となっています。位相エンコーディングされた多量子ビット状態 (<span class="math notranslate nohighlight">\(N=n\)</span> 個の特徴量に対して <span class="math notranslate nohighlight">\(n\)</span> 量子ビット) は、次のような積状態です。</p>
+<div class="math notranslate nohighlight">
+\[
+|\vec{x}^{(j)}\rangle = \bigotimes_{k=1}^{N} P_k(\phi = \vec{x}^{(j)}_k)|+\rangle^{\otimes N} = {\textstyle\frac{1}{\sqrt{2^N}}} \bigotimes_{k=1}^{N}\big(|0\rangle + e^{i\vec{x}^{(j)}_k}|1\rangle\big).
+\]</div>
+<p>次の Qiskit コードは、まずアダマールゲートで回転させて単一の量子ビットの初期状態を準備し、次に位相ゲートで再び回転させてデータ特徴量 <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k=\frac{1}{2}\pi\)</span> をエンコードします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># アダマールゲートが状態をブロッホ球の赤道まで回転させる</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 位相ゲートが角度 pi/2 だけ回転させる</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+<span class="n">states</span> <span class="o">=</span> <span class="n">state1</span><span class="p">,</span> <span class="n">state2</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/ba0886eb-1c56-4b15-a731-d94d805254e1-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>定義した plot_Nstates 関数を使って、<span class="math notranslate nohighlight">\(\phi\)</span> 方向の回転を可視化できます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_Nstates</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_trace_points</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/f7c9cf29-2ad6-43af-a7e3-e590e41d7e67-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>ブロッホ球のプロットは、<span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k=\frac{1}{2}\pi\)</span> の場合の Z 軸周りの回転 <span class="math notranslate nohighlight">\(|+\rangle \rightarrow P(\frac{1}{2}\pi)|+\rangle\)</span> を示しています。薄い緑色の矢印が最終状態を示しています。</p>
+<p>位相エンコーディングは、多くの量子特徴量マップ、特に <span class="math notranslate nohighlight">\(Z\)</span> 特徴量マップや <span class="math notranslate nohighlight">\(ZZ\)</span> 特徴量マップ、一般的なパウリ特徴量マップなどで使われています。</p>
+<section id="id13">
+<h4>理解度チェック<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<p>上で説明した位相エンコーディングを使って 8 つの特徴量を格納するには、何個の量子ビットが必要ですか?</p>
+<Accordion>
+  <AccordionItem title="解答">
+    8
+  </AccordionItem>
+</Accordion>
+<p>ベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(1)}=(4,8,5,9,8,6,2,9,2,5,7,0)\)</span> を位相エンコーディングでエンコードするコードを書いてください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    解答は多数考えられます。以下はその一例です。
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
+phase_data = [4, 8, 5, 9, 8, 6, 2, 9, 2, 5, 7, 0]
+qc = QuantumCircuit(len(phase_data))
+for i in range(0, len(phase_data)):
+    qc.h(i)
+    qc.rz(phase_data[i] * 2 * math.pi / float(max(phase_data)), i)
+qc.draw(output="mpl")
+```
+
+!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin5.avif)
+</pre></div>
+</div>
+  </AccordionItem>
+</Accordion>
+</section>
+</section>
+<section id="id14">
+<h3>密角度エンコーディング<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>密角度エンコーディング (DAE) は、角度エンコーディングと位相エンコーディングを組み合わせたものです。DAE では、2 つの特徴量の値を単一の量子ビットにエンコードできます。一方は Y 軸周りの回転角として、もう一方は <span class="math notranslate nohighlight">\(z\)</span> 軸周りの回転角としてエンコードします: <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k\)</span>, <span class="math notranslate nohighlight">\(\vec{x}^{(j)}_\ell \rightarrow \theta, \phi\)</span>。2 つの特徴量は次のようにエンコードされます。</p>
+<div class="math notranslate nohighlight">
+\[
+|\vec{x}^{(j)}_k,\vec{x}^{(j)}_\ell\rangle = R_Z(\phi=\vec{x}^{(j)}_\ell) R_Y(\theta=\vec{x}^{(j)}_k)|0\rangle = \cos\left(\frac{\vec{x}^{(j)}_k}{2}\right)|0\rangle + e^{i\vec{x}^{(j)}_\ell} \sin\left(\frac{\vec{x}^{(j)}_k}{2}\right)|1\rangle.
+\]</div>
+<p>2 つのデータ特徴量を 1 つの量子ビットにエンコードすることで、エンコーディングに必要な量子ビット数が半分 (<span class="math notranslate nohighlight">\(2\times\)</span> の削減) になります。これをより多くの特徴量に拡張すると、データベクトル <span class="math notranslate nohighlight">\(\vec{x} = (x_1,...,x_N)\)</span> は次のようにエンコードできます。</p>
+<div class="math notranslate nohighlight">
+\[
+|\vec{x}\rangle = \bigotimes_{k=1}^{N/2} \cos\left(\frac{x_{2k-1}}{2}\right)|0\rangle + e^{i x_{2k}}\sin\left(\frac{x_{2k-1}}{2}\right)|1\rangle
+\]</div>
+<p>DAE は、ここで使った正弦関数の代わりに、2 つの特徴量の任意の関数へと一般化できます。これは一般量子ビットエンコーディング (general qubit encoding) と呼ばれます<a class="reference internal" href="#references"><span class="xref myst">[7]</span></a>。</p>
+<p>DAE の例として、以下のコードでは特徴量 <span class="math notranslate nohighlight">\(x_1=\theta = 3\pi/8\)</span> と <span class="math notranslate nohighlight">\(x_2=\phi = 7\pi/4\)</span> をエンコードし、そのエンコーディングを可視化します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">state1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">state2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="mi">7</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">state3</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_instruction</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">state1</span><span class="p">,</span> <span class="n">state2</span><span class="p">,</span> <span class="n">state3</span>
+
+<span class="n">plot_Nstates</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_trace_points</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/9a6bb041-d7a1-4e29-a463-81b93b900e96-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id15">
+<h4>理解度チェック<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<p>上の説明に基づくと、密エンコーディングを使って 6 つの特徴量をエンコードするには何個の量子ビットが必要ですか?</p>
+<Accordion>
+  <AccordionItem title="解答">
+    3
+  </AccordionItem>
+</Accordion>
+<p>密角度エンコーディングを使ってベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(1)}=(4,8,5,9,8,6,2,9,2,5,7,0,3,7,5)\)</span> をロードするコードを書いてください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    エンコーディング方式の中で使われないパラメーターが 1 つだけ残るという問題を避けるため、リストを「0」で埋めていることに注意してください。
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
+dense_data = [4, 8, 5, 9, 8, 6, 2, 9, 2, 5, 7, 0, 3, 7, 5, 0]
+qc = QuantumCircuit(int(len(dense_data) / 2))
+entry = 0
+for i in range(0, int(len(dense_data) / 2)):
+    qc.ry(dense_data[entry] * 2 * math.pi / float(max(dense_data)), i)
+    entry = entry + 1
+    qc.rz(dense_data[entry] * 2 * math.pi / float(max(dense_data)), i)
+    entry = entry + 1
+qc.draw(output="mpl")
+```
+
+!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin6.avif)
+</pre></div>
+</div>
+  </AccordionItem>
+</Accordion>
+</section>
+</section>
+</section>
+<section id="id16">
+<h2>組み込みの特徴量マップによるエンコーディング<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<section id="id17">
+<h3>任意の位置でのエンコーディング<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p>角度エンコーディング、位相エンコーディング、密エンコーディングでは、各量子ビットに 1 つの特徴量 (または量子ビットあたり 2 つの特徴量) をエンコードした積状態を準備しました。これは基底エンコーディングや振幅エンコーディングとは異なります。これらの手法はエンタングルした状態を利用しており、データ特徴量と量子ビットが 1 対 1 に対応していません。たとえば振幅エンコーディングでは、ある特徴量を状態 <span class="math notranslate nohighlight">\(|01\rangle\)</span> の振幅とし、別の特徴量を <span class="math notranslate nohighlight">\(|10\rangle\)</span> の振幅とすることがあります。一般に、積状態にエンコードする手法では回路が浅くなり、各量子ビットに 1 つまたは 2 つの特徴量を格納できます。エンタングルメントを利用し、特徴量を量子ビットではなく状態に対応付ける手法では、回路が深くなりますが、平均して量子ビットあたりにより多くの特徴量を格納できます。</p>
+<p>しかし、エンコーディングは完全に積状態で行う必要も、振幅エンコーディングのように完全にエンタングルした状態で行う必要もありません。実際、Qiskit に組み込まれている多くのエンコーディング方式では、最初だけでなく、エンタングル層の前後の両方でエンコードできます。これは「データの再アップロード (data reuploading)」として知られています。関連する研究については、参考文献 [5] および [6] を参照してください。</p>
+<p>このセクションでは、組み込みのエンコーディング方式をいくつか使い、可視化します。このセクションのすべての手法は、<span class="math notranslate nohighlight">\(N\)</span> 個の特徴量を、<span class="math notranslate nohighlight">\(n\)</span> 個の量子ビット (<span class="math notranslate nohighlight">\(n \leq N\)</span>) 上の <span class="math notranslate nohighlight">\(N\)</span> 個のパラメーター化ゲートの回転としてエンコードします。与えられた量子ビット数でデータのロード量を最大化することだけが考慮すべき点ではないことに注意してください。多くの場合、量子ビット数よりも回路の深さのほうがさらに重要な考慮事項となることがあります。</p>
+</section>
+<section id="efficient-su2">
+<h3>Efficient SU2<a class="headerlink" href="#efficient-su2" title="Link to this heading">#</a></h3>
+<p>エンタングルメントを伴うエンコーディングの一般的で有用な例として、Qiskit の <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.EfficientSU2"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code></span></a> 回路があります。驚くべきことに、この回路では、たとえばわずか 2 量子ビットで 8 つの特徴量をエンコードできます。実際に確認してから、それがなぜ可能なのかを理解してみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">efficient_su2</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">efficient_su2</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/6b657226-ae95-41f6-b78b-5def930d0080-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>状態を書き下す際には、<span class="math notranslate nohighlight">\(|q_2,q_1,q_0\rangle\)</span> や <span class="math notranslate nohighlight">\(|q_2\rangle\otimes|q_1\rangle\otimes|q_0\rangle\)</span> のように、最下位の量子ビットを一番右に並べる Qiskit の規約を使います。これらの状態はすぐに非常に複雑になるため、この珍しい例は、そうした状態が明示的に書き下されることがめったにない理由を説明する助けになるかもしれません。</p>
+<p>系は状態 <span class="math notranslate nohighlight">\(|00\rangle\)</span> から始まります。最初のバリア (<span class="math notranslate nohighlight">\(b1\)</span> とラベル付けする位置) までの状態は次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+|\psi\rangle_{b1} = \left(\cos\left(\frac{\theta_1}{2}\right)|0\rangle+\sin\left(\frac{\theta_1}{2}\right)e^{i\theta_3}|1\rangle\right)\otimes\left(\cos\left(\frac{\theta_0}{2}\right)|0\rangle+\sin\left(\frac{\theta_0}{2}\right)e^{i\theta_2}|1\rangle\right)
+\]</div>
+<p>これは以前に見た密エンコーディングそのものです。次に、CNOT ゲートの後、2 番目のバリア (<span class="math notranslate nohighlight">\(b2\)</span>) での状態は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|\psi\rangle_{b2} = &amp; \cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_0}{2}\right)|00\rangle+\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_0}{2}\right)e^{i\theta_2}|11\rangle\\
++ &amp; \sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_0}{2}\right)e^{i\theta_3}|10\rangle+\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_0}{2}\right)e^{i\theta_2}e^{i\theta_3}|01\rangle
+\end{aligned}
+\end{split}\]</div>
+<p>ここで最後の単一量子ビット回転の組を適用し、同じ状態の項をまとめると、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}
+\begin{align*}
+|\psi\rangle_{\text{final}} = &amp;
+\left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)-\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\\begin{split}+ &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)-\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
+|00\rangle\\\end{split}\\\begin{split}+ &amp; \left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)-\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\\begin{split}+ &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(-\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
+e^{i\theta_6}|01\rangle\\\end{split}\\\begin{split}+ &amp; \left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\\begin{split}- &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
+e^{i\theta_7}|10\rangle\\\end{split}\\\begin{split}+ &amp; \left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\+ &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
+e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
+\end{aligned}\end{align} \]</div>
+<p>これを読み解くのはおそらく複雑すぎるでしょう。代わりに、一歩引いて、状態にいくつのパラメーターをロードしたかを考えてみてください。8 つです。しかし、計算基底状態は 4 つしかありません。最終状態は <span class="math notranslate nohighlight">\(\psi_\text{final} = c_0|00\rangle+c_1|01\rangle+c_2|10\rangle+c_3|11\rangle\)</span> と書けるので、一見すると、理にかなう数よりも多くのパラメーターをロードしたように見えるかもしれません。しかし、各係数は複素数であることに注意してください! 次のように書くと、</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_\text{final} = (a_0+ib_0)|00\rangle+(a_1+ib_1)|01\rangle+(a_2+ib_2)|10\rangle+(a_3+ib_3)|11\rangle
+\]</div>
+<p>8 つの特徴量をエンコードするための 8 つのパラメーターが、確かに状態上に存在することがわかります。</p>
+<p>量子ビット数を増やし、エンタングル層と回転層の繰り返し回数を増やすことで、はるかに多くのデータをエンコードできます。波動関数を書き下すことはすぐに手に負えなくなりますが、それでもエンコーディングが機能する様子を見ることはできます。</p>
+<p>ここでは、12 個の特徴量を持つデータベクトル <span class="math notranslate nohighlight">\(\vec{x}\)</span> を、3 量子ビットの <code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code> 回路にエンコードします。各パラメーター化ゲートを使って、それぞれ異なる特徴量をエンコードします。</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{x} = (0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2)
+\]</div>
+<p>このデータベクトルでは、特徴量が特定の順序で示されています。それだけを見れば、この順序でエンコードしても逆順でエンコードしても問題ありません。重要なのは、順序を把握し、一貫性を保つことです。回路図を見ると、<code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code> が特定のエンコーディング順序を前提としていることに注意してください。具体的には、パラメーター化ゲートの最初の層を量子ビット 0 から量子ビット 2 まで埋めてから、次の層に移ります。これはリトルエンディアン表記と整合しているとも整合していないとも言えません。というのも、ここではエンコーディング回路が指定される前に、データ特徴量を<em>先験的に</em>量子ビットで順序付けることはできないからです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">]</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">efficient_su2</span><span class="p">(</span><span class="n">num_qubits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">encode</span> <span class="o">=</span> <span class="n">circuit</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">encode</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/73fc00fe-b98f-4d63-a327-54958a8f5498-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>量子ビット数を増やす代わりに、エンタングル層と回転層の繰り返し回数を増やすことを選ぶこともできます。しかし、有用な繰り返し回数には限界があります。</p>
+<p>前述のとおり、トレードオフがあります。より多くの量子ビットや、エンタングル層と回転層のより多くの繰り返しを持つ回路は、より多くのパラメーターを格納できますが、その分回路の深さが大きくなります。いくつかの組み込み特徴量マップの深さについては、後ほど改めて取り上げます。</p>
+<p>次に紹介する Qiskit 組み込みのエンコーディング手法は、名前に「feature map (特徴量マップ)」が含まれています。改めて強調しておくと、データを量子回路にエンコードすることは、データを新しい空間 (関係する量子ビットのヒルベルト空間) に移すという意味で、特徴量マッピング<em>そのもの</em>です。元の特徴量空間の次元とヒルベルト空間の次元との関係は、エンコーディングに使用する回路によって異なります。</p>
+</section>
+<section id="z">
+<h3><span class="math notranslate nohighlight">\(Z\)</span> 特徴量マップ<a class="headerlink" href="#z" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(Z\)</span> 特徴量マップ (ZFM) は、位相エンコーディングの自然な拡張と解釈できます。ZFM は、単一量子ビットゲートの層、すなわちアダマールゲート層と位相ゲート層が交互に並んだもので構成されます。データベクトル <span class="math notranslate nohighlight">\(\vec{x}\)</span> が <span class="math notranslate nohighlight">\(N\)</span> 個の特徴量を持つとします。特徴量マッピングを行う量子回路は、初期状態に作用するユニタリー演算子として次のように表されます。</p>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{U}_{\text{ZFM}}(\vec{x})|0\rangle^{\otimes N}=|\phi(\vec{x})\rangle
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(|0\rangle^{\otimes N}\)</span> は <span class="math notranslate nohighlight">\(N\)</span> 量子ビットの基底状態です。この表記は、参考文献 <a class="reference internal" href="#references"><span class="xref myst">[4]</span></a> Havlicek et al. との一貫性のために使用しています。データ特徴量 <span class="math notranslate nohighlight">\(x_i\)</span> は、対応する量子ビットに 1 対 1 でマッピングされます。たとえば、データベクトルに 8 つの特徴量がある場合は、8 量子ビットを使用します。ZFM 回路は、アダマールゲート層と位相ゲート層からなるサブ回路を <span class="math notranslate nohighlight">\(r\)</span> 回繰り返したもので構成されます。アダマール層は、アルゴリズムの同じ段階において、<span class="math notranslate nohighlight">\(n\)</span> 量子ビットのレジスター内のすべての量子ビットに作用するアダマールゲート <span class="math notranslate nohighlight">\(H \otimes H \otimes \dots \otimes H = H^{\otimes n}\)</span> からなります。この説明は、<span class="math notranslate nohighlight">\(i^\text{th}\)</span> 番目の量子ビットに <span class="math notranslate nohighlight">\(P(\vec{x}_i)\)</span> が作用する位相ゲート層にも当てはまります。各 <span class="math notranslate nohighlight">\(P\)</span> ゲートは 1 つの特徴量を引数に取りますが、位相ゲート層 (<span class="math notranslate nohighlight">\(P(\vec{x}_1)\otimes\ldots P(\vec{x}_k)\otimes\ldots P(\vec{x}_N)\)</span>) はデータベクトルの関数です。繰り返し 1 回の ZFM 回路全体のユニタリーは次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{U}_{\text{ZFM}}=\big(P(\vec{x}_1)\otimes\ldots P(\vec{x}_k)\otimes\ldots P(\vec{x}_N)H^{\otimes N}\big)=\left(\bigotimes_{k = 1}^N P(\vec{x}_k)\right)H^{\otimes N}
+\]</div>
+<p>すると、このユニタリーを <span class="math notranslate nohighlight">\(r\)</span> 回繰り返したものは次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{U}^{(r)}_{\text{ZFM}}\left(\vec{x}\right)=\prod_{s=1}^{r}\left[\left(\bigotimes_{k = 1}^N P(\vec{x}_k)\right)H^{\otimes N}\right]
+\]</div>
+<p>データ特徴量 <span class="math notranslate nohighlight">\(x_k\)</span> は、<span class="math notranslate nohighlight">\(r\)</span> 回の繰り返しのすべてにおいて同じ方法で位相ゲートにマッピングされます。ZFM の特徴量マップ状態は積状態であり、古典的に効率よくシミュレーションできます<a class="reference internal" href="#references"><span class="xref myst">[4]</span></a>。</p>
+<p>まず小さな例として、2 量子ビットの ZFM 回路を Qiskit でコーディングし、描画して単純な回路構造を示します。この例では、データベクトル <span class="math notranslate nohighlight">\(\vec{x} = \left(\textstyle\frac{1}{2}\pi, \textstyle\frac{1}{3}\pi\right)\)</span> を用いて、繰り返し 1 回 (<span class="math notranslate nohighlight">\(r=1\)</span>) を実装します。これは Python におけるベクトルの標準的な順序で書かれており、<span class="math notranslate nohighlight">\(0^\text{th}\)</span> 番目の要素が <span class="math notranslate nohighlight">\(\textstyle\frac{1}{2}\pi\)</span> であることに注意してください。この <span class="math notranslate nohighlight">\(0^\text{th}\)</span> 番目の特徴量は、<span class="math notranslate nohighlight">\(0^\text{th}\)</span> 番目の量子ビットにエンコードしても、<span class="math notranslate nohighlight">\(N^\text{th}\)</span> 番目の量子ビットにエンコードしても構いません。繰り返しになりますが、特徴量マップによって各量子ビットにエンコードされる特徴量の数が異なるため、特徴量の順序から量子ビットの順序への単一の 1 対 1 の対応が常に存在するとは限りません。ここでも重要なのは、各特徴量がどこにエンコードされているかを把握しておくことです。<span class="math notranslate nohighlight">\(Z\)</span> 特徴量マップにパラメーターのリストを与えると、リストの特徴量 0 を、パラメーター化ゲートによって最下位の量子ビット、つまり量子ビット 0 にエンコードします。そのため、手作業で行う場合もこの規約に従います。<span class="math notranslate nohighlight">\(\textstyle\frac{1}{2}\pi\)</span> を <span class="math notranslate nohighlight">\(0^\text{th}\)</span> 番目の量子ビットに、<span class="math notranslate nohighlight">\(\textstyle\frac{1}{3}\pi\)</span> を <span class="math notranslate nohighlight">\(1^\text{st}\)</span> 番目の量子ビットにエンコードします。</p>
+<p>ZFM 回路のユニタリー演算子は、初期状態に次のように作用します。</p>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{U}_{\text{ZFM}}(\bar{x})|00\rangle = P(\bar{x})^{\otimes 2} H^{\otimes 2}|00\rangle = \left( P\left(\textstyle\frac{1}{3}\pi\right)H|0\rangle \right) \otimes \left(P\left(\textstyle\frac{1}{2}\pi\right)H|0\rangle\right).
+\]</div>
+<p>各量子ビットに対する操作を強調するため、テンソル積の周りで式を並べ替えています。次の Qiskit コードは、アダマールゲートと位相ゲートを明示的に使って ZFM の構造を示します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc0</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc1</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc0</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc0</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">qc1</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc1</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 回路 qc0 と qc1 を 1 つの回路に結合</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">qc0</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">qc1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/f5c70df4-faea-4817-a870-95638eb97dbd-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、同じデータベクトル <span class="math notranslate nohighlight">\(\vec{x} = \left(\textstyle\frac{1}{2}\pi, \textstyle\frac{1}{3}\pi\right)\)</span> を、Qiskit の <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.ZFeatureMap"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code></span></a> クラスを使って、繰り返し 3 回 (<span class="math notranslate nohighlight">\(r=3\)</span>) の ZFM 回路にエンコードします。これにより、全体として量子特徴量マップ <span class="math notranslate nohighlight">\(\mathscr{U}_{\text{ZFM}}(\vec{x})\)</span> が得られます。<code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> クラスでは、デフォルトで、パラメーター <span class="math notranslate nohighlight">\(\beta\)</span> は位相ゲートにマッピングされる前に 2 倍されます (<span class="math notranslate nohighlight">\(\beta \rightarrow P(\theta = 2\beta)\)</span>)。上と同じエンコーディングを再現するため、2 で割っています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">z_feature_map</span>
+
+<span class="n">zfeature_map</span> <span class="o">=</span> <span class="n">z_feature_map</span><span class="p">(</span><span class="n">feature_dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">zfeature_map</span> <span class="o">=</span> <span class="n">zfeature_map</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">([(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">zfeature_map</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/c15b8fe2-ae83-4c76-a908-71596deb7d82-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>明らかに、これは上で手作業で行ったものとは異なるマッピングですが、パラメーターの順序が一貫していることに注目してください。<span class="math notranslate nohighlight">\(\textstyle\frac{1}{2}\pi\)</span> は今回も <span class="math notranslate nohighlight">\(0^\text{th}\)</span> 番目の量子ビットにエンコードされています。</p>
+<p>ZFM は Qiskit の ZFM クラスを通じて利用できます。また、この構造を参考にして独自の特徴量マッピングを構築することもできます。</p>
+</section>
+<section id="zz">
+<h3><span class="math notranslate nohighlight">\(ZZ\)</span> 特徴量マップ<a class="headerlink" href="#zz" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(ZZ\)</span> 特徴量マップ (ZZFM) は、2 量子ビットのエンタングルゲート、具体的には <span class="math notranslate nohighlight">\(ZZ\)</span> 回転ゲート <span class="math notranslate nohighlight">\(R_{ZZ}(\theta)\)</span> を加えることで ZFM を拡張したものです。ZZFM は、ZFM とは異なり、一般に古典コンピューターでの計算コストが高いと予想されています。</p>
+<p><span class="math notranslate nohighlight">\(R_{ZZ}(\theta)\)</span> は <span class="math notranslate nohighlight">\(ZZ\)</span> 相互作用を実装するもので、<span class="math notranslate nohighlight">\(\theta = \textstyle{\frac{1}{2}}\pi\)</span> のときに最大限にエンタングルさせます。<span class="math notranslate nohighlight">\(R_{ZZ}(\theta)\)</span> は、<a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.RZZGate"><span class="xref myst">RZZ ゲート</span></a> と <code class="docutils literal notranslate"><span class="pre">QuantumCircuit</span></code> クラスのメソッド <code class="docutils literal notranslate"><span class="pre">decompose</span></code> を使った次の Qiskit コードで示すように、2 量子ビット上の一連のゲートに分解できます。データベクトル <span class="math notranslate nohighlight">\(\vec{x}\)</span> の単一の特徴量 <span class="math notranslate nohighlight">\(\vec{x}_k=\pi\)</span> をエンコードします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">rzz</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/6c312a5f-91a5-499c-a391-efc73cd0e4e1-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>よくあることですが、.decompose() を使って構成ゲートをすべて表示するまでは、これは単一のゲートのようなユニットとして表示されます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/92062646-78f2-4dd6-82ad-7a543cb6a566-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>データは 2 番目の量子ビット上の位相回転 <span class="math notranslate nohighlight">\(P(\theta) = e^{i\theta/2}R_Z(\theta)\)</span> によってマッピングされます。<span class="math notranslate nohighlight">\(R_{ZZ}(\theta)\)</span> ゲートは、作用する 2 つの量子ビットを、エンコードされた特徴量の値によって決まる度合いでエンタングルさせます。</p>
+<p>ZZFM 回路全体は、ZFM と同様のアダマールゲートと位相ゲート、およびそれに続く上述のエンタングルメントで構成されます。ZZFM 回路の 1 回の繰り返しは次のとおりです。</p>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{U}_{\text{ZZFM}}(\vec{x}) = U_{ZZ}(\vec{x})\big(P(\vec{x}_1)\otimes\ldots P(\vec{x}_k)\otimes\ldots P(\vec{x}_N)H^{\otimes N}\big)=U_{ZZ}(\vec{x})\left(\bigotimes_{k = 1}^N P(\vec{x}_k)\right)H^{\otimes N},
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(U_{ZZ}(\vec{x})\)</span> には、エンタングルメント方式によって構造化された ZZ ゲート層が含まれます。いくつかのエンタングルメント方式を以下のコードブロックで示します。<span class="math notranslate nohighlight">\(U_{ZZ}(\vec{x})\)</span> の構造には、エンタングルされる量子ビットのデータ特徴量を次のように組み合わせる関数も含まれます。<span class="math notranslate nohighlight">\(R_{ZZ}\)</span> ゲートを量子ビット <span class="math notranslate nohighlight">\(p\)</span> と <span class="math notranslate nohighlight">\(q\)</span> に適用するとしましょう。位相層では、これらの量子ビットにはそれぞれ <span class="math notranslate nohighlight">\(\vec{x}_p\)</span> と <span class="math notranslate nohighlight">\(\vec{x}_q\)</span> をエンコードする位相ゲートがあります。<span class="math notranslate nohighlight">\(R_{ZZ,q,p}(\theta_{q,p})\)</span> の引数 <span class="math notranslate nohighlight">\(\theta_{q,p}\)</span> は、単にこれらの特徴量のどちらか一方になるのではなく、多くの場合 <span class="math notranslate nohighlight">\(\phi\)</span> で表される関数 (方位角と混同しないでください) になります。</p>
+<div class="math notranslate nohighlight">
+\[
+\theta_{q,p} \rightarrow \phi(\vec{x}_q, \vec{x}_p) = 2(\pi-\vec{x}_q)(\pi-\vec{x}_p).
+\]</div>
+<p>これについては、以下のいくつかの例で確認します。複数回の繰り返しへの拡張は、<code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> の場合と同じです。</p>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{U}^{(r)}_{\text{ZZFM}}\left(\vec{x}\right)=\prod_{s=1}^{r}\left[U_{ZZ}(\vec{x})\left(\bigotimes_{k = 1}^N P(\vec{x}_k)\right)H^{\otimes N}\right].
+\]</div>
+<p>演算子が複雑になってきたので、まず次のコードを使って、データベクトル <span class="math notranslate nohighlight">\(\vec{x} = (x_0, x_1)\)</span> を 2 量子ビット、繰り返し 1 回の ZZFM でエンコードしてみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">zz_feature_map</span>
+
+<span class="n">feature_dim</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">zzfeature_map</span> <span class="o">=</span> <span class="n">zz_feature_map</span><span class="p">(</span>
+    <span class="n">feature_dimension</span><span class="o">=</span><span class="n">feature_dim</span><span class="p">,</span> <span class="n">entanglement</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">zzfeature_map</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/1ec2f2e1-b665-4dde-a223-35489f17c695-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Qiskit のデフォルトでは、特徴量 <span class="math notranslate nohighlight">\((\vec{x}_1, \vec{x}_2)\)</span> はマッピング関数 <span class="math notranslate nohighlight">\(\theta_{1,2} = \phi(\vec{x}_1, \vec{x}_2) = 2(\pi-\vec{x}_1)(\pi-\vec{x}_2)\)</span> によってまとめて <span class="math notranslate nohighlight">\(R_{ZZ}(\theta)\)</span> にマッピングされます。Qiskit では、前処理のステップとして、関数 <span class="math notranslate nohighlight">\(\phi\)</span> (または <span class="math notranslate nohighlight">\(\phi_S\)</span>。ここで <span class="math notranslate nohighlight">\(S\)</span> は <span class="math notranslate nohighlight">\(R_{ZZ}\)</span> ゲートを通じて結合される量子ビットのペアの集合) をユーザーがカスタマイズできます。</p>
+<p>4 次元のデータベクトル <span class="math notranslate nohighlight">\(\vec{x} = (\vec{x}_1, \vec{x}_2, \vec{x}_3, \vec{x}_4)\)</span> に移り、繰り返し 1 回の 4 量子ビット ZZFM にマッピングすると、さまざまな量子ビットのペアに対するマッピング <span class="math notranslate nohighlight">\(\phi\)</span> が見えてきます。また、「linear (線形)」エンタングルメントの意味もわかります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_dim</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">zzfeature_map</span> <span class="o">=</span> <span class="n">zz_feature_map</span><span class="p">(</span>
+    <span class="n">feature_dimension</span><span class="o">=</span><span class="n">feature_dim</span><span class="p">,</span> <span class="n">entanglement</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">zzfeature_map</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/979c765a-e3d8-4e3e-8e52-3f816203a934-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>線形エンタングルメント方式では、この回路内で (番号が) 隣り合う量子ビットのペアがエンタングルされます。Qiskit には、<code class="docutils literal notranslate"><span class="pre">circular</span></code> や <code class="docutils literal notranslate"><span class="pre">full</span></code> など、他の組み込みのエンタングルメント方式もあります。</p>
+</section>
+<section id="id18">
+<h3>パウリ特徴量マップ<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>パウリ特徴量マップ (PFM) は、ZFM と ZZFM を任意のパウリゲートを使えるように一般化したものです。パウリ特徴量マップは、前の 2 つの特徴量マップと非常によく似た形をしています。ベクトル <span class="math notranslate nohighlight">\(\vec{x}\)</span> の <span class="math notranslate nohighlight">\(N\)</span> 個の特徴量のエンコーディングを <span class="math notranslate nohighlight">\(r\)</span> 回繰り返す場合、次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+\mathscr{U}_{\text{PFM}}(\vec{x}) = \prod_{s=1}^{r} U(\vec{x}) H^{\otimes n}.
+\]</div>
+<p>PFM では、<span class="math notranslate nohighlight">\(U(\vec{x})\)</span> はパウリ展開ユニタリー演算子に一般化されます。ここでは、これまでに扱った特徴量マップのより一般化された形を示します。</p>
+<div class="math notranslate nohighlight">
+\[
+U(\vec{x}) = \exp\left(i \sum_{S \in\mathcal{I}} \phi_S(\vec{x}) \prod_{i \in S} \sigma_i \right),
+\]</div>
+<p>ここで、<span class="math notranslate nohighlight">\(\sigma_i\)</span> はパウリ演算子 <span class="math notranslate nohighlight">\(\sigma_i \in {I,X,Y,Z}\)</span> です。また、<span class="math notranslate nohighlight">\(\mathcal{I}\)</span> は特徴量マップによって決まるすべての量子ビット結合の集合であり、単一量子ビットゲートが作用する量子ビットの集合も含みます。つまり、量子ビット 0 に位相ゲートが作用し、量子ビット 2 と 3 に <span class="math notranslate nohighlight">\(R_{ZZ}\)</span> ゲートが作用する特徴量マップの場合、集合 <span class="math notranslate nohighlight">\(\mathcal{I}\)</span> には <span class="math notranslate nohighlight">\(\{\{0\},\{2,3\}\}\)</span> が含まれます。<span class="math notranslate nohighlight">\(S\)</span> はその集合のすべての要素にわたって動きます。これまでの特徴量マップでは、関数 <span class="math notranslate nohighlight">\(\phi_S(\vec{x})\)</span> は単一量子ビットゲートのみ、または 2 量子ビットゲートのみに関係していました。ここでは、これを一般的に定義します。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\phi_S(\vec{x})=
+    \begin{cases}
+      x_i &amp; \text{if } S= \{i\} \text{ (single-qubit)}\\
+      \prod_{j\in{S}}(\pi-x_j) &amp; \text{if } |S|\ge2 \text{ (multi-qubit)}\\
+    \end{cases}
+\end{split}\]</div>
+<p>ドキュメントについては、<a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.PauliFeatureMap"><span class="xref myst">Qiskit <code class="docutils literal notranslate"><span class="pre">Pauli</span> <span class="pre">feature</span> <span class="pre">map</span></code> クラスのドキュメント</span></a>) を参照してください。ZZFM では、演算子 <span class="math notranslate nohighlight">\(\sigma_i\)</span> は <span class="math notranslate nohighlight">\(Z_i\)</span> に限定されます。</p>
+<p>上記のユニタリーを理解する方法の 1 つは、物理系におけるプロパゲーターとの類推です。上記のユニタリーは、イジング模型に似たハミルトニアン <span class="math notranslate nohighlight">\(\mathcal{H}\)</span> に対するユニタリー時間発展演算子 <span class="math notranslate nohighlight">\(\exp(it\mathcal{H})\)</span> であり、時間パラメーター <span class="math notranslate nohighlight">\(t\)</span> が、時間発展を駆動するデータ値に置き換えられたものです。このユニタリー演算子を展開すると PFM 回路が得られます。<span class="math notranslate nohighlight">\(S\)</span> におけるエンタングルの結合は、スピン格子におけるイジング結合として解釈できます。</p>
+<p>これらのイジング型相互作用を表すパウリ <span class="math notranslate nohighlight">\(Y\)</span> 演算子と <span class="math notranslate nohighlight">\(XX\)</span> 演算子の例を考えてみましょう。Qiskit には、単一量子ビットゲートと <span class="math notranslate nohighlight">\(n\)</span> 量子ビットゲートを選択して PFM をインスタンス化するための <code class="docutils literal notranslate"><span class="pre">pauli_feature_map</span></code> クラスが用意されています。この例では、それらをパウリ文字列 <code class="docutils literal notranslate"><span class="pre">‘Y’</span></code> と <code class="docutils literal notranslate"><span class="pre">‘XX’</span></code> として渡します。通常、<span class="math notranslate nohighlight">\(n\)</span> は単一量子ビット相互作用の場合は 1、2 量子ビット相互作用の場合は 2 です。エンタングルメント方式は「linear (線形)」であり、量子回路内で隣り合う量子ビットのみが結合されることを意味します。この量子回路は抽象化レイヤーであるため、これは量子コンピューター自体の上で隣り合う量子ビットに対応するわけではないことに注意してください。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">pauli_feature_map</span>
+
+<span class="n">feature_dim</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">pfmap</span> <span class="o">=</span> <span class="n">pauli_feature_map</span><span class="p">(</span>
+    <span class="n">feature_dimension</span><span class="o">=</span><span class="n">feature_dim</span><span class="p">,</span> <span class="n">entanglement</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">paulis</span><span class="o">=</span><span class="p">[</span><span class="s2">"Y"</span><span class="p">,</span> <span class="s2">"XX"</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">pfmap</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/5ba5df82-83c1-428c-a269-baea5f75c3dc-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Qiskit では、パウリ回転のスケーリングを制御するためのパラメーター <span class="math notranslate nohighlight">\(\alpha\)</span> がパウリ特徴量マップに用意されています。</p>
+<div class="math notranslate nohighlight">
+\[
+U(\bar{x}) = \exp\left(i \alpha \sum_{S\subseteq[n]} \phi_S(\bar{x}) \prod_{i \in S} \sigma_i \right)
+\]</div>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> のデフォルト値は <span class="math notranslate nohighlight">\(2\)</span> です。その値をたとえば区間 <span class="math notranslate nohighlight">\([0,4]\)</span> で最適化することで、量子カーネルをデータによりよく適合させることができます。</p>
+</section>
+<section id="id19">
+<h3>パウリ特徴量マップのギャラリー<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>ここでは、2 量子ビット回路のさまざまなパウリ特徴量マップを可視化して、どのような可能性があるのかをより具体的に把握します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">circuit_drawer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">feature_dim</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">i_plot</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">paulis</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">"I"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"X"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"Y"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"Z"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"XX"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"XY"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"XZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"YY"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"YZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"ZZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"X"</span><span class="p">,</span> <span class="s2">"ZZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"Y"</span><span class="p">,</span> <span class="s2">"ZZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"Z"</span><span class="p">,</span> <span class="s2">"ZZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"X"</span><span class="p">,</span> <span class="s2">"YZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"Y"</span><span class="p">,</span> <span class="s2">"YZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"Z"</span><span class="p">,</span> <span class="s2">"YZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"YY"</span><span class="p">,</span> <span class="s2">"ZZ"</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">"XY"</span><span class="p">,</span> <span class="s2">"ZZ"</span><span class="p">],</span>
+<span class="p">]:</span>
+    <span class="n">pfmap</span> <span class="o">=</span> <span class="n">pauli_feature_map</span><span class="p">(</span><span class="n">feature_dimension</span><span class="o">=</span><span class="n">feature_dim</span><span class="p">,</span> <span class="n">paulis</span><span class="o">=</span><span class="n">paulis</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">circuit_drawer</span><span class="p">(</span>
+        <span class="n">pfmap</span><span class="o">.</span><span class="n">decompose</span><span class="p">(),</span>
+        <span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">,</span>
+        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">"backgroundcolor"</span><span class="p">:</span> <span class="s2">"#EEEEEE"</span><span class="p">},</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">i_plot</span> <span class="o">-</span> <span class="n">i_plot</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">i_plot</span> <span class="o">%</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="nb">int</span><span class="p">((</span><span class="n">i_plot</span> <span class="o">-</span> <span class="n">i_plot</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">i_plot</span> <span class="o">%</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">paulis</span><span class="p">)</span>
+    <span class="n">i_plot</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figheight</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_figwidth</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/69225757-193a-490b-8ca4-d1b187b774b3-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>もちろん、上記を拡張して、パウリ行列の他の順列や繰り返しを含めることもできます。学習者の皆さんは、これらのオプションをぜひ試してみてください。</p>
+</section>
+</section>
+<section id="id20">
+<h2>組み込み特徴量マップのまとめ<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
+<p>ここまでで、データを量子回路にエンコードするためのいくつかの方式を見てきました。</p>
+<ul class="simple">
+<li><p>基底エンコーディング</p></li>
+<li><p>振幅エンコーディング</p></li>
+<li><p>角度エンコーディング</p></li>
+<li><p>位相エンコーディング</p></li>
+<li><p>密エンコーディング</p></li>
+</ul>
+<p>これらのエンコーディング方式を使って独自の特徴量マップを構築する方法を学び、角度エンコーディングと位相エンコーディングを活用する 4 つの組み込み特徴量マップも見てきました。</p>
+<ul class="simple">
+<li><p>Efficient SU2</p></li>
+<li><p>Z 特徴量マップ</p></li>
+<li><p>ZZ 特徴量マップ</p></li>
+<li><p>パウリ特徴量マップ</p></li>
+</ul>
+<p>これらの組み込み特徴量マップは、いくつかの点で互いに異なっていました。</p>
+<ul class="simple">
+<li><p>与えられた数の特徴量をエンコードする際の深さ</p></li>
+<li><p>与えられた数の特徴量に必要な量子ビット数</p></li>
+<li><p>エンタングルメントの度合い (当然ながら他の違いと関連しています)</p></li>
+</ul>
+<p>以下のコードでは、これら 4 つの組み込み特徴量マップを特徴量セットのエンコーディングに適用し、得られた回路の 2 量子ビットゲートの深さをプロットします。2 量子ビットゲートのエラー率は単一量子ビットゲートのエラー率よりもはるかに高いため、2 量子ビットゲートの深さに最も関心を持つのは妥当でしょう。以下のコードでは、まず回路を分解し、次に count_ops() を使うことで、回路内のすべてのゲートの数を取得しています。ここで注目する 2 量子ビットゲートは ‘cx’ ゲートです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># パラメーターと深さ用の空のリストを初期化</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="n">n_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">zz2gates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">su22gates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">z2gates</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">p2gates</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># 特徴量マップを生成</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">zzcircuit</span> <span class="o">=</span> <span class="n">zz_feature_map</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">zcircuit</span> <span class="o">=</span> <span class="n">z_feature_map</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">su2circuit</span> <span class="o">=</span> <span class="n">efficient_su2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">pcircuit</span> <span class="o">=</span> <span class="n">pauli_feature_map</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">paulis</span><span class="o">=</span><span class="p">[</span><span class="s2">"XX"</span><span class="p">],</span> <span class="n">insert_barriers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># cx の深さを取得</span>
+    <span class="n">zzcx</span> <span class="o">=</span> <span class="n">zzcircuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"cx"</span><span class="p">)</span>
+    <span class="n">zcx</span> <span class="o">=</span> <span class="n">zcircuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"cx"</span><span class="p">)</span>
+    <span class="n">su2cx</span> <span class="o">=</span> <span class="n">su2circuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"cx"</span><span class="p">)</span>
+    <span class="n">pcx</span> <span class="o">=</span> <span class="n">pcircuit</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">count_ops</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"cx"</span><span class="p">)</span>
+
+    <span class="c1"># cx ゲート数をリストに追加します。zz とパウリのデータ点は重なるため、</span>
+    <span class="c1"># 位置をずらしています。</span>
+    <span class="n">n_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">zz2gates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">zzcx</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">z2gates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">su22gates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">su2cx</span><span class="p">)</span>
+    <span class="n">p2gates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pcx</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># 出力をプロット</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_data</span><span class="p">,</span> <span class="n">p2gates</span><span class="p">,</span> <span class="s2">"bo"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_data</span><span class="p">,</span> <span class="n">zz2gates</span><span class="p">,</span> <span class="s2">"ro"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_data</span><span class="p">,</span> <span class="n">su22gates</span><span class="p">,</span> <span class="s2">"yo"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_data</span><span class="p">,</span> <span class="n">z2gates</span><span class="p">,</span> <span class="s2">"go"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"CX Gates"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Data elements"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">"Pauli"</span><span class="p">,</span> <span class="s2">"ZZ"</span><span class="p">,</span> <span class="s2">"SU2"</span><span class="p">,</span> <span class="s2">"Z"</span><span class="p">])</span>
+<span class="c1"># plt.suptitle('zz_feature_map(n)')</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>一般に、パウリ特徴量マップと ZZ 特徴量マップは、<code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code> や Z 特徴量マップよりも回路の深さが大きくなり、2 量子ビットゲートの数も多くなります。</p>
+<p>Qiskit に組み込まれている特徴量マップは幅広く適用できるため、特に学習段階では、独自の特徴量マップを設計する必要がないことも多いでしょう。しかし、量子機械学習の専門家は、次の 2 つの複雑な課題に取り組む中で、独自の特徴量マッピングの設計というテーマに立ち返ることになるでしょう。</p>
+<ol class="arabic simple">
+<li><p>現代のハードウェア: ノイズの存在や誤り訂正符号の大きなオーバーヘッドのため、現在のアプリケーションでは、ハードウェア効率や 2 量子ビットゲートの深さの最小化などを考慮する必要があります。</p></li>
+<li><p>目の前の問題に適合するマッピング: たとえば <code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> は古典的にシミュレーションするのが難しく、したがって興味深いと言うことと、<code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> が<strong>あなたの</strong>機械学習タスクやデータセットに理想的に適していることとは、まったく別の話です。さまざまな種類のデータに対するさまざまなパラメーター化量子回路の性能は、活発に研究が進められている分野です。</p></li>
+</ol>
+<p>最後に、ハードウェア効率について触れておきます。</p>
+</section>
+<section id="id21">
+<h2>ハードウェア効率の良い特徴量マッピング<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<p>ハードウェア効率の良い特徴量マッピングとは、計算におけるノイズやエラーを減らすために、実際の量子コンピューターの制約を考慮した特徴量マッピングです。近い将来の量子コンピューターで量子回路を実行する場合、ハードウェアに固有のノイズを軽減するための戦略が数多くあります。ハードウェア効率のための主な戦略の 1 つは、量子回路の深さを最小化して、ノイズやデコヒーレンスが計算を損なう時間を短くすることです。量子回路の深さとは、(回路最適化後に) 計算全体を完了するのに必要な、時間的に揃えられたゲートのステップ数です<a class="reference internal" href="#references"><span class="xref myst">[5]</span></a>。抽象的な論理回路の深さは、実際の量子コンピューター向けにトランスパイルされた後の回路の深さよりもはるかに小さい場合があることを思い出してください。</p>
+<p>トランスパイルとは、ハードウェアの制約を考慮しながら、量子回路を高レベルの抽象表現から実際の量子コンピューターで実行できる形式に変換するプロセスです。量子コンピューターには、ネイティブな単一量子ビットゲートと 2 量子ビットゲートのセットがあります。つまり、Qiskit コード内のすべてのゲートを、ネイティブなハードウェアゲートのセットにトランスパイルする必要があります。たとえば、2023 年に完成した Heron r1 プロセッサーを搭載する QPU である ibm_torino では、ネイティブゲート (基底ゲート) は <code class="docutils literal notranslate"><span class="pre">{CZ,</span> <span class="pre">ID,</span> <span class="pre">RZ,</span> <span class="pre">SX,</span> <span class="pre">X}</span></code> です。これらはそれぞれ、2 量子ビットの制御 Z ゲートと、恒等ゲート、<span class="math notranslate nohighlight">\(Z\)</span> 回転、NOT の平方根、NOT と呼ばれる単一量子ビットゲートであり、ユニバーサルなゲートセットを構成します。多量子ビットゲートを等価なサブ回路として実装する場合、ハードウェアで利用可能な他の単一量子ビットゲートとともに、物理的な 2 量子ビット <span class="math notranslate nohighlight">\(CZ\)</span> ゲートが必要になります。さらに、物理的に結合されていない量子ビットのペアに 2 量子ビットゲートを実行するには、結合を可能にするために量子ビット間で量子ビットの状態を移動させる SWAP ゲートが追加されるため、回路が長くなることは避けられません。<code class="docutils literal notranslate"><span class="pre">optimization</span></code> 引数は 0 から最高レベルの 3 まで設定できます。より細かく制御・カスタマイズするには、<a class="reference internal" href="#/docs/api/qiskit/qiskit.transpiler.PassManager"><span class="xref myst">Qiskit Pass Manager</span></a> でトランスパイラーのパイプラインを管理できます。トランスパイルの詳細については、<a class="reference internal" href="#/docs/api/qiskit/transpiler"><span class="xref myst">Qiskit Transpiler のドキュメント</span></a> を参照してください。</p>
+<p>Havlicek et al. 2019 <a class="reference internal" href="#references"><span class="xref myst">[2]</span></a> では、著者らがハードウェア効率を実現する方法の 1 つとして、<span class="math notranslate nohighlight">\(ZZ\)</span> 特徴量マップを使用しています。これは 2 次の展開だからです (上記の「<span class="math notranslate nohighlight">\(ZZ\)</span> 特徴量マップ」のセクションを参照してください)。<span class="math notranslate nohighlight">\(N\)</span> 次の展開には <span class="math notranslate nohighlight">\(N\)</span> 量子ビットゲートが含まれます。IBM® の量子コンピューターには <span class="math notranslate nohighlight">\(N&gt;2\)</span> のネイティブな <span class="math notranslate nohighlight">\(N\)</span> 量子ビットゲートがないため、それらを実装するには、ハードウェアで利用可能な 2 量子ビットの CNOT ゲートに分解する必要があります。著者らが深さを最小化する 2 つ目の方法は、アーキテクチャーの結合に直接マッピングされる <span class="math notranslate nohighlight">\(ZZ\)</span> 結合トポロジーを選択することです。さらに著者らが行っている最適化は、より高性能で適切に接続されたハードウェアのサブ回路をターゲットにすることです。その他に考慮すべき点としては、特徴量マップの繰り返し回数を最小化することや、すべての量子ビットをエンタングルさせる「full」方式の代わりに、カスタマイズされた低深度の方式や「linear (線形)」のエンタングルメント方式を選択することが挙げられます。</p>
+<p><img alt="データエンコーディングの画像" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/qml-03-data-encoding-24.avif" /></p>
+<p>上の図は、物理量子ビットとハードウェアの結合をそれぞれ表すノードとエッジのネットワークを示しています。ibm_torino の結合マップと性能が、可能なすべての 2 量子ビット CZ 結合ゲートとともに示されています。量子ビットは、マイクロ秒 (μs) 単位の T1 緩和時間に基づくスケールで色分けされており、T1 時間が長いほど良く、より明るい色調で表示されます。結合エッジは CZ エラーによって色分けされており、色が濃いほど良いことを示します。ハードウェア仕様に関する情報は、ハードウェアのバックエンド構成スキーマ <code class="docutils literal notranslate"><span class="pre">IBMQBackend.configuration()</span></code> で確認できます。</p>
+</section>
+<section id="id22">
+<h2>参考文献<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Maria Schuld and Francesco Petruccione, <em>Supervised Learning with Quantum Computers</em>, Springer 2018, <a class="reference external" href="https://www.springer.com/gp/book/9783319964232">doi:10.1007/978-3-319-96424-9</a>.</p></li>
+<li><p><a id="Havlicek2018" />Vojtech Havlicek et al., “Supervised Learning with Quantum Enhanced Feature Spaces.” <em>Nature</em>, vol. 567 (2019): 209–212. <a class="reference external" href="https://arxiv.org/abs/1804.11326">https://arxiv.org/abs/1804.11326</a>.</p></li>
+<li><p>Ryan LaRose and Brian Coyle, “Robust data encodings for quantum classifiers”, Physical Review A 102, 032420 (2020), <a class="reference external" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.102.032420">doi:10.1103/PhysRevA.102.032420</a>, <a class="reference external" href="https://arxiv.org/abs/2003.01695">arXiv:2003.01695</a>.</p></li>
+<li><p><a id="Grover2002" />Lou Grover and Terry Rudolph. “Creating Superpositions That Correspond to Efficiently Integrable Probability Distributions.” arXiv:quant-ph/0208112, August 15, 2002, <a class="reference external" href="https://arxiv.org/abs/quant-ph/0208112">https://arxiv.org/abs/quant-ph/0208112</a>.</p></li>
+<li><p>Adrián Pérez-Salinas, Alba Cervera-Lierta, Elies Gil-Fuster, José I. Latorre, “Data re-uploading for a universal quantum classifier”,  <a class="reference external" href="https://quantum-journal.org/papers/q-2020-02-06-226/">Quantum 4, 226 (2020)</a>, <a class="reference external" href="https://arxiv.org/abs/1907.02085">ArXiv.org/abs/1907.02085</a>.</p></li>
+<li><p>Maria Schuld, Ryan Sweke, Johannes Jakob Meyer, “The effect of data encoding on the expressive power of variational quantum machine learning models”, <a class="reference external" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.103.032430">Phys. Rev. A 103, 032430 (2021)</a>, <a class="reference external" href="https://arxiv.org/abs/2008.08605">arxiv.org/abs/2008.08605</a></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">qiskit</span>
+
+<span class="n">qiskit</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">get_version_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/quantum-machine-learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">はじめにと表記法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">表記法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">正規化と情報の損失</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">エンコーディングの手法</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">基底エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">振幅エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">角度エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">位相エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">理解度チェック</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">密角度エンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">理解度チェック</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">組み込みの特徴量マップによるエンコーディング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">任意の位置でのエンコーディング</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-su2">Efficient SU2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#z"><span class="math notranslate nohighlight">\(Z\)</span> 特徴量マップ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zz"><span class="math notranslate nohighlight">\(ZZ\)</span> 特徴量マップ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">パウリ特徴量マップ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">パウリ特徴量マップのギャラリー</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">組み込み特徴量マップのまとめ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">ハードウェア効率の良い特徴量マッピング</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">参考文献</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

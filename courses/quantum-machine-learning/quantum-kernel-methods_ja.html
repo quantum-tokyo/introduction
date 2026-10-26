@@ -1,0 +1,1510 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>量子カーネル &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/quantum-machine-learning/quantum-kernel-methods_ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/quantum-machine-learning/quantum-kernel-methods_ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/quantum-machine-learning/quantum-kernel-methods_ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>量子カーネル</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">量子カーネル入門</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ステップ2: 量子実行向けに問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-primitives">ステップ3: IBM Quantum primitives を使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ステップ4: 後処理を行い、結果を古典的な形式で返す</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">レッスンの概要</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">カーネル行列の要素1つ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ2: 量子実行向けに問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ3: IBM Quantum primitives を使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ4: 後処理を行い、結果を古典的な形式で返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">理解度チェック</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">カーネル行列全体</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">ステップ2と3: 問題を最適化し、プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">ステップ4: 後処理を行い、結果を古典的な形式で返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">より多くの特徴量と量子ビットへのスケーリング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">ステップ2: 量子実行向けに問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">ステップ3: IBM Quantum primitives を使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">ステップ4: 後処理を行い、結果を古典的な形式で返す</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">スケーリングと今後の課題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">まとめ</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子カーネル<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>量子カーネル入門<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>「量子カーネル法」とは、量子コンピューターを使ってカーネルを推定するあらゆる手法を指します。ここでの「カーネル」は、カーネル行列またはその個々の要素を意味します。特徴量マップ <span class="math notranslate nohighlight">\(\Phi(\vec{x})\)</span> とは、<span class="math notranslate nohighlight">\(\vec{x}\in \mathbb{R}^d\)</span> から <span class="math notranslate nohighlight">\(\Phi(\vec{x})\in \mathbb{R}^{d'}\)</span> への写像であったことを思い出してください。通常は <span class="math notranslate nohighlight">\(d'&gt;d\)</span> であり、この写像の目的はデータのカテゴリーを超平面で分離できるようにすることです。カーネル関数は、特徴量マップで写された空間のベクトルを引数に取り、それらの内積を返します。すなわち、<span class="math notranslate nohighlight">\(K:\mathbb{R}^d\times\mathbb{R}^d\rightarrow \mathbb{R}\)</span> であり、<span class="math notranslate nohighlight">\(K(x,y) = \langle \Phi(x)|\Phi(y)\rangle\)</span> です。古典的には、カーネル関数を容易に評価できる特徴量マップに関心があります。これは多くの場合、<span class="math notranslate nohighlight">\(\Phi(x)\)</span> や <span class="math notranslate nohighlight">\(\Phi(y)\)</span> を一度も構成することなく、特徴量空間での内積を元のデータベクトルで表せるようなカーネル関数を見つけることを意味します。量子カーネル法では、特徴量マップは量子回路によって実行され、カーネルはその回路に対する測定と、相対的な測定確率を用いて推定されます。</p>
+<p>このレッスンでは、大量のエンタングルメントを用いる既製のエンコーディング回路の深さを調べ、それを手作業でコーディングした回路の深さと比較します。これは、どちらかの手法を推奨するためのものではありません。既製の回路は深すぎると感じるかもしれませんし、自作の回路のエンタングルメントでは有用性に不十分だと感じるかもしれません。繰り返しになりますが、これらはあくまで皆さんが自ら探求できるようにするために示しているものです。</p>
+<p>カーネル行列の推定を詳しく見ていく前に、Qiskit patterns の用語を使ってワークフローの概要を説明しましょう。</p>
+<section id="id3">
+<h3>ステップ1: 古典的な入力を量子問題にマッピングする<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>入力: 訓練データセット</p></li>
+<li><p>出力: カーネル行列の要素を計算するための抽象回路</p></li>
+</ul>
+<p>データセットが与えられたら、出発点はデータを量子回路にエンコードすることです。言い換えると、データを量子コンピューターの状態のヒルベルト空間へマッピングする必要があります。これは、データに依存する回路を構成することで行います。その方法は数多くあり、前のレッスンではいくつかの選択肢を概説しました。データをエンコードする独自の回路を構成することもできますし、<code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> のような既製の特徴量マップを使うこともできます。このレッスンでは、その両方を行います。</p>
+<p>カーネル行列の要素を1つ計算するためには、2つの異なる点をエンコードしてそれらの内積を推定する必要があることに注意してください。完全な量子カーネルのワークフローでは、当然ながら、マッピングされたデータベクトル間の多数の内積や、古典的な機械学習手法も含まれます。しかし、繰り返し実行される中心的なステップは、カーネル行列の要素1つの推定です。そのために、データに依存する量子回路を選び、2つのデータベクトルを特徴量空間へマッピングします。</p>
+<p><img alt="ClassicalReviewbackgroundkernelcircuit" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/classical-review-background-kernel-circuit.avif" /></p>
+<p>カーネル行列を生成するタスクでは、<span class="math notranslate nohighlight">\(N\)</span> 個すべての量子ビットが <span class="math notranslate nohighlight">\(|0\rangle\)</span> 状態にある <span class="math notranslate nohighlight">\(|0\rangle^{\otimes N}\)</span> 状態を測定する確率に特に関心があります。その理由を理解するために、1つのデータベクトル <span class="math notranslate nohighlight">\(\vec{x}_i\)</span> のエンコードとマッピングを担う回路を <span class="math notranslate nohighlight">\(\Phi(\vec{x}_i)\)</span>、<span class="math notranslate nohighlight">\(\vec{x}_j\)</span> のエンコードとマッピングを担う回路を <span class="math notranslate nohighlight">\(\Phi(\vec{x}_j)\)</span> と書き、マッピングされた状態を次のように表すことにします。</p>
+<div class="math notranslate nohighlight">
+\[
+|\psi(\vec{x}_i)\rangle = \Phi(\vec{x}_i)|0\rangle^{\otimes N}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+|\psi(\vec{x}_j)\rangle = \Phi(\vec{x}_j)|0\rangle^{\otimes N}.
+\]</div>
+<p>これらの状態こそが、データをより高い次元へマッピングしたもの<em>そのもの</em>です。したがって、求めたいカーネルの要素は次の内積です。</p>
+<div class="math notranslate nohighlight">
+\[
+\langle\psi(\vec{x}_j)|\psi(\vec{x}_i)\rangle = \langle 0 |^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\otimes N}.
+\]</div>
+<p>デフォルトの初期状態 <span class="math notranslate nohighlight">\(|0\rangle^{\otimes N}\)</span> に、2つの回路 <span class="math notranslate nohighlight">\(\Phi^\dagger(\vec{x}_j)\)</span> と <span class="math notranslate nohighlight">\(\Phi(\vec{x}_i)\)</span> の両方を作用させると、その後に状態 <span class="math notranslate nohighlight">\(|0\rangle^{\otimes N}\)</span> を測定する確率は次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
+P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\otimes N}|^2.
+\]</div>
+<p>これはまさに求めたい値です（<span class="math notranslate nohighlight">\(||^2\)</span> を除いて）。回路の測定層は測定確率（特定のエラー緩和手法を用いる場合には、いわゆる「準確率」）を返します。関心のある確率は、ゼロ状態 <span class="math notranslate nohighlight">\(|0\rangle^{\otimes N}\)</span> の確率です。</p>
+</section>
+<section id="id4">
+<h3>ステップ2: 量子実行向けに問題を最適化する<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>入力: 特定のバックエンド向けに最適化されていない抽象回路</p></li>
+<li><p>出力: 選択した QPU 向けに最適化されたターゲット回路とオブザーバブル</p></li>
+</ul>
+<p>このステップでは、Qiskit の <code class="docutils literal notranslate"><span class="pre">generate_preset_pass_manager</span></code> 関数を使い、実験を実行する予定の実際の量子コンピューターに合わせて回路の最適化ルーチンを指定します。<code class="docutils literal notranslate"><span class="pre">optimization_level=3</span></code> を設定します。これは、最も高いレベルの最適化を行うプリセット・パス・マネージャーを使うことを意味します。この文脈での「最適化」とは、実際の量子コンピューター上での回路の実装を最適化することを指します。これには、ゲートの深さを最小にするように抽象量子回路の量子ビットに対応する物理量子ビットを選んだり、利用可能な中で最もエラー率の低い物理量子ビットを選んだりすることなどが含まれます。これは、機械学習問題の最適化（COBYLA のような古典オプティマイザーによるもの）とは直接関係ありません。</p>
+<p>ステップ2の実装方法によっては、回路を複数回最適化する必要があるかもしれません。行列要素に関わる点のペアごとに、測定すべき異なる回路が生成されるためです。</p>
+</section>
+<section id="ibm-quantum-primitives">
+<h3>ステップ3: IBM Quantum primitives を使って実行する<a class="headerlink" href="#ibm-quantum-primitives" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>入力: ターゲット回路</p></li>
+<li><p>出力: 確率分布</p></li>
+</ul>
+<p>IBM Quantum の <code class="docutils literal notranslate"><span class="pre">Sampler</span></code> プリミティブを使い、回路のサンプリングから得られる状態の確率分布を再構成します。これは「準確率分布」と呼ばれることもあります。この用語は、ノイズが問題となる場合や、エラー緩和などの追加のステップが導入される場合に用いられます。そのような場合、すべての確率の合計は厳密には1にならないことがあるため、「準確率」と呼ばれます。</p>
+</section>
+<section id="id5">
+<h3>ステップ4: 後処理を行い、結果を古典的な形式で返す<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>入力: 確率分布</p></li>
+<li><p>出力: カーネル行列の要素1つ、または繰り返し実行した場合はカーネル行列</p></li>
+</ul>
+<p>量子回路で <span class="math notranslate nohighlight">\(|0\rangle^{\otimes N}\)</span> を測定する確率を計算し、使用した2つのデータベクトルに対応する位置のカーネル行列に格納します。カーネル行列全体を埋めるには、各要素について量子実験を実行する必要があります。カーネル行列が得られれば、<code class="docutils literal notranslate"><span class="pre">pre-calculated</span> <span class="pre">kernels</span></code>（事前計算済みカーネル）を受け付ける多くの古典的な機械学習アルゴリズムでそれを使うことができます。例えば <code class="docutils literal notranslate"><span class="pre">qml_svc</span> <span class="pre">=</span> <span class="pre">SVC(kernel=&quot;precomputed&quot;)</span></code> のようにします。その後、古典的なワークストリームを使ってモデルをテストデータに適用し、精度スコアを得ることができます。精度スコアに満足できるかどうかに応じて、特徴量マップなど計算のいくつかの側面を見直す必要があるかもしれません。</p>
+</section>
+<section id="id6">
+<h3>レッスンの概要<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>このレッスンでは、実際の量子コンピューター上での時間を最適に使えるよう、これらのステップをいくつかの方法で実行します。量子カーネル法を次の対象に適用します。</p>
+<ul class="simple">
+<li><p>特徴量が比較的少ないデータに対するカーネル行列の要素1つ。実際のバックエンドを使い、各ステップで何が起きているかを容易に追えるようにします。</p></li>
+<li><p>特徴量が比較的少ないデータセット全体。シミュレーターのバックエンドを使い、量子ワークストリームが古典的な機械学習手法とどのようにつながるかを確認します。</p></li>
+<li><p>特徴量が多いデータに対するカーネル行列の要素1つ。実際の量子コンピューターを使います。IBM® 量子コンピューターの利用時間を節約するため、大規模なデータセットのカーネル行列全体は推定しません。</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># まだインストールしていない場合は、scikit-learn をインストールします</span>
+<span class="c1">#!pip install scikit-learn</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2>カーネル行列の要素1つ<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h3>ステップ1: 古典的な入力を量子問題にマッピングする<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>まず、特徴量がわずか（例えば10個）しかないデータセットを考えましょう。カーネル行列の要素を1つずつ計算するので、データセットはいくら大きくても構いません。少なくとも2つの点が必要なので、そこから始めます（次の例では、完全なデータセットをインポートします）。必要なパッケージをいくつかインポートしましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># 訓練時と同様に、カテゴリーラベルを含む2つの模擬データ点</span>
+<span class="n">small_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">0.194</span><span class="p">,</span> <span class="mf">0.114</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.006</span><span class="p">,</span> <span class="mf">0.301</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.359</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.088</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.156</span><span class="p">,</span> <span class="mf">0.342</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.016</span><span class="p">,</span> <span class="mf">0.143</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.244</span><span class="p">,</span> <span class="mf">0.127</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.064</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.086</span><span class="p">,</span> <span class="mf">0.072</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.053</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="c1"># 内積計算用に、ラベルを除いたデータ点</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">small_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">small_data</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> を使ってみましょう。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from qiskit.circuit.library import zz_feature_map</span>
+<span class="c1"># fm = zz_feature_map(feature_dimension=np.shape(train_data)[1], entanglement='linear', reps=1)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">z_feature_map</span>
+
+<span class="n">fm</span> <span class="o">=</span> <span class="n">z_feature_map</span><span class="p">(</span><span class="n">feature_dimension</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">train_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="n">unitary1</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">unitary2</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>上の2つのユニタリーは、導入で説明した <span class="math notranslate nohighlight">\(U_1\)</span> と <span class="math notranslate nohighlight">\(U_2\)</span> にちょうど対応します。これらは <code class="docutils literal notranslate"><span class="pre">unitary_overlap</span></code> を使って組み合わせることができます。いつものように、回路の深さには注意を払っておきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">unitary_overlap</span>
+
+
+<span class="n">overlap_circ</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">unitary1</span><span class="p">,</span> <span class="n">unitary2</span><span class="p">)</span>
+<span class="n">overlap_circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"circuit depth = "</span><span class="p">,</span> <span class="n">overlap_circ</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">overlap_circ</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s2">"mpl"</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">"iqp"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit depth =  9
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/extracted-outputs/4273dcf7-784c-4edb-a9cd-9b249d24dbb8-1.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>ステップ2: 量子実行向けに問題を最適化する<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>まず最も空いているバックエンドを選択し、そのバックエンドで実行できるように回路を最適化します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要なパッケージをインポート</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="c1"># 最も空いているバックエンドを取得</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
+    <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">num_qubits</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_brisbane')&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># オーバーラップ回路にレベル3の最適化を適用</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">overlap_ibm</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">overlap_circ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>複雑な回路の場合、実際の量子コンピューターのネイティブゲートへのマッピングが行われ、情報を量子ビット間で移動させる必要が生じることもあるため、このステップで回路の深さが大幅に増加します。今回のような単純なケースでは、深さはほとんど影響を受けません。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"circuit depth = "</span><span class="p">,</span> <span class="n">overlap_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="n">overlap_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span> <span class="n">instr</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit depth =  10
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>ステップ3: IBM Quantum primitives を使って実行する<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>シミュレーターで実行するための構文を、以下にコメントアウトして示しています。このデータセットは特徴量が少ないため、シミュレーターでの実行も選択肢の1つです。ユーティリティー規模の計算では、通常シミュレーションは現実的ではありません。シミュレーターは、規模を縮小したコードのデバッグにのみ使うべきです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># シミュレーターの場合はこちらを実行</span>
+
+<span class="c1"># from qiskit.primitives import StatevectorSampler</span>
+<span class="c1"># from qiskit_ibm_runtime import Options, Session, Sampler</span>
+<span class="c1"># num_shots = 10000</span>
+
+<span class="c1"># Qiskit の状態ベクトルベースのプリミティブを使って問題を評価</span>
+
+<span class="c1"># sampler = StatevectorSampler()</span>
+<span class="c1"># results = sampler.run([overlap_circ], shots=num_shots).result()</span>
+
+<span class="c1"># .get_counts() は、ビットの結果でラベル付けされた状態に対応するカウントを返します</span>
+<span class="c1"># （例: |001101...01&gt;）。</span>
+
+<span class="c1"># counts_bit = results[0].data.meas.get_counts()</span>
+
+<span class="c1"># .get_int_counts は同じカウントを返しますが、ラベルは上記のビット列に</span>
+<span class="c1"># 相当する整数になります。</span>
+
+<span class="c1"># counts = results[0].data.meas.get_int_counts()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eagle プロセッサーでベンチマーク（2024年7月11日）、所要時間4秒。</span>
+
+<span class="c1"># IBM Quantum のプリミティブをインポート</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span><span class="p">,</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+
+<span class="n">num_shots</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># Sampler を使ってカウントを取得</span>
+
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">overlap_ibm</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">num_shots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="c1"># .get_counts() は、|001101...01&gt; のようなビットの結果でラベル付けされた状態に対応するカウントを返します。</span>
+<span class="n">counts_bit</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="c1"># .get_int_counts は同じカウントを返しますが、ラベルは上記のビット列に</span>
+<span class="c1"># 相当する整数になります。</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_int_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>ステップ4: 後処理を行い、結果を古典的な形式で返す<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>導入で説明したように、ここで最も有用な測定値はゼロ状態 <span class="math notranslate nohighlight">\(|00000\rangle\)</span> を測定する確率です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_shots</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6525
+</pre></div>
+</div>
+</div>
+</div>
+<p>これが求めたかった結果です。すなわち、2つのデータ点に対応するベクトルの内積（の絶対値の2乗）の推定値です。測定確率（または準確率）の分布全体を見たい場合は、以下に示すように <code class="docutils literal notranslate"><span class="pre">plot_distribution</span></code> 関数を使うことができます。量子ビット数が多くなると、このような図はすぐに扱いきれなくなることがわかります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.visualization</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_distribution</span>
+
+<span class="n">plot_distribution</span><span class="p">(</span><span class="n">counts_bit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/extracted-outputs/29aaf5d6-ea7e-4373-b33c-9299699a3964-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>あるいは、以下のような可視化を定義して、確率の高い上位10個の測定結果だけを見ることもできます。これはトラブルシューティングや、データについての直感を得るために重要になる場合があります。ただし、カーネル行列の要素はあくまでゼロ状態の測定確率です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">visualize_counts</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Qiskit の Sampler プリミティブの出力を可視化します。"""</span>
+    <span class="n">zero_prob</span> <span class="o">=</span> <span class="n">probs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+    <span class="n">top_10</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">probs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="mi">10</span><span class="p">])</span>
+    <span class="n">top_10</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="n">zero_prob</span><span class="p">})</span>
+    <span class="n">by_key</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">top_10</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">xvals</span><span class="p">,</span> <span class="n">yvals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">by_key</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="n">xvals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">bin</span><span class="p">(</span><span class="n">xval</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span> <span class="k">for</span> <span class="n">xval</span> <span class="ow">in</span> <span class="n">xvals</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">xvals</span><span class="p">,</span> <span class="n">yvals</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Results of sampling"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Measured bitstring"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Counts"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">visualize_counts</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">overlap_circ</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/extracted-outputs/c141e800-79eb-400a-9b8c-75e2393ce24e-0.avif" alt="Output of the previous code cell" /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>高次元の特徴量空間における2つのデータ点間の内積1つだけの情報からは、両者の重なりが最大の重なり（1.0）と比べてかなり大きいということしか言えません。これは、この2つのデータ点が何らかの意味で性質が似ており、同じクラスに分類されることを示しているのかもしれません。あるいは、似たデータどうしの重なりが大きく、似ていないデータどうしの重なりが小さくなるような空間へのマッピングとして、特徴量マップが効果的でないことを示しているのかもしれません。どちらが正しいかを知るには、特徴量マップをデータ全体に適用し、得られたカーネル行列を使って高い精度でクラスを効果的に分離できるかどうかを確かめる必要があります。</p>
+<p>ここでは <code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> を使ったため、トランスパイル後の2量子ビット深さが小さく（実際には深さ1）なったことは注目に値します。回路が深くなりすぎると、必ず多くのノイズが生じ、たとえ特徴量マップがデータによく適合していても、ゼロ状態を測定する確率は非常に低くなってしまいます。例えば、同じデータ点に対して <code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> と <code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">entanglement='linear',</span> <span class="pre">reps=1</span></code> を使って上記の処理を繰り返したところ、<code class="docutils literal notranslate"><span class="pre">dist.get(0,0.0)</span> <span class="pre">=</span> <span class="pre">0.0015</span></code> という結果になりました。これは、<code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> の回路の深さと2量子ビット深さがはるかに大きいためです。下の図は、その計算での確率分布を示しています。</p>
+<p><img alt="Bad results from a zz feature map." src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/zzfeaturemap-bad-results.avif" /></p>
+<p>同じカテゴリーに属するいくつかのデータ点を使って試し、良い結果を得るために深さをどの程度まで小さくする必要があるかを調べてみる価値があります。以下は大まかな目安であり、例外も必ずあります。一般に、トランスパイル後の2量子ビット深さが10以下であれば問題はないはずです。トランスパイル後の2量子ビット深さが50〜60であれば最先端の水準であり、高度なエラー緩和をはじめとするさまざまなツールが必要になります。その中間では、データの類似度、特徴量マップの表現力、回路の幅などの要因によって結果が変わる可能性があります。</p>
+<p>通常、後処理のステップには古典的な機械学習の処理も含まれます。次のセクションでは、この処理をデータセット全体に拡張し、古典的な機械学習のワークフローを示します。</p>
+<section id="id12">
+<h4>理解度チェック<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>10量子ビットの量子回路では、一般に、測定され得る異なる状態はいくつありますか？</p>
+<Accordion>
+  <AccordionItem title="解答">
+    $2^{10}$、すなわち1024です。
+  </AccordionItem>
+</Accordion>
+<p>量子コンピューティングの初心者が、2量子ビット深さが非常に大きい量子回路を、エラー緩和を使わずに使おうとしたとします。さらに、その結果として各量子ビットに10%のエラー率が生じたとします。この回路に対応する真の（エラーのない）カーネル行列の要素が非常に大きく、例えば1.0だった場合、10個すべての量子ビットが <span class="math notranslate nohighlight">\(|0\rangle\)</span> である状態を測定する確率はどれくらいになるでしょうか？</p>
+<Accordion>
+  <AccordionItem title="解答">
+    各量子ビットが正しく |0> 状態で見つかる確率は0.90です。10個すべての量子ビットが正しい状態で見つかる確率は $0.90^{10}$、すなわち約35%です。
+  </AccordionItem>
+</Accordion>
+<p>回路の深さを監視することがなぜそれほど重要なのか、自分の言葉で説明してください。これは一般的に言えることですが、量子カーネル推定の文脈で説明してください。</p>
+<Accordion>
+  <AccordionItem title="解答">
+    この QKE ワークフローでは、推定値はゼロ状態、つまりすべての量子ビットが $|0\rangle$ 状態で見つかる状態の測定に基づいています。非常に深い回路は高いエラー率をもたらします。そのエラー率が多数の量子ビットにわたって積み重なると、ゼロ状態を測定する確率が大幅に低下します。
+  </AccordionItem>
+</Accordion>
+</section>
+</section>
+</section>
+<section id="id13">
+<h2>カーネル行列全体<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>このセクションでは、上記の処理をデータセット全体の二値分類に拡張します。これにより、2つの重要な要素が加わります。(1) 後処理で古典的な機械学習を実装できるようになること、(2) 訓練の精度スコアが得られるようになることです。</p>
+<section id="id14">
+<h3>ステップ1: 古典的な入力を量子問題にマッピングする<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>次に、分類用の既存のデータセットをインポートします。このデータセットは128行（データ点）から成り、各点には14個の特徴量があります。15番目の要素は、各点の二値カテゴリー（<span class="math notranslate nohighlight">\(\pm 1\)</span>）を示します。データセットは以下でインポートしますが、<a class="reference external" href="https://github.com/qiskit-community/prototype-quantum-kernel-training/blob/main/data/dataset_graph7.csv">こちら</a>からデータセットにアクセスしてその構造を確認することもできます。</p>
+<p>最初の90個のデータ点を訓練に、続く30個の点をテストに使います。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://raw.githubusercontent.com/qiskit-community/prototype-quantum-kernel-training/main/data/dataset_graph7.csv
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"dataset_graph7.csv"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># 訓練データを準備</span>
+
+<span class="n">train_size</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">train_labels</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># テストデータを準備</span>
+<span class="n">test_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">train_size</span> <span class="p">:</span> <span class="n">train_size</span> <span class="o">+</span> <span class="n">test_size</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">train_size</span> <span class="p">:</span> <span class="n">train_size</span> <span class="o">+</span> <span class="n">test_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-07-11 23:05:22--  https://raw.githubusercontent.com/qiskit-community/prototype-quantum-kernel-training/main/data/dataset_graph7.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.109.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 49405 (48K) [text/plain]
+Saving to: ‘dataset_graph7.csv.15’
+
+dataset_graph7.csv. 100%[===================&gt;]  48.25K  --.-KB/s    in 0.02s   
+
+2024-07-11 23:05:23 (2.11 MB/s) - ‘dataset_graph7.csv.15’ saved [49405/49405]
+</pre></div>
+</div>
+</div>
+</div>
+<p>複数の出力を格納する準備として、適切な次元のカーネル行列とテスト行列をあらかじめ作成しておきます。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 空のカーネル行列</span>
+<span class="n">num_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">kernel_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">test_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">test_size</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>次に、古典データを量子回路にエンコードしてマッピングするための特徴量マップを作成します。独自の特徴量マップを構成することも、既製のものを使うこともできます。以下の特徴量マップを自由に変更したり、ZFeatureMap に戻したりしてみてください。ただし、常に回路の深さに注意を払ってください。前の6量子ビットの例では、<code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> を使うとトランスパイル後の回路の深さが手に負えないほど大きくなったことを思い出してください。回路の規模と複雑さが増すにつれて、深さは急速に増加し、ノイズが結果を圧倒してしまうほどになる可能性があります。データ構造について、どのような特徴量マップ構造が最も有用かを示唆する何らかの知見がある場合には、その知見を活用した独自のカスタム特徴量マップを作成することをお勧めします。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">ParameterVector</span><span class="p">,</span> <span class="n">QuantumCircuit</span>
+
+<span class="c1"># オーバーラップ計算用の特徴量マップを準備</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X_train</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_features</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># カスタム特徴量マップを使う場合は、以下の行を使用します。</span>
+<span class="n">entangler_map</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+
+<span class="n">fm</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">training_param</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">"θ"</span><span class="p">)</span>
+<span class="n">feature_params</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">num_qubits</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fm</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">training_param</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">cz</span> <span class="ow">in</span> <span class="n">entangler_map</span><span class="p">:</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">cz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">):</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">feature_params</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">feature_params</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id15">
+<h3>ステップ2と3: 問題を最適化し、プリミティブを使って実行する<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>オーバーラップ回路を構成します。この例で実際の量子コンピューター上で実行するのであれば、前と同様に実行向けに最適化することになります。しかし今回は、すべてのデータ点を順にたどってカーネル行列全体を計算するつもりです。データベクトルのペア <span class="math notranslate nohighlight">\(\vec{x}_i\)</span> と <span class="math notranslate nohighlight">\(\vec{x}_j\)</span> ごとに、異なるオーバーラップ回路を作成します。したがって、データ点のペアごとに回路を最適化する必要があります。そのため、ステップ2と3は繰り返しの中で一緒に行われることになります。</p>
+<p>以下のコードセルは、前に1つのデータ点ペアに対して行ったのとまったく同じ処理を行います。今回は単にそれを2つの <code class="docutils literal notranslate"><span class="pre">for</span></code> ループの中で実行しており、各計算の結果を格納するために末尾に <code class="docutils literal notranslate"><span class="pre">kernel_matrix[x_1,x_2]</span> <span class="pre">=</span> <span class="pre">...</span></code> という行が追加されています。カーネル行列の対称性を利用して、計算回数を1/2に減らしていることに注意してください。また、ノイズがない場合にそうなるべきであるように、対角要素は単純に1に設定しています。実装や必要な精度によっては、対角要素を使ってノイズを推定したり、エラー緩和の目的でノイズについて調べたりすることもできます。</p>
+<p>カーネル行列がすべて埋まったら、テストデータに対して同じ処理を繰り返し、test_matrix を埋めます。これも実際にはカーネル行列ですが、2つを区別するために別の名前を付けているだけです。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># シミュレーターを使う場合</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">StatevectorSampler</span>
+
+<span class="c1"># 実際の量子コンピューターを使うには、QiskitRuntimeService のコンストラクターに</span>
+<span class="c1"># トークンを入力することを忘れないでください</span>
+
+<span class="c1"># service = QiskitRuntimeService()</span>
+<span class="c1"># backend = service.least_busy(</span>
+<span class="c1">#    operational=True, simulator=False, min_num_qubits=fm.num_qubits</span>
+<span class="c1"># )</span>
+
+<span class="n">num_shots</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># Qiskit の状態ベクトルベースのプリミティブを使って問題を評価します。</span>
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">StatevectorSampler</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">train_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">train_size</span><span class="p">):</span>
+        <span class="n">unitary1</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">x1</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="n">unitary2</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">x2</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+
+        <span class="c1"># オーバーラップ回路を作成</span>
+        <span class="n">overlap_circ</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">unitary1</span><span class="p">,</span> <span class="n">unitary2</span><span class="p">)</span>
+        <span class="n">overlap_circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+
+        <span class="c1"># 以下の行で Qiskit の Sampler プリミティブを実行します。</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">overlap_circ</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">num_shots</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_int_counts</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 0状態の確率をカーネル行列の要素と、その転置要素に代入します</span>
+        <span class="c1"># （これは内積であるため）</span>
+        <span class="n">kernel_matrix</span><span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_shots</span>
+        <span class="n">kernel_matrix</span><span class="p">[</span><span class="n">x2</span><span class="p">,</span> <span class="n">x1</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_shots</span>
+    <span class="c1"># 対角要素を1で埋めます。これも、確率に対応する内積であるためです</span>
+    <span class="c1"># （あるいはコードを変更してこれらの要素を計算し、1になることを確認してください）</span>
+    <span class="n">kernel_matrix</span><span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"training done"</span><span class="p">)</span>
+
+<span class="c1"># 上記と同様の処理を、テストデータに対して行います。</span>
+<span class="k">for</span> <span class="n">x1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">test_size</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">train_size</span><span class="p">):</span>
+        <span class="n">unitary1</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">x1</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="n">unitary2</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">x2</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+
+        <span class="c1"># オーバーラップ回路を作成</span>
+        <span class="n">overlap_circ</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">unitary1</span><span class="p">,</span> <span class="n">unitary2</span><span class="p">)</span>
+        <span class="n">overlap_circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+
+        <span class="n">counts</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">overlap_circ</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">num_shots</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_int_counts</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="n">test_matrix</span><span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_shots</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"test matrix done"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>training done
+test matrix done
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id16">
+<h3>ステップ4: 後処理を行い、結果を古典的な形式で返す<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>量子カーネル法によってカーネル行列と同様の形式の test_matrix が得られたので、古典的な機械学習アルゴリズムを適用してテストデータについて予測を行い、その精度を確認できます。まず、サポートベクター分類器（SVC）である Scikit-Learn の <code class="docutils literal notranslate"><span class="pre">sklearn.svc</span></code> をインポートします。SVC に事前計算済みのカーネルを使わせることを、<code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">=</span> <span class="pre">precomputed</span></code> で指定する必要があります。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 古典的な機械学習パッケージからサポートベクター分類器をインポートします。</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="c1"># 事前計算済みのカーネル行列を使うことを指定します</span>
+<span class="n">qml_svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">"precomputed"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">SVC.fit</span></code> を使って、カーネル行列と訓練ラベルを入力し、フィッティングを行います。次に <code class="docutils literal notranslate"><span class="pre">SVC.score</span></code> が、test_matrix を使ってテストデータをそのフィッティング結果に照らして評価し、精度を返します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 事前計算済みの行列と訓練データのラベルを入力します。</span>
+<span class="c1"># 古典アルゴリズムによってフィッティングが得られます。</span>
+<span class="n">qml_svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">kernel_matrix</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span>
+
+<span class="c1"># 次に .score を使い、テストデータの行列とテストラベルを入力として</span>
+<span class="c1"># データをテストします。</span>
+<span class="n">qml_score_precomputed_kernel</span> <span class="o">=</span> <span class="n">qml_svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_matrix</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Precomputed kernel classification test score: </span><span class="si">{</span><span class="n">qml_score_precomputed_kernel</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precomputed kernel classification test score: 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>訓練したモデルの精度は100%でした。これは素晴らしい結果であり、QKE が機能し得ることを示しています。しかし、それは量子優位性とはまったく別のものです。古典的なカーネルでも、おそらくこの分類問題を100%の精度で解くことができたでしょう。現在のユーティリティー時代において量子カーネルがどこで最も有用になるかを見極めるには、さまざまなデータの種類やデータ間の関係を特徴付ける多くの研究が必要です。
+このワークフローの一部を変更して、さまざまな量子特徴量マップの有効性を調べることは学習者の皆さんにお任せします。検討すべき点をいくつか挙げます。</p>
+<ul class="simple">
+<li><p>精度はどの程度頑健でしょうか？ 幅広い種類のデータで成り立つのでしょうか、それともこの特定の訓練データだけでしょうか？</p></li>
+<li><p>データのどのような構造から、量子特徴量マップが有用だと考えられるでしょうか？</p></li>
+<li><p>訓練データの量を増減させると、精度はどのように影響を受けるでしょうか？</p></li>
+<li><p>どのような特徴量マップを使うことができ、特徴量マップによって結果はどのように変わるでしょうか？</p></li>
+<li><p>特徴量の数を増やすと、精度と実行時間はどのように影響を受けるでしょうか？</p></li>
+<li><p>実際の量子コンピューター上でも成り立つと予想される傾向があるとすれば、それはどれでしょうか？</p></li>
+</ul>
+</section>
+</section>
+<section id="id17">
+<h2>より多くの特徴量と量子ビットへのスケーリング<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<p>このセクションでは、行列要素1つの計算を繰り返しますが、特徴量の数をはるかに多くし、ユーティリティーに向けてスケールアップする道筋を示します。行列要素1つに限定しているのは、量子コンピューターの割り当て時間をあまり使い切らずに処理を示すためです。</p>
+<section id="id18">
+<h3>ステップ1: 古典的な入力を量子問題にマッピングする<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>各データ点が42個の特徴量を持つデータセットを出発点とします。最初の例と同様に、カーネル行列の要素を1つ計算するので、2つのデータ点が必要です。以下の2つの点は、42個の特徴量と1つのカテゴリー変数（<span class="math notranslate nohighlight">\(\pm 1\)</span>）を持っています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 訓練時と同様に、カテゴリーラベルを含む2つの模擬データ点</span>
+
+<span class="n">large_data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="o">-</span><span class="mf">0.028</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.49</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.698</span><span class="p">,</span>
+        <span class="mf">0.107</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.536</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.538</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.356</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.514</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.109</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.8</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.122</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.651</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.955</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.123</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.732</span><span class="p">,</span>
+        <span class="mf">0.091</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.048</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.128</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.026</span><span class="p">,</span>
+        <span class="mf">0.082</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.263</span><span class="p">,</span>
+        <span class="mf">0.065</span><span class="p">,</span>
+        <span class="mf">0.004</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.055</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.08</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.173</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.734</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.39</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.451</span><span class="p">,</span>
+        <span class="mf">0.078</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.578</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.025</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.184</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.119</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.336</span><span class="p">,</span>
+        <span class="mf">0.055</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.204</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.578</span><span class="p">,</span>
+        <span class="mf">0.132</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.121</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.599</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.187</span><span class="p">,</span>
+        <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="o">-</span><span class="mf">1.414</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.439</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.606</span><span class="p">,</span>
+        <span class="mf">0.246</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.673</span><span class="p">,</span>
+        <span class="mf">0.002</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.317</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.262</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.178</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.814</span><span class="p">,</span>
+        <span class="mf">0.013</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.619</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.86</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.25</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.212</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.214</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.033</span><span class="p">,</span>
+        <span class="mf">0.071</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.11</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.607</span><span class="p">,</span>
+        <span class="mf">0.441</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.143</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.009</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.655</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.579</span><span class="p">,</span>
+        <span class="mf">0.381</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.86</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.079</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.088</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.058</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.481</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.064</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.065</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.507</span><span class="p">,</span>
+        <span class="mf">0.177</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.131</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.153</span><span class="p">,</span>
+        <span class="mf">0.07</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.627</span><span class="p">,</span>
+        <span class="mf">0.593</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">1.547</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">0.16</span><span class="p">,</span>
+        <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">]</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">large_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">large_data</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> は、特徴量が比較的少ない場合（14個の特徴量）でもかなり深い回路を生成したことを思い出してください。特徴量の数を増やすにつれて、回路の深さを注意深く監視する必要があります。これを示すために、まず <code class="docutils literal notranslate"><span class="pre">zz_feature_map</span></code> を使ってみて、得られる回路の深さを確認します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">zz_feature_map</span>
+
+<span class="n">fm</span> <span class="o">=</span> <span class="n">zz_feature_map</span><span class="p">(</span>
+    <span class="n">feature_dimension</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">train_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">entanglement</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">,</span> <span class="n">reps</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">unitary1</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">unitary2</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">unitary_overlap</span>
+
+
+<span class="n">overlap_circ</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">unitary1</span><span class="p">,</span> <span class="n">unitary2</span><span class="p">)</span>
+<span class="n">overlap_circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"circuit depth = "</span><span class="p">,</span> <span class="n">overlap_circ</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">"two-qubit depth"</span><span class="p">,</span>
+    <span class="n">overlap_circ</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span> <span class="n">instr</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="c1"># overlap_circ.draw("mpl", scale=0.6, style="iqp")</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit depth =  251
+two-qubit depth 165
+</pre></div>
+</div>
+</div>
+</div>
+<p>前にも述べたように、どの程度の深さなら深すぎるのかを正確に判断するのは微妙な問題です。しかし、トランスパイル前の時点ですでに2量子ビット深さが100を超えているようでは、まったく話になりません。このレッスン全体を通してカスタム特徴量マップを強調してきたのはこのためです。データセット全体の構造について何らかの知見があるなら、その構造を念頭に置いてエンタングルメント・マップを設計すべきです。ここでは、そのようなデータ点2つの間の内積を計算するだけなので、データ構造の詳細な検討よりも回路の深さを小さくすることを優先しています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parameter</span><span class="p">,</span> <span class="n">ParameterVector</span><span class="p">,</span> <span class="n">QuantumCircuit</span>
+
+<span class="c1"># オーバーラップ計算用の特徴量マップを準備</span>
+
+<span class="n">entangler_map</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 上のエンタングラー・マップを使って特徴量マップを構築</span>
+
+<span class="n">num_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">train_data</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_features</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fm</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="n">training_param</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">"θ"</span><span class="p">)</span>
+<span class="n">feature_params</span> <span class="o">=</span> <span class="n">ParameterVector</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">num_qubits</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fm</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">training_param</span><span class="p">,</span> <span class="n">fm</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">cz</span> <span class="ow">in</span> <span class="n">entangler_map</span><span class="p">:</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">cz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cz</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">):</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">feature_params</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">fm</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">feature_params</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.circuit.library</span><span class="w"> </span><span class="kn">import</span> <span class="n">unitary_overlap</span>
+
+<span class="c1"># 各データ点の特徴量を、一般的な特徴量マップのインスタンスであるユニタリーに割り当てます。</span>
+
+<span class="n">unitary1</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">unitary2</span> <span class="o">=</span> <span class="n">fm</span><span class="o">.</span><span class="n">assign_parameters</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># オーバーラップ回路を作成</span>
+
+<span class="n">overlap_circ</span> <span class="o">=</span> <span class="n">unitary_overlap</span><span class="p">(</span><span class="n">unitary1</span><span class="p">,</span> <span class="n">unitary2</span><span class="p">)</span>
+<span class="n">overlap_circ</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>重要なのはトランスパイル後の2量子ビット深さなので、ここではまだ深さを確認しません。</p>
+</section>
+<section id="id19">
+<h3>ステップ2: 量子実行向けに問題を最適化する<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>まず最も空いているバックエンドを選択し、そのバックエンドで実行できるように回路を最適化します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 必要なパッケージをインポート</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit.transpiler.preset_passmanagers</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_preset_pass_manager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">QiskitRuntimeService</span>
+
+<span class="c1"># 最も空いているバックエンドを取得</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">QiskitRuntimeService</span><span class="p">()</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">least_busy</span><span class="p">(</span>
+    <span class="n">operational</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simulator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_num_qubits</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">num_qubits</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_brisbane')&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>小規模なジョブでは、プリセット・パス・マネージャーは多くの場合、同じ深さの同じ回路を確実に返します。しかし、非常に大規模で複雑な回路では、パス・マネージャーは実行するたびに異なるトランスパイル済み回路を返すことがあります。これは、パス・マネージャーがヒューリスティクスを用いており、また非常に大規模な回路では可能な最適化の地形が複雑になるためです。何回かトランスパイルを行い、最も浅い回路を採用すると役立つことがよくあります。これによって生じるのは古典的なオーバーヘッドのみであり、量子コンピューターから得られる結果が大幅に改善される可能性があります。</p>
+<p>ここでは、ユニタリー・オーバーラップ回路を20回トランスパイルし、得られた回路の深さを確認します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># オーバーラップ回路にレベル3の最適化を適用</span>
+<span class="n">transpiled_qcs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">transpiled_depths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">transpiled_twoqubit_depths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+    <span class="n">pm</span> <span class="o">=</span> <span class="n">generate_preset_pass_manager</span><span class="p">(</span><span class="n">optimization_level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+    <span class="n">overlap_ibm</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">overlap_circ</span><span class="p">)</span>
+    <span class="n">transpiled_qcs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">overlap_ibm</span><span class="p">)</span>
+    <span class="n">transpiled_depths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">overlap_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+    <span class="n">transpiled_twoqubit_depths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">overlap_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">(</span><span class="k">lambda</span> <span class="n">instr</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">instr</span><span class="o">.</span><span class="n">qubits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"circuit depth = "</span><span class="p">,</span> <span class="n">overlap_ibm</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">depth</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit depth =  61
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">transpiled_depths</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">transpiled_twoqubit_depths</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[61, 60, 60, 69, 60, 60, 60, 65, 60, 60, 69, 61, 77, 77, 65, 60, 60, 77, 61]
+[13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13]
+</pre></div>
+</div>
+</div>
+</div>
+<p>ここから、トランスパイルの実行ごとに全体のゲート深さにいくらかのばらつきがあることがわかります。この回路はまだ、トランスパイル後の2量子ビット深さにばらつきが見られるほど深く/幅広くはありません。ここでは <code class="docutils literal notranslate"><span class="pre">transpiled_qcs[1]</span></code> を使います。その深さは60で、得られた中で最も深い回路の深さ77よりもわずかに小さくなっています。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">overlap_ibm</span> <span class="o">=</span> <span class="n">transpiled_qcs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id20">
+<h3>ステップ3: IBM Quantum primitives を使って実行する<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<p>ユーティリティー規模に近づくにつれて、シミュレーターは役に立たなくなります。ここでは、実際の量子コンピューター向けの構文のみを示します。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ibm_osaka で実行（2024年7月12日）、所要時間22秒。</span>
+
+<span class="c1"># IBM Quantum のプリミティブをインポート</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+
+<span class="c1"># セッションを開く:</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+<span class="n">num_shots</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># Sampler を使ってカウントを取得</span>
+
+<span class="n">sampler</span> <span class="o">=</span> <span class="n">Sampler</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">options</span>
+<span class="n">options</span><span class="o">.</span><span class="n">dynamical_decoupling</span><span class="o">.</span><span class="n">enable</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">options</span><span class="o">.</span><span class="n">twirling</span><span class="o">.</span><span class="n">enable_gates</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">overlap_ibm</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">num_shots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meas</span><span class="o">.</span><span class="n">get_int_counts</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># 完了後にセッションを閉じる</span>
+<span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id21">
+<h3>ステップ4: 後処理を行い、結果を古典的な形式で返す<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<p>導入で説明したように、ここで最も有用な測定値はゼロ状態 <span class="math notranslate nohighlight">\(|00000\rangle\)</span> を測定する確率です。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">num_shots</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0138
+</pre></div>
+</div>
+</div>
+</div>
+<p>この単一のカーネル行列要素を求める処理を、データセット内の他のデータペアについても繰り返すことで、カーネル行列全体が得られます。カーネル行列の次元は、特徴量の数ではなく、訓練データの点の数によって決まります。そのため、カーネル行列を処理して予測モデルを作る計算コストは、特徴量や量子ビットの数に応じて増えるわけではありません。特徴量の数が多い比較的小さなデータセットであっても、効果的な分類をもたらす特徴量マップにデータを適合させる必要があることに変わりはありません。</p>
+</section>
+<section id="id22">
+<h3>スケーリングと今後の課題<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<p>カーネル法では、<span class="math notranslate nohighlight">\(|0\rangle\)</span> をできるだけ正確に測定する必要があります。しかし、ゲートエラーや読み出しエラーにより、任意の量子ビットが誤って <span class="math notranslate nohighlight">\(|1\rangle\)</span> 状態として測定されるゼロでない確率 <span class="math notranslate nohighlight">\(p\)</span> が存在します。<span class="math notranslate nohighlight">\(|0\rangle\)</span> の確率は <span class="math notranslate nohighlight">\(100\%\)</span> であるべきだと単純化したとしても、多数の特徴量を例えば <span class="math notranslate nohighlight">\(N\)</span> ビットにエンコードした場合、すべてのビットを正しく <span class="math notranslate nohighlight">\(|0\rangle\)</span> と測定する確率は <span class="math notranslate nohighlight">\((1-p)^N\)</span> に低下します。<span class="math notranslate nohighlight">\(N\)</span> が大きくなるにつれて、この手法の信頼性はますます低くなります。この困難を克服し、カーネル推定をより多くの特徴量へとスケールさせることは、現在研究が進められている分野です。この問題について詳しく知るには、<a class="reference external" href="https://www.nature.com/articles/s41467-024-49287-w">Thanasilp, Wang, Cerezo, and Holmes</a> による研究をご覧ください。現在の量子コンピューターで何ができるかを探求するとともに、誤り訂正の時代に何が可能になるかにも期待してください。</p>
+</section>
+<section id="id23">
+<h3>まとめ<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>量子カーネルの計算には、次のことが含まれます。</p>
+<ul class="simple">
+<li><p>訓練データ点のペアを使ってカーネル行列の要素を計算すること</p></li>
+<li><p>データをエンコードし、特徴量マップによってマッピングすること</p></li>
+<li><p>実際の量子コンピューター/バックエンドで実行できるように回路を最適化すること</p></li>
+</ul>
+<p>このレッスンで行ったように、量子カーネルは古典的な機械学習アルゴリズムで使うことができます。</p>
+<p>量子カーネルを使う際に留意すべき重要な点には、次のようなものがあります。</p>
+<ul class="simple">
+<li><p>そのデータセットは量子カーネル法の恩恵を受けられそうか？</p></li>
+<li><p>さまざまな特徴量マップやエンタングルメントの方式を試す。</p></li>
+<li><p>回路の深さは許容範囲内か？</p></li>
+<li><p>パス・マネージャーを複数回実行し、得られる中で最も深さの小さい回路を使う。</p></li>
+</ul>
+<p>量子カーネル法は、量子に適した特徴を持つデータセットと、適切な量子特徴量マップとがうまく組み合わされれば、強力なツールになる可能性があります。量子カーネルがどこで有用になりそうかをより深く理解するために、<a class="reference external" href="https://www.nature.com/articles/s41567-021-01287-z">Liu, Arunachalam &amp; Temme (2021)</a> を読むことをお勧めします。</p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/quantum-machine-learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">量子カーネル入門</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">ステップ2: 量子実行向けに問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-quantum-primitives">ステップ3: IBM Quantum primitives を使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ステップ4: 後処理を行い、結果を古典的な形式で返す</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">レッスンの概要</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">カーネル行列の要素1つ</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">ステップ2: 量子実行向けに問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">ステップ3: IBM Quantum primitives を使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">ステップ4: 後処理を行い、結果を古典的な形式で返す</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">理解度チェック</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">カーネル行列全体</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">ステップ2と3: 問題を最適化し、プリミティブを使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">ステップ4: 後処理を行い、結果を古典的な形式で返す</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">より多くの特徴量と量子ビットへのスケーリング</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">ステップ1: 古典的な入力を量子問題にマッピングする</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">ステップ2: 量子実行向けに問題を最適化する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">ステップ3: IBM Quantum primitives を使って実行する</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">ステップ4: 後処理を行い、結果を古典的な形式で返す</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">スケーリングと今後の課題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">まとめ</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

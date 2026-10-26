@@ -1,0 +1,723 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>関連する機械学習手法の復習 &#8212; Quantum Tokyo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'courses/quantum-machine-learning/classical-ml-review_ja';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Quantum Tokyo - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Quantum Tokyo - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Quantum Tokyo へようこそ
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">学習コンテンツ</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Qiskit の始め方</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/basics/basics-of-quantum-information-ja.html">量子情報の基礎</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/general-formation-of-quantum-information/general-formation-of-quantum-information-ja.html">量子情報の一般的定式化</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/introduction/courses/utility-scale-quantum-computing/overview-ja.html">ユーティリティー・スケール量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../iqp_documents.html">IBM Quantum Plaform 教材 日本語訳</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ibm_research_blog.html">IBM Research Blog 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_ja.html">(旧) Qiskitテキストブック 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_textbook_new_ja.html">(旧)Qiskitテキストブック(Qiskitコース) 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qiskit_documents_ja.html">(旧) Qiskitドキュメント・チュートリアル 日本語版リンク集</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://quantum-tokyo.github.io/ibm-quantum-challenge-textbook/intro.html">IBM Quantum Challengeで学ぶ量子コンピューティング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../qgss_ja.html">Qiskit Global Summer School （Qiskit夏の学校） 資料 日本語版</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quantum_tokyo_materials.html">Quantum Tokyo 過去イベント資料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../events.html">Qiskitコミュニティー関連イベント案内</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html">その他： IBM Quantum の便利なツール</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/quantum-tokyo/introduction/issues/new?title=Issue%20on%20page%20%2Fcourses/quantum-machine-learning/classical-ml-review_ja.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/courses/quantum-machine-learning/classical-ml-review_ja.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>関連する機械学習手法の復習</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">機械学習の種類</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">機械学習への「量子」の導入</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">サポートベクターマシン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">カーネル法と量子が果たしうる役割</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">高次元空間への移行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">なぜ双対形式が有用なのか？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子カーネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">変分量子分類器とニューラルネットワーク</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">量子パーセプトロン</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">量子ニューラルネットワーク</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">一般化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">参考文献</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>関連する機械学習手法の復習<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>このセクションでは、量子機械学習のワークフローをより深く理解するのに役立つ、古典機械学習の重要な用語と手法を復習します。まず一般的な用語を紹介し、その後、2 種類の機械学習、すなわちカーネル法（特にサポートベクターマシンの文脈におけるもの）とニューラルネットワークについて詳しく見ていきます。これらの手法の間には確かに関連がありますが、ここおよび後のレッスンで議論する量子ワークフローの違いを踏まえ、両者を別個のものとして扱います。
+これはあくまで概略であり、多くの細かな点は省略します。機械学習のより包括的な概要については、<a class="reference internal" href="#references"><span class="xref myst">[1-3]</span></a> などの資料をお勧めします。</p>
+<section id="id2">
+<h2>機械学習の種類<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>簡単に定義すると、機械学習とは、データ内のパターンや関係を分析し、そこから推論を導くアルゴリズムの集まりです。大まかに言えば、機械学習アルゴリズムは、扱うデータの種類と、明示的にプログラムされることなくアルゴリズムがどのように学習するかに応じて、主に 3 つのカテゴリーに分類できます。</p>
+<ol class="arabic simple">
+<li><p><strong>教師あり学習：</strong> 教師あり学習では、モデルの学習に使用するデータにラベルが付けられています。これらのアルゴリズムの目的は、データとそれに対応するラベルまたは出力との関係を学習し、それを未知のデータに汎化することです。このクラスの代表的なタスクには、分類と回帰があります。</p></li>
+<li><p><strong>教師なし学習：</strong> 教師あり学習とは対照的に、教師なし学習ではラベルのないデータを使って機械学習モデルを学習させます。このようなアルゴリズムの目的は、データに潜むパターンや構造を発見することです。このクラスのアルゴリズムには、クラスタリングや次元削減のアルゴリズムがあります。敵対的生成ネットワークや変分オートエンコーダーなどの一部の生成モデルも、このカテゴリーに含めることができます。</p></li>
+<li><p><strong>強化学習：</strong> この機械学習カテゴリーのアルゴリズムは、環境と相互作用するエージェントによって定義されます。エージェントは行動を起こし、環境から報酬と罰という形でフィードバックを受け取ります。このフィードバックの仕組みを通じて、エージェントは最終的に、特定のタスクを遂行するための正しい一連の行動をとることを学習します。</p></li>
+</ol>
+<p><img alt="教師あり学習と教師なし学習の図式表現。" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/qml-cr-background-sup-unsup.avif" /></p>
+<p>左の図は、教師あり学習のようにラベル付けされた 2 つのカテゴリーのデータを示しています。この場合、カテゴリーは線形分離可能です。右の図は、データのクラスターを示しています。教師なし学習のタスクでは、これらのデータには最初はラベルが付いておらず、アルゴリズムはその分布を調べ、たとえばクラスターを探します。アルゴリズムが識別しうるクラスターの例を可視化する目的で、ここではデータ点にラベルを付けています。両者の重要な違いは、たとえ最終的にデータにラベルが付けられるとしても、教師あり学習のプロセスはすでにラベル付けされたデータから始まり、教師なし学習のプロセスはラベルのないデータから始まるという点です。</p>
+<section id="id3">
+<h3>機械学習への「量子」の導入<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>ここからは、「量子」が機械学習にどのように導入されるかを見ていきましょう。このより広い分類では、処理デバイス上のモデル／アルゴリズムの種類と、そこに与えられるデータの種類を考えます。上の図は、これらの可能な組み合わせをまとめたものです。</p>
+<p><img alt="一方の軸にアルゴリズム、もう一方の軸にデータをとり、それぞれが量子または古典である 4 つの象限を示す図。" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/cccqqcqq-quadrants-cp.avif" /></p>
+<p>たとえば CC は、画像、音声、テキストなど古典コンピューターに保存できる古典的なデータセットがあり、機械学習アルゴリズムの実行にも古典コンピューターを使うことを意味します。これはまさに古典機械学習の設定です。一方、QQ は、量子コンピューターを使って量子データを処理することを意味します。ここでいう「量子データ」はいくつかの意味を持ちうるもので、文脈に依存することもあります。量子データは、量子デバイスから得られた測定結果の集合と考えることもできますし、別のアルゴリズムによって量子コンピューター上で準備された状態を指すこともあります。将来的には、現時点では存在しない QRAM（量子ランダムアクセスメモリー）に保存されたデータを指すことさえあるかもしれません。研究者が量子機械学習について語るとき、通常は CQ の領域、つまり手元のデータセットは古典的で、機械学習アルゴリズムを実行する処理デバイスが量子コンピューターである場合を指します。本コースの以降の部分では、このようなアルゴリズムに焦点を当てます。</p>
+</section>
+</section>
+<section id="id4">
+<h2>サポートベクターマシン<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>ここでは、サポートベクターマシンと呼ばれるアルゴリズムのクラスを、古典機械学習の観点から振り返ります。後ほど、このアルゴリズムに量子コンピューティングを取り入れる方法を示します。</p>
+<p><img alt="サポートベクターマシンの図。" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/svm-cp.avif" /></p>
+<p>図に示すような 2 次元の特徴空間を持つデータセットに対して、二値分類のタスクを考えてみましょう。このデータセットを分類するためにできることの 1 つは、2 つのクラスを分離する直線、あるいは一般には超平面を見つけることです。実際には分離超平面は無数に見つかるため、問題は「最適なものをどう定義するか」です。ここでの考え方は、特に良い決定境界はマージンを最大化するべきだ、というものです。マージンは、各クラスの最も近い点までの距離として定義されます。この設定において、決定境界までの距離が最も小さいデータ点をサポートベクターと呼びます。</p>
+<p>線形の決定境界はさまざまな方法で記述できますが、ある意味で最も素直な方法は、以下の <span class="math notranslate nohighlight">\(f_1\)</span> に示すものです。ここで、<span class="math notranslate nohighlight">\(\Theta\)</span> は超平面を定義するパラメーターの集合、<span class="math notranslate nohighlight">\(\vec{x}\)</span> はデータセット、<span class="math notranslate nohighlight">\(b\)</span> は定数のシフトです。<span class="math notranslate nohighlight">\(\Phi\)</span> は入力データ点の空間からの写像であり、多くの場合（必ずしもそうではありませんが）より高次元の空間への写像です。この写像については後ほど改めて取り上げます。</p>
+<p>モデル <span class="math notranslate nohighlight">\(f_1\)</span> において、<span class="math notranslate nohighlight">\(\Theta\)</span> はモデルが学習する調整可能なパラメーターのベクトルです。これを「主形式（primal formulation）」と呼びます。ある程度の数学的な操作により、同じ問題を定式化する 2 つ目の方法があることを示せます。これを「双対形式（dual formulation）」と呼び、以下の式 <span class="math notranslate nohighlight">\(f_2\)</span> で表されます。この定式化では、アルファパラメーターについて最適化する必要があります。主な違いは、主形式では式に特徴ベクトルと学習可能なパラメーターとの内積が含まれるのに対し、双対形式では内積が特徴ベクトル同士の間でとられる点です。双対形式には学習データの特徴量と対応するラベルの両方が含まれますが、次のセクションで、双対形式が主形式よりもいかに有用であるかを見ていきます。</p>
+<div class="math notranslate nohighlight">
+\[
+f_1(\vec{x}) = \Theta^T \Phi(\vec{x})+b
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+f_2(\vec{x}) = \sum_{i=1}^n \alpha_i y_i \Phi^T(\vec{x}_i)\Phi(\vec{x})+b
+\]</div>
+</section>
+<section id="id5">
+<h2>カーネル法と量子が果たしうる役割<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>以下の動画では、線形分類器において量子がどのような役割を果たしうるかを動機付けます。詳細は本文で説明します。</p>
+<IBMVideo id="133981147" title="この動画では、Chris Porter が古典機械学習におけるカーネル法を簡潔に復習し、量子コンピューティングがどのような役割を果たしうるかを動機付けます。" />
+<section id="id6">
+<h3>高次元空間への移行<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>この小節と次の小節では、より高次元への写像に焦点を当てて議論します。ここでのポイントは、空間間の写像という文脈で「カーネルトリック」を説明し、量子カーネルとは何かを理解するための準備をすることです。量子の波動関数の高い次元があらゆる問題を解決する、ということが要点では<strong>ありません</strong>。導入で述べたように、古典的なガウス特徴マップはすでに無限次元です。データの特徴量の次元は重要ですが、高次元の量子状態だけでは古典的手法に対する改善には十分ではありません。</p>
+<p>図を見ると、適切な高次元への写像が与えられれば、元のデータが線形分離可能でない場合にも SVM のアプローチを一般化できることが容易にわかります。左の 2 次元データを見ると、2 つのクラスを分離できる線形の決定境界は存在しません。しかし、特徴空間に 3 つ目の特徴量を追加することを考えられます。この新しい特徴量が、たとえば元の 2 つの特徴量 <span class="math notranslate nohighlight">\(x_1\)</span> と <span class="math notranslate nohighlight">\(x_2\)</span> の原点からの距離であれば、データは線形分離可能になります。これは、このより高次元の特徴空間上であれば、サポートベクターマシンのアルゴリズムを問題なく実行できるようになることも意味します。</p>
+<p><img alt="一方のデータ種がリング状に分布し、そのリングの中央をもう一方のデータ種が埋めている様子を示す図。2 つ目のセルでは、データを 3 次元にお椀のような形で射影した様子を示しています。これでデータは線形分離可能になります。" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/qml-cr-background-2d-3d.avif" /></p>
+<p>この「特徴マップ」も <span class="math notranslate nohighlight">\(\Phi\)</span> で表します。特徴マップは、ここに示したように入力データの空間からより高い次元へ写像することが多いですが、より低い次元への写像を利用するモデルやアルゴリズムもあります。高次元への写像は、単に可視化しやすく理解しやすいケースだというだけです。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vec{x} = \begin{pmatrix}x_1 \\ x_2 \end{pmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\vec{\Phi}(\vec{x}) = \begin{pmatrix}x_1 \\ x_2 \\ {x_1}^2+{x_2}^2\end{pmatrix}
+\end{split}\]</div>
+<p>特徴マップの中には、非常に高次元の空間へ写像するものもあります。そのような場合、高次元であるために内積の計算コストが高くなります。この点については後ほど改めて取り上げます。</p>
+</section>
+<section id="id7">
+<h3>なぜ双対形式が有用なのか？<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>線形境界モデルの主形式と双対形式を思い出しましょう。</p>
+<div class="math notranslate nohighlight">
+\[
+f_1(\vec{x}) = \Theta^T \Phi(\vec{x})+b
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+f_2(\vec{x}) = \sum_{i=1}^n \alpha_i y_i \Phi^T(\vec{x}_i)\Phi(\vec{x})+b
+\]</div>
+<p>特徴マップを使ってより高次元の空間へ移ることで、分離超平面をうまく見つけられる場合があることがわかったので、式中の元の特徴ベクトル <span class="math notranslate nohighlight">\(\vec{x}\)</span> を特徴マップ後のベクトルに置き換えることができます。しかし、これを主形式で行うと、パラメーターと、場合によっては非常に高次元となる特徴マップとの内積を計算しなければならないという問題に直面します。一方、双対形式では、これらが異なる入力の特徴マップ後のベクトル同士の内積に置き換わっていることがわかります。</p>
+<p>特徴マップによっては、特徴マップ後のベクトルの内積 <span class="math notranslate nohighlight">\(\vec{\Phi}^T(\vec{x}_i)\cdot \vec{\Phi}(\vec{x}_j)\)</span> を、元の（より低次元の）変数 <span class="math notranslate nohighlight">\(\vec{x}_i\)</span> と <span class="math notranslate nohighlight">\(\vec{x}_j\)</span> の簡単な関数 <span class="math notranslate nohighlight">\(k(\vec{x}_i, \vec{x}_j)\)</span> として書ける場合があります。<span class="math notranslate nohighlight">\(\Phi\)</span> の選び方によっては、<span class="math notranslate nohighlight">\(\vec{\Phi}^T(\vec{x}_i)\cdot \vec{\Phi}(\vec{x}_j)\)</span> を低次元の内積 <span class="math notranslate nohighlight">\(\vec{x}_i^T\vec{x}_j\)</span> の簡単な関数として書くことさえできるかもしれません。これは計算上非常に有利です。なぜなら、高次元での操作のコストをかけずに、データが線形分離可能となる空間にアクセスできるからです。実際、特徴マップ後のベクトルは <span class="math notranslate nohighlight">\(f_2\)</span> の中で内積としてしか現れないため、内積を計算するために特徴マップを明示的に実行する必要さえないかもしれません。内積を計算する関数 <span class="math notranslate nohighlight">\(k(\vec{x}_i, \vec{x}_j)\)</span> を「カーネル関数」と呼び、このように特徴マップの計算を回避する方法を「カーネルトリック」と呼びます。実際、特徴マップ後のベクトルが無限次元であっても、カーネルは非常に効率的に計算できる場合があります。</p>
+<p>カーネル関数自体は、2 つの入力データベクトルの関数です。データセット内のデータベクトルの各ペアをカーネル関数の引数として代入すると、カーネル行列と呼ばれる対称な半正定値行列が得られます。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+k = \begin{pmatrix}k(\vec{x}_1,\vec{x}_1) &amp; k(\vec{x}_1,\vec{x}_2) &amp; ... \\ k(\vec{x}_2,\vec{x}_1) &amp; k(\vec{x}_2,\vec{x}_2) &amp; ... \\ \vdots &amp; \vdots &amp; \ddots\end{pmatrix}
+\end{split}\]</div>
+<p>カーネル行列を計算したら、二次計画法のソフトウェアや「逐次最小最適化（sequential minimal optimization）」と呼ばれるアルゴリズムなどの手法を使って、最適なパラメーター（<span class="math notranslate nohighlight">\(\alpha_i\)</span>）を求めることができます。もちろん、これはデータのクラスを線形分離可能にする特徴マップに対応した、効率的に計算可能なカーネルが存在することを前提としています。これに関連しつつも新しいアプローチが、量子カーネル推定です。</p>
+</section>
+<section id="id8">
+<h3>量子カーネル<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>量子コンピューター、あるいはより一般に量子状態を用いると、「量子カーネル」を非常に自然に定義できます。入力 <span class="math notranslate nohighlight">\(\vec{x}\)</span> を量子状態 <span class="math notranslate nohighlight">\(|\Phi(\vec{x})\rangle\)</span> にエンコードすることを、特徴マップと解釈できます。このプロセスは、古典的な特徴マップでよく見られるように、実際にデータを非常に高次元の空間へ写像することがありますが、その次元はエンコード方法に依存します（「データエンコーディング」のレッスンを参照してください）。2 つの量子状態の内積 <span class="math notranslate nohighlight">\(\langle \psi | \phi \rangle\)</span> は、状態 <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> にあるときに状態 <span class="math notranslate nohighlight">\(|\phi\rangle\)</span> が測定される確率に関係していることを思い出してください。得られた回路を十分な回数測定することで、写像された 2 つのデータ点 <span class="math notranslate nohighlight">\(\vec{\Phi}(\vec{x}_i)\)</span> と <span class="math notranslate nohighlight">\(\vec{\Phi}(\vec{x}_j)\)</span> の内積を推定できます。</p>
+<p><img alt="カーネルを回路として抽象的に表現した図。" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/classical-review-background-kernel-circuit.avif" /></p>
+<p>本コースの後半で見るように、上に示したような量子回路での測定を用いてカーネルを推定し、その後カーネル行列に対して古典的に SVM の最適化を実行して、調整可能なパラメーターを学習することができます。</p>
+</section>
+</section>
+<section id="id9">
+<h2>変分量子分類器とニューラルネットワーク<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>もう 1 つの近い将来の量子機械学習アルゴリズムは、「変分量子回路（variational quantum circuits, VQCs）」と呼ばれます。これらの回路が分類タスクに用いられる場合、同じ略語が「変分量子分類器（variational quantum classifiers）」（これも VQCs）を指すのに使われることがあります。これらは古典的なニューラルネットワーク（NNs）と似た構造を利用することが多く、その場合は量子ニューラルネットワーク（QNNs）と呼ばれます。VQC はより一般的なものであり、必ずしも NN の構造に従う必要はないことを理解しておくことが重要ですが、既存の機械学習ワークフローにおいて量子が果たしうる役割を明確にするために、まずは NN とのアナロジーから始めます。その後、一般化について議論します。まずは古典的なニューラルネットワークを振り返りましょう。</p>
+<p>以下の動画では、ニューラルネットワークと、それが変分量子回路と重なる部分について簡潔に復習します。詳しくは本文で掘り下げます。</p>
+<IBMVideo id="133981150" title="この動画では、Chris Porter がニューラルネットワークを簡潔に復習し、量子回路がどのように類似の構造を形成できるかを説明します。" />
+<p>ニューラルネットワークは、脳内のニューロンの構造と機能から大まかに着想を得た計算モデルです。図中のノードであるこれらのニューロンは層状に配置され、重みによって互いに接続されています。</p>
+<p><img alt="QMLCRbackgroundQNN2ndlayer.png" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/qml-cr-background-qnn-2ndlayer.avif" /></p>
+<p>最初の層は入力層であり、この層のニューロンの活性 <span class="math notranslate nohighlight">\(a_n^0\)</span> には、分析対象のデータ <span class="math notranslate nohighlight">\(\vec{x}\)</span>（たとえば画像の個々のピクセルの濃淡など）が直接入力されます。最後の層は出力層であり、分類結果を表します（画像の例で言えば、ある画像が犬である確率が 90%、猫である確率が 10% と分類する、といったものです）。</p>
+<p><img alt="QMLCRbackgroundQNNoutput.png" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/qml-cr-background-qnn-output.avif" /></p>
+<p>各層のニューロンは、前の層から受け取った信号を処理し、それを重み <span class="math notranslate nohighlight">\(w_i\)</span>（図中の接続）を介して次の層へ伝えます。これらのニューロンの 1 つに着目すると、ニューラルネットワークの構成要素が得られます。これは「パーセプトロン」と呼ばれます。数学的には、パーセプトロンは入力ベクトル <span class="math notranslate nohighlight">\(\vec{x}\)</span> を受け取り、学習可能な重みベクトルとの内積にバイアスを加えたものを計算します。そして非常に重要なこととして、パーセプトロンはこの計算結果に非線形の活性化関数（<span class="math notranslate nohighlight">\(\sigma\)</span>）を適用します。これらの非線形活性化関数は、ニューラルネットワークの高い表現力にとって不可欠です。別の見方をすると、もし層と層の間に非線形性がなければ、原理的にはニューラルネットワーク全体を 1 つの大きな行列積として書けてしまいます。その結果は単なる線形モデルとなり、深層ニューラルネットワークが捉えられるような複雑なパターンを捉えることはできません。したがって、非線形活性化関数はニューラルネットワークにおいて基本的な役割を担っています。</p>
+<p><img alt="perceptronCP.png" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/perceptron-cp.avif" /></p>
+<p>次のような関数</p>
+<div class="math notranslate nohighlight">
+\[
+f(\vec{x}) = \sigma (\vec{w}\cdot \vec{x}+\vec{b})
+\]</div>
+<p>が、既知のデータ <span class="math notranslate nohighlight">\(\vec{x}\)</span> と非線形の <span class="math notranslate nohighlight">\(\sigma\)</span>、そして未知の重みベクトル <span class="math notranslate nohighlight">\(\vec{w}\)</span> とバイアスベクトル <span class="math notranslate nohighlight">\(\vec{b}\)</span> を用いて、各ニューロンで計算されます。一般に、すべての層のすべてのニューロン間に非ゼロの重みが存在しうるため、層 <span class="math notranslate nohighlight">\(L\)</span> から層 <span class="math notranslate nohighlight">\(L+1\)</span> へのニューロン <span class="math notranslate nohighlight">\(m\)</span> と <span class="math notranslate nohighlight">\(n\)</span> の間の重みを <span class="math notranslate nohighlight">\(w^L_{m,n}\)</span> と表します。同様に、<span class="math notranslate nohighlight">\(L^\text{th}\)</span> 層の <span class="math notranslate nohighlight">\(n^\text{th}\)</span> ニューロンに対するバイアスを <span class="math notranslate nohighlight">\(b^L_n\)</span> と表します。ここでのバイアスは、量子カーネルの議論に出てきた <span class="math notranslate nohighlight">\(b\)</span> とは無関係です。</p>
+<p>ニューラルネットワークは、重みとバイアスをランダムに設定した状態から始めることもあれば、既知の妥当な初期構成から始めることもあります。そこから、ニューラルネットワークがどの程度うまく分類できるかを確認し、改善していくというのが基本的な考え方です。ニューラルネットワークが正しい分類からどの程度ずれているかを表すために、コスト関数を用います。コスト関数の定義方法は数多くあります。ここでは、平均二乗誤差（MSE）を用いる一般的な例を 1 つ紹介します。</p>
+<div class="math notranslate nohighlight">
+\[
+C(w^L_{m,n},b^L_n) = \frac{1}{N}\sum_{i=1}^{N_\text{train}}\sum_{j=1}^{N_\text{outputs}}{(v_{i,j}-p_{i,j})^2}
+\]</div>
+<p>用途によって異なりますが、これは、学習データ中の画像 <span class="math notranslate nohighlight">\(i\)</span> の出力 <span class="math notranslate nohighlight">\(j\)</span> に対する実際の値 <span class="math notranslate nohighlight">\(v_{i,j}\)</span>（たとえば、出力層の「犬」のニューロンでは 1.0、その他すべてのニューロンでは 0 という値）と、予測値 <span class="math notranslate nohighlight">\(p_{i,j}\)</span> との差をとることを意味します。その差を 2 乗してすべてのカテゴリーについて和をとることで、正しいカテゴリーが最も強く活性化されたかどうかだけでなく、誤った活性化が抑えられているかどうかも捉えられます。さらに、学習セット内のすべての例について和をとることで、コストが得られます。</p>
+<p>次に、各層のすべてのニューロン間の重みや、すべてのニューロンのバイアスといったパラメーターを変化させます。コスト関数の局所的な最小値を探索するために、勾配降下法などの古典的な最適化ルーチンが用いられます。</p>
+<section id="id10">
+<h3>量子パーセプトロン<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>パーセプトロンの量子版を構築するために考慮すべきことの 1 つは、古典ニューラルネットワークにおける活性化関数の役割である非線形性を、量子回路で実装できるようにすることです。というのも、特別な工夫をしない限り、量子回路はユニタリー演算、つまり単なる線形演算しか実装しないからです。量子回路に非線形性を導入するために使える方法はいくつかあります。主な方法の 1 つは、測定を非線形性の源として用いることです。その他の方法としては、量子フーリエ変換に基づく手法、回路途中の測定（mid-circuit measurement）や動的回路、回路から量子ビットをトレースアウトすることなどが挙げられます。</p>
+</section>
+<section id="id11">
+<h3>量子ニューラルネットワーク<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>量子ニューラルネットワーク（QNN）は、まず図中のユニタリー層 <span class="math notranslate nohighlight">\(U\)</span> で入力データをエンコードし、次に層間の重みに対応する量子回路（下図の <span class="math notranslate nohighlight">\(W\)</span>）を適用し、最後に測定の層を置くことで動作します。これについての重要なポイントをいくつか挙げます。</p>
+<ul class="simple">
+<li><p>データの読み込みと重み付けは線形演算です。</p></li>
+<li><p>測定は非線形です。</p></li>
+<li><p>したがって、古典 NN と同様に、線形な要素と非線形な要素の両方を備えています。</p></li>
+<li><p>重みの回路には変分パラメーターが含まれるため、依然として古典的な最小化を行う必要があります。</p></li>
+</ul>
+<p><img alt="量子ニューラルネットワークを回路として表現した図。" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/qml-cr-background-qnn-ex-circuit.avif" /></p>
+<p>上のような回路を用いて、次の関数を計算できます。
+<span class="math notranslate nohighlight">\(f_{QNN}(x) = \langle 0|U^{\dagger}(X)W^{\dagger}OWU(x)|0\rangle \)</span>
+この関数は、一般に古典 NN で説明した関数 <span class="math notranslate nohighlight">\(f(x)\)</span> と同じではないことに注意してください。特に、この関数には多数の重みからなる多数の層が含まれる可能性があり、<span class="math notranslate nohighlight">\(U\)</span> によって量子回路に読み込まれたすべてのデータに対して適用されます。</p>
+</section>
+<section id="id12">
+<h3>一般化<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>ここで、ニューラルネットワークの量子版を構築する方法の 1 つを見てみましょう。このモデルでは、情報の流れが古典的なフィードフォワード型ニューラルネットワークとは異なります。古典的な設定では、情報は入力から始まりモデルの出力で終わるように左から右へ流れ、モデルを学習させるために誤差逆伝播法を行う際には逆方向に流れます。</p>
+<p><img alt="量子ニューラルネットワーク内の複数のゲート層を示す図" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/classical-ml-review/vqc-layers-meltem.avif" /></p>
+<p>しかし、この量子ニューラルネットワークの構成では、データをエンコードするユニタリーブロックが、学習可能なパラメーターを持つ変分ユニタリーブロックの間で繰り返されていることがわかります。「データ再アップロード（data reuploading）」と呼ばれるこの戦略は、興味深い理論的結果によって裏付けられています。実際、<a class="reference external" href="https://quantum-journal.org/papers/q-2020-02-06-226/">Pérez-Salinas et al</a>. の論文では、複数回のデータ再アップロードの助けを借りることで、「古典的なサブルーチンの支援があれば、単一の量子ビットでも普遍的な量子分類器を構築するのに十分な計算能力を持つ」ことが示されています。したがって、データ再アップロードは、モデルの表現力と表現能力を高めるために使える手法であり、量子ニューラルネットワークが複雑な関数を近似することを可能にします。</p>
+</section>
+</section>
+<section id="id13">
+<h2>参考文献<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>[1] <a class="reference external" href="http://incompleteideas.net/book/the-book-2nd.html">“Reinforcement Learning: An Introduction”</a>, Richard S. Sutton and Richard G. Barto, MIT Press, Second Edition, Cambridge, MA, 2018</p>
+<p>[2] <a class="reference external" href="https://link.springer.com/book/9780387310732">“Pattern Recognition and Machine Learning”</a>, Christopher M. Bishop, Springer, 2006</p>
+<p>[3] <a class="reference external" href="https://cs.nyu.edu/~mohri/mlbook/">“Foundations of Machine Learning”</a>, Mehryar Mohri, Afshin Rostamizadeh, and Ameet Talwalkar, MIT Press, Second Edition, 2018.</p>
+<p>© IBM Corp., 2017-2026</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./courses/quantum-machine-learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">機械学習の種類</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">機械学習への「量子」の導入</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">サポートベクターマシン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">カーネル法と量子が果たしうる役割</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">高次元空間への移行</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">なぜ双対形式が有用なのか？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">量子カーネル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">変分量子分類器とニューラルネットワーク</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">量子パーセプトロン</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">量子ニューラルネットワーク</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">一般化</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">参考文献</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quantum Tokyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Quantum Tokyo 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
