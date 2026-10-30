@@ -564,9 +564,7 @@ x^{'(i)}_k = \frac{x^{(i)}_k - \text{min}\{x^{(j)}_k\,|\,\vec{x}^{(j)}\in [\text
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/85ee995f-1e50-4860-a24c-16bbc8b5c8b0-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/f2435e4ab87ec818bded68b00681f85fa353bf31056b467813a59f5f9fc1c1bf.png" src="../../_images/f2435e4ab87ec818bded68b00681f85fa353bf31056b467813a59f5f9fc1c1bf.png" />
 </div>
 </div>
 <section id="id7">
@@ -574,38 +572,8 @@ x^{'(i)}_k = \frac{x^{(i)}_k - \text{min}\{x^{(j)}_k\,|\,\vec{x}^{(j)}\in [\text
 <p>例のデータセット <span class="math notranslate nohighlight">\(\text{X}_{\text{ex}}\)</span> の最初のベクトル</p>
 <p><span class="math notranslate nohighlight">\(\vec{x}^{(1)}=(4,8,5)\)</span></p>
 <p>を、基底エンコーディングを使ってエンコードするコードを書いてください。</p>
-<Accordion>
-  <AccordionItem title="解答">
-    ```python
-    import math
-    from qiskit import QuantumCircuit
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># エンコードするデータ点
-x = 4  # 2 進数: 0100
-y = 8  # 2 進数: 1000
-z = 5  # 2 進数: 0101
-
-# それぞれを 4 ビットの 2 進数リストに変換
-x_bits = [int(b) for b in format(x, '04b')]  # [0,1,0,0]
-y_bits = [int(b) for b in format(y, '04b')]  # [1,0,0,0]
-z_bits = [int(b) for b in format(z, '04b')]  # [0,1,0,1]
-
-# すべてのビットを結合
-all_bits = x_bits + y_bits + z_bits  # [0,1,0,0,1,0,0,0,0,1,0,1]
-
-# 12 量子ビットの量子回路を初期化
-qc = QuantumCircuit(12)
-
-# ビットが 1 の位置に X ゲートを適用
-for idx, bit in enumerate(all_bits):
-    if bit == 1:
-        qc.x(idx)
-
-qc.draw('mpl')
-```
-</pre></div>
+<div class="{dropdown}answer docutils">
 </div>
-  </AccordionItem>
-</Accordion>
 </section>
 </section>
 <section id="id8">
@@ -653,9 +621,7 @@ qc.draw('mpl')
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/19810c6d-8d60-49ee-bd6f-6f6fbd5e7363-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/de54eb80338f62ddf3a84b52000a10a33cd61a2ff179629e0e9d3b11a717a51d.png" src="../../_images/de54eb80338f62ddf3a84b52000a10a33cd61a2ff179629e0e9d3b11a717a51d.png" />
 </div>
 </div>
 <p>振幅エンコーディングの利点は、前述のとおり、エンコードに <span class="math notranslate nohighlight">\(\mathrm{log}_2(N)\)</span> 個の量子ビットしか必要としないことです。しかし、後続のアルゴリズムは量子状態の振幅に対して操作を行う必要があり、量子状態を準備・測定する方法は効率的でない傾向があります。</p>
@@ -664,110 +630,90 @@ qc.draw('mpl')
 <p>次のベクトル (例のデータセットの 2 つのベクトルからなる)</p>
 <p><span class="math notranslate nohighlight">\(\vec{x}=(9,8,6,2,9,2)\)</span></p>
 <p>を振幅エンコーディングでエンコードするための、正規化された状態を書いてください。</p>
-<Accordion>
-  <AccordionItem title="解答">
-    6 つの数値をエンコードするには、その振幅にエンコードできる状態が少なくとも 6 つ必要です。そのためには 3 量子ビットが必要になります。未知の正規化因子 $\alpha$ を用いると、次のように書けます。
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$$
+<div class="{dropdown}answer docutils">
+<p>6 つの数値をエンコードするには、その振幅にエンコードできる状態が少なくとも 6 つ必要です。そのためには 3 量子ビットが必要になります。未知の正規化因子 <span class="math notranslate nohighlight">\(\alpha\)</span> を用いると、次のように書けます。</p>
+<div class="math notranslate nohighlight">
+\[
 |\psi\rangle = \frac{1}{\alpha}(9|000\rangle+8|001\rangle+6|010\rangle+2|011\rangle+9|100\rangle+2|101\rangle+0|110\rangle+0|111\rangle)
-$$
-
-ここで、
-
-$$
+\]</div>
+<p>ここで、</p>
+<div class="math notranslate nohighlight">
+\[
 \langle \psi|\psi\rangle = \frac{1}{|\alpha|^2}\times(9^2+8^2+6^2+2^2+9^2+2^2+0^2+0^2) = \frac{1}{|\alpha|^2}\times(270)=1 \rightarrow \alpha = \sqrt{270}
-$$
-
-となるので、最終的に次のようになります。
-
-$$
+\]</div>
+<p>となるので、最終的に次のようになります。</p>
+<div class="math notranslate nohighlight">
+\[
 |\psi\rangle = \frac{1}{\sqrt{270}}(9|000\rangle+8|001\rangle+6|010\rangle+2|011\rangle+9|100\rangle+2|101\rangle+0|110\rangle+0|111\rangle)
-$$
-</pre></div>
+\]</div>
 </div>
-  </AccordionItem>
-</Accordion>
 <p>同じデータベクトル <span class="math notranslate nohighlight">\(\vec{x}=(9,8,6,2,9,2)\)</span> について、振幅エンコーディングを使ってこれらのデータ特徴量をロードする回路を作成するコードを書いてください。</p>
-<Accordion>
-  <AccordionItem title="解答">
-    ```python
-    desired_state = [
-        9 / math.sqrt(270),
-        8 / math.sqrt(270),
-        6 / math.sqrt(270),
-        2 / math.sqrt(270),
-        9 / math.sqrt(270),
-        2 / math.sqrt(270),
-        0,
-        0,
-    ]
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(desired_state)
+<div class="{dropdown}answer docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">desired_state</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">9</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">270</span><span class="p">),</span>
+    <span class="mi">8</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">270</span><span class="p">),</span>
+    <span class="mi">6</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">270</span><span class="p">),</span>
+    <span class="mi">2</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">270</span><span class="p">),</span>
+    <span class="mi">9</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">270</span><span class="p">),</span>
+    <span class="mi">2</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">270</span><span class="p">),</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+<span class="p">]</span>
 
-qc = QuantumCircuit(3)
-qc.initialize(desired_state, [0, 1, 2])
-qc.decompose(reps=8).draw(output="mpl")
-```
+<span class="nb">print</span><span class="p">(</span><span class="n">desired_state</span><span class="p">)</span>
 
-\[0.5477225575051662, 0.48686449556014766, 0.36514837167011077, 0.12171612389003691, 0.5477225575051662, 0.12171612389003691, 0, 0]
-
-!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin2.avif)
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">desired_state</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
-  </AccordionItem>
-</Accordion>
+<p><img alt="&quot;前のコードセルの出力&quot;" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin2.avif" /></p>
+</div>
 <p>非常に大きなデータベクトルを扱う必要がある場合もあります。次のベクトルを考えてください。</p>
 <p><span class="math notranslate nohighlight">\(\vec{x}=(4,8,5,9,8,6,2,9,2,5,7,0,3,7,5).\)</span></p>
 <p>正規化を自動化し、振幅エンコーディングのための量子回路を生成するコードを書いてください。</p>
-<Accordion>
-  <AccordionItem title="解答">
-    解答は多数考えられます。以下は、途中のいくつかのステップを出力するコードです。
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
-import numpy as np
-from math import sqrt
+<div class="{dropdown}answer docutils">
+<p>解答は多数考えられます。以下は、途中のいくつかのステップを出力するコードです。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
 
-init_list = [4, 8, 5, 9, 8, 6, 2, 9, 2, 5, 7, 0, 3, 7, 5]
-qubits = round(np.log(len(init_list)) / np.log(2) + 0.4999999999)
-need_length = 2**qubits
-pad = need_length - len(init_list)
-for i in range(0, pad):
-    init_list.append(0)
+<span class="n">init_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">qubits</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">init_list</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.4999999999</span><span class="p">)</span>
+<span class="n">need_length</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">qubits</span>
+<span class="n">pad</span> <span class="o">=</span> <span class="n">need_length</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad</span><span class="p">):</span>
+    <span class="n">init_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-init_array = np.array(init_list)  # 正規化前のデータベクトル
-length = sqrt(
-    sum(init_array[i] ** 2 for i in range(0, len(init_array)))
-)  # ベクトルの長さ
-norm_array = init_array / length  # 正規化された配列
-print("Normalized array:")
-print(norm_array)
-print()
+<span class="n">init_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">init_list</span><span class="p">)</span>  <span class="c1"># 正規化前のデータベクトル</span>
+<span class="n">length</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span>
+    <span class="nb">sum</span><span class="p">(</span><span class="n">init_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">init_array</span><span class="p">)))</span>
+<span class="p">)</span>  <span class="c1"># ベクトルの長さ</span>
+<span class="n">norm_array</span> <span class="o">=</span> <span class="n">init_array</span> <span class="o">/</span> <span class="n">length</span>  <span class="c1"># 正規化された配列</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Normalized array:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">norm_array</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
 
-qubit_numbers = []
-for i in range(0, qubits):
-    qubit_numbers.append(i)
-print(qubit_numbers)
+<span class="n">qubit_numbers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">qubits</span><span class="p">):</span>
+    <span class="n">qubit_numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qubit_numbers</span><span class="p">)</span>
 
-qc = QuantumCircuit(qubits)
-qc.initialize(norm_array, qubit_numbers)
-qc.decompose(reps=7).draw(output="mpl")
-```
-
-Normalized array:
-\[0.17342199 0.34684399 0.21677749 0.39019949 0.34684399 0.26013299
-0.086711   0.39019949 0.086711   0.21677749 0.30348849 0.
-0.1300665  0.30348849 0.21677749 0.        ]
-
-\[0, 1, 2, 3]
-
-!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin3.avif)
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">norm_array</span><span class="p">,</span> <span class="n">qubit_numbers</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">reps</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
-  </AccordionItem>
-</Accordion>
+<p>Normalized array:
+[0.17342199 0.34684399 0.21677749 0.39019949 0.34684399 0.26013299
+0.086711   0.39019949 0.086711   0.21677749 0.30348849 0.
+0.1300665  0.30348849 0.21677749 0.        ]</p>
+<p>[0, 1, 2, 3]</p>
+<p><img alt="&quot;前のコードセルの出力&quot;" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin3.avif" /></p>
+</div>
 <p>振幅エンコーディングには、基底エンコーディングと比べて利点があると思いますか? もしあれば、説明してください。</p>
-<Accordion>
-  <AccordionItem title="解答">
-    いくつかの答えが考えられます。1 つの答えは、基底状態の順序が固定されているため、この振幅エンコーディングではエンコードされた数値の順序が保たれるということです。また、多くの場合、より高密度にエンコードされます。
-  </AccordionItem>
-</Accordion>
+<div class="{dropdown}answer docutils">
+<p>いくつかの答えが考えられます。1 つの答えは、基底状態の順序が固定されているため、この振幅エンコーディングではエンコードされた数値の順序が保たれるということです。また、多くの場合、より高密度にエンコードされます。</p>
+</div>
 <p>振幅エンコーディングの利点は、<span class="math notranslate nohighlight">\(N\)</span> 次元 (<span class="math notranslate nohighlight">\(N\)</span> 個の特徴量) のデータベクトル <span class="math notranslate nohighlight">\(\vec{x}\rightarrow|\vec{x}\rangle\)</span> に対して <span class="math notranslate nohighlight">\(\log_2(N)\)</span> 個の量子ビットしか必要としないことです。しかし、振幅エンコーディングは一般に、任意の状態準備を必要とする非効率な手順であり、CNOT ゲートの数が指数関数的になります。言い換えると、状態準備の実行時間の計算量は次元数に対して <span class="math notranslate nohighlight">\(\mathcal O(N)\)</span> の多項式オーダーとなります。ここで <span class="math notranslate nohighlight">\(N = 2^n\)</span> であり、<span class="math notranslate nohighlight">\(n\)</span> は量子ビット数です。振幅エンコーディングは「時間の指数関数的な増大を代償として、空間の指数関数的な節約をもたらす」<a class="reference internal" href="#references"><span class="xref myst">[3]</span></a> ものですが、特定のケースでは実行時間を <span class="math notranslate nohighlight">\(\mathcal O(\log N)\)</span> に抑えることが可能です<a class="reference internal" href="#references"><span class="xref myst">[4]</span></a>。エンドツーエンドで量子スピードアップを実現するには、データローディングの実行時間の計算量を考慮する必要があります。</p>
 </section>
 </section>
@@ -874,9 +820,7 @@ Normalized array:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/666700f7-7798-43ce-a8ca-d91e48adda4f-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/2e67e2a4dc6f6ed16318cf3e795ce43b5fdcb24ae26039fb5028b82e937c9f00.png" src="../../_images/2e67e2a4dc6f6ed16318cf3e795ce43b5fdcb24ae26039fb5028b82e937c9f00.png" />
 </div>
 </div>
 <p>ここまでは、単一のデータベクトルの単一の特徴量だけでした。<span class="math notranslate nohighlight">\(N\)</span> 個の特徴量を <span class="math notranslate nohighlight">\(n\)</span> 個の量子ビットの回転角にエンコードする場合、たとえば <span class="math notranslate nohighlight">\(j^\text{th}\)</span> 番目のデータベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(j)} = (x_1,...,x_N)\)</span> について、エンコードされた積状態は次のようになります。</p>
@@ -893,26 +837,20 @@ Normalized array:
 <section id="id11">
 <h4>理解度チェック<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
 <p>上で説明した角度エンコーディングを使って、データベクトル <span class="math notranslate nohighlight">\(\vec{x} = (0, \pi/4, \pi/2)\)</span> をエンコードしてください。</p>
-<Accordion>
-  <AccordionItem title="解答">
-    ```python
-    qc = QuantumCircuit(3)
-    qc.ry(0, 0)
-    qc.ry(math.pi / 4, 1)
-    qc.ry(math.pi / 2, 2)
-    qc.draw(output="mpl")
-    ```
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin4.avif)
+<div class="{dropdown}answer docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
 </pre></div>
 </div>
-  </AccordionItem>
-</Accordion>
+<p><img alt="&quot;前のコードセルの出力&quot;" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin4.avif" /></p>
+</div>
 <p>上で説明した角度エンコーディングを使う場合、5 つの特徴量をエンコードするには何個の量子ビットが必要ですか?</p>
-<Accordion>
-  <AccordionItem title="解答">
-    5
-  </AccordionItem>
-</Accordion>
+<div class="{dropdown}answer docutils">
+<p>5</p>
+</div>
 </section>
 </section>
 <section id="id12">
@@ -945,9 +883,7 @@ Normalized array:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/ba0886eb-1c56-4b15-a731-d94d805254e1-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/5bd6d1492cd1bfaf9624d0810adab56a38617f600d0cb8ab5f06020f3374c51f.png" src="../../_images/5bd6d1492cd1bfaf9624d0810adab56a38617f600d0cb8ab5f06020f3374c51f.png" />
 </div>
 </div>
 <p>定義した plot_Nstates 関数を使って、<span class="math notranslate nohighlight">\(\phi\)</span> 方向の回転を可視化できます。</p>
@@ -958,9 +894,7 @@ Normalized array:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/f7c9cf29-2ad6-43af-a7e3-e590e41d7e67-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/a9cb050322f8d2f4111b155c1392546e991409b80741f230a3507c3051abb91c.png" src="../../_images/a9cb050322f8d2f4111b155c1392546e991409b80741f230a3507c3051abb91c.png" />
 </div>
 </div>
 <p>ブロッホ球のプロットは、<span class="math notranslate nohighlight">\(\vec{x}^{(j)}_k=\frac{1}{2}\pi\)</span> の場合の Z 軸周りの回転 <span class="math notranslate nohighlight">\(|+\rangle \rightarrow P(\frac{1}{2}\pi)|+\rangle\)</span> を示しています。薄い緑色の矢印が最終状態を示しています。</p>
@@ -991,6 +925,24 @@ qc.draw(output="mpl")
 </div>
   </AccordionItem>
 </Accordion>
+<div class="{dropdown}answer docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+<p>ベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(1)}=(4,8,5,9,8,6,2,9,2,5,7,0)\)</span> を位相エンコーディングでエンコードするコードを書いてください。</p>
+<div class="{dropdown}answer docutils">
+<p>解答は多数考えられます。以下はその一例です。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">phase_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">phase_data</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">phase_data</span><span class="p">)):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="n">phase_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">phase_data</span><span class="p">)),</span> <span class="n">i</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="&quot;前のコードセルの出力&quot;" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin5.avif" /></p>
+</div>
 </section>
 </section>
 <section id="id14">
@@ -1022,40 +974,33 @@ qc.draw(output="mpl")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/9a6bb041-d7a1-4e29-a463-81b93b900e96-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/328d860080fa72cf7daafecfb628b4f0a45015077b7fba98e5895be077eb15dd.png" src="../../_images/328d860080fa72cf7daafecfb628b4f0a45015077b7fba98e5895be077eb15dd.png" />
 </div>
 </div>
 <section id="id15">
 <h4>理解度チェック<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
 <p>上の説明に基づくと、密エンコーディングを使って 6 つの特徴量をエンコードするには何個の量子ビットが必要ですか?</p>
-<Accordion>
-  <AccordionItem title="解答">
-    3
-  </AccordionItem>
-</Accordion>
-<p>密角度エンコーディングを使ってベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(1)}=(4,8,5,9,8,6,2,9,2,5,7,0,3,7,5)\)</span> をロードするコードを書いてください。</p>
-<Accordion>
-  <AccordionItem title="解答">
-    エンコーディング方式の中で使われないパラメーターが 1 つだけ残るという問題を避けるため、リストを「0」で埋めていることに注意してください。
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
-dense_data = [4, 8, 5, 9, 8, 6, 2, 9, 2, 5, 7, 0, 3, 7, 5, 0]
-qc = QuantumCircuit(int(len(dense_data) / 2))
-entry = 0
-for i in range(0, int(len(dense_data) / 2)):
-    qc.ry(dense_data[entry] * 2 * math.pi / float(max(dense_data)), i)
-    entry = entry + 1
-    qc.rz(dense_data[entry] * 2 * math.pi / float(max(dense_data)), i)
-    entry = entry + 1
-qc.draw(output="mpl")
-```
-
-!["前のコードセルの出力"](https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin6.avif)
+<div class="{dropdown}answer docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
-  </AccordionItem>
-</Accordion>
+</div>
+<p>密角度エンコーディングを使ってベクトル <span class="math notranslate nohighlight">\(\vec{x}^{(1)}=(4,8,5,9,8,6,2,9,2,5,7,0,3,7,5)\)</span> をロードするコードを書いてください。</p>
+<div class="{dropdown}answer docutils">
+<p>エンコーディング方式の中で使われないパラメーターが 1 つだけ残るという問題を避けるため、リストを「0」で埋めていることに注意してください。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dense_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dense_data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">entry</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dense_data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">dense_data</span><span class="p">[</span><span class="n">entry</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">dense_data</span><span class="p">)),</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">rz</span><span class="p">(</span><span class="n">dense_data</span><span class="p">[</span><span class="n">entry</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">dense_data</span><span class="p">)),</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">entry</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s2">"mpl"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="&quot;前のコードセルの出力&quot;" src="https://quantum.cloud.ibm.com/learning/images/courses/quantum-machine-learning/data-encoding/checkin6.avif" /></p>
+</div>
 </section>
 </section>
 </section>
@@ -1080,9 +1025,7 @@ qc.draw(output="mpl")
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/6b657226-ae95-41f6-b78b-5def930d0080-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/b1f31609c0e681e28293ecdf620a8793295ef487c5e284c89edb2c09fad6c36c.png" src="../../_images/b1f31609c0e681e28293ecdf620a8793295ef487c5e284c89edb2c09fad6c36c.png" />
 </div>
 </div>
 <p>状態を書き下す際には、<span class="math notranslate nohighlight">\(|q_2,q_1,q_0\rangle\)</span> や <span class="math notranslate nohighlight">\(|q_2\rangle\otimes|q_1\rangle\otimes|q_0\rangle\)</span> のように、最下位の量子ビットを一番右に並べる Qiskit の規約を使います。これらの状態はすぐに非常に複雑になるため、この珍しい例は、そうした状態が明示的に書き下されることがめったにない理由を説明する助けになるかもしれません。</p>
@@ -1101,15 +1044,49 @@ qc.draw(output="mpl")
 \end{split}\]</div>
 <p>ここで最後の単一量子ビット回転の組を適用し、同じ状態の項をまとめると、次のようになります。</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\begin{split}
+\[\begin{split}
 \begin{align*}
-|\psi\rangle_{\text{final}} = &amp;
-\left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)-\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\\begin{split}+ &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)-\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
-|00\rangle\\\end{split}\\\begin{split}+ &amp; \left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)-\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\\begin{split}+ &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(-\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
-e^{i\theta_6}|01\rangle\\\end{split}\\\begin{split}+ &amp; \left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\\begin{split}- &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
-e^{i\theta_7}|10\rangle\\\end{split}\\\begin{split}+ &amp; \left[\cos\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\sin\left(\frac{\theta_4}{2}\right)\right.\\\end{split}\\+ &amp; \left.\sin\left(\frac{\theta_0}{2}\right)\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)+\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)\cos\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
-e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
-\end{aligned}\end{align} \]</div>
+|\psi\rangle_{\text{final}} ={}&amp;
+\left[\cos\left(\frac{\theta_0}{2}\right)
+\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)
+-\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\cos\left(\frac{\theta_4}{2}\right)\right.\\
+&amp;\left.+\sin\left(\frac{\theta_0}{2}\right)
+\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)
+-\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\sin\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]|00\rangle\\
++{}&amp;
+\left[\cos\left(\frac{\theta_0}{2}\right)
+\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)
+-\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\sin\left(\frac{\theta_4}{2}\right)\right.\\
+&amp;\left.+\sin\left(\frac{\theta_0}{2}\right)
+\left(-\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)
++\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\cos\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
+e^{i\theta_6}|01\rangle\\
++{}&amp;
+\left[\cos\left(\frac{\theta_0}{2}\right)
+\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)
++\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\cos\left(\frac{\theta_4}{2}\right)\right.\\
+&amp;\left.-\sin\left(\frac{\theta_0}{2}\right)
+\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)
++\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\sin\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
+e^{i\theta_7}|10\rangle\\
++{}&amp;
+\left[\cos\left(\frac{\theta_0}{2}\right)
+\left(\cos\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)
++\sin\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\sin\left(\frac{\theta_4}{2}\right)\right.\\
+&amp;\left.+\sin\left(\frac{\theta_0}{2}\right)
+\left(\cos\left(\frac{\theta_1}{2}\right)\cos\left(\frac{\theta_5}{2}\right)
++\sin\left(\frac{\theta_1}{2}\right)\sin\left(\frac{\theta_5}{2}\right)e^{i\theta_3}\right)
+\cos\left(\frac{\theta_4}{2}\right)e^{i\theta_2}\right]
+e^{i\theta_6}e^{i\theta_7}|11\rangle
+\end{align*}
+\end{split}\]</div>
 <p>これを読み解くのはおそらく複雑すぎるでしょう。代わりに、一歩引いて、状態にいくつのパラメーターをロードしたかを考えてみてください。8 つです。しかし、計算基底状態は 4 つしかありません。最終状態は <span class="math notranslate nohighlight">\(\psi_\text{final} = c_0|00\rangle+c_1|01\rangle+c_2|10\rangle+c_3|11\rangle\)</span> と書けるので、一見すると、理にかなう数よりも多くのパラメーターをロードしたように見えるかもしれません。しかし、各係数は複素数であることに注意してください! 次のように書くと、</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1133,9 +1110,7 @@ e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/73fc00fe-b98f-4d63-a327-54958a8f5498-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/0ffcdcf66264682872e933552a5813c8206416b1fa804c4954168367bbf58a0c.png" src="../../_images/0ffcdcf66264682872e933552a5813c8206416b1fa804c4954168367bbf58a0c.png" />
 </div>
 </div>
 <p>量子ビット数を増やす代わりに、エンタングル層と回転層の繰り返し回数を増やすことを選ぶこともできます。しかし、有用な繰り返し回数には限界があります。</p>
@@ -1188,9 +1163,7 @@ e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/f5c70df4-faea-4817-a870-95638eb97dbd-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/6f75a81f8b94557ae4bf579e90827d42144766560a90ff953e981aed7d9819a4.png" src="../../_images/6f75a81f8b94557ae4bf579e90827d42144766560a90ff953e981aed7d9819a4.png" />
 </div>
 </div>
 <p>次に、同じデータベクトル <span class="math notranslate nohighlight">\(\vec{x} = \left(\textstyle\frac{1}{2}\pi, \textstyle\frac{1}{3}\pi\right)\)</span> を、Qiskit の <a class="reference internal" href="#/docs/api/qiskit/qiskit.circuit.library.ZFeatureMap"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code></span></a> クラスを使って、繰り返し 3 回 (<span class="math notranslate nohighlight">\(r=3\)</span>) の ZFM 回路にエンコードします。これにより、全体として量子特徴量マップ <span class="math notranslate nohighlight">\(\mathscr{U}_{\text{ZFM}}(\vec{x})\)</span> が得られます。<code class="docutils literal notranslate"><span class="pre">z_feature_map</span></code> クラスでは、デフォルトで、パラメーター <span class="math notranslate nohighlight">\(\beta\)</span> は位相ゲートにマッピングされる前に 2 倍されます (<span class="math notranslate nohighlight">\(\beta \rightarrow P(\theta = 2\beta)\)</span>)。上と同じエンコーディングを再現するため、2 で割っています。</p>
@@ -1205,9 +1178,7 @@ e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/c15b8fe2-ae83-4c76-a908-71596deb7d82-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/d6593ddb0dd45ed0c137d2955ecd4821059c355646a3a287e0e378b759e83a93.png" src="../../_images/d6593ddb0dd45ed0c137d2955ecd4821059c355646a3a287e0e378b759e83a93.png" />
 </div>
 </div>
 <p>明らかに、これは上で手作業で行ったものとは異なるマッピングですが、パラメーターの順序が一貫していることに注目してください。<span class="math notranslate nohighlight">\(\textstyle\frac{1}{2}\pi\)</span> は今回も <span class="math notranslate nohighlight">\(0^\text{th}\)</span> 番目の量子ビットにエンコードされています。</p>
@@ -1226,9 +1197,7 @@ e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/6c312a5f-91a5-499c-a391-efc73cd0e4e1-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/2dc4929956e436af711f985b3e69f14f5d35b470dc18b076191e326ed38719a0.png" src="../../_images/2dc4929956e436af711f985b3e69f14f5d35b470dc18b076191e326ed38719a0.png" />
 </div>
 </div>
 <p>よくあることですが、.decompose() を使って構成ゲートをすべて表示するまでは、これは単一のゲートのようなユニットとして表示されます。</p>
@@ -1239,9 +1208,7 @@ e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/92062646-78f2-4dd6-82ad-7a543cb6a566-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/403afdb8ca61b0857e4989effe1fb4eab70ac4c5b7582adcb6d2b7ae7221135c.png" src="../../_images/403afdb8ca61b0857e4989effe1fb4eab70ac4c5b7582adcb6d2b7ae7221135c.png" />
 </div>
 </div>
 <p>データは 2 番目の量子ビット上の位相回転 <span class="math notranslate nohighlight">\(P(\theta) = e^{i\theta/2}R_Z(\theta)\)</span> によってマッピングされます。<span class="math notranslate nohighlight">\(R_{ZZ}(\theta)\)</span> ゲートは、作用する 2 つの量子ビットを、エンコードされた特徴量の値によって決まる度合いでエンタングルさせます。</p>
@@ -1274,9 +1241,7 @@ e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/1ec2f2e1-b665-4dde-a223-35489f17c695-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/8a4e9ba1f7e725ad5c2bbf782850a0c3808ca76b1cff3a9e458225b3ceae4c38.png" src="../../_images/8a4e9ba1f7e725ad5c2bbf782850a0c3808ca76b1cff3a9e458225b3ceae4c38.png" />
 </div>
 </div>
 <p>Qiskit のデフォルトでは、特徴量 <span class="math notranslate nohighlight">\((\vec{x}_1, \vec{x}_2)\)</span> はマッピング関数 <span class="math notranslate nohighlight">\(\theta_{1,2} = \phi(\vec{x}_1, \vec{x}_2) = 2(\pi-\vec{x}_1)(\pi-\vec{x}_2)\)</span> によってまとめて <span class="math notranslate nohighlight">\(R_{ZZ}(\theta)\)</span> にマッピングされます。Qiskit では、前処理のステップとして、関数 <span class="math notranslate nohighlight">\(\phi\)</span> (または <span class="math notranslate nohighlight">\(\phi_S\)</span>。ここで <span class="math notranslate nohighlight">\(S\)</span> は <span class="math notranslate nohighlight">\(R_{ZZ}\)</span> ゲートを通じて結合される量子ビットのペアの集合) をユーザーがカスタマイズできます。</p>
@@ -1292,9 +1257,7 @@ e^{i\theta_6}e^{i\theta_7}|11\rangle\\\end{align*}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/979c765a-e3d8-4e3e-8e52-3f816203a934-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/46f9f6bbd44a0bbbe46f325612b6c07699b77799e6a8e69273548b0d6f99b5af.png" src="../../_images/46f9f6bbd44a0bbbe46f325612b6c07699b77799e6a8e69273548b0d6f99b5af.png" />
 </div>
 </div>
 <p>線形エンタングルメント方式では、この回路内で (番号が) 隣り合う量子ビットのペアがエンタングルされます。Qiskit には、<code class="docutils literal notranslate"><span class="pre">circular</span></code> や <code class="docutils literal notranslate"><span class="pre">full</span></code> など、他の組み込みのエンタングルメント方式もあります。</p>
@@ -1337,9 +1300,7 @@ U(\vec{x}) = \exp\left(i \sum_{S \in\mathcal{I}} \phi_S(\vec{x}) \prod_{i \in S}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/5ba5df82-83c1-428c-a269-baea5f75c3dc-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/3d5d340f2111c5a7fce3fa14db6fdf66d2a553915e21cbbabc198a94c9d71160.png" src="../../_images/3d5d340f2111c5a7fce3fa14db6fdf66d2a553915e21cbbabc198a94c9d71160.png" />
 </div>
 </div>
 <p>Qiskit では、パウリ回転のスケーリングを制御するためのパラメーター <span class="math notranslate nohighlight">\(\alpha\)</span> がパウリ特徴量マップに用意されています。</p>
@@ -1396,9 +1357,7 @@ U(\bar{x}) = \exp\left(i \alpha \sum_{S\subseteq[n]} \phi_S(\bar{x}) \prod_{i \i
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/data-encoding/extracted-outputs/69225757-193a-490b-8ca4-d1b187b774b3-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/070f7c075477fec9820d2ea4c64a65f2a34a5168c20ea6c3175165af0b23daed.png" src="../../_images/070f7c075477fec9820d2ea4c64a65f2a34a5168c20ea6c3175165af0b23daed.png" />
 </div>
 </div>
 <p>もちろん、上記を拡張して、パウリ行列の他の順列や繰り返しを含めることもできます。学習者の皆さんは、これらのオプションをぜひ試してみてください。</p>
@@ -1471,6 +1430,9 @@ U(\bar{x}) = \exp\left(i \alpha \sum_{S\subseteq[n]} \phi_S(\bar{x}) \prod_{i \i
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8bc155aac51e0f8ab685004dc03e717872c1723d815fb1ed3c6e4155d131467c.png" src="../../_images/8bc155aac51e0f8ab685004dc03e717872c1723d815fb1ed3c6e4155d131467c.png" />
 </div>
 </div>
 <p>一般に、パウリ特徴量マップと ZZ 特徴量マップは、<code class="docutils literal notranslate"><span class="pre">efficient_su2</span></code> や Z 特徴量マップよりも回路の深さが大きくなり、2 量子ビットゲートの数も多くなります。</p>
