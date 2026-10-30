@@ -611,9 +611,7 @@ P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\ot
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit depth =  9
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/extracted-outputs/4273dcf7-784c-4edb-a9cd-9b249d24dbb8-1.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/a7d708cc0c22bcea223bf4a5eb557336e26d3919f3a2b25edb9a897c519df6f8.png" src="../../_images/a7d708cc0c22bcea223bf4a5eb557336e26d3919f3a2b25edb9a897c519df6f8.png" />
 </div>
 </div>
 </section>
@@ -636,7 +634,7 @@ P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\ot
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_brisbane')&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_pittsburgh')&gt;
 </pre></div>
 </div>
 </div>
@@ -702,7 +700,8 @@ P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\ot
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eagle プロセッサーでベンチマーク（2024年7月11日）、所要時間4秒。</span>
 
 <span class="c1"># IBM Quantum のプリミティブをインポート</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span><span class="p">,</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime.executor_sampler</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
 
 <span class="n">num_shots</span> <span class="o">=</span> <span class="mi">10000</span>
 
@@ -730,7 +729,7 @@ P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\ot
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6525
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6771
 </pre></div>
 </div>
 </div>
@@ -745,9 +744,7 @@ P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\ot
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/extracted-outputs/29aaf5d6-ea7e-4373-b33c-9299699a3964-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/f4c35ec72559abe2c1a9b4e4f60913b2d8ae8463e14f8cb563de30591f32af6e.png" src="../../_images/f4c35ec72559abe2c1a9b4e4f60913b2d8ae8463e14f8cb563de30591f32af6e.png" />
 </div>
 </div>
 <p>あるいは、以下のような可視化を定義して、確率の高い上位10個の測定結果だけを見ることもできます。これはトラブルシューティングや、データについての直感を得るために重要になる場合があります。ただし、カーネル行列の要素はあくまでゼロ状態の測定確率です。</p>
@@ -774,9 +771,7 @@ P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\ot
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Image src="/learning/images/courses/quantum-machine-learning/quantum-kernel-methods/extracted-outputs/c141e800-79eb-400a-9b8c-75e2393ce24e-0.avif" alt="Output of the previous code cell" /&gt;
-</pre></div>
-</div>
+<img alt="../../_images/33038a64c882bac290da599909e590419a6efced9de6cb2dc7d32bcce7c120d5.png" src="../../_images/33038a64c882bac290da599909e590419a6efced9de6cb2dc7d32bcce7c120d5.png" />
 </div>
 </div>
 <p>高次元の特徴量空間における2つのデータ点間の内積1つだけの情報からは、両者の重なりが最大の重なり（1.0）と比べてかなり大きいということしか言えません。これは、この2つのデータ点が何らかの意味で性質が似ており、同じクラスに分類されることを示しているのかもしれません。あるいは、似たデータどうしの重なりが大きく、似ていないデータどうしの重なりが小さくなるような空間へのマッピングとして、特徴量マップが効果的でないことを示しているのかもしれません。どちらが正しいかを知るには、特徴量マップをデータ全体に適用し、得られたカーネル行列を使って高い精度でクラスを効果的に分離できるかどうかを確かめる必要があります。</p>
@@ -834,16 +829,16 @@ P_0 = |\langle0|^{\otimes N}\Phi^\dagger(\vec{x}_j)\Phi(\vec{x}_i)|0\rangle^{\ot
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2024-07-11 23:05:22--  https://raw.githubusercontent.com/qiskit-community/prototype-quantum-kernel-training/main/data/dataset_graph7.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.111.133, 185.199.109.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 49405 (48K) [text/plain]
-Saving to: ‘dataset_graph7.csv.15’
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-10-30 23:14:18--  https://raw.githubusercontent.com/qiskit-community/prototype-quantum-kernel-training/main/data/dataset_graph7.csv
+raw.githubusercontent.com (raw.githubusercontent.com) をDNSに問いあわせています... 2606:50c0:8000::154, 2606:50c0:8003::154, 2606:50c0:8002::154, ...
+raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8000::154|:443 に接続しています... 接続しました。
+HTTP による接続要求を送信しました、応答を待っています... 200 OK
+長さ: 49405 (48K) [text/plain]
+`dataset_graph7.csv' に保存中
 
-dataset_graph7.csv. 100%[===================&gt;]  48.25K  --.-KB/s    in 0.02s   
+dataset_graph7.csv  100%[===================&gt;]  48.25K  --.-KB/s 時間 0.003s     
 
-2024-07-11 23:05:23 (2.11 MB/s) - ‘dataset_graph7.csv.15’ saved [49405/49405]
+2026-10-30 23:14:19 (17.0 MB/s) - `dataset_graph7.csv' へ保存完了 [49405/49405]
 </pre></div>
 </div>
 </div>
@@ -1244,7 +1239,7 @@ two-qubit depth 165
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_brisbane')&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IBMBackend('ibm_fez')&gt;
 </pre></div>
 </div>
 </div>
@@ -1271,7 +1266,7 @@ two-qubit depth 165
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit depth =  61
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>circuit depth =  39
 </pre></div>
 </div>
 </div>
@@ -1284,8 +1279,8 @@ two-qubit depth 165
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[61, 60, 60, 69, 60, 60, 60, 65, 60, 60, 69, 61, 77, 77, 65, 60, 60, 77, 61]
-[13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39]
+[7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
 </pre></div>
 </div>
 </div>
@@ -1307,7 +1302,7 @@ two-qubit depth 165
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ibm_osaka で実行（2024年7月12日）、所要時間22秒。</span>
 
 <span class="c1"># IBM Quantum のプリミティブをインポート</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">SamplerV2</span> <span class="k">as</span> <span class="n">Sampler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qiskit_ibm_runtime.executor_sampler</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sampler</span>
 
 <span class="c1"># セッションを開く:</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
@@ -1339,7 +1334,7 @@ two-qubit depth 165
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0138
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0234
 </pre></div>
 </div>
 </div>
