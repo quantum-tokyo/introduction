@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
   
   <!-- So that users can add custom icons -->
   <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
@@ -55,7 +55,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -578,24 +578,24 @@ H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
 <div><p>QAOA問題をこのように書き直す方法を示すために、まずバイナリー変数<span class="math notranslate nohighlight">\(x_i\)</span>を以下を使って、新しい変数セット<span class="math notranslate nohighlight">\(z_i\in\{-1, 1\}\)</span>に置き換えます。</p>
 <div class="math notranslate nohighlight">
 \[
-&gt; x_i = \frac{1-z_i}{2}.
-&gt; \]</div>
+x_i = \frac{1-z_i}{2}.
+\]</div>
 <p>ここで、<span class="math notranslate nohighlight">\(x_i\)</span> が <span class="math notranslate nohighlight">\(0\)</span> の場合、<span class="math notranslate nohighlight">\(z_i\)</span> は <span class="math notranslate nohighlight">\(1\)</span> でなければならないことがわかります。最適化問題 (<span class="math notranslate nohighlight">\(x^TQx\)</span>) において、 <span class="math notranslate nohighlight">\(z_i\)</span> を <span class="math notranslate nohighlight">\(x_i\)</span> に置き換えると、同等の定式化が得られます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-&gt; x^TQx=\sum_{ij}Q_{ij}x_ix_j \\ =\frac{1}{4}\sum_{ij}Q_{ij}(1-z_i)(1-z_j) \\=\frac{1}{4}\sum_{ij}Q_{ij}z_iz_j-\frac{1}{4}\sum_{ij}(Q_{ij}+Q_{ji})z_i + \frac{n^2}{4}.
-&gt; \end{split}\]</div>
+x^TQx=\sum_{ij}Q_{ij}x_ix_j \\ =\frac{1}{4}\sum_{ij}Q_{ij}(1-z_i)(1-z_j) \\=\frac{1}{4}\sum_{ij}Q_{ij}z_iz_j-\frac{1}{4}\sum_{ij}(Q_{ij}+Q_{ji})z_i + \frac{n^2}{4}.
+\end{split}\]</div>
 <p>ここで、<span class="math notranslate nohighlight">\(b_i=-\sum_{j}(Q_{ij}+Q_{ji})\)</span>と定義し、前置因子と定数<span class="math notranslate nohighlight">\(n^2\)</span>項を削除すると、同じ最適化問題の2つの同等な定式化が得られます。</p>
 <div class="math notranslate nohighlight">
 \[
-&gt; \min_{x\in\{0,1\}^n} x^TQx\Longleftrightarrow \min_{z\in\{-1,1\}^n}z^TQz + b^Tz
-&gt; \]</div>
+\min_{x\in\{0,1\}^n} x^TQx\Longleftrightarrow \min_{z\in\{-1,1\}^n}z^TQz + b^Tz
+\]</div>
 <p>ここで、<span class="math notranslate nohighlight">\(b\)</span> は <span class="math notranslate nohighlight">\(Q\)</span> に依存します。<span class="math notranslate nohighlight">\(z^TQz + b^Tz\)</span> を取得するために、最適化では役割を果たさない係数 1/4 と定数オフセット <span class="math notranslate nohighlight">\(n^2\)</span> を削除したことに注意してください。</p>
 <p>さて、問題の量子定式化を得るために、<span class="math notranslate nohighlight">\(z_i\)</span>変数をパウリ<span class="math notranslate nohighlight">\(Z\)</span>行列、以下のような<span class="math notranslate nohighlight">\(2\times 2\)</span>行列に昇格させます。</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-&gt; Z_i = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; -1\end{pmatrix}.
-&gt; \end{split}\]</div>
+Z_i = \begin{pmatrix}1 &amp; 0 \\ 0 &amp; -1\end{pmatrix}.
+\end{split}\]</div>
 <p>これらの行列を上記の最適化問題に代入すると、次のハミルトニアンが得られます。
 $<span class="math notranslate nohighlight">\(
 H_C=\sum_{ij}Q_{ij}Z_iZ_j + \sum_i b_iZ_i.
